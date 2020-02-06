@@ -7,7 +7,7 @@ addons:
   sonarcloud:
     organization: "shockgiammy"
     token:
-      secure: "16e5fb3728c133d55a6755a10058afc642b7fd0a"
+      secure: "64296b0c1aad48a36987d0c3f2ed8409016a7a71"
 
 before_install:
   - wget http://apache.mirror.gtcomm.net/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
@@ -19,4 +19,4 @@ install: true
 
 script:
 
-- mvn clean javafx:compile org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
