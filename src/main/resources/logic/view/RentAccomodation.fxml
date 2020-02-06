@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1059.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControlCreateAccomodation">
+   <children>
+      <ScrollBar layoutX="1032.0" layoutY="81.0" orientation="VERTICAL" prefHeight="670.0" prefWidth="27.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1032.0" AnchorPane.topAnchor="81.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff361f" height="86.0" layoutX="-3.0" layoutY="-6.0" stroke="BLACK" strokeType="INSIDE" width="1065.0" />
+      <Text layoutX="146.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WhereIGo" wrappingWidth="237.474609375">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Text>
+      <Text layoutX="40.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert number of beds" />
+      <TextField fx:id="numberBeds" layoutX="34.0" layoutY="169.0" onKeyTyped="#insertNumBeds" />
+      <Text layoutX="40.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert description" />
+      <TextField layoutX="34.0" layoutY="243.0" prefHeight="150.0" prefWidth="155.0" />
+   </children>
+</AnchorPane>

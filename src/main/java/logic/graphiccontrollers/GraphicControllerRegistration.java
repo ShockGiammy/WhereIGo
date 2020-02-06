@@ -1,0 +1,87 @@
+package logic.graphiccontrollers;
+
+import java.time.format.DateTimeFormatter;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import logic.beans.UserDataBean;
+import logic.view.Window;
+
+public class GraphicControllerRegistration extends Window{
+	
+	@FXML private TextField name;
+	@FXML private TextField surname;
+	@FXML private DatePicker dateOfBirth;
+	@FXML private TextField email;
+	@FXML private TextField emailConf;
+	@FXML private TextField gender;
+	@FXML private TextField userName;
+	@FXML private TextField password;
+	@FXML private TextField confPassword;
+	@FXML private Button registerNow;
+	
+	private UserDataBean dataBean;
+	private DateTimeFormatter formatter;
+	
+	public GraphicControllerRegistration() {
+		this.dataBean = new UserDataBean();
+		this.formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+	}
+	
+	public void getName() {
+		String name = this.name.getText();
+		this.dataBean.setName(name);
+	}
+	
+	public void getSurname() {
+		String surname = this.surname.getText();
+		this.dataBean.setSurname(surname);
+	}
+	
+	public void getDateOfBirth() {
+		String dateOfBirth = this.dateOfBirth.getValue().format(formatter);
+		this.dataBean.setDateOfBirth(dateOfBirth);
+	}
+	
+	public void getEmail() {
+		String email = this.email.getText();
+		this.dataBean.setEmail(email);
+	}
+	
+	public void getConfEmail() {
+		String confEmail = this.emailConf.getText();
+		if(this.email.equals(confEmail) == false) {
+			System.out.println("Emails doent's match");
+		}
+	}
+	
+	public void getUserName() {
+		String user = this.userName.getText();
+		this.dataBean.setUserName(user);
+	}
+	
+	public void getGender() {
+		String gender = this.gender.getText();
+		this.dataBean.setGender(gender);
+	}
+	
+	public void getPassword() {
+		String paswd = this.password.getText();
+		this.dataBean.setPsw(paswd);
+	}
+	
+	public void getConfPassword() {
+		String confPaswd = this.confPassword.getText();
+		if(this.password.equals(confPaswd) == false) {
+			System.out.println("passwords doent's match");
+		}
+	}
+	
+	public void registerNowControl(MouseEvent event) {
+		setScene("HomePage.fxml");
+		nextGuiOnClick(event);
+	}
+}

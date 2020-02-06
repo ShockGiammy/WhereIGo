@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="WhereIGo">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../eclipse/java-2019-12/eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="11"/>
+    <property name="source" value="11"/>
+    <path id="JavaFX11.userclasspath">
+        <pathelement location="../../../../../Program Files/Java/javafx-sdk-11.0.2/lib/javafx.base.jar"/>
+        <pathelement location="../../../../../Program Files/Java/javafx-sdk-11.0.2/lib/javafx.controls.jar"/>
+        <pathelement location="../../../../../Program Files/Java/javafx-sdk-11.0.2/lib/javafx.fxml.jar"/>
+        <pathelement location="../../../../../Program Files/Java/javafx-sdk-11.0.2/lib/javafx.graphics.jar"/>
+        <pathelement location="../../../../../Program Files/Java/javafx-sdk-11.0.2/lib/javafx.media.jar"/>
+        <pathelement location="../../../../../Program Files/Java/javafx-sdk-11.0.2/lib/javafx.swing.jar"/>
+        <pathelement location="../../../../../Program Files/Java/javafx-sdk-11.0.2/lib/javafx.web.jar"/>
+        <pathelement location="../../../../../Program Files/Java/javafx-sdk-11.0.2/lib/javafx-swt.jar"/>
+    </path>
+    <path id="WhereIGo.classpath">
+        <pathelement location="bin"/>
+        <path refid="JavaFX11.userclasspath"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48-bin.jar"/>
+    </path>
+    <path id="run.Css2Bin.classpath">
+        <path refid="WhereIGo.classpath"/>
+        <path refid="JavaFX11.userclasspath"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48-bin.jar"/>
+    </path>
+    <path id="run.GraficControllerLogIn (2).classpath">
+        <path refid="WhereIGo.classpath"/>
+        <path refid="JavaFX11.userclasspath"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48-bin.jar"/>
+    </path>
+    <path id="run.GraphicControlCreateAccomodation (5).classpath">
+        <path refid="WhereIGo.classpath"/>
+        <path refid="JavaFX11.userclasspath"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48-bin.jar"/>
+    </path>
+    <path id="run.GraphicControlCreateAccomodation.classpath">
+        <path refid="WhereIGo.classpath"/>
+        <path refid="JavaFX11.userclasspath"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48-bin.jar"/>
+    </path>
+    <path id="run.GraphicControllerLogIn.classpath">
+        <path refid="WhereIGo.classpath"/>
+        <path refid="JavaFX11.userclasspath"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48-bin.jar"/>
+    </path>
+    <path id="run.HomeController.classpath">
+        <path refid="WhereIGo.classpath"/>
+        <path refid="JavaFX11.userclasspath"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48-bin.jar"/>
+    </path>
+    <path id="run.LoginView.classpath">
+        <path refid="WhereIGo.classpath"/>
+        <path refid="JavaFX11.userclasspath"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48-bin.jar"/>
+    </path>
+    <path id="run.RenterAccomodationView.classpath">
+        <path refid="WhereIGo.classpath"/>
+        <path refid="JavaFX11.userclasspath"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar"/>
+        <pathelement location="../../../../../mysql-connector-java-5.1.48/mysql-connector-java-5.1.48-bin.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="WhereIGo.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="Css2Bin">
+        <java classname="com.sun.javafx.css.parser.Css2Bin" failonerror="true" fork="yes">
+            <classpath refid="run.Css2Bin.classpath"/>
+        </java>
+    </target>
+    <target name="GraficControllerLogIn (2)">
+        <java classname="logic.GraficControllerLogIn" failonerror="true" fork="yes">
+            <classpath refid="run.GraficControllerLogIn (2).classpath"/>
+        </java>
+    </target>
+    <target name="GraphicControlCreateAccomodation (5)">
+        <java classname="graphiccontrollers.GraphicControlCreateAccomodation" failonerror="true" fork="yes">
+            <classpath refid="run.GraphicControlCreateAccomodation (5).classpath"/>
+        </java>
+    </target>
+    <target name="GraphicControlCreateAccomodation">
+        <java classname="logic.GraphicControlCreateAccomodation" failonerror="true" fork="yes">
+            <classpath refid="run.GraphicControlCreateAccomodation.classpath"/>
+        </java>
+    </target>
+    <target name="GraphicControllerLogIn">
+        <java classname="graphiccontrollers.GraphicControllerLogIn" failonerror="true" fork="yes">
+            <classpath refid="run.GraphicControllerLogIn.classpath"/>
+        </java>
+    </target>
+    <target name="HomeController">
+        <java classname="logic.HomeController" failonerror="true" fork="yes">
+            <classpath refid="run.HomeController.classpath"/>
+        </java>
+    </target>
+    <target name="LoginView">
+        <java classname="logic.LoginView" failonerror="true" fork="yes">
+            <classpath refid="run.LoginView.classpath"/>
+        </java>
+    </target>
+    <target name="RenterAccomodationView">
+        <java classname="logic.RenterAccomodationView" failonerror="true" fork="yes">
+            <classpath refid="run.RenterAccomodationView.classpath"/>
+        </java>
+    </target>
+</project>

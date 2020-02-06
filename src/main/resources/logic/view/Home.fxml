@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.AppBar?>
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <root>
+      <AnchorPane prefHeight="800.0" prefWidth="1100.0">
+         <children>
+            <HBox layoutX="326.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="280.0">
+               <children>
+                  <Icon content="HOME" prefHeight="27.0" prefWidth="46.0" />
+                  <Icon content="GPS_FIXED" prefHeight="27.0" prefWidth="46.0" />
+                  <Icon content="HOTEL" prefHeight="27.0" prefWidth="46.0" stylesheets="@application.css" />
+                  <Icon content="CHAT" prefHeight="27.0" prefWidth="46.0" />
+                  <Icon content="FAVORITE" prefHeight="27.0" prefWidth="46.0" />
+                  <Icon content="MENU" prefHeight="27.0" prefWidth="46.0" />
+               </children>
+            </HBox>
+            <AppBar prefHeight="40.0" prefWidth="147.0" titleText="WhereIGo" />
+         </children>
+      </AnchorPane>
+   </root>
+</Scene>

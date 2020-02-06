@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1059.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerRegistration">
+   <children>
+      <Text layoutX="35.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="surname" layoutX="35.0" layoutY="295.0" onKeyTyped="#getSurname" prefHeight="30.0" prefWidth="221.0" />
+      <Text layoutX="35.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="357.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="dateOfBirth" layoutX="30.0" layoutY="397.0" onAction="#getDateOfBirth" prefHeight="30.0" prefWidth="230.0" />
+      <Text layoutX="32.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="emailConf" layoutX="33.0" layoutY="600.0" onKeyTyped="#getConfEmail" prefHeight="27.0" prefWidth="222.0" />
+      <Text layoutX="34.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="email" layoutX="34.0" layoutY="507.0" onKeyTyped="#getEmail" prefHeight="30.0" prefWidth="221.0" />
+      <Text layoutX="35.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm e-mail">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="userName" layoutX="357.0" layoutY="295.0" onKeyTyped="#getUserName" prefHeight="30.0" prefWidth="221.0" />
+      <Text layoutX="364.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="364.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="357.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm password">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="registerNow" layoutX="393.0" layoutY="584.0" mnemonicParsing="false" onMouseClicked="#registerNowControl" prefHeight="59.0" prefWidth="101.0" text="Register now" />
+      <Text layoutX="70.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRATION FORM">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+      <TextField fx:id="name" layoutX="33.0" layoutY="198.0" onKeyTyped="#getName" prefHeight="30.0" prefWidth="221.0" />
+      <TextField fx:id="gender" layoutX="364.0" layoutY="198.0" onKeyTyped="#getGender" prefHeight="30.0" prefWidth="221.0" />
+      <PasswordField fx:id="password" layoutX="356.0" layoutY="399.0" onKeyTyped="#getPassword" prefHeight="24.0" prefWidth="222.0" />
+      <PasswordField fx:id="confPassword" layoutX="356.0" layoutY="509.0" onKeyTyped="#getConfPassword" prefHeight="24.0" prefWidth="222.0" />
+   </children>
+</AnchorPane>
