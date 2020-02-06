@@ -1,4 +1,4 @@
-dist: trusty
+sudo: false
 language: java
 jdk:
 - openjdk13
@@ -9,7 +9,14 @@ addons:
     token:
       secure: "73642046aae29f9a8c63c77ce28ed47c7bae6985"
 
+before_install:
+  - wget http://apache.mirror.gtcomm.net/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+  - tar xzvf apache-maven-3.6.3-bin.tar.gz
+  - export PATH=`pwd`/apache-maven-3.6.3/bin:$PATH
+  - mvn -v
+
+install: true
 
 script:
-- ant build
-- sonar-scanner
+
+- mvn clean javafx:compile
