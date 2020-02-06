@@ -1,4 +1,4 @@
-sudo: false
+dist: trusty
 language: java
 jdk:
 - openjdk13
@@ -19,4 +19,4 @@ install: true
 
 script:
 
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+- mvn clean javafx:compile org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=ShockGiammy_WhereIGo
