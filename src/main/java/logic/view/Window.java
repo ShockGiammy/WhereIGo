@@ -18,7 +18,6 @@ public class Window extends Application{
 	public void start(Stage primaryStage) {
 		try {
 			URL loc = Window.class.getResource(sample);
-			System.out.println(loc);
 			AnchorPane root = (AnchorPane)FXMLLoader.load(loc);
 			Scene scene = new Scene(root,1059,751);
 			scene.getStylesheets().add(Window.class.getResource("application.css").toExternalForm());

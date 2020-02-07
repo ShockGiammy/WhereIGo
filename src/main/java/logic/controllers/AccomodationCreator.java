@@ -1,4 +1,5 @@
-package logic;
+package logic.controllers;
+import logic.Accomodation;
 import logic.beans.RentAccomodationBean;
 public class AccomodationCreator {
 

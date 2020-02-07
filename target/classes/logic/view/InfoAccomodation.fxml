@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -24,7 +25,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="362.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of beds">
+      <Text layoutX="362.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of beds">
          <font>
             <Font size="18.0" />
          </font>
@@ -54,8 +55,8 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="saveInfo" layoutX="436.0" layoutY="595.0" onMouseClicked="#applyInfo" prefHeight="59.0" prefWidth="101.0" text="Save Info" />
-      <Text layoutX="70.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="APPARTAMENT INFO">
+      <Button fx:id="saveInfo" layoutX="435.0" layoutY="608.0" onMouseClicked="#applyInfo" prefHeight="59.0" prefWidth="101.0" text="Save Info" />
+      <Text layoutX="70.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="APARTMENT INFO">
          <font>
             <Font size="24.0" />
          </font>
@@ -63,10 +64,8 @@
       <TextField fx:id="description" layoutX="33.0" layoutY="198.0" prefHeight="30.0" prefWidth="221.0" />
       <TextField fx:id="address" layoutX="33.0" layoutY="384.0" prefHeight="30.0" prefWidth="221.0" />
       <ChoiceBox fx:id="type" layoutX="357.0" layoutY="198.0" prefHeight="30.0" prefWidth="221.0" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="497.0" pickOnBounds="true" preserveRatio="true" />
-      <ChoiceBox fx:id="numberBeds" layoutX="358.0" layoutY="482.0" prefHeight="30.0" prefWidth="221.0" />
+      <ChoiceBox fx:id="numberBeds" layoutX="357.0" layoutY="508.0" prefHeight="30.0" prefWidth="221.0" />
       <ChoiceBox fx:id="squareMetres" layoutX="357.0" layoutY="287.0" prefHeight="30.0" prefWidth="221.0" />
-      <ChoiceBox layoutX="357.0" layoutY="384.0" prefHeight="30.0" prefWidth="221.0" />
       <AnchorPane prefHeight="92.0" prefWidth="810.0">
          <children>
             <ToolBar layoutX="356.0" layoutY="16.0" prefHeight="68.0" prefWidth="396.0" style="-fx-background-color: white;">
@@ -111,5 +110,27 @@
             <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
          </children>
       </AnchorPane>
+      <CheckBox fx:id="garden" layoutX="359.0" layoutY="370.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Garden">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="wifi" layoutX="528.0" layoutY="372.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Wifi">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="kitchen" layoutX="528.0" layoutY="409.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="115.0" text="Kitchen">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="bathroom" layoutX="359.0" layoutY="409.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="139.0" text="Bathroom inside">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="46.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="openButton" layoutX="155.0" layoutY="457.0" mnemonicParsing="false" onMouseClicked="#insertImage" prefHeight="30.0" prefWidth="101.0" text="Select an Image" />
    </children>
 </AnchorPane>

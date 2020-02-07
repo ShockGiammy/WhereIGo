@@ -1,7 +1,6 @@
 package logic.controllers;
 
 import logic.Accomodation;
-import logic.AccomodationCreator;
 import logic.beans.RentAccomodationBean;
 
 public class RentAccomodationController {

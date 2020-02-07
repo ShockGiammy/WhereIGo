@@ -1,5 +1,7 @@
 package logic.beans;
 
+import javafx.scene.image.Image;
+
 public class RentAccomodationBean {
 	
 	//private renter;
@@ -10,8 +12,9 @@ public class RentAccomodationBean {
 	private String address;
 	private String type;
 	private int squareMetres;
-	private int[] services;
 	private String description;
+	private Image houseImage;
+	private int[] services;
 	
 	public void setBeds(String numBeds) {
 		this.beds= numBeds;	
@@ -68,19 +71,27 @@ public class RentAccomodationBean {
 		this.squareMetres = squareMetres;
 	}
 
-	public int[] getServices() {
-		return services;
-	}
-
-	public void setServices(int[] services) {
-		this.services = services;
-	}
-
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Image getHouseImage() {
+		return houseImage;
+	}
+
+	public void setHouseImage(Image image) {
+		this.houseImage = image;
+	}
+
+	public int[] getServices() {
+		return services;
+	}
+
+	public void setServices(int[] listOfServices) {
+		this.services = listOfServices;
 	}
 }
