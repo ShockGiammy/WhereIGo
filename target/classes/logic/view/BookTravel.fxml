@@ -19,10 +19,11 @@
             <Font size="50.0" />
          </font>
       </Text>
-      <Button fx:id="bookATravel" disable="true" layoutX="582.0" layoutY="16.0" mnemonicParsing="false" onMouseClicked="#bookTravelControl" prefHeight="41.0" prefWidth="127.0" text="Book a travel" textOverrun="WORD_ELLIPSIS" underline="true">
+      <Button fx:id="bookATravel" disable="true" layoutX="582.0" layoutY="16.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="127.0" text="Book a travel" textOverrun="WORD_ELLIPSIS" underline="true">
          <font>
             <Font name="System Bold" size="12.0" />
-         </font></Button>
+         </font>
+      </Button>
       <ListView layoutX="332.0" layoutY="128.0" prefHeight="508.0" prefWidth="385.0" style="-fx-background-color: #ff361f;" />
       <Text layoutX="411.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give us your travel info" wrappingWidth="254.94927978515625">
          <font>
@@ -39,7 +40,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="moneyRange" layoutX="471.0" layoutY="409.0" onAction="#mRangeControl" onKeyTyped="#getMoneyRange" prefHeight="27.0" prefWidth="174.0" />
+      <TextField fx:id="moneyRange" layoutX="471.0" layoutY="409.0" onKeyTyped="#getMoneyRange" prefHeight="27.0" prefWidth="174.0" />
       <Text layoutX="344.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Money range">
          <font>
             <Font size="18.0" />

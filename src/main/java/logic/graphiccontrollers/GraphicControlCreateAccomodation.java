@@ -1,8 +1,10 @@
 package logic.graphiccontrollers;
 
-import java.awt.Desktop;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+
+import javax.imageio.ImageIO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,7 +58,7 @@ public class GraphicControlCreateAccomodation extends Window{
 	
 	private RentAccomodationBean bean;
 	private int[] listOfServices;
-	private Desktop desktop = Desktop.getDesktop();
+	private byte[] imageBytes;
 	
 	public static void main(String[] args) {
 		setScene("InfoAccomodation.fxml");
@@ -99,6 +101,7 @@ public class GraphicControlCreateAccomodation extends Window{
 		bean.setCity(city.getText());
 		bean.setAddress(address.getText());
 		bean.setDescription(description.getText());
+		
 		control.createAccomodation(bean);
 	}
     

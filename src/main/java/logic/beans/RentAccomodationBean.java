@@ -13,7 +13,7 @@ public class RentAccomodationBean {
 	private String type;
 	private int squareMetres;
 	private String description;
-	private Image houseImage;
+	private byte[] houseImage;
 	private int[] services;
 	
 	public void setBeds(String numBeds) {
@@ -79,11 +79,11 @@ public class RentAccomodationBean {
 		this.description = description;
 	}
 
-	public Image getHouseImage() {
+	public byte[] getHouseImage() {
 		return houseImage;
 	}
 
-	public void setHouseImage(Image image) {
+	public void setHouseImage(byte[] image) {
 		this.houseImage = image;
 	}
 

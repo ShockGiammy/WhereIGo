@@ -5,13 +5,13 @@ C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\beans\RentAccomodationBean.
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\graphiccontrollers\GraphicControllerLogIn.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\view\Rent_TravellerView.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\beans\LogInBean.java
-C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\AccomodationCreator.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\module-info.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\TravelDao.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\view\Window.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\controllers\FirstController.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\Accomodation.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\graphiccontrollers\GraficControllerBookTravel.java
+C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\controllers\AccomodationCreator.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\controllers\BookTravelControl.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\graphiccontrollers\GraphicControlCreateAccomodation.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\beans\UserDataBean.java
