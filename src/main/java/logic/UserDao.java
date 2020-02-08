@@ -1,0 +1,34 @@
+package logic;
+import java.sql.*;
+import logic.model.LocationModel;
+
+public class UserDao {
+	public String getCity() {
+		Connection connection = null;
+		LocationModel lm = new LocationModel();
+		try{
+			String driverName = "com.mysql.cj.jdbc.Driver";
+			Class.forName(driverName);
+			SingletonDbConnection dbConn = new SingletonDbConnection();
+			connection = dbConn.getDbConnection();
+		}catch(ClassNotFoundException e) {
+			System.out.println("Could not find the database driver " + e.getMessage());
+		}catch(SQLException e) {
+			System.out.println("Could not connect to the database " + e.getMessage());
+		}
+		
+		try {
+			PreparedStatement statement = connection.prepareStatement("select * from Locations where country=?");    
+			statement.setString(1, "USA");    
+			ResultSet rs = statement.executeQuery();
+			while(rs.next()) {
+				 lm.setCountry(rs.getString(1));
+				 lm.setCity(rs.getString(2));
+			}
+		}catch (SQLException e) {
+			 
+			  System.out.println("Could not retrieve data from the database " + e.getMessage());
+		}
+		return lm.getCity();
+	}
+}
