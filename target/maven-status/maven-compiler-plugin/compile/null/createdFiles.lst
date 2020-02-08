@@ -1,3 +1,4 @@
+logic\graphiccontrollers\GraphicControllerDummyTravel.class
 logic\graphiccontrollers\GraphicControllerHomePage.class
 logic\beans\UserDataBean.class
 logic\graphiccontrollers\GraphicControllerLogIn.class
@@ -6,14 +7,17 @@ logic\Accomodation.class
 logic\beans\LogInBean.class
 logic\view\RentTravellerView.class
 module-info.class
+logic\LogInDao.class
 logic\view\Rent_TravellerView.class
+logic\UserDao.class
 logic\controllers\AccomodationCreator.class
 logic\graphiccontrollers\GraphicControlCreateAccomodation.class
 logic\beans\UserTravelBean.class
 logic\graphiccontrollers\GraphicControllerRegistration.class
-logic\graphiccontrollers\GraficControllerBookTravel.class
-logic\TravelDao.class
+logic\model\LocationModel.class
 logic\Home.class
+logic\graphiccontrollers\GraphicControllerBookTravel.class
+logic\SingletonDbConnection.class
 logic\beans\RentAccomodationBean.class
 logic\controllers\FirstController.class
 logic\view\Window.class
