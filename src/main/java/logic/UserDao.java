@@ -3,13 +3,14 @@ import java.sql.*;
 import logic.model.LocationModel;
 
 public class UserDao {
+	private static Connection connection;
+	private static SingletonDbConnection dbConn;
+	
 	public String getCity() {
-		Connection connection = null;
 		LocationModel lm = new LocationModel();
 		try{
 			String driverName = "com.mysql.cj.jdbc.Driver";
 			Class.forName(driverName);
-			SingletonDbConnection dbConn = new SingletonDbConnection();
 			connection = dbConn.getDbConnection();
 		}catch(ClassNotFoundException e) {
 			System.out.println("Could not find the database driver " + e.getMessage());

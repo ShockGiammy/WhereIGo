@@ -5,13 +5,14 @@ import java.sql.*;
 import logic.beans.LogInBean;
 
 public class LogInDao {
+	private static Connection connection = null;
+	private SingletonDbConnection dbConn;
+	
 	public int checkLogInInfo(LogInBean bean) {
-		Connection connection = null;
 		int fetched = 0;
 		try{
 			String driverName = "com.mysql.cj.jdbc.Driver";
 			Class.forName(driverName);
-			SingletonDbConnection dbConn = new SingletonDbConnection();
 			connection = dbConn.getDbConnection();
 		}catch(ClassNotFoundException e) {
 			System.out.println("Could not find the database driver " + e.getMessage());
