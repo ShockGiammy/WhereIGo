@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="780.0" prefWidth="828.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="92.0" prefWidth="810.0">
+         <children>
+            <ToolBar layoutX="356.0" layoutY="16.0" prefHeight="68.0" prefWidth="396.0" style="-fx-background-color: white;">
+               <items>
+                  <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@69524.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icona-di-chiavi-42470255.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@download%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@favourites-stars.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@download%20(2).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@16363.png" />
+                     </image>
+                  </ImageView>
+               </items>
+            </ToolBar>
+            <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@WIGLOGO.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

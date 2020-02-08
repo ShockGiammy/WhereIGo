@@ -1,10 +1,7 @@
 package logic.graphiccontrollers;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 
-import javax.imageio.ImageIO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +12,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.RentAccomodationController;
@@ -41,6 +39,7 @@ public class GraphicControlCreateAccomodation extends Window{
 	@FXML private ChoiceBox<String> type;
 	@FXML private ImageView imageView;
 	@FXML private Button openButton;
+	@FXML private ImageView home;
 	
 	@FXML
 	private void initialize() {
@@ -58,7 +57,6 @@ public class GraphicControlCreateAccomodation extends Window{
 	
 	private RentAccomodationBean bean;
 	private int[] listOfServices;
-	private byte[] imageBytes;
 	
 	public static void main(String[] args) {
 		setScene("InfoAccomodation.fxml");
@@ -71,7 +69,6 @@ public class GraphicControlCreateAccomodation extends Window{
 	}
 
 	public void applyInfo() {
-		//bean.setHouseImage(image);
 		listOfServices = new int[4];
 		if (garden.isSelected()) {
 			listOfServices[0] = 1;
@@ -119,5 +116,9 @@ public class GraphicControlCreateAccomodation extends Window{
             Image image = new Image(file.toURI().toString());
             imageView.setImage(image);
         }
+    }
+    public void goHome(MouseEvent event) {
+    	setScene("HomePage.fxml");
+    	nextGuiOnClick(event);
     }
 }
