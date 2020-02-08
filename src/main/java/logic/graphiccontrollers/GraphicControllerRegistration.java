@@ -1,5 +1,6 @@
 package logic.graphiccontrollers;
 
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
 import javafx.fxml.FXML;
@@ -53,9 +54,6 @@ public class GraphicControllerRegistration extends Window{
 	
 	public void getConfEmail() {
 		String confEmail = this.emailConf.getText();
-		if(this.email.equals(confEmail) == false) {
-			System.out.println("Emails doent's match");
-		}
 	}
 	
 	public void getUserName() {
@@ -75,13 +73,10 @@ public class GraphicControllerRegistration extends Window{
 	
 	public void getConfPassword() {
 		String confPaswd = this.confPassword.getText();
-		if(this.password.equals(confPaswd) == false) {
-			System.out.println("passwords doent's match");
-		}
 	}
 	
-	public void registerNowControl(MouseEvent event) {
+	public void registerNowControl(MouseEvent event) throws IOException {
 		setScene("HomePage.fxml");
-		nextGuiOnClick(event);
+		guiWithValue(this.dataBean,event);
 	}
 }

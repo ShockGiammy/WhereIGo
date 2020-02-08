@@ -1,37 +1,34 @@
 package logic.graphiccontrollers;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import logic.view.Window;
+import logic.beans.UserDataBean;
 
 public class GraphicControllerHomePage extends Window{
-	@FXML private TextField name;
-	@FXML private TextField surname;
-	@FXML private TextField dateOfBirth;
-	@FXML private TextField gender;
+	@FXML private Text name;
+	@FXML private Text surname;
+	@FXML private Text dateOfBirth;
+	@FXML private Text gender;
 	@FXML private Button bookATravel;
+	@FXML private Button changeInfo;
 	
-	public void bookTravelControl(MouseEvent event) {
+	public void bookTravelControl(MouseEvent event) throws IOException, SQLException {
 		setScene("BookTravel.fxml");
-		nextGuiOnClick(event);
+		guiWithValue1(event);
 	}
 	
-	public void setName() {
-		this.name.setText("Pierciro");
-	}
-	
-	public void setSurname() {
-		this.surname.setText("Caliandro");
-	}
-	
-	public void setDate() {
-		this.dateOfBirth.setText("18/02/1998");
-	}
-	
-	public void setGender() {
-		this.bookATravel.setText("Male");
+	/*set the datas of the user before the UI is loaded*/
+	public void setDatas(UserDataBean usrBean){
+		this.name.setText(usrBean.getName());
+		this.surname.setText(usrBean.getSurname());
+		this.gender.setText(usrBean.getGender());
+		this.dateOfBirth.setText(usrBean.getDateOfBirth());
 	}
 }
 

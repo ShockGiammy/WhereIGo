@@ -1,10 +1,14 @@
 package logic.controllers;
 
-import logic.beans.UserTravelBean;
+import java.sql.SQLException;
+
+import logic.UserDao;
 
 public class BookTravelControl {
 	
-	public void showLocationsControl(UserTravelBean travelBean) {
-		
+	public String showLocationsControl() throws SQLException {
+		UserDao usrdao = new UserDao();
+		String city = usrdao.getCity();
+		return city;
 	}
 }

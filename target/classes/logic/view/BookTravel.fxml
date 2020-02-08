@@ -6,14 +6,15 @@
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1059.0" style="-fx-background-color: #0BB2D5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraficControllerBookTravel">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1059.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraficControllerBookTravel">
    <children>
       <ScrollBar layoutX="1031.0" layoutY="76.0" orientation="VERTICAL" prefHeight="670.0" prefWidth="27.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="1031.0" AnchorPane.topAnchor="76.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff361f" height="86.0" layoutX="-3.0" layoutY="-6.0" stroke="BLACK" strokeType="INSIDE" width="1065.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#19ca8b" height="86.0" layoutX="-3.0" layoutY="-6.0" stroke="BLACK" strokeType="INSIDE" width="1065.0" />
       <Text layoutX="146.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WhereIGo" wrappingWidth="237.474609375">
          <font>
             <Font size="50.0" />
@@ -24,30 +25,53 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <ListView layoutX="332.0" layoutY="128.0" prefHeight="508.0" prefWidth="385.0" style="-fx-background-color: #ff361f;" />
-      <Text layoutX="411.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give us your travel info" wrappingWidth="254.94927978515625">
+      <ListView layoutX="566.0" layoutY="128.0" prefHeight="508.0" prefWidth="385.0" style="-fx-background-color: #19ca8b;" />
+      <Text layoutX="631.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give us your travel info" wrappingWidth="254.94927978515625">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Text layoutX="363.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First day">
+      <Text layoutX="598.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First day">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="365.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last day">
+      <Text layoutX="599.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last day">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="moneyRange" layoutX="471.0" layoutY="409.0" onKeyTyped="#getMoneyRange" prefHeight="27.0" prefWidth="174.0" />
-      <Text layoutX="344.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Money range">
+      <TextField fx:id="moneyRange" layoutX="763.0" layoutY="409.0" onKeyTyped="#getMoneyRange" prefHeight="27.0" prefWidth="174.0" />
+      <Text layoutX="593.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Money range">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="findMyTravel" layoutX="538.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#displayTravelOptions" prefHeight="42.0" prefWidth="106.0" text="Find my travel" />
-      <DatePicker fx:id="firstDay" layoutX="465.0" layoutY="251.0" onAction="#getFirstDay" prefHeight="33.0" prefWidth="185.0" />
-      <DatePicker fx:id="lastDay" layoutX="465.0" layoutY="325.0" onAction="#getLastDay" prefHeight="33.0" prefWidth="185.0" />
+      <DatePicker fx:id="firstDay" layoutX="758.0" layoutY="215.0" onAction="#getFirstDay" prefHeight="33.0" prefWidth="185.0" />
+      <DatePicker fx:id="lastDay" layoutX="758.0" layoutY="313.0" onAction="#getLastDay" prefHeight="33.0" prefWidth="185.0" />
+      <Button fx:id="locations" layoutX="786.0" layoutY="538.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="127.0" text="Book my travel" textOverrun="WORD_ELLIPSIS" underline="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Pane layoutX="38.0" layoutY="128.0" prefHeight="508.0" prefWidth="386.0" style="-fx-background-color: #19ca8b;">
+         <children>
+            <Text fx:id="location1" layoutX="22.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location1" wrappingWidth="87.34197998046875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="location2" layoutX="22.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location2" wrappingWidth="87.34197998046875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="location3" layoutX="22.0" layoutY="486.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location3" wrappingWidth="87.34197998046875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
