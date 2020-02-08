@@ -3,7 +3,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import logic.LogInDao;
+//import logic.LogInDao;
 import logic.beans.LogInBean;
 import logic.view.Window;
 import javafx.fxml.FXML;
@@ -14,21 +14,21 @@ public class GraphicControllerLogIn extends Window{
 	@FXML private Button loginButton;
 	@FXML private Button registerButton;
 	private LogInBean logBean;
-	private LogInDao logDao;
+	//private LogInDao logDao;
 	
 	public GraphicControllerLogIn() {
 		this.logBean = new LogInBean();
-		this.logDao = new LogInDao();
+		//this.logDao = new LogInDao();
 	}
 	
 	public void logInControl(MouseEvent event) {
-		if(logDao.checkLogInInfo(this.logBean) == 1) {
+		/*if(logDao.checkLogInInfo(this.logBean) == 1) {
 			setScene("HomePage.fxml");
 			nextGuiOnClick(event);
 		}
-		else {
+		/*else {
 			System.out.println("Utente non registrato\n");
-		}
+		}*/
 	}
 	
 	public void registrationControl(MouseEvent event) {
