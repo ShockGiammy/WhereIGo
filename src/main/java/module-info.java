@@ -13,6 +13,7 @@ module WhereIGo {
 	requires javafx.fxml;
 	requires javafx.graphics;
 	requires mysql.connector.java;
+	requires java.desktop;
 	
 	opens logic;
 	opens logic.graphiccontrollers;

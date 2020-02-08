@@ -4,7 +4,6 @@ public class UserDataBean {
 	String name;
 	String surname;
 	String dateOfBirth;
-	String email;
 	String gender;
 	String userName;
 	String psw;
@@ -19,10 +18,6 @@ public class UserDataBean {
 	
 	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
-	}
-	
-	public void setEmail(String eMail) {
-		this.email = eMail;
 	}
 	
 	public void setGender(String gender) {

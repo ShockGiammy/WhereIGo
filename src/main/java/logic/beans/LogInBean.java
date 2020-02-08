@@ -12,5 +12,11 @@ public class LogInBean {
 		this.psw = password;
 	}
 	
+	public String getUserName() {
+		return this.usrName;
+	}
 	
+	public String getPasw() {
+		return this.psw;
+	}	
 }

@@ -61,7 +61,7 @@ public class Window extends Application{
 		URL loc = Window.class.getResource(sample);
 		loader.setLocation(loc);
 		Parent newSceneParent = loader.load();
-		GraficControllerBookTravel controller = loader.getController();
+		GraphicControllerBookTravel controller = loader.getController();
 		controller.setLocation();
 		Scene scene = new Scene(newSceneParent);
 		scene.getStylesheets().add(Window.class.getResource("application.css").toExternalForm());

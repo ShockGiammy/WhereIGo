@@ -16,12 +16,9 @@ public class GraphicControllerRegistration extends Window{
 	@FXML private TextField name;
 	@FXML private TextField surname;
 	@FXML private DatePicker dateOfBirth;
-	@FXML private TextField email;
-	@FXML private TextField emailConf;
 	@FXML private TextField gender;
 	@FXML private TextField userName;
 	@FXML private TextField password;
-	@FXML private TextField confPassword;
 	@FXML private Button registerNow;
 	
 	private UserDataBean dataBean;
@@ -47,15 +44,6 @@ public class GraphicControllerRegistration extends Window{
 		this.dataBean.setDateOfBirth(dateOfBirth);
 	}
 	
-	public void getEmail() {
-		String email = this.email.getText();
-		this.dataBean.setEmail(email);
-	}
-	
-	public void getConfEmail() {
-		String confEmail = this.emailConf.getText();
-	}
-	
 	public void getUserName() {
 		String user = this.userName.getText();
 		this.dataBean.setUserName(user);
@@ -69,10 +57,6 @@ public class GraphicControllerRegistration extends Window{
 	public void getPassword() {
 		String paswd = this.password.getText();
 		this.dataBean.setPsw(paswd);
-	}
-	
-	public void getConfPassword() {
-		String confPaswd = this.confPassword.getText();
 	}
 	
 	public void registerNowControl(MouseEvent event) throws IOException {
