@@ -1,10 +1,13 @@
 package logic;
 import java.sql.*;
 import logic.model.LocationModel;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class UserDao {
 	private static Connection connection;
 	private static SingletonDbConnection dbConn;
+	private Logger logger = Logger.getLogger(UserDao.class.getName());
 	
 	public String getCity() {
 		LocationModel lm = new LocationModel();
@@ -13,9 +16,9 @@ public class UserDao {
 			Class.forName(driverName);
 			connection = dbConn.getDbConnection();
 		}catch(ClassNotFoundException e) {
-			System.out.println("Could not find the database driver " + e.getMessage());
+			logger.log(Level.SEVERE, "ClassNotFoundException occurred", e);
 		}catch(SQLException e) {
-			System.out.println("Could not connect to the database " + e.getMessage());
+			logger.log(Level.SEVERE, "SQLException occurred", e);
 		}
 		
 		try {
@@ -28,7 +31,7 @@ public class UserDao {
 			}
 		}catch (SQLException e) {
 			 
-			  System.out.println("Could not retrieve data from the database " + e.getMessage());
+			logger.log(Level.SEVERE, "SQLException occurred", e);
 		}
 		return lm.getCity();
 	}

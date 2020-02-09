@@ -1,14 +1,11 @@
 package logic.controllers;
 
-import java.sql.SQLException;
-
 import logic.UserDao;
 
 public class BookTravelControl {
 	
-	public String showLocationsControl() throws SQLException {
+	public String showLocationsControl() {
 		UserDao usrdao = new UserDao();
-		String city = usrdao.getCity();
-		return city;
+		return usrdao.getCity();
 	}
 }

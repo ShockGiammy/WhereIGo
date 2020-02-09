@@ -1,6 +1,5 @@
 package logic.beans;
 
-import java.time.LocalDate;
 
 public class UserTravelBean {
 	private String firstDay;
@@ -19,15 +18,15 @@ public class UserTravelBean {
 		this.moneyRange = moneyRange;
 	}
 	
-	public void getFirstDay() {
-		System.out.println(this.firstDay);
+	public String getFirstDay() {
+		return this.firstDay;
 	}
 	
-	public void getLastDay() {
-		System.out.println(this.lastDay);
+	public String getLastDay() {
+		return this.lastDay;
 	}
 	
-	public void getMoneyRange(){
-		System.out.println(this.moneyRange);
+	public String getMoneyRange(){
+		return this.moneyRange;
 	}
 }

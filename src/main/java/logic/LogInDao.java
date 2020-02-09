@@ -3,10 +3,13 @@ package logic;
 import java.sql.*;
 
 import logic.beans.LogInBean;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class LogInDao {
 	private static Connection connection = null;
 	private SingletonDbConnection dbConn;
+	private Logger logger = Logger.getLogger(LogInDao.class.getName());
 	
 	public int checkLogInInfo(LogInBean bean) {
 		int fetched = 0;
@@ -15,9 +18,9 @@ public class LogInDao {
 			Class.forName(driverName);
 			connection = dbConn.getDbConnection();
 		}catch(ClassNotFoundException e) {
-			System.out.println("Could not find the database driver " + e.getMessage());
+			logger.log(Level.SEVERE, "ClassNotFoundException occurred", e);
 		}catch(SQLException e) {
-			System.out.println("Could not connect to the database " + e.getMessage());
+			logger.log(Level.SEVERE, "SQLException occurred", e);
 		}
 		
 		try {
@@ -30,7 +33,7 @@ public class LogInDao {
 			}
 			}catch (SQLException e) {
 			 
-			  System.out.println("Could not retrieve data from the database " + e.getMessage());
+				logger.log(Level.SEVERE, "SQLException occurred", e);
 		}
 		return fetched;
 	}

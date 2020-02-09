@@ -47,19 +47,19 @@ public class GraphicControllerBookTravel extends Window{
 	
 	@FXML
 	public void getFirstDay() {
-		String firstDay = this.firstDay.getValue().format(formatter);
-		travBean.setFirstDay(firstDay);
+		String fDay = this.firstDay.getValue().format(formatter);
+		travBean.setFirstDay(fDay);
 	}
 	
 	@FXML
 	public void getLastDay() {
-		String lastDay = this.lastDay.getValue().format(formatter);
-		travBean.setFirstDay(lastDay);
+		String lDay = this.lastDay.getValue().format(formatter);
+		travBean.setFirstDay(lDay);
 	}
 	
 	@FXML
 	public void getMoneyRange() {
-		String moneyRange = this.moneyRange.getText();
-		travBean.setMoneyRange(moneyRange);
+		String mRange = this.moneyRange.getText();
+		travBean.setMoneyRange(mRange);
 	}
 }

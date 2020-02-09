@@ -37,8 +37,8 @@ public class GraphicControllerLogIn extends Window{
 	}
 	
 	public void getUserNameControl() {
-		String usrname = this.usrname.getText();
-		this.logBean.setUserName(usrname);
+		String usName = this.usrname.getText();
+		this.logBean.setUserName(usName);
 	}
 	
 	public void getPasswordControl() {

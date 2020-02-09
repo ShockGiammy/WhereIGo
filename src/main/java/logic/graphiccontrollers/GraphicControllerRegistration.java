@@ -30,18 +30,18 @@ public class GraphicControllerRegistration extends Window{
 	}
 	
 	public void getName() {
-		String name = this.name.getText();
-		this.dataBean.setName(name);
+		String nameOfUsr = this.name.getText();
+		this.dataBean.setName(nameOfUsr);
 	}
 	
 	public void getSurname() {
-		String surname = this.surname.getText();
-		this.dataBean.setSurname(surname);
+		String snameOfUsr = this.surname.getText();
+		this.dataBean.setSurname(snameOfUsr);
 	}
 	
 	public void getDateOfBirth() {
-		String dateOfBirth = this.dateOfBirth.getValue().format(formatter);
-		this.dataBean.setDateOfBirth(dateOfBirth);
+		String birth = this.dateOfBirth.getValue().format(formatter);
+		this.dataBean.setDateOfBirth(birth);
 	}
 	
 	public void getUserName() {
@@ -50,8 +50,8 @@ public class GraphicControllerRegistration extends Window{
 	}
 	
 	public void getGender() {
-		String gender = this.gender.getText();
-		this.dataBean.setGender(gender);
+		String gen = this.gender.getText();
+		this.dataBean.setGender(gen);
 	}
 	
 	public void getPassword() {

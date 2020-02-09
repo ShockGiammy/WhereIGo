@@ -12,13 +12,13 @@ public class GraphicControllerDummyTravel {
 	@FXML private Hyperlink skyscanner;
 	@FXML private Hyperlink expedia;
 	
-	public void goToSkyScanner(MouseEvent e) throws IOException, URISyntaxException {
+	public void goToSkyScanner() throws IOException, URISyntaxException {
 		Desktop desktop = java.awt.Desktop.getDesktop();
 		URI oURL = new URI("https://www.skyscanner.it/");
 		desktop.browse(oURL);
 	}
 	
-	public void goToExpedia(MouseEvent e) throws IOException, URISyntaxException {
+	public void goToExpedia() throws IOException, URISyntaxException {
 		Desktop desktop = java.awt.Desktop.getDesktop();
 		URI oURL = new URI("https://www.expedia.it/");
 		desktop.browse(oURL);
