@@ -1,6 +1,6 @@
 package logic.controllers;
 
-import logic.UserDao;
+import logic.dao.UserDao;
 
 public class BookTravelControl {
 	

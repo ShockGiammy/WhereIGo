@@ -61,7 +61,7 @@ insert into Usr(username,passw,nome,surname,age,dateOfBirth,gender,tipeOfUser)
 values ("fra998","paperino","Francesco","Fanali",21,"26/06/1998","Male","Renter");
 
 insert into Usr(username,passw,nome,surname,age,dateOfBirth,gender,tipeOfUser)
-values ("adrianRob","pippo","Adrian","Minut",21,"18/02/1998","Male","Male", "Traveler");
+values ("adrianRob","pippo","Adrian","Minut",21,"18/02/1998","Male", "Traveler");
 
 
 

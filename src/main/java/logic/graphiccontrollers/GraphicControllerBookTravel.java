@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import logic.UserDao;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
 import logic.view.Window;
