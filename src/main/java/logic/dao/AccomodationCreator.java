@@ -15,7 +15,7 @@ public class AccomodationCreator extends GeneralConnection{
 	public AccomodationModel createAccomodation(RentAccomodationBean Info) {
 		getConnection();
 		try {
-			PreparedStatement statement = connection.prepareStatement("INSERT INTO Post VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, Announcement)");    
+			PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Post VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, Announcement)");    
 			statement.setInt(1, Info.getID());
 			//statement.setBlob(2,(Blob) Info.getHouseImage());		//image
 			//statement.setString(3,Info.getPasw()); 				//user
