@@ -57,7 +57,7 @@ public class GraphicControlCreateAccomodation extends Window{
 	
 	private RentAccomodationBean bean;
 	private byte[] listOfServices;
-	Image imageHouse;
+	private File houseImage;
 	
 	public static void main(String[] args) {
 		setScene("InfoAccomodation.fxml");
@@ -102,7 +102,9 @@ public class GraphicControlCreateAccomodation extends Window{
 		bean.setCity(city.getText());
 		bean.setAddress(address.getText());
 		bean.setDescription(description.getText());
-		bean.setHouseImage(imageHouse);
+		bean.setHouseImage(houseImage);
+		bean.setSquareMetres(squareMetres.getValue());
+		bean.setType(type.getValue());
 		
 		control.createAccomodation(bean);
 	}
@@ -115,10 +117,10 @@ public class GraphicControlCreateAccomodation extends Window{
         fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 
         //Show open file dialog
-        File file = fileChooser.showOpenDialog(null);
+        houseImage = fileChooser.showOpenDialog(null);
 
-        if (file != null) {
-            imageHouse = new Image(file.toURI().toString());
+        if (houseImage != null) {
+            Image imageHouse = new Image(houseImage.toURI().toString());
             imageView.setImage(imageHouse);
         }
     }

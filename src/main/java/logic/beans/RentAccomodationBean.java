@@ -1,6 +1,9 @@
 package logic.beans;
 
-import javafx.scene.image.Image;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class RentAccomodationBean {
 	
@@ -13,9 +16,8 @@ public class RentAccomodationBean {
 	private String type;
 	private String squareMetres;
 	private String description;
-	private Image houseImage;
+	private File houseImage;
 	private byte[] services;
-	
 	
 	
 	public void setBeds(String numBeds) {
@@ -73,13 +75,26 @@ public class RentAccomodationBean {
 		this.description = description;
 	}
 
-	@SuppressWarnings("exports")
-	public Image getHouseImage() {
+	public File getHouseImage() {
 		return houseImage;
 	}
+	
+	public InputStream getInputFile() {
+		InputStream imageInputFile = null;
+		try {
+			imageInputFile = new FileInputStream(houseImage);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return imageInputFile;
+	}
+	
+	public long getFileLength() {
+		return houseImage.length();
+	}
 
-	public void setHouseImage(@SuppressWarnings("exports") Image image) {
-		this.houseImage = image;
+	public void setHouseImage(File houseImage) {
+		this.houseImage = houseImage;
 	}
 
 	public byte[] getServices() {

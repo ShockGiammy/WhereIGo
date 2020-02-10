@@ -43,7 +43,7 @@ create table Post
     services int(4),
     squareMetres VARCHAR(5),
     tipologia VARCHAR(20),
-    tipeOfPost VARCHAR(10),
+    tipeOfPost VARCHAR(20),
     primary key(ID, utente)
 );
 

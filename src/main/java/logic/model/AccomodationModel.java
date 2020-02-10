@@ -1,4 +1,7 @@
 package logic.model;
+import java.io.File;
+import java.io.InputStream;
+
 import javafx.scene.image.Image;
 import logic.beans.RentAccomodationBean;
 public class AccomodationModel {
@@ -12,7 +15,7 @@ public class AccomodationModel {
 	private String type;
 	private String squareMetres;
 	private String description;
-	private Image houseImage;
+	private File houseImage;
 	private byte[] services;
 	
 	

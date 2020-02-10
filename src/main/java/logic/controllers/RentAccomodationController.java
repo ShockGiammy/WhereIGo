@@ -27,6 +27,7 @@ public class RentAccomodationController {
 		this.Info = bean;
 		Random random = new Random();
 		bean.setID(random.nextInt(100));
+		System.out.println(bean.getID());
 		AccomodationCreator creator = new AccomodationCreator();
 		Acc = creator.createAccomodation(Info);
 	}
