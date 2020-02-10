@@ -8,7 +8,7 @@ public class UserDao extends GeneralConnection{
 		LocationModel lm = new LocationModel();
 		getConnection();
 		try {
-			PreparedStatement statement = connection.prepareStatement("select * from Locations where country=?");    
+			PreparedStatement statement = dbConn.getConnection().prepareStatement("select * from Locations where country=?");    
 			statement.setString(1, "USA");    
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()) {

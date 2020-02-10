@@ -3,19 +3,28 @@ package logic;
 import java.sql.*;
 
 public class SingletonDbConnection {
-	private static Connection dbConn;
-	private String url = "jdbc:mysql://localhost/whereigo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	private String username = "root";
-	private String password = "pippo1998";
+	private static SingletonDbConnection istance = null;
+	private Connection connection = null;
 	
-	protected SingletonDbConnection() throws SQLException {
-		dbConn = DriverManager.getConnection(this.url,this.username,this.password);
+	protected SingletonDbConnection(String url, String username, String password) {
+		try{
+			this.connection = DriverManager.getConnection(url, username, password);
+		}catch(SQLException e) {
+			System.out.println("SQL exception occurred");
+		}
 	}
 	
-	public synchronized static Connection getDbConnection() throws SQLException {
-		if (dbConn == null) {
-			new SingletonDbConnection();
+	public Connection getConnection() {
+		if(this.connection != null) {
+			return this.connection;
 		}
-		return dbConn;
+		return null;
+	}
+	
+	public static synchronized SingletonDbConnection getInstance(String url, String username, String password){
+		if(SingletonDbConnection.istance == null) {
+			SingletonDbConnection.istance = new SingletonDbConnection(url, username, password);
+		}
+		return SingletonDbConnection.istance;
 	}
 }

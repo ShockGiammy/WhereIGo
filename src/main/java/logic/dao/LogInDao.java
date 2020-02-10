@@ -13,7 +13,7 @@ public class LogInDao extends GeneralConnection{
 		int fetched = 0;
 		getConnection();
 		try {
-			PreparedStatement statement = connection.prepareStatement("select * from usr where (username=? and passw=?)");    
+			PreparedStatement statement = dbConn.getConnection().prepareStatement("select * from usr where (username=? and passw=?)");    
 			statement.setString(1,bean.getUserName());
 			statement.setString(2,bean.getPasw());
 			ResultSet rs = statement.executeQuery();

@@ -17,11 +17,18 @@ public class GraphicControllerHomePage extends Window{
 	@FXML private Text gender;
 	@FXML private Button bookATravel;
 	@FXML private Button changeInfo;
+	@FXML private Button moreInfo;
 	
-	public void bookTravelControl(MouseEvent event) throws IOException, SQLException {
+	public void bookTravelControl(MouseEvent event) throws SQLException {
 		setScene("BookTravel.fxml");
 		loadScene();
 		setSuggestedLocations(event);
+	}
+	
+	public void getInterestControl(MouseEvent event) {
+		setScene("InterestsForm.fxml");
+		loadScene();
+		nextGuiOnClick(event);
 	}
 	
 	/*set the datas of the user before the UI is loaded*/
