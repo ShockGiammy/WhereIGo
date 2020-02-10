@@ -59,8 +59,9 @@ public class GraphicControllerRegistration extends Window{
 		this.dataBean.setPsw(paswd);
 	}
 	
-	public void registerNowControl(MouseEvent event) throws IOException {
+	public void registerNowControl(MouseEvent event) {
 		setScene("HomePage.fxml");
-		guiWithValue(this.dataBean,event);
+		loadScene();
+		setUserDatas(this.dataBean,event);
 	}
 }

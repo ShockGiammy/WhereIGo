@@ -12,22 +12,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
 public class Window extends Application{
 	
 	private static String sample;
+	private static FXMLLoader loader;
+	private static Scene scene;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			URL loc = Window.class.getResource(sample);
-			AnchorPane root = (AnchorPane)FXMLLoader.load(loc);
-			Scene scene = new Scene(root,1059,751);
-			scene.getStylesheets().add(Window.class.getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -42,31 +40,28 @@ public class Window extends Application{
 		start(regStage);
 	}
 	
-	public void guiWithValue(UserDataBean bean, MouseEvent e) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		URL loc = Window.class.getResource(sample);
-		loader.setLocation(loc);
-		Parent newSceneParent = loader.load();
+	public void setUserDatas(UserDataBean bean, MouseEvent e) {
 		GraphicControllerHomePage controller = loader.getController();
 		controller.setDatas(bean);
-		Scene scene = new Scene(newSceneParent);
-		scene.getStylesheets().add(Window.class.getResource("application.css").toExternalForm());
-		Stage primaryStage = (Stage)((Node)e.getSource()).getScene().getWindow();
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		nextGuiOnClick(e);
 	}
 	
-	public void guiWithValue1(MouseEvent e) throws IOException, SQLException {
-		FXMLLoader loader = new FXMLLoader();
-		URL loc = Window.class.getResource(sample);
-		loader.setLocation(loc);
-		Parent newSceneParent = loader.load();
+	public void setSuggestedLocations(MouseEvent e) throws SQLException {
 		GraphicControllerBookTravel controller = loader.getController();
 		controller.setLocation();
-		Scene scene = new Scene(newSceneParent);
-		scene.getStylesheets().add(Window.class.getResource("application.css").toExternalForm());
-		Stage primaryStage = (Stage)((Node)e.getSource()).getScene().getWindow();
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		nextGuiOnClick(e);
+	}
+	
+	public static void loadScene() {
+		try {
+			loader = new FXMLLoader();
+			URL loc = Window.class.getResource(sample);
+			loader.setLocation(loc);
+			Parent newSceneParent = loader.load();
+			scene = new Scene(newSceneParent);
+			scene.getStylesheets().add(Window.class.getResource("application.css").toExternalForm());
+		}catch(IOException e) {
+			System.out.println("Exception occurred\n");
+		}
 	}
 }

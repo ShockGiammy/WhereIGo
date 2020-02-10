@@ -20,7 +20,8 @@ public class GraphicControllerHomePage extends Window{
 	
 	public void bookTravelControl(MouseEvent event) throws IOException, SQLException {
 		setScene("BookTravel.fxml");
-		guiWithValue1(event);
+		loadScene();
+		setSuggestedLocations(event);
 	}
 	
 	/*set the datas of the user before the UI is loaded*/

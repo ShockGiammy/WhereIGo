@@ -30,7 +30,8 @@ public class GraphicControllerLogIn extends Window{
 	public void logInControl(MouseEvent event) throws IOException {
 		if(logDao.checkLogInInfo(this.logBean, this.usrBean) == 1) {
 			setScene("HomePage.fxml");
-			guiWithValue(this.usrBean, event);
+			loadScene();
+			setUserDatas(this.usrBean, event);
 		}
 		else {
 			System.out.println("Utente non registrato\n");
@@ -39,6 +40,7 @@ public class GraphicControllerLogIn extends Window{
 	
 	public void registrationControl(MouseEvent event) {
 		setScene("Registration.fxml");
+		loadScene();
 		nextGuiOnClick(event);
 	}
 	
@@ -52,8 +54,9 @@ public class GraphicControllerLogIn extends Window{
 		this.logBean.setPassword(password);
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		setScene("Login.fxml");
+		loadScene();
 		launch(args);
 	}
 }

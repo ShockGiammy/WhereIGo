@@ -34,6 +34,7 @@ public class GraphicControllerBookTravel extends Window{
 	@FXML 
 	public void bookMyTravelControl(MouseEvent event) {
 		setScene("DummyBookTravel.fxml");
+		loadScene();
 		nextGuiOnClick(event);
 	}
 	
