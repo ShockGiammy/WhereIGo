@@ -7,36 +7,30 @@ public class RentAccomodationBean {
 	//private renter;
 	private int ID;
 	private String beds;
-	private int renterID;
+	private String renter;
 	private String city;
 	private String address;
 	private String type;
-	private int squareMetres;
+	private String squareMetres;
 	private String description;
-	private byte[] houseImage;
-	private int[] services;
+	private Image houseImage;
+	private byte[] services;
+	
+	
 	
 	public void setBeds(String numBeds) {
 		this.beds= numBeds;	
 	}
 	
-	public void setRenter(int renter) {
-		this.renterID = renter;
+	public void setRenter(String renter) {
+		this.renter = renter;
 	}
 	public void setID(int Id) {
-		this.renterID = Id;
+		this.ID = Id;
 	}
 
 	public String getBeds() {
 		return this.beds;	
-	}
-	
-	public int getID() {
-		return this.ID;
-	}
-	
-	public int getRenter() {
-		return this.renterID;
 	}
 
 	public String getCity() {
@@ -63,11 +57,11 @@ public class RentAccomodationBean {
 		this.type = type;
 	}
 
-	public int getSquareMetres() {
+	public String getSquareMetres() {
 		return squareMetres;
 	}
 
-	public void setSquareMetres(int squareMetres) {
+	public void setSquareMetres(String squareMetres) {
 		this.squareMetres = squareMetres;
 	}
 
@@ -79,19 +73,24 @@ public class RentAccomodationBean {
 		this.description = description;
 	}
 
-	public byte[] getHouseImage() {
+	@SuppressWarnings("exports")
+	public Image getHouseImage() {
 		return houseImage;
 	}
 
-	public void setHouseImage(byte[] image) {
+	public void setHouseImage(@SuppressWarnings("exports") Image image) {
 		this.houseImage = image;
 	}
 
-	public int[] getServices() {
+	public byte[] getServices() {
 		return services;
 	}
 
-	public void setServices(int[] listOfServices) {
+	public void setServices(byte[] listOfServices) {
 		this.services = listOfServices;
+	}
+
+	public int getID() {
+		return ID;
 	}
 }

@@ -32,11 +32,19 @@ create table TravelGroups
 
 create table Post
 (
-	photo longblob,
+	ID int not null,
+	photo LONGBLOB,
     utente VARCHAR(20)
 			references Usr(username),
 	descr VARCHAR(4096),
-    tipeOfPost varchar(10)
+    beds VARCHAR(5),
+    city VARCHAR(30),
+    address VARCHAR(40),
+    services int(4),
+    squareMetres VARCHAR(5),
+    tipologia VARCHAR(20),
+    tipeOfPost VARCHAR(10),
+    primary key(ID, utente)
 );
 
 insert into Locations(country,city)

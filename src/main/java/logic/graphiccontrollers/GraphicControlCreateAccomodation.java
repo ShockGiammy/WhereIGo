@@ -56,10 +56,12 @@ public class GraphicControlCreateAccomodation extends Window{
 	}
 	
 	private RentAccomodationBean bean;
-	private int[] listOfServices;
+	private byte[] listOfServices;
+	Image imageHouse;
 	
 	public static void main(String[] args) {
 		setScene("InfoAccomodation.fxml");
+		loadScene();
 		launch(args);
 	}
 	
@@ -69,7 +71,7 @@ public class GraphicControlCreateAccomodation extends Window{
 	}
 
 	public void applyInfo() {
-		listOfServices = new int[4];
+		listOfServices = new byte[4];
 		if (garden.isSelected()) {
 			listOfServices[0] = 1;
 		}
@@ -94,10 +96,13 @@ public class GraphicControlCreateAccomodation extends Window{
 		else { 
 			listOfServices[3] = 0;
 		}
+		String numBeds = numberBeds.getValue();
+		bean.setBeds(numBeds);
 		bean.setServices(listOfServices);
 		bean.setCity(city.getText());
 		bean.setAddress(address.getText());
 		bean.setDescription(description.getText());
+		bean.setHouseImage(imageHouse);
 		
 		control.createAccomodation(bean);
 	}
@@ -113,12 +118,13 @@ public class GraphicControlCreateAccomodation extends Window{
         File file = fileChooser.showOpenDialog(null);
 
         if (file != null) {
-            Image image = new Image(file.toURI().toString());
-            imageView.setImage(image);
+            imageHouse = new Image(file.toURI().toString());
+            imageView.setImage(imageHouse);
         }
     }
-    public void goHome(MouseEvent event) {
+    public void goHome(@SuppressWarnings("exports") MouseEvent event) {
     	setScene("HomePage.fxml");
+    	loadScene();
     	nextGuiOnClick(event);
     }
 }

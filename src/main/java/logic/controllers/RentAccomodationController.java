@@ -1,12 +1,15 @@
 package logic.controllers;
 
-import logic.Accomodation;
+import java.util.Random;
+
 import logic.beans.RentAccomodationBean;
+import logic.dao.AccomodationCreator;
+import logic.model.AccomodationModel;
 
 public class RentAccomodationController {
 	
 	private RentAccomodationBean Info;
-	private Accomodation Acc;
+	private AccomodationModel Acc;
 	
 	public RentAccomodationController() {		
 	}
@@ -22,6 +25,8 @@ public class RentAccomodationController {
 	
 	public void createAccomodation(RentAccomodationBean bean) {
 		this.Info = bean;
+		Random random = new Random();
+		bean.setID(random.nextInt(100));
 		AccomodationCreator creator = new AccomodationCreator();
 		Acc = creator.createAccomodation(Info);
 	}
