@@ -15,8 +15,8 @@ public class SingletonDbConnection {
 	}
 	
 	public Connection getConnection() {
-		if(this.connection != null) {
-			return this.connection;
+		if(connection != null) {
+			return connection;
 		}
 		return null;
 	}

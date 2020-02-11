@@ -1,12 +1,12 @@
 package logic.beans;
 
 public class UserDataBean {
-	String name;
-	String surname;
-	String dateOfBirth;
-	String gender;
-	String userName;
-	String psw;
+	private String name;
+	private String surname;
+	private String dateOfBirth;
+	private String gender;
+	private String userName;
+	private String psw;
 	
 	public void setName(String name) {
 		this.name = name;
@@ -24,12 +24,12 @@ public class UserDataBean {
 		this.gender = gender;
 	}
 	
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String usrName) {
+		this.userName = usrName;
 	}
 	
-	public void setPsw(String psw) {
-		this.psw = psw;
+	public void setPsw(String passwd) {
+		this.psw = passwd;
 	}
 	
 	public String getName() {

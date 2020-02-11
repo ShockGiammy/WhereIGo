@@ -8,7 +8,7 @@ public class GeneralConnection {
 	private String username = "root";
 	private String password = "pippo1998";
 	protected SingletonDbConnection dbConn;
-	protected Logger logger = Logger.getLogger(LogInDao.class.getName());
+	protected Logger logger = Logger.getLogger(UserDao.class.getName());
 	
 	public void getConnection() {
 		try{

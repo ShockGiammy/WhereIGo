@@ -5,6 +5,7 @@ create table Locations
 (
 	country VARCHAR(45) NOT NULL,
     city VARCHAR(45) NOT NULL,
+    tipeOfPersonality VARCHAR(20),
     primary key(country,city)
 );
 
@@ -18,6 +19,7 @@ create table Usr
     dateOfBirth VARCHAR(20) NOT NULL,
     gender VARCHAR(10),
     tipeOfUser VARCHAR(20),
+    tipeOfPersonality VARCHAR(20),
     primary key(username,passw)
 );
 
@@ -47,17 +49,17 @@ create table Post
     primary key(ID, utente)
 );
 
-insert into Locations(country,city)
-values ("Italy","Rome");
+insert into Locations(country,city,tipeOfPersonality)
+values ("Italy","Rome", "Curious");
 
-insert into Locations(country,city)
-values ("Italy","Milan");
+insert into Locations(country,city,tipeOfPersonality)
+values ("Italy","Milan", "Lone wolf");
 
-insert into Locations(country,city)
-values ("UK","London");
+insert into Locations(country,city,tipeOfPersonality)
+values ("UK","London", "Lone wolf");
 
-insert into Locations(country,city)
-values ("USA","Washington");
+insert into Locations(country,city,tipeOfPersonality)
+values ("USA","Washington", "Friendly");
 
 insert into Usr(username,passw,nome,surname,age,dateOfBirth,gender,tipeOfUser)
 values ("pierC","pippo","Pierciro","Caliandro",21,"18/02/1998","Male","Traveler");

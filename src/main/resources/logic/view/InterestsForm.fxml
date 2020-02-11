@@ -19,7 +19,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <RadioButton fx:id="quest1a" layoutX="24.0" layoutY="114.0" mnemonicParsing="false" text="Playing video games">
+      <RadioButton fx:id="quest1a" layoutX="24.0" layoutY="157.0" mnemonicParsing="false" onAction="#manageGroup1" text="Playing video games with friends">
          <font>
             <Font size="14.0" />
          </font>
@@ -27,17 +27,17 @@
             <ToggleGroup fx:id="question1" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="quest1b" layoutX="24.0" layoutY="155.0" mnemonicParsing="false" text="Going for trips in nature" toggleGroup="$question1">
+      <RadioButton fx:id="quest1b" layoutX="24.0" layoutY="114.0" mnemonicParsing="false" onAction="#manageGroup1" text="Going for trips in nature" toggleGroup="$question1">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="quest1c" layoutX="24.0" layoutY="194.0" mnemonicParsing="false" text="Reading book" toggleGroup="$question1">
+      <RadioButton fx:id="quest1c" layoutX="24.0" layoutY="194.0" mnemonicParsing="false" onAction="#manageGroup1" text="Reading book" toggleGroup="$question1">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="quest1d" layoutX="24.0" layoutY="235.0" mnemonicParsing="false" text="Doing sports" toggleGroup="$question1">
+      <RadioButton fx:id="quest1d" layoutX="24.0" layoutY="235.0" mnemonicParsing="false" onAction="#manageGroup1" text="Doing sports" toggleGroup="$question1">
          <font>
             <Font size="14.0" />
          </font>
@@ -47,7 +47,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <RadioButton fx:id="quest2a" layoutX="24.0" layoutY="337.0" mnemonicParsing="false" text="Stay at home and watch films/TV series">
+      <RadioButton fx:id="quest2a" layoutX="24.0" layoutY="337.0" mnemonicParsing="false" onAction="#manageGroup2" text="Stay at home and watch films/TV series">
          <font>
             <Font size="14.0" />
          </font>
@@ -60,22 +60,22 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <RadioButton fx:id="quest2b" layoutX="24.0" layoutY="384.0" mnemonicParsing="false" text="Go with friends in a pub" toggleGroup="$question2">
+      <RadioButton fx:id="quest2b" layoutX="24.0" layoutY="386.0" mnemonicParsing="false" onAction="#manageGroup2" text="Go with friends in a pub" toggleGroup="$question2">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="quest2c" layoutX="24.0" layoutY="431.0" mnemonicParsing="false" text="Go to the disco" toggleGroup="$question2">
+      <RadioButton fx:id="quest2c" layoutX="24.0" layoutY="431.0" mnemonicParsing="false" onAction="#manageGroup2" text="Go to the disco" toggleGroup="$question2">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="24.0" layoutY="478.0" mnemonicParsing="false" text="Dinner,and go to sleep early" toggleGroup="$question2">
+      <RadioButton fx:id="quest2d" layoutX="24.0" layoutY="478.0" mnemonicParsing="false" onAction="#manageGroup2" text="Dinner,and go to sleep early" toggleGroup="$question2">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="24.0" layoutY="572.0" mnemonicParsing="false" text="I like cooperation and team working">
+      <RadioButton fx:id="quest3a" layoutX="24.0" layoutY="572.0" mnemonicParsing="false" onAction="#manageGroup3" text="I like cooperation and team working">
          <font>
             <Font size="14.0" />
          </font>
@@ -83,17 +83,17 @@
             <ToggleGroup fx:id="question3" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="24.0" layoutY="618.0" mnemonicParsing="false" text="I prefer to work individually" toggleGroup="$question3">
+      <RadioButton fx:id="quest3b" layoutX="24.0" layoutY="618.0" mnemonicParsing="false" onAction="#manageGroup3" text="I prefer to work individually" toggleGroup="$question3">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="24.0" layoutY="663.0" mnemonicParsing="false" text="I am so competitive and want always to be right" toggleGroup="$question3">
+      <RadioButton fx:id="quest3c" layoutX="24.0" layoutY="663.0" mnemonicParsing="false" onAction="#manageGroup3" text="I am so competitive and want always to be right" toggleGroup="$question3">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="24.0" layoutY="708.0" mnemonicParsing="false" text="In a team, I am the one who sleeps" toggleGroup="$question3">
+      <RadioButton fx:id="quest3d" layoutX="24.0" layoutY="708.0" mnemonicParsing="false" onAction="#manageGroup3" text="In a team, I am the one who sleeps" toggleGroup="$question3">
          <font>
             <Font size="14.0" />
          </font>
@@ -103,7 +103,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <RadioButton layoutX="546.0" layoutY="114.0" mnemonicParsing="false" text="Perfectly organized">
+      <RadioButton fx:id="quest4a" layoutX="546.0" layoutY="114.0" mnemonicParsing="false" onAction="#manageGroup4" text="Perfectly organized">
          <font>
             <Font size="14.0" />
          </font>
@@ -111,21 +111,21 @@
             <ToggleGroup fx:id="question4" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="546.0" layoutY="157.0" mnemonicParsing="false" text="Quite organized" toggleGroup="$question4">
+      <RadioButton fx:id="quest4b" layoutX="546.0" layoutY="157.0" mnemonicParsing="false" onAction="#manageGroup4" text="Quite organized" toggleGroup="$question4">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="546.0" layoutY="196.0" mnemonicParsing="false" text="Poorly organized" toggleGroup="$question4">
+      <RadioButton fx:id="quest4c" layoutX="546.0" layoutY="196.0" mnemonicParsing="false" onAction="#manageGroup4" text="Poorly organized" toggleGroup="$question4">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="546.0" layoutY="237.0" mnemonicParsing="false" text="Not organized at all" toggleGroup="$question4">
+      <RadioButton fx:id="quest4d" layoutX="546.0" layoutY="237.0" mnemonicParsing="false" onAction="#manageGroup4" text="Not organized at all" toggleGroup="$question4">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <Button fx:id="submitForm" layoutX="654.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#showAnswares" prefHeight="51.0" prefWidth="82.0" text="Submit form" />
+      <Button fx:id="submitForm" layoutX="654.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#evaluatePersonality" prefHeight="51.0" prefWidth="82.0" text="Submit form" />
    </children>
 </AnchorPane>

@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
-import logic.dao.LogInDao;
+import logic.controllers.LoginController;
 import logic.view.Window;
 
 import java.io.IOException;
@@ -17,17 +17,17 @@ public class GraphicControllerLogIn extends Window{
 	@FXML private Button loginButton;
 	@FXML private Button registerButton;
 	private LogInBean logBean;
-	private LogInDao logDao;
 	private UserDataBean usrBean;
+	private LoginController loginCtrl;
 	
 	public GraphicControllerLogIn() {
 		this.logBean = new LogInBean();
-		this.logDao = new LogInDao();
+		this.loginCtrl = new LoginController();
 		this.usrBean = new UserDataBean();
 	}
 	
 	public void logInControl(MouseEvent event) throws IOException {
-		if(logDao.checkLogInInfo(this.logBean, this.usrBean) == 1) {
+		if(this.loginCtrl.checkLogInInfo(this.usrBean, this.logBean) == 1) {
 			setScene("HomePage.fxml");
 			loadScene();
 			setUserDatas(this.usrBean, event);

@@ -16,16 +16,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX11"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mySQL"/>
-	<classpathentry kind="lib" path="C:/Users/gianm/.m2/repository/org/openjfx/javafx-controls/13/javafx-controls-13-win.jar" sourcepath="C:/Users/gianm/.m2/repository/org/openjfx/javafx-controls/13/javafx-controls-13-sources.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="module" value="true"/>
-			<attribute name="maven.groupId" value="org.openjfx"/>
-			<attribute name="maven.artifactId" value="javafx-controls"/>
-			<attribute name="maven.version" value="13"/>
-			<attribute name="maven.classifier" value="win"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
