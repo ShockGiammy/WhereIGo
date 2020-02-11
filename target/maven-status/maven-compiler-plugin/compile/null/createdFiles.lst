@@ -5,13 +5,13 @@ logic\graphiccontrollers\GraphicControllerLogIn.class
 logic\controllers\RentAccomodationController.class
 logic\beans\LogInBean.class
 logic\model\AccomodationModel.class
-logic\view\RentTravellerView.class
 module-info.class
-logic\view\Rent_TravellerView.class
+logic\controllers\PostAnAnnouncementController.class
 logic\dao\GeneralConnection.class
 logic\graphiccontrollers\GraphicControlCreateAccomodation.class
 logic\beans\UserTravelBean.class
 logic\graphiccontrollers\GraphicControllerRegistration.class
+logic\graphiccontrollers\GraphicControlRentAccomodation.class
 logic\model\LocationModel.class
 logic\dao\LogInDao.class
 logic\Home.class
@@ -21,5 +21,6 @@ logic\beans\RentAccomodationBean.class
 logic\dao\UserDao.class
 logic\dao\AccomodationCreator.class
 logic\controllers\FirstController.class
+logic\graphiccontrollers\GraphicControllerInterestForm.class
 logic\view\Window.class
 logic\controllers\BookTravelControl.class

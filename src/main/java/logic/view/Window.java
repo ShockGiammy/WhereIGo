@@ -60,6 +60,8 @@ public class Window extends Application{
 			scene = new Scene(newSceneParent);
 			scene.getStylesheets().add(Window.class.getResource("application.css").toExternalForm());
 		}catch(IOException e) {
+			System.err.println("Got an exception!");
+		    System.err.println(e.getMessage());
 			e.printStackTrace();
 		}
 	}

@@ -15,12 +15,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import logic.beans.RentAccomodationBean;
-import logic.controllers.RentAccomodationController;
+import logic.controllers.PostAnAnnouncementController;
 import logic.view.Window;
 
 public class GraphicControlCreateAccomodation extends Window{
 	
-	private RentAccomodationController control;
+	private PostAnAnnouncementController control;
 	
 	ObservableList<String> typeList = FXCollections.observableArrayList("appartamento", "villetta", "monolocale");
 	ObservableList<String> squareList = FXCollections.observableArrayList("<20", "20 to 39", "40 to 59", ">60");
@@ -40,6 +40,7 @@ public class GraphicControlCreateAccomodation extends Window{
 	@FXML private ImageView imageView;
 	@FXML private Button openButton;
 	@FXML private ImageView home;
+	@FXML private ImageView chiavi;
 	
 	@FXML
 	private void initialize() {
@@ -66,7 +67,7 @@ public class GraphicControlCreateAccomodation extends Window{
 	}
 	
 	public GraphicControlCreateAccomodation() {
-		control = new RentAccomodationController();
+		control = new PostAnAnnouncementController();
 		bean = new RentAccomodationBean();
 	}
 
@@ -124,8 +125,15 @@ public class GraphicControlCreateAccomodation extends Window{
             imageView.setImage(imageHouse);
         }
     }
+    
     public void goHome(@SuppressWarnings("exports") MouseEvent event) {
     	setScene("HomePage.fxml");
+    	loadScene();
+    	nextGuiOnClick(event);
+    }
+    
+    public void goRent(@SuppressWarnings("exports") MouseEvent event) {
+    	setScene("RentAccomodation.fxml");
     	loadScene();
     	nextGuiOnClick(event);
     }

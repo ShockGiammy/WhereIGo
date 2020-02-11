@@ -3,11 +3,12 @@ package logic.beans;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 public class RentAccomodationBean {
 	
-	//private renter;
 	private int ID;
 	private String beds;
 	private String renter;
@@ -18,6 +19,7 @@ public class RentAccomodationBean {
 	private String description;
 	private File houseImage;
 	private byte[] services;
+	private InputStream inputF;
 	
 	
 	public void setBeds(String numBeds) {
@@ -27,6 +29,11 @@ public class RentAccomodationBean {
 	public void setRenter(String renter) {
 		this.renter = renter;
 	}
+	
+	public String getRenter() {
+		return this.renter;
+	}
+	
 	public void setID(int Id) {
 		this.ID = Id;
 	}
@@ -75,10 +82,28 @@ public class RentAccomodationBean {
 		this.description = description;
 	}
 
+/*
 	public File getHouseImage() {
+		String prefix = "name";
+		String suffix = "tmp";
+		File tempHouse = null;
+		try {
+			tempHouse = File.createTempFile(prefix, suffix);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		tempHouse.deleteOnExit();
+		try {
+			FileOutputStream out = new FileOutputStream(tempHouse);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//inputF.transferTo(out);
 		return houseImage;
 	}
-	
+*/
 	public InputStream getInputFile() {
 		InputStream imageInputFile = null;
 		try {
@@ -107,5 +132,9 @@ public class RentAccomodationBean {
 
 	public int getID() {
 		return ID;
+	}
+	
+	public void setInputStream(InputStream inputS) {
+		this.inputF = inputS;
 	}
 }

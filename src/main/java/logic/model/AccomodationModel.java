@@ -6,10 +6,9 @@ import javafx.scene.image.Image;
 import logic.beans.RentAccomodationBean;
 public class AccomodationModel {
 	
-	//private renter;
+	private String renter;
 	private int ID;
 	private String beds;
-	private String renter;
 	private String city;
 	private String address;
 	private String type;
@@ -22,14 +21,20 @@ public class AccomodationModel {
 	public AccomodationModel(RentAccomodationBean bean) {
 		ID = bean.getID();
 		beds = bean.getBeds();
-		//renterID = bean.getRenter()
+		renter = bean.getRenter();
 		city = bean.getCity();
 		address = bean.getAddress();
 		type = bean.getType();
 		squareMetres = bean.getSquareMetres();
 		description = bean.getDescription();
-		houseImage = bean.getHouseImage();
+		//houseImage = bean.getHouseImage();
 		services = bean.getServices();
+		
+		System.out.println("model "+ID);
+		System.out.println(beds);
+		System.out.println(renter);
+		System.out.println(city);
+		System.out.println(address);
 	}
 
 	public void getInfo() {

@@ -9,8 +9,6 @@ import logic.beans.RentAccomodationBean;
 import logic.model.AccomodationModel;
 
 public class AccomodationCreator extends GeneralConnection{
-	
-	int ID;
 
 	public AccomodationModel createAccomodation(RentAccomodationBean Info) {
 		getConnection();
@@ -34,5 +32,35 @@ public class AccomodationCreator extends GeneralConnection{
 		}
 		AccomodationModel acc = new AccomodationModel(Info);
 		return acc;
+	}
+	
+	public AccomodationModel queryDB(RentAccomodationBean bean) {
+		int fetched = 0;
+		getConnection();
+		try {
+			PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Post");    
+			ResultSet rs = statement.executeQuery();
+		while(rs.next()) {
+			fetched +=1;
+			bean.setID(rs.getInt(1));
+			bean.setInputStream(rs.getBinaryStream(2));
+			bean.setRenter(rs.getString(3));
+			bean.setDescription(rs.getString(4));
+			bean.setBeds(rs.getString(5));
+			bean.setCity(rs.getString(6));
+			bean.setAddress(rs.getString(7));
+			bean.setServices(rs.getBytes(8));
+			bean.setSquareMetres(rs.getString(9));
+			bean.setType(rs.getString(10));
+			
+			}
+		}
+		catch (SQLException e) {
+			System.err.println("Got an exception!");
+		    System.err.println(e.getMessage());
+		}
+		AccomodationModel acc = new AccomodationModel(bean);
+		return acc;
+		
 	}
 }
