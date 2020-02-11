@@ -61,5 +61,6 @@
          </font>
       </Text>
       <Button fx:id="moreInfo" layoutX="22.0" layoutY="495.0" mnemonicParsing="false" onMouseClicked="#getInterestControl" prefHeight="51.0" prefWidth="145.0" text="Tell us more about you" />
+      <Button fx:id="rentAnnPost" layoutX="761.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#postRentAnnouncementControl" prefHeight="58.0" prefWidth="158.0" text="Post a rent announcement" underline="true" />
    </children>
 </AnchorPane>

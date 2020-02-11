@@ -1,32 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="751.0" prefWidth="1059.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<AnchorPane prefHeight="751.0" prefWidth="1059.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerInterestForm">
    <children>
       <Text layoutX="382.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INTERESTS FORM">
          <font>
             <Font size="38.0" />
          </font>
       </Text>
-      <Text layoutX="24.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What do you like to do in your freetime">
+      <Text layoutX="24.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What do you like to do in your freetime">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <RadioButton layoutX="24.0" layoutY="150.0" mnemonicParsing="false" text="Playing video games">
+      <RadioButton fx:id="quest1a" layoutX="24.0" layoutY="114.0" mnemonicParsing="false" text="Playing video games">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="question1" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="quest1b" layoutX="24.0" layoutY="155.0" mnemonicParsing="false" text="Going for trips in nature" toggleGroup="$question1">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="24.0" layoutY="192.0" mnemonicParsing="false" text="Going for trips in nature">
+      <RadioButton fx:id="quest1c" layoutX="24.0" layoutY="194.0" mnemonicParsing="false" text="Reading book" toggleGroup="$question1">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
+      <RadioButton fx:id="quest1d" layoutX="24.0" layoutY="235.0" mnemonicParsing="false" text="Doing sports" toggleGroup="$question1">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <Text layoutX="18.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In your satudray eveneeing you prefer to">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="quest2a" layoutX="24.0" layoutY="337.0" mnemonicParsing="false" text="Stay at home and watch films/TV series">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="question2" />
+         </toggleGroup>
+      </RadioButton>
+      <Text layoutX="24.0" layoutY="549.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Which state represents you better at work">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="quest2b" layoutX="24.0" layoutY="384.0" mnemonicParsing="false" text="Go with friends in a pub" toggleGroup="$question2">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="quest2c" layoutX="24.0" layoutY="431.0" mnemonicParsing="false" text="Go to the disco" toggleGroup="$question2">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="24.0" layoutY="478.0" mnemonicParsing="false" text="Dinner,and go to sleep early" toggleGroup="$question2">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="24.0" layoutY="572.0" mnemonicParsing="false" text="I like cooperation and team working">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="question3" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="24.0" layoutY="618.0" mnemonicParsing="false" text="I prefer to work individually" toggleGroup="$question3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="24.0" layoutY="663.0" mnemonicParsing="false" text="I am so competitive and want always to be right" toggleGroup="$question3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="24.0" layoutY="708.0" mnemonicParsing="false" text="In a team, I am the one who sleeps" toggleGroup="$question3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <Text layoutX="546.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you think you are a person">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <RadioButton layoutX="546.0" layoutY="114.0" mnemonicParsing="false" text="Perfectly organized">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="question4" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="546.0" layoutY="157.0" mnemonicParsing="false" text="Quite organized" toggleGroup="$question4">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="546.0" layoutY="196.0" mnemonicParsing="false" text="Poorly organized" toggleGroup="$question4">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="546.0" layoutY="237.0" mnemonicParsing="false" text="Not organized at all" toggleGroup="$question4">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <Button fx:id="submitForm" layoutX="654.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#showAnswares" prefHeight="51.0" prefWidth="82.0" text="Submit form" />
    </children>
 </AnchorPane>

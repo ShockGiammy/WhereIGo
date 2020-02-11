@@ -15,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXMLLoader;
 
 public class Window extends Application{
-	
 	private static String sample;
 	private static FXMLLoader loader;
 	private static Scene scene;
@@ -61,7 +60,7 @@ public class Window extends Application{
 			scene = new Scene(newSceneParent);
 			scene.getStylesheets().add(Window.class.getResource("application.css").toExternalForm());
 		}catch(IOException e) {
-			System.out.println("Exception occurred\n");
+			e.printStackTrace();
 		}
 	}
 }

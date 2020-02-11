@@ -1,6 +1,5 @@
 package logic.graphiccontrollers;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import javafx.fxml.FXML;
@@ -18,6 +17,7 @@ public class GraphicControllerHomePage extends Window{
 	@FXML private Button bookATravel;
 	@FXML private Button changeInfo;
 	@FXML private Button moreInfo;
+	@FXML private Button rentAnnPost;
 	
 	public void bookTravelControl(MouseEvent event) throws SQLException {
 		setScene("BookTravel.fxml");
@@ -27,6 +27,12 @@ public class GraphicControllerHomePage extends Window{
 	
 	public void getInterestControl(MouseEvent event) {
 		setScene("InterestsForm.fxml");
+		loadScene();
+		nextGuiOnClick(event);
+	}
+	
+	public void postRentAnnouncementControl(MouseEvent event) {
+		setScene("InfoAccomodation.fxml");
 		loadScene();
 		nextGuiOnClick(event);
 	}

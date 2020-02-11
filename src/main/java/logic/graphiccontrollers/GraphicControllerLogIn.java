@@ -9,7 +9,6 @@ import logic.dao.LogInDao;
 import logic.view.Window;
 
 import java.io.IOException;
-
 import javafx.fxml.FXML;
 
 public class GraphicControllerLogIn extends Window{
@@ -54,7 +53,7 @@ public class GraphicControllerLogIn extends Window{
 		this.logBean.setPassword(password);
 	}
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		setScene("Login.fxml");
 		loadScene();
 		launch(args);
