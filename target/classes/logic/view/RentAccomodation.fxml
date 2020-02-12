@@ -59,7 +59,7 @@
       <AnchorPane layoutX="270.0" layoutY="91.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd;">
          <children>
             <TextField layoutX="14.0" layoutY="14.0" />
-            <ImageView fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: blue;" />
+            <ImageView fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
             <TextField layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
@@ -79,7 +79,7 @@
       <AnchorPane layoutX="270.0" layoutY="321.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd;">
          <children>
             <TextField layoutX="14.0" layoutY="14.0" />
-            <ImageView fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: blue;" />
+            <ImageView fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
             <TextField layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
@@ -98,7 +98,7 @@
       <AnchorPane layoutX="270.0" layoutY="551.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd;">
          <children>
             <TextField layoutX="14.0" layoutY="14.0" />
-            <ImageView fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: blue;" />
+            <ImageView fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
             <TextField layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
@@ -117,7 +117,7 @@
       <AnchorPane layoutY="91.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd;">
          <children>
             <TextField fx:id="city" layoutX="14.0" layoutY="14.0" />
-            <ImageView fx:id="house" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: blue;" />
+            <ImageView fx:id="house" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
             <TextField fx:id="beds" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
@@ -136,7 +136,7 @@
       <AnchorPane layoutY="321.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd;">
          <children>
             <TextField layoutX="14.0" layoutY="14.0" />
-            <ImageView fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: blue;" />
+            <ImageView fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
             <TextField layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
@@ -155,7 +155,7 @@
       <AnchorPane layoutY="551.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd;">
          <children>
             <TextField layoutX="14.0" layoutY="14.0" />
-            <ImageView fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: blue;" />
+            <ImageView fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
             <TextField layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>

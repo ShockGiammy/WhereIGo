@@ -1,5 +1,6 @@
 package logic.model;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import javafx.scene.image.Image;
@@ -14,7 +15,7 @@ public class AccomodationModel {
 	private String type;
 	private String squareMetres;
 	private String description;
-	private File houseImage;
+	private byte[] houseImage;
 	private byte[] services;
 	
 	
@@ -27,7 +28,7 @@ public class AccomodationModel {
 		type = bean.getType();
 		squareMetres = bean.getSquareMetres();
 		description = bean.getDescription();
-		//houseImage = bean.getHouseImage();
+		houseImage = bean.getHouseImage();
 		services = bean.getServices();
 		
 		System.out.println("model "+ID);

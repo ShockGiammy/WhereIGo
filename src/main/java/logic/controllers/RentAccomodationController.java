@@ -18,7 +18,7 @@ public class RentAccomodationController {
 	}
 	
 	public RentAccomodationBean displayAnnouncement() {
-		accomodation = dao.queryDB(bean);
+		bean = dao.queryDB(bean);
 		return bean;
 	}
 }

@@ -1,12 +1,23 @@
 package logic.graphiccontrollers;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.RentAccomodationController;
+import logic.model.AccomodationModel;
 
 public class GraphicControlRentAccomodation {
 	
@@ -17,7 +28,6 @@ public class GraphicControlRentAccomodation {
 	@FXML Button detail;
 	@FXML ImageView home;
 	
-	/*
 	@FXML TextField city2;
 	@FXML TextField beds2;
 	@FXML ImageView house2;
@@ -47,7 +57,6 @@ public class GraphicControlRentAccomodation {
 	@FXML ImageView house6;
 	@FXML TextField rating6;
 	@FXML Button detail6;
-	*/
 	
 	private RentAccomodationController control;
 	private RentAccomodationBean bean;
@@ -58,9 +67,39 @@ public class GraphicControlRentAccomodation {
 		bean = control.displayAnnouncement();
 		city.setText(bean.getCity());
 		beds.setText(bean.getBeds());
-		//Image image = new Image(bean.getHouseImage().toURI().toString());
-		//house[1].setImage(image);
+		if (bean.getHouseImage() != null) {
+			ByteArrayInputStream bi = new ByteArrayInputStream(bean.getHouseImage());
+			BufferedImage bImage = null;
+			try {
+				bImage = ImageIO.read(bi);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    try {
+				ImageIO.write(bImage, "jpg", new File("output.jpg") );
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		    
+	        house.setImage(convertToFxImage(bImage));
+		}
 		rating.setText("5/5");
+	}
+	
+	private static Image convertToFxImage(BufferedImage image) {
+	    WritableImage wr = null;
+	    if (image != null) {
+	        wr = new WritableImage(image.getWidth(), image.getHeight());
+	        PixelWriter pw = wr.getPixelWriter();
+	        for (int x = 0; x < image.getWidth(); x++) {
+	            for (int y = 0; y < image.getHeight(); y++) {
+	                pw.setArgb(x, y, image.getRGB(x, y));
+	            }
+	        }
+	    }
+
+	    return new ImageView(wr).getImage();
 	}
 }
 

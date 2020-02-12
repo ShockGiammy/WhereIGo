@@ -1,4 +1,5 @@
 package logic.dao;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,8 +34,8 @@ public class AccomodationCreator extends GeneralConnection{
 		AccomodationModel acc = new AccomodationModel(Info);
 		return acc;
 	}
-	
-	public AccomodationModel queryDB(RentAccomodationBean bean) {
+
+	public RentAccomodationBean queryDB(RentAccomodationBean bean) {
 		int fetched = 0;
 		getConnection();
 		try {
@@ -43,7 +44,8 @@ public class AccomodationCreator extends GeneralConnection{
 		while(rs.next()) {
 			fetched +=1;
 			bean.setID(rs.getInt(1));
-			bean.setInputStream(rs.getBinaryStream(2));
+			byte[] image = rs.getBytes(2);
+			bean.setInputStream(image);
 			bean.setRenter(rs.getString(3));
 			bean.setDescription(rs.getString(4));
 			bean.setBeds(rs.getString(5));
@@ -52,15 +54,13 @@ public class AccomodationCreator extends GeneralConnection{
 			bean.setServices(rs.getBytes(8));
 			bean.setSquareMetres(rs.getString(9));
 			bean.setType(rs.getString(10));
-			
 			}
 		}
 		catch (SQLException e) {
 			System.err.println("Got an exception!");
 		    System.err.println(e.getMessage());
 		}
-		AccomodationModel acc = new AccomodationModel(bean);
-		return acc;
+		return bean;
 		
 	}
 }

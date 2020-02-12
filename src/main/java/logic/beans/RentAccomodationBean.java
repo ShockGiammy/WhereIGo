@@ -1,11 +1,17 @@
 package logic.beans;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+
+import javax.swing.ImageIcon;
+
+import javafx.scene.image.Image;
 
 public class RentAccomodationBean {
 	
@@ -19,7 +25,8 @@ public class RentAccomodationBean {
 	private String description;
 	private File houseImage;
 	private byte[] services;
-	private InputStream inputF;
+	private byte[] inputF;
+	private int lengthStream;
 	
 	
 	public void setBeds(String numBeds) {
@@ -82,28 +89,6 @@ public class RentAccomodationBean {
 		this.description = description;
 	}
 
-/*
-	public File getHouseImage() {
-		String prefix = "name";
-		String suffix = "tmp";
-		File tempHouse = null;
-		try {
-			tempHouse = File.createTempFile(prefix, suffix);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		tempHouse.deleteOnExit();
-		try {
-			FileOutputStream out = new FileOutputStream(tempHouse);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//inputF.transferTo(out);
-		return houseImage;
-	}
-*/
 	public InputStream getInputFile() {
 		InputStream imageInputFile = null;
 		try {
@@ -134,7 +119,11 @@ public class RentAccomodationBean {
 		return ID;
 	}
 	
-	public void setInputStream(InputStream inputS) {
+	public void setInputStream(byte[] inputS) {
 		this.inputF = inputS;
+	}
+	
+	public byte[] getHouseImage() {
+		return inputF;
 	}
 }

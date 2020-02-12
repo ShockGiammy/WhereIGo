@@ -65,4 +65,17 @@ public class Window extends Application{
 			e.printStackTrace();
 		}
 	}
+	
+	 
+    public void goHome(@SuppressWarnings("exports") MouseEvent event) {
+    	setScene("HomePage.fxml");
+    	loadScene();
+    	nextGuiOnClick(event);
+    }
+    
+    public void goRent(@SuppressWarnings("exports") MouseEvent event) {
+    	setScene("RentAccomodation.fxml");
+    	loadScene();
+    	nextGuiOnClick(event);
+    }
 }
