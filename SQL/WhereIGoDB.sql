@@ -25,10 +25,12 @@ create table Usr
 create table TravelGroups
 (
 	groupID int,
-    travName varchar(20)
-			references Usr(nome),
-	travSurname varchar(20)
-			references Usr(surname)
+	travCity VARCHAR(45)
+			 references Locations(city),
+	groupOwner VARCHAR(20) not null
+			 references Usr(username),
+	title VARCHAR(50) NOT NULL,
+	primary key(groupID, groupOwner)
 );
 
 create table Post
@@ -97,7 +99,7 @@ insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
 values ("pierC","pippo","Pierciro","Caliandro","18/02/1998","Male","Traveler");
 
 insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
-values ("shockGianmy","pluto","Gian Marco","Falcone","16/03/1998","Male","Traveler");
+values ("shockGiammy","pluto","Gian Marco","Falcone","16/03/1998","Male","Traveler");
 
 insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
 values ("fra998","paperino","Francesco","Fanali","26/06/1998","Male","Renter");
@@ -105,7 +107,11 @@ values ("fra998","paperino","Francesco","Fanali","26/06/1998","Male","Renter");
 insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
 values ("adrianRob","pippo","Adrian","Minut","18/02/1998","Male", "Traveler");
 
+insert into travelgroups(groupID, travCity, groupOwner, title)
+values(001, "Amsterdam", "shockGiammy", "Amsterdam Museums (I swear)");
 
+insert into travelgroups(groupID, travCity, groupOwner, title)
+values(002, "San Francisco", "adrianRob", "Trip to the USA");
 
 
 

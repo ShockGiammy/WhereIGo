@@ -2,73 +2,155 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1059.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#19ca8b" height="86.0" layoutX="-3.0" layoutY="-6.0" stroke="BLACK" strokeType="INSIDE" width="1065.0" />
-      <Text layoutX="146.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WhereIGo" wrappingWidth="237.474609375">
-         <font>
-            <Font size="50.0" />
-         </font>
-      </Text>
-      <Button fx:id="bookATravel" disable="true" layoutX="582.0" layoutY="16.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="127.0" text="Book a travel" textOverrun="WORD_ELLIPSIS" underline="true">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <ListView layoutX="566.0" layoutY="128.0" prefHeight="508.0" prefWidth="385.0" style="-fx-background-color: #19ca8b;" />
-      <Text layoutX="631.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give us your travel info" wrappingWidth="254.94927978515625">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Text>
-      <Text layoutX="598.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First day">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="599.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last day">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <TextField fx:id="moneyRange" layoutX="763.0" layoutY="409.0" onKeyTyped="#getMoneyRange" prefHeight="27.0" prefWidth="174.0" />
-      <Text layoutX="593.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Money range">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <DatePicker fx:id="firstDay" layoutX="758.0" layoutY="215.0" onAction="#getFirstDay" prefHeight="33.0" prefWidth="185.0" />
-      <DatePicker fx:id="lastDay" layoutX="758.0" layoutY="313.0" onAction="#getLastDay" prefHeight="33.0" prefWidth="185.0" />
-      <Button fx:id="bookMyTravel" layoutX="786.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#bookMyTravelControl" prefHeight="41.0" prefWidth="127.0" text="Book my travel" textOverrun="WORD_ELLIPSIS" underline="true">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Pane layoutX="38.0" layoutY="128.0" prefHeight="508.0" prefWidth="386.0" style="-fx-background-color: #19ca8b;">
+      <AnchorPane prefHeight="98.0" prefWidth="1059.0">
          <children>
-            <Text fx:id="location1" layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location1" wrappingWidth="174.39999999999986">
+            <ToolBar layoutX="356.0" layoutY="16.0" prefHeight="66.0" prefWidth="435.0" style="-fx-background-color: white;">
+               <items>
+                  <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@69524.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="home1" disable="true" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@download.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icona-di-chiavi-42470255.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@download%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@favourites-stars.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@download%20(2).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@16363.png" />
+                     </image>
+                  </ImageView>
+               </items>
+            </ToolBar>
+            <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@WIGLOGO.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
+         </children>
+      </AnchorPane>
+      <Pane layoutX="38.0" layoutY="128.0" prefHeight="482.0" prefWidth="380.0" style="-fx-background-color: #19ca8b;">
+         <children>
+            <Text fx:id="location1" layoutX="14.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location1" wrappingWidth="174.39999999999986">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="location2" layoutX="14.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location2" wrappingWidth="174.39999999999986">
+            <Text fx:id="location2" layoutX="14.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location2" wrappingWidth="174.39999999999986">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="location3" layoutX="14.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location3" wrappingWidth="174.39999999999986">
+            <Text fx:id="location3" layoutX="14.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location3" wrappingWidth="174.39999999999986">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
+            <Text layoutX="24.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suggested locations for you">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Button layoutX="144.0" layoutY="82.0" mnemonicParsing="false" text="Get more info" />
+            <Button layoutX="144.0" layoutY="124.0" mnemonicParsing="false" text="Get more info" />
+            <Button layoutX="143.0" layoutY="171.0" mnemonicParsing="false" text="Get more info" />
+            <Text layoutX="103.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Travel groups">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Pane layoutX="14.0" layoutY="284.0" prefHeight="75.0" prefWidth="322.0" style="-fx-background-color: white;">
+               <children>
+                  <Text fx:id="groupTitle1" layoutX="15.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title1" wrappingWidth="174.00000000000023">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="15.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group owner:" />
+                  <Text fx:id="owner1" layoutX="103.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name1" />
+                  <Button layoutX="193.0" layoutY="49.0" mnemonicParsing="false" text="Contact group owner" />
+                  <Text fx:id="city1" layoutX="235.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City1" />
+               </children>
+            </Pane>
+            <Pane layoutX="14.0" layoutY="393.0" prefHeight="75.0" prefWidth="322.0" style="-fx-background-color: white;">
+               <children>
+                  <Text fx:id="groupTitle2" layoutX="15.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title2" wrappingWidth="174.00000000000023">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="15.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group owner:" />
+                  <Text fx:id="owner2" layoutX="103.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name2" />
+                  <Button layoutX="193.0" layoutY="49.0" mnemonicParsing="false" text="Contact group owner" />
+                  <Text fx:id="city2" layoutX="244.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City2" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="593.0" layoutY="124.0" prefHeight="482.0" prefWidth="397.0" style="-fx-background-color: #19ca8b;">
+         <children>
+            <Text layoutX="71.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give us your travel info" wrappingWidth="254.94927978515625">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="32.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First day">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <DatePicker fx:id="lastDay" layoutX="148.0" layoutY="94.0" onAction="#getLastDay" prefHeight="33.0" prefWidth="185.0" />
+            <Text layoutX="29.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last day">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <DatePicker fx:id="firstDay" layoutX="148.0" layoutY="160.0" onAction="#getFirstDay" prefHeight="33.0" prefWidth="185.0" />
+            <Text layoutX="29.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Money range">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="moneyRange" layoutX="148.0" layoutY="240.0" onKeyTyped="#getMoneyRange" prefHeight="27.0" prefWidth="174.0" />
+            <Button fx:id="bookMyTravel" layoutX="194.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#bookMyTravelControl" prefHeight="41.0" prefWidth="127.0" text="Book my travel" textOverrun="WORD_ELLIPSIS" underline="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>

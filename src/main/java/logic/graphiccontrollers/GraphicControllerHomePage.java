@@ -25,7 +25,7 @@ public class GraphicControllerHomePage extends Window{
 	public void bookTravelControl(MouseEvent event) throws SQLException {
 		setScene("BookTravel.fxml");
 		loadScene();
-		setSuggestedLocations(event);
+		nextGuiOnClick(event);
 	}
 	
 	public void getInterestControl(MouseEvent event) {

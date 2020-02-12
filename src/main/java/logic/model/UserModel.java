@@ -70,4 +70,8 @@ public class UserModel {
 		loc = usrDao.getCity(usrBean);
 		return loc;
 	}
+	
+	public void getUserPersonality(UserDataBean dataBean) {
+	dataBean.setPersonality(this.personality);
+	}
 }

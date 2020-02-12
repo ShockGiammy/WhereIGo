@@ -6,6 +6,7 @@ import logic.beans.UserDataBean;
 import java.util.logging.Level;
 
 public class UserDao extends GeneralConnection{
+	
 	public String[] getCity(UserDataBean usrBean) {
 		String locat[] = new String[3];
 		int i = 0;
@@ -23,7 +24,6 @@ public class UserDao extends GeneralConnection{
 			logger.log(Level.SEVERE, "SQLException occurred during fetch of cities", e);
 		}
 		return locat;
-		
 	}
 	
 	public int checkLogInInfo(LogInBean bean, UserDataBean usrBean) {
