@@ -32,7 +32,7 @@ public class PostAnAnnouncementController {
 		Acc = creator.createAccomodation(Info);
 	}
 
-	public void show(RentAccomodationBean bean) {
+	public void show(RentAccomodationBean bean) {	
 		Acc.getInfo();
 		
 	}

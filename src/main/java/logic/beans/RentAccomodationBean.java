@@ -1,17 +1,9 @@
 package logic.beans;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-
-import javax.swing.ImageIcon;
-
-import javafx.scene.image.Image;
 
 public class RentAccomodationBean {
 	
@@ -26,7 +18,6 @@ public class RentAccomodationBean {
 	private File houseImage;
 	private byte[] services;
 	private byte[] inputF;
-	private int lengthStream;
 	
 	
 	public void setBeds(String numBeds) {

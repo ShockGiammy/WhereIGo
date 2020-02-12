@@ -12,7 +12,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.PostAnAnnouncementController;

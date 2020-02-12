@@ -1,9 +1,5 @@
 package logic.model;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 
-import javafx.scene.image.Image;
 import logic.beans.RentAccomodationBean;
 public class AccomodationModel {
 	
@@ -31,17 +27,21 @@ public class AccomodationModel {
 		houseImage = bean.getHouseImage();
 		services = bean.getServices();
 		
-		System.out.println("model "+ID);
-		System.out.println(beds);
-		System.out.println(renter);
-		System.out.println(city);
-		System.out.println(address);
+		System.out.println(ID);
 	}
 
-	public void getInfo() {
+	public RentAccomodationBean getInfo() {
 		RentAccomodationBean accomodationInfo = new RentAccomodationBean();
 		accomodationInfo.setID(ID);
 		accomodationInfo.setBeds(beds);
 		accomodationInfo.setRenter(renter);
+		accomodationInfo.setCity(city);
+		accomodationInfo.setAddress(address);
+		accomodationInfo.setType(type);
+		accomodationInfo.setSquareMetres(squareMetres);
+		accomodationInfo.setDescription(description);
+		accomodationInfo.setInputStream(houseImage);
+		accomodationInfo.setServices(services);
+		return accomodationInfo;
 	}
 }

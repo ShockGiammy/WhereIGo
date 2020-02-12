@@ -10,16 +10,20 @@ public class RentAccomodationController {
 	private GraphicControlRentAccomodation view;
 	private AccomodationCreator dao;
 	private RentAccomodationBean bean;
-	private AccomodationModel accomodation;
+	private AccomodationModel[] accomodation;
 	
 	public RentAccomodationController() {
 		dao = new AccomodationCreator();
 		bean = new RentAccomodationBean();
 	}
 	
-	public RentAccomodationBean displayAnnouncement() {
-		bean = dao.queryDB(bean);
-		return bean;
+	public RentAccomodationBean[] displayAnnouncement() {
+		accomodation = dao.queryDB(bean);
+		RentAccomodationBean[] listOfBean = new RentAccomodationBean[6];
+		for (int i = 0; i <2; i++) {
+			listOfBean[i] = accomodation[i].getInfo();
+		}
+		return listOfBean;
 	}
 }
 

@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -59,12 +58,22 @@ public class GraphicControlRentAccomodation {
 	@FXML Button detail6;
 	
 	private RentAccomodationController control;
-	private RentAccomodationBean bean;
 	
 	@FXML
 	public void initialize() {
 		control = new RentAccomodationController();
+		RentAccomodationBean[] bean = new RentAccomodationBean[6];
 		bean = control.displayAnnouncement();
+		setDisplayInfo(city, beds, house, rating, bean[0]);
+		setDisplayInfo(city2, beds2, house2, rating2, bean[1]);
+		//setDisplayInfo(city3, beds3, house3, rating3, bean[2]);
+		//setDisplayInfo(city4, beds4, house4, rating4, bean[3]);
+		//setDisplayInfo(city5, beds5, house5, rating5, bean[4]);
+		//setDisplayInfo(city6, beds6, house6, rating6, bean[5]);
+	}
+	
+	@SuppressWarnings("exports")
+	public void setDisplayInfo(TextField city, TextField beds, ImageView house, TextField rating, RentAccomodationBean bean) {
 		city.setText(bean.getCity());
 		beds.setText(bean.getBeds());
 		if (bean.getHouseImage() != null) {
@@ -76,16 +85,16 @@ public class GraphicControlRentAccomodation {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		    try {
+			try {
 				ImageIO.write(bImage, "jpg", new File("output.jpg") );
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}		    
-	        house.setImage(convertToFxImage(bImage));
+			house.setImage(convertToFxImage(bImage));
 		}
 		rating.setText("5/5");
-	}
+}
 	
 	private static Image convertToFxImage(BufferedImage image) {
 	    WritableImage wr = null;
@@ -98,7 +107,6 @@ public class GraphicControlRentAccomodation {
 	            }
 	        }
 	    }
-
 	    return new ImageView(wr).getImage();
 	}
 }

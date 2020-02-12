@@ -1,6 +1,5 @@
 package logic.dao;
-import java.io.InputStream;
-import java.sql.Blob;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,32 +34,35 @@ public class AccomodationCreator extends GeneralConnection{
 		return acc;
 	}
 
-	public RentAccomodationBean queryDB(RentAccomodationBean bean) {
+	public AccomodationModel[] queryDB(RentAccomodationBean bean) {
 		int fetched = 0;
 		getConnection();
+		AccomodationModel[] acc = new AccomodationModel[6];
 		try {
 			PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Post");    
 			ResultSet rs = statement.executeQuery();
-		while(rs.next()) {
-			fetched +=1;
-			bean.setID(rs.getInt(1));
-			byte[] image = rs.getBytes(2);
-			bean.setInputStream(image);
-			bean.setRenter(rs.getString(3));
-			bean.setDescription(rs.getString(4));
-			bean.setBeds(rs.getString(5));
-			bean.setCity(rs.getString(6));
-			bean.setAddress(rs.getString(7));
-			bean.setServices(rs.getBytes(8));
-			bean.setSquareMetres(rs.getString(9));
-			bean.setType(rs.getString(10));
+			while(rs.next()) {
+				if (fetched<=6) {
+					bean.setID(rs.getInt(1));
+					byte[] image = rs.getBytes(2);
+					bean.setInputStream(image);
+					bean.setRenter(rs.getString(3));
+					bean.setDescription(rs.getString(4));
+					bean.setBeds(rs.getString(5));
+					bean.setCity(rs.getString(6));
+					bean.setAddress(rs.getString(7));
+					bean.setServices(rs.getBytes(8));
+					bean.setSquareMetres(rs.getString(9));
+					bean.setType(rs.getString(10));
+					acc[fetched] = new AccomodationModel(bean);
+					fetched +=1;
+				}
 			}
 		}
 		catch (SQLException e) {
 			System.err.println("Got an exception!");
 		    System.err.println(e.getMessage());
 		}
-		return bean;
-		
+		return acc;
 	}
 }
