@@ -31,6 +31,12 @@ public class UserModel {
 		this.surname = usrBean.getSurname();
 		this.dateOfBirth = usrBean.getDateOfBirth();
 		this.gender = usrBean.getGender();
+		if(usrBean.getPersonality() == null) {
+			this.personality = "None";
+		}
+		else {
+			this.personality = usrBean.getPersonality();
+		}
 	}
 	
 	public static UserModel getUserModelIstance() {
@@ -44,5 +50,24 @@ public class UserModel {
 		LogInBean lBean = new LogInBean();
 		lBean.setUserName(this.username);
 		usrDao.insertPersonality(pers, this.username);
+		this.personality = pers;
+	}
+	
+	public UserDataBean getUserDatas() {
+		UserDataBean usrBean = new UserDataBean();
+		usrBean.setName(this.name);
+		usrBean.setSurname(this.surname);
+		usrBean.setDateOfBirth(this.dateOfBirth);
+		usrBean.setGender(this.gender);
+		usrBean.setPersonality(this.personality);
+		return usrBean;
+	}
+	
+	public String[] getUserLocations() {
+		String loc[] = new String[3];
+		UserDataBean usrBean = new UserDataBean();
+		usrBean.setPersonality(this.personality);
+		loc = usrDao.getCity(usrBean);
+		return loc;
 	}
 }

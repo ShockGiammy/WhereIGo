@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import logic.beans.InterestsBean;
 import logic.controllers.InterestsController;
 import logic.view.Window;
@@ -122,8 +123,11 @@ public class GraphicControllerInterestForm extends Window{
 		}
 	}
 	
-	public void evaluatePersonality(){
+	public void evaluatePersonality(MouseEvent e){
 		this.intBean.setAnswares(this.questAnsw);
 		this.interCtrl.evaluateInterests(this.intBean);
+		setScene("HomePage.fxml");
+		loadScene();
+		setUserDatas(e);
 	}
 }

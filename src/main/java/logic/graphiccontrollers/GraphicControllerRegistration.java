@@ -1,6 +1,5 @@
 package logic.graphiccontrollers;
 
-import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
 import javafx.fxml.FXML;
@@ -62,6 +61,6 @@ public class GraphicControllerRegistration extends Window{
 	public void registerNowControl(MouseEvent event) {
 		setScene("HomePage.fxml");
 		loadScene();
-		setUserDatas(this.dataBean,event);
+		setUserDatas(event);
 	}
 }

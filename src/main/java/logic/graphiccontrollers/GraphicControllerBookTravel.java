@@ -40,9 +40,11 @@ public class GraphicControllerBookTravel extends Window{
 	
 	@FXML
 	public void setLocation() throws SQLException {
-		this.location1.setText(bookTravCtrl.showLocationsControl());
-		this.location2.setText(bookTravCtrl.showLocationsControl());
-		this.location3.setText(bookTravCtrl.showLocationsControl());
+		String suggLoc[] = new String[3];
+		suggLoc = bookTravCtrl.showLocationsControl();
+		this.location1.setText(suggLoc[0]);
+		this.location2.setText(suggLoc[1]);
+		this.location3.setText(suggLoc[2]);
 	}
 	
 	@FXML

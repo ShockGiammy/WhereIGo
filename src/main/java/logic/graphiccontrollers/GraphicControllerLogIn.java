@@ -30,7 +30,7 @@ public class GraphicControllerLogIn extends Window{
 		if(this.loginCtrl.checkLogInInfo(this.usrBean, this.logBean) == 1) {
 			setScene("HomePage.fxml");
 			loadScene();
-			setUserDatas(this.usrBean, event);
+			setUserDatas(event);
 		}
 		else {
 			System.out.println("Utente non registrato\n");

@@ -15,7 +15,6 @@ create table Usr
     passw VARCHAR(20) NOT NULL,
     nome VARCHAR(20) NOT NULL,
     surname VARCHAR(20) NOT NULL,
-    age INT NOT NULL,
     dateOfBirth VARCHAR(20) NOT NULL,
     gender VARCHAR(10),
     tipeOfUser VARCHAR(20),
@@ -50,28 +49,61 @@ create table Post
 );
 
 insert into Locations(country,city,tipeOfPersonality)
-values ("Italy","Rome", "Curious");
+values ("Zanzibar","Tanzania", "Curious");
 
 insert into Locations(country,city,tipeOfPersonality)
-values ("Italy","Milan", "Lone wolf");
+values ("Turkey","Istanbul", "Curious");
+
+insert into Locations(country,city,tipeOfPersonality)
+values ("Morocco","Marrakech", "Curious");
 
 insert into Locations(country,city,tipeOfPersonality)
 values ("UK","London", "Lone wolf");
 
 insert into Locations(country,city,tipeOfPersonality)
-values ("USA","Washington", "Friendly");
+values ("Australia","Ayers rock", "Lone wolf");
 
-insert into Usr(username,passw,nome,surname,age,dateOfBirth,gender,tipeOfUser)
-values ("pierC","pippo","Pierciro","Caliandro",21,"18/02/1998","Male","Traveler");
+insert into Locations(country,city,tipeOfPersonality)
+values ("Russia","Transiberiana", "Lone wolf");
 
-insert into Usr(username,passw,nome,surname,age,dateOfBirth,gender,tipeOfUser)
-values ("shockGianmy","pluto","Gian Marco","Falcone",21,"15/03/1998","Male","Traveler");
+insert into Locations(country,city,tipeOfPersonality)
+values ("Netherlands","Amsterdam", "Friendly");
 
-insert into Usr(username,passw,nome,surname,age,dateOfBirth,gender,tipeOfUser)
-values ("fra998","paperino","Francesco","Fanali",21,"26/06/1998","Male","Renter");
+insert into Locations(country,city,tipeOfPersonality)
+values ("Spain","Ibiza", "Friendly");
 
-insert into Usr(username,passw,nome,surname,age,dateOfBirth,gender,tipeOfUser)
-values ("adrianRob","pippo","Adrian","Minut",21,"18/02/1998","Male", "Traveler");
+insert into Locations(country,city,tipeOfPersonality)
+values ("USA","San Francisco", "Friendly");
+
+insert into Locations(country,city,tipeOfPersonality)
+values ("Ungary","Budapest", "Lazybone");
+
+insert into Locations(country,city,tipeOfPersonality)
+values ("UK","Bath", "Lazybone");
+
+insert into Locations(country,city,tipeOfPersonality)
+values ("Italy","Saturnia", "Lazybone");
+
+insert into Locations(country,city,tipeOfPersonality)
+values ("Uganda","Paraa", "Adventurer");
+
+insert into Locations(country,city,tipeOfPersonality)
+values ("Tanzania","Kilimangiaro", "Adventurer");
+
+insert into Locations(country,city,tipeOfPersonality)
+values ("Turkmenistan","Karakum desert", "Adventurer");
+
+insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
+values ("pierC","pippo","Pierciro","Caliandro","18/02/1998","Male","Traveler");
+
+insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
+values ("shockGianmy","pluto","Gian Marco","Falcone","16/03/1998","Male","Traveler");
+
+insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
+values ("fra998","paperino","Francesco","Fanali","26/06/1998","Male","Renter");
+
+insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
+values ("adrianRob","pippo","Adrian","Minut","18/02/1998","Male", "Traveler");
 
 
 

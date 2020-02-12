@@ -3,26 +3,27 @@ import java.sql.*;
 
 import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
-import logic.model.LocationModel;
 import java.util.logging.Level;
 
 public class UserDao extends GeneralConnection{
-	public String getCity() {
-		LocationModel lm = new LocationModel();
+	public String[] getCity(UserDataBean usrBean) {
+		String locat[] = new String[3];
+		int i = 0;
 		getConnection();
 		try {
-			PreparedStatement statement = dbConn.getConnection().prepareStatement("select * from Locations where country=?");    
-			statement.setString(1, "USA");    
+			PreparedStatement statement = dbConn.getConnection().prepareStatement("select * from Locations where tipeOfPersonality=?");    
+			statement.setString(1, usrBean.getPersonality());    
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()) {
-				 lm.setCountry(rs.getString(1));
-				 lm.setCity(rs.getString(2));
+				locat[i] = rs.getString(2);
+				i+=1;
 			}
 		}catch (SQLException e) {
 			 
 			logger.log(Level.SEVERE, "SQLException occurred during fetch of cities", e);
 		}
-		return lm.getCity();
+		return locat;
+		
 	}
 	
 	public int checkLogInInfo(LogInBean bean, UserDataBean usrBean) {
@@ -40,6 +41,9 @@ public class UserDao extends GeneralConnection{
 				usrBean.setSurname(rs.getString(4));
 				usrBean.setDateOfBirth(rs.getString(5));
 				usrBean.setGender(rs.getString(6));
+				if(rs.getString(8) != null) {
+					usrBean.setPersonality(rs.getString(8));
+				}
 			}
 			
 		}catch (SQLException e) {
