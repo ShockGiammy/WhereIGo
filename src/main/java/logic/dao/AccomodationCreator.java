@@ -17,13 +17,13 @@ public class AccomodationCreator extends GeneralConnection{
 			statement.setInt(1, Info.getID());
 			statement.setBinaryStream(2,Info.getInputFile(), Info.getFileLength());		//image
 			statement.setString(3,"sono io"); 				//user
-			statement.setString(4,Info.getDescription()); 			//desc
+			statement.setString(4,Info.getDescription()); 			//description
 			statement.setString(5,Info.getBeds());					//beds
 			statement.setString(6,Info.getCity());					//city
 			statement.setString(7,Info.getAddress());				//address
 			statement.setBytes(8,Info.getServices());				//services
 			statement.setString(9,Info.getSquareMetres());			//squareMetres
-			statement.setString(10,Info.getType());					//tipologia
+			statement.setString(10,Info.getType());					//type
 			statement.execute();
 		}
 		catch (SQLException e) {

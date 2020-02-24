@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
@@ -16,25 +19,37 @@
          <children>
             <ToolBar layoutX="356.0" layoutY="16.0" prefHeight="68.0" prefWidth="396.0" style="-fx-background-color: white;">
                <items>
-                  <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@69524.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
-                  <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="chiavi" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goRent" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icona-di-chiavi-42470255.jpg" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                   <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@download%20(1).png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="CLOSED_HAND" />
+                     </cursor>
                   </ImageView>
                   <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@favourites-stars.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
                   </ImageView>
                   <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -56,11 +71,11 @@
             <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="900.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="270.0" layoutY="91.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
+      <AnchorPane fx:id="aPane2" layoutX="270.0" layoutY="91.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
          <children>
-            <TextField fx:id="city2" layoutX="14.0" layoutY="14.0" />
+            <TextField fx:id="city2" editable="false" layoutX="14.0" layoutY="14.0" />
             <ImageView fx:id="house2" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="beds2" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
+            <TextField fx:id="beds2" editable="false" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
                   <Font size="14.0" />
@@ -71,16 +86,16 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="rating2" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
-            <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" text="view details" />
+            <TextField fx:id="rating2" editable="false" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
+            <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail2" prefHeight="33.0" prefWidth="85.0" text="view details" />
          </children>
       </AnchorPane>
       <Separator layoutX="540.0" layoutY="89.0" orientation="VERTICAL" prefHeight="690.0" prefWidth="16.0" />
-      <AnchorPane layoutX="270.0" layoutY="321.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
+      <AnchorPane fx:id="aPane4" layoutX="270.0" layoutY="321.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
          <children>
-            <TextField fx:id="city4" layoutX="14.0" layoutY="14.0" />
+            <TextField fx:id="city4" editable="false" layoutX="14.0" layoutY="14.0" />
             <ImageView fx:id="house4" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="beds4" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
+            <TextField fx:id="beds4" editable="false" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
                   <Font size="14.0" />
@@ -91,15 +106,15 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="rating4" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
-            <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" text="view details" />
+            <TextField fx:id="rating4" editable="false" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
+            <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail4" prefHeight="33.0" prefWidth="85.0" text="view details" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="270.0" layoutY="551.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
+      <AnchorPane fx:id="aPane6" layoutX="270.0" layoutY="551.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
          <children>
-            <TextField fx:id="city6" layoutX="14.0" layoutY="14.0" />
+            <TextField fx:id="city6" editable="false" layoutX="14.0" layoutY="14.0" />
             <ImageView fx:id="house6" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="beds6" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
+            <TextField fx:id="beds6" editable="false" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
                   <Font size="14.0" />
@@ -110,15 +125,14 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="rating6" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
-            <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" text="view details" />
+            <TextField fx:id="rating6" editable="false" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
+            <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail6" prefHeight="33.0" prefWidth="85.0" text="view details" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="91.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
+      <AnchorPane fx:id="aPane" layoutY="91.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
          <children>
-            <TextField fx:id="city" layoutX="14.0" layoutY="14.0" />
+            <TextField fx:id="city" editable="false" layoutX="14.0" layoutY="14.0" />
             <ImageView fx:id="house" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="beds" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
                   <Font size="14.0" />
@@ -129,15 +143,16 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="rating" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
-            <Button fx:id="detail" layoutX="171.0" layoutY="171.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" text="view details" />
+            <TextField fx:id="rating" editable="false" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
+            <Button fx:id="detail" layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail1" prefHeight="33.0" prefWidth="85.0" text="view details" />
+            <TextField fx:id="beds" editable="false" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="321.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
+      <AnchorPane fx:id="aPane3" layoutY="321.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
          <children>
-            <TextField fx:id="city3" layoutX="14.0" layoutY="14.0" />
+            <TextField fx:id="city3" editable="false" layoutX="14.0" layoutY="14.0" />
             <ImageView fx:id="house3" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="beds3" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
+            <TextField fx:id="beds3" editable="false" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
                   <Font size="14.0" />
@@ -148,15 +163,15 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="rating3" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
-            <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" text="view details" />
+            <TextField fx:id="rating3" editable="false" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
+            <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail3" prefHeight="33.0" prefWidth="85.0" text="view details" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="551.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
+      <AnchorPane fx:id="aPane5" layoutY="551.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
          <children>
-            <TextField fx:id="city5" layoutX="14.0" layoutY="14.0" />
+            <TextField fx:id="city5" editable="false" layoutX="14.0" layoutY="14.0" />
             <ImageView fx:id="house5" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="beds5" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
+            <TextField fx:id="beds5" editable="false" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
                   <Font size="14.0" />
@@ -167,9 +182,39 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="rating5" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
-            <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" text="view details" />
+            <TextField fx:id="rating5" editable="false" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
+            <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail5" prefHeight="33.0" prefWidth="85.0" text="view details" />
          </children>
       </AnchorPane>
+      <TextField editable="false" layoutX="567.0" layoutY="119.0" prefHeight="25.0" prefWidth="149.0" visible="false" />
+      <ImageView fx:id="houseDetail" fitHeight="191.0" fitWidth="300.0" layoutX="566.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true" />
+      <TextArea fx:id="description" editable="false" layoutX="567.0" layoutY="409.0" prefHeight="90.0" prefWidth="262.0" visible="false" />
+      <TextField fx:id="address" editable="false" layoutX="567.0" layoutY="161.0" visible="false" />
+      <TextField fx:id="cityDetail" editable="false" layoutX="730.0" layoutY="161.0" visible="false" />
+      <TextField fx:id="type" editable="false" layoutX="567.0" layoutY="507.0" visible="false" />
+      <TextField fx:id="squareMetres" editable="false" layoutX="737.0" layoutY="507.0" prefHeight="25.0" prefWidth="57.0" visible="false" />
+      <TextField fx:id="bedsDetail" editable="false" layoutX="809.0" layoutY="507.0" prefHeight="25.0" prefWidth="57.0" visible="false" />
+      <TextField fx:id="renter" editable="false" layoutX="567.0" layoutY="631.0" visible="false" />
+      <Button fx:id="contactRenter" layoutX="757.0" layoutY="631.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="100.0" text="Contact Renter" visible="false" />
+      <CheckBox fx:id="garden" layoutX="567.0" layoutY="544.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Garden" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="wifi" layoutX="736.0" layoutY="546.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Wifi" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="kitchen" layoutX="736.0" layoutY="583.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="115.0" text="Kitchen" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="bathroom" layoutX="567.0" layoutY="583.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="139.0" text="Bathroom inside" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
    </children>
 </AnchorPane>

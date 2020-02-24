@@ -25,9 +25,8 @@ public class AccomodationModel {
 		squareMetres = bean.getSquareMetres();
 		description = bean.getDescription();
 		houseImage = bean.getHouseImage();
+		services = new byte[4];
 		services = bean.getServices();
-		
-		System.out.println(ID);
 	}
 
 	public RentAccomodationBean getInfo() {

@@ -103,6 +103,7 @@ public class RentAccomodationBean {
 	}
 
 	public void setServices(byte[] listOfServices) {
+		this.services = new byte[4];
 		this.services = listOfServices;
 	}
 

@@ -20,10 +20,17 @@ public class RentAccomodationController {
 	public RentAccomodationBean[] displayAnnouncement() {
 		accomodation = dao.queryDB(bean);
 		RentAccomodationBean[] listOfBean = new RentAccomodationBean[6];
-		for (int i = 0; i <2; i++) {
-			listOfBean[i] = accomodation[i].getInfo();
+		for (int i = 0; i <6; i++) {
+			if (accomodation[i] != null) {
+				listOfBean[i] = accomodation[i].getInfo();
+			}
 		}
 		return listOfBean;
+	}
+	
+	public RentAccomodationBean getDetail(int number) {
+		RentAccomodationBean bean = accomodation[number].getInfo();
+		return bean;
 	}
 }
 
