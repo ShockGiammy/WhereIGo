@@ -5,6 +5,7 @@ public class UserDataBean {
 	private String surname;
 	private String dateOfBirth;
 	private String gender;
+	private String typeOfUser;
 	private String personality;
 	private String userName;
 	private String psw;
@@ -27,6 +28,10 @@ public class UserDataBean {
 	
 	public void setPersonality(String pers) {
 		this.personality = pers;
+	}
+	
+	public void setType(String typeOfUsr) {
+		this.typeOfUser = typeOfUsr;
 	}
 	
 	public void setUserName(String usrName) {
@@ -57,7 +62,15 @@ public class UserDataBean {
 		return this.personality;
 	}
 	
+	public String getType() {
+		return this.typeOfUser;
+	}
+	
 	public String getUsername() {
 		return this.userName;
+	}
+	
+	public String getPassword() {
+		return this.psw;
 	}
 }

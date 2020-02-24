@@ -2,12 +2,17 @@ package logic.graphiccontrollers;
 
 import java.time.format.DateTimeFormatter;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import logic.LoggedUser;
 import logic.beans.UserDataBean;
+import logic.controllers.LoginController;
 import logic.view.Window;
 
 public class GraphicControllerRegistration extends Window{
@@ -15,17 +20,30 @@ public class GraphicControllerRegistration extends Window{
 	@FXML private TextField name;
 	@FXML private TextField surname;
 	@FXML private DatePicker dateOfBirth;
-	@FXML private TextField gender;
+	@FXML private ChoiceBox<String> gender;
 	@FXML private TextField userName;
 	@FXML private TextField password;
+	@FXML private ChoiceBox<String> typeOfUser;
 	@FXML private Button registerNow;
 	
+	ObservableList<String> gendList = FXCollections.observableArrayList("Female", "Male", "Other");
+	ObservableList<String> typeUsrList = FXCollections.observableArrayList("Traveler", "Renter");
 	private UserDataBean dataBean;
 	private DateTimeFormatter formatter;
+	private LoginController loginCtrl;
+	private int ret;
 	
-	public GraphicControllerRegistration() {
+	@FXML
+	public void initialize(){
 		this.dataBean = new UserDataBean();
 		this.formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+		this.loginCtrl = new LoginController();
+		this.gender.setValue("Female");
+		this.typeOfUser.setValue("Traveler");
+		this.gender.setItems(gendList);
+		this.typeOfUser.setItems(typeUsrList);
+		this.gender.setValue("Female");
+		this.typeOfUser.setValue("Traveler");
 	}
 	
 	public void getName() {
@@ -49,8 +67,7 @@ public class GraphicControllerRegistration extends Window{
 	}
 	
 	public void getGender() {
-		String gen = this.gender.getText();
-		this.dataBean.setGender(gen);
+		this.dataBean.setGender(this.gender.getValue());
 	}
 	
 	public void getPassword() {
@@ -58,9 +75,15 @@ public class GraphicControllerRegistration extends Window{
 		this.dataBean.setPsw(paswd);
 	}
 	
+	public void getType() {
+		this.dataBean.setType(this.typeOfUser.getValue());
+	}
+	
 	public void registerNowControl(MouseEvent event) {
+		LoggedUser.getIstance(this.dataBean.getUsername());
+		this.loginCtrl.insertNewUserControl(this.dataBean);
 		setScene("HomePage.fxml");
 		loadScene();
-		setUserDatas(event);
+		setUserNick(event, this.dataBean);
 	}
 }

@@ -6,7 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
+import logic.LoggedUser;
 import logic.beans.InterestsBean;
+import logic.beans.UserDataBean;
 import logic.controllers.InterestsController;
 import logic.view.Window;
 
@@ -35,11 +37,15 @@ public class GraphicControllerInterestForm extends Window{
 	private int[] questAnsw;
 	private InterestsBean intBean;
 	private InterestsController interCtrl;
+	private LoggedUser logUser;
+	private UserDataBean dataBean;
 	
 	public void initialize() {
 		this.questAnsw = new int[4];
 		this.intBean = new InterestsBean();
 		this.interCtrl = new InterestsController();
+		this.logUser = LoggedUser.getIstance(null);
+		this.dataBean = new UserDataBean();
 		question1 = new ToggleGroup();
 		question2 = new ToggleGroup();
 		question3 = new ToggleGroup();
@@ -61,7 +67,6 @@ public class GraphicControllerInterestForm extends Window{
 		quest4c.setToggleGroup(this.question4);
 		quest4d.setToggleGroup(this.question4);
 	}
-		
 	
 	public void manageGroup1(ActionEvent e) {
 		if(this.question1.getSelectedToggle().equals(this.quest1a)) {
@@ -124,10 +129,11 @@ public class GraphicControllerInterestForm extends Window{
 	}
 	
 	public void evaluatePersonality(MouseEvent e){
+		this.dataBean.setUserName(this.logUser.getUserName());
 		this.intBean.setAnswares(this.questAnsw);
 		this.interCtrl.evaluateInterests(this.intBean);
 		setScene("HomePage.fxml");
 		loadScene();
-		setUserDatas(e);
+		setUserNick(e, dataBean);
 	}
 }

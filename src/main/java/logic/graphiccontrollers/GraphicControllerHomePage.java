@@ -9,14 +9,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import logic.view.Window;
 import logic.beans.UserDataBean;
-import logic.model.UserModel;
 
 public class GraphicControllerHomePage extends Window{
-	@FXML private Text name;
-	@FXML private Text surname;
-	@FXML private Text dateOfBirth;
-	@FXML private Text gender;
-	@FXML private Text personality;
+	@FXML private Text username;
 	@FXML private ImageView bookATravel;
 	@FXML private Button changeInfo;
 	@FXML private Button moreInfo;
@@ -41,17 +36,8 @@ public class GraphicControllerHomePage extends Window{
 	}
 	
 	/*set the datas of the user before the UI is loaded*/
-	public void setDatas(){
-		UserDataBean usrBean = new UserDataBean();
-		UserModel usrModel = UserModel.getUserModelIstance();
-		usrBean = usrModel.getUserDatas();
-		this.name.setText(usrBean.getName());
-		this.surname.setText(usrBean.getSurname());
-		this.dateOfBirth.setText(usrBean.getDateOfBirth());
-		this.gender.setText(usrBean.getGender());
-		if(usrBean.getPersonality() != null) {
-			this.personality.setText(usrBean.getPersonality());
-		}
+	public void setNick(UserDataBean dataBean){
+		this.username.setText(dataBean.getUsername());
 	}
 }
 

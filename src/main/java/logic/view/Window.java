@@ -39,9 +39,9 @@ public class Window extends Application{
 		start(regStage);
 	}
 	
-	public void setUserDatas(MouseEvent e) {
+	public void setUserNick(MouseEvent e, UserDataBean dataBean) {
 		GraphicControllerHomePage controller = loader.getController();
-		controller.setDatas();
+		controller.setNick(dataBean);
 		nextGuiOnClick(e);
 	}
 	

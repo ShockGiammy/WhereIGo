@@ -1,18 +1,17 @@
 package logic.controllers;
 
+
+import logic.LoggedUser;
 import logic.beans.InterestsBean;
-import logic.model.UserModel;
+import logic.dao.UserDao;
 
 public class InterestsController {
 	private int numbOf1 = 0;
 	private int numbOf2 = 0;
 	private int numbOf3 = 0;
 	private int numbOf4 = 0;
-	private UserModel usrModel;
-	
-	public InterestsController() {
-		usrModel = UserModel.getUserModelIstance();
-	}
+	private LoggedUser logUsr;
+	private UserDao usrDao;
 	
 	public void evaluateInterests(InterestsBean interBean) {
 		int answares[] = interBean.getAnswares();
@@ -34,16 +33,16 @@ public class InterestsController {
 			}
 		}
 		if(numbOf1 >= 2) {
-			this.usrModel.saveUserPersonality("Friendly");
+			this.usrDao.insertPersonality("Friendly",logUsr.getUserName());
 		}
 		if(numbOf2 >= 2) {
-			this.usrModel.saveUserPersonality("Adventurer");
+			this.usrDao.insertPersonality("Adventurer", logUsr.getUserName());
 		}
 		if(numbOf3 >= 2) {
-			this.usrModel.saveUserPersonality("Lone wolf");
+			this.usrDao.insertPersonality("Lone wolf", logUsr.getUserName());
 		}
 		if(numbOf4 >= 2) {
-			this.usrModel.saveUserPersonality("Lazybone");
+			this.usrDao.insertPersonality("Lazybone", logUsr.getUserName());
 		}
 	}
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -43,14 +44,20 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="registerNow" layoutX="375.0" layoutY="382.0" mnemonicParsing="false" onMouseClicked="#registerNowControl" prefHeight="59.0" prefWidth="101.0" text="Register now" />
+      <Button fx:id="registerNow" layoutX="390.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#registerNowControl" prefHeight="59.0" prefWidth="101.0" text="Register now" />
       <Text layoutX="70.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRATION FORM">
          <font>
             <Font size="48.0" />
          </font>
       </Text>
       <TextField fx:id="name" layoutX="33.0" layoutY="198.0" onKeyTyped="#getName" prefHeight="30.0" prefWidth="221.0" />
-      <TextField fx:id="gender" layoutX="33.0" layoutY="494.0" onKeyTyped="#getGender" prefHeight="30.0" prefWidth="221.0" />
       <PasswordField fx:id="password" layoutX="355.0" layoutY="297.0" onKeyTyped="#getPassword" prefHeight="24.0" prefWidth="222.0" />
+      <Text layoutX="366.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of user">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="gender" layoutX="32.0" layoutY="503.0" onDragDetected="#getGender" prefHeight="26.0" prefWidth="222.0" />
+      <ChoiceBox fx:id="typeOfUser" layoutX="352.0" layoutY="399.0" prefHeight="26.0" prefWidth="222.0" />
    </children>
 </AnchorPane>

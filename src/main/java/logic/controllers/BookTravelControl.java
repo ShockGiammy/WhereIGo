@@ -1,29 +1,33 @@
 package logic.controllers;
 
-import logic.model.UserModel;
+import logic.LoggedUser;
 import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
+import logic.dao.UserDao;
 import logic.model.GroupModel;
 
 public class BookTravelControl {
-	private UserModel usrModel;
+	private LoggedUser logUser;
 	private UserDataBean userBean;
 	private GroupModel grpModel;
+	private UserDao usrDao;
 	
 	public BookTravelControl() {
-		this.usrModel = UserModel.getUserModelIstance();
 		this.userBean = new UserDataBean();
 		this.grpModel = new GroupModel();
+		this.usrDao = new UserDao();
+		logUser = LoggedUser.getIstance(null);
 	}
 	
-	public String[] showLocationsControl() {
-		String suggLoc[] = new String[3]; 
-		suggLoc = usrModel.getUserLocations();
+	public String[] showLocationsControl() { /*Shall change this String[] into a Locations[]*/
+		String suggLoc[] = new String[3];
+		userBean.setPersonality(logUser.getUserPersonality());
+		suggLoc = this.usrDao.getLocations(userBean);
 		return suggLoc;
 	}
 	
 	public void getGroupsControl(GroupBean grpBean[]) {
-		this.usrModel.getUserPersonality(this.userBean);
+		this.logUser.getUserPersonality(this.userBean);
 		grpModel.getGroups(grpBean, this.userBean);
 	}
 }

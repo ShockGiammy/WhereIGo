@@ -3,6 +3,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import logic.LoggedUser;
 import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
@@ -27,10 +28,12 @@ public class GraphicControllerLogIn extends Window{
 	}
 	
 	public void logInControl(MouseEvent event) throws IOException {
-		if(this.loginCtrl.checkLogInInfo(this.usrBean, this.logBean) == 1) {
+		if(this.loginCtrl.checkLogInControl(this.usrBean, this.logBean) == 1) {
+			LoggedUser.getIstance(this.logBean.getUserName());
+			usrBean.setUserName(logBean.getUserName());
 			setScene("HomePage.fxml");
 			loadScene();
-			setUserDatas(event);
+			setUserNick(event, usrBean);
 		}
 		else {
 			System.out.println("Utente non registrato\n");

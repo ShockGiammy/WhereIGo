@@ -6,7 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import logic.LoggedUser;
 import logic.beans.GroupBean;
+import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
 import logic.view.Window;
@@ -16,6 +18,7 @@ public class GraphicControllerBookTravel extends Window{
 	private UserTravelBean travBean;
 	private BookTravelControl bookTravCtrl;
 	private GroupBean grpBean[];
+	private LoggedUser logUsr;
 	@FXML private DatePicker firstDay;
 	@FXML private DatePicker lastDay;
 	@FXML private TextField moneyRange;
@@ -44,6 +47,7 @@ public class GraphicControllerBookTravel extends Window{
 		this.grpBean = new GroupBean[2];
 		this.grpBean[0] = new GroupBean();
 		this.grpBean[1] = new GroupBean();
+		logUsr = LoggedUser.getIstance(null);
 	}
 	
 	public void initialize() {
@@ -100,5 +104,11 @@ public class GraphicControllerBookTravel extends Window{
 	public void getMoneyRange() {
 		String mRange = this.moneyRange.getText();
 		travBean.setMoneyRange(mRange);
+	}
+	
+	public void backHome(MouseEvent e) {
+		UserDataBean dataBean = new UserDataBean();
+		dataBean.setUserName(logUsr.getUserName());
+		setUserNick(e, dataBean);
 	}
 }
