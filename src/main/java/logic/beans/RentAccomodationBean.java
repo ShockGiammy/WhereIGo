@@ -82,16 +82,22 @@ public class RentAccomodationBean {
 
 	public InputStream getInputFile() {
 		InputStream imageInputFile = null;
-		try {
-			imageInputFile = new FileInputStream(houseImage);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		if (houseImage != null) {
+			try {
+				imageInputFile = new FileInputStream(houseImage);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 		return imageInputFile;
 	}
 	
 	public long getFileLength() {
-		return houseImage.length();
+		long len = 0;
+		if (houseImage != null) {
+			len = houseImage.length();
+		}
+		return len;
 	}
 
 	public void setHouseImage(File houseImage) {

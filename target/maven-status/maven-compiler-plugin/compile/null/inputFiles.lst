@@ -2,13 +2,17 @@ C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\Home.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\dao\AccomodationCreator.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\graphiccontrollers\GraphicControllerBookTravel.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\module-info.java
+C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\LoggedUser.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\SingletonDbConnection.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\graphiccontrollers\GraphicControlCreateAccomodation.java
+C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\model\GroupModel.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\beans\UserDataBean.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\graphiccontrollers\GraphicControllerDummyTravel.java
+C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\dao\GroupDao.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\graphiccontrollers\GraphicControllerRegistration.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\dao\LogInDao.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\model\LocationModel.java
+C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\beans\GroupBean.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\beans\UserTravelBean.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\beans\RentAccomodationBean.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\graphiccontrollers\GraphicControllerLogIn.java

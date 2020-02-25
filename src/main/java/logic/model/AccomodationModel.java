@@ -24,7 +24,9 @@ public class AccomodationModel {
 		type = bean.getType();
 		squareMetres = bean.getSquareMetres();
 		description = bean.getDescription();
-		houseImage = bean.getHouseImage();
+		if (bean.getHouseImage() != null) {
+			houseImage = bean.getHouseImage();
+		}
 		services = new byte[4];
 		services = bean.getServices();
 	}
@@ -39,7 +41,9 @@ public class AccomodationModel {
 		accomodationInfo.setType(type);
 		accomodationInfo.setSquareMetres(squareMetres);
 		accomodationInfo.setDescription(description);
-		accomodationInfo.setInputStream(houseImage);
+		if (this.houseImage != null) {
+			accomodationInfo.setInputStream(houseImage);
+		}
 		accomodationInfo.setServices(services);
 		return accomodationInfo;
 	}

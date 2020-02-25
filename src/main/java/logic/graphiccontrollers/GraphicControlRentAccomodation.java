@@ -215,28 +215,29 @@ public class GraphicControlRentAccomodation extends Window{
 		renter.setText(bean.getRenter());
 		houseDetail.setVisible(true);
 		//load image
-		ByteArrayInputStream bi = new ByteArrayInputStream(bean.getHouseImage());
-		BufferedImage bImage = null;
-		try {
-			bImage = ImageIO.read(bi);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (bean.getHouseImage() != null) {
+			ByteArrayInputStream bi = new ByteArrayInputStream(bean.getHouseImage());
+			BufferedImage bImage = null;
+			try {
+				bImage = ImageIO.read(bi);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ImageIO.write(bImage, "jpg", new File("output.jpg") );
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		    
+			houseDetail.setImage(convertToFxImage(bImage));
 		}
-		try {
-			ImageIO.write(bImage, "jpg", new File("output.jpg") );
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		    
-		houseDetail.setImage(convertToFxImage(bImage));
 		garden.setVisible(true);
 		wifi.setVisible(true);
 		bathroom.setVisible(true);
 		kitchen.setVisible(true);
 		byte[] list = bean.getServices();
 		for (int i = 0; i <= 3; i++) {
-			//System.out.println(list[i]);
 			if (list[0] == 1) {
 				garden.setSelected(true);
 			}

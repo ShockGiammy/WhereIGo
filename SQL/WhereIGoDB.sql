@@ -1,4 +1,3 @@
-
 begin;
 
 create table Locations
@@ -43,7 +42,7 @@ create table Post
     beds VARCHAR(5),
     city VARCHAR(30),
     address VARCHAR(40),
-    services int(4),
+    services BLOB,
     squareMetres VARCHAR(5),
     tipologia VARCHAR(20),
     tipeOfPost VARCHAR(20),

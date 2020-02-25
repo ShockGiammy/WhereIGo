@@ -2,6 +2,7 @@ logic\graphiccontrollers\GraphicControllerDummyTravel.class
 logic\beans\UserDataBean.class
 logic\controllers\LoginController.class
 logic\beans\LogInBean.class
+logic\model\GroupModel.class
 logic\controllers\InterestsController.class
 logic\controllers\PostAnAnnouncementController.class
 logic\beans\UserTravelBean.class
@@ -9,10 +10,12 @@ logic\graphiccontrollers\GraphicControlRentAccomodation.class
 logic\model\UserModel.class
 logic\dao\LogInDao.class
 logic\Home.class
+logic\LoggedUser.class
 logic\SingletonDbConnection.class
 logic\dao\AccomodationCreator.class
 logic\graphiccontrollers\GraphicControllerInterestForm.class
 logic\view\Window.class
+logic\dao\GroupDao.class
 logic\graphiccontrollers\GraphicControllerHomePage.class
 logic\graphiccontrollers\GraphicControllerLogIn.class
 logic\controllers\RentAccomodationController.class
@@ -27,4 +30,5 @@ logic\graphiccontrollers\GraphicControllerBookTravel.class
 logic\beans\RentAccomodationBean.class
 logic\dao\UserDao.class
 logic\controllers\FirstController.class
+logic\beans\GroupBean.class
 logic\controllers\BookTravelControl.class
