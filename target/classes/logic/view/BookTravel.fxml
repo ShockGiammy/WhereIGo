@@ -18,7 +18,7 @@
          <children>
             <ToolBar layoutX="356.0" layoutY="16.0" prefHeight="66.0" prefWidth="435.0" style="-fx-background-color: white;">
                <items>
-                  <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#backHome" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@69524.png" />
                      </image>

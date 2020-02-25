@@ -6,7 +6,6 @@ import logic.beans.UserDataBean;
 import java.util.logging.Level;
 
 public class UserDao extends GeneralConnection{
-	private int ret = 0;
 	
 	public UserDao() {
 		getConnection();
@@ -56,6 +55,7 @@ public class UserDao extends GeneralConnection{
 				usrBean.setSurname(rs.getString(4));
 				usrBean.setDateOfBirth(rs.getString(5));
 				usrBean.setGender(rs.getString(6));
+				usrBean.setPersonality(rs.getString(8));
 			}
 			
 		}catch (SQLException e) {
@@ -107,7 +107,7 @@ public class UserDao extends GeneralConnection{
 			statement.setString(1, dataBean.getPersonality());
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()) {
-				loc[i] = rs.getString(2);
+				loc[i] = rs.getString(1);
 				i+=1;
 			}
 		}catch(SQLException e) {

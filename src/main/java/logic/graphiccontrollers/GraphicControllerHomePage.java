@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import logic.view.Window;
+import logic.LoggedUser;
 import logic.beans.UserDataBean;
 
 public class GraphicControllerHomePage extends Window{

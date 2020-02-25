@@ -20,6 +20,7 @@ public class GraphicControllerLogIn extends Window{
 	private LogInBean logBean;
 	private UserDataBean usrBean;
 	private LoginController loginCtrl;
+	private LoggedUser logUsr;
 	
 	public GraphicControllerLogIn() {
 		this.logBean = new LogInBean();
@@ -29,7 +30,8 @@ public class GraphicControllerLogIn extends Window{
 	
 	public void logInControl(MouseEvent event) throws IOException {
 		if(this.loginCtrl.checkLogInControl(this.usrBean, this.logBean) == 1) {
-			LoggedUser.getIstance(this.logBean.getUserName());
+			logUsr = LoggedUser.getIstance(this.logBean.getUserName());
+			logUsr.setUserDatas(usrBean);
 			usrBean.setUserName(logBean.getUserName());
 			setScene("HomePage.fxml");
 			loadScene();

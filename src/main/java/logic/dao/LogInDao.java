@@ -27,6 +27,7 @@ public class LogInDao extends GeneralConnection{
 				usrBean.setSurname(rs.getString(4));
 				usrBean.setDateOfBirth(rs.getString(5));
 				usrBean.setGender(rs.getString(6));
+				usrBean.setPersonality(rs.getString(8));
 			}
 			
 		}catch (SQLException e) {

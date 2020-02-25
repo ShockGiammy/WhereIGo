@@ -59,7 +59,6 @@ public class GraphicControllerBookTravel extends Window{
 		this.grpBean[1] = new GroupBean();
 		setLocation();
 		setGroups();
-		
 	}
 	
 	@FXML 
@@ -109,6 +108,8 @@ public class GraphicControllerBookTravel extends Window{
 	public void backHome(MouseEvent e) {
 		UserDataBean dataBean = new UserDataBean();
 		dataBean.setUserName(logUsr.getUserName());
+		setScene("HomePage.fxml");
+		loadScene();
 		setUserNick(e, dataBean);
 	}
 }

@@ -22,6 +22,7 @@ public class BookTravelControl {
 	public String[] showLocationsControl() { /*Shall change this String[] into a Locations[]*/
 		String suggLoc[] = new String[3];
 		userBean.setPersonality(logUser.getUserPersonality());
+		userBean.setUserName(logUser.getUserName());
 		suggLoc = this.usrDao.getLocations(userBean);
 		return suggLoc;
 	}
