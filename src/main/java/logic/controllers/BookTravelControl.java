@@ -19,7 +19,7 @@ public class BookTravelControl {
 		logUser = LoggedUser.getIstance(null);
 	}
 	
-	public String[] showLocationsControl() { /*Shall change this String[] into a Locations[]*/
+	public String[] showLocationsControl() { /*Shall change this String[] into a location bean*/
 		String suggLoc[] = new String[3];
 		userBean.setPersonality(logUser.getUserPersonality());
 		userBean.setUserName(logUser.getUserName());

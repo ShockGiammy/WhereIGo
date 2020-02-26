@@ -1,5 +1,6 @@
 package logic.controllers;
 
+import logic.LoggedUser;
 import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
 import logic.dao.UserDao;
@@ -9,6 +10,7 @@ import logic.model.UserModel;
 public class LoginController {
 	private UserDao usrDao;
 	private UserModel userModel;
+	private LoggedUser logUsr;
 	
 	public LoginController() {
 		this.userModel = new UserModel();
@@ -19,16 +21,17 @@ public class LoginController {
 		int ret;
 		ret = this.usrDao.checkLogInInfo(logBean, usrBean);
 		if(ret == 1) {
-			this.userModel.setUserDatas(usrBean);
+			saveLoggedUser(usrBean);
 		}
 		return ret;
 	}
 	
 	public void insertNewUserControl(UserDataBean usrBean) {
-		int ret;
-		/*if(usrBean.getName() == null || usrBean.getSurname() == null || usrBean.getDateOfBirth() == null || usrBean.getGender() == null || usrBean.getUsername() == null || usrBean.getPassword() == null || usrBean.getType() == null) {
-			return 0;
-		}*/
 		this.usrDao.insertNewUser(usrBean);
+	}
+	
+	public void saveLoggedUser(UserDataBean usrBean) {
+		logUsr = LoggedUser.getIstance(usrBean.getUsername());
+		logUsr.setUserDatas(usrBean);
 	}
 }

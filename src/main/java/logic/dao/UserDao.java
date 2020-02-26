@@ -51,6 +51,7 @@ public class UserDao extends GeneralConnection{
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()) {
 				ret +=1;
+				usrBean.setUserName(bean.getUserName());
 				usrBean.setName(rs.getString(3));
 				usrBean.setSurname(rs.getString(4));
 				usrBean.setDateOfBirth(rs.getString(5));

@@ -61,13 +61,12 @@ public class GraphicControllerBookTravel extends Window{
 		setGroups();
 	}
 	
-	@FXML 
 	public void bookMyTravelControl(MouseEvent event) {
 		setScene("DummyBookTravel.fxml");
 		loadScene();
 		nextGuiOnClick(event);
 	}
-	@FXML
+
 	public void setGroups() {
 		this.bookTravCtrl.getGroupsControl(this.grpBean);
 		this.groupTitle1.setText(grpBean[0].getGroupTitle());
@@ -78,7 +77,6 @@ public class GraphicControllerBookTravel extends Window{
 		this.city2.setText(this.grpBean[1].getGroupDestination());
 	}
 	
-	@FXML
 	public void setLocation() {
 		String suggLoc[] = new String[3];
 		suggLoc = bookTravCtrl.showLocationsControl();
@@ -87,19 +85,16 @@ public class GraphicControllerBookTravel extends Window{
 		this.location3.setText(suggLoc[2]);
 	}
 	
-	@FXML
 	public void getFirstDay() {
 		String fDay = this.firstDay.getValue().format(formatter);
 		travBean.setFirstDay(fDay);
 	}
 	
-	@FXML
 	public void getLastDay() {
 		String lDay = this.lastDay.getValue().format(formatter);
 		travBean.setFirstDay(lDay);
 	}
 	
-	@FXML
 	public void getMoneyRange() {
 		String mRange = this.moneyRange.getText();
 		travBean.setMoneyRange(mRange);
