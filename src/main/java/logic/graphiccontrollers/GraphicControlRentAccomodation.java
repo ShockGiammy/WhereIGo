@@ -134,23 +134,8 @@ public class GraphicControlRentAccomodation extends Window{
 	public void setDisplayInfo(TextField city, TextField beds, ImageView house, TextField rating, RentAccomodationBean bean) {
 		city.setText(bean.getCity());
 		beds.setText(bean.getBeds());
-		if (bean.getHouseImage() != null) {
-			ByteArrayInputStream bi = new ByteArrayInputStream(bean.getHouseImage());
-			BufferedImage bImage = null;
-			try {
-				bImage = ImageIO.read(bi);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				ImageIO.write(bImage, "jpg", new File("output.jpg") );
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}		    
-			house.setImage(convertToFxImage(bImage));
-		}
+		BufferedImage bufImage = loadImage(bean);
+		house.setImage(convertToFxImage(bufImage));
 		rating.setText("5/5");
 }
 	
@@ -214,24 +199,10 @@ public class GraphicControlRentAccomodation extends Window{
 		renter.setVisible(true);
 		renter.setText(bean.getRenter());
 		houseDetail.setVisible(true);
-		//load image
-		if (bean.getHouseImage() != null) {
-			ByteArrayInputStream bi = new ByteArrayInputStream(bean.getHouseImage());
-			BufferedImage bImage = null;
-			try {
-				bImage = ImageIO.read(bi);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				ImageIO.write(bImage, "jpg", new File("output.jpg") );
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}		    
-			houseDetail.setImage(convertToFxImage(bImage));
-		}
+		BufferedImage bufImage = loadImage(bean);
+		house.setImage(convertToFxImage(bufImage));
+		rating.setText("5/5");
+		houseDetail.setImage(convertToFxImage(bufImage));
 		garden.setVisible(true);
 		wifi.setVisible(true);
 		bathroom.setVisible(true);
@@ -256,6 +227,27 @@ public class GraphicControlRentAccomodation extends Window{
 		wifi.setDisable(true);
 		bathroom.setDisable(true);
 		kitchen.setDisable(true);
+	}
+	
+	@SuppressWarnings("exports")
+	public BufferedImage loadImage(RentAccomodationBean bean) {
+		BufferedImage bImage = null;
+		if (bean.getHouseImage() != null) {
+			ByteArrayInputStream bi = new ByteArrayInputStream(bean.getHouseImage());
+			try {
+				bImage = ImageIO.read(bi);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ImageIO.write(bImage, "jpg", new File("output.jpg") );
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return bImage;
 	}
 }
 

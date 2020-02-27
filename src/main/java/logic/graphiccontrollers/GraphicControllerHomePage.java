@@ -32,7 +32,7 @@ public class GraphicControllerHomePage extends Window{
 	
 	public void postRentAnnouncementControl(MouseEvent event) {
 		LoggedUser logged = LoggedUser.getIstance(null);
-		if (logged.getUserType().toLowerCase() == "renter") {
+		if (logged.getUserType().equals("Renter") == true) {
 			setScene("InfoAccomodation.fxml");
 			loadScene();
 			nextGuiOnClick(event);
