@@ -31,9 +31,17 @@ public class GraphicControllerHomePage extends Window{
 	}
 	
 	public void postRentAnnouncementControl(MouseEvent event) {
-		setScene("InfoAccomodation.fxml");
-		loadScene();
-		nextGuiOnClick(event);
+		LoggedUser logged = LoggedUser.getIstance(null);
+		if (logged.getUserType().toLowerCase() == "renter") {
+			setScene("InfoAccomodation.fxml");
+			loadScene();
+			nextGuiOnClick(event);
+		}
+		else {
+			setScene("RentAccomodation.fxml");
+			loadScene();
+			nextGuiOnClick(event);
+		}
 	}
 	
 	/*set the datas of the user before the UI is loaded*/

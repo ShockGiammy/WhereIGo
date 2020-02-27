@@ -56,6 +56,7 @@ public class UserDao extends GeneralConnection{
 				usrBean.setSurname(rs.getString(4));
 				usrBean.setDateOfBirth(rs.getString(5));
 				usrBean.setGender(rs.getString(6));
+				usrBean.setType(rs.getString(7));
 				usrBean.setPersonality(rs.getString(8));
 			}
 			

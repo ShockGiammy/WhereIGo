@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,11 +18,19 @@
    <children>
       <AnchorPane prefHeight="92.0" prefWidth="810.0">
          <children>
-            <ToolBar layoutX="356.0" layoutY="16.0" prefHeight="68.0" prefWidth="396.0" style="-fx-background-color: white;">
+            <ToolBar layoutX="356.0" layoutY="16.0" prefHeight="68.0" prefWidth="428.0" style="-fx-background-color: white;">
                <items>
                   <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@69524.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="home1" fitHeight="57.0" fitWidth="75.0" layoutX="10.0" layoutY="11.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@download.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -34,13 +43,16 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow color="#d71b1b" />
+                     </effect>
                   </ImageView>
                   <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@download%20(1).png" />
                      </image>
                      <cursor>
-                        <Cursor fx:constant="CLOSED_HAND" />
+                        <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
                   <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
@@ -48,18 +60,24 @@
                         <Image url="@favourites-stars.png" />
                      </image>
                      <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
+                        <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
                   <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@download%20(2).png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                   <ImageView fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@16363.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </items>
             </ToolBar>

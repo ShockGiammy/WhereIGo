@@ -16,7 +16,7 @@ public class AccomodationCreator extends GeneralConnection{
 			PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Post(ID,photo,utente,descr,beds,city,address,services,squareMetres,tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");    
 			statement.setInt(1, Info.getID());
 			statement.setBinaryStream(2,Info.getInputFile(), Info.getFileLength());		//image
-			statement.setString(3,"sono io"); 				//user
+			statement.setString(3,Info.getRenter()); 				//user
 			statement.setString(4,Info.getDescription()); 			//description
 			statement.setString(5,Info.getBeds());					//beds
 			statement.setString(6,Info.getCity());					//city
@@ -42,7 +42,7 @@ public class AccomodationCreator extends GeneralConnection{
 			PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Post");    
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()) {
-				if (fetched<=6) {
+				if (fetched<6) {
 					bean.setID(rs.getInt(1));
 					byte[] image = rs.getBytes(2);
 					bean.setInputStream(image);

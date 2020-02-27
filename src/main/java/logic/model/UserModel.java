@@ -9,6 +9,7 @@ public class UserModel {
 	protected String gender;
 	protected String username;
 	protected String personality;
+	protected String userType;
 	
 	public void setUserDatas(UserDataBean usrBean) {
 		this.name = usrBean.getName();
@@ -21,6 +22,7 @@ public class UserModel {
 		else {
 			this.personality = usrBean.getPersonality();
 		}
+		this.userType = usrBean.getType();
 	}
 	
 	public UserDataBean getUserDatas() {
@@ -47,5 +49,9 @@ public class UserModel {
 	
 	public String getUserPersonality(){
 		return this.personality;
+	}
+	
+	public String getUserType() {
+		return this.userType;
 	}
 }

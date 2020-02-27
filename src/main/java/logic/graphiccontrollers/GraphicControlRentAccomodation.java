@@ -252,6 +252,10 @@ public class GraphicControlRentAccomodation extends Window{
 			}
 		}
 		contactRenter.setVisible(true);
+		garden.setDisable(true);
+		wifi.setDisable(true);
+		bathroom.setDisable(true);
+		kitchen.setDisable(true);
 	}
 }
 

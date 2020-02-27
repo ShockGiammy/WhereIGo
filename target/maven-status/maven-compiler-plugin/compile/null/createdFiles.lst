@@ -4,11 +4,11 @@ logic\controllers\LoginController.class
 logic\beans\LogInBean.class
 logic\model\GroupModel.class
 logic\controllers\InterestsController.class
+logic\view\ErrorLogin.class
 logic\controllers\PostAnAnnouncementController.class
 logic\beans\UserTravelBean.class
 logic\graphiccontrollers\GraphicControlRentAccomodation.class
 logic\model\UserModel.class
-logic\dao\LogInDao.class
 logic\Home.class
 logic\LoggedUser.class
 logic\SingletonDbConnection.class
@@ -29,6 +29,5 @@ logic\model\LocationModel.class
 logic\graphiccontrollers\GraphicControllerBookTravel.class
 logic\beans\RentAccomodationBean.class
 logic\dao\UserDao.class
-logic\controllers\FirstController.class
 logic\beans\GroupBean.class
 logic\controllers\BookTravelControl.class

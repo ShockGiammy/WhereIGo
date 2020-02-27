@@ -10,7 +10,6 @@ C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\beans\UserDataBean.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\graphiccontrollers\GraphicControllerDummyTravel.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\dao\GroupDao.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\graphiccontrollers\GraphicControllerRegistration.java
-C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\dao\LogInDao.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\model\LocationModel.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\beans\GroupBean.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\beans\UserTravelBean.java
@@ -25,9 +24,9 @@ C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\controllers\LoginController
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\view\Window.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\model\AccomodationModel.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\controllers\InterestsController.java
-C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\controllers\FirstController.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\controllers\BookTravelControl.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\controllers\RentAccomodationController.java
+C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\view\ErrorLogin.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\graphiccontrollers\GraphicControllerHomePage.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\dao\GeneralConnection.java
 C:\Users\gianm\Desktop\WIG\trunk\src\main\java\logic\graphiccontrollers\GraphicControlRentAccomodation.java

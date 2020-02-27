@@ -37,7 +37,7 @@ public class GraphicControllerLogIn extends Window{
 			setUserNick(event, usrBean);
 		}
 		else {
-			this.errLogin.displayLoginError();
+			this.errLogin.displayLoginError("User not registered or wrong credentials");
 		}
 	}
 	

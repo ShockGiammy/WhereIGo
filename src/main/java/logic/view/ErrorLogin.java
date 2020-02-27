@@ -11,13 +11,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ErrorLogin {
-	public void displayLoginError() {
+	public void displayLoginError(String text) {
 		Stage window = new Stage();
 		window.setWidth(300);
 		window.setHeight(300);
 		window.initModality(Modality.APPLICATION_MODAL); //this avoid user to interact with other users
 		Text label = new Text();
-		label.setText("User not registered or wrong credentials");
+		label.setText(text);
 		Button closeButton = new Button("close");
 		closeButton.setOnAction(e->window.close());
 		VBox layout = new VBox(20);

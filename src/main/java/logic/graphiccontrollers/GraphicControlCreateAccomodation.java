@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.PostAnAnnouncementController;
+import logic.view.ErrorLogin;
 import logic.view.Window;
 
 public class GraphicControlCreateAccomodation extends Window{
@@ -59,11 +60,12 @@ public class GraphicControlCreateAccomodation extends Window{
 	private byte[] listOfServices;
 	private File houseImage;
 	
+	/*
 	public static void main(String[] args) {
 		setScene("InfoAccomodation.fxml");
 		loadScene();
 		launch(args);
-	}
+	}*/
 	
 	public GraphicControlCreateAccomodation() {
 		control = new PostAnAnnouncementController();
@@ -102,6 +104,14 @@ public class GraphicControlCreateAccomodation extends Window{
 		bean.setCity(city.getText());
 		bean.setAddress(address.getText());
 		bean.setDescription(description.getText());
+		if (houseImage != null) {
+            Image imageHouse = new Image(houseImage.toURI().toString());
+            imageView.setImage(imageHouse);
+        }
+        else {
+        	ErrorLogin error = new ErrorLogin();
+        	error.displayLoginError("immagine non inserita");
+        }
 		bean.setHouseImage(houseImage);
 		bean.setSquareMetres(squareMetres.getValue());
 		bean.setType(type.getValue());
@@ -119,9 +129,5 @@ public class GraphicControlCreateAccomodation extends Window{
         //Show open file dialog
         houseImage = fileChooser.showOpenDialog(null);
 
-        if (houseImage != null) {
-            Image imageHouse = new Image(houseImage.toURI().toString());
-            imageView.setImage(imageHouse);
-        }
     }
 }
