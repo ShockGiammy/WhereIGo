@@ -9,7 +9,6 @@ logic\controllers\PostAnAnnouncementController.class
 logic\beans\UserTravelBean.class
 logic\graphiccontrollers\GraphicControlRentAccomodation.class
 logic\model\UserModel.class
-logic\Home.class
 logic\LoggedUser.class
 logic\SingletonDbConnection.class
 logic\dao\AccomodationCreator.class
@@ -24,10 +23,13 @@ module-info.class
 logic\dao\GeneralConnection.class
 logic\beans\InterestsBean.class
 logic\graphiccontrollers\GraphicControlCreateAccomodation.class
+logic\dao\LocationDao.class
 logic\graphiccontrollers\GraphicControllerRegistration.class
 logic\model\LocationModel.class
+logic\view\LocationInfo.class
 logic\graphiccontrollers\GraphicControllerBookTravel.class
 logic\beans\RentAccomodationBean.class
 logic\dao\UserDao.class
 logic\beans\GroupBean.class
+logic\beans\LocationBean.class
 logic\controllers\BookTravelControl.class

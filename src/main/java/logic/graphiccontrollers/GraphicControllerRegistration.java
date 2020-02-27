@@ -72,10 +72,10 @@ public class GraphicControllerRegistration extends Window{
 	public void registerNowControl(MouseEvent event) {
 		this.dataBean.setType(this.typeOfUser.getValue());
 		this.dataBean.setGender(this.gender.getValue());
-		LoggedUser.getIstance(this.dataBean.getUsername());
 		this.loginCtrl.insertNewUserControl(this.dataBean);
 		setScene("HomePage.fxml");
 		loadScene();
 		setUserNick(event, this.dataBean);
 	}
 }
+

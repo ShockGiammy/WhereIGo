@@ -4,16 +4,13 @@ import logic.LoggedUser;
 import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
 import logic.dao.UserDao;
-import logic.model.UserModel;
 
 
 public class LoginController {
 	private UserDao usrDao;
-	private UserModel userModel;
 	private LoggedUser logUsr;
 	
 	public LoginController() {
-		this.userModel = new UserModel();
 		this.usrDao = new UserDao();
 	}
 	
@@ -28,6 +25,7 @@ public class LoginController {
 	
 	public void insertNewUserControl(UserDataBean usrBean) {
 		this.usrDao.insertNewUser(usrBean);
+		saveLoggedUser(usrBean);
 	}
 	
 	public void saveLoggedUser(UserDataBean usrBean) {

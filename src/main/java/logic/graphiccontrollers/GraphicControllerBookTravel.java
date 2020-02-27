@@ -8,17 +8,23 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import logic.LoggedUser;
 import logic.beans.GroupBean;
+import logic.beans.LocationBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
+import logic.dao.LocationDao;
 import logic.view.Window;
 import javafx.scene.control.TextField;
+import logic.view.LocationInfo;
 
 public class GraphicControllerBookTravel extends Window{
 	private UserTravelBean travBean;
 	private BookTravelControl bookTravCtrl;
 	private GroupBean grpBean[];
 	private LoggedUser logUsr;
+	private LocationInfo locInfo;
+	private LocationBean locBean;
+	private LocationDao locDao;
 	@FXML private DatePicker firstDay;
 	@FXML private DatePicker lastDay;
 	@FXML private TextField moneyRange;
@@ -48,6 +54,9 @@ public class GraphicControllerBookTravel extends Window{
 		this.grpBean[0] = new GroupBean();
 		this.grpBean[1] = new GroupBean();
 		logUsr = LoggedUser.getIstance(null);
+		this.locInfo = new LocationInfo();
+		this.locBean = new LocationBean();
+		this.locDao = new LocationDao();
 	}
 	
 	public void initialize() {
@@ -98,6 +107,12 @@ public class GraphicControllerBookTravel extends Window{
 	public void getMoneyRange() {
 		String mRange = this.moneyRange.getText();
 		travBean.setMoneyRange(mRange);
+	}
+	
+	public void showMoreInfo1(MouseEvent e) {
+		this.locBean.setCityName(this.location1.getText());
+		this.locDao.retriveLocationInfo(this.locBean);
+		this.locInfo.setAndShow(locBean);
 	}
 	
 	public void backHome(MouseEvent e) {

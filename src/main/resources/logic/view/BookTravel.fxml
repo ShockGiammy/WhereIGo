@@ -85,7 +85,7 @@
                   <Font size="25.0" />
                </font>
             </Text>
-            <Button fx:id="moreInfo1" layoutX="144.0" layoutY="82.0" mnemonicParsing="false" text="Get more info" />
+            <Button fx:id="moreInfo1" layoutX="144.0" layoutY="82.0" mnemonicParsing="false" onMouseClicked="#showMoreInfo1" text="Get more info" />
             <Button fx:id="moreInfo2" layoutX="144.0" layoutY="124.0" mnemonicParsing="false" text="Get more info" />
             <Button fx:id="moreInfo3" layoutX="143.0" layoutY="171.0" mnemonicParsing="false" text="Get more info" />
             <Text layoutX="103.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Travel groups">
