@@ -38,8 +38,6 @@ public class GraphicControllerRegistration extends Window{
 		this.dataBean = new UserDataBean();
 		this.formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
 		this.loginCtrl = new LoginController();
-		this.gender.setValue("Female");
-		this.typeOfUser.setValue("Traveler");
 		this.gender.setItems(gendList);
 		this.typeOfUser.setItems(typeUsrList);
 		this.gender.setValue("Female");
@@ -66,20 +64,14 @@ public class GraphicControllerRegistration extends Window{
 		this.dataBean.setUserName(user);
 	}
 	
-	public void getGender() {
-		this.dataBean.setGender(this.gender.getValue());
-	}
-	
 	public void getPassword() {
 		String paswd = this.password.getText();
 		this.dataBean.setPsw(paswd);
 	}
 	
-	public void getType() {
-		this.dataBean.setType(this.typeOfUser.getValue());
-	}
-	
 	public void registerNowControl(MouseEvent event) {
+		this.dataBean.setType(this.typeOfUser.getValue());
+		this.dataBean.setGender(this.gender.getValue());
 		LoggedUser.getIstance(this.dataBean.getUsername());
 		this.loginCtrl.insertNewUserControl(this.dataBean);
 		setScene("HomePage.fxml");
