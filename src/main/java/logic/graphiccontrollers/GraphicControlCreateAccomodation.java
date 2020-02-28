@@ -12,6 +12,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import logic.LoggedUser;
 import logic.beans.RentAccomodationBean;
@@ -65,7 +66,7 @@ public class GraphicControlCreateAccomodation extends Window{
 		bean = new RentAccomodationBean();
 	}
 
-	public void applyInfo() {
+	public void applyInfo(MouseEvent event) {
 		listOfServices = new byte[4];
 		if (garden.isSelected()) {
 			listOfServices[0] = 1;
@@ -106,6 +107,7 @@ public class GraphicControlCreateAccomodation extends Window{
 		bean.setType(type.getValue());
 		bean.setRenter(LoggedUser.getIstance(null).getUserName());
 		control.createAccomodation(bean);
+		goHome(event);
 	}
     
     public void insertImage() {

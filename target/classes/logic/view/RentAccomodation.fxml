@@ -143,6 +143,7 @@
             </Text>
             <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail4" prefHeight="33.0" prefWidth="85.0" text="view details" />
             <Text fx:id="beds4" layoutX="227.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="29.53125" />
+            <TextField fx:id="rating4" editable="false" layoutX="191.0" layoutY="135.0" prefHeight="25.0" prefWidth="46.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="aPane6" layoutX="270.0" layoutY="551.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
@@ -161,6 +162,7 @@
             </Text>
             <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail6" prefHeight="33.0" prefWidth="85.0" text="view details" />
             <Text fx:id="beds6" layoutX="224.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="29.53125" />
+            <TextField fx:id="rating6" editable="false" layoutX="191.0" layoutY="133.0" prefHeight="25.0" prefWidth="46.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="aPane" layoutY="91.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
@@ -217,6 +219,7 @@
             </Text>
             <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail5" prefHeight="33.0" prefWidth="85.0" text="view details" />
             <Text fx:id="beds5" layoutX="227.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="29.53125" />
+            <TextField fx:id="rating5" editable="false" layoutX="185.0" layoutY="130.0" prefHeight="25.0" prefWidth="46.0" />
          </children>
       </AnchorPane>
       <TextField editable="false" layoutX="567.0" layoutY="119.0" prefHeight="25.0" prefWidth="149.0" visible="false" />

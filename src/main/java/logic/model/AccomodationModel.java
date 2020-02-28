@@ -4,7 +4,7 @@ import logic.beans.RentAccomodationBean;
 public class AccomodationModel {
 	
 	private String renter;
-	private int ID;
+	private int id;
 	private String beds;
 	private String city;
 	private String address;
@@ -16,7 +16,7 @@ public class AccomodationModel {
 	
 	
 	public AccomodationModel(RentAccomodationBean bean) {
-		ID = bean.getID();
+		id = bean.getID();
 		beds = bean.getBeds();
 		renter = bean.getRenter();
 		city = bean.getCity();
@@ -33,7 +33,7 @@ public class AccomodationModel {
 
 	public RentAccomodationBean getInfo() {
 		RentAccomodationBean accomodationInfo = new RentAccomodationBean();
-		accomodationInfo.setID(ID);
+		accomodationInfo.setID(id);
 		accomodationInfo.setBeds(beds);
 		accomodationInfo.setRenter(renter);
 		accomodationInfo.setCity(city);

@@ -36,8 +36,7 @@ public class RentAccomodationController {
 	}
 	
 	public RentAccomodationBean getDetail(int number) {
-		RentAccomodationBean bean = accomodation[number].getInfo();
-		return bean;
+		return accomodation[number].getInfo();
 	}
 }
 

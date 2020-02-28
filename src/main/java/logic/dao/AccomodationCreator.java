@@ -10,28 +10,27 @@ import logic.model.AccomodationModel;
 
 public class AccomodationCreator extends GeneralConnection{
 
-	public AccomodationModel createAccomodation(RentAccomodationBean Info) {
+	public AccomodationModel createAccomodation(RentAccomodationBean info) {
 		getConnection();
 		try {
 			PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Post(ID,photo,utente,descr,beds,city,address,services,squareMetres,tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");    
-			statement.setInt(1, Info.getID());
-			statement.setBinaryStream(2,Info.getInputFile(), Info.getFileLength());		//image
-			statement.setString(3,Info.getRenter()); 				//user
-			statement.setString(4,Info.getDescription()); 			//description
-			statement.setString(5,Info.getBeds());					//beds
-			statement.setString(6,Info.getCity());					//city
-			statement.setString(7,Info.getAddress());				//address
-			statement.setBytes(8,Info.getServices());				//services
-			statement.setString(9,Info.getSquareMetres());			//squareMetres
-			statement.setString(10,Info.getType());					//type
+			statement.setInt(1, info.getID());
+			statement.setBinaryStream(2,info.getInputFile(), info.getFileLength());		//image
+			statement.setString(3,info.getRenter()); 				//user
+			statement.setString(4,info.getDescription()); 			//description
+			statement.setString(5,info.getBeds());					//beds
+			statement.setString(6,info.getCity());					//city
+			statement.setString(7,info.getAddress());				//address
+			statement.setBytes(8,info.getServices());				//services
+			statement.setString(9,info.getSquareMetres());			//squareMetres
+			statement.setString(10,info.getType());					//type
 			statement.execute();
 		}
 		catch (SQLException e) {
 			System.err.println("Got an exception!");
 		    System.err.println(e.getMessage());
 		}
-		AccomodationModel acc = new AccomodationModel(Info);
-		return acc;
+		return new AccomodationModel(info);
 	}
 
 	public AccomodationModel[] queryDB(RentAccomodationBean bean) {

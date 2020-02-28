@@ -8,14 +8,14 @@ import logic.model.AccomodationModel;
 
 public class PostAnAnnouncementController {
 	
-	private RentAccomodationBean Info;
-	private AccomodationModel Acc;
+	private RentAccomodationBean info;
+	private AccomodationModel acc;
 	
 	public PostAnAnnouncementController() {		
 	}
 	
 	public PostAnAnnouncementController(RentAccomodationBean bean) {
-		this.Info = bean;
+		this.info = bean;
 		
 	}
 	
@@ -24,15 +24,15 @@ public class PostAnAnnouncementController {
 	//}
 	
 	public void createAccomodation(RentAccomodationBean bean) {
-		this.Info = bean;
+		this.info = bean;
 		Random random = new Random();
 		bean.setID(random.nextInt(100));
 		AccomodationCreator creator = new AccomodationCreator();
-		Acc = creator.createAccomodation(Info);
+		acc = creator.createAccomodation(info);
 	}
 
 	public void show(RentAccomodationBean bean) {	
-		Acc.getInfo();
+		acc.getInfo();
 		
 	}
 }
