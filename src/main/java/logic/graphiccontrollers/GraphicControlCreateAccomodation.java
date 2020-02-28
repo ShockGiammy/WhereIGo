@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import logic.LoggedUser;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.PostAnAnnouncementController;
 import logic.view.ErrorLogin;
@@ -23,7 +24,7 @@ public class GraphicControlCreateAccomodation extends Window{
 	private PostAnAnnouncementController control;
 	
 	ObservableList<String> typeList = FXCollections.observableArrayList("appartamento", "villetta", "monolocale");
-	ObservableList<String> squareList = FXCollections.observableArrayList("<20", "20 to 39", "40 to 59", ">60");
+	ObservableList<String> squareList = FXCollections.observableArrayList("< 20", "20 - 39", "40 - 59", "> 60");
 	ObservableList<String> beds = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", ">8");
 	
 	@FXML private ChoiceBox<String> numberBeds;
@@ -40,13 +41,12 @@ public class GraphicControlCreateAccomodation extends Window{
 	@FXML private ImageView imageView;
 	@FXML private Button openButton;
 	@FXML private ImageView home;
-	@FXML private ImageView chiavi;
 	
 	@FXML
 	private void initialize() {
 		type.setValue("appartamento");
 		type.setItems(typeList);
-		squareMetres.setValue("<20");
+		squareMetres.setValue("< 20");
 		squareMetres.setItems(squareList);
 		numberBeds.setValue("1");	
 		numberBeds.setItems(beds);
@@ -59,13 +59,6 @@ public class GraphicControlCreateAccomodation extends Window{
 	private RentAccomodationBean bean;
 	private byte[] listOfServices;
 	private File houseImage;
-	
-	/*
-	public static void main(String[] args) {
-		setScene("InfoAccomodation.fxml");
-		loadScene();
-		launch(args);
-	}*/
 	
 	public GraphicControlCreateAccomodation() {
 		control = new PostAnAnnouncementController();
@@ -104,18 +97,14 @@ public class GraphicControlCreateAccomodation extends Window{
 		bean.setCity(city.getText());
 		bean.setAddress(address.getText());
 		bean.setDescription(description.getText());
-		if (houseImage != null) {
-            Image imageHouse = new Image(houseImage.toURI().toString());
-            imageView.setImage(imageHouse);
-        }
-        else {
+		if (houseImage == null) {
         	ErrorLogin error = new ErrorLogin();
         	error.displayLoginError("immagine non inserita");
         }
 		bean.setHouseImage(houseImage);
 		bean.setSquareMetres(squareMetres.getValue());
 		bean.setType(type.getValue());
-		
+		bean.setRenter(LoggedUser.getIstance(null).getUserName());
 		control.createAccomodation(bean);
 	}
     
@@ -129,5 +118,9 @@ public class GraphicControlCreateAccomodation extends Window{
         //Show open file dialog
         houseImage = fileChooser.showOpenDialog(null);
 
+        if (houseImage != null) {
+            Image imageHouse = new Image(houseImage.toURI().toString());
+            imageView.setImage(imageHouse);
+        }
     }
 }

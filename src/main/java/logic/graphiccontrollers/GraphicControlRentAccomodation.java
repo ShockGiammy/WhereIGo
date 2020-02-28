@@ -17,6 +17,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import logic.ImageViewer;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.RentAccomodationController;
 import logic.view.Window;
@@ -27,42 +29,42 @@ public class GraphicControlRentAccomodation extends Window{
 	@FXML private ImageView chiavi;
 	
 	@FXML TextField city;
-	@FXML TextField beds;
+	@FXML Text beds;
 	@FXML ImageView house;
 	@FXML TextField rating;
 	@FXML Button detail;
 	@FXML AnchorPane aPane;
 	
 	@FXML TextField city2;
-	@FXML TextField beds2;
+	@FXML Text beds2;
 	@FXML ImageView house2;
 	@FXML TextField rating2;
 	@FXML Button detail2;
 	@FXML AnchorPane aPane2;
 	
 	@FXML TextField city3;
-	@FXML TextField beds3;
+	@FXML Text beds3;
 	@FXML ImageView house3;
 	@FXML TextField rating3;
 	@FXML Button detail3;
 	@FXML AnchorPane aPane3;
 	
 	@FXML TextField city4;
-	@FXML TextField beds4;
+	@FXML Text beds4;
 	@FXML ImageView house4;
 	@FXML TextField rating4;
 	@FXML Button detail4;
 	@FXML AnchorPane aPane4;
 
 	@FXML TextField city5;
-	@FXML TextField beds5;
+	@FXML Text beds5;
 	@FXML ImageView house5;
 	@FXML TextField rating5;
 	@FXML Button detail5;
 	@FXML AnchorPane aPane5;
 	
 	@FXML TextField city6;
-	@FXML TextField beds6;
+	@FXML Text beds6;
 	@FXML ImageView house6;
 	@FXML TextField rating6;
 	@FXML Button detail6;
@@ -85,6 +87,7 @@ public class GraphicControlRentAccomodation extends Window{
 	
 	
 	private RentAccomodationController control;
+	private ImageViewer viewer;
 	
 	
 	@FXML
@@ -130,28 +133,18 @@ public class GraphicControlRentAccomodation extends Window{
 		}
 	}
 	
+	public GraphicControlRentAccomodation() {
+		viewer = new ImageViewer();
+	}
+	
 	@SuppressWarnings("exports")
-	public void setDisplayInfo(TextField city, TextField beds, ImageView house, TextField rating, RentAccomodationBean bean) {
+	public void setDisplayInfo(TextField city, Text beds, ImageView house, TextField rating, RentAccomodationBean bean) {
 		city.setText(bean.getCity());
 		beds.setText(bean.getBeds());
-		BufferedImage bufImage = loadImage(bean);
-		house.setImage(convertToFxImage(bufImage));
+		BufferedImage bufImage = viewer.loadImage(bean);
+		house.setImage(viewer.convertToFxImage(bufImage));
 		rating.setText("5/5");
 }
-	
-	private static Image convertToFxImage(BufferedImage image) {
-	    WritableImage wr = null;
-	    if (image != null) {
-	        wr = new WritableImage(image.getWidth(), image.getHeight());
-	        PixelWriter pw = wr.getPixelWriter();
-	        for (int x = 0; x < image.getWidth(); x++) {
-	            for (int y = 0; y < image.getHeight(); y++) {
-	                pw.setArgb(x, y, image.getRGB(x, y));
-	            }
-	        }
-	    }
-	    return new ImageView(wr).getImage();
-	}
 	
 	public void setAccomodationDetail1() {
 		RentAccomodationBean bean = control.getDetail(0);
@@ -199,10 +192,9 @@ public class GraphicControlRentAccomodation extends Window{
 		renter.setVisible(true);
 		renter.setText(bean.getRenter());
 		houseDetail.setVisible(true);
-		BufferedImage bufImage = loadImage(bean);
-		house.setImage(convertToFxImage(bufImage));
+		BufferedImage bufImage = viewer.loadImage(bean);
 		rating.setText("5/5");
-		houseDetail.setImage(convertToFxImage(bufImage));
+		houseDetail.setImage(viewer.convertToFxImage(bufImage));
 		garden.setVisible(true);
 		wifi.setVisible(true);
 		bathroom.setVisible(true);
@@ -227,27 +219,6 @@ public class GraphicControlRentAccomodation extends Window{
 		wifi.setDisable(true);
 		bathroom.setDisable(true);
 		kitchen.setDisable(true);
-	}
-	
-	@SuppressWarnings("exports")
-	public BufferedImage loadImage(RentAccomodationBean bean) {
-		BufferedImage bImage = null;
-		if (bean.getHouseImage() != null) {
-			ByteArrayInputStream bi = new ByteArrayInputStream(bean.getHouseImage());
-			try {
-				bImage = ImageIO.read(bi);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				ImageIO.write(bImage, "jpg", new File("output.jpg") );
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return bImage;
 	}
 }
 

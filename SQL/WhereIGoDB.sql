@@ -45,7 +45,7 @@ create table Post
     city VARCHAR(30),
     address VARCHAR(40),
     services BLOB,
-    squareMetres VARCHAR(5),
+    squareMetres VARCHAR(10),
     tipologia VARCHAR(20),
     tipeOfPost VARCHAR(20),
     primary key(ID, utente)

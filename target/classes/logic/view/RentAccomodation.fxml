@@ -27,6 +27,9 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
                   </ImageView>
                   <ImageView fx:id="home1" fitHeight="57.0" fitWidth="75.0" layoutX="10.0" layoutY="11.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -35,6 +38,9 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow blurType="ONE_PASS_BOX" />
+                     </effect>
                   </ImageView>
                   <ImageView fx:id="chiavi" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goRent" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -44,7 +50,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <effect>
-                        <InnerShadow color="#d71b1b" />
+                        <InnerShadow choke="0.4" color="#bf2e2e" height="60.0" radius="29.5" width="60.0" />
                      </effect>
                   </ImageView>
                   <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
@@ -54,6 +60,9 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow blurType="ONE_PASS_BOX" />
+                     </effect>
                   </ImageView>
                   <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -62,6 +71,9 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow blurType="ONE_PASS_BOX" color="#171717" />
+                     </effect>
                   </ImageView>
                   <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -70,6 +82,9 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow blurType="ONE_PASS_BOX" />
+                     </effect>
                   </ImageView>
                   <ImageView fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -78,6 +93,9 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow blurType="ONE_PASS_BOX" choke="1.0" color="#0a0a0a" height="255.0" radius="127.0" width="255.0" />
+                     </effect>
                   </ImageView>
                </items>
             </ToolBar>
@@ -93,7 +111,6 @@
          <children>
             <TextField fx:id="city2" editable="false" layoutX="14.0" layoutY="14.0" />
             <ImageView fx:id="house2" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="beds2" editable="false" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
                   <Font size="14.0" />
@@ -106,6 +123,7 @@
             </Text>
             <TextField fx:id="rating2" editable="false" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
             <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail2" prefHeight="33.0" prefWidth="85.0" text="view details" />
+            <Text fx:id="beds2" layoutX="226.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="29.53125" />
          </children>
       </AnchorPane>
       <Separator layoutX="540.0" layoutY="89.0" orientation="VERTICAL" prefHeight="690.0" prefWidth="16.0" />
@@ -113,7 +131,6 @@
          <children>
             <TextField fx:id="city4" editable="false" layoutX="14.0" layoutY="14.0" />
             <ImageView fx:id="house4" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="beds4" editable="false" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
                   <Font size="14.0" />
@@ -124,15 +141,14 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="rating4" editable="false" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
             <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail4" prefHeight="33.0" prefWidth="85.0" text="view details" />
+            <Text fx:id="beds4" layoutX="227.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="29.53125" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="aPane6" layoutX="270.0" layoutY="551.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
          <children>
             <TextField fx:id="city6" editable="false" layoutX="14.0" layoutY="14.0" />
             <ImageView fx:id="house6" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="beds6" editable="false" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
                   <Font size="14.0" />
@@ -143,8 +159,8 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="rating6" editable="false" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
             <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail6" prefHeight="33.0" prefWidth="85.0" text="view details" />
+            <Text fx:id="beds6" layoutX="224.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="29.53125" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="aPane" layoutY="91.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
@@ -163,14 +179,13 @@
             </Text>
             <TextField fx:id="rating" editable="false" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
             <Button fx:id="detail" layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail1" prefHeight="33.0" prefWidth="85.0" text="view details" />
-            <TextField fx:id="beds" editable="false" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
+            <Text fx:id="beds" layoutX="227.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="29.53125" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="aPane3" layoutY="321.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
          <children>
             <TextField fx:id="city3" editable="false" layoutX="14.0" layoutY="14.0" />
             <ImageView fx:id="house3" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="beds3" editable="false" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
                   <Font size="14.0" />
@@ -183,13 +198,13 @@
             </Text>
             <TextField fx:id="rating3" editable="false" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
             <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail3" prefHeight="33.0" prefWidth="85.0" text="view details" />
+            <Text fx:id="beds3" layoutX="227.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="29.53125" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="aPane5" layoutY="551.0" prefHeight="230.0" prefWidth="270.0" style="-fx-background-color: #99ffdd; -fx-border-color: #0703fc;">
          <children>
             <TextField fx:id="city5" editable="false" layoutX="14.0" layoutY="14.0" />
             <ImageView fx:id="house5" fitHeight="142.0" fitWidth="149.0" layoutX="14.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="beds5" editable="false" layoutX="181.0" layoutY="71.0" prefHeight="25.0" prefWidth="46.0" />
             <Text layoutX="184.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beds">
                <font>
                   <Font size="14.0" />
@@ -200,8 +215,8 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="rating5" editable="false" layoutX="181.0" layoutY="125.0" prefHeight="25.0" prefWidth="46.0" />
             <Button layoutX="171.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setAccomodationDetail5" prefHeight="33.0" prefWidth="85.0" text="view details" />
+            <Text fx:id="beds5" layoutX="227.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="29.53125" />
          </children>
       </AnchorPane>
       <TextField editable="false" layoutX="567.0" layoutY="119.0" prefHeight="25.0" prefWidth="149.0" visible="false" />

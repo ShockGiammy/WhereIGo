@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -79,13 +80,16 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="chiavi" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goRent" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icona-di-chiavi-42470255.jpg" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <InnerShadow choke="0.4" color="#bf2e2e" height="60.0" radius="29.5" width="60.0" />
+                     </effect>
                   </ImageView>
                   <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 public class RentAccomodationBean {
 	
-	private int ID;
+	private int id;
 	private String beds;
 	private String renter;
 	private String city;
@@ -32,8 +32,8 @@ public class RentAccomodationBean {
 		return this.renter;
 	}
 	
-	public void setID(int Id) {
-		this.ID = Id;
+	public void setID(int myId) {
+		this.id = myId;
 	}
 
 	public String getBeds() {
@@ -91,7 +91,7 @@ public class RentAccomodationBean {
 		}
 		return imageInputFile;
 	}
-	
+
 	public long getFileLength() {
 		long len = 0;
 		if (houseImage != null) {
@@ -99,11 +99,11 @@ public class RentAccomodationBean {
 		}
 		return len;
 	}
-
+	
 	public void setHouseImage(File houseImage) {
 		this.houseImage = houseImage;
 	}
-
+	
 	public byte[] getServices() {
 		return services;
 	}
@@ -114,13 +114,13 @@ public class RentAccomodationBean {
 	}
 
 	public int getID() {
-		return ID;
+		return id;
 	}
 	
 	public void setInputStream(byte[] inputS) {
 		this.inputF = inputS;
 	}
-	
+
 	public byte[] getHouseImage() {
 		return inputF;
 	}
