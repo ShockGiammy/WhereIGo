@@ -6,7 +6,7 @@ create table Locations
     city VARCHAR(45) NOT NULL,
     tipeOfPersonality VARCHAR(20),
     photo LONGBLOB,
-    description VARCHAR(4096),
+    description VARCHAR(4096),locations
     primary key(city)
 );
 

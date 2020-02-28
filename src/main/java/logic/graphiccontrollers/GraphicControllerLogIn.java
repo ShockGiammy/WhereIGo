@@ -31,12 +31,13 @@ public class GraphicControllerLogIn extends Window{
 	
 	public void logInControl(MouseEvent event) throws IOException {
 		if(this.loginCtrl.checkLogInControl(this.usrBean, this.logBean) == 1) {
-			usrBean.setUserName(logBean.getUserName());
+			usrBean.setUserName(logBean.getUserName()); //this should be done by controller
 			setScene("HomePage.fxml");
 			loadScene();
 			setUserNick(event, usrBean);
 		}
 		else {
+			/* this should be in a method called by the controller*/
 			this.errLogin.displayLoginError("User not registered or wrong credentials");
 		}
 	}

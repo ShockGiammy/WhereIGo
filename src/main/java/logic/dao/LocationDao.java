@@ -19,7 +19,9 @@ public class LocationDao extends GeneralConnection{
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				locBean.setCountryName(rs.getString(1));
-				locBean.setDescription(rs.getString(4));
+				byte[] image = rs.getBytes(4);
+				locBean.setStream(image);
+				locBean.setDescription(rs.getString(5));
 			}
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "Error while retriving location");

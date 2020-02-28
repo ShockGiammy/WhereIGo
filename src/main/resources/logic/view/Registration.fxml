@@ -5,59 +5,60 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="751.0" prefWidth="1059.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerRegistration">
+
+<Pane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerRegistration">
    <children>
-      <Text layoutX="35.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+      <Text layoutX="41.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="surname" layoutX="35.0" layoutY="295.0" onKeyTyped="#getSurname" prefHeight="30.0" prefWidth="221.0" />
-      <Text layoutX="35.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
+      <TextField fx:id="surname" layoutX="155.0" layoutY="265.0" onKeyTyped="#getSurname" prefHeight="30.0" prefWidth="221.0" />
+      <Text layoutX="41.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="29.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+      <Text layoutX="47.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <DatePicker fx:id="dateOfBirth" layoutX="30.0" layoutY="397.0" onAction="#getDateOfBirth" prefHeight="30.0" prefWidth="230.0" />
-      <Text layoutX="32.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth">
+      <DatePicker fx:id="dateOfBirth" layoutX="157.0" layoutY="333.0" onAction="#getDateOfBirth" prefHeight="30.0" prefWidth="230.0" />
+      <Text layoutX="41.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="userName" layoutX="356.0" layoutY="198.0" onKeyTyped="#getUserName" prefHeight="30.0" prefWidth="221.0" />
-      <Text layoutX="361.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+      <TextField fx:id="userName" layoutX="543.0" layoutY="196.0" onKeyTyped="#getUserName" prefHeight="30.0" prefWidth="221.0" />
+      <Text layoutX="434.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="363.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text layoutX="434.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="registerNow" layoutX="390.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#registerNowControl" prefHeight="59.0" prefWidth="101.0" text="Register now" />
-      <Text layoutX="70.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRATION FORM">
+      <Button fx:id="registerNow" layoutX="592.0" layoutY="449.0" mnemonicParsing="false" onMouseClicked="#registerNowControl" prefHeight="59.0" prefWidth="101.0" text="Register now" />
+      <Text layoutX="190.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRATION FORM">
          <font>
             <Font size="48.0" />
          </font>
       </Text>
-      <TextField fx:id="name" layoutX="33.0" layoutY="198.0" onKeyTyped="#getName" prefHeight="30.0" prefWidth="221.0" />
-      <PasswordField fx:id="password" layoutX="355.0" layoutY="297.0" onKeyTyped="#getPassword" prefHeight="24.0" prefWidth="222.0" />
-      <Text layoutX="366.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of user">
+      <TextField fx:id="name" layoutX="155.0" layoutY="196.0" onKeyTyped="#getName" prefHeight="30.0" prefWidth="221.0" />
+      <PasswordField fx:id="password" layoutX="543.0" layoutY="267.0" onKeyTyped="#getPassword" prefHeight="24.0" prefWidth="222.0" />
+      <Text layoutX="434.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of user">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="gender" layoutX="32.0" layoutY="503.0" prefHeight="26.0" prefWidth="222.0" />
-      <ChoiceBox fx:id="typeOfUser" layoutX="352.0" layoutY="399.0" prefHeight="26.0" prefWidth="222.0" />
+      <ChoiceBox fx:id="gender" layoutX="161.0" layoutY="411.0" prefHeight="26.0" prefWidth="222.0" />
+      <ChoiceBox fx:id="typeOfUser" layoutX="552.0" layoutY="335.0" prefHeight="26.0" prefWidth="222.0" />
    </children>
-</AnchorPane>
+</Pane>
