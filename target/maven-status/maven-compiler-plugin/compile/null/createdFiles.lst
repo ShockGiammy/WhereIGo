@@ -11,6 +11,7 @@ logic\graphiccontrollers\GraphicControlRentAccomodation.class
 logic\model\UserModel.class
 logic\LoggedUser.class
 logic\SingletonDbConnection.class
+logic\graphiccontrollers\GraphicControllerLocationInfo.class
 logic\dao\AccomodationCreator.class
 logic\graphiccontrollers\GraphicControllerInterestForm.class
 logic\view\Window.class
@@ -26,7 +27,6 @@ logic\graphiccontrollers\GraphicControlCreateAccomodation.class
 logic\dao\LocationDao.class
 logic\graphiccontrollers\GraphicControllerRegistration.class
 logic\model\LocationModel.class
-logic\view\LocationInfo.class
 logic\graphiccontrollers\GraphicControllerBookTravel.class
 logic\beans\RentAccomodationBean.class
 logic\dao\UserDao.class

@@ -1,4 +1,5 @@
 package logic.graphiccontrollers;
+import java.awt.image.BufferedImage;
 import java.time.format.DateTimeFormatter;
 
 import javafx.fxml.FXML;
@@ -15,16 +16,16 @@ import logic.controllers.BookTravelControl;
 import logic.dao.LocationDao;
 import logic.view.Window;
 import javafx.scene.control.TextField;
-import logic.view.LocationInfo;
+import logic.ImageViewer;
 
 public class GraphicControllerBookTravel extends Window{
 	private UserTravelBean travBean;
 	private BookTravelControl bookTravCtrl;
 	private GroupBean grpBean[];
 	private LoggedUser logUsr;
-	private LocationInfo locInfo;
 	private LocationBean locBean;
 	private LocationDao locDao;
+	private GraphicControllerLocationInfo locInfoCtrl;
 	@FXML private DatePicker firstDay;
 	@FXML private DatePicker lastDay;
 	@FXML private TextField moneyRange;
@@ -54,8 +55,8 @@ public class GraphicControllerBookTravel extends Window{
 		this.grpBean[0] = new GroupBean();
 		this.grpBean[1] = new GroupBean();
 		logUsr = LoggedUser.getIstance(null);
-		this.locInfo = new LocationInfo();
 		this.locBean = new LocationBean();
+		this.locInfoCtrl = new GraphicControllerLocationInfo();
 	}
 	
 	public void initialize() {
@@ -111,7 +112,15 @@ public class GraphicControllerBookTravel extends Window{
 	public void showMoreInfo1(MouseEvent e) {
 		this.locBean.setCityName(this.location1.getText());
 		this.bookTravCtrl.retriveLocInfoControl(this.locBean);
-		this.locInfo.setAndShow(locBean);
+		this.locInfoCtrl.(this.locBean);
+		setScene("LocationInfo.fxml");
+		loadScene();
+		nextGuiOnClick(e);
+	}
+	
+	public void showMoreInfo2(MouseEvent e) {
+		this.locBean.setCityName(this.location2.getText());
+		this.bookTravCtrl.retriveLocInfoControl(this.locBean);
 	}
 	
 	public void backHome(MouseEvent e) {
