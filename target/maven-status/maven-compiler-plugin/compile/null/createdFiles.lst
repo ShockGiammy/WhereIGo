@@ -27,6 +27,7 @@ logic\graphiccontrollers\GraphicControlCreateAccomodation.class
 logic\dao\LocationDao.class
 logic\graphiccontrollers\GraphicControllerRegistration.class
 logic\model\LocationModel.class
+logic\view\LocationInfo.class
 logic\graphiccontrollers\GraphicControllerBookTravel.class
 logic\beans\RentAccomodationBean.class
 logic\dao\UserDao.class

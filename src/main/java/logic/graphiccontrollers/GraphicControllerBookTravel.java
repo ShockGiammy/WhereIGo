@@ -56,7 +56,7 @@ public class GraphicControllerBookTravel extends Window{
 		this.grpBean[1] = new GroupBean();
 		logUsr = LoggedUser.getIstance(null);
 		this.locBean = new LocationBean();
-		this.locInfoCtrl = new GraphicControllerLocationInfo();
+		//this.locInfoCtrl = new GraphicControllerLocationInfo();
 	}
 	
 	public void initialize() {
@@ -112,7 +112,7 @@ public class GraphicControllerBookTravel extends Window{
 	public void showMoreInfo1(MouseEvent e) {
 		this.locBean.setCityName(this.location1.getText());
 		this.bookTravCtrl.retriveLocInfoControl(this.locBean);
-		this.locInfoCtrl.(this.locBean);
+		//this.locInfoCtrl.(this.locBean);
 		setScene("LocationInfo.fxml");
 		loadScene();
 		nextGuiOnClick(e);
