@@ -15,8 +15,8 @@ addons:
   sonarcloud:
     organization: "shockgiammy"
     token:
-      secure: "4a9ef5734dac7d489d3fd8c8c7870c050a49ba03"
+      secure: travis encrypt -r primefaces/primefaces"4a9ef5734dac7d489d3fd8c8c7870c050a49ba03"
 
 script:
 
-- mvn clean javafx:compile -Pcoverage org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar -Dsonar.projectKey=ShockGiammy_WhereIGo -Dsonar.login
+- mvn clean javafx:compile sonar:sonar -Pcoverage -Dsonar.projectKey=ShockGiammy_WhereIGo
