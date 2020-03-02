@@ -19,4 +19,4 @@ addons:
 
 script:
 
-- mvn clean javafx:compile -Pcoverage org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar 
+- mvn clean javafx:compile
