@@ -8,6 +8,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import logic.ImageViewer;
@@ -211,6 +212,13 @@ public class GraphicControlRentAccomodation extends Window{
 		wifi.setDisable(true);
 		bathroom.setDisable(true);
 		kitchen.setDisable(true);
+	}
+	
+	@SuppressWarnings("exports")
+	public void contactRenter(MouseEvent event) {
+		setScene("ChatTraveller.fxml");
+		loadScene();
+		nextGuiOnClick(event);
 	}
 }
 

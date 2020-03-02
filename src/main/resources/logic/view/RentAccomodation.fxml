@@ -231,7 +231,7 @@
       <TextField fx:id="squareMetres" editable="false" layoutX="737.0" layoutY="507.0" prefHeight="25.0" prefWidth="57.0" visible="false" />
       <TextField fx:id="bedsDetail" editable="false" layoutX="809.0" layoutY="507.0" prefHeight="25.0" prefWidth="57.0" visible="false" />
       <TextField fx:id="renter" editable="false" layoutX="567.0" layoutY="631.0" visible="false" />
-      <Button fx:id="contactRenter" layoutX="757.0" layoutY="631.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="100.0" text="Contact Renter" visible="false" />
+      <Button fx:id="contactRenter" layoutX="757.0" layoutY="631.0" mnemonicParsing="false" onMouseClicked="#contactRenter" prefHeight="33.0" prefWidth="100.0" text="Contact Renter" visible="false" />
       <CheckBox fx:id="garden" layoutX="567.0" layoutY="544.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Garden" visible="false">
          <font>
             <Font size="15.0" />

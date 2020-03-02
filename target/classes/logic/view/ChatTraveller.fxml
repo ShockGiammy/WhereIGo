@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane prefHeight="780.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerChat">
+   <children>
+      <AnchorPane layoutX="7.0" prefHeight="92.0" prefWidth="810.0" style="-fx-background-color: white;">
+         <children>
+            <ToolBar layoutX="399.0" layoutY="14.0" prefHeight="68.0" prefWidth="410.0" style="-fx-background-color: white;">
+               <items>
+                  <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@69524.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@download.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icona-di-chiavi-42470255.jpg" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@download%20(1).png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@favourites-stars.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@download%20(2).png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@16363.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </items>
+            </ToolBar>
+            <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@WIGLOGO.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
+         </children>
+      </AnchorPane>
+      <SplitPane dividerPositions="0.29782082324455206, 0.3220338983050847" layoutX="7.0" layoutY="91.0" prefHeight="689.0" prefWidth="828.0">
+        <items>
+            <VBox prefHeight="696.0" prefWidth="236.0">
+               <children>
+                  <ListView prefHeight="429.0" prefWidth="243.0" />
+                  <Separator prefHeight="22.0" prefWidth="243.0" />
+                  <ListView prefHeight="244.0" prefWidth="243.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="689.0" prefWidth="20.0">
+               <children>
+                  <ScrollBar orientation="VERTICAL" prefHeight="440.0" prefWidth="14.0" />
+                  <Separator prefHeight="35.0" prefWidth="14.0" />
+                  <ScrollBar orientation="VERTICAL" prefHeight="254.0" prefWidth="14.0" />
+               </children>
+            </VBox>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Slider layoutX="556.0" orientation="VERTICAL" prefHeight="498.0" prefWidth="20.0" />
+                  <TextArea layoutX="-6.0" layoutY="514.0" prefHeight="173.0" prefWidth="583.0" />
+                  <Separator layoutY="505.0" prefHeight="15.0" prefWidth="577.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</Pane>

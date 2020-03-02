@@ -4,11 +4,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import logic.beans.RentAccomodationBean;
 import logic.model.AccomodationModel;
 
 public class AccomodationCreator extends GeneralConnection{
+	
+	protected Logger logger = Logger.getLogger(UserDao.class.getName());
 
 	public AccomodationModel createAccomodation(RentAccomodationBean info) {
 		getConnection();
@@ -27,8 +30,8 @@ public class AccomodationCreator extends GeneralConnection{
 			statement.execute();
 		}
 		catch (SQLException e) {
-			System.err.println("Got an exception!");
-		    System.err.println(e.getMessage());
+			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, e.getMessage());
 		}
 		return new AccomodationModel(info);
 	}
@@ -59,8 +62,8 @@ public class AccomodationCreator extends GeneralConnection{
 			}
 		}
 		catch (SQLException e) {
-			System.err.println("Got an exception!");
-		    System.err.println(e.getMessage());
+			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, e.getMessage());
 		}
 		return acc;
 	}
