@@ -115,10 +115,18 @@
 				<dependency>
 					<groupId>org.codehaus.sonar-plugins.java</groupId>
 					<artifactId>sonar-jacoco-listeners</artifactId>
-					<version>2.5</version>
+					<version>2.4</version>
 					<scope>test</scope>
-				</dependency>
+					</dependency>
 			</dependencies>
+			<properties>
+				<property>
+					<sonar.organization>shockgiammy</sonar.organization>
+					<sonar.login>4a9ef5734dac7d489d3fd8c8c7870c050a49ba03</sonar.login>
+					<sonar.projectKey>ShockGiammy_WhereIGo</sonar.projectKey>
+					<sonar.host.url>https://sonarcloud.it</sonar.host.url>
+				</property>	
+			</properties>
 		</profile>
 	</profiles>
 </project>
