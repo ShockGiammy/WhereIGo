@@ -15,7 +15,7 @@ addons:
   sonarcloud:
     organization: "shockgiammy"
     token:
-      secure: "4a9ef5734dac7d489d3fd8c8c7870c050a49ba03"
+      secure: "017999dd6e9ed694a63e7338bc2c963c496dc1b1"
 
 script:
 
