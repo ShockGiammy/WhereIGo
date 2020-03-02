@@ -18,5 +18,4 @@ addons:
       secure: "017999dd6e9ed694a63e7338bc2c963c496dc1b1"
 
 script:
-
 - mvn clean javafx:compile -Pcoverage org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar -Dsonar.projectKey=ShockGiammy_WhereIGo
