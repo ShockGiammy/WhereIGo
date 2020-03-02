@@ -38,7 +38,7 @@ public class ChatServer {
             ex.printStackTrace();
         }
     }
- /*
+    
     public static void main(String[] args) {
         if (args.length < 1) {
             System.out.println("Syntax: java ChatServer <port-number>");
@@ -50,7 +50,7 @@ public class ChatServer {
         ChatServer server = new ChatServer(port);
         server.execute();
     }
- */
+    
     /**
      * Delivers a message from one user to others (broadcasting)
      */
