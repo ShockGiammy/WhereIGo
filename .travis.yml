@@ -14,8 +14,8 @@ install: true
 addons:
   sonarcloud:
     organization: "shockgiammy"
-    token:
-      secure: $SONAR_TOKEN
+
+install: true
 
 script:
 
