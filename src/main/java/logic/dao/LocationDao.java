@@ -24,8 +24,7 @@ public class LocationDao extends GeneralConnection{
 				locBean.setDescription(rs.getString(5));
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Error while retriving location");
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Error while retriving location", e);
 		}
 	}
 }

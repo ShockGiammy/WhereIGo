@@ -22,9 +22,15 @@ public class LoginController {
 		return ret;
 	}
 	
-	public void insertNewUserControl(UserDataBean usrBean) {
-		this.usrDao.insertNewUser(usrBean);
-		saveLoggedUser(usrBean);
+	public int insertNewUserControl(UserDataBean usrBean) {
+		if(usrBean.getUsername() == null || usrBean.getPassword() == null || usrBean.getName() == null || usrBean.getSurname() == null || usrBean.getDateOfBirth() == null || usrBean.getGender() == null || usrBean.getType() == null ) {
+			return 0;
+		}
+		else {
+			this.usrDao.insertNewUser(usrBean);
+			saveLoggedUser(usrBean);
+			return 1;
+		}
 	}
 	
 	public void saveLoggedUser(UserDataBean usrBean) {

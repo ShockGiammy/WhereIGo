@@ -10,8 +10,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
+import logic.view.ErrorLogin;
 import logic.view.Window;
 
 public class GraphicControllerRegistration extends Window{
@@ -30,6 +32,8 @@ public class GraphicControllerRegistration extends Window{
 	private UserDataBean dataBean;
 	private DateTimeFormatter formatter;
 	private LoginController loginCtrl;
+	private LoggedUser logUsr;
+	private ErrorLogin errLogin;
 	
 	@FXML
 	public void initialize(){
@@ -40,6 +44,7 @@ public class GraphicControllerRegistration extends Window{
 		this.typeOfUser.setItems(typeUsrList);
 		this.gender.setValue("Female");
 		this.typeOfUser.setValue("Traveler");
+		this.errLogin = new ErrorLogin();
 	}
 	
 	public void getName() {
@@ -68,12 +73,20 @@ public class GraphicControllerRegistration extends Window{
 	}
 	
 	public void registerNowControl(MouseEvent event) {
+		int ret;
 		this.dataBean.setType(this.typeOfUser.getValue());
 		this.dataBean.setGender(this.gender.getValue());
-		this.loginCtrl.insertNewUserControl(this.dataBean);
-		setScene("HomePage.fxml");
-		loadScene();
-		setUserNick(event, this.dataBean);
+		ret = this.loginCtrl.insertNewUserControl(this.dataBean);
+		if(ret == 0) {
+			this.errLogin.displayLoginError("Inserire tutti i dati");
+		}
+		else {
+			logUsr = LoggedUser.getIstance(dataBean.getUsername());
+			logUsr.setUserDatas(dataBean);
+			setScene("HomePage.fxml");
+			loadScene();
+			setUserNick(event, this.dataBean);
+		}
 	}
 }
 

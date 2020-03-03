@@ -107,13 +107,11 @@ public class UserDao extends GeneralConnection{
 	public List<String> getLocations(UserDataBean dataBean) {
 		List<String> loc = new ArrayList<>();
 		try {
-			int i = 0;
 			PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT city FROM Locations WHERE (tipeOfPersonality = ?)");
 			statement.setString(1, dataBean.getPersonality());
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()) {
-				loc.add(rs.getString(i));
-				i+=1;
+				loc.add(rs.getString(1));
 			}
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "SQLException on fetchin locations\n", e);

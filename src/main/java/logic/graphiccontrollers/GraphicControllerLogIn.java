@@ -7,7 +7,6 @@ import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
 import logic.view.Window;
-import java.io.IOException;
 import javafx.fxml.FXML;
 import logic.view.ErrorLogin;
 
@@ -37,7 +36,6 @@ public class GraphicControllerLogIn extends Window{
 			setUserNick(event, usrBean);
 		}
 		else {
-			/* this should be in a method called by the controller*/
 			this.errLogin.displayLoginError("User not registered or wrong credentials");
 		}
 	}

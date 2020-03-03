@@ -12,7 +12,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <Pane prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
    <children>
       <Pane layoutX="28.0" layoutY="137.0" prefHeight="482.0" prefWidth="380.0" style="-fx-background-color: #19ca8b;">
@@ -37,9 +36,9 @@
                   <Font size="25.0" />
                </font>
             </Text>
-            <Button fx:id="moreInfo1" layoutX="144.0" layoutY="82.0" mnemonicParsing="false" onMouseClicked="#showMoreInfo1" text="Get more info" />
-            <Button fx:id="moreInfo2" layoutX="144.0" layoutY="124.0" mnemonicParsing="false" text="Get more info" />
-            <Button fx:id="moreInfo3" layoutX="143.0" layoutY="171.0" mnemonicParsing="false" text="Get more info" />
+            <Button fx:id="moreInfo1" layoutX="253.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#showMoreInfo1" text="Get more info" />
+            <Button fx:id="moreInfo2" layoutX="253.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#showMoreInfo2" text="Get more info" />
+            <Button fx:id="moreInfo3" layoutX="253.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#showMoreInfo3" text="Get more info" />
             <Text layoutX="103.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Travel groups">
                <font>
                   <Font size="25.0" />

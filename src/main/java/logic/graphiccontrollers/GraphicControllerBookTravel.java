@@ -23,6 +23,7 @@ public class GraphicControllerBookTravel extends Window{
 	private GroupBean[] grpBean;
 	private LoggedUser logUsr;
 	private LocationBean locBean;
+	private String locInfo = "LocationInfo.fxml";
 	@FXML private DatePicker firstDay;
 	@FXML private DatePicker lastDay;
 	@FXML private TextField moneyRange;
@@ -83,6 +84,7 @@ public class GraphicControllerBookTravel extends Window{
 	}
 	
 	public void setLocation() {
+		System.out.println(logUsr.getUserPersonality());
 		List<String> suggLoc = new ArrayList<>();
 		suggLoc.addAll(bookTravCtrl.showLocationsControl());
 		this.location1.setText(suggLoc.get(0));
@@ -108,25 +110,19 @@ public class GraphicControllerBookTravel extends Window{
 	public void showMoreInfo1(MouseEvent e) {
 		this.locBean.setCityName(this.location1.getText());
 		this.bookTravCtrl.retriveLocInfoControl(this.locBean);
-		setScene("LocationInfo.fxml");
-		loadScene();
-		setLocationInfo(e, this.locBean);
+		loadLocInfo(e);
 	}
 	
 	public void showMoreInfo2(MouseEvent e) {
 		this.locBean.setCityName(this.location2.getText());
 		this.bookTravCtrl.retriveLocInfoControl(this.locBean);
-		setScene("LocationInfo.fxml");
-		loadScene();
-		setLocationInfo(e, this.locBean);
+		loadLocInfo(e);
 	}
 	
 	public void showMoreInfo3(MouseEvent e) {
 		this.locBean.setCityName(this.location3.getText());
 		this.bookTravCtrl.retriveLocInfoControl(this.locBean);
-		setScene("LocationInfo.fxml");
-		loadScene();
-		setLocationInfo(e, this.locBean);
+		loadLocInfo(e);
 	}
 	
 	public void backHome(MouseEvent e) {
@@ -135,5 +131,11 @@ public class GraphicControllerBookTravel extends Window{
 		setScene("HomePage.fxml");
 		loadScene();
 		setUserNick(e, dataBean);
+	}
+	
+	public void loadLocInfo(MouseEvent e) {
+		setScene(locInfo);
+		loadScene();
+		setLocationInfo(e, this.locBean);
 	}
 }
