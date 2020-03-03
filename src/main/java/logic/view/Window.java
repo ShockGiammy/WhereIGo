@@ -3,6 +3,8 @@ package logic.view;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -19,6 +21,7 @@ public class Window extends Application{
 	private static String sample;
 	private static FXMLLoader loader;
 	private static Scene scene;
+	private static Logger logger = Logger.getLogger("WIG");
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -27,7 +30,7 @@ public class Window extends Application{
 			primaryStage.show();
 			
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Cannot load GUI\n",e);
 		}
 	}
 	
@@ -52,7 +55,7 @@ public class Window extends Application{
 		nextGuiOnClick(e);
 	}
 	
-	public void setSuggestedLocations(MouseEvent e) throws SQLException {
+	public void setSuggestedLocations(MouseEvent e) {
 		GraphicControllerBookTravel controller = loader.getController();
 		controller.setLocation();
 		nextGuiOnClick(e);
@@ -67,9 +70,7 @@ public class Window extends Application{
 			scene = new Scene(newSceneParent);
 			scene.getStylesheets().add(Window.class.getResource("application.css").toExternalForm());
 		}catch(IOException e) {
-			System.err.println("Got an exception!");
-		    System.err.println(e.getMessage());
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "Cannot load the scene\n", e);
 		}
 	}
 	

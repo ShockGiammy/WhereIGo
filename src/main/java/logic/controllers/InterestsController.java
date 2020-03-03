@@ -30,6 +30,8 @@ public class InterestsController {
 				case(4):
 					numbOf4 += 1;
 					break;
+				default:
+					break;
 			}
 		}
 		if(numbOf1 >= 2) {

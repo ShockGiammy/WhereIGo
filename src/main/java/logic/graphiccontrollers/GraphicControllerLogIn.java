@@ -29,7 +29,7 @@ public class GraphicControllerLogIn extends Window{
 		this.errLogin = new ErrorLogin();
 	}
 	
-	public void logInControl(MouseEvent event) throws IOException {
+	public void logInControl(MouseEvent event) {
 		if(this.loginCtrl.checkLogInControl(this.usrBean, this.logBean) == 1) {
 			usrBean.setUserName(logBean.getUserName()); //this should be done by controller
 			setScene("HomePage.fxml");

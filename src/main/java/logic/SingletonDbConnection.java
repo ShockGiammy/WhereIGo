@@ -1,16 +1,20 @@
 package logic;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SingletonDbConnection {
 	private static SingletonDbConnection istance = null;
 	private Connection connection = null;
+	private Logger logger;
 	
 	protected SingletonDbConnection(String url, String username, String password) {
+		this.logger = Logger.getLogger("WIG");
 		try{
 			this.connection = DriverManager.getConnection(url, username, password);
 		}catch(SQLException e) {
-			System.out.println("SQL exception occurred");
+			logger.log(Level.SEVERE, "Connection to DB failed !", e);
 		}
 	}
 	

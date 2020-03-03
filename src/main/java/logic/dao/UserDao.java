@@ -3,6 +3,9 @@ import java.sql.*;
 
 import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 public class UserDao extends GeneralConnection{
@@ -12,7 +15,7 @@ public class UserDao extends GeneralConnection{
 	}
 	
 	public String[] getCity(UserDataBean usrBean) {
-		String locat[] = new String[3];
+		String[] locat = new String[3];
 		int i = 0;
 		getConnection();
 		try {
@@ -101,15 +104,15 @@ public class UserDao extends GeneralConnection{
 		}
 	}
 	
-	public String[] getLocations(UserDataBean dataBean) {
-		int i = 0;
-		String loc[] = new String[3];
+	public List<String> getLocations(UserDataBean dataBean) {
+		List<String> loc = new ArrayList<>();
 		try {
+			int i = 0;
 			PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT city FROM Locations WHERE (tipeOfPersonality = ?)");
 			statement.setString(1, dataBean.getPersonality());
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()) {
-				loc[i] = rs.getString(1);
+				loc.add(rs.getString(i));
 				i+=1;
 			}
 		}catch(SQLException e) {

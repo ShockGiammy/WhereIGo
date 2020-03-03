@@ -8,7 +8,6 @@ import logic.dao.UserDao;
 
 public class LoginController {
 	private UserDao usrDao;
-	private LoggedUser logUsr;
 	
 	public LoginController() {
 		this.usrDao = new UserDao();
@@ -29,7 +28,7 @@ public class LoginController {
 	}
 	
 	public void saveLoggedUser(UserDataBean usrBean) {
-		logUsr = LoggedUser.getIstance(usrBean.getUsername());
+		LoggedUser logUsr = LoggedUser.getIstance(usrBean.getUsername());
 		logUsr.setUserDatas(usrBean);
 	}
 }

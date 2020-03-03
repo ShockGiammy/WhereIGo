@@ -7,11 +7,11 @@ module WhereIGo {
 	exports logic.view;
 
 	requires java.logging;
-	requires java.sql;
+	requires transitive java.sql;
 	requires javafx.base;
 	requires javafx.controls;
 	requires javafx.fxml;
-	requires javafx.graphics;
+	requires transitive javafx.graphics;
 	requires mysql.connector.java;
 	requires java.desktop;
 	

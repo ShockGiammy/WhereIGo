@@ -68,7 +68,7 @@ public class GraphicControllerInterestForm extends Window{
 		quest4d.setToggleGroup(this.question4);
 	}
 	
-	public void manageGroup1(ActionEvent e) {
+	public void manageGroup1() {
 		if(this.question1.getSelectedToggle().equals(this.quest1a)) {
 			this.questAnsw[0] = 2;
 		}
@@ -83,7 +83,7 @@ public class GraphicControllerInterestForm extends Window{
 		}
 	}
 		
-	public void manageGroup2(ActionEvent e) {
+	public void manageGroup2() {
 		if(this.question2.getSelectedToggle().equals(this.quest2a)) {
 			this.questAnsw[1] = 4;
 		}
@@ -98,7 +98,7 @@ public class GraphicControllerInterestForm extends Window{
 		}
 	}
 	
-	public void manageGroup3(ActionEvent e) {
+	public void manageGroup3() {
 		if(this.question3.getSelectedToggle().equals(this.quest3a)) {
 			this.questAnsw[2] = 1;
 		}
@@ -113,7 +113,7 @@ public class GraphicControllerInterestForm extends Window{
 		}
 	}
 	
-	public void manageGroup4(ActionEvent e) {
+	public void manageGroup4() {
 		if(this.question4.getSelectedToggle().equals(this.quest4a)) {
 			this.questAnsw[3] = 2;
 		}

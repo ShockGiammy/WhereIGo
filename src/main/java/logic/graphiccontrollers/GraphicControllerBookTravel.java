@@ -1,6 +1,7 @@
 package logic.graphiccontrollers;
-import java.awt.image.BufferedImage;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,19 +14,15 @@ import logic.beans.LocationBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
-import logic.dao.LocationDao;
 import logic.view.Window;
 import javafx.scene.control.TextField;
-import logic.ImageViewer;
 
 public class GraphicControllerBookTravel extends Window{
 	private UserTravelBean travBean;
 	private BookTravelControl bookTravCtrl;
-	private GroupBean grpBean[];
+	private GroupBean[] grpBean;
 	private LoggedUser logUsr;
 	private LocationBean locBean;
-	private LocationDao locDao;
-	private GraphicControllerLocationInfo locInfoCtrl;
 	@FXML private DatePicker firstDay;
 	@FXML private DatePicker lastDay;
 	@FXML private TextField moneyRange;
@@ -56,7 +53,6 @@ public class GraphicControllerBookTravel extends Window{
 		this.grpBean[1] = new GroupBean();
 		logUsr = LoggedUser.getIstance(null);
 		this.locBean = new LocationBean();
-		//this.locInfoCtrl = new GraphicControllerLocationInfo();
 	}
 	
 	public void initialize() {
@@ -87,11 +83,11 @@ public class GraphicControllerBookTravel extends Window{
 	}
 	
 	public void setLocation() {
-		String suggLoc[] = new String[3];
-		suggLoc = bookTravCtrl.showLocationsControl();
-		this.location1.setText(suggLoc[0]);
-		this.location2.setText(suggLoc[1]);
-		this.location3.setText(suggLoc[2]);
+		List<String> suggLoc = new ArrayList<>();
+		suggLoc.addAll(bookTravCtrl.showLocationsControl());
+		this.location1.setText(suggLoc.get(0));
+		this.location2.setText(suggLoc.get(1));
+		this.location3.setText(suggLoc.get(2));
 	}
 	
 	public void getFirstDay() {
@@ -120,6 +116,17 @@ public class GraphicControllerBookTravel extends Window{
 	public void showMoreInfo2(MouseEvent e) {
 		this.locBean.setCityName(this.location2.getText());
 		this.bookTravCtrl.retriveLocInfoControl(this.locBean);
+		setScene("LocationInfo.fxml");
+		loadScene();
+		setLocationInfo(e, this.locBean);
+	}
+	
+	public void showMoreInfo3(MouseEvent e) {
+		this.locBean.setCityName(this.location3.getText());
+		this.bookTravCtrl.retriveLocInfoControl(this.locBean);
+		setScene("LocationInfo.fxml");
+		loadScene();
+		setLocationInfo(e, this.locBean);
 	}
 	
 	public void backHome(MouseEvent e) {

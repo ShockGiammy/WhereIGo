@@ -10,7 +10,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
 import logic.view.Window;
@@ -31,7 +30,6 @@ public class GraphicControllerRegistration extends Window{
 	private UserDataBean dataBean;
 	private DateTimeFormatter formatter;
 	private LoginController loginCtrl;
-	private int ret;
 	
 	@FXML
 	public void initialize(){

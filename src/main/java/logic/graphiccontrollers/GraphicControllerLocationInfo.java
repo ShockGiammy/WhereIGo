@@ -16,12 +16,12 @@ public class GraphicControllerLocationInfo extends Window{
 	@FXML private Text cityName;
 	@FXML private Text cityCountry;
 	@FXML private Text description;
-	private BufferedImage bufImage;
 	@FXML private ImageView locImm;
 	@FXML private Button backButton;
 	
 	/* load all the GUI, maybe exlpoded in 3 methods*/
 	public void setInfo(LocationBean bean) {
+		BufferedImage bufImage;
 		this.imageView = new ImageViewer();
 		bufImage = imageView.loadImage(bean);
 		locImm.setImage(imageView.convertToFxImage(bufImage));

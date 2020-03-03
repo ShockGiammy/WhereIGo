@@ -1,5 +1,8 @@
 package logic.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import logic.LoggedUser;
 import logic.beans.GroupBean;
 import logic.beans.LocationBean;
@@ -23,15 +26,15 @@ public class BookTravelControl {
 		logUser = LoggedUser.getIstance(null);
 	}
 	
-	public String[] showLocationsControl() { /*Shall change this String[] into a location bean*/
-		String suggLoc[] = new String[3];
+	public List<String> showLocationsControl() { /*Shall change this String[] into a location bean*/
+		List<String> suggLoc = new ArrayList<>();
 		userBean.setPersonality(logUser.getUserPersonality());
 		userBean.setUserName(logUser.getUserName());
-		suggLoc = this.usrDao.getLocations(userBean);
+		suggLoc.addAll(this.usrDao.getLocations(userBean));
 		return suggLoc;
 	}
 	
-	public void getGroupsControl(GroupBean grpBean[]) {
+	public void getGroupsControl(GroupBean[] grpBean) {
 		this.logUser.getUserPersonality(this.userBean);
 		grpModel.getGroups(grpBean, this.userBean);
 	}

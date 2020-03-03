@@ -11,7 +11,7 @@ import logic.model.AccomodationModel;
 
 public class AccomodationCreator extends GeneralConnection{
 	
-	protected Logger logger = Logger.getLogger(UserDao.class.getName());
+	protected Logger logger = Logger.getLogger("WIG");
 
 	public AccomodationModel createAccomodation(RentAccomodationBean info) {
 		getConnection();
