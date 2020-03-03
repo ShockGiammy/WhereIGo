@@ -15,8 +15,8 @@ addons:
   sonarcloud:
     organization: "shockgiammy"
     token:
-      secure: travis encrypt ${SONAR_TOKEN}
+      secure: "017999dd6e9ed694a63e7338bc2c963c496dc1b1"
 
 script:
 
-- mvn clean javafx:compile sonar:sonar -Pcoverage -Dsonar.projectKey=ShockGiammy_WhereIGo -Dsonar.login=${SONAR_TOKEN}
+- mvn clean javafx:compile sonar:sonar -Pcoverage -Dsonar.projectKey=ShockGiammy_WhereIGo -Dsonar.login="017999dd6e9ed694a63e7338bc2c963c496dc1b1"
