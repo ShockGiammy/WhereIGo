@@ -2,13 +2,19 @@ package logic;
 
 import java.io.*;
 import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import logic.dao.UserDao;
+import logic.model.SingleChat;
 
 public class ReadThread extends Thread {
     private BufferedReader reader;
     private Socket socket;
-    private ChatClient client;
+    private SingleChat client;
+    protected Logger logger = Logger.getLogger(UserDao.class.getName());
  
-    public ReadThread(Socket socket, ChatClient client) {
+    public ReadThread(Socket socket, SingleChat client) {
         this.socket = socket;
         this.client = client;
  
@@ -16,7 +22,7 @@ public class ReadThread extends Thread {
             InputStream input = socket.getInputStream();
             reader = new BufferedReader(new InputStreamReader(input));
         } catch (IOException ex) {
-            System.out.println("Error getting input stream: " + ex.getMessage());
+        	logger.log(Level.SEVERE, "Error getting input stream: " + ex.getMessage());
             ex.printStackTrace();
         }
     }
@@ -25,14 +31,9 @@ public class ReadThread extends Thread {
         while (true) {
             try {
                 String response = reader.readLine();
-                System.out.println("\n" + response);
- 
-                // prints the username after displaying the server's message
-                if (client.getUserName() != null) {
-                    System.out.print("[" + client.getUserName() + "]: ");
-                }
+                System.out.println(response);
             } catch (IOException ex) {
-                System.out.println("Error reading from server: " + ex.getMessage());
+            	logger.log(Level.SEVERE, "Error reading from server: " + ex.getMessage());
                 ex.printStackTrace();
                 break;
             }

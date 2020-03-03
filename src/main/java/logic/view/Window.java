@@ -75,14 +75,20 @@ public class Window extends Application{
 	}
 	
 	 
-    public void goHome(@SuppressWarnings("exports") MouseEvent event) {
+    public void goHome(MouseEvent event) {
     	setScene("HomePage.fxml");
     	loadScene();
     	nextGuiOnClick(event);
     }
     
-    public void goRent(@SuppressWarnings("exports") MouseEvent event) {
+    public void goRent(MouseEvent event) {
     	setScene("RentAccomodation.fxml");
+    	loadScene();
+    	nextGuiOnClick(event);
+    }
+    
+    public void goChat(MouseEvent event) {
+    	setScene("ChatTraveller.fxml");
     	loadScene();
     	nextGuiOnClick(event);
     }

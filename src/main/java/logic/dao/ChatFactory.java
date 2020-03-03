@@ -13,7 +13,7 @@ public class ChatFactory {
 		Chat retval = null;
 		switch(type) {
 			case 1:
-				retval = new SingleChat();
+				retval = new SingleChat(null, type);
 				break;
 			case 2:
 				retval = new MultipleChat();

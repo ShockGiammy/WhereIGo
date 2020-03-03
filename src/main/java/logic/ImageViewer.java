@@ -81,4 +81,5 @@ public class ImageViewer {
 		return bImage;
 	}
 	
+	//join into one method and pass it only a bean of a bean (only the image)
 }

@@ -214,7 +214,6 @@ public class GraphicControlRentAccomodation extends Window{
 		kitchen.setDisable(true);
 	}
 	
-	@SuppressWarnings("exports")
 	public void contactRenter(MouseEvent event) {
 		setScene("ChatTraveller.fxml");
 		loadScene();
