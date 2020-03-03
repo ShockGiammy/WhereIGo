@@ -112,10 +112,9 @@ public class GraphicControllerBookTravel extends Window{
 	public void showMoreInfo1(MouseEvent e) {
 		this.locBean.setCityName(this.location1.getText());
 		this.bookTravCtrl.retriveLocInfoControl(this.locBean);
-		//this.locInfoCtrl.(this.locBean);
 		setScene("LocationInfo.fxml");
 		loadScene();
-		nextGuiOnClick(e);
+		setLocationInfo(e, this.locBean);
 	}
 	
 	public void showMoreInfo2(MouseEvent e) {

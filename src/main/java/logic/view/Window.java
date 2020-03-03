@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import logic.beans.LocationBean;
 import logic.beans.UserDataBean;
 import logic.graphiccontrollers.*;
 import javafx.scene.Node;
@@ -42,6 +43,12 @@ public class Window extends Application{
 	public void setUserNick(MouseEvent e, UserDataBean dataBean) {
 		GraphicControllerHomePage controller = loader.getController();
 		controller.setNick(dataBean);
+		nextGuiOnClick(e);
+	}
+	
+	public void setLocationInfo(MouseEvent e, LocationBean bean) {
+		GraphicControllerLocationInfo controller = loader.getController();
+		controller.setInfo(bean);
 		nextGuiOnClick(e);
 	}
 	

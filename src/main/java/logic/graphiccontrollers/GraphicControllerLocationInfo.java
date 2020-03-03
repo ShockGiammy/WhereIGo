@@ -2,6 +2,8 @@ package logic.graphiccontrollers;
 
 import java.awt.image.BufferedImage;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -10,20 +12,17 @@ import logic.beans.LocationBean;
 import logic.view.Window;
 
 public class GraphicControllerLocationInfo extends Window{
-	private ImageViewer imageView;
-	private Text cityName;
-	private Text cityCountry;
-	private Text description;
+	@FXML private ImageViewer imageView;
+	@FXML private Text cityName;
+	@FXML private Text cityCountry;
+	@FXML private Text description;
 	private BufferedImage bufImage;
-	private ImageView locImm;
+	@FXML private ImageView locImm;
+	@FXML private Button backButton;
 	
 	/* load all the GUI, maybe exlpoded in 3 methods*/
-	public GraphicControllerLocationInfo(LocationBean bean) {
+	public void setInfo(LocationBean bean) {
 		this.imageView = new ImageViewer();
-		this.locImm = new ImageView();
-		this.cityName = new Text();
-		this.cityCountry = new Text();
-		this.description = new Text();
 		bufImage = imageView.loadImage(bean);
 		locImm.setImage(imageView.convertToFxImage(bufImage));
 		this.cityName.setText(bean.getCityName());
@@ -32,7 +31,7 @@ public class GraphicControllerLocationInfo extends Window{
 	}
 	
 	public void backTrav(MouseEvent e) {
-		setScene("HomePage.fxml");
+		setScene("BookTravel.fxml");
 		loadScene();
 		nextGuiOnClick(e);
 	}
