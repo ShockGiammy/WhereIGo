@@ -16,6 +16,7 @@ public class GraphicControllerHomePage extends Window{
 	@FXML private Button moreInfo;
 	@FXML private ImageView rentAnnPost;
 	@FXML private Button takeTest;
+	@FXML private Button lOut;
 	
 	public void bookTravelControl(MouseEvent event) {
 		setScene("BookTravel.fxml");
@@ -46,6 +47,12 @@ public class GraphicControllerHomePage extends Window{
 	/*set the datas of the user before the UI is loaded*/
 	public void setNick(UserDataBean dataBean){
 		this.username.setText(dataBean.getUsername());
+	}
+	
+	public void logOut(MouseEvent e){
+		setScene("Login.fxml");
+		loadScene();
+		nextGuiOnClick(e);
 	}
 }
 

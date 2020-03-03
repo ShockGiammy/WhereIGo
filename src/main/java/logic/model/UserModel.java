@@ -43,6 +43,10 @@ public class UserModel {
 		dataBean.setPersonality(this.personality);
 	}
 	
+	public void setUserName(String userName) {
+		this.username = userName;
+	}
+	
 	public String getUserName() {
 		return this.username;
 	}

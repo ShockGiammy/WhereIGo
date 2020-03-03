@@ -1,7 +1,7 @@
 dist: trusty
 language: java
 jdk:
-- openjdk13
+- openjdk11
 
 before_install:
   - wget http://apache.mirror.gtcomm.net/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
@@ -15,8 +15,8 @@ addons:
   sonarcloud:
     organization: "shockgiammy"
     token:
-      secure: "017999dd6e9ed694a63e7338bc2c963c496dc1b1"
+      secure: ${SONAR_TOKEN}
 
 script:
 
-- mvn clean javafx:compile sonar:sonar -Pcoverage -Dsonar.projectKey=ShockGiammy_WhereIGo -Dsonar.login="017999dd6e9ed694a63e7338bc2c963c496dc1b1"
+- mvn clean javafx:compile sonar:sonar -Pcoverage -Dsonar.projectKey=ShockGiammy_WhereIGo -Dsonar.login=${SONAR_TOKEN}
