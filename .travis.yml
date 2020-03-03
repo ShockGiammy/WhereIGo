@@ -19,4 +19,4 @@ addons:
 
 script:
 
-- mvn clean javafx:compile sonar:sonar -Pcoverage -Dsonar.projectKey=ShockGiammy_WhereIGo -Dsonar.login="4a9ef5734dac7d489d3fd8c8c7870c050a49ba03"
+- mvn clean javafx:compile sonar:sonar -Pcoverage -Dsonar.projectKey=ShockGiammy_WhereIGo -Dsonar.login="017999dd6e9ed694a63e7338bc2c963c496dc1b1"
