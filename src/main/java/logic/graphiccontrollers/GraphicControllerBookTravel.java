@@ -52,7 +52,7 @@ public class GraphicControllerBookTravel extends Window{
 		this.grpBean = new GroupBean[2];
 		this.grpBean[0] = new GroupBean();
 		this.grpBean[1] = new GroupBean();
-		logUsr = LoggedUser.getIstance(null);
+		logUsr = new LoggedUser();
 		this.locBean = new LocationBean();
 	}
 	
@@ -84,7 +84,6 @@ public class GraphicControllerBookTravel extends Window{
 	}
 	
 	public void setLocation() {
-		System.out.println(logUsr.getUserPersonality());
 		List<String> suggLoc = new ArrayList<>();
 		suggLoc.addAll(bookTravCtrl.showLocationsControl());
 		this.location1.setText(suggLoc.get(0));

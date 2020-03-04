@@ -23,19 +23,19 @@ public class BookTravelControl {
 		this.grpModel = new GroupModel();
 		this.usrDao = new UserDao();
 		this.locDao = new LocationDao();
-		logUser = LoggedUser.getIstance(null);
+		this.logUser = new LoggedUser();
 	}
 	
 	public List<String> showLocationsControl() { /*Shall change this String[] into a location bean*/
 		List<String> suggLoc = new ArrayList<>();
-		userBean.setPersonality(logUser.getUserPersonality());
+		userBean.setPersonality(logUser.getPersonality());
 		userBean.setUserName(logUser.getUserName());
 		suggLoc.addAll(this.usrDao.getLocations(userBean));
 		return suggLoc;
 	}
 	
 	public void getGroupsControl(GroupBean[] grpBean) {
-		this.logUser.getUserPersonality(this.userBean);
+		this.logUser.getPersonality();
 		grpModel.getGroups(grpBean, this.userBean);
 	}
 	

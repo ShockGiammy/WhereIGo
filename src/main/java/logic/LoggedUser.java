@@ -1,21 +1,31 @@
 package logic;
 
-import logic.model.UserModel;
-
-/*This singleton class keeps the two fundamentals user datas, so that each class 
- always knows which is the logged user*/
-
-public class LoggedUser extends UserModel{
-	private static LoggedUser loggedIstance = null;
+public class LoggedUser {
+	private static String username;
+	private static String personality;
+	private static String typeOfUser;
 	
-	protected LoggedUser(String userName) {
-		username = userName;
+	public static void setUserName(String usrName) {
+		username = usrName;
 	}
 	
-	public static synchronized LoggedUser getIstance(String username) {
-		if(LoggedUser.loggedIstance == null){
-			LoggedUser.loggedIstance = new LoggedUser(username);
-		}
-		return LoggedUser.loggedIstance;
+	public static void setPersonality(String pers) {
+		personality = pers;
+	}
+	
+	public static void setType(String type) {
+		typeOfUser = type;
+	}
+	
+	public String getUserName() {
+		return username;
+	}
+	
+	public String getPersonality() {
+		return personality;
+	}
+	
+	public String getUserType() {
+		return typeOfUser;
 	}
 }

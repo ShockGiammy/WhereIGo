@@ -16,7 +16,6 @@ public class GraphicControllerHomePage extends Window{
 	@FXML private Button moreInfo;
 	@FXML private ImageView rentAnnPost;
 	@FXML private Button takeTest;
-	@FXML private Button lOut;
 	
 	public void bookTravelControl(MouseEvent event) {
 		setScene("BookTravel.fxml");
@@ -31,8 +30,8 @@ public class GraphicControllerHomePage extends Window{
 	}
 	
 	public void postRentAnnouncementControl(MouseEvent event) {
-		LoggedUser logged = LoggedUser.getIstance(null);
-		if (logged.getUserType().equals("Renter")) {
+		LoggedUser logUser = new LoggedUser();
+		if (logUser.getUserType().equals("Renter")) {
 			setScene("InfoAccomodation.fxml");
 			loadScene();
 			nextGuiOnClick(event);

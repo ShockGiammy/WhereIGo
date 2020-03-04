@@ -32,7 +32,6 @@ public class GraphicControllerRegistration extends Window{
 	private UserDataBean dataBean;
 	private DateTimeFormatter formatter;
 	private LoginController loginCtrl;
-	private LoggedUser logUsr;
 	private ErrorLogin errLogin;
 	
 	@FXML
@@ -81,8 +80,6 @@ public class GraphicControllerRegistration extends Window{
 			this.errLogin.displayLoginError("Inserire tutti i dati");
 		}
 		else {
-			logUsr = LoggedUser.getIstance(dataBean.getUsername());
-			logUsr.setUserDatas(dataBean);
 			setScene("HomePage.fxml");
 			loadScene();
 			setUserNick(event, this.dataBean);

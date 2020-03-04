@@ -1,10 +1,8 @@
 package logic.controllers;
-
-import logic.LoggedUser;
-import logic.beans.LogInBean;
-import logic.beans.UserDataBean;
 import logic.dao.UserDao;
-
+import logic.beans.UserDataBean;
+import logic.beans.LogInBean;
+import logic.LoggedUser;
 
 public class LoginController {
 	private UserDao usrDao;
@@ -17,7 +15,11 @@ public class LoginController {
 		int ret;
 		ret = this.usrDao.checkLogInInfo(logBean, usrBean);
 		if(ret == 1) {
+			usrBean.setUserName(logBean.getUserName());
 			saveLoggedUser(usrBean);
+			LoggedUser.setUserName(usrBean.getUsername());
+			LoggedUser.setPersonality(usrBean.getPersonality());
+			LoggedUser.setType(usrBean.getType());
 		}
 		return ret;
 	}
@@ -27,6 +29,9 @@ public class LoginController {
 			return 0;
 		}
 		else {
+			LoggedUser.setUserName(usrBean.getUsername());
+			LoggedUser.setPersonality(usrBean.getPersonality());
+			LoggedUser.setType(usrBean.getType());
 			this.usrDao.insertNewUser(usrBean);
 			saveLoggedUser(usrBean);
 			return 1;
@@ -34,7 +39,9 @@ public class LoginController {
 	}
 	
 	public void saveLoggedUser(UserDataBean usrBean) {
-		LoggedUser logUsr = LoggedUser.getIstance(usrBean.getUsername());
-		logUsr.setUserDatas(usrBean);
+		LoggedUser.setUserName(usrBean.getUsername());
+		if(usrBean.getPersonality() != null) {
+			LoggedUser.setPersonality(usrBean.getPersonality());
+		}
 	}
 }

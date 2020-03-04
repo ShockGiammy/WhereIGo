@@ -1,6 +1,6 @@
 package logic.graphiccontrollers;
 
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -44,7 +44,7 @@ public class GraphicControllerInterestForm extends Window{
 		this.questAnsw = new int[4];
 		this.intBean = new InterestsBean();
 		this.interCtrl = new InterestsController();
-		this.logUser = LoggedUser.getIstance(null);
+		this.logUser = new LoggedUser();
 		this.dataBean = new UserDataBean();
 		question1 = new ToggleGroup();
 		question2 = new ToggleGroup();

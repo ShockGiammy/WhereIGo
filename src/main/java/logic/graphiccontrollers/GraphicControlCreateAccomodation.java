@@ -42,6 +42,7 @@ public class GraphicControlCreateAccomodation extends Window{
 	@FXML private ImageView imageView;
 	@FXML private Button openButton;
 	@FXML private ImageView home;
+	LoggedUser logUser;
 	
 	@FXML
 	private void initialize() {
@@ -55,6 +56,7 @@ public class GraphicControlCreateAccomodation extends Window{
 		wifi.setSelected(false);
 		bathroom.setSelected(false);
 		kitchen.setSelected(false);
+		this.logUser = new LoggedUser();
 	}
 	
 	private RentAccomodationBean bean;
@@ -105,7 +107,7 @@ public class GraphicControlCreateAccomodation extends Window{
 		bean.setHouseImage(houseImage);
 		bean.setSquareMetres(squareMetres.getValue());
 		bean.setType(type.getValue());
-		bean.setRenter(LoggedUser.getIstance(null).getUserName());
+		bean.setRenter(logUser.getUserName());
 		control.createAccomodation(bean);
 		goHome(event);
 	}

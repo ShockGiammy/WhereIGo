@@ -61,11 +61,6 @@
                         <Image url="@16363.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="lOut" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@exit.png" />
-                     </image>
-                  </ImageView>
                </items>
             </ToolBar>
             <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
