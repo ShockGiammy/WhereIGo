@@ -50,6 +50,22 @@ create table Post
     primary key(ID, utente)
 );
 
+create table DBChat
+(
+	ID int auto_increment primary key,
+	sender VARCHAR(20)
+			references Usr(username),
+	receiver VARCHAR(20)
+			references Usr(username),
+	message VARCHAR(1000)
+);
+
+insert into DBChat(ID, sender, receiver, message)
+values ("0","ciao", "ciao2", "come stai");
+
+insert into Post(ID,  photo, utente, descr, beds, city, address, services, squareMetres, tipologia, tipeOfPost)
+values(1, null, "ciao2", "desc", "4", "cave", "mia via", null, "< 20", "appartamento", null);
+
 insert into Locations(country,city,tipeOfPersonality)
 values ("Zanzibar","Tanzania", "Curious");
 

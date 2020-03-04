@@ -24,7 +24,7 @@
       </Text>
       <AnchorPane layoutY="3.0" prefHeight="100.0" prefWidth="779.0">
          <children>
-            <ToolBar layoutX="342.0" layoutY="15.0" prefHeight="70.0" prefWidth="491.0" style="-fx-background-color: white;">
+            <ToolBar layoutX="330.0" layoutY="15.0" prefHeight="70.0" prefWidth="515.0" style="-fx-background-color: white;">
                <items>
                   <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>

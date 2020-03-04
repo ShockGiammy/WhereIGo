@@ -13,10 +13,11 @@ import java.util.logging.Logger;
 
 import logic.LoggedUser;
 import logic.ReadThread;
+import logic.controllers.ChatController;
 import logic.dao.UserDao;
 import logic.graphiccontrollers.GraphicControllerChat;
 
-public class SingleChat implements Chat{
+public abstract class SingleChat implements ChatController{
 	private String hostname;
 	private int port;
 	private String userName;
@@ -76,10 +77,6 @@ public class SingleChat implements Chat{
 	}
 
 	@Override
-	public void saveGraphic(GraphicControllerChat chat) {
-		this.reference = chat;
-	}
-	@Override
 	public void openChat() {
 		// TODO Auto-generated method stub
 		
@@ -94,11 +91,6 @@ public class SingleChat implements Chat{
 	@Override
 	public void acceptChat() {
 		// TODO Auto-generated method stub
-		
-	}
-
-	public void display(String text) {
-		reference.display(text);
 		
 	}
 

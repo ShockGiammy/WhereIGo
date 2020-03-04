@@ -1290,13 +1290,30 @@
 											"height": 13,
 											"text": "+notificate_message(chat)",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAFwpfoXOThMzM8=",
+											"_parent": {
+												"$ref": "AAAAAAFvtHnpp3MV4rw="
+											},
+											"model": {
+												"$ref": "AAAAAAFwpfoXFzhJ7bM="
+											},
+											"font": "Arial;13;0",
+											"left": 573,
+											"top": 1058,
+											"width": 207,
+											"height": 13,
+											"text": "+getMessages(): Chat",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 568,
 									"top": 1008,
 									"width": 217,
-									"height": 53
+									"height": 68
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -1503,7 +1520,7 @@
 											"top": 1025,
 											"width": 247,
 											"height": 13,
-											"text": "+messages",
+											"text": "+messagesSent",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1539,13 +1556,30 @@
 											"height": 13,
 											"text": "+socketRenter",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFwpftOAzx4Xis=",
+											"_parent": {
+												"$ref": "AAAAAAFvtH1gunNHRj4="
+											},
+											"model": {
+												"$ref": "AAAAAAFwpftN9Dx1acM="
+											},
+											"font": "Arial;13;0",
+											"left": 1021,
+											"top": 1070,
+											"width": 247,
+											"height": 13,
+											"text": "+messagesReceived",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1016,
 									"top": 990,
 									"width": 257,
-									"height": 83
+									"height": 98
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1556,30 +1590,11 @@
 									"model": {
 										"$ref": "AAAAAAFvtH1gunM/tX0="
 									},
-									"subViews": [
-										{
-											"_type": "UMLOperationView",
-											"_id": "AAAAAAFv+2VIylWJaAM=",
-											"_parent": {
-												"$ref": "AAAAAAFvtH1gu3NIoUc="
-											},
-											"model": {
-												"$ref": "AAAAAAFv+2VIUFWGG+Q="
-											},
-											"font": "Arial;13;0",
-											"left": 1021,
-											"top": 1078,
-											"width": 247,
-											"height": 13,
-											"text": "+searchKeyWord(word)",
-											"horizontalAlignment": 0
-										}
-									],
 									"font": "Arial;13;0",
 									"left": 1016,
-									"top": 1073,
+									"top": 1088,
 									"width": 257,
-									"height": 23
+									"height": 10
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -9527,6 +9542,27 @@
 									"type": ""
 								}
 							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAFwpfoXFzhJ7bM=",
+							"_parent": {
+								"$ref": "AAAAAAFvtHnppnMMFBw="
+							},
+							"name": "getMessages",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFwpfrWNTrCYRA=",
+									"_parent": {
+										"$ref": "AAAAAAFwpfoXFzhJ7bM="
+									},
+									"type": {
+										"$ref": "AAAAAAFvtH1gunM/tX0="
+									},
+									"direction": "return"
+								}
+							]
 						}
 					]
 				},
@@ -9592,8 +9628,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFvtH1gunM/tX0="
 							},
-							"name": "messages",
-							"type": ""
+							"name": "messagesSent"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -9612,27 +9647,14 @@
 							},
 							"name": "socketRenter",
 							"type": ""
-						}
-					],
-					"operations": [
+						},
 						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFv+2VIUFWGG+Q=",
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFwpftN9Dx1acM=",
 							"_parent": {
 								"$ref": "AAAAAAFvtH1gunM/tX0="
 							},
-							"name": "searchKeyWord",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFv+2WP+1auqJk=",
-									"_parent": {
-										"$ref": "AAAAAAFv+2VIUFWGG+Q="
-									},
-									"name": "word",
-									"type": ""
-								}
-							]
+							"name": "messagesReceived"
 						}
 					]
 				},

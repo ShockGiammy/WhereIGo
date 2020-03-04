@@ -193,18 +193,20 @@ public class GraphicControlRentAccomodation extends Window{
 		bathroom.setVisible(true);
 		kitchen.setVisible(true);
 		byte[] list = bean.getServices();
-		for (int i = 0; i <= 3; i++) {
-			if (list[0] == 1) {
-				garden.setSelected(true);
-			}
-			if (list[1] == 1) {
-				wifi.setSelected(true);
-			}
-			if (list[2] == 1) {
-				bathroom.setSelected(true);
-			}
-			if (list[3] == 1) {
-				kitchen.setSelected(true);
+		if (bean.getServices() != null) {
+			for (int i = 0; i <= 3; i++) {
+				if (list[0] == 1) {
+					garden.setSelected(true);
+				}
+				if (list[1] == 1) {
+					wifi.setSelected(true);
+				}
+				if (list[2] == 1) {
+					bathroom.setSelected(true);
+				}
+				if (list[3] == 1) {
+					kitchen.setSelected(true);
+				}
 			}
 		}
 		contactRenter.setVisible(true);

@@ -1,14 +1,16 @@
 package logic.model;
 
-import logic.graphiccontrollers.GraphicControllerChat;
+import java.util.ArrayList;
 
-public interface Chat {
+public class Chat {
 
-	public void createChat(String type);
-	public void openChat();
-	public void execute();
-	public void notificateMessage();
-	public void acceptChat();
-	public void sendMessage(String message);
-	public void saveGraphic(GraphicControllerChat graphicControllerChat);
+	private ArrayList<String> messages;
+	
+	public void setMessages(ArrayList<String> messageDao) {
+		this.messages = messageDao;
+	}
+	
+	public String getMessages() {
+		return messages.get(0);
+	}
 }
