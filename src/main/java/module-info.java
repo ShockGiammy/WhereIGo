@@ -14,6 +14,7 @@ module WhereIGo {
 	requires transitive javafx.graphics;
 	requires mysql.connector.java;
 	requires java.desktop;
+	requires javafx.media;
 	
 	opens logic;
 	opens logic.graphiccontrollers;

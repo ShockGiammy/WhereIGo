@@ -16,7 +16,7 @@ public class ChatFactory {
 				//retval = new SingleChat(null, type);
 				break;
 			case 2:
-				retval = new DBChatController();
+				retval = new DBChatController(null);
 				break;
 		}
 		return retval;

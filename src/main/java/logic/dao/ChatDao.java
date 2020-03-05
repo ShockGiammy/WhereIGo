@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.messages.Message;
+
 import logic.beans.RentAccomodationBean;
 import logic.model.AccomodationModel;
 import logic.model.Chat;
@@ -15,28 +17,20 @@ public class ChatDao extends GeneralConnection{
 		
 	protected Logger logger = Logger.getLogger("WIG");
 
-	public AccomodationModel createAccomodation(RentAccomodationBean info) {
-			getConnection();
-			try {
-				PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Post(ID,photo,utente,descr,beds,city,address,services,squareMetres,tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");    
-				statement.setInt(1, info.getID());
-				statement.setBinaryStream(2,info.getInputFile(), info.getFileLength());		//image
-				statement.setString(3,info.getRenter()); 				//user
-				statement.setString(4,info.getDescription()); 			//description
-				statement.setString(5,info.getBeds());					//beds
-				statement.setString(6,info.getCity());					//city
-				statement.setString(7,info.getAddress());				//address
-				statement.setBytes(8,info.getServices());				//services
-				statement.setString(9,info.getSquareMetres());			//squareMetres
-				statement.setString(10,info.getType());					//type
-				statement.execute();
-			}
-			catch (SQLException e) {
-				logger.log(Level.SEVERE, "Got an exception!");
-				logger.log(Level.SEVERE, e.getMessage());
-			}
-			return new AccomodationModel(info);
+	public void saveMessage(Message msg) {
+		getConnection();
+		try {
+			PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO DBChat (sender, receiver, message) VALUES (?, ?, ?)");   
+			statement.setString(1, msg.getName());
+			statement.setString(2,  "pippo");
+			statement.setString(3, msg.getMsg());
+			statement.execute();
 		}
+		catch (SQLException e) {
+			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+	}
 
 		public Chat queryDB(String sender, String receiver) {
 			int fetched = 0;

@@ -217,7 +217,7 @@ public class GraphicControlRentAccomodation extends Window{
 	}
 	
 	public void contactRenter(MouseEvent event) {
-		setScene("ChatTraveller.fxml");
+		setScene("ChatView.fxml");
 		loadScene();
 		nextGuiOnClick(event);
 	}
