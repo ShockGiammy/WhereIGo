@@ -60,6 +60,16 @@ create table DBChat
 	message VARCHAR(1000)
 );
 
+create table Tickets
+(
+	ID int primary key AUTO_INCREMENT,
+	depCity VARCHAR(50),
+    arrCity VARCHAR(50),
+	dateOfDep date,
+    dateOfArr date,
+    cost float
+);
+
 insert into DBChat(ID, sender, receiver, message)
 values ("0","ciao", "ciao2", "come stai");
 
@@ -162,7 +172,8 @@ values(001, "Amsterdam", "shockGiammy", "Amsterdam Museums (I swear)");
 insert into travelgroups(groupID, travCity, groupOwner, title)
 values(002, "San Francisco", "adrianRob", "Trip to the USA");
 
-
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
+values (001, "Roma" , "Berlino", "2020-03-20", "2020-03-22", 450.15);
 
 
     

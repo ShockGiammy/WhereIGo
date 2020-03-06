@@ -16,6 +16,7 @@ public class GraphicControllerHomePage extends Window{
 	@FXML private Button moreInfo;
 	@FXML private ImageView rentAnnPost;
 	@FXML private Button takeTest;
+	@FXML private Button exitButton;
 	
 	public void bookTravelControl(MouseEvent event) {
 		setScene("BookTravel.fxml");

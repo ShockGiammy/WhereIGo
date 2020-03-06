@@ -1,6 +1,9 @@
 package logic.graphiccontrollers;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -13,6 +16,7 @@ import logic.controllers.InterestsController;
 import logic.view.Window;
 
 public class GraphicControllerInterestForm extends Window{
+	@FXML private List<RadioButton> tbList;
 	@FXML private RadioButton quest1a;
 	@FXML private RadioButton quest1b;
 	@FXML private RadioButton quest1c;

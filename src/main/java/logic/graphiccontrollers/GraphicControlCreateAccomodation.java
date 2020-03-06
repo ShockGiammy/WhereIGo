@@ -17,7 +17,7 @@ import javafx.stage.FileChooser;
 import logic.LoggedUser;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.PostAnAnnouncementController;
-import logic.view.ErrorLogin;
+import logic.view.ErrorPopup;
 import logic.view.Window;
 
 public class GraphicControlCreateAccomodation extends Window{
@@ -101,7 +101,7 @@ public class GraphicControlCreateAccomodation extends Window{
 		bean.setAddress(address.getText());
 		bean.setDescription(description.getText());
 		if (houseImage == null) {
-        	ErrorLogin error = new ErrorLogin();
+        	ErrorPopup error = new ErrorPopup();
         	error.displayLoginError("immagine non inserita");
         }
 		bean.setHouseImage(houseImage);

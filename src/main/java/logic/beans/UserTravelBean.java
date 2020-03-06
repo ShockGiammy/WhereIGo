@@ -1,32 +1,51 @@
 package logic.beans;
 
+import java.time.LocalDate;
 
 public class UserTravelBean {
-	private String firstDay;
-	private String lastDay;
-	private String moneyRange;
+	private LocalDate firstDay;
+	private LocalDate lastDay;
+	private String cityOfDep;
+	private String cityOfArr;
+	private float cost;
 	
-	public void setFirstDay(String firstDay) {
+	public void setFirstDay(LocalDate firstDay) {
 		this.firstDay = firstDay;
 	}
 	
-	public void setLastDay(String lastDay) {
+	public void setLastDay(LocalDate lastDay) {
 		this.lastDay = lastDay;
 	}
 	
-	public void setMoneyRange(String moneyRange) {
-		this.moneyRange = moneyRange;
+	public void setDepCity(String depCity) {
+		this.cityOfDep = depCity;
 	}
 	
-	public String getFirstDay() {
+	public void setArrCity(String arrCity) {
+		this.cityOfArr = arrCity;
+	}
+	
+	public void setCost(float money) {
+		this.cost = money;
+	}
+	
+	public LocalDate getFirstDay() {
 		return this.firstDay;
 	}
 	
-	public String getLastDay() {
+	public LocalDate getLastDay() {
 		return this.lastDay;
 	}
 	
-	public String getMoneyRange(){
-		return this.moneyRange;
+	public String getCityOfDep(){
+		return this.cityOfDep;
+	}
+	
+	public String getCityOfArr() {
+		return this.cityOfArr;
+	}
+	
+	public float getCost() {
+		return this.cost;
 	}
 }

@@ -1,5 +1,4 @@
 package logic.graphiccontrollers;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import logic.beans.LocationBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
+import logic.view.ErrorPopup;
 import logic.view.Window;
 import javafx.scene.control.TextField;
 
@@ -24,9 +24,12 @@ public class GraphicControllerBookTravel extends Window{
 	private LoggedUser logUsr;
 	private LocationBean locBean;
 	private String locInfo = "LocationInfo.fxml";
+	private List<UserTravelBean> travBeanArray;
+	private ErrorPopup popUp;
 	@FXML private DatePicker firstDay;
 	@FXML private DatePicker lastDay;
-	@FXML private TextField moneyRange;
+	@FXML private TextField departureCity;
+	@FXML private TextField arrivalCity;
 	@FXML private Text location1;
 	@FXML private Text location2;
 	@FXML private Text location3;
@@ -43,34 +46,38 @@ public class GraphicControllerBookTravel extends Window{
 	@FXML private Button moreInfo2;
 	@FXML private Button moreInfo3;
 	
-	private DateTimeFormatter formatter;
-	
-	public GraphicControllerBookTravel() {
-		this.travBean = new UserTravelBean();
-		bookTravCtrl = new BookTravelControl();
-		formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+	public void initialize() {
+		this.travBeanArray = new ArrayList<>();
 		this.grpBean = new GroupBean[2];
 		this.grpBean[0] = new GroupBean();
 		this.grpBean[1] = new GroupBean();
 		logUsr = new LoggedUser();
 		this.locBean = new LocationBean();
-	}
-	
-	public void initialize() {
 		this.travBean = new UserTravelBean();
 		this.bookTravCtrl = new BookTravelControl();
-		formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
 		this.grpBean = new GroupBean[2];
 		this.grpBean[0] = new GroupBean();
 		this.grpBean[1] = new GroupBean();
+		this.popUp = new ErrorPopup();
 		setLocation();
 		setGroups();
 	}
 	
 	public void bookMyTravelControl(MouseEvent event) {
-		setScene("DummyBookTravel.fxml");
-		loadScene();
-		nextGuiOnClick(event);
+		if(this.travBean.getFirstDay() == null || this.travBean.getLastDay() == null || this.travBean.getCityOfDep() == null || this.travBean.getCityOfArr() == null) {
+			this.popUp.displayLoginError("Please, insert all datas");
+			return;
+		}
+		int i;
+		i = this.bookTravCtrl.retriveTravelSolutions(travBean, travBeanArray);
+		if(i == -1) {
+			popUp.displayLoginError("No travel available at this moment for the requested cities/dates");
+		}
+		else {
+			setScene("TicketSolutions.fxml");
+			loadScene();
+			setTicketsDats(this.travBeanArray, event);
+		}
 	}
 
 	public void setGroups() {
@@ -92,18 +99,19 @@ public class GraphicControllerBookTravel extends Window{
 	}
 	
 	public void getFirstDay() {
-		String fDay = this.firstDay.getValue().format(formatter);
-		travBean.setFirstDay(fDay);
+		travBean.setFirstDay(this.firstDay.getValue());
 	}
 	
 	public void getLastDay() {
-		String lDay = this.lastDay.getValue().format(formatter);
-		travBean.setFirstDay(lDay);
+		travBean.setLastDay(this.lastDay.getValue());
 	}
 	
-	public void getMoneyRange() {
-		String mRange = this.moneyRange.getText();
-		travBean.setMoneyRange(mRange);
+	public void getArrivalCity() {
+		travBean.setArrCity(this.arrivalCity.getText());
+	}
+	
+	public void getDepartureCity() {
+		travBean.setDepCity(this.departureCity.getText());
 	}
 	
 	public void showMoreInfo1(MouseEvent e) {

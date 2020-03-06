@@ -1,5 +1,4 @@
 package logic.graphiccontrollers;
-
 import java.time.format.DateTimeFormatter;
 
 import javafx.collections.FXCollections;
@@ -10,10 +9,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
-import logic.view.ErrorLogin;
+import logic.view.ErrorPopup;
 import logic.view.Window;
 
 public class GraphicControllerRegistration extends Window{
@@ -32,7 +30,8 @@ public class GraphicControllerRegistration extends Window{
 	private UserDataBean dataBean;
 	private DateTimeFormatter formatter;
 	private LoginController loginCtrl;
-	private ErrorLogin errLogin;
+	private ErrorPopup errLogin;
+	private String today;
 	
 	@FXML
 	public void initialize(){
@@ -43,7 +42,8 @@ public class GraphicControllerRegistration extends Window{
 		this.typeOfUser.setItems(typeUsrList);
 		this.gender.setValue("Female");
 		this.typeOfUser.setValue("Traveler");
-		this.errLogin = new ErrorLogin();
+		this.errLogin = new ErrorPopup();
+		today = formatter.format(java.time.LocalDate.now()); /* needed to manage the dates, change the type to Date and not to String*/
 	}
 	
 	public void getName() {

@@ -8,7 +8,7 @@ import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
 import logic.view.Window;
 import javafx.fxml.FXML;
-import logic.view.ErrorLogin;
+import logic.view.ErrorPopup;
 
 
 public class GraphicControllerLogIn extends Window{
@@ -19,13 +19,13 @@ public class GraphicControllerLogIn extends Window{
 	private LogInBean logBean;
 	private UserDataBean usrBean;
 	private LoginController loginCtrl;
-	private ErrorLogin errLogin;
+	private ErrorPopup errLogin;
 	
 	public GraphicControllerLogIn() {
 		this.logBean = new LogInBean();
 		this.loginCtrl = new LoginController();
 		this.usrBean = new UserDataBean();
-		this.errLogin = new ErrorLogin();
+		this.errLogin = new ErrorPopup();
 	}
 	
 	public void logInControl(MouseEvent event) {

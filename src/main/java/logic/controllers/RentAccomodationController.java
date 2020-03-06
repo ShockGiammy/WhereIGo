@@ -4,7 +4,7 @@ import logic.beans.RentAccomodationBean;
 import logic.dao.AccomodationCreator;
 import logic.graphiccontrollers.GraphicControlRentAccomodation;
 import logic.model.AccomodationModel;
-import logic.view.ErrorLogin;
+import logic.view.ErrorPopup;
 
 public class RentAccomodationController {
 
@@ -22,7 +22,7 @@ public class RentAccomodationController {
 		accomodation = dao.queryDB(bean);
 		RentAccomodationBean[] listOfBean = new RentAccomodationBean[6];
 		if (accomodation[0] == null) {
-			ErrorLogin error = new ErrorLogin();
+			ErrorPopup error = new ErrorPopup();
 			error.displayLoginError("no accomodation to been shown");
 		}
 		else {

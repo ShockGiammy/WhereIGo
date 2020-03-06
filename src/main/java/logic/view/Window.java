@@ -3,6 +3,7 @@ package logic.view;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,6 +11,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import logic.beans.LocationBean;
 import logic.beans.UserDataBean;
+import logic.beans.UserTravelBean;
 import logic.graphiccontrollers.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -58,6 +60,12 @@ public class Window extends Application{
 	public void setSuggestedLocations(MouseEvent e) {
 		GraphicControllerBookTravel controller = loader.getController();
 		controller.setLocation();
+		nextGuiOnClick(e);
+	}
+	
+	public void setTicketsDats(List<UserTravelBean> bean, MouseEvent e) {
+		GraphicControllerTickets controller = loader.getController();
+		controller.setDatas(bean);
 		nextGuiOnClick(e);
 	}
 	

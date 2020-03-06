@@ -1,3 +1,4 @@
+/* should @Override the initialize method*/
 package logic.graphiccontrollers;
 
 import java.awt.image.BufferedImage;
