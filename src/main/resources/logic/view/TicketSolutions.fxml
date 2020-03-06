@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,7 +9,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-
 
 <Pane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerTickets">
    <children>
@@ -93,11 +91,5 @@
             <TableColumn fx:id="cost" prefWidth="118.4000244140625" text="Cost" />
         </columns>
       </TableView>
-      <Pane layoutX="659.0" layoutY="100.0" prefHeight="583.0" prefWidth="70.0" style="-fx-background-color: white;">
-         <children>
-            <Button layoutY="36.0" mnemonicParsing="false" text="book now" />
-            <Button layoutY="70.0" mnemonicParsing="false" text="book now" />
-         </children>
-      </Pane>
    </children>
 </Pane>

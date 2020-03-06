@@ -27,11 +27,11 @@ public class TicketModel {
 	}
 	
 	public LocalDate getDepDay() {
-		return this.arriveDate;
+		return this.departureDate;
 	}
 	
 	public LocalDate getArrDay() {
-		return this.departureDate;
+		return this.arriveDate;
 	}
 	
 	public float getMoney() {

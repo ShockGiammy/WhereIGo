@@ -65,15 +65,13 @@ public class BookTravelControl {
 					return -1;
 				}
 				else {
-					TicketModel tickIndex = new TicketModel(); // temporary variable to get the list's tickets
 					UserTravelBean bean = new UserTravelBean();
 					while(i < tickList.size()) {
-						tickIndex = tickList.get(i);
-						bean.setFirstDay(tickIndex.getDepDay());
-						bean.setLastDay(tickIndex.getArrDay());
-						bean.setArrCity(tickIndex.getArrCity());
-						bean.setDepCity(tickIndex.getDepCity());
-						bean.setCost(tickIndex.getMoney());
+						bean.setFirstDay(tickList.get(i).getDepDay());
+						bean.setLastDay(tickList.get(i).getArrDay());
+						bean.setArrCity(tickList.get(i).getArrCity());
+						bean.setDepCity(tickList.get(i).getDepCity());
+						bean.setCost(tickList.get(i).getMoney());
 						travList.add(bean);
 						i+=1;
 					}

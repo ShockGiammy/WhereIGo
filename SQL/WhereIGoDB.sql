@@ -170,11 +170,28 @@ insert into travelgroups(groupID, travCity, groupOwner, title)
 values(001, "Amsterdam", "shockGiammy", "Amsterdam Museums (I swear)");
 
 insert into travelgroups(groupID, travCity, groupOwner, title)
-values(002, "San Francisco", "adrianRob", "Trip to the USA");
+values(001, "San Francisco", "adrianRob", "Trip to the USA");
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
-values (001, "Roma" , "Berlino", "2020-03-20", "2020-03-22", 450.15);
+values (002, "Roma-Fiumicino" , "Berlino", "2020-04-24", "2020-04-30", 550.15);
 
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
+values (003, "Roma-Ciampino" , "Amsterdam", "2020-03-25", "2020-03-26", 650.15);
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
+values (004, "Milano-Malpensa" , "Budapest", "2020-03-20", "2020-03-22", 250.35);
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
+values (005, "Milano-Linate" , "Bath", "2020-06-20", "2020-06-22", 340);
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
+values (006, "Torino-Caselle" , "San Francisco", "2020-07-23", "2020-07-25", 850);
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
+values (007, "Roma-Fiumicino" , "Berlino", "2020-03-20", "2020-03-22", 450.15);
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
+values (008, "Roma-Fiumicino" , "Berlino", "2020-03-20", "2020-03-22", 452.15);
 
     
     

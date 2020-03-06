@@ -79,7 +79,7 @@
                </font>
             </RadioButton>
             <RadioButton fx:id="quest3a" layoutX="6.0" layoutY="558.005859375" mnemonicParsing="false" onAction="#manageGroup3" text="I like cooperation and team working">
-               <font>
+            	<font>
                   <Font size="14.0" />
                </font>
                <toggleGroup>
