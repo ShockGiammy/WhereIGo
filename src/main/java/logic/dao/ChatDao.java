@@ -32,27 +32,25 @@ public class ChatDao extends GeneralConnection{
 		}
 	}
 
-		public Chat queryDB(String sender, String receiver) {
-			int fetched = 0;
-			int i = 0;
+		public ArrayList<Message> queryDB(String sender, String receiver) {
 			getConnection();
-			ArrayList<String> messages = new ArrayList<>();
+			ArrayList<Message> messages = new ArrayList<>();
 			try {
-				PreparedStatement statement = dbConn.getConnection().prepareStatement("Select message From DBChat Where (sender = ?) and (receiver = ?)");    
+				PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From DBChat Where (sender = ?) and (receiver = ?)");    
 				statement.setString(1, sender);
 				statement.setString(2,  receiver);
 				ResultSet rs = statement.executeQuery();
 				while(rs.next()) {
-					System.out.println("Risultato: " + rs.getString(1));
-					messages.add(rs.getString(1));
+					Message message = new Message();
+					message.setName(rs.getString(2));
+					message.setMsg(rs.getString(4));
+					messages.add(message);
 				}
 			}
 			catch (SQLException e) {
 				logger.log(Level.SEVERE, "Got an exception!");
 				logger.log(Level.SEVERE, e.getMessage());
 			}
-			Chat chat = new Chat();
-			chat.setMessages(messages);
-			return chat;
+			return messages;
 		}
 	}

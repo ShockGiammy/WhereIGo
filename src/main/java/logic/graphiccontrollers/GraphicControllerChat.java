@@ -22,7 +22,7 @@ public class GraphicControllerChat extends Window{
 	@FXML
 	public void initialize() {
 		//chatController = new DBChatController();
-		chatBean = chatController.getChat();
+		//chatBean = chatController.getChat();
 		display();		
 	}
 

@@ -3,6 +3,7 @@ package logic.controllers;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,6 +11,7 @@ import com.messages.Message;
 import com.messages.MessageType;
 import com.messages.Status;
 
+import logic.LoggedUser;
 import logic.ReadThread;
 import logic.dao.ChatDao;
 import logic.dao.UserDao;
@@ -22,20 +24,19 @@ public class DBChatController implements ChatController{
 	private PrintWriter writer;
 	protected Logger logger = Logger.getLogger(UserDao.class.getName());
 	private ChatDao chatDao;
-	private Chat chat;
+	private ArrayList<Message> chat;
 	private static String picture;
 	private ChatControllerCopy graphic;
 	
-	
-	public DBChatController(ChatControllerCopy reference) {
+	public DBChatController(ChatControllerCopy reference, LoggedUser loggedUser) {
 		chatDao = new ChatDao();
-		this.username = "prova";
+		this.username = "ciao"; //loggedUser.getUserName();;
         //Listener.picture = picture;
 		this.graphic = reference;
 	}
 
-	public Chat getChat() {
-		chat = chatDao.queryDB("ciao", "ciao2");
+	public ArrayList<Message> getChat() {
+		chat = chatDao.queryDB("prova", "pippo");
 		return chat;
 	}
 

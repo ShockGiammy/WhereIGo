@@ -34,11 +34,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import logic.LoggedUser;
 import logic.controllers.ChatController;
 import logic.controllers.DBChatController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import java.util.logging.Level;
@@ -57,9 +59,10 @@ public class ChatControllerCopy implements Initializable {
     private double yOffset;
     protected Logger logger = Logger.getLogger("WIG");
     private ChatController chatController;
+	private LoggedUser logUser;
 
     public ChatControllerCopy() {
-    	chatController = new DBChatController(this);
+    	chatController = new DBChatController(this, logUser);
     }
     
     public void sendButtonAction() throws IOException {
@@ -83,18 +86,19 @@ public class ChatControllerCopy implements Initializable {
                */
                 BubbledLabel bl6 = new BubbledLabel();
                 bl6.setText(msg.getName() + ": " + msg.getMsg());
-                bl6.setBackground(new Background(new BackgroundFill(Color.WHITE,null, null)));
+                bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,null, null)));
                 HBox x = new HBox();
                 bl6.setBubbleSpec(BubbleSpec.FACE_LEFT_CENTER);
-               // x.getChildren().addAll(profileImage, bl6);
+                x.getChildren().addAll(bl6);
+                		//profileImage, bl6);
                 
                 return x;
             }
         };
 
-        othersMessages.setOnSucceeded(event -> {chatPane.getItems().add(othersMessages.getValue());
+        othersMessages.setOnSucceeded(event -> {
+            chatPane.getItems().add(othersMessages.getValue());
         });
-
         Task<HBox> yourMessages = new Task<HBox>() {
             @Override
             public HBox call() throws Exception {
@@ -117,12 +121,13 @@ public class ChatControllerCopy implements Initializable {
             }
         };
         yourMessages.setOnSucceeded(event -> chatPane.getItems().add(yourMessages.getValue()));
-       // if (msg.getName().equals(usernameLabel.getText())) {
+        
+        System.out.println(msg.getName());
+        if (msg.getName().equals("ciao")) {//logUser.getUserName())) {
             Thread t2 = new Thread(yourMessages);
             t2.setDaemon(true);
             t2.start();
-    }
-     	/*} else {
+     	} else {
             Thread t = new Thread(othersMessages);
             t.setDaemon(true);
             t.start();
@@ -205,6 +210,13 @@ public class ChatControllerCopy implements Initializable {
         t.setDaemon(true);
         t.start();
     }
+    
+    public void display() {
+    	ArrayList<Message> chat = chatController.getChat();
+    	for (Message message : chat) {
+    		addToChat(message);
+    	}
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -212,8 +224,13 @@ public class ChatControllerCopy implements Initializable {
             setImageLabel();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-*/
+        }*/
+    	
+        this.logUser = new LoggedUser();
+        logUser.getUserName();
+        
+        display();
+        
         borderPane.setOnMouseReleased(event -> {
             borderPane.setCursor(Cursor.DEFAULT);
         });
