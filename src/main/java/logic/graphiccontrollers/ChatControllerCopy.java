@@ -27,11 +27,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logic.LoggedUser;
@@ -50,10 +52,12 @@ public class ChatControllerCopy implements Initializable {
 
     @FXML private TextArea messageBox;
     @FXML private Label usernameLabel;
-    @FXML private ListView userList;
+    @FXML private ListView<User> userList;
     @FXML private ImageView userImageView;
     @FXML ListView<HBox> chatPane;
     @FXML BorderPane borderPane;
+    @FXML private ListView groupMember;
+    @FXML private Text activeChat;
 
     private double xOffset;
     private double yOffset;
@@ -68,10 +72,13 @@ public class ChatControllerCopy implements Initializable {
     public void sendButtonAction() throws IOException {
         String msg = messageBox.getText();
         if (!messageBox.getText().isEmpty()) {
-            //Listener.send(msg);
         	chatController.sendMessage(msg);
             messageBox.clear();
         }
+    }
+    
+    public void setActiveChat(String name) {
+    	activeChat.setText(name);
     }
 
     public synchronized void addToChat(Message msg) {
@@ -122,7 +129,6 @@ public class ChatControllerCopy implements Initializable {
         };
         yourMessages.setOnSucceeded(event -> chatPane.getItems().add(yourMessages.getValue()));
         
-        System.out.println(msg.getName());
         if (msg.getName().equals("ciao")) {//logUser.getUserName())) {
             Thread t2 = new Thread(yourMessages);
             t2.setDaemon(true);
@@ -150,6 +156,23 @@ public class ChatControllerCopy implements Initializable {
             userList.setCellFactory(new CellRenderer());
         });
         logger.info("setUserList() method Exit");
+    }
+    
+    public void setUserList() {
+    	ObservableList<User> users = FXCollections.observableList(chatController.getUsers());
+        userList.setItems(users);
+        userList.setCellFactory(new CellRenderer());
+        userList.setOnMouseClicked(e -> {
+            	selectUser();
+        });
+    }
+    
+    public void selectUser() {
+    	String receiver = userList.getSelectionModel().getSelectedItem().getName();
+    	if (!activeChat.getText().equals(receiver)) {
+    		display(receiver);
+    		setActiveChat(receiver);
+    	}
     }
 
     /* Displays Notification when a user joins *//*
@@ -211,8 +234,8 @@ public class ChatControllerCopy implements Initializable {
         t.start();
     }
     
-    public void display() {
-    	ArrayList<Message> chat = chatController.getChat();
+    public void display(String receiver) {
+    	ArrayList<Message> chat = chatController.getChat(receiver);
     	for (Message message : chat) {
     		addToChat(message);
     	}
@@ -229,7 +252,7 @@ public class ChatControllerCopy implements Initializable {
         this.logUser = new LoggedUser();
         logUser.getUserName();
         
-        display();
+        setUserList();
         
         borderPane.setOnMouseReleased(event -> {
             borderPane.setCursor(Cursor.DEFAULT);

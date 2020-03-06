@@ -10,7 +10,9 @@ import java.util.logging.Logger;
 import com.messages.Message;
 import com.messages.MessageType;
 import com.messages.Status;
+import com.messages.User;
 
+import javafx.collections.ObservableList;
 import logic.LoggedUser;
 import logic.ReadThread;
 import logic.dao.ChatDao;
@@ -27,6 +29,7 @@ public class DBChatController implements ChatController{
 	private ArrayList<Message> chat;
 	private static String picture;
 	private ChatControllerCopy graphic;
+	private ObservableList<User> users;
 	
 	public DBChatController(ChatControllerCopy reference, LoggedUser loggedUser) {
 		chatDao = new ChatDao();
@@ -35,9 +38,14 @@ public class DBChatController implements ChatController{
 		this.graphic = reference;
 	}
 
-	public ArrayList<Message> getChat() {
-		chat = chatDao.queryDB("prova", "pippo");
+	public ArrayList<Message> getChat(String receiver) {
+		chat = chatDao.getSavedMsg("prova", receiver);
 		return chat;
+	}
+	
+	public ObservableList<User> getUsers() {
+		users = chatDao.getUsersQuery("prova");
+		return users;
 	}
 
 	public String getUsername() {

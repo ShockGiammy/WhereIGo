@@ -8,7 +8,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.messages.Message;
+import com.messages.User;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import logic.beans.RentAccomodationBean;
 import logic.model.AccomodationModel;
 import logic.model.Chat;
@@ -32,7 +35,7 @@ public class ChatDao extends GeneralConnection{
 		}
 	}
 
-		public ArrayList<Message> queryDB(String sender, String receiver) {
+		public ArrayList<Message> getSavedMsg(String sender, String receiver) {
 			getConnection();
 			ArrayList<Message> messages = new ArrayList<>();
 			try {
@@ -52,5 +55,25 @@ public class ChatDao extends GeneralConnection{
 				logger.log(Level.SEVERE, e.getMessage());
 			}
 			return messages;
+		}
+		
+		public ObservableList<User> getUsersQuery(String sender) {
+			getConnection();
+			ObservableList<User> users = FXCollections.observableArrayList();
+			try {
+				PreparedStatement statement = dbConn.getConnection().prepareStatement("Select distinct receiver From DBChat Where (sender = ?)");    
+				statement.setString(1, sender);
+				ResultSet rs = statement.executeQuery();
+				while(rs.next()) {
+					User user = new User();
+					user.setName(rs.getString(1));
+					users.add(user);
+				}
+			}
+			catch (SQLException e) {
+				logger.log(Level.SEVERE, "Got an exception!");
+				logger.log(Level.SEVERE, e.getMessage());
+			}
+			return users;
 		}
 	}

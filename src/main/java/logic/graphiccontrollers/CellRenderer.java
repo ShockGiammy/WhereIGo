@@ -2,6 +2,7 @@ package logic.graphiccontrollers;
 
 import com.messages.User;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -14,7 +15,9 @@ import javafx.util.Callback;
  * A Class for Rendering users images / name on the userlist.
  */
 class CellRenderer implements Callback<ListView<User>,ListCell<User>>{
-        @Override
+	
+	
+	@Override
     public ListCell<User> call(ListView<User> p) {
 
         ListCell<User> cell = new ListCell<User>(){
@@ -28,7 +31,8 @@ class CellRenderer implements Callback<ListView<User>,ListCell<User>>{
                     HBox hBox = new HBox();
 
                     Text name = new Text(user.getName());
-
+                
+/*
                     ImageView statusImageView = new ImageView();
                     Image statusImage = new Image(getClass().getClassLoader().getResource("images/" + user.getStatus().toString().toLowerCase() + ".png").toString(), 16, 16,true,true);
                     statusImageView.setImage(statusImage);
@@ -36,8 +40,8 @@ class CellRenderer implements Callback<ListView<User>,ListCell<User>>{
                     ImageView pictureImageView = new ImageView();
                     Image image = new Image(getClass().getClassLoader().getResource("images/" + user.getPicture().toLowerCase() + ".png").toString(),50,50,true,true);
                     pictureImageView.setImage(image);
-
-                    hBox.getChildren().addAll(statusImageView, pictureImageView, name);
+*/
+                    hBox.getChildren().addAll(name);  //statusImageView, pictureImageView, 
                     hBox.setAlignment(Pos.CENTER_LEFT);
 
                     setGraphic(hBox);
