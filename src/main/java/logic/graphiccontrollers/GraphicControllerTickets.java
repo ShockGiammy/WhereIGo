@@ -27,13 +27,15 @@ public class GraphicControllerTickets extends Window{
 	ObservableList<UserTravelBean> travBeanList = FXCollections.observableArrayList();
 	
 	public void setDatas(List<UserTravelBean> travBean) {
-		travBeanList.addAll(travBean);
+		int i = 0;
 		departureDay.setCellValueFactory(new PropertyValueFactory<>("firstDay"));
 		arrivalDate.setCellValueFactory(new PropertyValueFactory<>("lastDay"));
 		departureCity.setCellValueFactory(new PropertyValueFactory<>("cityOfDep"));
 		arrivalCity.setCellValueFactory(new PropertyValueFactory<>("cityOfArr"));
 		cost.setCellValueFactory(new PropertyValueFactory<>("cost"));
-		ticketsView.setItems(travBeanList);
-		ticketsView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		while(i < travBean.size()) {
+			ticketsView.getItems().add(travBean.get(i));
+			i+=1;
+		}
 	}
 }

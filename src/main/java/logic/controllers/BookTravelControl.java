@@ -65,8 +65,8 @@ public class BookTravelControl {
 					return -1;
 				}
 				else {
-					UserTravelBean bean = new UserTravelBean();
 					while(i < tickList.size()) {
+						UserTravelBean bean = new UserTravelBean();
 						bean.setFirstDay(tickList.get(i).getDepDay());
 						bean.setLastDay(tickList.get(i).getArrDay());
 						bean.setArrCity(tickList.get(i).getArrCity());
