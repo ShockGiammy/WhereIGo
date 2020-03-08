@@ -1,8 +1,10 @@
 package com.messages;
 
-import java.io.Serializable;
-
-public class User implements Serializable {
+public class User{
+	
+	private String picture;
+    private String status = "online";
+    private String name;
 
     public String getName() {
         return name;
@@ -12,8 +14,6 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    String name;
-
     public String getPicture() {
         return picture;
     }
@@ -22,14 +22,11 @@ public class User implements Serializable {
         this.picture = picture;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
-
-    String picture;
-    Status status;
 }

@@ -2,18 +2,12 @@ package logic.graphiccontrollers;
 
 
 import com.messages.Message;
-import com.messages.MessageType;
-import com.messages.Status;
 import com.messages.User;
 import com.messages.bubble.BubbleSpec;
 import com.messages.bubble.BubbledLabel;
 //import com.traynotifications.animations.AnimationType;
 //import com.traynotifications.notification.TrayNotification;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +30,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.Duration;
 import logic.LoggedUser;
 import logic.controllers.ChatController;
@@ -160,7 +153,7 @@ public class ChatControllerCopy implements Initializable {
     }
     
     public void selectUser() {
-    	Node node = userList.getSelectionModel().getSelectedItem().getChildren().get(0);
+    	Node node = userList.getSelectionModel().getSelectedItem().getChildren().get(1);
     	String receiver = ((Text)node).getText();
     	if (!activeChat.getText().equals(receiver)) {
     		display(receiver);
@@ -236,12 +229,7 @@ public class ChatControllerCopy implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-      /*  try {
-            setImageLabel();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-    	
+
         this.logUser = new LoggedUser();
         logUser.getUserName();
         
@@ -272,18 +260,17 @@ public class ChatControllerCopy implements Initializable {
 
             	HBox hBox = new HBox();
 
+            	ImageView statusImageView = new ImageView();
+            	Image statusImage = new Image(getClass().getClassLoader().getResource("images/" + user.getStatus().toString().toLowerCase() + ".png").toString(), 16, 16,true,true);
+            	statusImageView.setImage(statusImage);
+            	
             	Text name = new Text(user.getName());
-                
 /*
-            ImageView statusImageView = new ImageView();
-            Image statusImage = new Image(getClass().getClassLoader().getResource("images/" + user.getStatus().toString().toLowerCase() + ".png").toString(), 16, 16,true,true);
-            statusImageView.setImage(statusImage);
-
             ImageView pictureImageView = new ImageView();
             Image image = new Image(getClass().getClassLoader().getResource("images/" + user.getPicture().toLowerCase() + ".png").toString(),50,50,true,true);
             pictureImageView.setImage(image);
 */
-            	hBox.getChildren().addAll(name);  //statusImageView, pictureImageView, 
+            	hBox.getChildren().addAll(statusImageView, name);  //, pictureImageView, 
             	hBox.setAlignment(Pos.CENTER_LEFT);
             	hBox.setOnMouseClicked(e -> {
             		selectUser();

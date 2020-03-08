@@ -9,8 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.messages.Message;
-import com.messages.MessageType;
-import com.messages.Status;
 import com.messages.User;
 
 import javafx.collections.ObservableList;
