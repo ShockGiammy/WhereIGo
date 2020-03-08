@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -35,6 +36,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.Duration;
 import logic.LoggedUser;
 import logic.controllers.ChatController;
@@ -43,6 +45,7 @@ import logic.controllers.DBChatController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import java.util.logging.Level;
@@ -52,9 +55,9 @@ public class ChatControllerCopy implements Initializable {
 
     @FXML private TextArea messageBox;
     @FXML private Label usernameLabel;
-    @FXML private ListView<User> userList;
+    @FXML private ListView<HBox> userList;
     @FXML private ImageView userImageView;
-    @FXML ListView<HBox> chatPane;
+    @FXML private ListView<HBox> chatPane;
     @FXML BorderPane borderPane;
     @FXML private ListView groupMember;
     @FXML private Text activeChat;
@@ -148,27 +151,17 @@ public class ChatControllerCopy implements Initializable {
         this.userImageView.setImage(new Image(getClass().getClassLoader().getResource("images/dominic.png").toString()));
     }
 */
-    public void setUserList(Message msg) {
-        logger.info("setUserList() method Enter");
-        Platform.runLater(() -> {
-            ObservableList<User> users = FXCollections.observableList(msg.getUsers());
-            userList.setItems(users);
-            userList.setCellFactory(new CellRenderer());
-        });
-        logger.info("setUserList() method Exit");
-    }
-    
+
     public void setUserList() {
-    	ObservableList<User> users = FXCollections.observableList(chatController.getUsers());
-        userList.setItems(users);
-        userList.setCellFactory(new CellRenderer());
-        userList.setOnMouseClicked(e -> {
-            	selectUser();
-        });
+    	List<User> users = chatController.getUsers();
+    	for (User user : users) {
+    		addToUserList(user);
+    	}
     }
     
     public void selectUser() {
-    	String receiver = userList.getSelectionModel().getSelectedItem().getName();
+    	Node node = userList.getSelectionModel().getSelectedItem().getChildren().get(0);
+    	String receiver = ((Text)node).getText();
     	if (!activeChat.getText().equals(receiver)) {
     		display(receiver);
     		setActiveChat(receiver);
@@ -235,7 +228,7 @@ public class ChatControllerCopy implements Initializable {
     }
     
     public void display(String receiver) {
-    	ArrayList<Message> chat = chatController.getChat(receiver);
+    	List<Message> chat = chatController.getChat(receiver);
     	for (Message message : chat) {
     		addToChat(message);
     	}
@@ -269,5 +262,40 @@ public class ChatControllerCopy implements Initializable {
                 ke.consume();
             }
         });
+    }
+
+    public synchronized void addToUserList(User user) {
+    	
+    	Task<HBox> task = new Task<HBox>() {
+            @Override
+            public HBox call() throws Exception {
+
+            	HBox hBox = new HBox();
+
+            	Text name = new Text(user.getName());
+                
+/*
+            ImageView statusImageView = new ImageView();
+            Image statusImage = new Image(getClass().getClassLoader().getResource("images/" + user.getStatus().toString().toLowerCase() + ".png").toString(), 16, 16,true,true);
+            statusImageView.setImage(statusImage);
+
+            ImageView pictureImageView = new ImageView();
+            Image image = new Image(getClass().getClassLoader().getResource("images/" + user.getPicture().toLowerCase() + ".png").toString(),50,50,true,true);
+            pictureImageView.setImage(image);
+*/
+            	hBox.getChildren().addAll(name);  //statusImageView, pictureImageView, 
+            	hBox.setAlignment(Pos.CENTER_LEFT);
+            	hBox.setOnMouseClicked(e -> {
+            		selectUser();
+            	});
+            	return hBox;
+            }
+    	};
+        task.setOnSucceeded(event -> {
+            	 userList.getItems().add(task.getValue());
+        });
+        Thread t = new Thread(task);
+        t.setDaemon(true);
+        t.start();
     }
 }

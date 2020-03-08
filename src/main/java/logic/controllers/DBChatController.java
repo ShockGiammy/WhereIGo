@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +27,7 @@ public class DBChatController implements ChatController{
 	private PrintWriter writer;
 	protected Logger logger = Logger.getLogger(UserDao.class.getName());
 	private ChatDao chatDao;
-	private ArrayList<Message> chat;
+	private List<Message> chat;
 	private static String picture;
 	private ChatControllerCopy graphic;
 	private ObservableList<User> users;
@@ -38,12 +39,12 @@ public class DBChatController implements ChatController{
 		this.graphic = reference;
 	}
 
-	public ArrayList<Message> getChat(String receiver) {
+	public List<Message> getChat(String receiver) {
 		chat = chatDao.getSavedMsg("prova", receiver);
 		return chat;
 	}
 	
-	public ObservableList<User> getUsers() {
+	public List<User> getUsers() {
 		users = chatDao.getUsersQuery("prova");
 		return users;
 	}

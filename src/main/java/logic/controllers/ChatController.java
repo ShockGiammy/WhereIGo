@@ -1,6 +1,7 @@
 package logic.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.messages.Message;
 import com.messages.User;
@@ -17,6 +18,6 @@ public interface ChatController {
 	public void notificateMessage();
 	public void acceptChat();
 	public void sendMessage(String message);
-	public ArrayList<Message> getChat(String receiver);
-	public ObservableList<User> getUsers();
+	public List<Message> getChat(String receiver);
+	public List<User> getUsers();
 }

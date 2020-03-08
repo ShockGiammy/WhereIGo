@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,9 +36,9 @@ public class ChatDao extends GeneralConnection{
 		}
 	}
 
-		public ArrayList<Message> getSavedMsg(String sender, String receiver) {
+		public List<Message> getSavedMsg(String sender, String receiver) {
 			getConnection();
-			ArrayList<Message> messages = new ArrayList<>();
+			List<Message> messages = new ArrayList<>();
 			try {
 				PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From DBChat Where (sender = ?) and (receiver = ?)");    
 				statement.setString(1, sender);
