@@ -68,8 +68,9 @@ public class ChatControllerCopy implements Initializable {
     public void sendButtonAction() throws IOException {
         String msg = messageBox.getText();
         if (!messageBox.getText().isEmpty()) {
-        	chatController.sendMessage(msg);
+        	Message message = chatController.sendMessage(msg);
             messageBox.clear();
+            addToChat(message);
         }
     }
     
@@ -78,33 +79,8 @@ public class ChatControllerCopy implements Initializable {
     }
 
     public synchronized void addToChat(Message msg) {
-        Task<HBox> othersMessages = new Task<HBox>() {
-            @Override
-            public HBox call() throws Exception {
-            	/*
-                Image image = new Image(getClass().getClassLoader().getResource("images/" + msg.getPicture().toLowerCase() + ".png").toString());
-                ImageView profileImage = new ImageView(image);
-                profileImage.setFitHeight(32);
-                profileImage.setFitWidth(32);
-               */
-                BubbledLabel bl6 = new BubbledLabel();
-                bl6.setText(msg.getName() + ": " + msg.getMsg());
-                bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,null, null)));
-                HBox x = new HBox();
-                bl6.setBubbleSpec(BubbleSpec.FACE_LEFT_CENTER);
-                x.getChildren().addAll(bl6);
-                		//profileImage, bl6);
-                
-                return x;
-            }
-        };
-
-        othersMessages.setOnSucceeded(event -> {
-            chatPane.getItems().add(othersMessages.getValue());
-        });
-        Task<HBox> yourMessages = new Task<HBox>() {
-            @Override
-            public HBox call() throws Exception {
+        if (msg.getName().equals("ciao")) {
+        	HBox yourMessage = new HBox();
             	/*
                 Image image = userImageView.getImage();
                 ImageView profileImage = new ImageView(image);
@@ -114,25 +90,27 @@ public class ChatControllerCopy implements Initializable {
                 BubbledLabel bl6 = new BubbledLabel();
                 bl6.setText(msg.getMsg());
                 bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
-                HBox x = new HBox();
-                x.setMaxWidth(chatPane.getWidth() - 20);
-                x.setAlignment(Pos.TOP_RIGHT);
+                yourMessage.setMaxWidth(chatPane.getWidth() - 20);
+                yourMessage.setAlignment(Pos.TOP_RIGHT);
                 bl6.setBubbleSpec(BubbleSpec.FACE_RIGHT_CENTER);
-                x.getChildren().addAll(bl6); //, profileImage);
-                
-                return x;
-            }
-        };
-        yourMessages.setOnSucceeded(event -> chatPane.getItems().add(yourMessages.getValue()));
-        
-        if (msg.getName().equals("ciao")) {//logUser.getUserName())) {
-            Thread t2 = new Thread(yourMessages);
-            t2.setDaemon(true);
-            t2.start();
-     	} else {
-            Thread t = new Thread(othersMessages);
-            t.setDaemon(true);
-            t.start();
+                yourMessage.getChildren().addAll(bl6); //, profileImage);
+                chatPane.getItems().add(yourMessage);
+                chatPane.scrollTo(yourMessage);
+        }
+        else {
+        	HBox othersMessage = new HBox();
+            /*
+                    Image image = new Image(getClass().getClassLoader().getResource("images/" + msg.getPicture().toLowerCase() + ".png").toString());
+                    ImageView profileImage = new ImageView(image);
+                    profileImage.setFitHeight(32);
+                    profileImage.setFitWidth(32);
+                   */
+                    BubbledLabel bl6 = new BubbledLabel();
+                    bl6.setText(msg.getName() + ": " + msg.getMsg());
+                    bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,null, null)));
+                    bl6.setBubbleSpec(BubbleSpec.FACE_LEFT_CENTER);
+                    othersMessage.getChildren().addAll(bl6);   //profileImage, bl6);
+            chatPane.getItems().add(othersMessage);
         }
     }
     /*
@@ -221,6 +199,7 @@ public class ChatControllerCopy implements Initializable {
     }
     
     public void display(String receiver) {
+    	chatPane.getItems().clear();
     	List<Message> chat = chatController.getChat(receiver);
     	for (Message message : chat) {
     		addToChat(message);

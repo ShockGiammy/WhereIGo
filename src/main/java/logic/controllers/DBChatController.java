@@ -71,13 +71,13 @@ public class DBChatController implements ChatController{
 	}
 
 	@Override
-	public void sendMessage(String msg) {
+	public Message sendMessage(String msg) {
 	        Message createMessage = new Message();
 	        createMessage.setName(username);
 	        createMessage.setMsg(msg);
 	        //createMessage.setPicture(picture);
-	        graphic.addToChat(createMessage);
 	        chatDao.saveMessage(createMessage);
+	        return createMessage;
 	}
 
 

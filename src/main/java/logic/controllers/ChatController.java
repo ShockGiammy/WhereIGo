@@ -17,7 +17,7 @@ public interface ChatController {
 	public void execute();
 	public void notificateMessage();
 	public void acceptChat();
-	public void sendMessage(String message);
+	public Message sendMessage(String message);
 	public List<Message> getChat(String receiver);
 	public List<User> getUsers();
 }

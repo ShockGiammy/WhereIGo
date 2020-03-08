@@ -11,6 +11,8 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.messages.Message;
+
 import logic.LoggedUser;
 import logic.ReadThread;
 import logic.controllers.ChatController;
@@ -71,9 +73,10 @@ public abstract class SingleChat implements ChatController{
 	}
 
 	@Override
-	public void sendMessage(String message) {
+	public Message sendMessage(String message) {
 
 		writer.println(message);
+		return null;
 	}
 
 	@Override
