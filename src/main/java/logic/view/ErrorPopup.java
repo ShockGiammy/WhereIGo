@@ -1,5 +1,3 @@
-/* This class should be a part of a Decorator pattern*/
-
 package logic.view;
 
 import javafx.geometry.Pos;
@@ -13,7 +11,7 @@ import javafx.stage.Stage;
 public class ErrorPopup {
 	public void displayLoginError(String text) {
 		Stage window = new Stage();
-		window.setWidth(300);
+		window.setWidth(400);
 		window.setHeight(300);
 		window.initModality(Modality.APPLICATION_MODAL); //this avoid user to interact with other users
 		Text label = new Text();

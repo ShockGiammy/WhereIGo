@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import logic.LoggedUser;
 import logic.beans.InterestsBean;
 import logic.beans.UserDataBean;
@@ -16,27 +17,15 @@ import logic.controllers.InterestsController;
 import logic.view.Window;
 
 public class GraphicControllerInterestForm extends Window{
-	@FXML private List<RadioButton> tbList;
-	@FXML private RadioButton quest1a;
-	@FXML private RadioButton quest1b;
-	@FXML private RadioButton quest1c;
-	@FXML private RadioButton quest1d;
-	@FXML private RadioButton quest2a;
-	@FXML private RadioButton quest2b;
-	@FXML private RadioButton quest2c;
-	@FXML private RadioButton quest2d;
-	@FXML private RadioButton quest3a;
-	@FXML private RadioButton quest3b;
-	@FXML private RadioButton quest3c;
-	@FXML private RadioButton quest3d;
-	@FXML private RadioButton quest4a;
-	@FXML private RadioButton quest4b;
-	@FXML private RadioButton quest4c;
-	@FXML private RadioButton quest4d;
-	@FXML private ToggleGroup question1;
-	@FXML private ToggleGroup question2;
-	@FXML private ToggleGroup question3;
-	@FXML private ToggleGroup question4;
+	@FXML private List<RadioButton> rbList1;
+	@FXML private List<RadioButton> rbList2;
+	@FXML private List<RadioButton> rbList3;
+	@FXML private List<RadioButton> rbList4;
+	@FXML private VBox box1;
+	@FXML private VBox box2;
+	@FXML private VBox box3;
+	@FXML private VBox box4;
+	@FXML private List<ToggleGroup> tgList;
 	@FXML private Button submitForm;
 	private int[] questAnsw;
 	private InterestsBean intBean;
@@ -50,87 +39,119 @@ public class GraphicControllerInterestForm extends Window{
 		this.interCtrl = new InterestsController();
 		this.logUser = new LoggedUser();
 		this.dataBean = new UserDataBean();
-		question1 = new ToggleGroup();
-		question2 = new ToggleGroup();
-		question3 = new ToggleGroup();
-		question4 = new ToggleGroup();
-		quest1a.setToggleGroup(this.question1);
-		quest1b.setToggleGroup(this.question1);
-		quest1c.setToggleGroup(this.question1);
-		quest1d.setToggleGroup(this.question1);
-		quest2a.setToggleGroup(this.question2);
-		quest2b.setToggleGroup(this.question2);
-		quest2c.setToggleGroup(this.question2);
-		quest2d.setToggleGroup(this.question2);
-		quest3a.setToggleGroup(this.question3);
-		quest3b.setToggleGroup(this.question3);
-		quest3c.setToggleGroup(this.question3);
-		quest3d.setToggleGroup(this.question3);
-		quest4a.setToggleGroup(this.question4);
-		quest4b.setToggleGroup(this.question4);
-		quest4c.setToggleGroup(this.question4);
-		quest4d.setToggleGroup(this.question4);
+		this.rbList1 = new ArrayList<>();
+		this.rbList2 = new ArrayList<>();
+		this.rbList3 = new ArrayList<>();
+		this.rbList4 = new ArrayList<>();
+		initToggle(4);
+		setGroup(this.box1, this.rbList1, this.tgList.get(0), 4, 1);
+		setGroup(this.box2, this.rbList2, this.tgList.get(1), 4, 2);
+		setGroup(this.box3, this.rbList3, this.tgList.get(2), 4, 3);
+		setGroup(this.box4, this.rbList4, this.tgList.get(3), 4, 4);
 	}
 	
 	public void manageGroup1() {
-		if(this.question1.getSelectedToggle().equals(this.quest1a)) {
+		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(0))) {
 			this.questAnsw[0] = 2;
 		}
-		if(this.question1.getSelectedToggle().equals(this.quest1b)) {
+		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(1))) {
 			this.questAnsw[0] = 1;
 		}
-		if(this.question1.getSelectedToggle().equals(this.quest1c)) {
+		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(2))) {
 			this.questAnsw[0] = 4;
 		}
-		if(this.question1.getSelectedToggle().equals(this.quest1d)) {
+		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(3))) {
 			this.questAnsw[0] = 3;
 		}
 	}
 		
 	public void manageGroup2() {
-		if(this.question2.getSelectedToggle().equals(this.quest2a)) {
+		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(0))) {
 			this.questAnsw[1] = 4;
 		}
-		if(this.question2.getSelectedToggle().equals(this.quest2b)) {
+		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(1))) {
 			this.questAnsw[1] = 1;
 		}
-		if(this.question2.getSelectedToggle().equals(this.quest2c)) {
+		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(2))) {
 			this.questAnsw[1] = 2;
 		}
-		if(this.question2.getSelectedToggle().equals(this.quest2d)) {
+		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(3))) {
 			this.questAnsw[1] = 3;
 		}
 	}
 	
 	public void manageGroup3() {
-		if(this.question3.getSelectedToggle().equals(this.quest3a)) {
+		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(0))) {
 			this.questAnsw[2] = 1;
 		}
-		if(this.question3.getSelectedToggle().equals(this.quest3b)) {
+		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(1))) {
 			this.questAnsw[2] = 3;
 		}
-		if(this.question3.getSelectedToggle().equals(this.quest3c)) {
+		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(2))) {
 			this.questAnsw[2] = 2;
 		}
-		if(this.question3.getSelectedToggle().equals(this.quest3d)) {
+		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(3))) {
 			this.questAnsw[2] = 4;
 		}
 	}
 	
 	public void manageGroup4() {
-		if(this.question4.getSelectedToggle().equals(this.quest4a)) {
+		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(0))) {
 			this.questAnsw[3] = 2;
 		}
-		if(this.question4.getSelectedToggle().equals(this.quest4b)) {
+		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(1))) {
 			this.questAnsw[3] = 3;
 		}
-		if(this.question4.getSelectedToggle().equals(this.quest4c)) {
+		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(2))) {
 			this.questAnsw[3] = 1;
 		}
-		if(this.question4.getSelectedToggle().equals(this.quest4d)) {
+		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(3))) {
 			this.questAnsw[3] = 4;
 		}
 	}
+	
+	public void initToggle(int n) {
+		int j;
+		this.tgList = new ArrayList<>();
+		for(j = 0; j < n; j++) {
+			ToggleGroup tg = new ToggleGroup();
+			this.tgList.add(tg);
+		}
+	}
+
+	public void setGroup(VBox vbox, List<RadioButton> list, ToggleGroup toggle, int n, int who) {
+		int i;
+		for(i = 0; i < n; i++) {
+			RadioButton rb = new RadioButton();
+			list.add(rb);
+			list.get(i).setToggleGroup(toggle);
+			vbox.getChildren().add(list.get(i));
+		}
+		switch(who) {
+			case(1):
+				for(i = 0; i < n; i++) {
+					list.get(i).setOnAction(e->manageGroup1());
+				}
+				break;
+			case(2):
+				for(i = 0; i < n; i++) {
+					list.get(i).setOnAction(e->manageGroup2());
+				}
+				break;
+			case(3):
+				for(i = 0; i < n; i++) {
+				list.get(i).setOnAction(e->manageGroup3());
+				}
+				break;
+			case(4):
+				for(i = 0; i < n; i++) {
+					list.get(i).setOnAction(e->manageGroup4());
+				}
+				break;
+			default:
+				break;
+			}
+		}
 	
 	public void evaluatePersonality(MouseEvent e){
 		this.dataBean.setUserName(this.logUser.getUserName());

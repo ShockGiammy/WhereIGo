@@ -9,8 +9,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerTickets">
+<Pane fx:id="pane" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerTickets">
    <children>
       <AnchorPane prefHeight="92.0" prefWidth="810.0">
          <children>
@@ -82,7 +85,7 @@
             <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
          </children>
       </AnchorPane>
-      <TableView fx:id="ticketsView" layoutX="21.0" layoutY="100.0" prefHeight="583.0" prefWidth="638.0">
+      <TableView fx:id="ticketsView" layoutX="21.0" layoutY="100.0" prefHeight="583.0" prefWidth="636.0">
         <columns>
           <TableColumn fx:id="departureCity" prefWidth="105.60000991821289" text="Departure city" />
           <TableColumn fx:id="arrivalCity" prefWidth="138.40000915527344" text="Arrival city" />
@@ -91,5 +94,11 @@
             <TableColumn fx:id="cost" prefWidth="118.4000244140625" text="Cost" />
         </columns>
       </TableView>
+      <VBox fx:id="vbox" layoutX="657.0" layoutY="124.0" prefHeight="559.0" prefWidth="80.0" spacing="8.0" />
+      <Text layoutX="657.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book now" wrappingWidth="80.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

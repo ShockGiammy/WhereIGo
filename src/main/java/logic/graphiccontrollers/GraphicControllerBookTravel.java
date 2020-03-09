@@ -71,7 +71,8 @@ public class GraphicControllerBookTravel extends Window{
 		int i;
 		i = this.bookTravCtrl.retriveTravelSolutions(travBean, travBeanArray);
 		if(i == -1) {
-			popUp.displayLoginError("No travel available at this moment for the requested cities/dates");
+			popUp.displayLoginError("No travel available at this moment "
+					+ "for the requested cities/dates");
 		}
 		else {
 			setScene("TicketSolutions.fxml");
