@@ -17,8 +17,6 @@ import logic.ReadThread;
 import logic.dao.ChatDao;
 import logic.dao.UserDao;
 import logic.graphiccontrollers.ChatControllerCopy;
-import logic.graphiccontrollers.GraphicControllerChat;
-import logic.model.Chat;
 
 public class DBChatController implements ChatController{
 	private String username;

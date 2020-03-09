@@ -81,36 +81,37 @@ public class ChatControllerCopy implements Initializable {
     public synchronized void addToChat(Message msg) {
         if (msg.getName().equals("ciao")) {
         	HBox yourMessage = new HBox();
-            	/*
-                Image image = userImageView.getImage();
-                ImageView profileImage = new ImageView(image);
-                profileImage.setFitHeight(32);
-                profileImage.setFitWidth(32);
-*/
-                BubbledLabel bl6 = new BubbledLabel();
-                bl6.setText(msg.getMsg());
-                bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
-                yourMessage.setMaxWidth(chatPane.getWidth() - 20);
-                yourMessage.setAlignment(Pos.TOP_RIGHT);
-                bl6.setBubbleSpec(BubbleSpec.FACE_RIGHT_CENTER);
-                yourMessage.getChildren().addAll(bl6); //, profileImage);
-                chatPane.getItems().add(yourMessage);
-                chatPane.scrollTo(yourMessage);
+        	/*
+            Image image = userImageView.getImage();
+            ImageView profileImage = new ImageView(image);
+            profileImage.setFitHeight(32);
+            profileImage.setFitWidth(32);
+            */
+            BubbledLabel bl6 = new BubbledLabel();
+            bl6.setText(msg.getMsg());
+            bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
+            yourMessage.setMaxWidth(chatPane.getWidth() - 20);
+            yourMessage.setAlignment(Pos.TOP_RIGHT);
+            bl6.setBubbleSpec(BubbleSpec.FACE_RIGHT_CENTER);
+            yourMessage.getChildren().addAll(bl6); //, profileImage);
+            chatPane.getItems().add(yourMessage);
+            chatPane.scrollTo(yourMessage);
         }
         else {
         	HBox othersMessage = new HBox();
             /*
-                    Image image = new Image(getClass().getClassLoader().getResource("images/" + msg.getPicture().toLowerCase() + ".png").toString());
-                    ImageView profileImage = new ImageView(image);
-                    profileImage.setFitHeight(32);
-                    profileImage.setFitWidth(32);
-                   */
-                    BubbledLabel bl6 = new BubbledLabel();
-                    bl6.setText(msg.getName() + ": " + msg.getMsg());
-                    bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,null, null)));
-                    bl6.setBubbleSpec(BubbleSpec.FACE_LEFT_CENTER);
-                    othersMessage.getChildren().addAll(bl6);   //profileImage, bl6);
+            Image image = new Image(getClass().getClassLoader().getResource("images/" + msg.getPicture().toLowerCase() + ".png").toString());
+            ImageView profileImage = new ImageView(image);
+            profileImage.setFitHeight(32);
+            profileImage.setFitWidth(32);
+            */
+            BubbledLabel bl6 = new BubbledLabel();
+            bl6.setText(msg.getName() + ": " + msg.getMsg());
+            bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,null, null)));
+            bl6.setBubbleSpec(BubbleSpec.FACE_LEFT_CENTER);
+            othersMessage.getChildren().addAll(bl6);   //profileImage, bl6);
             chatPane.getItems().add(othersMessage);
+            chatPane.scrollTo(othersMessage);
         }
     }
     /*

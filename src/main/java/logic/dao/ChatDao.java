@@ -13,9 +13,6 @@ import com.messages.User;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import logic.beans.RentAccomodationBean;
-import logic.model.AccomodationModel;
-import logic.model.Chat;
 
 public class ChatDao extends GeneralConnection{
 		

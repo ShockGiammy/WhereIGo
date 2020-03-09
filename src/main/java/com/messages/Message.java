@@ -1,28 +1,25 @@
 package com.messages;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class Message implements Serializable {
+public class Message {
 
     private String name;
     private String type;
     private String msg;
     private int count;
-    private ArrayList<User> list;
-    private ArrayList<User> users;
+    private List<User> list;
+    private List<User> users;
 
     private String status;
+    private String picture;
 
     public String getPicture() {
         return picture;
     }
 
-    private String picture;
-
-    public Message() {
-    }
 
     public String getName() {
         return name;
@@ -49,11 +46,11 @@ public class Message implements Serializable {
         this.type = type;
     }
 
-    public ArrayList<User> getUserlist() {
+    public List<User> getUserlist() {
         return list;
     }
 
-    public void setUserlist(HashMap<String, User> userList) {
+    public void setUserlist(Map<String, User> userList) {
         this.list = new ArrayList<>(userList.values());
     }
 
@@ -70,11 +67,11 @@ public class Message implements Serializable {
     }
 
 
-    public ArrayList<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(ArrayList<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
