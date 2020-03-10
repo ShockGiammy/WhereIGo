@@ -13,11 +13,10 @@ import logic.model.Chat;
 public interface ChatController {
 
 	public void createChat(String type);
-	public void openChat();
+	public List<Message> openChat(String receiver);
 	public void execute();
 	public void notificateMessage();
 	public void acceptChat();
 	public Message sendMessage(String message);
-	public List<Message> getChat(String receiver);
 	public List<User> getUsers();
 }

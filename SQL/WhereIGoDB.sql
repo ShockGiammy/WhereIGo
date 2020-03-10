@@ -19,6 +19,8 @@ create table Usr
     gender VARCHAR(10),
     tipeOfUser VARCHAR(20),
     tipeOfPersonality VARCHAR(20),
+    profilePicture LONGBLOB,
+    userStatus VARCHAR(15),
     primary key(username,passw)
 );
 
@@ -50,7 +52,7 @@ create table Post
     primary key(ID, utente)
 );
 
-create table DBChat
+create table Chat
 (
 	ID int auto_increment primary key,
 	sender VARCHAR(20)
@@ -70,7 +72,7 @@ create table Tickets
     cost float
 );
 
-insert into DBChat(ID, sender, receiver, message)
+insert into Chat(ID, sender, receiver, message)
 values ("0","ciao", "ciao2", "come stai");
 
 insert into Post(ID,  photo, utente, descr, beds, city, address, services, squareMetres, tipologia, tipeOfPost)

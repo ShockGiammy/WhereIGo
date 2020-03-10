@@ -33,9 +33,10 @@ public class DBChatController implements ChatController{
 		this.username = "ciao"; //loggedUser.getUserName();;
         //Listener.picture = picture;
 		this.graphic = reference;
+		chatDao.setOnlineStatus();
 	}
 
-	public List<Message> getChat(String receiver) {
+	public List<Message> openChat(String receiver) {
 		chat = chatDao.getSavedMsg("prova", receiver);
 		return chat;
 	}
@@ -84,13 +85,4 @@ public class DBChatController implements ChatController{
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-	@Override
-	public void openChat() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

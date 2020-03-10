@@ -135,7 +135,7 @@ public class GraphicControllerChat implements Initializable {
     	Node node = userList.getSelectionModel().getSelectedItem().getChildren().get(1);
     	String receiver = ((Text)node).getText();
     	if (!activeChat.getText().equals(receiver)) {
-    		display(receiver);
+    		displayChat(receiver);
     		setActiveChat(receiver);
     	}
     }
@@ -199,9 +199,9 @@ public class GraphicControllerChat implements Initializable {
         t.start();
     }
     
-    public void display(String receiver) {
+    public void displayChat(String receiver) {
     	chatPane.getItems().clear();
-    	List<Message> chat = chatController.getChat(receiver);
+    	List<Message> chat = chatController.openChat(receiver);
     	for (Message message : chat) {
     		addToChat(message);
     	}

@@ -79,7 +79,6 @@ public abstract class SingleChat implements ChatController{
 		return null;
 	}
 
-	@Override
 	public void openChat() {
 		// TODO Auto-generated method stub
 		
