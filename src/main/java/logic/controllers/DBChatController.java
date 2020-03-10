@@ -16,7 +16,7 @@ import logic.LoggedUser;
 import logic.ReadThread;
 import logic.dao.ChatDao;
 import logic.dao.UserDao;
-import logic.graphiccontrollers.ChatControllerCopy;
+import logic.graphiccontrollers.GraphicControllerChat;
 
 public class DBChatController implements ChatController{
 	private String username;
@@ -25,10 +25,10 @@ public class DBChatController implements ChatController{
 	private ChatDao chatDao;
 	private List<Message> chat;
 	private static String picture;
-	private ChatControllerCopy graphic;
+	private GraphicControllerChat graphic;
 	private ObservableList<User> users;
 	
-	public DBChatController(ChatControllerCopy reference, LoggedUser loggedUser) {
+	public DBChatController(GraphicControllerChat reference, LoggedUser loggedUser) {
 		chatDao = new ChatDao();
 		this.username = "ciao"; //loggedUser.getUserName();;
         //Listener.picture = picture;
