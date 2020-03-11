@@ -15,9 +15,7 @@ import java.sql.Date;
 public class TravelDao extends GeneralConnection{
 	
 	public List<TicketModel> retriveAvailableTickets(UserTravelBean travBean) throws SQLException {
-		if(dbConn == null) {
-			getConnection();
-		}
+		getConnection();
 		List<TicketModel> tickets = new ArrayList<>();
 		try(PreparedStatement prep = dbConn.getConnection().prepareStatement("SELECT * FROM Tickets WHERE (depCity=? and arrCity=? and dateOfDep=? and dateOfArr=?)")) {
 			prep.setString(1, travBean.getCityOfDep());

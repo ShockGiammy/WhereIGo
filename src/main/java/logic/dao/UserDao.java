@@ -12,20 +12,10 @@ public class UserDao extends GeneralConnection{
 	
 	public String[] getCity(UserDataBean usrBean) {
 		String[] locat = new String[3];
-		int i = 0;
-		if(dbConn == null) {
-			getConnection();
-		}
+		getConnection();
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("select * from Locations where tipeOfPersonality=?")){    
 			statement.setString(1, usrBean.getPersonality());    
-			ResultSet rs = getDatas(statement);
-			if(rs == null) {
-				return locat;
-			}
-			while(rs.next()) {
-				locat[i] = rs.getString(2);
-				i+=1;
-			}
+			getCities(statement, locat);
 		}catch (SQLException e) {
 			 
 			logger.log(Level.SEVERE, "SQLException occurred during fetch of cities", e);
@@ -45,25 +35,15 @@ public class UserDao extends GeneralConnection{
 	}
 	
 	public int checkLogInInfo(LogInBean bean, UserDataBean usrBean) {
+		getConnection();
 		int ret = 0;
+		if(dbConn == null) {
+			getConnection();
+		}
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT * FROM usr WHERE (username=? and passw=?)")){    
 			statement.setString(1,bean.getUserName());
 			statement.setString(2,bean.getPasw());
-			ResultSet rs = getDatas(statement);
-			if(rs == null) {
-				return 0;
-			}
-			while(rs.next()) {
-				ret +=1;
-				usrBean.setUserName(bean.getUserName());
-				usrBean.setName(rs.getString(3));
-				usrBean.setSurname(rs.getString(4));
-				usrBean.setDateOfBirth(rs.getString(5));
-				usrBean.setGender(rs.getString(6));
-				usrBean.setType(rs.getString(7));
-				usrBean.setPersonality(rs.getString(8));
-			}
-			
+			ret = getLoggedUser(statement, usrBean);
 		}catch (SQLException e) {
 				logger.log(Level.SEVERE, "SQLException occurred during the fetch of credentials", e);
 		}
@@ -71,6 +51,7 @@ public class UserDao extends GeneralConnection{
 	}
 	
 	public void insertNewUser(UserDataBean usrBean) {
+		getConnection();
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO usr(username, passw, nome, surname, dateOfBirth, gender, tipeOfUser) VALUES(?,?,?,?,?,?,?)")){
 			statement.setString(1, usrBean.getUsername());
 			statement.setString(2, usrBean.getPassword());
@@ -86,12 +67,62 @@ public class UserDao extends GeneralConnection{
 	}
 	
 	public void getUserDatas(UserDataBean usrBean) {
+		getConnection();
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT * FROM usr WHERE (username = ?)")){
 			statement.setString(1, usrBean.getUsername());
-			ResultSet rs = getDatas(statement);
-			if(rs == null) {
-				return;
+			retriveUser(statement, usrBean);
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "SQLException on fetchin user datas\n", e);
+		}
+	}
+	
+	public List<String> getLocations(UserDataBean dataBean) {
+		getConnection();
+		List<String> loc = new ArrayList<>();
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT city FROM Locations WHERE (tipeOfPersonality = ?)")){
+			statement.setString(1, dataBean.getPersonality());
+			retriveLocations(statement, loc);
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "SQLException on fetchin locations\n", e);
+		}
+		return loc;
+	}
+	
+	public void getCities(PreparedStatement statement, String[] locat)  {
+		getConnection();
+		int i = 0;
+		try(ResultSet rs = statement.executeQuery()){
+			while(rs.next()) {
+				locat[i] = rs.getString(2);
+				i+=1;
 			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "ResultSet fetch ", e);
+		}
+	}
+	
+	public int getLoggedUser(PreparedStatement statement, UserDataBean usrBean) {
+		getConnection();
+		try(ResultSet rs = statement.executeQuery()){
+			while(rs.next()) {
+				usrBean.setUserName(rs.getString(1));
+				usrBean.setName(rs.getString(3));
+				usrBean.setSurname(rs.getString(4));
+				usrBean.setDateOfBirth(rs.getString(5));
+				usrBean.setGender(rs.getString(6));
+				usrBean.setType(rs.getString(7));
+				usrBean.setPersonality(rs.getString(8));
+				return 1;
+			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "ResultSet fetch fail !", e);
+		}
+		return 0;
+	}
+	
+	public void retriveUser(PreparedStatement statement, UserDataBean usrBean) {
+		getConnection();
+		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				usrBean.setName(rs.getString(3));
 				usrBean.setSurname(rs.getString(4));
@@ -100,26 +131,19 @@ public class UserDao extends GeneralConnection{
 				usrBean.setType(rs.getString(7));
 				usrBean.setPersonality(rs.getString(8));
 			}
-			
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "SQLException on fetchin user datas\n", e);
+			logger.log(Level.SEVERE, "ResultSet fetch fail !", e);
 		}
 	}
 	
-	public List<String> getLocations(UserDataBean dataBean) {
-		List<String> loc = new ArrayList<>();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT city FROM Locations WHERE (tipeOfPersonality = ?)")){
-			statement.setString(1, dataBean.getPersonality());
-			ResultSet rs = getDatas(statement);
-			if(rs == null) {
-				return loc;
-			}
+	public void retriveLocations(PreparedStatement statement, List<String> loc) {
+		getConnection();
+		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				loc.add(rs.getString(1));
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "SQLException on fetchin locations\n", e);
+			logger.log(Level.SEVERE, "ResultSet fetch fail !", e);
 		}
-		return loc;
 	}
 }

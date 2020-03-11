@@ -25,7 +25,7 @@ public class ChatDao extends GeneralConnection{
 			statement.execute();
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, "Exception Occurred\n");
 			logger.log(Level.SEVERE, e.getMessage());
 		}
 	}
@@ -48,16 +48,7 @@ public class ChatDao extends GeneralConnection{
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Chat Where (sender = ?) and (receiver = ?)")){    
 			statement.setString(1, sender);
 			statement.setString(2,  receiver);
-			ResultSet rs = getDatas(statement);
-			if(rs == null) {
-				return messages;
-			}
-			while(rs.next()) {
-				Message message = new Message();
-				message.setName(rs.getString(2));
-				message.setMsg(rs.getString(4));
-				messages.add(message);
-			}
+			retriveSavedMessages(statement, messages);
 		}
 		catch (SQLException e) {
 			logger.log(Level.SEVERE, "Got an exception!");
@@ -71,20 +62,37 @@ public class ChatDao extends GeneralConnection{
 		ObservableList<User> users = FXCollections.observableArrayList();
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select distinct receiver From Chat Where (sender = ?)")){    
 			statement.setString(1, sender);
-			ResultSet rs = getDatas(statement);
-			if(rs == null){
-				return users;
-			}
-			while(rs.next()) {
-				User user = new User();
-				user.setName(rs.getString(1));
-				users.add(user);
-			}
+			retriveUsers( statement, users);
 		}
 		catch (SQLException e) {
 			logger.log(Level.SEVERE, "Got an exception!");
 			logger.log(Level.SEVERE, e.getMessage());
 		}
 		return users;
+	}
+	
+	public void retriveSavedMessages(PreparedStatement statement, List<Message> messages) {
+		try(ResultSet rs = statement.executeQuery()){
+			while(rs.next()) {
+				Message message = new Message();
+				message.setName(rs.getString(2));
+				message.setMsg(rs.getString(4));
+				messages.add(message);
+			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "Messages fetch error", e);
+		}
+	}
+	
+	public void retriveUsers(PreparedStatement statement, ObservableList<User> users) {
+		try(ResultSet rs = statement.executeQuery()){
+			while(rs.next()) {
+				User user = new User();
+				user.setName(rs.getString(1));
+				users.add(user);
+			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "Users fetch error", e);
+		}
 	}
 }

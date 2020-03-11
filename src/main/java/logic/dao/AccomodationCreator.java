@@ -34,14 +34,20 @@ public class AccomodationCreator extends GeneralConnection{
 	}
 
 	public AccomodationModel[] queryDB(RentAccomodationBean bean) {
-		int fetched = 0;
 		getConnection();
 		AccomodationModel[] acc = new AccomodationModel[6];
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Post")){    
-			ResultSet rs = getDatas(statement);
-			if(rs == null) {
-				return acc;
-			}
+			getAccomodationDatas(statement, bean, acc);
+		}catch (SQLException e) {
+			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+		return acc;
+	}
+	
+	public void getAccomodationDatas(PreparedStatement statement, RentAccomodationBean bean , AccomodationModel[] acc) {
+		int fetched = 0;
+		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				if (fetched<6) {
 					bean.setID(rs.getInt(1));
@@ -59,11 +65,8 @@ public class AccomodationCreator extends GeneralConnection{
 					fetched +=1;
 				}
 			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "Location ResultSet error", e);
 		}
-		catch (SQLException e) {
-			logger.log(Level.SEVERE, "Got an exception!");
-			logger.log(Level.SEVERE, e.getMessage());
-		}
-		return acc;
 	}
 }

@@ -10,15 +10,16 @@ import logic.beans.LocationBean;
 public class LocationDao extends GeneralConnection{
 	
 	public void retriveLocationInfo(LocationBean locBean) {
-		if(dbConn == null) {
-			getConnection();
-		}
+		getConnection();
 		try (PreparedStatement stmt = dbConn.getConnection().prepareStatement("SELECT * FROM Locations WHERE (city =?)")){
 			stmt.setString(1,locBean.getCityName());
-			ResultSet rs = getDatas(stmt);
-			if(rs == null) {
-				return;
-			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "Error while retriving location", e);
+		}
+	}
+	
+	public void getLocations(PreparedStatement statement, LocationBean locBean) {
+		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				locBean.setCountryName(rs.getString(1));
 				byte[] image = rs.getBytes(4);
@@ -26,7 +27,7 @@ public class LocationDao extends GeneralConnection{
 				locBean.setDescription(rs.getString(5));
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Error while retriving location", e);
+			logger.log(Level.SEVERE, "Location ResultSet error", e);
 		}
 	}
 }
