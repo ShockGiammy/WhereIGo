@@ -10,13 +10,10 @@ import logic.beans.RentAccomodationBean;
 import logic.model.AccomodationModel;
 
 public class AccomodationCreator extends GeneralConnection{
-	
-	protected Logger logger = Logger.getLogger("WIG");
 
 	public AccomodationModel createAccomodation(RentAccomodationBean info) {
 		getConnection();
-		try {
-			PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Post(ID,photo,utente,descr,beds,city,address,services,squareMetres,tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");    
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Post(ID,photo,utente,descr,beds,city,address,services,squareMetres,tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")){    
 			statement.setInt(1, info.getID());
 			statement.setBinaryStream(2,info.getInputFile(), info.getFileLength());		//image
 			statement.setString(3,info.getRenter()); 				//user
@@ -40,9 +37,11 @@ public class AccomodationCreator extends GeneralConnection{
 		int fetched = 0;
 		getConnection();
 		AccomodationModel[] acc = new AccomodationModel[6];
-		try {
-			PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Post");    
-			ResultSet rs = statement.executeQuery();
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Post")){    
+			ResultSet rs = getDatas(statement);
+			if(rs == null) {
+				return acc;
+			}
 			while(rs.next()) {
 				if (fetched<6) {
 					bean.setID(rs.getInt(1));

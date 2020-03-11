@@ -10,18 +10,18 @@ import java.util.logging.Level;
 
 public class UserDao extends GeneralConnection{
 	
-	public UserDao() {
-		getConnection();
-	}
-	
 	public String[] getCity(UserDataBean usrBean) {
 		String[] locat = new String[3];
 		int i = 0;
-		getConnection();
-		try {
-			PreparedStatement statement = dbConn.getConnection().prepareStatement("select * from Locations where tipeOfPersonality=?");    
+		if(dbConn == null) {
+			getConnection();
+		}
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("select * from Locations where tipeOfPersonality=?")){    
 			statement.setString(1, usrBean.getPersonality());    
-			ResultSet rs = statement.executeQuery();
+			ResultSet rs = getDatas(statement);
+			if(rs == null) {
+				return locat;
+			}
 			while(rs.next()) {
 				locat[i] = rs.getString(2);
 				i+=1;
@@ -35,8 +35,7 @@ public class UserDao extends GeneralConnection{
 	
 	public void insertPersonality(String personality,String username) {
 		getConnection();
-		try {
-			PreparedStatement stm = dbConn.getConnection().prepareStatement("update usr set tipeOfPersonality = ? where username = ?");
+		try (PreparedStatement stm = dbConn.getConnection().prepareStatement("update usr set tipeOfPersonality = ? where username = ?")){
 			stm.setString(1, personality);
 			stm.setString(2, username);
 			stm.execute();
@@ -47,11 +46,13 @@ public class UserDao extends GeneralConnection{
 	
 	public int checkLogInInfo(LogInBean bean, UserDataBean usrBean) {
 		int ret = 0;
-		try {
-			PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT * FROM usr WHERE (username=? and passw=?)");    
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT * FROM usr WHERE (username=? and passw=?)")){    
 			statement.setString(1,bean.getUserName());
 			statement.setString(2,bean.getPasw());
-			ResultSet rs = statement.executeQuery();
+			ResultSet rs = getDatas(statement);
+			if(rs == null) {
+				return 0;
+			}
 			while(rs.next()) {
 				ret +=1;
 				usrBean.setUserName(bean.getUserName());
@@ -70,8 +71,7 @@ public class UserDao extends GeneralConnection{
 	}
 	
 	public void insertNewUser(UserDataBean usrBean) {
-		try {
-			PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO usr(username, passw, nome, surname, dateOfBirth, gender, tipeOfUser) VALUES(?,?,?,?,?,?,?)");
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO usr(username, passw, nome, surname, dateOfBirth, gender, tipeOfUser) VALUES(?,?,?,?,?,?,?)")){
 			statement.setString(1, usrBean.getUsername());
 			statement.setString(2, usrBean.getPassword());
 			statement.setString(3, usrBean.getName());
@@ -86,10 +86,12 @@ public class UserDao extends GeneralConnection{
 	}
 	
 	public void getUserDatas(UserDataBean usrBean) {
-		try {
-			PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT * FROM usr WHERE (username = ?)");
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT * FROM usr WHERE (username = ?)")){
 			statement.setString(1, usrBean.getUsername());
-			ResultSet rs = statement.executeQuery();
+			ResultSet rs = getDatas(statement);
+			if(rs == null) {
+				return;
+			}
 			while(rs.next()) {
 				usrBean.setName(rs.getString(3));
 				usrBean.setSurname(rs.getString(4));
@@ -106,10 +108,12 @@ public class UserDao extends GeneralConnection{
 	
 	public List<String> getLocations(UserDataBean dataBean) {
 		List<String> loc = new ArrayList<>();
-		try {
-			PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT city FROM Locations WHERE (tipeOfPersonality = ?)");
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT city FROM Locations WHERE (tipeOfPersonality = ?)")){
 			statement.setString(1, dataBean.getPersonality());
-			ResultSet rs = statement.executeQuery();
+			ResultSet rs = getDatas(statement);
+			if(rs == null) {
+				return loc;
+			}
 			while(rs.next()) {
 				loc.add(rs.getString(1));
 			}

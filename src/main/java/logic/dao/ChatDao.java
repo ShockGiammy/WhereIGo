@@ -20,8 +20,7 @@ public class ChatDao extends GeneralConnection{
 
 	public void saveMessage(Message msg) {
 		getConnection();
-		try {
-			PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Chat (sender, receiver, message) VALUES (?, ?, ?)");   
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Chat (sender, receiver, message) VALUES (?, ?, ?)")){  
 			statement.setString(1, msg.getName());
 			statement.setString(2,  "pippo");
 			statement.setString(3, msg.getMsg());
@@ -35,8 +34,7 @@ public class ChatDao extends GeneralConnection{
 
 	public void setOnlineStatus() {
 		getConnection();
-		try {
-			PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE usr Set userStatus = 'online' where username = ?");   
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE usr Set userStatus = 'online' where username = ?")){   
 			statement.setString(1, "ciao");
 			statement.execute();
 		}

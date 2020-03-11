@@ -1,5 +1,8 @@
 package logic.dao;
 import java.util.logging.Logger;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import logic.SingletonDbConnection;
 
@@ -17,6 +20,15 @@ public class GeneralConnection {
 			dbConn = SingletonDbConnection.getInstance(this.url, this.username, this.password);
 		}catch(ClassNotFoundException e) {
 			logger.log(Level.SEVERE, "ClassNotFoundException occurred", e);
+		}
+	}
+	
+	public ResultSet getDatas(PreparedStatement statement)  {
+		try(ResultSet rs = statement.executeQuery()){
+			return rs;
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "ResultSet fetch fail !", e);
+			return null;
 		}
 	}
 }
