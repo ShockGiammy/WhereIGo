@@ -30,9 +30,11 @@ public class ChatDao extends GeneralConnection{
 		}
 	}
 
-	public void setOnlineStatus() {
+	public void setStatus() {
 		getConnection();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE usr Set userStatus = 'online' where username = ?")){   
+		try {
+			PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE usr Set userStatus = ? where username = ?");   
+			statement.setString(1,  "online");
 			statement.setString(1, "ciao");
 			statement.execute();
 		}

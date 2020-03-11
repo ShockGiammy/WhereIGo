@@ -1,5 +1,7 @@
 package logic.controllers;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Random;
 
 import logic.beans.RentAccomodationBean;
@@ -9,6 +11,7 @@ import logic.model.AccomodationModel;
 public class PostAnAnnouncementController {
 	private RentAccomodationBean info;
 	private AccomodationModel acc;
+	private Random rand;
 	
 	public PostAnAnnouncementController() {		
 	}
@@ -24,8 +27,12 @@ public class PostAnAnnouncementController {
 	
 	public void createAccomodation(RentAccomodationBean bean) {
 		this.info = bean;
-		Random random = new Random();
-		bean.setID(random.nextInt(100));
+		try {
+			rand = SecureRandom.getInstanceStrong();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		bean.setID(this.rand.nextInt());
 		AccomodationCreator creator = new AccomodationCreator();
 		acc = creator.createAccomodation(info);
 	}

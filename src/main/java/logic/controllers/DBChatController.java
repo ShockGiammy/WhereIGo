@@ -33,7 +33,7 @@ public class DBChatController implements ChatController{
 		this.username = "ciao"; //loggedUser.getUserName();;
         //Listener.picture = picture;
 		this.graphic = reference;
-		chatDao.setOnlineStatus();
+		chatDao.setStatus();
 	}
 
 	public List<Message> openChat(String receiver) {
