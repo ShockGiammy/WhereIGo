@@ -42,7 +42,7 @@ public class GraphicControlCreateAccomodation extends Window{
 	@FXML private ImageView imageView;
 	@FXML private Button openButton;
 	@FXML private ImageView home;
-	LoggedUser logUser;
+	private LoggedUser logUser;
 	
 	@FXML
 	private void initialize() {

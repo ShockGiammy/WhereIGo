@@ -1,6 +1,8 @@
 package com.messages;
 
-public class User{
+import java.io.Serializable;
+
+public class User implements Serializable{
 	
 	private String picture;
     private String status = "online";

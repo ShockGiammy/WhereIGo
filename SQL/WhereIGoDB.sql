@@ -73,7 +73,7 @@ create table Tickets
 );
 
 insert into Chat(ID, sender, receiver, message)
-values ("0","ciao", "ciao2", "come stai");
+values ("0","ciao", "shockGiammy", "come stai");
 
 insert into Post(ID,  photo, utente, descr, beds, city, address, services, squareMetres, tipologia, tipeOfPost)
 values(1, null, "ciao2", "desc", "4", "cave", "mia via", null, "< 20", "appartamento", null);
@@ -159,11 +159,11 @@ values ("Turkmenistan","Karakum desert", "Adventurer");
 insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser,tipeOfPersonality)
 values ("pierC","pippo","Pierciro","Caliandro","18/02/1998","Male","Traveler","Friendly");
 
-insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
-values ("shockGiammy","pluto","Gian Marco","Falcone","16/03/1998","Male","Traveler");
+insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser, userStatus)
+values ("shockGiammy","pluto","Gian Marco","Falcone","16/03/1998","Male","Traveler", "online");
 
-insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
-values ("fra998","paperino","Francesco","Fanali","26/06/1998","Male","Renter");
+insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser, userStatus)
+values ("fra998","paperino","Francesco","Fanali","26/06/1998","Male","Renter", "offline");
 
 insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
 values ("adrianRob","pippo","Adrian","Minut","18/02/1998","Male", "Traveler");

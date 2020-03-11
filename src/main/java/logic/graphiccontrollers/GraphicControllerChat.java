@@ -59,18 +59,16 @@ public class GraphicControllerChat implements Initializable {
     private double yOffset;
     protected Logger logger = Logger.getLogger("WIG");
     private ChatController chatController;
-	private LoggedUser logUser;
 
     public GraphicControllerChat() {
-    	chatController = new DBChatController(this, logUser);
+    	chatController = new DBChatController(this);
     }
     
     public void sendButtonAction() throws IOException {
         String msg = messageBox.getText();
         if (!messageBox.getText().isEmpty()) {
-        	Message message = chatController.sendMessage(msg);
+        	chatController.sendMessage(msg);
             messageBox.clear();
-            addToChat(message);
         }
     }
     
@@ -94,8 +92,12 @@ public class GraphicControllerChat implements Initializable {
             yourMessage.setAlignment(Pos.TOP_RIGHT);
             bl6.setBubbleSpec(BubbleSpec.FACE_RIGHT_CENTER);
             yourMessage.getChildren().addAll(bl6); //, profileImage);
-            chatPane.getItems().add(yourMessage);
-            chatPane.scrollTo(yourMessage);
+            Platform.runLater(new Runnable() {
+                @Override public void run() {
+                	chatPane.getItems().add(yourMessage);
+                	//chatPane.scrollTo(yourMessage);
+                }
+            });
         }
         else {
         	HBox othersMessage = new HBox();
@@ -110,8 +112,12 @@ public class GraphicControllerChat implements Initializable {
             bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,null, null)));
             bl6.setBubbleSpec(BubbleSpec.FACE_LEFT_CENTER);
             othersMessage.getChildren().addAll(bl6);   //profileImage, bl6);
-            chatPane.getItems().add(othersMessage);
-            chatPane.scrollTo(othersMessage);
+            Platform.runLater(new Runnable() {
+                @Override public void run() {
+                	chatPane.getItems().add(othersMessage);
+                	//chatPane.scrollTo(yourMessage);
+                }
+            });
         }
     }
     /*
@@ -210,9 +216,6 @@ public class GraphicControllerChat implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        this.logUser = new LoggedUser();
-        logUser.getUserName();
-        
         setUserList();
         
         borderPane.setOnMouseReleased(event -> {
@@ -246,9 +249,9 @@ public class GraphicControllerChat implements Initializable {
             	
             	Text name = new Text(user.getName());
 /*
-            ImageView pictureImageView = new ImageView();
-            Image image = new Image(getClass().getClassLoader().getResource("images/" + user.getPicture().toLowerCase() + ".png").toString(),50,50,true,true);
-            pictureImageView.setImage(image);
+            	ImageView pictureImageView = new ImageView();
+            	Image image = new Image(getClass().getClassLoader().getResource("images/" + user.getPicture().toLowerCase() + ".png").toString(),50,50,true,true);
+            	pictureImageView.setImage(image);
 */
             	hBox.getChildren().addAll(statusImageView, name);  //, pictureImageView, 
             	hBox.setAlignment(Pos.CENTER_LEFT);

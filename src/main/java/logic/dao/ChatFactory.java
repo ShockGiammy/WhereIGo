@@ -2,7 +2,7 @@ package logic.dao;
 
 import logic.controllers.ChatController;
 import logic.controllers.DBChatController;
-import logic.model.SingleChat;
+//import logic.model.SingleChat;
 
 public class ChatFactory {
 	
@@ -16,7 +16,7 @@ public class ChatFactory {
 				//retval = new SingleChat(null, type);
 				break;
 			case 2:
-				retval = new DBChatController(null, null);
+				retval = new DBChatController(null);
 				break;
 		}
 		return retval;

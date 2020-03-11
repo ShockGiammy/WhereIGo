@@ -30,17 +30,31 @@ public class ChatDao extends GeneralConnection{
 		}
 	}
 
-	public void setStatus() {
+	public void setStatus(String status) {
 		getConnection();
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE usr Set userStatus = ? where username = ?")){   
-			statement.setString(1,  "online");
-			statement.setString(1, "ciao");
+			statement.setString(1,  status);
+			statement.setString(2, "ciao");
 			statement.execute();
 		}
 		catch (SQLException e) {
 			logger.log(Level.SEVERE, "Got an exception!");
 			logger.log(Level.SEVERE, e.getMessage());
 		}
+	}
+	
+	public String getStatus(String user) {
+		getConnection();
+		String status = null;
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select userStatus From usr Where (username = ?)")){    
+			statement.setString(1, user);
+			status = retriveStatus(statement);
+		}
+		catch (SQLException e) {
+			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+		return status;
 	}
 	
 	public List<Message> getSavedMsg(String sender, String receiver) {
@@ -63,7 +77,7 @@ public class ChatDao extends GeneralConnection{
 		ObservableList<User> users = FXCollections.observableArrayList();
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select distinct receiver From Chat Where (sender = ?)")){    
 			statement.setString(1, sender);
-			retriveUsers( statement, users);
+			retriveUsers(statement, users);
 		}
 		catch (SQLException e) {
 			logger.log(Level.SEVERE, "Got an exception!");
@@ -95,5 +109,17 @@ public class ChatDao extends GeneralConnection{
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "Users fetch error", e);
 		}
+	}
+	
+	public String retriveStatus(PreparedStatement statement) {
+		String status = null;
+		try(ResultSet rs = statement.executeQuery()){
+			while(rs.next()) {
+				status = rs.getString(1);
+			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "Users fetch error", e);
+		}
+		return status;
 	}
 }

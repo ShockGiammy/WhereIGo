@@ -1,17 +1,19 @@
 package com.messages;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Message {
+public class Message implements Serializable {
 
     private String name;
-    private String type;
+    private MessageType type;
     private String msg;
     private int count;
     private List<User> list;
     private List<User> users;
+    private static long serialVersionUID = -5809980802220923194L;
 
     private String status;
     private String picture;
@@ -38,12 +40,12 @@ public class Message {
         this.msg = msg;
     }
 
-    public String getType() {
+    public MessageType getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setType(MessageType status) {
+        this.type = status;
     }
 
     public List<User> getUserlist() {
