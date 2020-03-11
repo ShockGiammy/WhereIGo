@@ -134,7 +134,7 @@ public class GraphicControlRentAccomodation extends Window{
 	public void setDisplayInfo(TextField city, Text beds, ImageView house, TextField rating, RentAccomodationBean bean) {
 		city.setText(bean.getCity());
 		beds.setText(bean.getBeds());
-		BufferedImage bufImage = viewer.loadImage(bean);
+		BufferedImage bufImage = viewer.loadImage(bean.getHouseImage());
 		house.setImage(viewer.convertToFxImage(bufImage));
 		rating.setText("5/5");
 }
@@ -185,7 +185,7 @@ public class GraphicControlRentAccomodation extends Window{
 		renter.setVisible(true);
 		renter.setText(bean.getRenter());
 		houseDetail.setVisible(true);
-		BufferedImage bufImage = viewer.loadImage(bean);
+		BufferedImage bufImage = viewer.loadImage(bean.getHouseImage());
 		rating.setText("5/5");
 		houseDetail.setImage(viewer.convertToFxImage(bufImage));
 		garden.setVisible(true);

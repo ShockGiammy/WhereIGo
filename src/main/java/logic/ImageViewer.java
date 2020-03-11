@@ -11,17 +11,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
-import logic.beans.LocationBean;
-import logic.beans.RentAccomodationBean;
 
 public class ImageViewer {
 
 	
 	@SuppressWarnings("exports")
-	public BufferedImage loadImage(RentAccomodationBean bean) {
+	public BufferedImage loadImage(byte[] bs) {
 		BufferedImage bImage = null;
-		if (bean.getHouseImage() != null) {
-			ByteArrayInputStream bi = new ByteArrayInputStream(bean.getHouseImage());
+		if (bs != null) {
+			ByteArrayInputStream bi = new ByteArrayInputStream(bs);
 			try {
 				bImage = ImageIO.read(bi);
 			} catch (IOException e) {
@@ -56,30 +54,4 @@ public class ImageViewer {
 	    }
 	    return new ImageView(wr).getImage();
 	}
-	
-	@SuppressWarnings("exports")
-	public BufferedImage loadImage(LocationBean bean) {
-		BufferedImage bImage = null;
-		if (bean.getStream() != null) {
-			ByteArrayInputStream bi = new ByteArrayInputStream(bean.getStream());
-			try {
-				bImage = ImageIO.read(bi);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				String listingFolder = System.getProperty("user.dir");
-				File tempFile = File.createTempFile("output", ".tmp", new File(listingFolder));
-				ImageIO.write(bImage, "jpg", tempFile);
-				tempFile.deleteOnExit();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return bImage;
-	}
-	
-	//join into one method and pass it only a bean of a bean (only the image)
 }

@@ -24,7 +24,7 @@ public class GraphicControllerLocationInfo extends Window{
 	public void setInfo(LocationBean bean) {
 		BufferedImage bufImage;
 		this.imageView = new ImageViewer();
-		bufImage = imageView.loadImage(bean);
+		bufImage = imageView.loadImage(bean.getStream());
 		locImm.setImage(imageView.convertToFxImage(bufImage));
 		this.cityName.setText(bean.getCityName());
 		this.cityCountry.setText(bean.getCountryName());
