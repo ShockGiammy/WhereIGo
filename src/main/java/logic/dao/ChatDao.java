@@ -15,8 +15,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ChatDao extends GeneralConnection{
-		
-	protected Logger logger = Logger.getLogger("WIG");
 
 	public void saveMessage(Message msg) {
 		getConnection();
@@ -47,11 +45,13 @@ public class ChatDao extends GeneralConnection{
 	public List<Message> getSavedMsg(String sender, String receiver) {
 		getConnection();
 		List<Message> messages = new ArrayList<>();
-		try {
-			PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Chat Where (sender = ?) and (receiver = ?)");    
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Chat Where (sender = ?) and (receiver = ?)")){    
 			statement.setString(1, sender);
 			statement.setString(2,  receiver);
-			ResultSet rs = statement.executeQuery();
+			ResultSet rs = getDatas(statement);
+			if(rs == null) {
+				return messages;
+			}
 			while(rs.next()) {
 				Message message = new Message();
 				message.setName(rs.getString(2));
@@ -69,10 +69,12 @@ public class ChatDao extends GeneralConnection{
 	public ObservableList<User> getUsersQuery(String sender) {
 		getConnection();
 		ObservableList<User> users = FXCollections.observableArrayList();
-		try {
-			PreparedStatement statement = dbConn.getConnection().prepareStatement("Select distinct receiver From Chat Where (sender = ?)");    
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select distinct receiver From Chat Where (sender = ?)")){    
 			statement.setString(1, sender);
-			ResultSet rs = statement.executeQuery();
+			ResultSet rs = getDatas(statement);
+			if(rs == null){
+				return users;
+			}
 			while(rs.next()) {
 				User user = new User();
 				user.setName(rs.getString(1));

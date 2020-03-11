@@ -23,7 +23,6 @@ public abstract class SingleChat implements ChatController{
 	private String hostname;
 	private int port;
 	private String userName;
-	private Socket socket;
 	private PrintWriter writer;
 	protected Logger logger = Logger.getLogger(UserDao.class.getName());
 	private GraphicControllerChat reference;
@@ -34,8 +33,7 @@ public abstract class SingleChat implements ChatController{
    }
 	 
 	public void execute() {
-    try {
-    	Socket socket = new Socket(hostname, port);
+    try (Socket socket = new Socket(hostname, port)){
     	try {
             OutputStream output = socket.getOutputStream();
             writer = new PrintWriter(output, true);

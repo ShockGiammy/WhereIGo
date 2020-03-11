@@ -7,7 +7,6 @@ import logic.dao.AccomodationCreator;
 import logic.model.AccomodationModel;
 
 public class PostAnAnnouncementController {
-	
 	private RentAccomodationBean info;
 	private AccomodationModel acc;
 	
