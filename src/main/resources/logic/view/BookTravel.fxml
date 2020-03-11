@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
@@ -44,32 +45,7 @@
                   <Font size="25.0" />
                </font>
             </Text>
-            <Pane layoutX="14.0" layoutY="284.0" prefHeight="75.0" prefWidth="322.0" style="-fx-background-color: white;">
-               <children>
-                  <Text fx:id="groupTitle1" layoutX="15.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title1" wrappingWidth="174.00000000000023">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="15.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group owner:" />
-                  <Text fx:id="owner1" layoutX="103.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name1" />
-                  <Button layoutX="193.0" layoutY="49.0" mnemonicParsing="false" text="Contact group owner" />
-                  <Text fx:id="city1" layoutX="235.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City1" />
-               </children>
-            </Pane>
-            <Pane layoutX="14.0" layoutY="393.0" prefHeight="75.0" prefWidth="322.0" style="-fx-background-color: white;">
-               <children>
-                  <Text fx:id="groupTitle2" layoutX="15.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title2" wrappingWidth="174.00000000000023">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="15.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group owner:" />
-                  <Text fx:id="owner2" layoutX="103.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name2" />
-                  <Button layoutX="193.0" layoutY="49.0" mnemonicParsing="false" text="Contact group owner" />
-                  <Text fx:id="city2" layoutX="244.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City2" />
-               </children>
-            </Pane>
+            <ListView fx:id="listview" layoutX="-5.0" layoutY="274.0" prefHeight="212.0" prefWidth="388.0" />
          </children>
       </Pane>
       <Pane layoutX="483.0" layoutY="137.0" prefHeight="482.0" prefWidth="397.0" style="-fx-background-color: #19ca8b;">

@@ -7,7 +7,7 @@ public class UserTravelBean {
 	private LocalDate lastDay;
 	private String cityOfDep;
 	private String cityOfArr;
-	private float cost;
+	private Float cost;
 	
 	public void setFirstDay(LocalDate firstDay) {
 		this.firstDay = firstDay;

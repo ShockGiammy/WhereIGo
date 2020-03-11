@@ -1,7 +1,8 @@
 package logic.model;
 
+import java.util.List;
+
 import logic.beans.GroupBean;
-import logic.beans.UserDataBean;
 import logic.dao.GroupDao;
 
 public class GroupModel {
@@ -11,7 +12,7 @@ public class GroupModel {
 		this.grpDao = new GroupDao();
 	}
 	
-	public void getGroups(GroupBean[] beans, UserDataBean dataBean) {
-		grpDao.retriveGroups(beans, dataBean);
+	public void getGroups(List<GroupBean>beans) {
+		grpDao.retriveGroups(beans);
 	}
 }

@@ -7,11 +7,13 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import logic.beans.UserTravelBean;
 import logic.view.Window;
@@ -26,6 +28,7 @@ public class GraphicControllerTickets extends Window{
 	@FXML private List<RadioButton> rbList;
 	@FXML private ToggleGroup bookNowGroup;
 	@FXML private VBox vbox;
+	@FXML private Button bookTheTravel;
 	ObservableList<UserTravelBean> travBeanList = FXCollections.observableArrayList();
 	
 	public void initialize() {
@@ -52,5 +55,22 @@ public class GraphicControllerTickets extends Window{
 		r1.setToggleGroup(this.bookNowGroup);
 		vbox.getChildren().add(r1);
 		this.rbList.add(r1);
+	}
+	
+	public void bookTravel(MouseEvent e) {
+		int i;
+		UserTravelBean travBean = new UserTravelBean();
+		for(i = 0; i < this.rbList.size(); i++) {
+			if(this.bookNowGroup.getSelectedToggle().equals(this.rbList.get(i))) {
+				travBean.setDepCity(this.departureCity.getCellData(i));
+				travBean.setArrCity(this.arrivalCity.getCellData(i));
+				travBean.setFirstDay(this.departureDay.getCellData(i));
+				travBean.setLastDay(this.arrivalDate.getCellData(i));
+				travBean.setCost(this.cost.getCellData(i));
+				setScene("HomePage.fxml");
+				loadScene();
+				setTicketBought(travBean, e);
+			}
+		}
 	}
 }

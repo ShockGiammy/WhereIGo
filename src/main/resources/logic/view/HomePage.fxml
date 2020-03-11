@@ -73,5 +73,11 @@
             <Button fx:id="takeTest" layoutX="205.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#getInterestControl" prefHeight="70.0" prefWidth="125.0" text="Take personality test" />
          </children>
       </AnchorPane>
+      <Pane fx:id="pane" layoutX="502.0" layoutY="182.0" prefHeight="502.0" prefWidth="350.0" style="-fx-background-color: white;" />
+      <Text layoutX="502.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your travels">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

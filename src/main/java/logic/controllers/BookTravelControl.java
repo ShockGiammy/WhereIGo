@@ -1,5 +1,5 @@
 /* IMPORTANT : IS BETTER TO CHANGE THE RETURN VALUE OF THE FUNCTION WITH THE THORWS OF AN EXCEPTION, WHICH WILL BE
- * HANDLED IN THE GRAPHIC CONTROLLER AND WILL DISPLAY AN ERROR MESSAGE*/
+ *  HANDLED IN THE GRAPHIC CONTROLLER AND WILL DISPLAY AN ERROR MESSAGE*/
 
 package logic.controllers;
 
@@ -43,9 +43,9 @@ public class BookTravelControl {
 		return suggLoc;
 	}
 	
-	public void getGroupsControl(GroupBean[] grpBean) {
+	public void getGroupsControl(List<GroupBean> grpBean) {
 		this.logUser.getPersonality();
-		grpModel.getGroups(grpBean, this.userBean);
+		grpModel.getGroups(grpBean);
 	}
 	
 	public void retriveLocInfoControl(LocationBean bean) {

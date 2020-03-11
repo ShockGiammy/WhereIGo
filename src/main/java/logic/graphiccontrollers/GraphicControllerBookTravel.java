@@ -5,7 +5,9 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import logic.LoggedUser;
 import logic.beans.GroupBean;
@@ -20,7 +22,7 @@ import javafx.scene.control.TextField;
 public class GraphicControllerBookTravel extends Window{
 	private UserTravelBean travBean;
 	private BookTravelControl bookTravCtrl;
-	private GroupBean[] grpBean;
+	private List<GroupBean> grpBean;
 	private LoggedUser logUsr;
 	private LocationBean locBean;
 	private String locInfo = "LocationInfo.fxml";
@@ -34,30 +36,21 @@ public class GraphicControllerBookTravel extends Window{
 	@FXML private Text location2;
 	@FXML private Text location3;
 	@FXML private Button bookMyTravel;
-	@FXML private Text groupTitle1;
-	@FXML private Text groupTitle2;
-	@FXML private Text city1;
-	@FXML private Text city2;
-	@FXML private Text owner1;
-	@FXML private Text owner2;
-	@FXML private Button contact1;
-	@FXML private Button contact2;
 	@FXML private Button moreInfo1;
 	@FXML private Button moreInfo2;
 	@FXML private Button moreInfo3;
+	@FXML private ListView<Pane> listview;
 	
 	public void initialize() {
 		this.travBeanArray = new ArrayList<>();
-		this.grpBean = new GroupBean[2];
-		this.grpBean[0] = new GroupBean();
-		this.grpBean[1] = new GroupBean();
+		this.grpBean = new ArrayList<>();
+		this.grpBean.add(new GroupBean());
+		this.grpBean.add(new GroupBean());
+		this.grpBean.add(new GroupBean());
 		logUsr = new LoggedUser();
 		this.locBean = new LocationBean();
 		this.travBean = new UserTravelBean();
 		this.bookTravCtrl = new BookTravelControl();
-		this.grpBean = new GroupBean[2];
-		this.grpBean[0] = new GroupBean();
-		this.grpBean[1] = new GroupBean();
 		this.popUp = new ErrorPopup();
 		setLocation();
 		setGroups();
@@ -82,13 +75,19 @@ public class GraphicControllerBookTravel extends Window{
 	}
 
 	public void setGroups() {
+		this.grpBean.get(0).setGroupDestination(this.location1.getText());
+		this.grpBean.get(1).setGroupDestination(this.location2.getText());
+		this.grpBean.get(2).setGroupDestination(this.location3.getText());
 		this.bookTravCtrl.getGroupsControl(this.grpBean);
-		this.groupTitle1.setText(grpBean[0].getGroupTitle());
-		this.owner1.setText(this.grpBean[0].getGroupOwner());
-		this.city1.setText(this.grpBean[0].getGroupDestination());
-		this.groupTitle2.setText(grpBean[1].getGroupTitle());
-		this.owner2.setText(this.grpBean[1].getGroupOwner());
-		this.city2.setText(this.grpBean[1].getGroupDestination());
+		for(int i = 0; i < this.grpBean.size(); i++) {
+			Pane pane = new Pane();
+			Text title = new Text(grpBean.get(i).getGroupTitle());
+			Text owner = new Text(grpBean.get(i).getGroupOwner());
+			Text location = new Text(grpBean.get(i).getGroupDestination());
+			Button contact = new Button("contact owner");
+			pane.getChildren().addAll(title, owner, location, contact);
+			this.listview.getItems().add(pane);
+		}
 	}
 	
 	public void setLocation() {

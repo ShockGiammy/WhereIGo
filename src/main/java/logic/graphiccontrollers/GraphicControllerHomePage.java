@@ -1,13 +1,19 @@
 package logic.graphiccontrollers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import logic.view.Window;
 import logic.LoggedUser;
 import logic.beans.UserDataBean;
+import logic.beans.UserTravelBean;
 
 public class GraphicControllerHomePage extends Window{
 	@FXML private Text username;
@@ -17,6 +23,12 @@ public class GraphicControllerHomePage extends Window{
 	@FXML private ImageView rentAnnPost;
 	@FXML private Button takeTest;
 	@FXML private Button exitButton;
+	@FXML private Pane pane;
+	@FXML private List<VBox> tavelBox;
+	
+	public void initialize() {
+		this.tavelBox = new ArrayList<>();
+	}
 	
 	public void bookTravelControl(MouseEvent event) {
 		setScene("BookTravel.fxml");
@@ -49,7 +61,18 @@ public class GraphicControllerHomePage extends Window{
 		this.username.setText(dataBean.getUsername());
 	}
 	
-	public void logOut(MouseEvent e){
+	public void setTravel(UserTravelBean travBean) {
+		VBox vbox = new VBox(7);
+		Text depCity = new Text(travBean.getCityOfDep());
+		Text arrCity = new Text(travBean.getCityOfArr());
+		Text depDay = new Text(travBean.getFirstDay().toString());
+		Text retDay = new Text(travBean.getLastDay().toString());
+		vbox.getChildren().addAll(depCity, depDay, arrCity, retDay);
+		this.pane.getChildren().add(vbox);
+		this.tavelBox.add(vbox);
+	}
+	
+	public void logOut(MouseEvent e) {
 		setScene("Login.fxml");
 		loadScene();
 		nextGuiOnClick(e);

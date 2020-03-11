@@ -68,6 +68,12 @@ public class Window extends Application{
 		nextGuiOnClick(e);
 	}
 	
+	public void setTicketBought(UserTravelBean bean, MouseEvent e) {
+		GraphicControllerHomePage controller = loader.getController();
+		controller.setTravel(bean);
+		nextGuiOnClick(e);
+	}
+	
 	public static void loadScene() {
 		try {
 			loader = new FXMLLoader();
