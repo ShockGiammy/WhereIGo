@@ -15,7 +15,7 @@ public class Listener implements Runnable{
 
     private static final String HASCONNECTED = "has connected";
 
-    private static String picture;
+    //private static String picture;
     private Socket socket;
     public String hostname;
     public int port;
@@ -31,14 +31,13 @@ public class Listener implements Runnable{
         this.hostname = hostname;
         this.port = port;
         Listener.username = username;
-        Listener.picture = picture;
+        //Listener.picture = picture;
         this.controller = controller;
     }
 
     public void run() {
         try {
-            socket = new Socket(hostname, port);
-            
+            socket = new Socket(hostname, port);           
             outputStream = socket.getOutputStream();
             oos = new ObjectOutputStream(outputStream);
             is = socket.getInputStream();
@@ -65,19 +64,14 @@ public class Listener implements Runnable{
                         case USER:
                             controller.addMessage(message);
                             break;
-                        case NOTIFICATION:
-                            //controller.notificateMessage(message);
-                            break;
                         case SERVER:
                             controller.addServerMessage(message);
                             break;
                         case CONNECTED:
-                            controller.addServerMessage(message);
-                            break;
-                        /*case DISCONNECTED:
-                            controller.setUserList(message);
-                            break;
-                            */
+                        	controller.addServerMessage(message);
+                        	break;
+                        case DISCONNECTED:
+                        	break;
                     }
                 }
             }

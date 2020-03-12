@@ -137,19 +137,6 @@ public class GraphicControllerChat implements Initializable {
     	}
     }
 
-    /* Displays Notification when a user joins */
-    /*public void newUserNotification(Message msg) {
-        Platform.runLater(() -> {
-            //Image profileImg = new Image(getClass().getClassLoader().getResource("images/" + msg.getPicture().toLowerCase() +".png").toString(),50,50,false,false);
-            TrayNotification tray = new TrayNotification();
-            tray.setTitle("A new user has joined!");
-            tray.setMessage(msg.getName() + " has joined the JavaFX Chatroom!");
-            tray.setRectangleFill(Paint.valueOf("#2C3E50"));
-            //tray.setImage(profileImg);
-            //tray.showAndDismiss(Duration.seconds(5));
-        });
-    }*/
-
     public void sendMethod(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER) {
             sendButtonAction();

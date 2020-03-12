@@ -46,7 +46,7 @@ public class DBChatController implements ChatController{
 	}
 
 	public List<Message> openChat(String receiver) {
-		chat = chatDao.getSavedMsg("prova", receiver);
+		chat = chatDao.getSavedMsg(username, receiver);
 		status = chatDao.getStatus(receiver);
 		if (status.equals("online")) {
 			this.hostname = "localhost";
@@ -105,7 +105,7 @@ public class DBChatController implements ChatController{
 		        }
 	        }
 	        else {
-	        	graphic.addToChat(createMessage);
+	        	addMessage(createMessage);
 	        }
 	}
 	
