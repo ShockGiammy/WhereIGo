@@ -5,18 +5,13 @@ import com.messages.Message;
 import com.messages.User;
 import com.messages.bubble.BubbleSpec;
 import com.messages.bubble.BubbledLabel;
-//import com.traynotifications.animations.AnimationType;
-//import com.traynotifications.notification.TrayNotification;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,13 +19,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.util.Duration;
 import logic.LoggedUser;
 import logic.controllers.ChatController;
 import logic.controllers.DBChatController;
@@ -55,13 +45,14 @@ public class GraphicControllerChat implements Initializable {
     @FXML private ListView groupMember;
     @FXML private Text activeChat;
 
-    private double xOffset;
-    private double yOffset;
     protected Logger logger = Logger.getLogger("WIG");
     private ChatController chatController;
+    private String username;
 
     public GraphicControllerChat() {
     	chatController = new DBChatController(this);
+    	LoggedUser logUser = new LoggedUser();
+    	this.username = logUser.getUserName();
     }
     
     public void sendButtonAction() throws IOException {
@@ -77,7 +68,7 @@ public class GraphicControllerChat implements Initializable {
     }
 
     public synchronized void addToChat(Message msg) {
-        if (msg.getName().equals("ciao")) {
+        if (msg.getName().equals(username)) {
         	HBox yourMessage = new HBox();
         	/*
             Image image = userImageView.getImage();
@@ -146,28 +137,19 @@ public class GraphicControllerChat implements Initializable {
     	}
     }
 
-    /* Displays Notification when a user joins *//*
-    public void newUserNotification(Message msg) {
+    /* Displays Notification when a user joins */
+    /*public void newUserNotification(Message msg) {
         Platform.runLater(() -> {
-            Image profileImg = new Image(getClass().getClassLoader().getResource("images/" + msg.getPicture().toLowerCase() +".png").toString(),50,50,false,false);
+            //Image profileImg = new Image(getClass().getClassLoader().getResource("images/" + msg.getPicture().toLowerCase() +".png").toString(),50,50,false,false);
             TrayNotification tray = new TrayNotification();
             tray.setTitle("A new user has joined!");
             tray.setMessage(msg.getName() + " has joined the JavaFX Chatroom!");
             tray.setRectangleFill(Paint.valueOf("#2C3E50"));
-            tray.setAnimationType(AnimationType.POPUP);
-            tray.setImage(profileImg);
-            tray.showAndDismiss(Duration.seconds(5));
-            try {
-                Media hit = new Media(getClass().getClassLoader().getResource("sounds/notification.wav").toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(hit);
-                mediaPlayer.play();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            //tray.setImage(profileImg);
+            //tray.showAndDismiss(Duration.seconds(5));
         });
-    }
-*/
+    }*/
+
     public void sendMethod(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER) {
             sendButtonAction();
@@ -244,7 +226,7 @@ public class GraphicControllerChat implements Initializable {
             	HBox hBox = new HBox();
 
             	ImageView statusImageView = new ImageView();
-            	Image statusImage = new Image(getClass().getClassLoader().getResource("images/" + user.getStatus().toString().toLowerCase() + ".png").toString(), 16, 16,true,true);
+            	Image statusImage = new Image(getClass().getClassLoader().getResource("images/" + user.getStatus().toLowerCase() + ".png").toString(), 16, 16,true,true);
             	statusImageView.setImage(statusImage);
             	
             	Text name = new Text(user.getName());

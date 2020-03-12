@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.messages.Message;
+import com.messages.MessageType;
 
 public class Listener implements Runnable{
 
@@ -29,8 +30,8 @@ public class Listener implements Runnable{
     public Listener(String hostname, int port, String username, String picture, DBChatController controller) {
         this.hostname = hostname;
         this.port = port;
-        this.username = username;
-        this.picture = picture;
+        Listener.username = username;
+        Listener.picture = picture;
         this.controller = controller;
     }
 
@@ -55,29 +56,29 @@ public class Listener implements Runnable{
             connect();
             logger.info("Sockets in and out ready!");
             while (socket.isConnected()) {
-                Message message = null;
+            	Message message = null;
                 message = (Message) input.readObject();
 
                 if (message != null) {
-              
-                    //switch (message.getType()) {
-                        //case USER:
+                    logger.info("Message recieved:" + message.getMsg() + " MessageType:" + message.getType() + "Name:" + message.getName());
+                    switch (message.getType()) {
+                        case USER:
                             controller.addMessage(message);
-                            /*break;
-                        case NOTIFICATION:
-                            controller.newUserNotification(message);
-                            break;*/
-                        //case SERVER:
-                            //controller.addServerMessage(message);
-                            //break;
-                       /* case CONNECTED:
-                            controller.setUserList(message);
                             break;
-                        case DISCONNECTED:
+                        case NOTIFICATION:
+                            //controller.notificateMessage(message);
+                            break;
+                        case SERVER:
+                            controller.addServerMessage(message);
+                            break;
+                        case CONNECTED:
+                            controller.addServerMessage(message);
+                            break;
+                        /*case DISCONNECTED:
                             controller.setUserList(message);
                             break;
                             */
-                   //}
+                    }
                 }
             }
         }
@@ -90,6 +91,7 @@ public class Listener implements Runnable{
     public static void send(String msg) throws IOException {
         Message createMessage = new Message();
         createMessage.setName(username);
+        createMessage.setType(MessageType.USER);
         createMessage.setMsg(msg);
         //createMessage.setPicture(picture);
         oos.writeObject(createMessage);
@@ -97,9 +99,10 @@ public class Listener implements Runnable{
     }
     
     /* This method is used to send a connecting message */
-    public void connect() throws IOException {
+    public static void connect() throws IOException {
         Message createMessage = new Message();
         createMessage.setName(username);
+        createMessage.setType(MessageType.CONNECTED);
         createMessage.setMsg(HASCONNECTED);
         //createMessage.setPicture(picture);
         oos.writeObject(createMessage);

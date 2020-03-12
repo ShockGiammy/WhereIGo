@@ -13,7 +13,6 @@ public class Message implements Serializable {
     private int count;
     private List<User> list;
     private List<User> users;
-    private static long serialVersionUID = -5809980802220923194L;
 
     private String status;
     private String picture;
@@ -32,7 +31,6 @@ public class Message implements Serializable {
     }
 
     public String getMsg() {
-
         return msg;
     }
 

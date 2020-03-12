@@ -79,9 +79,8 @@ public class DBChatController implements ChatController{
 
 
 	@Override
-	public void notificateMessage() {
-		// TODO Auto-generated method stub
-		
+	public void notificateMessage(Message msg) {
+		//graphic.newUserNotification(msg);		
 	}
 
 	@Override
@@ -99,7 +98,7 @@ public class DBChatController implements ChatController{
 	        chatDao.saveMessage(createMessage);
 	        if (status.equals("online")) {
 		    	try {
-		    		listener.send(msg);
+		    		Listener.send(msg);
 		        } catch (IOException ex) {
 		        	logger.log(Level.SEVERE, "Error getting output stream: " + ex.getMessage());
 		            ex.printStackTrace();
