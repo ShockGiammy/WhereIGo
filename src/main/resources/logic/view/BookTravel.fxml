@@ -15,39 +15,6 @@
 
 <Pane prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
    <children>
-      <Pane layoutX="28.0" layoutY="137.0" prefHeight="482.0" prefWidth="380.0" style="-fx-background-color: #19ca8b;">
-         <children>
-            <Text fx:id="location1" layoutX="14.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location1" wrappingWidth="174.39999999999986">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="location2" layoutX="14.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location2" wrappingWidth="174.39999999999986">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="location3" layoutX="14.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location3" wrappingWidth="174.39999999999986">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="24.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suggested locations for you">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-            <Button fx:id="moreInfo1" layoutX="253.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#showMoreInfo1" text="Get more info" />
-            <Button fx:id="moreInfo2" layoutX="253.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#showMoreInfo2" text="Get more info" />
-            <Button fx:id="moreInfo3" layoutX="253.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#showMoreInfo3" text="Get more info" />
-            <Text layoutX="103.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Travel groups">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-            <ListView fx:id="listview" layoutX="-5.0" layoutY="274.0" prefHeight="212.0" prefWidth="388.0" />
-         </children>
-      </Pane>
       <Pane layoutX="483.0" layoutY="137.0" prefHeight="482.0" prefWidth="397.0" style="-fx-background-color: #19ca8b;">
          <children>
             <Text layoutX="71.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give us your travel info" wrappingWidth="254.94927978515625">
@@ -135,5 +102,17 @@
             <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
          </children>
       </AnchorPane>
+      <ListView fx:id="suggLocView" layoutX="20.0" layoutY="137.0" prefHeight="206.0" prefWidth="397.0" />
+      <ListView fx:id="groupsView" layoutX="20.0" layoutY="398.0" prefHeight="224.0" prefWidth="397.0" />
+      <Text layoutX="20.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location suggested for you">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="20.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group travels suggested for you">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

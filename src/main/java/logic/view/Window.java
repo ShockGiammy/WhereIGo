@@ -7,7 +7,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import logic.LoggedUser;
 import logic.beans.LocationBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
@@ -68,9 +70,10 @@ public class Window extends Application{
 		nextGuiOnClick(e);
 	}
 	
-	public void setTicketBought(UserTravelBean bean, MouseEvent e) {
+	public void setTicketBought(UserTravelBean bean, UserDataBean dataBean, MouseEvent e) {
 		GraphicControllerHomePage controller = loader.getController();
 		controller.setTravel(bean);
+		controller.setNick(dataBean);
 		nextGuiOnClick(e);
 	}
 	

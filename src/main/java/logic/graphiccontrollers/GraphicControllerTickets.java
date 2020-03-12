@@ -15,6 +15,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import logic.LoggedUser;
+import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.view.Window;
 
@@ -67,9 +69,12 @@ public class GraphicControllerTickets extends Window{
 				travBean.setFirstDay(this.departureDay.getCellData(i));
 				travBean.setLastDay(this.arrivalDate.getCellData(i));
 				travBean.setCost(this.cost.getCellData(i));
+				LoggedUser logusr = new LoggedUser();
+				UserDataBean dataBean = new UserDataBean();
+				dataBean.setUserName(logusr.getUserName());
 				setScene("HomePage.fxml");
 				loadScene();
-				setTicketBought(travBean, e);
+				setTicketBought(travBean, dataBean, e);
 			}
 		}
 	}

@@ -1,13 +1,18 @@
 package logic.graphiccontrollers;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import logic.LoggedUser;
 import logic.beans.GroupBean;
@@ -32,17 +37,14 @@ public class GraphicControllerBookTravel extends Window{
 	@FXML private DatePicker lastDay;
 	@FXML private TextField departureCity;
 	@FXML private TextField arrivalCity;
-	@FXML private Text location1;
-	@FXML private Text location2;
-	@FXML private Text location3;
 	@FXML private Button bookMyTravel;
-	@FXML private Button moreInfo1;
-	@FXML private Button moreInfo2;
-	@FXML private Button moreInfo3;
-	@FXML private ListView<Pane> listview;
+	@FXML private ListView<HBox> suggLocView;
+	@FXML private ListView<VBox> groupsView;
+	@FXML private List<HBox> hboxList;
 	
 	public void initialize() {
 		this.travBeanArray = new ArrayList<>();
+		this.hboxList = new ArrayList<>();
 		this.grpBean = new ArrayList<>();
 		this.grpBean.add(new GroupBean());
 		this.grpBean.add(new GroupBean());
@@ -75,27 +77,39 @@ public class GraphicControllerBookTravel extends Window{
 	}
 
 	public void setGroups() {
-		this.grpBean.get(0).setGroupDestination(this.location1.getText());
-		this.grpBean.get(1).setGroupDestination(this.location2.getText());
-		this.grpBean.get(2).setGroupDestination(this.location3.getText());
+		int i;
+		for(i = 0; i < 3; i++) {
+			Text text = (Text)this.hboxList.get(i).getChildren().get(0);
+			this.grpBean.get(0).setGroupDestination(text.getText());
+		}
 		this.bookTravCtrl.getGroupsControl(this.grpBean);
-		for(int i = 0; i < this.grpBean.size(); i++) {
-			Pane pane = new Pane();
-			Text title = new Text(grpBean.get(i).getGroupTitle());
-			Text owner = new Text(grpBean.get(i).getGroupOwner());
-			Text location = new Text(grpBean.get(i).getGroupDestination());
-			Button contact = new Button("contact owner");
-			pane.getChildren().addAll(title, owner, location, contact);
-			this.listview.getItems().add(pane);
+		for(i = 0; i < this.grpBean.size(); i++) {
+			if(grpBean.get(i).getGroupOwner()!= null && grpBean.get(i).getGroupTitle() != null) {
+				VBox vbox = new VBox(7);
+				Text title = new Text(grpBean.get(i).getGroupTitle());
+				Text owner = new Text(grpBean.get(i).getGroupOwner());
+				Text location = new Text(grpBean.get(i).getGroupDestination());
+				Button contact = new Button("contact owner");
+				vbox.getChildren().addAll(title, owner, location, contact);
+				groupsView.getItems().add(vbox);
+				this.groupsView.getItems().add(vbox);
+			}
 		}
 	}
 	
 	public void setLocation() {
 		List<String> suggLoc = new ArrayList<>();
 		suggLoc.addAll(bookTravCtrl.showLocationsControl());
-		this.location1.setText(suggLoc.get(0));
-		this.location2.setText(suggLoc.get(1));
-		this.location3.setText(suggLoc.get(2));
+		int i;
+		for(i = 0; i < suggLoc.size(); i++) {
+			HBox hbox = new HBox(7);
+			Text loc = new Text(suggLoc.get(i));
+			Button info = new Button("Get more info");
+			info.setOnMouseClicked(e->showMoreInfo(e));
+			hbox.getChildren().addAll(loc,info);
+			this.suggLocView.getItems().add(hbox);
+			this.hboxList.add(hbox);
+		}
 	}
 	
 	public void getFirstDay() {
@@ -114,22 +128,16 @@ public class GraphicControllerBookTravel extends Window{
 		travBean.setDepCity(this.departureCity.getText());
 	}
 	
-	public void showMoreInfo1(MouseEvent e) {
-		this.locBean.setCityName(this.location1.getText());
-		this.bookTravCtrl.retriveLocInfoControl(this.locBean);
-		loadLocInfo(e);
-	}
-	
-	public void showMoreInfo2(MouseEvent e) {
-		this.locBean.setCityName(this.location2.getText());
-		this.bookTravCtrl.retriveLocInfoControl(this.locBean);
-		loadLocInfo(e);
-	}
-	
-	public void showMoreInfo3(MouseEvent e) {
-		this.locBean.setCityName(this.location3.getText());
-		this.bookTravCtrl.retriveLocInfoControl(this.locBean);
-		loadLocInfo(e);
+	public void showMoreInfo(MouseEvent e) {
+		int i;
+		for(i = 0; i < this.hboxList.size(); i++) {
+			if(this.hboxList.get(i).getChildren().get(1).equals(e.getTarget())) {
+				Text text = (Text)this.hboxList.get(i).getChildren().get(0);
+				this.locBean.setCityName(text.getText());
+				this.bookTravCtrl.retriveLocInfoControl(this.locBean);
+				loadLocInfo(e);
+			}
+		}
 	}
 	
 	public void backHome(MouseEvent e) {

@@ -11,8 +11,9 @@ public class LocationDao extends GeneralConnection{
 	
 	public void retriveLocationInfo(LocationBean locBean) {
 		getConnection();
-		try (PreparedStatement stmt = dbConn.getConnection().prepareStatement("SELECT * FROM Locations WHERE (city =?)")){
-			stmt.setString(1,locBean.getCityName());
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT * FROM Locations WHERE (city =?)")){
+			statement.setString(1,locBean.getCityName());
+			getLocations(statement, locBean);
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "Error while retriving location", e);
 		}
