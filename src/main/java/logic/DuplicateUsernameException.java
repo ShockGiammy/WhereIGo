@@ -1,4 +1,4 @@
-package com.exception;
+package logic;
 
 /**
  * @author Dominic

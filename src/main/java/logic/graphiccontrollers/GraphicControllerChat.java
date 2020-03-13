@@ -1,14 +1,11 @@
 package logic.graphiccontrollers;
 
 
-import com.messages.Message;
-import com.messages.User;
 import com.messages.bubble.BubbleSpec;
 import com.messages.bubble.BubbledLabel;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -24,25 +21,29 @@ import javafx.scene.text.Text;
 import logic.LoggedUser;
 import logic.controllers.ChatController;
 import logic.controllers.DBChatController;
+import logic.view.Window;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GraphicControllerChat implements Initializable {
+public class GraphicControllerChat extends Window {
 
+	@FXML private ImageView home;
+	@FXML private ImageView keys;
+	@FXML private ImageView bookTravel;
+	@FXML private ImageView favourite;
+	@FXML private ImageView settings;
+	
     @FXML private TextArea messageBox;
     @FXML private Label usernameLabel;
     @FXML private ListView<HBox> userList;
     @FXML private ImageView userImageView;
     @FXML private ListView<HBox> chatPane;
-    @FXML BorderPane borderPane;
-    @FXML private ListView groupMember;
+    @FXML private BorderPane borderPane;
+    @FXML private ListView<HBox> groupMember;
     @FXML private Text activeChat;
 
     protected Logger logger = Logger.getLogger("WIG");
@@ -58,7 +59,7 @@ public class GraphicControllerChat implements Initializable {
     public void sendButtonAction() throws IOException {
         String msg = messageBox.getText();
         if (!messageBox.getText().isEmpty()) {
-        	chatController.sendMessage(msg);
+        	chatController.sendMessage(msg, activeChat.getText());
             messageBox.clear();
         }
     }
@@ -182,8 +183,7 @@ public class GraphicControllerChat implements Initializable {
     	}
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize() {
 
         setUserList();
         
@@ -197,7 +197,7 @@ public class GraphicControllerChat implements Initializable {
                 try {
                     sendButtonAction();
                 } catch (IOException e) {
-                    e.printStackTrace();
+        			logger.log(Level.SEVERE, e.getMessage());
                 }
                 ke.consume();
             }

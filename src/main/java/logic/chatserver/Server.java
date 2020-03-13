@@ -1,4 +1,4 @@
-package com.server;
+package logic.chatserver;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,10 +10,11 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import com.exception.DuplicateUsernameException;
-import com.messages.Message;
-import com.messages.MessageType;
-import com.messages.User;
+
+import logic.DuplicateUsernameException;
+import logic.graphiccontrollers.Message;
+import logic.graphiccontrollers.MessageType;
+import logic.graphiccontrollers.User;
 
 public class Server {
 
@@ -33,7 +34,8 @@ public class Server {
                 new Handler(listener.accept()).start();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+        	logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, e.getMessage());
         } finally {
             listener.close();
         }
@@ -185,27 +187,31 @@ public class Server {
                 try {
                     is.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                	logger.log(Level.SEVERE, "Got an exception!");
+        			logger.log(Level.SEVERE, e.getMessage());
                 }
             }
             if (os != null){
                 try {
                     os.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                	logger.log(Level.SEVERE, "Got an exception!");
+        			logger.log(Level.SEVERE, e.getMessage());
                 }
             }
             if (input != null){
                 try {
                     input.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                	logger.log(Level.SEVERE, "Got an exception!");
+        			logger.log(Level.SEVERE, e.getMessage());
                 }
             }
             try {
                 removeFromList();
             } catch (Exception e) {
-                e.printStackTrace();
+            	logger.log(Level.SEVERE, "Got an exception!");
+    			logger.log(Level.SEVERE, e.getMessage());
             }
             logger.info("HashMap names:" + names.size() + " writers:" + writers.size() + " usersList size:" + users.size());
             logger.info("closeConnections() method Exit");

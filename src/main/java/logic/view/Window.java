@@ -110,7 +110,7 @@ public class Window extends Application{
     }
     
     public void goChat(MouseEvent event) {
-    	setScene("ChatTraveller.fxml");
+    	setScene("ChatView.fxml");
     	loadScene();
     	nextGuiOnClick(event);
     }

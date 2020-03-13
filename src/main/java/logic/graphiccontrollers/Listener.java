@@ -8,9 +8,6 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.messages.Message;
-import com.messages.MessageType;
-
 public class Listener implements Runnable{
 
     private static final String HASCONNECTED = "has connected";
@@ -77,8 +74,7 @@ public class Listener implements Runnable{
             }
         }
         catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-         
+        	logger.info("Connection closed!");         
         }
     }
 

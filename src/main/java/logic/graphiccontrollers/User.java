@@ -1,4 +1,4 @@
-package com.messages;
+package logic.graphiccontrollers;
 
 import java.io.Serializable;
 

@@ -8,19 +8,18 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.messages.Message;
-import com.messages.User;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import logic.graphiccontrollers.Message;
+import logic.graphiccontrollers.User;
 
 public class ChatDao extends GeneralConnection{
 
-	public void saveMessage(Message msg) {
+	public void saveMessage(Message msg, String receiver) {
 		getConnection();
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Chat (sender, receiver, message) VALUES (?, ?, ?)")){  
 			statement.setString(1, msg.getName());
-			statement.setString(2,  "pippo");
+			statement.setString(2,  receiver);
 			statement.setString(3, msg.getMsg());
 			statement.execute();
 		}
@@ -30,11 +29,11 @@ public class ChatDao extends GeneralConnection{
 		}
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(String user, String status) {
 		getConnection();
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE usr Set userStatus = ? where username = ?")){   
 			statement.setString(1,  status);
-			statement.setString(2, "ciao");
+			statement.setString(2, user);
 			statement.execute();
 		}
 		catch (SQLException e) {
