@@ -98,7 +98,7 @@ public class GraphicControllerBookTravel extends Window{
 			HBox hbox = new HBox(12);
 			Text loc = new Text(suggLoc.get(i));
 			Button info = new Button("Get more info");
-			info.setOnMouseClicked(e->showMoreInfo(e));
+			info.setOnMouseClicked(this::showMoreInfo);
 			hbox.getChildren().addAll(loc,info);
 			this.suggLocView.getItems().add(hbox);
 			this.hboxList.add(hbox);
