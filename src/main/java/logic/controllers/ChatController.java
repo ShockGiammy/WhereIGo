@@ -1,8 +1,9 @@
 package logic.controllers;
 
 import java.util.List;
-import logic.graphiccontrollers.Message;
-import logic.graphiccontrollers.User;
+
+import logic.model.Message;
+import logic.model.User;
 
 public interface ChatController {
 

@@ -10,8 +10,8 @@ import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import logic.graphiccontrollers.Message;
-import logic.graphiccontrollers.User;
+import logic.model.Message;
+import logic.model.User;
 
 public class ChatDao extends GeneralConnection{
 

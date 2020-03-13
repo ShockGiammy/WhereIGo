@@ -1,6 +1,7 @@
-package logic.graphiccontrollers;
+package logic.controllers;
 
-import logic.controllers.DBChatController;
+import logic.model.Message;
+import logic.model.MessageType;
 
 import java.io.*;
 import java.net.Socket;

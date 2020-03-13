@@ -12,9 +12,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import logic.DuplicateUsernameException;
-import logic.graphiccontrollers.Message;
-import logic.graphiccontrollers.MessageType;
-import logic.graphiccontrollers.User;
+import logic.model.Message;
+import logic.model.MessageType;
+import logic.model.User;
 
 public class Server {
 

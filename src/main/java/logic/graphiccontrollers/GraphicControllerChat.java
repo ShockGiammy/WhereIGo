@@ -21,6 +21,8 @@ import javafx.scene.text.Text;
 import logic.LoggedUser;
 import logic.controllers.ChatController;
 import logic.controllers.DBChatController;
+import logic.model.Message;
+import logic.model.User;
 import logic.view.Window;
 
 import java.io.IOException;
