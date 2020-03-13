@@ -1,5 +1,6 @@
 package logic.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import logic.beans.GroupBean;
@@ -12,7 +13,7 @@ public class GroupModel {
 		this.grpDao = new GroupDao();
 	}
 	
-	public void getGroups(List<GroupBean>beans) {
-		grpDao.retriveGroups(beans);
+	public void getGroups(GroupBean beans, List<GroupBean> beanList) {
+		grpDao.retriveGroups(beans, beanList);
 	}
 }

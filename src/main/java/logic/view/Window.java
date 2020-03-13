@@ -2,6 +2,7 @@ package logic.view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,9 +71,14 @@ public class Window extends Application{
 		nextGuiOnClick(e);
 	}
 	
-	public void setTicketBought(UserTravelBean bean, UserDataBean dataBean, MouseEvent e) {
+	public void setTicketBought(List<UserTravelBean> bean, UserDataBean dataBean, MouseEvent e) {
 		GraphicControllerHomePage controller = loader.getController();
-		controller.setTravel(bean);
+		List <UserTravelBean> travListBean = new ArrayList<>();
+		int i;
+		for(i = 0; i < bean.size(); i++) {
+			travListBean.add(bean.get(i));
+		}
+		controller.setTravel(travListBean);
 		controller.setNick(dataBean);
 		nextGuiOnClick(e);
 	}

@@ -14,6 +14,7 @@ import logic.LoggedUser;
 import logic.beans.InterestsBean;
 import logic.beans.UserDataBean;
 import logic.controllers.InterestsController;
+import logic.view.ErrorPopup;
 import logic.view.Window;
 
 public class GraphicControllerInterestForm extends Window{
@@ -32,6 +33,7 @@ public class GraphicControllerInterestForm extends Window{
 	private InterestsController interCtrl;
 	private LoggedUser logUser;
 	private UserDataBean dataBean;
+	private ErrorPopup errPop;
 	
 	public void initialize() {
 		this.questAnsw = new int[4];
@@ -43,6 +45,7 @@ public class GraphicControllerInterestForm extends Window{
 		this.rbList2 = new ArrayList<>();
 		this.rbList3 = new ArrayList<>();
 		this.rbList4 = new ArrayList<>();
+		this.errPop = new ErrorPopup();
 		initToggle(4);
 		setGroup(this.box1, this.rbList1, this.tgList.get(0), 4, 1);
 		setGroup(this.box2, this.rbList2, this.tgList.get(1), 4, 2);
@@ -154,6 +157,10 @@ public class GraphicControllerInterestForm extends Window{
 		}
 	
 	public void evaluatePersonality(MouseEvent e){
+		if(this.questAnsw[0] == 0 || this.questAnsw[1] == 0 || this.questAnsw[2] == 0 || this.questAnsw[3] == 0) {
+			errPop.displayLoginError("Please, answare to all questions");
+			return;
+		}
 		this.dataBean.setUserName(this.logUser.getUserName());
 		this.intBean.setAnswares(this.questAnsw);
 		this.interCtrl.evaluateInterests(this.intBean);

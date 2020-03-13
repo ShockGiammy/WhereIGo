@@ -69,9 +69,11 @@ create table Tickets
     arrCity VARCHAR(50),
 	dateOfDep date,
     dateOfArr date,
-    cost float
+    cost float,
+    passenger VARCHAR(20)
+			references Usr(username)
 );
-
+	
 insert into Chat(ID, sender, receiver, message)
 values ("0","ciao", "shockGiammy", "come stai");
 

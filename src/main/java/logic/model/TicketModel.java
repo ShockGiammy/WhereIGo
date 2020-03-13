@@ -4,18 +4,24 @@ package logic.model;
 import java.time.LocalDate;
 
 public class TicketModel {
+	private int id;
 	private String departureCity;
 	private String arrivalCity;
 	private LocalDate departureDate;
 	private LocalDate arriveDate;
 	private float cost;
 	
-	public void setAll(String depCity, String arrCity, LocalDate depDate, LocalDate arrDate, float money) {
+	public void setAll(int ident, String depCity, String arrCity, LocalDate depDate, LocalDate arrDate, float money) {
+		this.id = ident;
 		this.departureCity = depCity;
 		this.arrivalCity = arrCity;
 		this.departureDate = depDate;
 		this.arriveDate = arrDate;
 		this.cost = money;
+	}
+	
+	public int getId() {
+		return this.id;
 	}
 	
 	public String getDepCity() {

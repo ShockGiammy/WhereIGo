@@ -5,8 +5,13 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
+import logic.beans.UserTravelBean;
 import logic.controllers.LoginController;
 import logic.view.Window;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.fxml.FXML;
 import logic.view.ErrorPopup;
 
@@ -30,9 +35,13 @@ public class GraphicControllerLogIn extends Window{
 	
 	public void logInControl(MouseEvent event) {
 		if(this.loginCtrl.checkLogInControl(this.usrBean, this.logBean) == 1) {
+			List<UserTravelBean> travList = new ArrayList<>();
+			this.loginCtrl.getUserBoughtTickets(this.usrBean, travList);
+			UserDataBean dataBean = new UserDataBean();
+			dataBean.setUserName(this.usrBean.getUsername());
 			setScene("HomePage.fxml");
 			loadScene();
-			setUserNick(event, usrBean);
+			setTicketBought(travList, dataBean, event);
 		}
 		else {
 			this.errLogin.displayLoginError("User not registered or wrong credentials");

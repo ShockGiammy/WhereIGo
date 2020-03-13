@@ -18,10 +18,12 @@ import javafx.scene.layout.VBox;
 import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
+import logic.controllers.BookTravelControl;
 import logic.view.Window;
 
 public class GraphicControllerTickets extends Window{
 	@FXML private TableView<UserTravelBean> ticketsView;
+	@FXML private TableColumn<UserTravelBean, Integer> ticketId;
 	@FXML private TableColumn<UserTravelBean, String> departureCity;
 	@FXML private TableColumn<UserTravelBean, String> arrivalCity;
 	@FXML private TableColumn<UserTravelBean, LocalDate> departureDay;
@@ -31,15 +33,18 @@ public class GraphicControllerTickets extends Window{
 	@FXML private ToggleGroup bookNowGroup;
 	@FXML private VBox vbox;
 	@FXML private Button bookTheTravel;
+	BookTravelControl bookTravCtrl;
 	ObservableList<UserTravelBean> travBeanList = FXCollections.observableArrayList();
 	
 	public void initialize() {
 		this.bookNowGroup = new ToggleGroup();
 		this.rbList = new ArrayList<>();
+		bookTravCtrl = new BookTravelControl();
 	}
 	
 	public void setDatas(List<UserTravelBean> travBean) {
 		int i = 0;
+		ticketId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		departureDay.setCellValueFactory(new PropertyValueFactory<>("firstDay"));
 		arrivalDate.setCellValueFactory(new PropertyValueFactory<>("lastDay"));
 		departureCity.setCellValueFactory(new PropertyValueFactory<>("cityOfDep"));
@@ -64,6 +69,7 @@ public class GraphicControllerTickets extends Window{
 		UserTravelBean travBean = new UserTravelBean();
 		for(i = 0; i < this.rbList.size(); i++) {
 			if(this.bookNowGroup.getSelectedToggle().equals(this.rbList.get(i))) {
+				travBean.setId(this.ticketId.getCellData(i));
 				travBean.setDepCity(this.departureCity.getCellData(i));
 				travBean.setArrCity(this.arrivalCity.getCellData(i));
 				travBean.setFirstDay(this.departureDay.getCellData(i));
@@ -72,9 +78,12 @@ public class GraphicControllerTickets extends Window{
 				LoggedUser logusr = new LoggedUser();
 				UserDataBean dataBean = new UserDataBean();
 				dataBean.setUserName(logusr.getUserName());
+				this.bookTravCtrl.saveBoughtTicket(travBean, dataBean);
 				setScene("HomePage.fxml");
 				loadScene();
-				setTicketBought(travBean, dataBean, e);
+				List<UserTravelBean> travList = new ArrayList<>();
+				travList.add(travBean);
+				setTicketBought(travList, dataBean, e);
 			}
 		}
 	}

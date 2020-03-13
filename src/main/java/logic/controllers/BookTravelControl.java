@@ -43,9 +43,9 @@ public class BookTravelControl {
 		return suggLoc;
 	}
 	
-	public void getGroupsControl(List<GroupBean> grpBean) {
+	public void getGroupsControl(GroupBean grpBean , List<GroupBean> beanList) {
 		this.logUser.getPersonality();
-		grpModel.getGroups(grpBean);
+		grpModel.getGroups(grpBean, beanList);
 	}
 	
 	public void retriveLocInfoControl(LocationBean bean) {
@@ -67,6 +67,7 @@ public class BookTravelControl {
 				else {
 					while(i < tickList.size()) {
 						UserTravelBean bean = new UserTravelBean();
+						bean.setId(tickList.get(i).getId());
 						bean.setFirstDay(tickList.get(i).getDepDay());
 						bean.setLastDay(tickList.get(i).getArrDay());
 						bean.setArrCity(tickList.get(i).getArrCity());
@@ -81,5 +82,11 @@ public class BookTravelControl {
 			return -1;
 		}
 		return 0;
+	}
+	
+	public void saveBoughtTicket(UserTravelBean travBean , UserDataBean dataBean) {
+		TicketModel tick = new TicketModel();
+		tick.setAll(travBean.getId(), travBean.getCityOfDep(), travBean.getCityOfArr(), travBean.getFirstDay(), travBean.getLastDay(), travBean.getCost());
+		this.travDao.saveBoughtTickets(tick, dataBean);
 	}
 }

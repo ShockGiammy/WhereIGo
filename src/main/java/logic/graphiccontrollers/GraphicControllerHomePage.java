@@ -64,15 +64,18 @@ public class GraphicControllerHomePage extends Window{
 		this.username.setText(dataBean.getUsername());
 	}
 	
-	public void setTravel(UserTravelBean travBean) {
-		VBox vbox = new VBox(7);
-		Text depCity = new Text(travBean.getCityOfDep());
-		Text arrCity = new Text(travBean.getCityOfArr());
-		Text depDay = new Text(travBean.getFirstDay().toString());
-		Text retDay = new Text(travBean.getLastDay().toString());
-		vbox.getChildren().addAll(depCity, depDay, arrCity, retDay);
-		this.lwTickets.getItems().add(vbox);
-		this.tavelBox.add(vbox);
+	public void setTravel(List<UserTravelBean> travBean) {
+		int i;
+		for(i = 0; i < travBean.size(); i++) {
+			VBox vbox = new VBox(7);
+			Text depCity = new Text(travBean.get(i).getCityOfDep());
+			Text arrCity = new Text(travBean.get(i).getCityOfArr());
+			Text depDay = new Text(travBean.get(i).getFirstDay().toString());
+			Text retDay = new Text(travBean.get(i).getLastDay().toString());
+			vbox.getChildren().addAll(depCity, depDay, arrCity, retDay);
+			this.lwTickets.getItems().add(vbox);
+			this.tavelBox.add(vbox);
+		}
 	}
 	
 	public void setGroups(GroupBean grpBean) {

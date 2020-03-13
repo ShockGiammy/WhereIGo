@@ -86,21 +86,22 @@
             <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
          </children>
       </AnchorPane>
-      <TableView fx:id="ticketsView" layoutX="21.0" layoutY="100.0" prefHeight="583.0" prefWidth="636.0">
+      <TableView fx:id="ticketsView" layoutX="21.0" layoutY="100.0" prefHeight="583.0" prefWidth="583.0">
         <columns>
-          <TableColumn fx:id="departureCity" prefWidth="105.60000991821289" text="Departure city" />
-          <TableColumn fx:id="arrivalCity" prefWidth="138.40000915527344" text="Arrival city" />
-            <TableColumn fx:id="departureDay" prefWidth="134.39996337890625" text="Departure day" />
-            <TableColumn fx:id="arrivalDate" prefWidth="136.0" text="Arrive day" />
-            <TableColumn fx:id="cost" prefWidth="118.4000244140625" text="Cost" />
+          <TableColumn fx:id="ticketId" prefWidth="42.399993896484375" text="Id" />
+          <TableColumn fx:id="departureCity" prefWidth="107.99996948242188" text="Departure city" />
+            <TableColumn fx:id="arrivalCity" prefWidth="127.20002746582031" text="Arrival city" />
+            <TableColumn fx:id="departureDay" prefWidth="104.79998779296875" text="Departure day" />
+            <TableColumn fx:id="arrivalDate" prefWidth="128.79998779296875" text="Return day" />
+            <TableColumn fx:id="cost" prefWidth="67.20001220703125" text="Cost" />
         </columns>
       </TableView>
-      <VBox fx:id="vbox" layoutX="657.0" layoutY="124.0" prefHeight="559.0" prefWidth="80.0" spacing="8.0" />
-      <Text layoutX="657.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book now" wrappingWidth="80.0">
+      <VBox fx:id="vbox" layoutX="604.0" layoutY="127.0" prefHeight="559.0" prefWidth="74.0" spacing="8.0" />
+      <Text layoutX="611.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book now" wrappingWidth="80.0">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Button fx:id="bookTheTravel" layoutX="737.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#bookTravel" prefHeight="45.0" prefWidth="103.0" text="Book your travel" />
+      <Button fx:id="bookTheTravel" layoutX="691.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#bookTravel" prefHeight="45.0" prefWidth="103.0" text="Book your travel" />
    </children>
 </Pane>

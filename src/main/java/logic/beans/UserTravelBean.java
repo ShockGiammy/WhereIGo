@@ -3,11 +3,16 @@ package logic.beans;
 import java.time.LocalDate;
 
 public class UserTravelBean {
+	private Integer id;
 	private LocalDate firstDay;
 	private LocalDate lastDay;
 	private String cityOfDep;
 	private String cityOfArr;
 	private Float cost;
+	
+	public void setId(int ident) {
+		this.id = ident;
+	}
 	
 	public void setFirstDay(LocalDate firstDay) {
 		this.firstDay = firstDay;
@@ -27,6 +32,10 @@ public class UserTravelBean {
 	
 	public void setCost(float money) {
 		this.cost = money;
+	}
+	
+	public int getId() {
+		return this.id;
 	}
 	
 	public LocalDate getFirstDay() {

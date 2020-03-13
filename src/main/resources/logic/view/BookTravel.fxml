@@ -15,38 +15,38 @@
 
 <Pane prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
    <children>
-      <Pane layoutX="483.0" layoutY="137.0" prefHeight="482.0" prefWidth="397.0" style="-fx-background-color: #19ca8b;">
+      <Pane layoutX="600.0" layoutY="137.0" prefHeight="482.0" prefWidth="292.0" style="-fx-background-color: #19ca8b;">
          <children>
-            <Text layoutX="71.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give us your travel info" wrappingWidth="254.94927978515625">
+            <Text layoutX="19.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give us your travel info" wrappingWidth="254.94927978515625">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
-            <Text layoutX="15.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First day">
+            <Text layoutX="19.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First day">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <DatePicker fx:id="firstDay" layoutX="148.0" layoutY="80.0" onAction="#getFirstDay" prefHeight="27.0" prefWidth="185.0" />
-            <Text layoutX="14.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last day">
+            <DatePicker fx:id="firstDay" layoutX="122.0" layoutY="78.0" onAction="#getFirstDay" prefHeight="27.0" prefWidth="149.0" />
+            <Text layoutX="20.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last day">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <DatePicker fx:id="lastDay" layoutX="148.0" layoutY="147.0" onAction="#getLastDay" prefHeight="27.0" prefWidth="185.0" />
-            <Button fx:id="bookMyTravel" layoutX="177.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#bookMyTravelControl" prefHeight="41.0" prefWidth="127.0" text="Book my travel" textOverrun="WORD_ELLIPSIS" underline="true">
+            <DatePicker fx:id="lastDay" layoutX="128.0" layoutY="145.0" onAction="#getLastDay" prefHeight="27.0" prefWidth="149.0" />
+            <Button fx:id="bookMyTravel" layoutX="145.0" layoutY="368.0" mnemonicParsing="false" onMouseClicked="#bookMyTravelControl" prefHeight="41.0" prefWidth="127.0" text="Book my travel" textOverrun="WORD_ELLIPSIS" underline="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Text layoutX="12.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City of depart">
+            <Text layoutX="19.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City of depart">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="departureCity" layoutX="148.0" layoutY="217.0" onKeyTyped="#getDepartureCity" prefHeight="25.0" prefWidth="185.0" />
-            <TextField fx:id="arrivalCity" layoutX="148.0" layoutY="291.0" onKeyTyped="#getArrivalCity" prefHeight="25.0" prefWidth="185.0" />
-            <Text layoutX="12.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City of arrive">
+            <TextField fx:id="departureCity" layoutX="134.0" layoutY="215.0" onKeyTyped="#getDepartureCity" prefHeight="25.0" prefWidth="149.0" />
+            <TextField fx:id="arrivalCity" layoutX="134.0" layoutY="289.0" onKeyTyped="#getArrivalCity" prefHeight="25.0" prefWidth="149.0" />
+            <Text layoutX="19.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City of arrive">
                <font>
                   <Font size="18.0" />
                </font>
@@ -102,14 +102,14 @@
             <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
          </children>
       </AnchorPane>
-      <ListView fx:id="suggLocView" layoutX="20.0" layoutY="137.0" prefHeight="206.0" prefWidth="397.0" />
-      <ListView fx:id="groupsView" layoutX="20.0" layoutY="398.0" prefHeight="224.0" prefWidth="397.0" />
+      <ListView fx:id="suggLocView" layoutX="20.0" layoutY="137.0" prefHeight="482.0" prefWidth="255.0" />
+      <ListView fx:id="groupsView" layoutX="289.0" layoutY="137.0" prefHeight="482.0" prefWidth="292.0" />
       <Text layoutX="20.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location suggested for you">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Text layoutX="20.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group travels suggested for you">
+      <Text layoutX="289.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group travels suggested for you">
          <font>
             <Font size="15.0" />
          </font>
