@@ -24,6 +24,8 @@ public class Server {
     private static HashSet<ObjectOutputStream> writers = new HashSet<>();
     private static ArrayList<User> users = new ArrayList<>();
     protected static Logger logger = Logger.getLogger("WIG");
+    private static final String EXCEPTION = "Got an exception!";
+    private static final String REMOVED = " has been removed!";
 
     public static void main(String[] args) throws Exception {
         logger.info("The chat server is running.");
@@ -34,7 +36,7 @@ public class Server {
                 new Handler(listener.accept()).start();
             }
         } catch (Exception e) {
-        	logger.log(Level.SEVERE, "Got an exception!");
+        	logger.log(Level.SEVERE, EXCEPTION);
 			logger.log(Level.SEVERE, e.getMessage());
         } finally {
             listener.close();
@@ -52,10 +54,11 @@ public class Server {
         private ObjectOutputStream output;
         private InputStream is;
 
-        public Handler(Socket socket) throws IOException {
+        public Handler(Socket socket){
             this.socket = socket;
         }
-
+        
+        @Override
         public void run() {
             logger.info("Attempting to connect a user...");
             try {
@@ -173,21 +176,21 @@ public class Server {
             logger.info("HashMap names:" + names.size() + " writers:" + writers.size() + " usersList size:" + users.size());
             if (name != null) {
                 names.remove(name);
-                logger.info("User: " + name + " has been removed!");
+                logger.info("User: " + name + REMOVED);
             }
             if (user != null){
                 users.remove(user);
-                logger.info("User object: " + user + " has been removed!");
+                logger.info("User object: " + user + REMOVED);
             }
             if (output != null){
                 writers.remove(output);
-                logger.info("Writer object: " + user + " has been removed!");
+                logger.info("Writer object: " + user + REMOVED);
             }
             if (is != null){
                 try {
                     is.close();
                 } catch (IOException e) {
-                	logger.log(Level.SEVERE, "Got an exception!");
+                	logger.log(Level.SEVERE, EXCEPTION);
         			logger.log(Level.SEVERE, e.getMessage());
                 }
             }
@@ -195,7 +198,7 @@ public class Server {
                 try {
                     os.close();
                 } catch (IOException e) {
-                	logger.log(Level.SEVERE, "Got an exception!");
+                	logger.log(Level.SEVERE, EXCEPTION);
         			logger.log(Level.SEVERE, e.getMessage());
                 }
             }
@@ -203,14 +206,14 @@ public class Server {
                 try {
                     input.close();
                 } catch (IOException e) {
-                	logger.log(Level.SEVERE, "Got an exception!");
+                	logger.log(Level.SEVERE, EXCEPTION);
         			logger.log(Level.SEVERE, e.getMessage());
                 }
             }
             try {
                 removeFromList();
             } catch (Exception e) {
-            	logger.log(Level.SEVERE, "Got an exception!");
+            	logger.log(Level.SEVERE, EXCEPTION);
     			logger.log(Level.SEVERE, e.getMessage());
             }
             logger.info("HashMap names:" + names.size() + " writers:" + writers.size() + " usersList size:" + users.size());

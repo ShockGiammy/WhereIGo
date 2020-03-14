@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RentAccomodationBean {
 	
@@ -18,6 +20,7 @@ public class RentAccomodationBean {
 	private File houseImage;
 	private byte[] services;
 	private byte[] inputF;
+	protected Logger logger = Logger.getLogger("WIG");
 	
 	
 	public void setBeds(String numBeds) {
@@ -86,7 +89,7 @@ public class RentAccomodationBean {
 			try {
 				imageInputFile = new FileInputStream(houseImage);
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				logger.log(Level.SEVERE, e.getMessage());
 			}
 		}
 		return imageInputFile;

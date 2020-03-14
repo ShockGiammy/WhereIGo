@@ -1,6 +1,5 @@
 package logic.graphiccontrollers;
 
-
 import com.messages.bubble.BubbleSpec;
 import com.messages.bubble.BubbledLabel;
 import javafx.application.Platform;
@@ -14,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -87,7 +85,8 @@ public class GraphicControllerChat extends Window {
             bl6.setBubbleSpec(BubbleSpec.FACE_RIGHT_CENTER);
             yourMessage.getChildren().addAll(bl6); //, profileImage);
             Platform.runLater(new Runnable() {
-                @Override public void run() {
+                @Override
+                public void run() {
                 	chatPane.getItems().add(yourMessage);
                 	//chatPane.scrollTo(yourMessage);
                 }
@@ -107,7 +106,8 @@ public class GraphicControllerChat extends Window {
             bl6.setBubbleSpec(BubbleSpec.FACE_LEFT_CENTER);
             othersMessage.getChildren().addAll(bl6);   //profileImage, bl6);
             Platform.runLater(new Runnable() {
-                @Override public void run() {
+                @Override
+                public void run() {
                 	chatPane.getItems().add(othersMessage);
                 	//chatPane.scrollTo(yourMessage);
                 }

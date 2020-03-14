@@ -1,12 +1,7 @@
 package logic.controllers;
 
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +17,6 @@ import logic.model.User;
 public class DBChatController implements ChatController{
 	private String username;
 	private PrintWriter writer;
-	protected Logger logger = Logger.getLogger(UserDao.class.getName());
 	private ChatDao chatDao;
 	private List<Message> chat;
 	private static String picture;
@@ -33,6 +27,7 @@ public class DBChatController implements ChatController{
 	private int port;
 	private Listener listener;
 	private LoggedUser logUser;
+	protected Logger logger = Logger.getLogger("WIG");
 	
 	public DBChatController(GraphicControllerChat reference) {
 		chatDao = new ChatDao();
@@ -50,7 +45,7 @@ public class DBChatController implements ChatController{
 			this.hostname = "localhost";
 			this.port = 2400;
 			execute();
-			System.out.println("socket attivo");
+			logger.info("socket attivo");
 		}
 		return chat;
 	}
@@ -99,7 +94,6 @@ public class DBChatController implements ChatController{
 		    		Listener.send(msg);
 		        } catch (IOException ex) {
 		        	logger.log(Level.SEVERE, "Error getting output stream: " + ex.getMessage());
-		            ex.printStackTrace();
 		        }
 	        }
 	        else {

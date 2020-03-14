@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
@@ -17,14 +19,14 @@ public class ImageViewer {
 	
 	@SuppressWarnings("exports")
 	public BufferedImage loadImage(byte[] bs) {
+		Logger logger = Logger.getLogger("WIG");
 		BufferedImage bImage = null;
 		if (bs != null) {
 			ByteArrayInputStream bi = new ByteArrayInputStream(bs);
 			try {
 				bImage = ImageIO.read(bi);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.log(Level.SEVERE, e.getMessage());
 			}
 			try {
 				String listingFolder = System.getProperty("user.dir");
@@ -32,8 +34,7 @@ public class ImageViewer {
 				ImageIO.write(bImage, "jpg", tempFile);
 				tempFile.deleteOnExit();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.log(Level.SEVERE, e.getMessage());
 			}
 			
 		}
