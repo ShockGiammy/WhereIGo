@@ -26,6 +26,8 @@ public class Server {
     protected static Logger logger = Logger.getLogger("WIG");
     private static final String EXCEPTION = "Got an exception!";
     private static final String REMOVED = " has been removed!";
+    private static int connections = 0;
+    private static final int MAX_CONNECTONS = 1000;
 
     public static void main(String[] args) throws Exception {
         logger.info("The chat server is running.");
@@ -34,6 +36,10 @@ public class Server {
         try {
             while (true) {
                 new Handler(listener.accept()).start();
+                connections++;
+                if (connections == MAX_CONNECTONS) {
+                	break;
+                }
             }
         } catch (Exception e) {
         	logger.log(Level.SEVERE, EXCEPTION);
@@ -173,6 +179,7 @@ public class Server {
          */
         private synchronized void closeConnections()  {
             logger.info("closeConnections() method Enter");
+            connections--;
             logger.info("HashMap names:" + names.size() + " writers:" + writers.size() + " usersList size:" + users.size());
             if (name != null) {
                 names.remove(name);
