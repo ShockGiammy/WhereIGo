@@ -12,6 +12,7 @@ import logic.beans.GroupBean;
 import logic.beans.LocationBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
+import logic.dao.GroupDao;
 import logic.dao.LocationDao;
 import logic.dao.TravelDao;
 import logic.dao.UserDao;
@@ -25,6 +26,7 @@ public class BookTravelControl {
 	private UserDao usrDao;
 	private LocationDao locDao;
 	private TravelDao travDao;
+	private GroupDao grpDao;
 	
 	public BookTravelControl() {
 		this.userBean = new UserDataBean();
@@ -33,6 +35,7 @@ public class BookTravelControl {
 		this.locDao = new LocationDao();
 		this.logUser = new LoggedUser();
 		this.travDao = new TravelDao();
+		this.grpDao = new GroupDao();
 	}
 	
 	public List<String> showLocationsControl() { /*Shall change this String[] into a location bean*/
@@ -60,7 +63,10 @@ public class BookTravelControl {
 				return -1;
 			}
 			else {
-				tickList.addAll(travDao.retriveAvailableTickets(travBean));
+				LoggedUser logUsr = new LoggedUser();
+				UserDataBean usrDataBean = new UserDataBean();
+				usrDataBean.setUserName(logUsr.getUserName());
+				tickList.addAll(travDao.retriveAvailableTickets(travBean, usrDataBean));
 				if(tickList.isEmpty()) {
 					return -1;
 				}
@@ -88,5 +94,9 @@ public class BookTravelControl {
 		TicketModel tick = new TicketModel();
 		tick.setAll(travBean.getId(), travBean.getCityOfDep(), travBean.getCityOfArr(), travBean.getFirstDay(), travBean.getLastDay(), travBean.getCost());
 		this.travDao.saveBoughtTickets(tick, dataBean);
+	}
+	
+	public int saveGroup(GroupBean grpBean) {
+		return this.grpDao.saveUserGroup(grpBean);
 	}
 }

@@ -26,7 +26,7 @@ create table Usr
 
 create table TravelGroups
 (
-	groupID int,
+	groupID int auto_increment,
 	travCity VARCHAR(45)
 			 references Locations(city),
 	groupOwner VARCHAR(20) not null
@@ -70,7 +70,22 @@ create table Tickets
 	dateOfDep date,
     dateOfArr date,
     cost float,
-    passenger VARCHAR(20)
+	numOfTick int
+);
+
+create table ParticipatesTo
+(
+	participant VARCHAR(20)
+			references Usr(username),
+	grp int 
+			references TravelGroups(ID)
+);
+
+create table Buys
+(
+	ticket int 
+			references tickets(ID),
+	passenger varchar(20)
 			references Usr(username)
 );
 	
@@ -176,26 +191,26 @@ values(001, "Amsterdam", "shockGiammy", "Amsterdam Museums (I swear)");
 insert into travelgroups(groupID, travCity, groupOwner, title)
 values(001, "San Francisco", "adrianRob", "Trip to the USA");
 
-insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
-values (002, "Roma-Fiumicino" , "Berlino", "2020-04-24", "2020-04-30", 550.15);
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values (002, "Roma-Fiumicino" , "Berlino", "2020-04-24", "2020-04-30", 550.15,40);
 
-insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
-values (003, "Roma-Ciampino" , "Amsterdam", "2020-03-25", "2020-03-26", 650.15);
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values (003, "Roma-Ciampino" , "Amsterdam", "2020-03-25", "2020-03-26", 650.15,30);
 
-insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
-values (004, "Milano-Malpensa" , "Budapest", "2020-03-20", "2020-03-22", 250.35);
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values (004, "Milano-Malpensa" , "Budapest", "2020-03-20", "2020-03-22", 250.35,20);
 
-insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
-values (005, "Milano-Linate" , "Bath", "2020-06-20", "2020-06-22", 340);
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values (005, "Milano-Linate" , "Bath", "2020-06-20", "2020-06-22", 340,25);
 
-insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
-values (006, "Torino-Caselle" , "San Francisco", "2020-07-23", "2020-07-25", 850);
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values (006, "Torino-Caselle" , "San Francisco", "2020-07-23", "2020-07-25", 850,28);
 
-insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
-values (007, "Roma-Fiumicino" , "Berlino", "2020-03-20", "2020-03-22", 450.15);
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values (007, "Roma-Fiumicino" , "Berlino", "2020-03-20", "2020-03-22", 450.15,40);
 
-insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost)
-values (008, "Roma-Fiumicino" , "Berlino", "2020-03-20", "2020-03-22", 452.15);
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values (008, "Roma-Fiumicino" , "Berlino", "2020-03-20", "2020-03-22", 452.15,0);
 
     
     

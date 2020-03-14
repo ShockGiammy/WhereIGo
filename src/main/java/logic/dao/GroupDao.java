@@ -34,4 +34,18 @@ public class GroupDao extends GeneralConnection{
 			logger.log(Level.SEVERE, "Group fetch error", e);
 		}
 	}
+	
+	public int saveUserGroup(GroupBean grpBean) {
+		getConnection();
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO travelgroups(travCity, groupOwner, title) VALUES(?,?,?)")){
+			statement.setString(1, grpBean.getGroupDestination());
+			statement.setString(2, grpBean.getGroupOwner());
+			statement.setString(3, grpBean.getGroupTitle());
+			statement.execute();
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "Cannot insert group", e);
+			return -1;
+		}
+		return 0;
+	}
 }

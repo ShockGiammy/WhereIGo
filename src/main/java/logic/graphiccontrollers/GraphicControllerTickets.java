@@ -78,12 +78,9 @@ public class GraphicControllerTickets extends Window{
 				LoggedUser logusr = new LoggedUser();
 				UserDataBean dataBean = new UserDataBean();
 				dataBean.setUserName(logusr.getUserName());
-				this.bookTravCtrl.saveBoughtTicket(travBean, dataBean);
-				setScene("HomePage.fxml");
+				setScene("TicketCheckout.fxml");
 				loadScene();
-				List<UserTravelBean> travList = new ArrayList<>();
-				travList.add(travBean);
-				setTicketBought(travList, dataBean, e);
+				setCheckoutValues(travBean, dataBean, e);
 			}
 		}
 	}

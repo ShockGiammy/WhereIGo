@@ -83,6 +83,12 @@ public class Window extends Application{
 		nextGuiOnClick(e);
 	}
 	
+	public void setCheckoutValues(UserTravelBean travBean, UserDataBean dataBean, MouseEvent e) {
+		GraphicControllerCheckOut controller = loader.getController();
+		controller.setInfo(travBean, dataBean);
+		nextGuiOnClick(e);
+	}
+	
 	public static void loadScene() {
 		try {
 			loader = new FXMLLoader();

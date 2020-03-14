@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerCheckOut">
+   <top>
+      <AnchorPane prefHeight="101.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <ToolBar layoutX="356.0" layoutY="16.0" prefHeight="69.0" prefWidth="434.0" style="-fx-background-color: white;">
+               <items>
+                  <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@69524.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="home1" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@download.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icona-di-chiavi-42470255.jpg" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@download%20(1).png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@favourites-stars.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@download%20(2).png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@16363.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </items>
+            </ToolBar>
+            <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@WIGLOGO.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <BorderPane prefHeight="300.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+         <top>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TRAVEL CHECKOUT" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+         </top>
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutX="305.0" layoutY="1.0" prefHeight="189.0" prefWidth="159.0" spacing="15.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departure airport" wrappingWidth="159.1999969482422">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Arrival airport" wrappingWidth="159.1999969482422">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departure day" wrappingWidth="159.1999969482422">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Return day" wrappingWidth="159.1999969482422">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="509.0" layoutY="1.0" prefHeight="189.0" prefWidth="159.0" spacing="15.0">
+                     <children>
+                        <Text fx:id="departure" strokeType="OUTSIDE" strokeWidth="0.0" text="depCity" wrappingWidth="159.1999969482422">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="arrive" strokeType="OUTSIDE" strokeWidth="0.0" text="arrCity" wrappingWidth="159.1999969482422">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="depDay" strokeType="OUTSIDE" strokeWidth="0.0" text="depDay" wrappingWidth="159.1999969482422">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="retDay" strokeType="OUTSIDE" strokeWidth="0.0" text="retDay" wrappingWidth="159.1999969482422">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+                  <Button fx:id="confirmTrav" layoutX="747.0" layoutY="302.0" mnemonicParsing="false" onMouseClicked="#confirmTrav" prefHeight="49.0" prefWidth="91.0" text="Confirm travel" />
+                  <Pane layoutX="292.0" layoutY="237.0" prefHeight="218.0" prefWidth="345.0">
+                     <children>
+                        <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE A TRAVEL GROUP">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="3.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="group name :">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="3.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="group admin : ">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="3.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="group destination :">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="groupName" layoutX="182.0" layoutY="37.0" />
+                        <TextField fx:id="groupAdmin" layoutX="182.0" layoutY="86.0" />
+                        <TextField fx:id="groupDest" layoutX="182.0" layoutY="132.0" />
+                        <Button fx:id="createGroup" layoutX="209.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#saveNewGroup" prefHeight="39.0" prefWidth="94.0" text="Create group" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

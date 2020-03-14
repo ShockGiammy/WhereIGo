@@ -1,7 +1,6 @@
 /* This dao is in charge of retrive datas about all the flight tickets currently available*/
 
 package logic.dao;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,49 +14,65 @@ import java.sql.Date;
 
 public class TravelDao extends GeneralConnection{
 	
-	public List<TicketModel> retriveAvailableTickets(UserTravelBean travBean) throws SQLException {
+	public List<TicketModel> retriveAvailableTickets(UserTravelBean travBean, UserDataBean bean) throws SQLException {
 		getConnection();
 		List<TicketModel> tickets = new ArrayList<>();
-		try(PreparedStatement prep = dbConn.getConnection().prepareStatement("SELECT * FROM Tickets WHERE (depCity=? and arrCity=? and dateOfDep=? and dateOfArr=?)")) {
+		List<TicketModel> boughtTick = new ArrayList<>();
+		getUserTickets(bean, boughtTick);
+		try(PreparedStatement prep = dbConn.getConnection().prepareStatement("SELECT * FROM Tickets WHERE (depCity=? and arrCity=? and dateOfDep=? and dateOfArr=? and numOfTick > 0)")) {
 			prep.setString(1, travBean.getCityOfDep());
 			prep.setString(2, travBean.getCityOfArr());
 			prep.setString(3, Date.valueOf(travBean.getFirstDay()).toString());
 			prep.setString(4, Date.valueOf(travBean.getLastDay()).toString());
-			ticketQuery(tickets, prep);
+			ticketQuery(tickets, boughtTick, prep);
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "Error while retriving tickets\n",e);
 		}
 		return tickets;
 	}
 	
-	/* the executeQuery should be in a function, maybe in the generalConnection Dao*/
-	
-	public void ticketQuery(List<TicketModel> list, PreparedStatement prep) {
+	public void ticketQuery(List<TicketModel> list, List<TicketModel> boughts, PreparedStatement prep) {
+		int i;
 		try (ResultSet rs = prep.executeQuery()){
 			while(rs.next()) {
-				TicketModel tick= new TicketModel();
-				tick.setAll(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getFloat(6));
-				list.add(tick);
+				for(i = 0; i < boughts.size(); i++) {
+					if(!boughts.get(i).getArrCity().equals(rs.getString(3)) && !boughts.get(i).getDepCity().equals(rs.getString(2))) {
+						TicketModel tick= new TicketModel();
+						tick.setAll(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getFloat(6));
+						list.add(tick);
+					}
+				}
 			}
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "ResultSet null \n",e);
 		}
 	}
 	
-	public void saveBoughtTickets(TicketModel tickList, UserDataBean dataBean) {
+	public void saveBoughtTickets(TicketModel tick, UserDataBean dataBean) {
 		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE tickets SET passenger = ? where ID=?")){
-			statement.setString(1, dataBean.getUsername());
-			statement.setInt(2, tickList.getId());
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Buys(ticket, passenger) VALUES(?,?)")){
+			statement.setString(2, dataBean.getUsername());
+			statement.setInt(1, tick.getId());
 			statement.execute();
+			scaleNumberOfTickets(tick);
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "Failed to update tickets \n",e);
 		}
 	}
 	
+	public void scaleNumberOfTickets(TicketModel tick) {
+		getConnection();
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE tickets SET numOfTick = numOfTick-1 WHERE ID=?")){
+			statement.setInt(1, tick.getId());
+			statement.execute();
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "Failed to update number of tickets \n",e);
+		}
+	}
+	
 	public void getUserTickets(UserDataBean dataBean, List<TicketModel> tickList) {
 		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT * FROM tickets WHERE (passenger=?)")){
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT * FROM tickets JOIN buys on tickets.ID = buys.ticket WHERE (passenger=?)")){
 			statement.setString(1, dataBean.getUsername());
 			fetchTickets(statement, tickList);
 		}catch(SQLException e) {
@@ -76,4 +91,6 @@ public class TravelDao extends GeneralConnection{
 			logger.log(Level.SEVERE, "Can't manipulate tickets resultset \n",e);
 		}
 	}
+	
+	
 }
