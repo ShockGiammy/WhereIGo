@@ -1,5 +1,8 @@
 package logic.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import logic.beans.RentAccomodationBean;
 import logic.dao.AccomodationCreator;
 import logic.graphiccontrollers.GraphicControlRentAccomodation;
@@ -10,33 +13,26 @@ public class RentAccomodationController {
 
 	private GraphicControlRentAccomodation view;
 	private AccomodationCreator dao;
-	private RentAccomodationBean bean;
-	private AccomodationModel[] accomodation;
+	private List<AccomodationModel> listOfAccomodation;
 	
 	public RentAccomodationController() {
 		dao = new AccomodationCreator();
-		bean = new RentAccomodationBean();
+		listOfAccomodation = new ArrayList<>();
 	}
 	
-	public RentAccomodationBean[] displayAnnouncement() {
-		accomodation = dao.queryDB(bean);
-		RentAccomodationBean[] listOfBean = new RentAccomodationBean[6];
-		if (accomodation[0] == null) {
+	public List<RentAccomodationBean> displayAnnouncement() {
+		List<RentAccomodationBean> listOfBean = dao.queryDB();
+		if (listOfBean.isEmpty()) {
 			ErrorPopup error = new ErrorPopup();
 			error.displayLoginError("no accomodation to been shown");
 		}
 		else {
-			for (int i = 0; i <6; i++) {
-				if (accomodation[i] != null) {
-					listOfBean[i] = accomodation[i].getInfo();
-				}
+			for (RentAccomodationBean bean : listOfBean) {
+				AccomodationModel accomodation = new AccomodationModel(bean);
+				listOfAccomodation.add(accomodation);
 			}
 		}
 		return listOfBean;
-	}
-	
-	public RentAccomodationBean getDetail(int number) {
-		return accomodation[number].getInfo();
 	}
 }
 

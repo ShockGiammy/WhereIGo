@@ -3,6 +3,8 @@ package logic.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,37 +35,34 @@ public class AccomodationCreator extends GeneralConnection{
 		return new AccomodationModel(info);
 	}
 
-	public AccomodationModel[] queryDB(RentAccomodationBean bean) {
+	public List<RentAccomodationBean> queryDB() {
 		getConnection();
-		AccomodationModel[] acc = new AccomodationModel[6];
+		List<RentAccomodationBean> beans = new ArrayList<>();
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Post")){    
-			getAccomodationDatas(statement, bean, acc);
+			getAccomodationDatas(statement, beans);
 		}catch (SQLException e) {
 			logger.log(Level.SEVERE, "Got an exception!");
 			logger.log(Level.SEVERE, e.getMessage());
 		}
-		return acc;
+		return beans;
 	}
 	
-	public void getAccomodationDatas(PreparedStatement statement, RentAccomodationBean bean , AccomodationModel[] acc) {
-		int fetched = 0;
+	public void getAccomodationDatas(PreparedStatement statement, List<RentAccomodationBean> beans) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
-				if (fetched<6) {
-					bean.setID(rs.getInt(1));
-					byte[] image = rs.getBytes(2);
-					bean.setInputStream(image);
-					bean.setRenter(rs.getString(3));
-					bean.setDescription(rs.getString(4));
-					bean.setBeds(rs.getString(5));
-					bean.setCity(rs.getString(6));
-					bean.setAddress(rs.getString(7));
-					bean.setServices(rs.getBytes(8));
-					bean.setSquareMetres(rs.getString(9));
-					bean.setType(rs.getString(10));
-					acc[fetched] = new AccomodationModel(bean);
-					fetched +=1;
-				}
+				RentAccomodationBean bean = new RentAccomodationBean();
+				bean.setID(rs.getInt(1));
+				byte[] image = rs.getBytes(2);
+				bean.setInputStream(image);
+				bean.setRenter(rs.getString(3));
+				bean.setDescription(rs.getString(4));
+				bean.setBeds(rs.getString(5));
+				bean.setCity(rs.getString(6));
+				bean.setAddress(rs.getString(7));
+				bean.setServices(rs.getBytes(8));
+				bean.setSquareMetres(rs.getString(9));
+				bean.setType(rs.getString(10));
+				beans.add(bean);
 			}
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "Location ResultSet error", e);

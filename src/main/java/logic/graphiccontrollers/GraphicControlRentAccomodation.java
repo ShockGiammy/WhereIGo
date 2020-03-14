@@ -1,6 +1,8 @@
 package logic.graphiccontrollers;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -63,32 +65,9 @@ public class GraphicControlRentAccomodation extends Window{
 	@FXML
 	public void initialize() {
 		control = new RentAccomodationController();
-		RentAccomodationBean[] bean = new RentAccomodationBean[6];
-		bean = control.displayAnnouncement();
-		if (bean[0] != null) {
-			System.out.println("0");
-			setDisplayInfo(bean[0]);
-		}
-		if (bean[1] != null) {
-			setDisplayInfo(bean[1]);
-			System.out.println("1");
-		}
-		if (bean[2] != null) {
-			setDisplayInfo(bean[2]);
-			System.out.println("2");
-		}
-
-		if (bean[3] != null) {
-			setDisplayInfo(bean[3]);
-			System.out.println("3");
-		}
-
-		if (bean[4] != null) {
-			setDisplayInfo(bean[4]);
-		}
-
-		if (bean[5] != null) {
-			setDisplayInfo(bean[5]);
+		List<RentAccomodationBean> listOfBean = control.displayAnnouncement();
+		for (RentAccomodationBean bean : listOfBean) {
+			setDisplayInfo(bean);
 		}
 	}
 	
@@ -148,36 +127,6 @@ public class GraphicControlRentAccomodation extends Window{
 			hBox.getChildren().add(pane);
 		}
 		number = (number+1)%2;
-	}
-	
-	public void setAccomodationDetail1() {
-		RentAccomodationBean bean = control.getDetail(0);
-		this.setDetail(bean);
-	}
-	
-	public void setAccomodationDetail2() {
-		RentAccomodationBean bean = control.getDetail(1);
-		this.setDetail(bean);
-	}
-	
-	public void setAccomodationDetail3() {
-		RentAccomodationBean bean = control.getDetail(2);
-		this.setDetail(bean);
-	}
-	
-	public void setAccomodationDetail4() {
-		RentAccomodationBean bean = control.getDetail(3);
-		this.setDetail(bean);
-	}
-
-	public void setAccomodationDetail5() {
-		RentAccomodationBean bean = control.getDetail(4);
-		this.setDetail(bean);
-	}
-	
-	public void setAccomodationDetail6() {
-		RentAccomodationBean bean = control.getDetail(5);
-		this.setDetail(bean);
 	}
 	
 	public void setDetail(RentAccomodationBean bean) {
