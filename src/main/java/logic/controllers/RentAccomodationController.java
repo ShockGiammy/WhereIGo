@@ -34,5 +34,11 @@ public class RentAccomodationController {
 		}
 		return listOfBean;
 	}
+	
+	public void createChat(String renter) {
+		DBChatController chatController = new DBChatController();
+		chatController.createChat(renter);
+	}
+	
 }
 

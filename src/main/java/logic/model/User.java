@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class User implements Serializable{
 	
-	private String picture;
-    private String status = "online";
+	private byte[] picture;
+    private String status;
     private String name;
 
     public String getName() {
@@ -16,12 +16,12 @@ public class User implements Serializable{
         this.name = name;
     }
 
-    public String getPicture() {
+    public byte[] getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
+    public void setPicture(byte[] bs) {
+        this.picture = bs;
     }
 
     public String getStatus() {

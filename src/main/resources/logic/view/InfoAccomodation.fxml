@@ -91,7 +91,7 @@
                         <InnerShadow choke="0.4" color="#bf2e2e" height="60.0" radius="29.5" width="60.0" />
                      </effect>
                   </ImageView>
-                  <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goChat" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@download%20(1).png" />
                      </image>

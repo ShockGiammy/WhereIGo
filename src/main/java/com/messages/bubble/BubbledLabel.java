@@ -152,6 +152,5 @@ public class BubbledLabel extends Label {
 	private final void shapeIt(){
 		systemCall = true;
 		setShape(new Bubble(bs));
-		System.gc();
 	}
 }

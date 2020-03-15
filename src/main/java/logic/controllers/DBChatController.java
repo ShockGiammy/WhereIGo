@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import logic.LoggedUser;
 import logic.dao.ChatDao;
-import logic.dao.UserDao;
 import logic.graphiccontrollers.GraphicControllerChat;
 import logic.model.Message;
 import logic.model.User;
@@ -33,9 +32,13 @@ public class DBChatController implements ChatController{
 		chatDao = new ChatDao();
         //Listener.picture = picture;
 		this.graphic = reference;
-		chatDao.setStatus(username, "online");
 		this.logUser = new LoggedUser();
 		this.username = logUser.getUserName();
+		chatDao.setStatus(username, "online");
+	}
+	
+	public DBChatController() {
+		chatDao = new ChatDao();
 	}
 
 	public List<Message> openChat(String receiver) {
@@ -66,8 +69,9 @@ public class DBChatController implements ChatController{
 	}
 
 	@Override
-	public void createChat(String type) {
-		
+	public void createChat(String renter) {
+		LoggedUser logUser = new LoggedUser();
+		chatDao.createNewChat(logUser.getUserName(), renter);
 	}
 
 

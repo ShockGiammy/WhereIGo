@@ -67,11 +67,12 @@ public class Server {
         @Override
         public void run() {
             logger.info("Attempting to connect a user...");
+            
             try {
                 is = socket.getInputStream();
-                input = new ObjectInputStream(is);
                 os = socket.getOutputStream();
                 output = new ObjectOutputStream(os);
+            	input = new ObjectInputStream(is);
 
                 Message firstMessage = (Message) input.readObject();
                 checkDuplicateUsername(firstMessage);
@@ -114,7 +115,7 @@ public class Server {
                 this.name = firstMessage.getName();
                 user = new User();
                 user.setName(firstMessage.getName());
-                user.setPicture(firstMessage.getPicture());
+                //user.setPicture(firstMessage.getPicture());
 
                 users.add(user);
                 names.put(name, user);

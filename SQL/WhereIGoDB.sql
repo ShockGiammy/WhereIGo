@@ -182,6 +182,9 @@ values ("shockGiammy","pluto","Gian Marco","Falcone","16/03/1998","Male","Travel
 insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser, userStatus)
 values ("fra998","paperino","Francesco","Fanali","26/06/1998","Male","Renter", "offline");
 
+insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser, userStatus)
+values ("ciao2","paperino","Francesco","Fanali","26/06/1998","Male","Renter", "offline");
+
 insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
 values ("adrianRob","pippo","Adrian","Minut","18/02/1998","Male", "Traveler");
 

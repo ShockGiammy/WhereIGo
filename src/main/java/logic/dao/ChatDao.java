@@ -57,9 +57,11 @@ public class ChatDao extends GeneralConnection{
 	public List<Message> getSavedMsg(String sender, String receiver) {
 		getConnection();
 		List<Message> messages = new ArrayList<>();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Chat Where (sender = ?) and (receiver = ?)")){    
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Chat Where (sender = ? and receiver = ?) or (sender = ? and receiver = ?)")){    
 			statement.setString(1, sender);
-			statement.setString(2,  receiver);
+			statement.setString(2, receiver);
+			statement.setString(3, receiver);
+			statement.setString(4,  sender);
 			retriveSavedMessages(statement, messages);
 		}
 		catch (SQLException e) {
@@ -67,20 +69,6 @@ public class ChatDao extends GeneralConnection{
 			logger.log(Level.SEVERE, e.getMessage());
 		}
 		return messages;
-	}
-		
-	public ObservableList<User> getUsersQuery(String sender) {
-		getConnection();
-		ObservableList<User> users = FXCollections.observableArrayList();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select distinct receiver From Chat Where (sender = ?)")){    
-			statement.setString(1, sender);
-			retriveUsers(statement, users);
-		}
-		catch (SQLException e) {
-			logger.log(Level.SEVERE, "Got an exception!");
-			logger.log(Level.SEVERE, e.getMessage());
-		}
-		return users;
 	}
 	
 	public void retriveSavedMessages(PreparedStatement statement, List<Message> messages) {
@@ -96,12 +84,65 @@ public class ChatDao extends GeneralConnection{
 		}
 	}
 	
+		
+	public ObservableList<User> getUsersQuery(String userName) {
+		getConnection();
+		ObservableList<User> users = FXCollections.observableArrayList();
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select distinct receiver From Chat Where (sender = ?)")){    
+			statement.setString(1, userName);
+			retriveUsers(statement, users);
+		}
+		catch (SQLException e) {
+			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select distinct sender From Chat Where (receiver = ?)")){    
+			statement.setString(1, userName);
+			retriveUsers(statement, users);
+		}
+		catch (SQLException e) {
+			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+		for (User user : users) {
+			try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select userStatus, profilePicture From usr Where username = ?")){    
+				statement.setString(1, user.getName());
+				retriveUserInfo(statement, user);
+			}
+			catch (SQLException e) {
+				logger.log(Level.SEVERE, "Got an exception!");
+				logger.log(Level.SEVERE, e.getMessage());
+			}
+		}
+		return users;
+	}
+	
+	public void retriveUserInfo(PreparedStatement statement, User user) {
+		try(ResultSet rs = statement.executeQuery()){
+			while(rs.next()) {
+				user.setStatus(rs.getString(1));
+				user.setPicture(rs.getBytes(2));
+			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "Users fetch error", e);
+		}
+	}
+	
 	public void retriveUsers(PreparedStatement statement, ObservableList<User> users) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
-				User user = new User();
-				user.setName(rs.getString(1));
-				users.add(user);
+				int helpVar = 0;
+				String name = rs.getString(1);
+				for (User user : users) {
+					if (user.getName().contentEquals(name)) {
+						helpVar = 1;
+					}
+				}
+				if (helpVar == 0) {
+					User newUser = new User();
+					newUser.setName(name);
+					users.add(newUser);
+				}
 			}
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "Users fetch error", e);
@@ -118,5 +159,20 @@ public class ChatDao extends GeneralConnection{
 			logger.log(Level.SEVERE, "Users fetch error", e);
 		}
 		return status;
+	}
+	
+	public void createNewChat(String user, String renter) {
+		if (getSavedMsg(user, renter) == null) {
+			getConnection();
+			try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Chat (sender, receiver) VALUES (?, ?)")){  
+				statement.setString(1, user);
+				statement.setString(2,  renter);
+				statement.execute();
+			}
+			catch (SQLException e) {
+				logger.log(Level.SEVERE, "Exception Occurred\n");
+				logger.log(Level.SEVERE, e.getMessage());
+			}
+		}
 	}
 }

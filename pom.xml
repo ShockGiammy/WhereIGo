@@ -55,10 +55,7 @@
 				<configuration>
 					<release>11</release>
 				</configuration>
-			</plugin>
-			
-			
-			
+			</plugin>		
 			<plugin>
 				<groupId>org.openjfx</groupId>
 				<artifactId>javafx-maven-plugin</artifactId>
@@ -86,7 +83,7 @@
 								</property>
 							</properties>
 						</configuration>
-					</plugin>
+					</plugin>		
 					<plugin>
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>

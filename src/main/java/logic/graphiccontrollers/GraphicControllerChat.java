@@ -88,7 +88,7 @@ public class GraphicControllerChat extends Window {
                 @Override
                 public void run() {
                 	chatPane.getItems().add(yourMessage);
-                	//chatPane.scrollTo(yourMessage);
+                	chatPane.scrollTo(yourMessage);
                 }
             });
         }
@@ -109,7 +109,7 @@ public class GraphicControllerChat extends Window {
                 @Override
                 public void run() {
                 	chatPane.getItems().add(othersMessage);
-                	//chatPane.scrollTo(yourMessage);
+                	chatPane.scrollTo(othersMessage);
                 }
             });
         }
@@ -181,7 +181,9 @@ public class GraphicControllerChat extends Window {
     	chatPane.getItems().clear();
     	List<Message> chat = chatController.openChat(receiver);
     	for (Message message : chat) {
-    		addToChat(message);
+    		if (message.getMsg() != null) {
+    			addToChat(message);
+    		}
     	}
     }
 

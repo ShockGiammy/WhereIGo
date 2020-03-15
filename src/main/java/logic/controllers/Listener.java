@@ -6,6 +6,7 @@ import logic.model.MessageType;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +25,7 @@ public class Listener implements Runnable{
     private OutputStream outputStream;
     protected Logger logger = Logger.getLogger("WIG");
 	private DBChatController controller;
+	private int myConnection = 0;
 
     public Listener(String hostname, int port, String username, String picture, DBChatController controller) {
         this.hostname = hostname;
@@ -57,17 +59,22 @@ public class Listener implements Runnable{
                 message = (Message) input.readObject();
 
                 if (message != null) {
-                    logger.info("Message recieved:" + message.getMsg() + " MessageType:" + message.getType() + "Name:" + message.getName());
+                    logger.info("Message recieved:" + message.getMsg() + " MessageType:" + message.getType() + " Name:" + message.getName());
                     switch (message.getType()) {
                         case USER:
                             controller.addMessage(message);
                             break;
                         case SERVER:
-                            controller.addServerMessage(message);
+                        	if (!message.getName().equals(username)) {
+                        		controller.addServerMessage(message);
+                        	}
                             break;
                         case CONNECTED:
-                        	controller.addServerMessage(message);
-                        	break;
+                        	if (myConnection == 0) {
+                        		controller.addServerMessage(message);
+                        		myConnection++;
+                        	}
+                        	break;                      		
                         case DISCONNECTED:
                         	break;
                     }
@@ -98,5 +105,4 @@ public class Listener implements Runnable{
         //createMessage.setPicture(picture);
         oos.writeObject(createMessage);
     }
-
 }

@@ -56,15 +56,15 @@ public class GraphicControlRentAccomodation extends Window{
 	@FXML private TextField rating;
 	
 	
-	private RentAccomodationController control;
+	private RentAccomodationController controller;
 	private ImageViewer viewer;
 	private int number = 0;
 	
 	
 	@FXML
 	public void initialize() {
-		control = new RentAccomodationController();
-		List<RentAccomodationBean> listOfBean = control.displayAnnouncement();
+		controller = new RentAccomodationController();
+		List<RentAccomodationBean> listOfBean = controller.displayAnnouncement();
 		for (RentAccomodationBean bean : listOfBean) {
 			setDisplayInfo(bean);
 		}
@@ -178,6 +178,7 @@ public class GraphicControlRentAccomodation extends Window{
 	}
 	
 	public void contactRenter(MouseEvent event) {
+		controller.createChat(renter.getText());
 		setScene("ChatView.fxml");
 		loadScene();
 		nextGuiOnClick(event);
