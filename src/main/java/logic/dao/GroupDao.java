@@ -25,9 +25,9 @@ public class GroupDao extends GeneralConnection{
 		try(ResultSet rs = statement.executeQuery()){
 				while(rs.next()) {
 					GroupBean groupBean = new GroupBean();
-					groupBean.setGroupDestination(rs.getString(2));
-					groupBean.setGroupOwner(rs.getString(3));
-					groupBean.setGroupTitle(rs.getString(4));
+					groupBean.setGroupDestination(rs.getString(1));
+					groupBean.setGroupOwner(rs.getString(2));
+					groupBean.setGroupTitle(rs.getString(3));
 					beanList.add(groupBean);
 				}
 		}catch(SQLException e) {

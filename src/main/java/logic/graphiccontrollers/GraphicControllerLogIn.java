@@ -36,7 +36,6 @@ public class GraphicControllerLogIn extends Window{
 	public void logInControl(MouseEvent event) {
 		if(this.loginCtrl.checkLogInControl(this.usrBean, this.logBean) == 1) {
 			List<UserTravelBean> travList = new ArrayList<>();
-			this.loginCtrl.getUserBoughtTickets(this.usrBean, travList);
 			UserDataBean dataBean = new UserDataBean();
 			dataBean.setUserName(this.usrBean.getUsername());
 			setScene("HomePage.fxml");

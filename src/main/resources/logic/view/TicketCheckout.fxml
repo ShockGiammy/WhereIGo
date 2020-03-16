@@ -14,7 +14,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerCheckOut">
    <top>
       <AnchorPane prefHeight="101.0" prefWidth="900.0" BorderPane.alignment="CENTER">
@@ -100,8 +99,13 @@
          <center>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox layoutX="305.0" layoutY="1.0" prefHeight="189.0" prefWidth="159.0" spacing="15.0">
+                  <VBox layoutX="305.0" layoutY="1.0" prefHeight="218.0" prefWidth="159.0" spacing="10.0">
                      <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Id" wrappingWidth="159.1999969482422">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departure airport" wrappingWidth="159.1999969482422">
                            <font>
                               <Font size="20.0" />
@@ -122,10 +126,20 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="cost" wrappingWidth="159.1999969482422">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
                      </children>
                   </VBox>
-                  <VBox layoutX="509.0" layoutY="1.0" prefHeight="189.0" prefWidth="159.0" spacing="15.0">
+                  <VBox layoutX="509.0" layoutY="1.0" prefHeight="218.0" prefWidth="159.0" spacing="10.0">
                      <children>
+                        <Text fx:id="id" strokeType="OUTSIDE" strokeWidth="0.0" text="identif" wrappingWidth="159.1999969482422">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
                         <Text fx:id="departure" strokeType="OUTSIDE" strokeWidth="0.0" text="depCity" wrappingWidth="159.1999969482422">
                            <font>
                               <Font size="20.0" />
@@ -146,10 +160,15 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
+                        <Text fx:id="cost" strokeType="OUTSIDE" strokeWidth="0.0" text="money" wrappingWidth="159.1999969482422">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
                      </children>
                   </VBox>
-                  <Button fx:id="confirmTrav" layoutX="747.0" layoutY="302.0" mnemonicParsing="false" onMouseClicked="#confirmTrav" prefHeight="49.0" prefWidth="91.0" text="Confirm travel" />
-                  <Pane layoutX="292.0" layoutY="237.0" prefHeight="218.0" prefWidth="345.0">
+                  <Button fx:id="confirmTrav" layoutX="745.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#confirmTrav" prefHeight="49.0" prefWidth="91.0" text="Confirm travel" />
+                  <Pane layoutX="292.0" layoutY="263.0" prefHeight="218.0" prefWidth="345.0">
                      <children>
                         <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE A TRAVEL GROUP">
                            <font>

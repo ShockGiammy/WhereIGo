@@ -26,13 +26,12 @@ create table Usr
 
 create table TravelGroups
 (
-	groupID int auto_increment,
 	travCity VARCHAR(45)
 			 references Locations(city),
 	groupOwner VARCHAR(20) not null
 			 references Usr(username),
 	title VARCHAR(50) NOT NULL,
-	primary key(groupID, groupOwner)
+	primary key(title, groupOwner)
 );
 
 create table Post
@@ -188,11 +187,11 @@ values ("ciao2","paperino","Francesco","Fanali","26/06/1998","Male","Renter", "o
 insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
 values ("adrianRob","pippo","Adrian","Minut","18/02/1998","Male", "Traveler");
 
-insert into travelgroups(groupID, travCity, groupOwner, title)
-values(001, "Amsterdam", "shockGiammy", "Amsterdam Museums (I swear)");
+insert into travelgroups(travCity, groupOwner, title)
+values("Amsterdam", "shockGiammy", "Amsterdam Museums (I swear)");
 
-insert into travelgroups(groupID, travCity, groupOwner, title)
-values(001, "San Francisco", "adrianRob", "Trip to the USA");
+insert into travelgroups(travCity, groupOwner, title)
+values("San Francisco", "adrianRob", "Trip to the USA");
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
 values (002, "Roma-Fiumicino" , "Berlino", "2020-04-24", "2020-04-30", 550.15,40);

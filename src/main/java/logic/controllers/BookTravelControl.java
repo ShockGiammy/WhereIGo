@@ -96,7 +96,27 @@ public class BookTravelControl {
 		this.travDao.saveBoughtTickets(tick, dataBean);
 	}
 	
+	public void getBookedTickets(List<UserTravelBean> travBeanList, UserDataBean dataBean) {
+		List<TicketModel> tickList = new ArrayList<>();
+		this.travDao.getUserTickets(dataBean, tickList);
+		int i;
+		for(i = 0; i < tickList.size(); i++) {
+			UserTravelBean bean = new UserTravelBean();
+			bean.setId(tickList.get(i).getId());
+			bean.setDepCity(tickList.get(i).getDepCity());
+			bean.setArrCity(tickList.get(i).getArrCity());
+			bean.setFirstDay(tickList.get(i).getDepDay());
+			bean.setLastDay(tickList.get(i).getArrDay());
+			bean.setCost(tickList.get(i).getMoney());
+			travBeanList.add(bean);
+		}
+	}
+	
 	public int saveGroup(GroupBean grpBean) {
 		return this.grpDao.saveUserGroup(grpBean);
+	}
+	
+	public void deleteSavedTravel(UserTravelBean travBean, UserDataBean dataBean) {
+		this.travDao.deleteTick(travBean, dataBean);
 	}
 }

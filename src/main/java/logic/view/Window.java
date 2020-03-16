@@ -8,12 +8,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.stage.Stage;
-import logic.LoggedUser;
 import logic.beans.LocationBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
+import logic.controllers.BookTravelControl;
 import logic.graphiccontrollers.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -26,6 +25,11 @@ public class Window extends Application{
 	private static FXMLLoader loader;
 	private static Scene scene;
 	private static Logger logger = Logger.getLogger("WIG");
+	private static BookTravelControl travCtrl;
+	
+	public Window() {
+		travCtrl = new BookTravelControl();
+	}
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -72,6 +76,7 @@ public class Window extends Application{
 	}
 	
 	public void setTicketBought(List<UserTravelBean> bean, UserDataBean dataBean, MouseEvent e) {
+		travCtrl.getBookedTickets(bean, dataBean);
 		GraphicControllerHomePage controller = loader.getController();
 		List <UserTravelBean> travListBean = new ArrayList<>();
 		int i;

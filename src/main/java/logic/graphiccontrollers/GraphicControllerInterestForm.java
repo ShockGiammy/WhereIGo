@@ -3,7 +3,6 @@ package logic.graphiccontrollers;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;

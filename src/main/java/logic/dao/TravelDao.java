@@ -17,35 +17,42 @@ public class TravelDao extends GeneralConnection{
 	public List<TicketModel> retriveAvailableTickets(UserTravelBean travBean, UserDataBean bean) throws SQLException {
 		getConnection();
 		List<TicketModel> tickets = new ArrayList<>();
-		List<TicketModel> boughtTick = new ArrayList<>();
-		getUserTickets(bean, boughtTick);
+		if(checkIfBooked(travBean, bean)) {
+			return tickets;
+		}
 		try(PreparedStatement prep = dbConn.getConnection().prepareStatement("SELECT * FROM Tickets WHERE (depCity=? and arrCity=? and dateOfDep=? and dateOfArr=? and numOfTick > 0)")) {
 			prep.setString(1, travBean.getCityOfDep());
 			prep.setString(2, travBean.getCityOfArr());
 			prep.setString(3, Date.valueOf(travBean.getFirstDay()).toString());
 			prep.setString(4, Date.valueOf(travBean.getLastDay()).toString());
-			ticketQuery(tickets, boughtTick, prep);
+			ticketQuery(tickets, prep);
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "Error while retriving tickets\n",e);
 		}
 		return tickets;
 	}
 	
-	public void ticketQuery(List<TicketModel> list, List<TicketModel> boughts, PreparedStatement prep) {
-		int i;
+	public void ticketQuery(List<TicketModel> list, PreparedStatement prep) {
 		try (ResultSet rs = prep.executeQuery()){
 			while(rs.next()) {
-				for(i = 0; i < boughts.size(); i++) {
-					if(!boughts.get(i).getArrCity().equals(rs.getString(3)) && !boughts.get(i).getDepCity().equals(rs.getString(2))) {
-						TicketModel tick= new TicketModel();
-						tick.setAll(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getFloat(6));
-						list.add(tick);
-					}
-				}
+				TicketModel tick= new TicketModel();
+				tick.setAll(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getFloat(6));
+				list.add(tick);
 			}
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "ResultSet null \n",e);
 		}
+	}
+	
+	public boolean checkIfBooked(UserTravelBean trav, UserDataBean dataBean) {
+		List<TicketModel> tickList = new ArrayList<>();
+		getUserTickets(dataBean, tickList);
+		for(int i = 0; i < tickList.size(); i++) {
+			if((tickList.get(i).getDepCity().toLowerCase()).equals(trav.getCityOfDep()) && (tickList.get(i).getArrCity().toLowerCase()).equals(trav.getCityOfArr()) && tickList.get(i).getDepDay().compareTo(trav.getFirstDay()) == 0 && tickList.get(i).getArrDay().compareTo(trav.getLastDay()) == 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void saveBoughtTickets(TicketModel tick, UserDataBean dataBean) {
@@ -92,5 +99,14 @@ public class TravelDao extends GeneralConnection{
 		}
 	}
 	
-	
+	public void deleteTick(UserTravelBean travBean, UserDataBean dataBean) {
+		getConnection();
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("delete from Buys where ticket=? and passenger=?")){
+			statement.setInt(1, travBean.getId());
+			statement.setString(2, dataBean.getUsername());
+			statement.execute();
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "Can't delete ticket \n",e);
+		}
+	}
 }

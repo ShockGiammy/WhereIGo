@@ -1,13 +1,8 @@
 package logic.controllers;
 import logic.dao.TravelDao;
 import logic.dao.UserDao;
-import logic.model.TicketModel;
 import logic.beans.UserDataBean;
-import logic.beans.UserTravelBean;
 import logic.beans.LogInBean;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import logic.LoggedUser;
 
@@ -51,20 +46,6 @@ public class LoginController {
 		LoggedUser.setUserName(usrBean.getUsername());
 		if(usrBean.getPersonality() != null) {
 			LoggedUser.setPersonality(usrBean.getPersonality());
-		}
-	}
-	
-	public void getUserBoughtTickets(UserDataBean bean, List<UserTravelBean> travBeanList) {
-		List<TicketModel> tickList = new ArrayList<>();
-		this.travDao.getUserTickets(bean, tickList);
-		int i;
-		for(i = 0; i < tickList.size(); i++) {
-			UserTravelBean trav = new UserTravelBean();
-			trav.setDepCity(tickList.get(i).getDepCity());
-			trav.setArrCity(tickList.get(i).getArrCity());
-			trav.setFirstDay(tickList.get(i).getDepDay());
-			trav.setLastDay(tickList.get(i).getArrDay());
-			travBeanList.add(trav);
 		}
 	}
 }

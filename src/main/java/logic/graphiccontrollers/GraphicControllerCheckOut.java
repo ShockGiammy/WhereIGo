@@ -16,10 +16,12 @@ import logic.view.ErrorPopup;
 import logic.view.Window;
 
 public class GraphicControllerCheckOut extends Window{
+	@FXML private Text id;
 	@FXML private Text departure;
 	@FXML private Text arrive;
 	@FXML private Text depDay;
 	@FXML private Text retDay;
+	@FXML private Text cost;
 	@FXML private TextField groupName;
 	@FXML private TextField groupAdmin;
 	@FXML private TextField groupDest;
@@ -27,23 +29,25 @@ public class GraphicControllerCheckOut extends Window{
 	@FXML private Button confirmTrav;
 	private BookTravelControl bookTravCtrl;
 	private ErrorPopup errPop;
-	private List<UserTravelBean> travbean;
 	private UserDataBean bean;
+	private UserTravelBean travbean;
 	
 	public GraphicControllerCheckOut() {
 		this.bookTravCtrl = new BookTravelControl();
 		errPop = new ErrorPopup();
-		travbean = new ArrayList<>();
 		bean = new UserDataBean();
+		travbean = new UserTravelBean();
 	}
 	
 	public void setInfo(UserTravelBean travBean, UserDataBean dataBean) {
-		travbean.add(travBean);
 		this.bean = dataBean;
+		this.travbean = travBean;
+		this.id.setText(String.valueOf(travBean.getId()));
 		this.departure.setText(travBean.getCityOfDep());
 		this.arrive.setText(travBean.getCityOfArr());
 		this.depDay.setText(travBean.getFirstDay().toString());
 		this.retDay.setText(travBean.getLastDay().toString());
+		this.cost.setText(String.valueOf(travBean.getCost()));
 		this.groupAdmin.setText(dataBean.getUsername());
 		this.groupAdmin.setEditable(false);
 		this.groupDest.setText(travBean.getCityOfArr());
@@ -69,9 +73,10 @@ public class GraphicControllerCheckOut extends Window{
 	}
 	
 	public void confirmTrav(MouseEvent e) {
-		this.bookTravCtrl.saveBoughtTicket(this.travbean.get(0), this.bean);
+		this.bookTravCtrl.saveBoughtTicket(this.travbean, this.bean);
 		setScene("HomePage.fxml");
 		loadScene();
-		setTicketBought(travbean, bean, e);
+		List<UserTravelBean> list = new ArrayList<>();
+		setTicketBought(list, bean, e);
 	}
 }
