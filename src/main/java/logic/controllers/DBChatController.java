@@ -1,7 +1,6 @@
 package logic.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +14,6 @@ import logic.model.User;
 
 public class DBChatController implements ChatController{
 	private String username;
-	private PrintWriter writer;
 	private ChatDao chatDao;
 	private List<Message> chat;
 	private static String picture;

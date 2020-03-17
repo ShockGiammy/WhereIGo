@@ -99,11 +99,11 @@ public class Server {
                     }
                 }
             } catch (SocketException socketException) {
-                logger.log(Level.SEVERE, "Socket Exception for user " + name);
+                logger.log(Level.SEVERE, () -> "Socket Exception for user " + name);
             } catch (DuplicateUsernameException duplicateException){
-                logger.log(Level.SEVERE, "Duplicate Username : " + name);
+                logger.log(Level.SEVERE, () -> "Duplicate Username : " + name);
             } catch (Exception e){
-                logger.log(Level.SEVERE, "Exception in run() method for user: " + name, e);
+                logger.log(Level.SEVERE, e, () -> "Exception in run() method for user: " + name);
             } finally {
                 closeConnections();
             }
@@ -120,9 +120,9 @@ public class Server {
                 users.add(user);
                 names.put(name, user);
 
-                logger.info(name + " has been added to the list");
+                logger.info(() -> name + " has been added to the list");
             } else {
-                logger.log(Level.SEVERE, firstMessage.getName() + " is already connected");
+                logger.log(Level.SEVERE, () -> firstMessage.getName() + " is already connected");
                 throw new DuplicateUsernameException(firstMessage.getName() + " is already connected");
             }
         }
@@ -181,18 +181,17 @@ public class Server {
         private synchronized void closeConnections()  {
             logger.info("closeConnections() method Enter");
             connections--;
-            logger.info("HashMap names:" + names.size() + " writers:" + writers.size() + " usersList size:" + users.size());
             if (name != null) {
                 names.remove(name);
-                logger.info("User: " + name + REMOVED);
+                logger.info(() -> "User: " + name + REMOVED);
             }
             if (user != null){
                 users.remove(user);
-                logger.info("User object: " + user + REMOVED);
+                logger.info(() -> "User object: " + user + REMOVED);
             }
             if (output != null){
                 writers.remove(output);
-                logger.info("Writer object: " + user + REMOVED);
+                logger.info(() -> "Writer object: " + user + REMOVED);
             }
             if (is != null){
                 try {
@@ -224,7 +223,6 @@ public class Server {
             	logger.log(Level.SEVERE, EXCEPTION);
     			logger.log(Level.SEVERE, e.getMessage());
             }
-            logger.info("HashMap names:" + names.size() + " writers:" + writers.size() + " usersList size:" + users.size());
             logger.info("closeConnections() method Exit");
         }
     }
