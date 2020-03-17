@@ -111,4 +111,9 @@ public class DBChatController implements ChatController{
 	public void addServerMessage(Message message) {
 		graphic.addAsServer(message);
 	}
+	
+	public void closeWindowEvent() {
+		
+		listener.closeSocket();
+	}
 }

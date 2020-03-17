@@ -14,4 +14,5 @@ public interface ChatController {
 	public void sendMessage(String message, String receiver);
 	public List<User> getUsers();
 	public void notificateMessage(Message msg);
+	public void closeWindowEvent();
 }

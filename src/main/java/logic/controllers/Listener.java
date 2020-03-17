@@ -103,4 +103,14 @@ public class Listener implements Runnable{
         //createMessage.setPicture(picture);
         oos.writeObject(createMessage);
     }
+    
+    public void closeSocket() {
+    	System.out.println("ciao stronzo");
+    	try {
+			socket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 }

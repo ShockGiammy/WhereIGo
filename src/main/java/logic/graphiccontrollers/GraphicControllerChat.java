@@ -1,10 +1,6 @@
 package logic.graphiccontrollers;
 
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -12,14 +8,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import logic.LoggedUser;
 import logic.controllers.ChatController;
@@ -76,19 +70,18 @@ public class GraphicControllerChat extends Window {
     public synchronized void addToChat(Message msg) {
         if (msg.getName().equals(username)) {
         	HBox yourMessage = new HBox();
-        	/*
-            Image image = userImageView.getImage();
+        	
+            Image image = new Image(getClass().getClassLoader().getResource("images/sarah.png").toString()); //userImageView.getImage();
             ImageView profileImage = new ImageView(image);
             profileImage.setFitHeight(32);
             profileImage.setFitWidth(32);
-            */
+            
             Label bl6 = new Label();
             bl6.setText(msg.getMsg());
             bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
-            yourMessage.setMaxWidth(chatPane.getWidth() - 20);
             yourMessage.setAlignment(Pos.TOP_RIGHT);
             bl6.setPadding(new Insets(pading, pading,pading, pading));
-            yourMessage.getChildren().addAll(bl6); //, profileImage);
+            yourMessage.getChildren().addAll(bl6, profileImage);
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -99,17 +92,17 @@ public class GraphicControllerChat extends Window {
         }
         else {
         	HBox othersMessage = new HBox();
-            /*
-            Image image = new Image(getClass().getClassLoader().getResource("images/" + msg.getPicture().toLowerCase() + ".png").toString());
+            
+            Image image = new Image(getClass().getClassLoader().getResource("images/dominic.png").toString());
             ImageView profileImage = new ImageView(image);
             profileImage.setFitHeight(32);
             profileImage.setFitWidth(32);
-            */
+            
             Label bl6 = new Label();
             bl6.setText(msg.getName() + ": " + msg.getMsg());
             bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,null, null)));
     		bl6.setPadding(new Insets(pading, pading, pading, pading));
-            othersMessage.getChildren().addAll(bl6);   //profileImage, bl6);
+            othersMessage.getChildren().addAll(profileImage, bl6);
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -137,7 +130,7 @@ public class GraphicControllerChat extends Window {
     }
     
     public void selectUser() {
-    	Node node = userList.getSelectionModel().getSelectedItem().getChildren().get(1);
+    	Node node = userList.getSelectionModel().getSelectedItem().getChildren().get(2);
     	String receiver = ((Text)node).getText();
     	if (!activeChat.getText().equals(receiver)) {
     		displayChat(receiver);
@@ -211,12 +204,12 @@ public class GraphicControllerChat extends Window {
             	statusImageView.setImage(statusImage);
             	
             	Text name = new Text(user.getName());
-/*
+            	
             	ImageView pictureImageView = new ImageView();
-            	Image image = new Image(getClass().getClassLoader().getResource("images/" + user.getPicture().toLowerCase() + ".png").toString(),50,50,true,true);
+            	Image image = new Image(getClass().getClassLoader().getResource("images/dominic.png").toString(),50,50,true,true);
             	pictureImageView.setImage(image);
-*/
-            	hBox.getChildren().addAll(statusImageView, name);  //, pictureImageView, 
+
+            	hBox.getChildren().addAll(statusImageView, pictureImageView, name);
             	hBox.setAlignment(Pos.CENTER_LEFT);
             	hBox.setOnMouseClicked(e ->
             		selectUser());
