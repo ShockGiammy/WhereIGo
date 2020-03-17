@@ -26,7 +26,6 @@ import logic.view.Window;
 import java.io.IOException;
 import java.util.List;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GraphicControllerChat extends Window {
@@ -56,7 +55,7 @@ public class GraphicControllerChat extends Window {
     	this.username = logUser.getUserName();
     }
     
-    public void sendButtonAction() throws IOException {
+    public void sendButtonAction() {
         String msg = messageBox.getText();
         if (!messageBox.getText().isEmpty()) {
         	chatController.sendMessage(msg, activeChat.getText());
@@ -168,9 +167,8 @@ public class GraphicControllerChat extends Window {
                 return x;
             }
         };
-        task.setOnSucceeded(event -> {
-            chatPane.getItems().add(task.getValue());
-        });
+        task.setOnSucceeded(event -> 
+            chatPane.getItems().add(task.getValue()));
 
         Thread t = new Thread(task);
         t.setDaemon(true);
@@ -191,21 +189,8 @@ public class GraphicControllerChat extends Window {
 
         setUserList();
         
-        borderPane.setOnMouseReleased(event -> {
-            borderPane.setCursor(Cursor.DEFAULT);
-        });
-
-        /* Added to prevent the enter from adding a new line to inputMessageBox */
-        messageBox.addEventFilter(KeyEvent.KEY_PRESSED, ke -> {
-            if (ke.getCode().equals(KeyCode.ENTER)) {
-                try {
-                    sendButtonAction();
-                } catch (IOException e) {
-        			logger.log(Level.SEVERE, e.getMessage());
-                }
-                ke.consume();
-            }
-        });
+        borderPane.setOnMouseReleased(event ->
+            borderPane.setCursor(Cursor.DEFAULT));
     }
 
     public synchronized void addToUserList(User user) {
@@ -228,15 +213,14 @@ public class GraphicControllerChat extends Window {
 */
             	hBox.getChildren().addAll(statusImageView, name);  //, pictureImageView, 
             	hBox.setAlignment(Pos.CENTER_LEFT);
-            	hBox.setOnMouseClicked(e -> {
-            		selectUser();
-            	});
+            	hBox.setOnMouseClicked(e ->
+            		selectUser());
             	return hBox;
             }
     	};
-        task.setOnSucceeded(event -> {
-            	 userList.getItems().add(task.getValue());
-        });
+        task.setOnSucceeded(event ->
+            	 userList.getItems().add(task.getValue()));
+        
         Thread t = new Thread(task);
         t.setDaemon(true);
         t.start();

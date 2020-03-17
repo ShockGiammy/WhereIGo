@@ -65,7 +65,6 @@ public class GraphicControlCreateAccomodation extends Window{
 	}
 	
 	private RentAccomodationBean bean;
-	private byte[] listOfServices;
 	private File houseImage;
 	
 	public GraphicControlCreateAccomodation() {
@@ -74,7 +73,7 @@ public class GraphicControlCreateAccomodation extends Window{
 	}
 
 	public void applyInfo(MouseEvent event) {
-		listOfServices = new byte[4];
+		byte[] listOfServices = new byte[4];
 		if (garden.isSelected()) {
 			listOfServices[0] = 1;
 		}

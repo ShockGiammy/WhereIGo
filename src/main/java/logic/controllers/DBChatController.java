@@ -25,6 +25,7 @@ public class DBChatController implements ChatController{
 	private Listener listener;
 	private LoggedUser logUser;
 	protected Logger logger = Logger.getLogger("WIG");
+	private static final String ONLINE = "online";
 	
 	public DBChatController(GraphicControllerChat reference) {
 		chatDao = new ChatDao();
@@ -32,7 +33,7 @@ public class DBChatController implements ChatController{
 		this.graphic = reference;
 		this.logUser = new LoggedUser();
 		this.username = logUser.getUserName();
-		chatDao.setStatus(username, "online");
+		chatDao.setStatus(username, ONLINE);
 	}
 	
 	public DBChatController() {
@@ -42,7 +43,7 @@ public class DBChatController implements ChatController{
 	public List<Message> openChat(String receiver) {
 		chat = chatDao.getSavedMsg(username, receiver);
 		status = chatDao.getStatus(receiver);
-		if (status.equals("online")) {
+		if (status.equals(ONLINE)) {
 			this.hostname = "localhost";
 			this.port = 2400;
 			execute();
@@ -68,7 +69,7 @@ public class DBChatController implements ChatController{
 
 	@Override
 	public void createChat(String renter) {
-		LoggedUser logUser = new LoggedUser();
+		logUser = new LoggedUser();
 		chatDao.createNewChat(logUser.getUserName(), renter);
 	}
 
@@ -91,11 +92,11 @@ public class DBChatController implements ChatController{
 	        createMessage.setMsg(msg);
 	        //createMessage.setPicture(picture);
 	        chatDao.saveMessage(createMessage, receiver);
-	        if (status.equals("online")) {
+	        if (status.equals(ONLINE)) {
 		    	try {
-		    		Listener.send(msg);
+		    		listener.send(msg);
 		        } catch (IOException ex) {
-		        	logger.log(Level.SEVERE, "Error getting output stream: " + ex.getMessage());
+		        	logger.log(Level.SEVERE, ()-> "Error getting output stream: " + ex.getMessage());
 		        }
 	        }
 	        else {

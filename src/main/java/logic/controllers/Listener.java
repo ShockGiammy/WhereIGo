@@ -17,11 +17,9 @@ public class Listener implements Runnable{
     private Socket socket;
     public String hostname;
     public int port;
-    public static String username;
+    public String username;
     private static ObjectOutputStream oos;
-    private InputStream is;
     private ObjectInputStream input;
-    private OutputStream outputStream;
     protected Logger logger = Logger.getLogger("WIG");
 	private DBChatController controller;
 	private int myConnection = 0;
@@ -29,21 +27,22 @@ public class Listener implements Runnable{
     public Listener(String hostname, int port, String username, String picture, DBChatController controller) {
         this.hostname = hostname;
         this.port = port;
-        Listener.username = username;
-        //Listener.picture = picture;
+        this.username = username;
+        //this.picture = picture;
         this.controller = controller;
     }
 
     public void run() {
         try {
-            socket = new Socket(hostname, port);           
-            outputStream = socket.getOutputStream();
-            oos = new ObjectOutputStream(outputStream);
-            is = socket.getInputStream();
+        	socket = new Socket(hostname, port);
+            OutputStream outputStream = socket.getOutputStream();
+            InputStream is = socket.getInputStream();
             input = new ObjectInputStream(is);
+            oos = new ObjectOutputStream(outputStream);
+        		
         }
 	    catch (UnknownHostException ex) {
-	    	logger.log(Level.FINE, "Server not found: " + ex.getMessage());
+	    	logger.log(Level.FINE, ()-> "Server not found: " + ex.getMessage());
 	    }
         catch (IOException e) {
         	logger.info("Could not Connect");
@@ -85,7 +84,7 @@ public class Listener implements Runnable{
         }
     }
 
-    public static void send(String msg) throws IOException {
+    public void send(String msg) throws IOException {
         Message createMessage = new Message();
         createMessage.setName(username);
         createMessage.setType(MessageType.USER);
@@ -96,7 +95,7 @@ public class Listener implements Runnable{
     }
     
     /* This method is used to send a connecting message */
-    public static void connect() throws IOException {
+    public void connect() throws IOException {
         Message createMessage = new Message();
         createMessage.setName(username);
         createMessage.setType(MessageType.CONNECTED);

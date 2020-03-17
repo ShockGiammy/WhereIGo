@@ -12,6 +12,8 @@ import logic.model.Message;
 import logic.model.User;
 
 public class ChatDao extends GeneralConnection{
+	
+	private static final String EXCEPTION = "Got an exception!";
 
 	public void saveMessage(Message msg, String receiver) {
 		getConnection();
@@ -35,7 +37,7 @@ public class ChatDao extends GeneralConnection{
 			statement.execute();
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, EXCEPTION);
 			logger.log(Level.SEVERE, e.getMessage());
 		}
 	}
@@ -48,7 +50,7 @@ public class ChatDao extends GeneralConnection{
 			status = retriveStatus(statement);
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, EXCEPTION);
 			logger.log(Level.SEVERE, e.getMessage());
 		}
 		return status;
@@ -65,7 +67,7 @@ public class ChatDao extends GeneralConnection{
 			retriveSavedMessages(statement, messages);
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, EXCEPTION);
 			logger.log(Level.SEVERE, e.getMessage());
 		}
 		return messages;
@@ -93,7 +95,7 @@ public class ChatDao extends GeneralConnection{
 			retriveUsers(statement, users);
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, EXCEPTION);
 			logger.log(Level.SEVERE, e.getMessage());
 		}
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select distinct sender From Chat Where (receiver = ?)")){    
@@ -101,7 +103,7 @@ public class ChatDao extends GeneralConnection{
 			retriveUsers(statement, users);
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, EXCEPTION);
 			logger.log(Level.SEVERE, e.getMessage());
 		}
 		for (User user : users) {
@@ -110,7 +112,7 @@ public class ChatDao extends GeneralConnection{
 				retriveUserInfo(statement, user);
 			}
 			catch (SQLException e) {
-				logger.log(Level.SEVERE, "Got an exception!");
+				logger.log(Level.SEVERE, EXCEPTION);
 				logger.log(Level.SEVERE, e.getMessage());
 			}
 		}
@@ -124,7 +126,7 @@ public class ChatDao extends GeneralConnection{
 				user.setPicture(rs.getBytes(2));
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Users fetch error", e);
+			logger.log(Level.SEVERE, "User fetch error", e);
 		}
 	}
 	
@@ -156,7 +158,7 @@ public class ChatDao extends GeneralConnection{
 				status = rs.getString(1);
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Users fetch error", e);
+			logger.log(Level.SEVERE, "Status fetch error", e);
 		}
 		return status;
 	}
