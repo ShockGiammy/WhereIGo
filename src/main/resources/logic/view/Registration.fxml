@@ -5,10 +5,10 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <Pane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerRegistration">
    <children>
@@ -60,5 +60,12 @@
       </Text>
       <ChoiceBox fx:id="gender" layoutX="161.0" layoutY="411.0" prefHeight="26.0" prefWidth="222.0" />
       <ChoiceBox fx:id="typeOfUser" layoutX="552.0" layoutY="335.0" prefHeight="26.0" prefWidth="222.0" />
+      <Text layoutX="47.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image Profile">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="addPhoto" layoutX="180.0" layoutY="466.0" mnemonicParsing="false" text="Select an Image" />
+      <ImageView fx:id="profileImage" fitHeight="191.0" fitWidth="209.0" layoutX="90.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

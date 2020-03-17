@@ -1,20 +1,25 @@
 package logic.graphiccontrollers;
 
-import com.messages.bubble.BubbleSpec;
-import com.messages.bubble.BubbledLabel;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import logic.LoggedUser;
 import logic.controllers.ChatController;
@@ -48,6 +53,7 @@ public class GraphicControllerChat extends Window {
     protected Logger logger = Logger.getLogger("WIG");
     private ChatController chatController;
     private String username;
+    private double pading = 5.0;
 
     public GraphicControllerChat() {
     	chatController = new DBChatController(this);
@@ -76,12 +82,12 @@ public class GraphicControllerChat extends Window {
             profileImage.setFitHeight(32);
             profileImage.setFitWidth(32);
             */
-            BubbledLabel bl6 = new BubbledLabel();
+            Label bl6 = new Label();
             bl6.setText(msg.getMsg());
             bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
             yourMessage.setMaxWidth(chatPane.getWidth() - 20);
             yourMessage.setAlignment(Pos.TOP_RIGHT);
-            bl6.setBubbleSpec(BubbleSpec.FACE_RIGHT_CENTER);
+            bl6.setPadding(new Insets(pading, pading,pading, pading));
             yourMessage.getChildren().addAll(bl6); //, profileImage);
             Platform.runLater(new Runnable() {
                 @Override
@@ -99,10 +105,10 @@ public class GraphicControllerChat extends Window {
             profileImage.setFitHeight(32);
             profileImage.setFitWidth(32);
             */
-            BubbledLabel bl6 = new BubbledLabel();
+            Label bl6 = new Label();
             bl6.setText(msg.getName() + ": " + msg.getMsg());
             bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,null, null)));
-            bl6.setBubbleSpec(BubbleSpec.FACE_LEFT_CENTER);
+    		bl6.setPadding(new Insets(pading, pading, pading, pading));
             othersMessage.getChildren().addAll(bl6);   //profileImage, bl6);
             Platform.runLater(new Runnable() {
                 @Override
@@ -156,12 +162,11 @@ public class GraphicControllerChat extends Window {
         Task<HBox> task = new Task<HBox>() {
             @Override
             public HBox call() throws Exception {
-                BubbledLabel bl6 = new BubbledLabel();
+                Label bl6 = new Label();
                 bl6.setText(msg.getMsg());
                 bl6.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE,
                         null, null)));
                 HBox x = new HBox();
-                bl6.setBubbleSpec(BubbleSpec.FACE_BOTTOM);
                 x.setAlignment(Pos.CENTER);
                 x.getChildren().addAll(bl6);
                 return x;

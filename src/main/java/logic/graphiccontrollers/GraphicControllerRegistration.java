@@ -1,4 +1,5 @@
 package logic.graphiccontrollers;
+import java.io.File;
 import java.time.format.DateTimeFormatter;
 
 import javafx.collections.FXCollections;
@@ -8,7 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
 import logic.view.ErrorPopup;
@@ -24,6 +28,8 @@ public class GraphicControllerRegistration extends Window{
 	@FXML private TextField password;
 	@FXML private ChoiceBox<String> typeOfUser;
 	@FXML private Button registerNow;
+	@FXML private ImageView image;
+	@FXML private Button addPhoto;
 	
 	ObservableList<String> gendList = FXCollections.observableArrayList("Female", "Male", "Other");
 	ObservableList<String> typeUsrList = FXCollections.observableArrayList("Traveler", "Renter");
@@ -32,6 +38,7 @@ public class GraphicControllerRegistration extends Window{
 	private LoginController loginCtrl;
 	private ErrorPopup errLogin;
 	private String today;
+	private File profileImage;
 	
 	@FXML
 	public void initialize(){
@@ -71,6 +78,10 @@ public class GraphicControllerRegistration extends Window{
 		this.dataBean.setPsw(paswd);
 	}
 	
+	public void getImage() {
+		this.dataBean.setProfileImage(profileImage);
+	}
+	
 	public void registerNowControl(MouseEvent event) {
 		int ret;
 		this.dataBean.setType(this.typeOfUser.getValue());
@@ -85,5 +96,21 @@ public class GraphicControllerRegistration extends Window{
 			setUserNick(event, this.dataBean);
 		}
 	}
+	
+    public void insertImage() {
+    	FileChooser fileChooser = new FileChooser();
+    	//Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+        //Show open file dialog
+        profileImage = fileChooser.showOpenDialog(null);
+
+        if (profileImage != null) {
+            Image imageHouse = new Image(profileImage.toURI().toString());
+            image.setImage(imageHouse);
+        }
+    }
 }
 

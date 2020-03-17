@@ -1,5 +1,7 @@
 package logic.beans;
 
+import java.io.File;
+
 public class UserDataBean {
 	private String name;
 	private String surname;
@@ -9,6 +11,7 @@ public class UserDataBean {
 	private String personality;
 	private String userName;
 	private String psw;
+	private File profileImage;
 	
 	public void setName(String name) {
 		this.name = name;
@@ -72,5 +75,13 @@ public class UserDataBean {
 	
 	public String getPassword() {
 		return this.psw;
+	}
+
+	public File getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(File profileImage) {
+		this.profileImage = profileImage;
 	}
 }
