@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import logic.beans.GroupBean;
 import logic.beans.LocationBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
@@ -74,6 +75,7 @@ public class Window extends Application{
 			travListBean.add(bean.get(i));
 		}
 		controller.setTravel(travListBean);
+		List<GroupBean> grpList = new ArrayList<>();
 		nextGuiOnClick(e);
 	}
 	

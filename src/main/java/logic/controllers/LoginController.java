@@ -26,6 +26,7 @@ public class LoginController {
 			LoggedUser.setUserName(usrBean.getUsername());
 			LoggedUser.setPersonality(usrBean.getPersonality());
 			LoggedUser.setType(usrBean.getType());
+			LoggedUser.setImage(setUserImage(usrBean));
 		}
 		return ret;
 	}

@@ -10,7 +10,6 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
 import logic.DuplicateUsernameException;
 import logic.model.Message;
 import logic.model.MessageType;

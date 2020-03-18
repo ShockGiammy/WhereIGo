@@ -72,4 +72,27 @@ public class GroupDao extends GeneralConnection{
 			logger.log(Level.SEVERE, "Error while executing query user group", e);
 		}
 	}
+	
+	public void getUserGroups(List<GroupModel> grpModel, UserDataBean dataBean) {
+		getConnection();
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("select distinct ID,travcity,title,groupowner from travelgroups join participatesto where (participant=? or groupowner=?)")){
+			statement.setString(1, dataBean.getUsername());
+			statement.setString(2, dataBean.getUsername());
+			
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+	}
+	
+	public void findUserGroups(List<GroupModel> grpModel, PreparedStatement statement) {
+		try(ResultSet rs = statement.executeQuery()) { 
+			while(rs.next()) {
+				GroupModel group = new GroupModel();
+				group.setAll(rs.getInt(1), rs.getString(4), rs.getString(3), rs.getString(2));
+				grpModel.add(group);
+			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+	}
 }

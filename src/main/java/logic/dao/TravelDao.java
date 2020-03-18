@@ -95,7 +95,7 @@ public class TravelDao extends GeneralConnection{
 				tickList.add(tick);
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Can't manipulate tickets resultset \n",e);
+			logger.log(Level.SEVERE, "Cannot manipulate tickets resultset \n",e);
 		}
 	}
 	
@@ -106,7 +106,7 @@ public class TravelDao extends GeneralConnection{
 			statement.setString(2, dataBean.getUsername());
 			statement.execute();
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Can't delete ticket \n",e);
+			logger.log(Level.SEVERE, "Cannot delete ticket \n",e);
 		}
 	}
 }

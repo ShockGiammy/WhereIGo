@@ -1,5 +1,8 @@
 package logic.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GroupBean {
 	private Integer id;
 	private String groupTitle;
