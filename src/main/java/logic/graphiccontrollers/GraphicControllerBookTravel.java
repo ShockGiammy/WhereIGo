@@ -137,7 +137,7 @@ public class GraphicControllerBookTravel extends Window{
 		dataBean.setUserName(logUsr.getUserName());
 		setScene("HomePage.fxml");
 		loadScene();
-		setUserNick(e, dataBean);
+		nextGuiOnClick(e);
 	}
 	
 	public void loadLocInfo(MouseEvent e) {

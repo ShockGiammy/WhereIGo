@@ -1,9 +1,12 @@
 package logic;
 
+import javafx.scene.image.Image;
+
 public class LoggedUser {
 	private static String username;
 	private static String personality;
 	private static String typeOfUser;
+	private static Image proPic;
 	
 	public static void setUserName(String usrName) {
 		username = usrName;
@@ -17,6 +20,10 @@ public class LoggedUser {
 		typeOfUser = type;
 	}
 	
+	public static void setImage(Image image) {
+		proPic = image;
+	}
+	
 	public String getUserName() {
 		return username;
 	}
@@ -27,5 +34,9 @@ public class LoggedUser {
 	
 	public String getUserType() {
 		return typeOfUser;
+	}
+	
+	public Image getImage() {
+		return proPic;
 	}
 }

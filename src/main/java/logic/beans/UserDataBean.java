@@ -1,6 +1,11 @@
 package logic.beans;
-
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class UserDataBean {
 	private String name;
@@ -11,7 +16,9 @@ public class UserDataBean {
 	private String personality;
 	private String userName;
 	private String psw;
-	private File profileImage;
+	private byte[] profImStream;
+	private File profImage;
+	private Logger logger = Logger.getLogger("WIG");
 	
 	public void setName(String name) {
 		this.name = name;
@@ -45,6 +52,14 @@ public class UserDataBean {
 		this.psw = passwd;
 	}
 	
+	public void setByteSteam(byte[] stream) {
+		this.profImStream = stream;
+	}
+	
+	public void setUsrImage(File usrImage) {
+		this.profImage = usrImage;
+	}
+	
 	public String getName() {
 		return this.name;
 	}
@@ -76,12 +91,32 @@ public class UserDataBean {
 	public String getPassword() {
 		return this.psw;
 	}
-
-	public File getProfileImage() {
-		return profileImage;
+	
+	public byte[] getByteStream() {
+		return this.profImStream;
+	}
+	
+	public InputStream getInputFile() {
+		InputStream imageInputFile = null;
+		if (this.profImage != null) {
+			try {
+				imageInputFile = new FileInputStream(this.profImage);
+			} catch (FileNotFoundException e) {
+				logger.log(Level.SEVERE, e.getMessage());
+			}
+		}
+		return imageInputFile;
 	}
 
-	public void setProfileImage(File profileImage) {
-		this.profileImage = profileImage;
+	public long getFileLength() {
+		long len = 0;
+		if (this.profImage != null) {
+			len = this.profImage.length();
+		}
+		return len;
+	}
+	
+	public File getFileImage() {
+		return this.profImage;
 	}
 }

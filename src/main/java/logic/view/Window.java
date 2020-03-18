@@ -25,11 +25,7 @@ public class Window extends Application{
 	private static FXMLLoader loader;
 	private static Scene scene;
 	private static Logger logger = Logger.getLogger("WIG");
-	private static BookTravelControl travCtrl;
-	
-	public Window() {
-		travCtrl = new BookTravelControl();
-	}
+	private static BookTravelControl travCtrl = new BookTravelControl();
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -51,12 +47,6 @@ public class Window extends Application{
 		start(regStage);
 	}
 	
-	public void setUserNick(MouseEvent e, UserDataBean dataBean) {
-		GraphicControllerHomePage controller = loader.getController();
-		controller.setNick(dataBean);
-		nextGuiOnClick(e);
-	}
-	
 	public void setLocationInfo(MouseEvent e, LocationBean bean) {
 		GraphicControllerLocationInfo controller = loader.getController();
 		controller.setInfo(bean);
@@ -75,7 +65,7 @@ public class Window extends Application{
 		nextGuiOnClick(e);
 	}
 	
-	public void setTicketBought(List<UserTravelBean> bean, UserDataBean dataBean, MouseEvent e) {
+	public void setUserTickAndGroups(List<UserTravelBean> bean, UserDataBean dataBean, MouseEvent e) {
 		travCtrl.getBookedTickets(bean, dataBean);
 		GraphicControllerHomePage controller = loader.getController();
 		List <UserTravelBean> travListBean = new ArrayList<>();
@@ -84,7 +74,6 @@ public class Window extends Application{
 			travListBean.add(bean.get(i));
 		}
 		controller.setTravel(travListBean);
-		controller.setNick(dataBean);
 		nextGuiOnClick(e);
 	}
 	

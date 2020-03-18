@@ -26,12 +26,13 @@ create table Usr
 
 create table TravelGroups
 (
-	travCity VARCHAR(45)
+	ID int auto_increment not null,
+    travCity VARCHAR(45)
 			 references Locations(city),
 	groupOwner VARCHAR(20) not null
 			 references Usr(username),
 	title VARCHAR(50) NOT NULL,
-	primary key(title, groupOwner)
+	primary key(ID, groupOwner)
 );
 
 create table Post
@@ -171,21 +172,6 @@ values ("Tanzania","Kilimangiaro", "Adventurer");
 
 insert into Locations(country,city,tipeOfPersonality)
 values ("Turkmenistan","Karakum desert", "Adventurer");
-
-insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser,tipeOfPersonality)
-values ("pierC","pippo","Pierciro","Caliandro","18/02/1998","Male","Traveler","Friendly");
-
-insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser, userStatus)
-values ("shockGiammy","pluto","Gian Marco","Falcone","16/03/1998","Male","Traveler", "online");
-
-insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser, userStatus)
-values ("fra998","paperino","Francesco","Fanali","26/06/1998","Male","Renter", "offline");
-
-insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser, userStatus)
-values ("ciao2","paperino","Francesco","Fanali","26/06/1998","Male","Renter", "offline");
-
-insert into Usr(username,passw,nome,surname,dateOfBirth,gender,tipeOfUser)
-values ("adrianRob","pippo","Adrian","Minut","18/02/1998","Male", "Traveler");
 
 insert into travelgroups(travCity, groupOwner, title)
 values("Amsterdam", "shockGiammy", "Amsterdam Museums (I swear)");

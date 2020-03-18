@@ -77,6 +77,6 @@ public class GraphicControllerCheckOut extends Window{
 		setScene("HomePage.fxml");
 		loadScene();
 		List<UserTravelBean> list = new ArrayList<>();
-		setTicketBought(list, bean, e);
+		setUserTickAndGroups(list, bean, e);
 	}
 }

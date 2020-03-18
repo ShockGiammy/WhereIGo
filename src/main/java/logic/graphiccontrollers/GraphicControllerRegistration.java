@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
 import logic.view.ErrorPopup;
@@ -28,7 +29,7 @@ public class GraphicControllerRegistration extends Window{
 	@FXML private TextField password;
 	@FXML private ChoiceBox<String> typeOfUser;
 	@FXML private Button registerNow;
-	@FXML private ImageView image;
+	@FXML private ImageView profile;
 	@FXML private Button addPhoto;
 	
 	ObservableList<String> gendList = FXCollections.observableArrayList("Female", "Male", "Other");
@@ -79,11 +80,12 @@ public class GraphicControllerRegistration extends Window{
 	}
 	
 	public void getImage() {
-		this.dataBean.setProfileImage(profileImage);
+		this.dataBean.setUsrImage(profileImage);
 	}
 	
 	public void registerNowControl(MouseEvent event) {
 		int ret;
+		getImage();
 		this.dataBean.setType(this.typeOfUser.getValue());
 		this.dataBean.setGender(this.gender.getValue());
 		ret = this.loginCtrl.insertNewUserControl(this.dataBean);
@@ -93,7 +95,7 @@ public class GraphicControllerRegistration extends Window{
 		else {
 			setScene("HomePage.fxml");
 			loadScene();
-			setUserNick(event, this.dataBean);
+			nextGuiOnClick(event);
 		}
 	}
 	
@@ -108,8 +110,8 @@ public class GraphicControllerRegistration extends Window{
         profileImage = fileChooser.showOpenDialog(null);
 
         if (profileImage != null) {
-            Image imageHouse = new Image(profileImage.toURI().toString());
-            image.setImage(imageHouse);
+            Image usrImage = new Image(profileImage.toURI().toString());
+            profile.setImage(usrImage);
         }
     }
 }

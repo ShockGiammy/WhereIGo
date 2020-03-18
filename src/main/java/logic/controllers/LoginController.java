@@ -1,18 +1,21 @@
 package logic.controllers;
-import logic.dao.TravelDao;
+
 import logic.dao.UserDao;
 import logic.beans.UserDataBean;
 import logic.beans.LogInBean;
+import java.awt.image.BufferedImage;
 
+import javafx.scene.image.Image;
+import logic.ImageViewer;
 import logic.LoggedUser;
 
 public class LoginController {
 	private UserDao usrDao;
-	private TravelDao travDao;
+	private ImageViewer imView;
 	
 	public LoginController() {
 		this.usrDao = new UserDao();
-		this.travDao = new TravelDao();
+		this.imView = new ImageViewer();
 	}
 	
 	public int checkLogInControl(UserDataBean usrBean, LogInBean logBean) {
@@ -20,7 +23,6 @@ public class LoginController {
 		ret = this.usrDao.checkLogInInfo(logBean, usrBean);
 		if(ret == 1) {
 			usrBean.setUserName(logBean.getUserName());
-			saveLoggedUser(usrBean);
 			LoggedUser.setUserName(usrBean.getUsername());
 			LoggedUser.setPersonality(usrBean.getPersonality());
 			LoggedUser.setType(usrBean.getType());
@@ -36,16 +38,16 @@ public class LoginController {
 			LoggedUser.setUserName(usrBean.getUsername());
 			LoggedUser.setPersonality(usrBean.getPersonality());
 			LoggedUser.setType(usrBean.getType());
+			Image usrImage = new Image(usrBean.getFileImage().toURI().toString());
+	       LoggedUser.setImage(usrImage);
 			this.usrDao.insertNewUser(usrBean);
-			saveLoggedUser(usrBean);
 			return 1;
 		}
 	}
 	
-	public void saveLoggedUser(UserDataBean usrBean) {
-		LoggedUser.setUserName(usrBean.getUsername());
-		if(usrBean.getPersonality() != null) {
-			LoggedUser.setPersonality(usrBean.getPersonality());
-		}
+	public Image setUserImage(UserDataBean dataBean) {
+		BufferedImage bufImage;
+		bufImage = this.imView.loadImage(dataBean.getByteStream());
+		return imView.convertToFxImage(bufImage);
 	}
 }

@@ -165,6 +165,6 @@ public class GraphicControllerInterestForm extends Window{
 		this.interCtrl.evaluateInterests(this.intBean);
 		setScene("HomePage.fxml");
 		loadScene();
-		setUserNick(e, dataBean);
+		nextGuiOnClick(e);
 	}
 }

@@ -119,4 +119,17 @@ public class BookTravelControl {
 	public void deleteSavedTravel(UserTravelBean travBean, UserDataBean dataBean) {
 		this.travDao.deleteTick(travBean, dataBean);
 	}
+	
+	public void getUserGroups(List<GroupBean> grpBean, UserDataBean dataBean) {
+		List<GroupModel> grpList = new ArrayList<>();
+		grpDao.retriveUserGroups(grpList, dataBean);
+		int i;
+		for(i = 0; i < grpList.size(); i++) {
+			GroupBean grpbean = new GroupBean();
+			grpbean.setGroupTitle(grpList.get(i).getDescription());
+			grpbean.setGroupDestination(grpList.get(i).getDestination());
+			grpbean.setGroupOwner(grpList.get(i).getOwner());
+			grpBean.add(grpbean);
+		}
+	}
 }

@@ -1,5 +1,4 @@
 package logic.graphiccontrollers;
-
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -18,11 +17,11 @@ import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
 
 public class GraphicControllerHomePage extends Window{
-	@FXML private Text username;
 	@FXML private ImageView bookATravel;
+	@FXML private ImageView rentAnnPost;
+	@FXML private ImageView userImage;
 	@FXML private Button changeInfo;
 	@FXML private Button moreInfo;
-	@FXML private ImageView rentAnnPost;
 	@FXML private Button takeTest;
 	@FXML private Button exitButton;
 	@FXML private List<VBox> travelBox;
@@ -31,12 +30,15 @@ public class GraphicControllerHomePage extends Window{
 	@FXML private ListView<VBox> lwGroups;
 	private BookTravelControl bookTrav;
 	private ErrorPopup err;
+	private LoggedUser logUsr;
 	
 	public void initialize() {
 		this.travelBox = new ArrayList<>();
 		this.groupBox = new ArrayList<>();
 		this.bookTrav = new BookTravelControl();
 		this.err = new ErrorPopup();
+		this.logUsr = new LoggedUser();
+		this.userImage.setImage(this.logUsr.getImage());
 	}
 	
 	public void bookTravelControl(MouseEvent event) {
@@ -63,11 +65,6 @@ public class GraphicControllerHomePage extends Window{
 			loadScene();
 			nextGuiOnClick(event);
 		}
-	}
-	
-	/*set the datas of the user before the UI is loaded*/
-	public void setNick(UserDataBean dataBean){
-		this.username.setText(dataBean.getUsername());
 	}
 	
 	public void setTravel(List<UserTravelBean> travBean) {
@@ -106,7 +103,6 @@ public class GraphicControllerHomePage extends Window{
 				Text id = (Text)this.travelBox.get(i).getChildren().get(0);
 				delBean.setId(Integer.parseInt(id.getText()));
 				UserDataBean data = new UserDataBean();
-				LoggedUser logUsr = new LoggedUser();
 				data.setUserName(logUsr.getUserName());
 				this.bookTrav.deleteSavedTravel(delBean, data);
 				VBox temp = this.travelBox.get(i);

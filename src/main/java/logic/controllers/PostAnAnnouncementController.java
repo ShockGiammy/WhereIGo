@@ -5,7 +5,6 @@ import java.security.SecureRandom;
 import java.util.Random;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-
 import logic.beans.RentAccomodationBean;
 import logic.dao.AccomodationCreator;
 import logic.model.AccomodationModel;

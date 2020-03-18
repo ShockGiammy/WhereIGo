@@ -37,10 +37,9 @@ public class GraphicControllerLogIn extends Window{
 		if(this.loginCtrl.checkLogInControl(this.usrBean, this.logBean) == 1) {
 			List<UserTravelBean> travList = new ArrayList<>();
 			UserDataBean dataBean = new UserDataBean();
-			dataBean.setUserName(this.usrBean.getUsername());
 			setScene("HomePage.fxml");
 			loadScene();
-			setTicketBought(travList, dataBean, event);
+			setUserTickAndGroups(travList, dataBean, event);
 		}
 		else {
 			this.errLogin.displayLoginError("User not registered or wrong credentials");

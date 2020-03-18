@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.logging.Level;
 
 import logic.beans.GroupBean;
+import logic.beans.UserDataBean;
+import logic.model.GroupModel;
 
 public class GroupDao extends GeneralConnection{
 	
@@ -47,5 +49,27 @@ public class GroupDao extends GeneralConnection{
 			return -1;
 		}
 		return 0;
+	}
+	
+	public void retriveUserGroups(List<GroupModel> grpModelList, UserDataBean dataBean) {
+		getConnection();
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * from ParticipatesTojoin travelgroups on participatesto.grp = travelgroups.ID where (participant=?)")){
+			statement.setString(1, dataBean.getUsername());
+			fetchGroups(statement, grpModelList);
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "Cannot fetch user group", e);
+		}
+	}
+	
+	public void fetchGroups(PreparedStatement statement, List<GroupModel> grpModelList) {
+		try(ResultSet rs = statement.executeQuery()){
+			while(rs.next()) {
+				GroupModel model = new GroupModel();
+				model.setAll(rs.getInt(3), rs.getString(5), rs.getString(6), rs.getString(4));
+				grpModelList.add(model);
+			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "Error while executing query user group", e);
+		}
 	}
 }
