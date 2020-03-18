@@ -43,12 +43,6 @@ public class DBChatController implements ChatController{
 	public List<Message> openChat(String receiver) {
 		chat = chatDao.getSavedMsg(username, receiver);
 		status = chatDao.getStatus(receiver);
-		if (status.equals(ONLINE)) {
-			this.hostname = "localhost";
-			this.port = 2400;
-			execute();
-			logger.info("socket attivo");
-		}
 		return chat;
 	}
 	
@@ -62,9 +56,14 @@ public class DBChatController implements ChatController{
 	}
 	
 	public void execute() {
-		listener = new Listener(hostname, port, username, picture, this);
-        Thread x = new Thread(listener);
-        x.start();
+		if (status.equals(ONLINE)) {
+			this.hostname = "localhost";
+			this.port = 2400;
+			logger.info("socket attivo");
+			listener = new Listener(hostname, port, username, picture, this);
+	        Thread x = new Thread(listener);
+	        x.start();
+		}
 	}
 
 	@Override

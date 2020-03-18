@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import logic.ImageViewer;
 import logic.LoggedUser;
 import logic.controllers.ChatController;
 import logic.controllers.DBChatController;
@@ -22,7 +23,7 @@ import logic.model.Message;
 import logic.model.User;
 import logic.view.Window;
 
-import java.io.IOException;
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 import java.util.logging.Logger;
@@ -48,11 +49,15 @@ public class GraphicControllerChat extends Window {
     private ChatController chatController;
     private String username;
     private double pading = 5.0;
+    private ImageViewer viewer;
+    private Image pictureImage;
+    private LoggedUser logUser;
 
     public GraphicControllerChat() {
     	chatController = new DBChatController(this);
-    	LoggedUser logUser = new LoggedUser();
+    	logUser = new LoggedUser();
     	this.username = logUser.getUserName();
+    	viewer = new ImageViewer();
     }
     
     public void sendButtonAction() {
@@ -71,10 +76,10 @@ public class GraphicControllerChat extends Window {
         if (msg.getName().equals(username)) {
         	HBox yourMessage = new HBox();
         	
-            Image image = new Image(getClass().getClassLoader().getResource("images/sarah.png").toString()); //userImageView.getImage();
-            ImageView profileImage = new ImageView(image);
+        	ImageView profileImage = new ImageView();
             profileImage.setFitHeight(32);
             profileImage.setFitWidth(32);
+        	profileImage.setImage(logUser.getImage());
             
             Label bl6 = new Label();
             bl6.setText(msg.getMsg());
@@ -93,11 +98,11 @@ public class GraphicControllerChat extends Window {
         else {
         	HBox othersMessage = new HBox();
             
-            Image image = new Image(getClass().getClassLoader().getResource("images/dominic.png").toString());
-            ImageView profileImage = new ImageView(image);
-            profileImage.setFitHeight(32);
-            profileImage.setFitWidth(32);
-            
+        	ImageView profileImage = new ImageView();
+        	profileImage.setFitHeight(32);
+        	profileImage.setFitWidth(32);
+        	profileImage.setImage(pictureImage);
+        	
             Label bl6 = new Label();
             bl6.setText(msg.getName() + ": " + msg.getMsg());
             bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,null, null)));
@@ -117,7 +122,7 @@ public class GraphicControllerChat extends Window {
         this.usernameLabel.setText(username);
     }
 
-    public void setImageLabel() throws IOException {
+    public void setImageLabel() {
         this.userImageView.setImage(new Image(getClass().getClassLoader().getResource("images/dominic.png").toString()));
     }
 */
@@ -133,12 +138,14 @@ public class GraphicControllerChat extends Window {
     	Node node = userList.getSelectionModel().getSelectedItem().getChildren().get(2);
     	String receiver = ((Text)node).getText();
     	if (!activeChat.getText().equals(receiver)) {
+    		Node node2 =userList.getSelectionModel().getSelectedItem().getChildren().get(1);
+    		pictureImage = ((ImageView)node2).getImage();
     		displayChat(receiver);
     		setActiveChat(receiver);
     	}
     }
 
-    public void sendMethod(KeyEvent event) throws IOException {
+    public void sendMethod(KeyEvent event){
         if (event.getCode() == KeyCode.ENTER) {
             sendButtonAction();
         }
@@ -181,6 +188,7 @@ public class GraphicControllerChat extends Window {
     			addToChat(message);
     		}
     	}
+    	chatController.execute();
     }
 
     public void initialize() {
@@ -206,8 +214,10 @@ public class GraphicControllerChat extends Window {
             	Text name = new Text(user.getName());
             	
             	ImageView pictureImageView = new ImageView();
-            	Image image = new Image(getClass().getClassLoader().getResource("images/dominic.png").toString(),50,50,true,true);
-            	pictureImageView.setImage(image);
+            	BufferedImage bufImage = viewer.loadImage(user.getPicture());
+            	pictureImageView.setFitHeight(45);
+            	pictureImageView.setFitWidth(45);
+            	pictureImageView.setImage(viewer.convertToFxImage(bufImage));
 
             	hBox.getChildren().addAll(statusImageView, pictureImageView, name);
             	hBox.setAlignment(Pos.CENTER_LEFT);

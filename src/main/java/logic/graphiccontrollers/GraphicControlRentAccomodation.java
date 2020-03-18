@@ -105,9 +105,8 @@ public class GraphicControlRentAccomodation extends Window{
 		vBox.getChildren().add(ratingBox);
 		Button details = new Button();
 		details.setText("View Details");
-		details.setOnMouseClicked(e -> {
-    		setDetail(bean);
-    	});
+		details.setOnMouseClicked(e -> 
+    		setDetail(bean));
 		HBox detailBox = new HBox();
 		detailBox.getChildren().add(details);
 		detailBox.setAlignment(Pos.CENTER_RIGHT);

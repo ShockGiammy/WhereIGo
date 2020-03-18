@@ -105,12 +105,10 @@ public class Listener implements Runnable{
     }
     
     public void closeSocket() {
-    	System.out.println("ciao stronzo");
     	try {
 			socket.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, e.getMessage());
 		}
     }
 }

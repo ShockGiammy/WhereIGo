@@ -123,7 +123,8 @@ public class ChatDao extends GeneralConnection{
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				user.setStatus(rs.getString(1));
-				user.setPicture(rs.getBytes(2));
+				byte[] image = rs.getBytes(2);
+				user.setPicture(image);
 			}
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "User fetch error", e);
@@ -164,7 +165,7 @@ public class ChatDao extends GeneralConnection{
 	}
 	
 	public void createNewChat(String user, String renter) {
-		if (getSavedMsg(user, renter) == null) {
+		if (getSavedMsg(user, renter).isEmpty()) {
 			getConnection();
 			try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Chat (sender, receiver) VALUES (?, ?)")){  
 				statement.setString(1, user);
