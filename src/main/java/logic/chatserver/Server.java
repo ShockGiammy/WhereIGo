@@ -114,7 +114,6 @@ public class Server {
                 this.name = firstMessage.getName();
                 user = new User();
                 user.setName(firstMessage.getName());
-                //user.setPicture(firstMessage.getPicture());
 
                 users.add(user);
                 names.put(name, user);
@@ -131,7 +130,6 @@ public class Server {
             msg.setMsg(firstMessage.getName()+" has joined the chat.");
             msg.setType(MessageType.SERVER);
             msg.setName(firstMessage.getName());
-            //msg.setPicture(firstMessage.getPicture());
             write(msg);
             return msg;
         }

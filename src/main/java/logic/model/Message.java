@@ -15,12 +15,6 @@ public class Message implements Serializable {
     private List<User> users;
 
     private String status;
-    private String picture;
-
-    public String getPicture() {
-        return picture;
-    }
-
 
     public String getName() {
         return name;
@@ -60,10 +54,6 @@ public class Message implements Serializable {
 
     public int getOnlineCount(){
         return this.count;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
     }
 
 

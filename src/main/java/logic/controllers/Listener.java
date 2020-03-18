@@ -13,11 +13,10 @@ public class Listener implements Runnable{
 
     private static final String HASCONNECTED = "has connected";
 
-    //private static String picture;
     private Socket socket;
-    public String hostname;
-    public int port;
-    public String username;
+    private String hostname;
+    private int port;
+    private String username;
     private static ObjectOutputStream oos;
     private ObjectInputStream input;
     protected Logger logger = Logger.getLogger("WIG");
@@ -28,7 +27,6 @@ public class Listener implements Runnable{
         this.hostname = hostname;
         this.port = port;
         this.username = username;
-        //this.picture = picture;
         this.controller = controller;
     }
 
@@ -89,7 +87,6 @@ public class Listener implements Runnable{
         createMessage.setName(username);
         createMessage.setType(MessageType.USER);
         createMessage.setMsg(msg);
-        //createMessage.setPicture(picture);
         oos.writeObject(createMessage);
         oos.flush();
     }
@@ -100,7 +97,6 @@ public class Listener implements Runnable{
         createMessage.setName(username);
         createMessage.setType(MessageType.CONNECTED);
         createMessage.setMsg(HASCONNECTED);
-        //createMessage.setPicture(picture);
         oos.writeObject(createMessage);
     }
     

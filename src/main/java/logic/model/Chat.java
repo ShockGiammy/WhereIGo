@@ -1,12 +1,12 @@
 package logic.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Chat {
 
-	private ArrayList<String> messages;
+	private List<String> messages;
 	
-	public void setMessages(ArrayList<String> messageDao) {
+	public void setMessages(List<String> messageDao) {
 		this.messages = messageDao;
 	}
 	
