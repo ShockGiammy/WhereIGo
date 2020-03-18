@@ -26,13 +26,12 @@ create table Usr
 
 create table TravelGroups
 (
-	ID int auto_increment not null,
     travCity VARCHAR(45)
 			 references Locations(city),
 	groupOwner VARCHAR(20) not null
 			 references Usr(username),
-	title VARCHAR(50) NOT NULL,
-	primary key(ID, groupOwner)
+	title VARCHAR(50) unique NOT NULL,
+	primary key(groupOwner, title)
 );
 
 create table Post
@@ -77,8 +76,8 @@ create table ParticipatesTo
 (
 	participant VARCHAR(20)
 			references Usr(username),
-	grp int 
-			references TravelGroups(ID)
+	grp VARCHAR(50)
+			references TravelGroups(title)
 );
 
 create table Buys

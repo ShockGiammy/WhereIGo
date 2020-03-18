@@ -6,7 +6,6 @@ import logic.dao.GroupDao;
 
 public class GroupModel {
 	private GroupDao grpDao;
-	private Integer groupId;
 	private String groupOwner;
 	private String groupDescr;
 	private String groupDest;
@@ -19,15 +18,10 @@ public class GroupModel {
 		grpDao.retriveGroups(beans, beanList);
 	}
 	
-	public void setAll(int id, String owner, String description, String destination) {
-		this.groupId = id;
+	public void setAll(String owner, String description, String destination) {
 		this.groupOwner = owner;
 		this.groupDescr = description;
 		this.groupDest = destination;
-	}
-	
-	public int getId() {
-		return this.groupId;
 	}
 	
 	public String getOwner() {

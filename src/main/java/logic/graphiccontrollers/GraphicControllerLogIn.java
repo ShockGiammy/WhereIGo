@@ -37,6 +37,7 @@ public class GraphicControllerLogIn extends Window{
 		if(this.loginCtrl.checkLogInControl(this.usrBean, this.logBean) == 1) {
 			List<UserTravelBean> travList = new ArrayList<>();
 			UserDataBean dataBean = new UserDataBean();
+			dataBean.setUserName(this.logBean.getUserName());
 			setScene("HomePage.fxml");
 			loadScene();
 			setUserTickAndGroups(travList, dataBean, event);

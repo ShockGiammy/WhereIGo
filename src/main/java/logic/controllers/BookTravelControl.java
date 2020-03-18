@@ -122,7 +122,7 @@ public class BookTravelControl {
 	
 	public void getUserGroups(List<GroupBean> grpBean, UserDataBean dataBean) {
 		List<GroupModel> grpList = new ArrayList<>();
-		grpDao.retriveUserGroups(grpList, dataBean);
+		grpDao.getUserGroups(grpList, dataBean);
 		int i;
 		for(i = 0; i < grpList.size(); i++) {
 			GroupBean grpbean = new GroupBean();
@@ -131,5 +131,9 @@ public class BookTravelControl {
 			grpbean.setGroupOwner(grpList.get(i).getOwner());
 			grpBean.add(grpbean);
 		}
+	}
+	
+	public void deleteTravelGroup(GroupBean grpBean) {
+		this.grpDao.deleteGroup(grpBean);
 	}
 }

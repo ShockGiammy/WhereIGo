@@ -85,14 +85,24 @@ public class GraphicControllerHomePage extends Window{
 		}
 	}
 	
-	public void setGroups(GroupBean grpBean) {
-		VBox vbox = new VBox(7);
-		Text groupTitle = new Text(grpBean.getGroupTitle());
-		Text groupDest = new Text(grpBean.getGroupDestination());
-		Text groupLeader = new Text(grpBean.getGroupOwner());
-		vbox.getChildren().addAll(groupTitle, groupDest, groupLeader);
-		this.lwGroups.getItems().add(vbox);
-		this.groupBox.add(vbox);
+	public void setGroups(List<GroupBean> grpBean) {
+		int i;
+		for(i = 0; i < grpBean.size(); i++) {
+			VBox vbox = new VBox(7);
+			Text groupTitle = new Text(grpBean.get(i).getGroupTitle());
+			Text groupDest = new Text(grpBean.get(i).getGroupDestination());
+			Text groupLeader = new Text(grpBean.get(i).getGroupOwner());
+			if(grpBean.get(i).getGroupOwner().equals(logUsr.getUserName())) {
+				Button delete = new Button("Delete travel");
+				delete.setOnMouseClicked(this::deleteGroup);
+				vbox.getChildren().addAll(groupTitle, groupDest, groupLeader,delete);
+			}
+			else {
+				vbox.getChildren().addAll(groupTitle, groupDest, groupLeader);
+			}
+			this.lwGroups.getItems().add(vbox);
+			this.groupBox.add(vbox);
+		}
 	}
 	
 	public void deleteTravel(MouseEvent e) {
@@ -109,6 +119,24 @@ public class GraphicControllerHomePage extends Window{
 				this.travelBox.remove(i);
 				this.lwTickets.getItems().remove(temp);
 				err.displayLoginError("Prenotazione correttamente cancellata");
+			}
+		}
+	}
+	
+	public void deleteGroup(MouseEvent e) {
+		int i;
+		for(i = 0; i < this.groupBox.size(); i++) {
+			if(this.groupBox.get(i).getChildren().size() == 4 && this.groupBox.get(i).getChildren().get(3).equals(e.getTarget())) {
+				GroupBean bean = new GroupBean();
+				Text description = (Text)this.groupBox.get(i).getChildren().get(0);
+				Text owner = (Text)this.groupBox.get(i).getChildren().get(2);
+				bean.setGroupTitle(description.getText());
+				bean.setGroupOwner(owner.getText());
+				this.bookTrav.deleteTravelGroup(bean);
+				VBox temp = this.groupBox.get(i);
+				this.groupBox.remove(i);
+				this.lwGroups.getItems().remove(temp);
+				err.displayLoginError("Gruppo correttamente cancellato");
 			}
 		}
 	}

@@ -3,7 +3,6 @@ package logic.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -53,7 +52,7 @@ public class GroupDao extends GeneralConnection{
 	
 	public void retriveUserGroups(List<GroupModel> grpModelList, UserDataBean dataBean) {
 		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * from ParticipatesTojoin travelgroups on participatesto.grp = travelgroups.ID where (participant=?)")){
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * from ParticipatesTo join travelgroups on participatesto.grp = travelgroups.title where (participant=?)")){
 			statement.setString(1, dataBean.getUsername());
 			fetchGroups(statement, grpModelList);
 		}catch(SQLException e) {
@@ -65,7 +64,7 @@ public class GroupDao extends GeneralConnection{
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				GroupModel model = new GroupModel();
-				model.setAll(rs.getInt(3), rs.getString(5), rs.getString(6), rs.getString(4));
+				model.setAll(rs.getString(5), rs.getString(6), rs.getString(4));
 				grpModelList.add(model);
 			}
 		}catch(SQLException e) {
@@ -75,10 +74,10 @@ public class GroupDao extends GeneralConnection{
 	
 	public void getUserGroups(List<GroupModel> grpModel, UserDataBean dataBean) {
 		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("select distinct ID,travcity,title,groupowner from travelgroups join participatesto where (participant=? or groupowner=?)")){
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("select distinct travcity,title,groupowner from travelgroups where (groupowner=?)")){
 			statement.setString(1, dataBean.getUsername());
-			statement.setString(2, dataBean.getUsername());
-			
+			findUserGroups(grpModel, statement);
+			getPartGroups(grpModel, dataBean);
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, e.getMessage());
 		}
@@ -88,9 +87,41 @@ public class GroupDao extends GeneralConnection{
 		try(ResultSet rs = statement.executeQuery()) { 
 			while(rs.next()) {
 				GroupModel group = new GroupModel();
-				group.setAll(rs.getInt(1), rs.getString(4), rs.getString(3), rs.getString(2));
+				group.setAll(rs.getString(3), rs.getString(2), rs.getString(1));
 				grpModel.add(group);
 			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+	}
+	
+	public void getPartGroups(List<GroupModel> grpModel, UserDataBean bean) {
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("select groupowner,title,travcity from travelgroups join participatesto on participatesto.grp = travelgroups.title where(participant =?)")){
+			statement.setString(1, bean.getUsername());
+			fetchPartGroup(statement, grpModel);
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+	}
+	
+	public void fetchPartGroup(PreparedStatement statement, List<GroupModel> grpList) {
+		try(ResultSet rs = statement.executeQuery()){
+			while(rs.next()) {
+				GroupModel group = new GroupModel();
+				group.setAll(rs.getString(1), rs.getString(2), rs.getString(3));
+				grpList.add(group);
+			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+	}
+	
+	public void deleteGroup(GroupBean bean) {
+		getConnection();
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("delete from travelgroups where (groupowner=? and title=?)")){
+			statement.setString(1, bean.getGroupOwner());
+			statement.setString(2, bean.getGroupTitle());
+			statement.execute();
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, e.getMessage());
 		}
