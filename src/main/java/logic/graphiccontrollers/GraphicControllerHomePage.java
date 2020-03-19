@@ -56,7 +56,7 @@ public class GraphicControllerHomePage extends Window{
 	public void postRentAnnouncementControl(MouseEvent event) {
 		LoggedUser logUser = new LoggedUser();
 		if (logUser.getUserType().equals("Renter")) {
-			setScene("InfoAccomodation.fxml");
+			setScene("RenterAccomodations.fxml");
 			loadScene();
 			nextGuiOnClick(event);
 		}

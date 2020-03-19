@@ -15,7 +15,7 @@ public class AccomodationCreator extends GeneralConnection{
 	public AccomodationModel createAccomodation(RentAccomodationBean info) {
 		getConnection();
 		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Post(ID,photo,utente,descr,beds,city,address,services,squareMetres,tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")){    
-			statement.setInt(1, info.getID());
+			statement.setLong(1, info.getID());
 			statement.setBinaryStream(2,info.getInputFile(), info.getFileLength());		//image
 			statement.setString(3,info.getRenter()); 				//user
 			statement.setString(4,info.getDescription()); 			//description
@@ -46,11 +46,24 @@ public class AccomodationCreator extends GeneralConnection{
 		return beans;
 	}
 	
+	public List<RentAccomodationBean> queryMyAccomodations(String myUsername) {
+		getConnection();
+		List<RentAccomodationBean> beans = new ArrayList<>();
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Post Where utente = ?")){
+			statement.setString(1, myUsername);
+			getAccomodationDatas(statement, beans);
+		}catch (SQLException e) {
+			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+		return beans;
+	}
+	
 	public void getAccomodationDatas(PreparedStatement statement, List<RentAccomodationBean> beans) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				RentAccomodationBean bean = new RentAccomodationBean();
-				bean.setID(rs.getInt(1));
+				bean.setID(rs.getLong(1));
 				byte[] image = rs.getBytes(2);
 				bean.setInputStream(image);
 				bean.setRenter(rs.getString(3));
@@ -65,6 +78,37 @@ public class AccomodationCreator extends GeneralConnection{
 			}
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "Location ResultSet error", e);
+		}
+	}
+	
+	public void delete(long l) {
+		getConnection();
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Delete From Post Where ID = ?")){    
+			statement.setLong(1, l);
+			statement.execute();
+		}catch (SQLException e) {
+			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+	}
+	
+	public void update(RentAccomodationBean info) {
+		getConnection();
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Update Post Set photo = ? , descr = ? ,beds = ? "
+				+ ",city = ? ,address = ? ,services = ? ,squareMetres = ? ,tipologia = ? Where ID = ?")){
+			statement.setBinaryStream(1,info.getInputFile(), info.getFileLength());		//image
+			statement.setString(2,info.getDescription()); 			//description
+			statement.setString(3,info.getBeds());					//beds
+			statement.setString(4,info.getCity());					//city
+			statement.setString(5,info.getAddress());				//address
+			statement.setBytes(6,info.getServices());				//services
+			statement.setString(7,info.getSquareMetres());			//squareMetres
+			statement.setString(8,info.getType());					//type
+			statement.setLong(9, info.getID());
+			statement.execute();
+		}catch (SQLException e) {
+			logger.log(Level.SEVERE, "Got an exception!");
+			logger.log(Level.SEVERE, e.getMessage());
 		}
 	}
 }

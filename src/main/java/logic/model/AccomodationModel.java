@@ -4,7 +4,7 @@ import logic.beans.RentAccomodationBean;
 public class AccomodationModel {
 	
 	private String renter;
-	private int id;
+	private long id;
 	private String beds;
 	private String city;
 	private String address;

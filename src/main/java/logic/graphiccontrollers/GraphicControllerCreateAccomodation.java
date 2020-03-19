@@ -1,5 +1,6 @@
 package logic.graphiccontrollers;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 
@@ -14,15 +15,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import logic.ImageViewer;
 import logic.LoggedUser;
 import logic.beans.RentAccomodationBean;
-import logic.controllers.PostAnAnnouncementController;
+import logic.controllers.ManageAnnouncementController;
 import logic.view.ErrorPopup;
 import logic.view.Window;
 
-public class GraphicControlCreateAccomodation extends Window{
-	
-	private PostAnAnnouncementController control;
+public class GraphicControllerCreateAccomodation extends Window{
 	
 	ObservableList<String> typeList = FXCollections.observableArrayList("appartamento", "villetta", "monolocale");
 	ObservableList<String> squareList = FXCollections.observableArrayList("< 20", "20 - 39", "40 - 59", "> 60");
@@ -46,7 +46,12 @@ public class GraphicControlCreateAccomodation extends Window{
 	@FXML private ImageView bookTravel;
 	@FXML private ImageView favourite;
 	@FXML private ImageView settings;
+	
 	private LoggedUser logUser;
+	private ManageAnnouncementController control;
+	private RentAccomodationBean bean;
+	private File houseImage;
+	private ImageViewer viewer;
 	
 	@FXML
 	private void initialize() {
@@ -63,12 +68,10 @@ public class GraphicControlCreateAccomodation extends Window{
 		this.logUser = new LoggedUser();
 	}
 	
-	private RentAccomodationBean bean;
-	private File houseImage;
-	
-	public GraphicControlCreateAccomodation() {
-		control = new PostAnAnnouncementController();
+	public GraphicControllerCreateAccomodation() {
+		control = new ManageAnnouncementController();
 		bean = new RentAccomodationBean();
+		viewer = new ImageViewer();
 	}
 
 	public void applyInfo(MouseEvent event) {
@@ -129,5 +132,52 @@ public class GraphicControlCreateAccomodation extends Window{
             Image imageHouse = new Image(houseImage.toURI().toString());
             imageView.setImage(imageHouse);
         }
+    }
+    
+    public void setInfo(RentAccomodationBean beanToUpdate) {
+		bean = beanToUpdate;
+
+    	description.setVisible(true);
+		description.setText(bean.getDescription());
+		city.setVisible(true);
+		city.setText(bean.getCity());
+		address.setVisible(true);
+		address.setText(bean.getAddress());
+		numberBeds.setVisible(true);
+		numberBeds.setValue(bean.getBeds());
+		type.setVisible(true);
+		type.setValue(bean.getType());
+		squareMetres.setVisible(true);
+		squareMetres.setValue(bean.getSquareMetres());
+		imageView.setVisible(true);
+		BufferedImage bufImage = viewer.loadImage(bean.getHouseImage());
+		imageView.setFitHeight(180);
+		imageView.setFitWidth(350);
+		imageView.setImage(viewer.convertToFxImage(bufImage));
+		garden.setVisible(true);
+		wifi.setVisible(true);
+		bathroom.setVisible(true);
+		kitchen.setVisible(true);
+		byte[] list = bean.getServices();
+		if (bean.getServices() != null) {
+			for (int i = 0; i <= 3; i++) {
+				if (list[0] == 1) {
+					garden.setSelected(true);
+				}
+				if (list[1] == 1) {
+					wifi.setSelected(true);
+				}
+				if (list[2] == 1) {
+					bathroom.setSelected(true);
+				}
+				if (list[3] == 1) {
+					kitchen.setSelected(true);
+				}
+			}
+		}
+		garden.setDisable(true);
+		wifi.setDisable(true);
+		bathroom.setDisable(true);
+		kitchen.setDisable(true);
     }
 }

@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class RentAccomodationBean {
 	
-	private int id;
+	private long id;
 	private String beds;
 	private String renter;
 	private String city;
@@ -35,8 +35,8 @@ public class RentAccomodationBean {
 		return this.renter;
 	}
 	
-	public void setID(int myId) {
-		this.id = myId;
+	public void setID(long l) {
+		this.id = l;
 	}
 
 	public String getBeds() {
@@ -116,7 +116,7 @@ public class RentAccomodationBean {
 		this.services = listOfServices;
 	}
 
-	public int getID() {
+	public long getID() {
 		return id;
 	}
 	

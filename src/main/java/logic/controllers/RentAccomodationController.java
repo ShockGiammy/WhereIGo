@@ -5,13 +5,11 @@ import java.util.List;
 
 import logic.beans.RentAccomodationBean;
 import logic.dao.AccomodationCreator;
-import logic.graphiccontrollers.GraphicControlRentAccomodation;
 import logic.model.AccomodationModel;
 import logic.view.ErrorPopup;
 
 public class RentAccomodationController {
 
-	private GraphicControlRentAccomodation view;
 	private AccomodationCreator dao;
 	private List<AccomodationModel> listOfAccomodation;
 	

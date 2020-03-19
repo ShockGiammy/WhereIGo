@@ -11,6 +11,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import logic.beans.GroupBean;
 import logic.beans.LocationBean;
+import logic.beans.RentAccomodationBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
@@ -63,6 +64,12 @@ public class Window extends Application{
 	public void setTicketsDats(List<UserTravelBean> bean, MouseEvent e) {
 		GraphicControllerTickets controller = loader.getController();
 		controller.setDatas(bean);
+		nextGuiOnClick(e);
+	}
+	
+	public void setAccomodationInfo(MouseEvent e, RentAccomodationBean bean) {
+		GraphicControllerCreateAccomodation controller = loader.getController();
+		controller.setInfo(bean);
 		nextGuiOnClick(e);
 	}
 	
