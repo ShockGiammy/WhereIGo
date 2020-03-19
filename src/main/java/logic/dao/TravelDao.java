@@ -109,4 +109,26 @@ public class TravelDao extends GeneralConnection{
 			logger.log(Level.SEVERE, "Cannot delete ticket \n",e);
 		}
 	}
+	
+	public void getSuggestedTickets(UserTravelBean travBean, List<TicketModel> tickList) {
+		getConnection();
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("select ID, depCity, dateOfDep, dateOfArr, cost from tickets where(arrCity=? and numoftick > 0)")){
+			statement.setString(1, travBean.getCityOfArr());
+			findSuggTickets(statement, tickList, travBean);
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE,e.getMessage());
+		}
+	}
+	
+	public void findSuggTickets(PreparedStatement statement, List<TicketModel> tickList, UserTravelBean travBean) {
+		try(ResultSet rs = statement.executeQuery()){
+			while(rs.next()) {
+				TicketModel tick = new TicketModel();
+				tick.setAll(rs.getInt(1), rs.getString(2), travBean.getCityOfArr(), rs.getDate(3).toLocalDate(), rs.getDate(4).toLocalDate(), rs.getFloat(5));
+				tickList.add(tick);
+			}
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE,e.getMessage());
+		}
+	}
 }

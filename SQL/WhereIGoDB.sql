@@ -198,10 +198,6 @@ values (007, "Roma-Fiumicino" , "Berlino", "2020-03-20", "2020-03-22", 450.15,40
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
 values (008, "Roma-Fiumicino" , "Berlino", "2020-03-20", "2020-03-22", 452.15,0);
-
-    
-    
-    
 	
 
 

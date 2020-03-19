@@ -36,6 +36,7 @@ public class GraphicControllerBookTravel extends Window{
 	@FXML private ListView<HBox> suggLocView;
 	@FXML private ListView<VBox> groupsView;
 	@FXML private List<HBox> hboxList;
+	@FXML private List<VBox> vboxlist;
 	
 	public void initialize() {
 		this.travBeanArray = new ArrayList<>();
@@ -46,6 +47,7 @@ public class GraphicControllerBookTravel extends Window{
 		this.travBean = new UserTravelBean();
 		this.bookTravCtrl = new BookTravelControl();
 		this.popUp = new ErrorPopup();
+		this.vboxlist = new ArrayList<>();
 		setLocation();
 		setGroups();
 	}
@@ -77,12 +79,14 @@ public class GraphicControllerBookTravel extends Window{
 			this.bookTravCtrl.getGroupsControl(this.grpBean, grpBeanList);
 			for(j = 0; j < grpBeanList.size(); j++) {
 				if(grpBeanList.get(j).getGroupOwner() != null && grpBeanList.get(j).getGroupTitle() != null) {
-					VBox vbox = new VBox(7);
+					VBox vbox = new VBox(10);
 					Text title = new Text(grpBeanList.get(j).getGroupTitle());
 					Text owner = new Text(grpBeanList.get(j).getGroupOwner());
 					Text location = new Text(grpBeanList.get(j).getGroupDestination());
-					Button contact = new Button("contact owner");
-					vbox.getChildren().addAll(title, owner, location, contact);
+					Button join = new Button("join group");
+					join.setOnMouseClicked(this::joinTheGroup);
+					vbox.getChildren().addAll(title, owner, location, join);
+					this.vboxlist.add(vbox);
 					this.groupsView.getItems().add(vbox);
 				}
 			}
@@ -94,11 +98,13 @@ public class GraphicControllerBookTravel extends Window{
 		suggLoc.addAll(bookTravCtrl.showLocationsControl());
 		int i;
 		for(i = 0; i < suggLoc.size(); i++) {
-			HBox hbox = new HBox(12);
+			HBox hbox = new HBox(20);
 			Text loc = new Text(suggLoc.get(i));
 			Button info = new Button("Get more info");
+			Button bookNow = new Button("Book a travel");
+			bookNow.setOnMouseClicked(this::bookSuggestedLoc);
 			info.setOnMouseClicked(this::showMoreInfo);
-			hbox.getChildren().addAll(loc,info);
+			hbox.getChildren().addAll(loc,info, bookNow);
 			this.suggLocView.getItems().add(hbox);
 			this.hboxList.add(hbox);
 		}
@@ -144,5 +150,41 @@ public class GraphicControllerBookTravel extends Window{
 		setScene("LocationInfo.fxml");
 		loadScene();
 		setLocationInfo(e, this.locBean);
+	}
+	
+	public void bookSuggestedLoc(MouseEvent e) {
+		int i;
+		for(i = 0; i < this.hboxList.size(); i++) {
+			if(this.hboxList.get(i).getChildren().get(2).equals(e.getTarget())) {
+				Text city = (Text)this.hboxList.get(i).getChildren().get(0);
+				this.travBean.setArrCity(city.getText());
+				this.travBeanArray.addAll(this.bookTravCtrl.getSuggTicketsInfo(this.travBean));
+				if(this.travBeanArray.isEmpty()) {
+					this.popUp.displayLoginError("Nessun viaggio disponibile");
+				}
+				else {
+					setScene("TicketSolutions.fxml");
+					loadScene();
+					setTicketsDats(this.travBeanArray, e);
+				}
+			}
+		}
+	}
+	
+	public void joinTheGroup(MouseEvent e) {
+		int i;
+		for(i = 0; i < this.vboxlist.size(); i++) {
+			if(this.vboxlist.get(i).getChildren().get(3).equals(e.getTarget())) {
+				Text title = (Text)this.vboxlist.get(i).getChildren().get(0);
+				this.grpBean.setGroupTitle(title.getText());
+				this.grpBean.setGroupOwner(this.logUsr.getUserName());
+				if(this.bookTravCtrl.insertParticipant(this.grpBean) == 0) {
+					this.popUp.displayLoginError("Gruppo correttamente joinato");
+				}
+				else {
+					this.popUp.displayLoginError("Errore nel join del gruppo");
+				}
+			}
+		}
 	}
 }

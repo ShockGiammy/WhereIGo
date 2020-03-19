@@ -9,110 +9,116 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
-   <children>
-      <Pane layoutX="600.0" layoutY="137.0" prefHeight="482.0" prefWidth="292.0" style="-fx-background-color: #19ca8b;">
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
+   <right>
+      <Pane prefHeight="900.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="19.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give us your travel info" wrappingWidth="254.94927978515625">
+            <Pane layoutX="740.0" layoutY="137.0" prefHeight="482.0" prefWidth="360.0" style="-fx-background-color: #19ca8b;">
+               <children>
+                  <Text layoutX="19.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give us your travel info" wrappingWidth="254.94927978515625">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="13.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First day">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <DatePicker fx:id="firstDay" layoutX="122.0" layoutY="78.0" onAction="#getFirstDay" prefHeight="27.0" prefWidth="190.0" />
+                  <Text layoutX="10.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last day">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <DatePicker fx:id="lastDay" layoutX="122.0" layoutY="145.0" onAction="#getLastDay" prefHeight="27.0" prefWidth="190.0" />
+                  <Button fx:id="bookMyTravel" layoutX="153.0" layoutY="362.0" mnemonicParsing="false" onMouseClicked="#bookMyTravelControl" prefHeight="41.0" prefWidth="127.0" text="Book my travel" textOverrun="WORD_ELLIPSIS" underline="true">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Text layoutX="10.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City of depart">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="departureCity" layoutX="122.0" layoutY="213.0" onKeyTyped="#getDepartureCity" prefHeight="27.0" prefWidth="190.0" />
+                  <TextField fx:id="arrivalCity" layoutX="122.0" layoutY="287.0" onKeyTyped="#getArrivalCity" prefHeight="27.0" prefWidth="190.0" />
+                  <Text layoutX="10.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City of arrive">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <AnchorPane prefHeight="98.0" prefWidth="1059.0">
+               <children>
+                  <ToolBar layoutX="356.0" layoutY="16.0" prefHeight="66.0" prefWidth="435.0" style="-fx-background-color: white;">
+                     <items>
+                        <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#backHome" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@69524.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="home1" disable="true" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@download.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icona-di-chiavi-42470255.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@download%20(1).png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@favourites-stars.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@download%20(2).png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@16363.png" />
+                           </image>
+                        </ImageView>
+                     </items>
+                  </ToolBar>
+                  <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@WIGLOGO.png" />
+                     </image>
+                  </ImageView>
+                  <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
+               </children>
+            </AnchorPane>
+            <ListView fx:id="suggLocView" layoutY="137.0" prefHeight="482.0" prefWidth="360.0" />
+            <ListView fx:id="groupsView" layoutX="370.0" layoutY="137.0" prefHeight="482.0" prefWidth="360.0" />
+            <Text layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location suggested for you">
                <font>
-                  <Font size="25.0" />
+                  <Font size="15.0" />
                </font>
             </Text>
-            <Text layoutX="19.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First day">
+            <Text layoutX="370.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group travels suggested for you">
                <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <DatePicker fx:id="firstDay" layoutX="122.0" layoutY="78.0" onAction="#getFirstDay" prefHeight="27.0" prefWidth="149.0" />
-            <Text layoutX="20.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last day">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <DatePicker fx:id="lastDay" layoutX="128.0" layoutY="145.0" onAction="#getLastDay" prefHeight="27.0" prefWidth="149.0" />
-            <Button fx:id="bookMyTravel" layoutX="145.0" layoutY="368.0" mnemonicParsing="false" onMouseClicked="#bookMyTravelControl" prefHeight="41.0" prefWidth="127.0" text="Book my travel" textOverrun="WORD_ELLIPSIS" underline="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Text layoutX="19.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City of depart">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <TextField fx:id="departureCity" layoutX="134.0" layoutY="215.0" onKeyTyped="#getDepartureCity" prefHeight="25.0" prefWidth="149.0" />
-            <TextField fx:id="arrivalCity" layoutX="134.0" layoutY="289.0" onKeyTyped="#getArrivalCity" prefHeight="25.0" prefWidth="149.0" />
-            <Text layoutX="19.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City of arrive">
-               <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
             </Text>
          </children>
       </Pane>
-      <AnchorPane prefHeight="98.0" prefWidth="1059.0">
-         <children>
-            <ToolBar layoutX="356.0" layoutY="16.0" prefHeight="66.0" prefWidth="435.0" style="-fx-background-color: white;">
-               <items>
-                  <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#backHome" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@69524.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="home1" disable="true" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@download.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icona-di-chiavi-42470255.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@download%20(1).png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@favourites-stars.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@download%20(2).png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@16363.png" />
-                     </image>
-                  </ImageView>
-               </items>
-            </ToolBar>
-            <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@WIGLOGO.png" />
-               </image>
-            </ImageView>
-            <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
-         </children>
-      </AnchorPane>
-      <ListView fx:id="suggLocView" layoutX="20.0" layoutY="137.0" prefHeight="482.0" prefWidth="255.0" />
-      <ListView fx:id="groupsView" layoutX="289.0" layoutY="137.0" prefHeight="482.0" prefWidth="292.0" />
-      <Text layoutX="20.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location suggested for you">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <Text layoutX="289.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group travels suggested for you">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-   </children>
-</Pane>
+   </right>
+</BorderPane>

@@ -116,10 +116,6 @@ public class BookTravelControl {
 		return this.grpDao.saveUserGroup(grpBean);
 	}
 	
-	public void deleteSavedTravel(UserTravelBean travBean, UserDataBean dataBean) {
-		this.travDao.deleteTick(travBean, dataBean);
-	}
-	
 	public void getUserGroups(List<GroupBean> grpBean, UserDataBean dataBean) {
 		List<GroupModel> grpList = new ArrayList<>();
 		grpDao.getUserGroups(grpList, dataBean);
@@ -131,6 +127,32 @@ public class BookTravelControl {
 			grpbean.setGroupOwner(grpList.get(i).getOwner());
 			grpBean.add(grpbean);
 		}
+	}
+	
+	public List<UserTravelBean> getSuggTicketsInfo(UserTravelBean travBean) {
+		List<TicketModel> tickList = new ArrayList<>();
+		List<UserTravelBean> travList = new ArrayList<>();
+		this.travDao.getSuggestedTickets(travBean, tickList);
+		int i;
+		for(i = 0; i < tickList.size(); i++) {
+			UserTravelBean trav = new UserTravelBean();
+			trav.setId(tickList.get(i).getId());
+			trav.setDepCity(tickList.get(i).getDepCity());
+			trav.setArrCity(tickList.get(i).getArrCity());
+			trav.setFirstDay(tickList.get(i).getDepDay());
+			trav.setLastDay(tickList.get(i).getArrDay());
+			trav.setCost(tickList.get(i).getMoney());
+			travList.add(trav);
+		}
+		return travList;
+	}
+	
+	public int insertParticipant(GroupBean bean) {
+		return this.grpDao.insertParticipant(bean);
+	}
+	
+	public void deleteSavedTravel(UserTravelBean travBean, UserDataBean dataBean) {
+		this.travDao.deleteTick(travBean, dataBean);
 	}
 	
 	public void deleteTravelGroup(GroupBean grpBean) {

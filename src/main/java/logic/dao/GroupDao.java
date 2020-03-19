@@ -126,4 +126,17 @@ public class GroupDao extends GeneralConnection{
 			logger.log(Level.SEVERE, e.getMessage());
 		}
 	}
+	
+	public int insertParticipant(GroupBean grpBean) {
+		getConnection();
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("insert into participatesto(participant, grp) values(?,?)")){
+			statement.setString(2, grpBean.getGroupTitle());
+			statement.setString(1, grpBean.getGroupOwner()); //this is the participant,so maybe the bean should be revised
+			statement.execute();
+			return 0;
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+			return -1;
+		}
+	}
 }
