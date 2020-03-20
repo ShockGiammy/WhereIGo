@@ -93,12 +93,14 @@ public class GraphicControllerHomePage extends Window{
 			Text groupDest = new Text(grpBean.get(i).getGroupDestination());
 			Text groupLeader = new Text(grpBean.get(i).getGroupOwner());
 			if(grpBean.get(i).getGroupOwner().equals(logUsr.getUserName())) {
-				Button delete = new Button("Delete travel");
-				delete.setOnMouseClicked(this::deleteGroup);
-				vbox.getChildren().addAll(groupTitle, groupDest, groupLeader,delete);
+				Button deleteGroup = new Button("Delete group");
+				deleteGroup.setOnMouseClicked(this::deleteGroup);
+				vbox.getChildren().addAll(groupTitle, groupDest, groupLeader,deleteGroup);
 			}
 			else {
-				vbox.getChildren().addAll(groupTitle, groupDest, groupLeader);
+				Button leaveGroup = new Button("Leave group");
+				leaveGroup.setOnMouseClicked(this::leaveGroup);
+				vbox.getChildren().addAll(groupTitle, groupDest, groupLeader,leaveGroup);
 			}
 			this.lwGroups.getItems().add(vbox);
 			this.groupBox.add(vbox);
@@ -137,6 +139,24 @@ public class GraphicControllerHomePage extends Window{
 				this.groupBox.remove(i);
 				this.lwGroups.getItems().remove(temp);
 				err.displayLoginError("Gruppo correttamente cancellato");
+			}
+		}
+	}
+	
+	public void leaveGroup(MouseEvent e) {
+		int i;
+		for(i = 0; i < this.groupBox.size(); i++) {
+			if(this.groupBox.get(i).getChildren().size() == 4 && this.groupBox.get(i).getChildren().get(3).equals(e.getTarget())) {
+				GroupBean bean = new GroupBean();
+				Text description = (Text)this.groupBox.get(i).getChildren().get(0);
+				bean.setGroupTitle(description.getText());
+				UserDataBean dBean = new UserDataBean();
+				dBean.setUserName(this.logUsr.getUserName());
+				this.bookTrav.leaveTravelGroup(bean, dBean);
+				VBox temp = this.groupBox.get(i);
+				this.groupBox.remove(i);
+				this.lwGroups.getItems().remove(temp);
+				err.displayLoginError("Gruppo correttamente abbandonato");
 			}
 		}
 	}

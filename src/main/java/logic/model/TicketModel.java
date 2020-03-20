@@ -20,6 +20,10 @@ public class TicketModel {
 		this.cost = money;
 	}
 	
+	public void setId(int ident) {
+		this.id = ident;
+	}
+	
 	public int getId() {
 		return this.id;
 	}

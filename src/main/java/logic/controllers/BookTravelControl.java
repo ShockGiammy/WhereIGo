@@ -147,15 +147,21 @@ public class BookTravelControl {
 		return travList;
 	}
 	
-	public int insertParticipant(GroupBean bean) {
-		return this.grpDao.insertParticipant(bean);
+	public int insertParticipant(GroupBean bean, UserDataBean dataBean) {
+		return this.grpDao.insertParticipant(bean, dataBean);
 	}
 	
 	public void deleteSavedTravel(UserTravelBean travBean, UserDataBean dataBean) {
-		this.travDao.deleteTick(travBean, dataBean);
+		TicketModel tickModel = new TicketModel();
+		tickModel.setId(travBean.getId());
+		this.travDao.deleteTick(tickModel, dataBean);
 	}
 	
 	public void deleteTravelGroup(GroupBean grpBean) {
 		this.grpDao.deleteGroup(grpBean);
+	}
+	
+	public void leaveTravelGroup(GroupBean grpBean, UserDataBean dataBean) {
+		this.grpDao.leaveJoinedGroup(grpBean, dataBean);
 	}
 }

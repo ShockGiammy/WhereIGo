@@ -127,16 +127,27 @@ public class GroupDao extends GeneralConnection{
 		}
 	}
 	
-	public int insertParticipant(GroupBean grpBean) {
+	public int insertParticipant(GroupBean grpBean, UserDataBean dataBean) {
 		getConnection();
 		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("insert into participatesto(participant, grp) values(?,?)")){
 			statement.setString(2, grpBean.getGroupTitle());
-			statement.setString(1, grpBean.getGroupOwner()); //this is the participant,so maybe the bean should be revised
+			statement.setString(1, dataBean.getUsername());
 			statement.execute();
 			return 0;
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, e.getMessage());
 			return -1;
+		}
+	}
+	
+	public void leaveJoinedGroup(GroupBean grpBean, UserDataBean dataBean) {
+		getConnection();
+		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("delete from participatesto where(participant=? and grp=?)")){
+			statement.setString(2, grpBean.getGroupTitle());
+			statement.setString(1, dataBean.getUsername());
+			statement.execute();
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
 		}
 	}
 }

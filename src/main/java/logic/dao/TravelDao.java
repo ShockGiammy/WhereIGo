@@ -61,19 +61,29 @@ public class TravelDao extends GeneralConnection{
 			statement.setString(2, dataBean.getUsername());
 			statement.setInt(1, tick.getId());
 			statement.execute();
-			scaleNumberOfTickets(tick);
+			updateNumberOfTickets(tick,0);
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "Failed to update tickets \n",e);
 		}
 	}
 	
-	public void scaleNumberOfTickets(TicketModel tick) {
+	public void updateNumberOfTickets(TicketModel tick, int operation) {
 		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE tickets SET numOfTick = numOfTick-1 WHERE ID=?")){
-			statement.setInt(1, tick.getId());
-			statement.execute();
-		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Failed to update number of tickets \n",e);
+		if(operation == 0) {
+			try(PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE tickets SET numOfTick = numOfTick-1 WHERE ID=?")){
+				statement.setInt(1, tick.getId());
+				statement.execute();
+			}catch(SQLException e) {
+				logger.log(Level.SEVERE, "Failed to update number of tickets \n",e);
+			}
+		}
+		else if(operation == 1) {
+			try(PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE tickets SET numOfTick = numOfTick+1 WHERE ID=?")){
+				statement.setInt(1, tick.getId());
+				statement.execute();
+			}catch(SQLException e) {
+				logger.log(Level.SEVERE, "Failed to update number of tickets \n",e);
+			}
 		}
 	}
 	
@@ -99,12 +109,13 @@ public class TravelDao extends GeneralConnection{
 		}
 	}
 	
-	public void deleteTick(UserTravelBean travBean, UserDataBean dataBean) {
+	public void deleteTick(TicketModel tickModel, UserDataBean dataBean) {
 		getConnection();
 		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("delete from Buys where ticket=? and passenger=?")){
-			statement.setInt(1, travBean.getId());
+			statement.setInt(1, tickModel.getId());
 			statement.setString(2, dataBean.getUsername());
 			statement.execute();
+			updateNumberOfTickets(tickModel, 1);
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "Cannot delete ticket \n",e);
 		}

@@ -177,8 +177,9 @@ public class GraphicControllerBookTravel extends Window{
 			if(this.vboxlist.get(i).getChildren().get(3).equals(e.getTarget())) {
 				Text title = (Text)this.vboxlist.get(i).getChildren().get(0);
 				this.grpBean.setGroupTitle(title.getText());
-				this.grpBean.setGroupOwner(this.logUsr.getUserName());
-				if(this.bookTravCtrl.insertParticipant(this.grpBean) == 0) {
+				UserDataBean usrDBean = new UserDataBean();
+				usrDBean.setUserName(this.logUsr.getUserName());
+				if(this.bookTravCtrl.insertParticipant(this.grpBean, usrDBean) == 0) {
 					this.popUp.displayLoginError("Gruppo correttamente joinato");
 				}
 				else {
