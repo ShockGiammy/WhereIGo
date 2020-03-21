@@ -17,7 +17,6 @@ import logic.view.ErrorPopup;
 public class ManageAnnouncementController {
 	
 	private RentAccomodationBean info;
-	private AccomodationModel acc;
 	private Random rand;
 	protected Logger logger = Logger.getLogger("WIG");
 	private AccomodationCreator creator;
@@ -47,12 +46,8 @@ public class ManageAnnouncementController {
 				logger.log(Level.SEVERE, e.getMessage());
 			}
 			bean.setID(this.rand.nextInt(100000));
-			acc = creator.createAccomodation(info);
+			creator.createAccomodation(info);
 		}
-	}
-
-	public void show(RentAccomodationBean bean) {	
-		acc.getInfo();		
 	}
 	
 	public List<RentAccomodationBean> displayMyAnnouncement() {

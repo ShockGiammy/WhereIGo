@@ -16,12 +16,10 @@ public class DBChatController implements ChatController{
 	private String username;
 	private ChatDao chatDao;
 	private List<Message> chat;
-	private static String picture;
 	private GraphicControllerChat graphic;
 	private ObservableList<User> users;
 	private String status;
 	private String hostname;
-	private int port;
 	private Listener listener;
 	private LoggedUser logUser;
 	protected Logger logger = Logger.getLogger("WIG");
@@ -29,7 +27,6 @@ public class DBChatController implements ChatController{
 	
 	public DBChatController(GraphicControllerChat reference) {
 		chatDao = new ChatDao();
-        //Listener.picture = picture;
 		this.graphic = reference;
 		this.logUser = new LoggedUser();
 		this.username = logUser.getUserName();
@@ -58,9 +55,9 @@ public class DBChatController implements ChatController{
 	public void execute() {
 		if (status.equals(ONLINE)) {
 			this.hostname = "localhost";
-			this.port = 2400;
+			int port = 2400;
 			logger.info("socket attivo");
-			listener = new Listener(hostname, port, username, picture, this);
+			listener = new Listener(hostname, port, username, this);
 	        Thread x = new Thread(listener);
 	        x.start();
 		}
@@ -89,7 +86,6 @@ public class DBChatController implements ChatController{
 	        Message createMessage = new Message();
 	        createMessage.setName(username);
 	        createMessage.setMsg(msg);
-	        //createMessage.setPicture(picture);
 	        chatDao.saveMessage(createMessage, receiver);
 	        if (status.equals(ONLINE)) {
 		    	try {

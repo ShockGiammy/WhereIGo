@@ -23,7 +23,7 @@ public class Listener implements Runnable{
 	private DBChatController controller;
 	private int myConnection = 0;
 
-    public Listener(String hostname, int port, String username, String picture, DBChatController controller) {
+    public Listener(String hostname, int port, String username, DBChatController controller) {
         this.hostname = hostname;
         this.port = port;
         this.username = username;

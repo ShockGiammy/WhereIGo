@@ -30,21 +30,20 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
         logger.info("The chat server is running.");
-        ServerSocket listener = new ServerSocket(PORT);
-
-        try {
-            while (true) {
-                new Handler(listener.accept()).start();
-                connections++;
-                if (connections == MAX_CONNECTONS) {
-                	break;
+            
+        try (  
+        	ServerSocket listener = new ServerSocket(PORT);
+        	) {
+        	while (true) {
+        		new Handler(listener.accept()).start();
+        		connections++;
+        		if (connections == MAX_CONNECTONS) {
+        			break;
                 }
-            }
+            } 
         } catch (Exception e) {
-        	logger.log(Level.SEVERE, EXCEPTION);
-			logger.log(Level.SEVERE, e.getMessage());
-        } finally {
-            listener.close();
+            logger.log(Level.SEVERE, EXCEPTION);
+    		logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -66,13 +65,18 @@ public class Server {
         @Override
         public void run() {
             logger.info("Attempting to connect a user...");
-            
             try {
-                is = socket.getInputStream();
-                os = socket.getOutputStream();
-                output = new ObjectOutputStream(os);
-            	input = new ObjectInputStream(is);
-
+				is = socket.getInputStream();
+				os = socket.getOutputStream();
+			} catch (Exception e){
+                logger.log(Level.SEVERE, e, () -> "Exception in run() method for user: " + name);
+			}
+                      
+            try (
+                
+            	ObjectOutputStream output = new ObjectOutputStream(os);
+            	ObjectInputStream input = new ObjectInputStream(is);
+            	) {
                 Message firstMessage = (Message) input.readObject();
                 checkDuplicateUsername(firstMessage);
                 writers.add(output);
@@ -102,7 +106,7 @@ public class Server {
             } catch (DuplicateUsernameException duplicateException){
                 logger.log(Level.SEVERE, () -> "Duplicate Username : " + name);
             } catch (Exception e){
-                logger.log(Level.SEVERE, e, () -> "Exception in run() method for user: " + name);
+                logger.log(Level.SEVERE, e, () -> "Exception in run() method in try-with-resources for user: " + name);
             } finally {
                 closeConnections();
             }

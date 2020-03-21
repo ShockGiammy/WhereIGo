@@ -54,7 +54,7 @@ public class UserDao extends GeneralConnection{
 	
 	public void insertNewUser(UserDataBean usrBean) {
 		getConnection();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO usr(username, passw, nome, surname, dateOfBirth, gender, tipeOfUser, profilePicture) VALUES(?,?,?,?,?,?,?,?)")){
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO usr(username, passw, nome, surname, dateOfBirth, gender, tipeOfUser, profilePicture, userStatus) VALUES(?,?,?,?,?,?,?,?,?)")){
 			statement.setString(1, usrBean.getUsername());
 			statement.setString(2, usrBean.getPassword());
 			statement.setString(3, usrBean.getName());
@@ -63,6 +63,7 @@ public class UserDao extends GeneralConnection{
 			statement.setString(6, usrBean.getGender());
 			statement.setString(7, usrBean.getType());
 			statement.setBinaryStream(8, usrBean.getInputFile(), usrBean.getFileLength());
+			statement.setString(9, "offline");
 			statement.execute();
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "SQLException on registration\n", e);

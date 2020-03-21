@@ -148,32 +148,9 @@ public class GraphicControlRentAccomodation extends Window{
 		houseDetail.setFitHeight(180);
 		houseDetail.setFitWidth(350);
 		houseDetail.setImage(viewer.convertToFxImage(bufImage));
-		garden.setVisible(true);
-		wifi.setVisible(true);
-		bathroom.setVisible(true);
-		kitchen.setVisible(true);
-		byte[] list = bean.getServices();
-		if (bean.getServices() != null) {
-			for (int i = 0; i <= 3; i++) {
-				if (list[0] == 1) {
-					garden.setSelected(true);
-				}
-				if (list[1] == 1) {
-					wifi.setSelected(true);
-				}
-				if (list[2] == 1) {
-					bathroom.setSelected(true);
-				}
-				if (list[3] == 1) {
-					kitchen.setSelected(true);
-				}
-			}
-		}
+		GraphicControllerCreateAccomodation reference = new GraphicControllerCreateAccomodation();
+		reference.setServices(bean);
 		contactRenter.setVisible(true);
-		garden.setDisable(true);
-		wifi.setDisable(true);
-		bathroom.setDisable(true);
-		kitchen.setDisable(true);
 	}
 	
 	public void contactRenter(MouseEvent event) {
