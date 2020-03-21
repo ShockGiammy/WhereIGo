@@ -53,9 +53,7 @@ public class Server {
         private Socket socket;
         private Logger logger = Logger.getLogger("WIG");
         private User user;
-        private ObjectInputStream input;
         private OutputStream os;
-        private ObjectOutputStream output;
         private InputStream is;
 
         public Handler(Socket socket){
@@ -190,10 +188,6 @@ public class Server {
                 users.remove(user);
                 logger.info(() -> "User object: " + user + REMOVED);
             }
-            if (output != null){
-                writers.remove(output);
-                logger.info(() -> "Writer object: " + user + REMOVED);
-            }
             if (is != null){
                 try {
                     is.close();
@@ -205,14 +199,6 @@ public class Server {
             if (os != null){
                 try {
                     os.close();
-                } catch (IOException e) {
-                	logger.log(Level.SEVERE, EXCEPTION);
-        			logger.log(Level.SEVERE, e.getMessage());
-                }
-            }
-            if (input != null){
-                try {
-                    input.close();
                 } catch (IOException e) {
                 	logger.log(Level.SEVERE, EXCEPTION);
         			logger.log(Level.SEVERE, e.getMessage());
