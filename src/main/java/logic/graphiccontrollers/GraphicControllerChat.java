@@ -17,7 +17,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import logic.ImageViewer;
 import logic.LoggedUser;
-import logic.controllers.ChatController;
 import logic.controllers.DBChatController;
 import logic.model.Message;
 import logic.model.User;
@@ -46,7 +45,7 @@ public class GraphicControllerChat extends Window {
     @FXML private Text activeChat;
 
     protected Logger logger = Logger.getLogger("WIG");
-    private ChatController chatController;
+    private DBChatController chatController;
     private String username;
     private double pading = 5.0;
     private ImageViewer viewer;
@@ -117,15 +116,6 @@ public class GraphicControllerChat extends Window {
             });
         }
     }
-    /*
-    public void setUsernameLabel(String username) {
-        this.usernameLabel.setText(username);
-    }
-
-    public void setImageLabel() {
-        this.userImageView.setImage(new Image(getClass().getClassLoader().getResource("images/dominic.png").toString()));
-    }
-*/
 
     public void setUserList() {
     	List<User> users = chatController.getUsers();
@@ -182,6 +172,7 @@ public class GraphicControllerChat extends Window {
     
     public void displayChat(String receiver) {
     	chatPane.getItems().clear();
+    	chatController.closeLastChat();
     	List<Message> chat = chatController.openChat(receiver);
     	for (Message message : chat) {
     		if (message.getMsg() != null) {

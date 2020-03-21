@@ -10,6 +10,7 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+
 import logic.DuplicateUsernameException;
 import logic.model.Message;
 import logic.model.MessageType;
@@ -92,9 +93,10 @@ public class Server {
                             case CONNECTED:
                                 addToList();
                                 break;
-                            case SERVER:
-                            	break;
                             case DISCONNECTED:
+                            	closeConnections(inputmsg.getName());
+                            	break;
+                            default:
                             	break;
                         }
                     }
@@ -106,7 +108,7 @@ public class Server {
             } catch (Exception e){
                 logger.log(Level.SEVERE, e, () -> "Exception in run() method in try-with-resources for user: " + name);
             } finally {
-                closeConnections();
+                closeConnections(null);
             }
         }
 
@@ -137,11 +139,11 @@ public class Server {
         }
 
 
-        private Message removeFromList() throws IOException {
+        private Message removeFromList(String userToRemove) throws IOException {
             logger.info("removeFromList() method Enter");
             Message msg = new Message();
-            msg.setMsg("has left the chat.");
-            //msg.setType(MessageType.DISCONNECTED);
+            msg.setMsg(userToRemove + "has left the chat.");
+            msg.setType(MessageType.DISCONNECTED);
             msg.setName("SERVER");
             msg.setUserlist(names);
             write(msg);
@@ -177,7 +179,7 @@ public class Server {
         /*
          * Once a user has been disconnected, we close the open connections and remove the writers
          */
-        private synchronized void closeConnections()  {
+        private synchronized void closeConnections(String userToRemove)  {
             logger.info("closeConnections() method Enter");
             connections--;
             if (name != null) {
@@ -205,7 +207,14 @@ public class Server {
                 }
             }
             try {
-                removeFromList();
+            	logger.info("closing Socket");
+            	socket.close();
+            } catch (Exception e) {
+            	logger.log(Level.SEVERE, EXCEPTION);
+    			logger.log(Level.SEVERE, e.getMessage());
+            }
+            try {
+                removeFromList(userToRemove);
             } catch (Exception e) {
             	logger.log(Level.SEVERE, EXCEPTION);
     			logger.log(Level.SEVERE, e.getMessage());

@@ -12,7 +12,7 @@ import logic.graphiccontrollers.GraphicControllerChat;
 import logic.model.Message;
 import logic.model.User;
 
-public class DBChatController implements ChatController{
+public class DBChatController { //implements ChatController{
 	private String username;
 	private ChatDao chatDao;
 	private List<Message> chat;
@@ -24,6 +24,7 @@ public class DBChatController implements ChatController{
 	private LoggedUser logUser;
 	protected Logger logger = Logger.getLogger("WIG");
 	private static final String ONLINE = "online";
+	private boolean alreadyActive = false;
 	
 	public DBChatController(GraphicControllerChat reference) {
 		chatDao = new ChatDao();
@@ -52,8 +53,19 @@ public class DBChatController implements ChatController{
 		return this.username;
 	}
 	
+	public void closeLastChat() {
+		if (alreadyActive == true) {
+			try {
+				listener.closeConnection();
+			} catch (IOException e) {
+				logger.log(Level.SEVERE, ()-> "error closeLastChat - oos.writeObject");
+				logger.log(Level.SEVERE, e.getMessage());
+			}
+		}
+	}
 	public void execute() {
 		if (status.equals(ONLINE)) {
+			alreadyActive = true;
 			this.hostname = "localhost";
 			int port = 2400;
 			logger.info("socket attivo");
@@ -63,25 +75,25 @@ public class DBChatController implements ChatController{
 		}
 	}
 
-	@Override
+	//@Override
 	public void createChat(String renter) {
 		logUser = new LoggedUser();
 		chatDao.createNewChat(logUser.getUserName(), renter);
 	}
 
 
-	@Override
+	//@Override
 	public void notificateMessage(Message msg) {
 		//graphic.newUserNotification(msg);		
 	}
 
-	@Override
+	//@Override
 	public void acceptChat() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	//@Override
 	public void sendMessage(String msg, String receiver) {
 	        Message createMessage = new Message();
 	        createMessage.setName(username);
@@ -107,8 +119,8 @@ public class DBChatController implements ChatController{
 		graphic.addAsServer(message);
 	}
 	
-	public void closeWindowEvent() {
+	/*public void closeWindowEvent() {
 		
 		listener.closeSocket();
-	}
+	}*/
 }

@@ -55,30 +55,35 @@ public class Listener implements Runnable{
                 message = (Message) input.readObject();
 
                 if (message != null) {
-                    logger.info("Message recieved:" + message.getMsg() + " MessageType:" + message.getType() + " Name:" + message.getName());
-                    switch (message.getType()) {
-                        case USER:
-                            controller.addMessage(message);
-                            break;
-                        case SERVER:
-                        	if (!message.getName().equals(username)) {
-                        		controller.addServerMessage(message);
-                        	}
-                            break;
-                        case CONNECTED:
-                        	if (myConnection == 0) {
-                        		controller.addServerMessage(message);
-                        		myConnection++;
-                        	}
-                        	break;                      		
-                        case DISCONNECTED:
-                        	break;
-                    }
+                    manageMessage(message);
                 }
             }
         }
         catch (IOException | ClassNotFoundException e) {
-        	logger.info("Connection closed!");         
+        	logger.info("Connection closed!");       
+        }
+    }
+    
+    public void manageMessage(Message message) {
+    	logger.info("Message recieved:" + message.getMsg() + " MessageType:" + message.getType() + " Name:" + message.getName());
+        switch (message.getType()) {
+            case USER:
+                controller.addMessage(message);
+                break;
+            case SERVER:
+            	if (!message.getName().equals(username)) {
+            		controller.addServerMessage(message);
+            	}
+                break;
+            case CONNECTED:
+            	if (myConnection == 0) {
+            		controller.addServerMessage(message);
+            		myConnection++;
+            	}
+            	break;                      		
+            case DISCONNECTED:
+            	controller.addServerMessage(message);
+            	break;
         }
     }
 
@@ -100,11 +105,12 @@ public class Listener implements Runnable{
         oos.writeObject(createMessage);
     }
     
-    public void closeSocket() {
-    	try {
-			socket.close();
-		} catch (IOException e) {
-			logger.log(Level.SEVERE, e.getMessage());
-		}
+    public void closeConnection() throws IOException{
+    	logger.info("closeConnection method entered");  
+    	Message createMessage = new Message();
+        createMessage.setName(username);
+        createMessage.setType(MessageType.DISCONNECTED);
+        createMessage.setMsg(" ");
+        oos.writeObject(createMessage);
     }
 }
