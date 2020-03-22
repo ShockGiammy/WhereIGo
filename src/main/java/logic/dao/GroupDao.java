@@ -12,24 +12,25 @@ import logic.model.GroupModel;
 
 public class GroupDao extends GeneralConnection{
 	
-	public void retriveGroups(GroupBean bean , List<GroupBean> beanList) {
+	public void retriveSuggestedGroups(UserDataBean dataBean, List<GroupModel> modelList) {
 		getConnection();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("select * from travelgroups where (travCity=?)")){
-			statement.setString(1, bean.getGroupDestination());
-			getGroupsDatas(statement, beanList);
+		if(dataBean.getPersonality()== null) {
+			return;
+		}
+		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("select travcity,groupowner,title from travelgroups join locations on travelgroups.travCity=locations.city where tipeOfPersonality=?")){
+			statement.setString(1, dataBean.getPersonality());
+			getSuggestedGroupsDatas(statement, modelList);
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "SQLException occurred\n",e);
 		}
 	}
 	
-	public void getGroupsDatas(PreparedStatement statement, List<GroupBean> beanList) {
+	public void getSuggestedGroupsDatas(PreparedStatement statement, List<GroupModel> modelList) {
 		try(ResultSet rs = statement.executeQuery()){
 				while(rs.next()) {
-					GroupBean groupBean = new GroupBean();
-					groupBean.setGroupDestination(rs.getString(1));
-					groupBean.setGroupOwner(rs.getString(2));
-					groupBean.setGroupTitle(rs.getString(3));
-					beanList.add(groupBean);
+					GroupModel grpModel = new GroupModel();
+					grpModel.setAll(rs.getString(2), rs.getString(3), rs.getString(1));
+					modelList.add(grpModel);
 				}
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, "Group fetch error", e);
@@ -50,34 +51,11 @@ public class GroupDao extends GeneralConnection{
 		return 0;
 	}
 	
-	public void retriveUserGroups(List<GroupModel> grpModelList, UserDataBean dataBean) {
-		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * from ParticipatesTo join travelgroups on participatesto.grp = travelgroups.title where (participant=?)")){
-			statement.setString(1, dataBean.getUsername());
-			fetchGroups(statement, grpModelList);
-		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Cannot fetch user group", e);
-		}
-	}
-	
-	public void fetchGroups(PreparedStatement statement, List<GroupModel> grpModelList) {
-		try(ResultSet rs = statement.executeQuery()){
-			while(rs.next()) {
-				GroupModel model = new GroupModel();
-				model.setAll(rs.getString(5), rs.getString(6), rs.getString(4));
-				grpModelList.add(model);
-			}
-		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Error while executing query user group", e);
-		}
-	}
-	
 	public void getUserGroups(List<GroupModel> grpModel, UserDataBean dataBean) {
 		getConnection();
 		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("select distinct travcity,title,groupowner from travelgroups where (groupowner=?)")){
 			statement.setString(1, dataBean.getUsername());
 			findUserGroups(grpModel, statement);
-			getPartGroups(grpModel, dataBean);
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE, e.getMessage());
 		}

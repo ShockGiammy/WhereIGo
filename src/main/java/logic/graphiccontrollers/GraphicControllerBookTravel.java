@@ -70,26 +70,29 @@ public class GraphicControllerBookTravel extends Window{
 	}
 
 	public void setGroups() {
-		int i;
+		List<GroupBean> grpList = new ArrayList<>();
 		int j;
-		for(i = 0; i < hboxList.size(); i++) {
-			Text text = (Text)this.hboxList.get(i).getChildren().get(0);
-			this.grpBean.setGroupDestination(text.getText());
-			List<GroupBean> grpBeanList = new ArrayList<>();
-			this.bookTravCtrl.getGroupsControl(this.grpBean, grpBeanList);
-			for(j = 0; j < grpBeanList.size(); j++) {
-				if(grpBeanList.get(j).getGroupOwner() != null && grpBeanList.get(j).getGroupTitle() != null) {
-					VBox vbox = new VBox(10);
-					Text title = new Text(grpBeanList.get(j).getGroupTitle());
-					Text owner = new Text(grpBeanList.get(j).getGroupOwner());
-					Text location = new Text(grpBeanList.get(j).getGroupDestination());
-					Button join = new Button("join group");
-					join.setOnMouseClicked(this::joinTheGroup);
-					vbox.getChildren().addAll(title, owner, location, join);
-					this.vboxlist.add(vbox);
-					this.groupsView.getItems().add(vbox);
+		int i;
+		this.bookTravCtrl.getGroupsControl(grpList);
+		List<GroupBean> usrGroups = new ArrayList<>();
+		this.bookTravCtrl.getParticipateGroups(usrGroups);
+		for(i = 0; i < grpList.size(); i++) {
+			for(j = 0; j < usrGroups.size(); j++) {
+				if(grpList.get(i).getGroupOwner().equalsIgnoreCase(usrGroups.get(j).getGroupOwner()) && grpList.get(i).getGroupDestination().equalsIgnoreCase(usrGroups.get(j).getGroupDestination()) && grpList.get(i).getGroupTitle().equalsIgnoreCase(usrGroups.get(j).getGroupTitle())) {
+					grpList.remove(i);
 				}
 			}
+		}
+		for(j = 0; j < grpList.size(); j++) {
+			VBox vbox = new VBox(10);
+			Text title = new Text(grpList.get(j).getGroupTitle());
+			Text owner = new Text(grpList.get(j).getGroupOwner());
+			Text location = new Text(grpList.get(j).getGroupDestination());
+			Button join = new Button("join group");
+			join.setOnMouseClicked(this::joinTheGroup);
+			vbox.getChildren().addAll(title, owner, location, join);
+			this.vboxlist.add(vbox);
+			this.groupsView.getItems().add(vbox);
 		}
 	}
 	
@@ -160,7 +163,7 @@ public class GraphicControllerBookTravel extends Window{
 				this.travBean.setArrCity(city.getText());
 				this.travBeanArray.addAll(this.bookTravCtrl.getSuggTicketsInfo(this.travBean));
 				if(this.travBeanArray.isEmpty()) {
-					this.popUp.displayLoginError("Nessun viaggio disponibile");
+					this.popUp.displayLoginError("Nessun viaggio disponibile o viaggio già prenotato");
 				}
 				else {
 					setScene("TicketSolutions.fxml");

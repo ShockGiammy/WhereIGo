@@ -15,40 +15,58 @@ import logic.beans.UserTravelBean;
 import logic.dao.GroupDao;
 import logic.dao.LocationDao;
 import logic.dao.TravelDao;
-import logic.dao.UserDao;
 import logic.model.GroupModel;
 import logic.model.TicketModel;
 
 public class BookTravelControl {
 	private LoggedUser logUser;
 	private UserDataBean userBean;
-	private GroupModel grpModel;
-	private UserDao usrDao;
 	private LocationDao locDao;
 	private TravelDao travDao;
 	private GroupDao grpDao;
 	
 	public BookTravelControl() {
 		this.userBean = new UserDataBean();
-		this.grpModel = new GroupModel();
-		this.usrDao = new UserDao();
 		this.locDao = new LocationDao();
 		this.logUser = new LoggedUser();
 		this.travDao = new TravelDao();
 		this.grpDao = new GroupDao();
 	}
 	
-	public List<String> showLocationsControl() { /*Shall change this String[] into a location bean*/
+	public List<String> showLocationsControl() {
 		List<String> suggLoc = new ArrayList<>();
 		userBean.setPersonality(logUser.getPersonality());
 		userBean.setUserName(logUser.getUserName());
-		suggLoc.addAll(this.usrDao.getLocations(userBean));
+		suggLoc.addAll(this.locDao.getSuggestedLocations(userBean));
 		return suggLoc;
 	}
 	
-	public void getGroupsControl(GroupBean grpBean , List<GroupBean> beanList) {
-		this.logUser.getPersonality();
-		grpModel.getGroups(grpBean, beanList);
+	public void getGroupsControl(List<GroupBean> beanList) {
+		this.userBean.setPersonality(this.logUser.getPersonality());
+		List<GroupModel> grpModelList = new ArrayList<>();
+		this.grpDao.retriveSuggestedGroups(this.userBean, grpModelList);
+		int i;
+		for(i = 0; i < grpModelList.size(); i++) {
+			GroupBean bean = new GroupBean();
+			bean.setGroupOwner(grpModelList.get(i).getOwner());
+			bean.setGroupDestination(grpModelList.get(i).getDestination());
+			bean.setGroupTitle(grpModelList.get(i).getDescription());
+			beanList.add(bean);
+		}
+	}
+	
+	public void getParticipateGroups(List<GroupBean> beanList){
+		this.userBean.setPersonality(this.logUser.getPersonality());
+		List<GroupModel> grpList = new ArrayList<>();
+		this.grpDao.getPartGroups(grpList, userBean);
+		int i;
+		for(i = 0; i < grpList.size(); i++) {
+			GroupBean grpbean = new GroupBean();
+			grpbean.setGroupOwner(grpList.get(i).getOwner());
+			grpbean.setGroupTitle(grpList.get(i).getDescription());
+			grpbean.setGroupDestination(grpList.get(i).getDestination());
+			beanList.add(grpbean);
+		}
 	}
 	
 	public void retriveLocInfoControl(LocationBean bean) {
@@ -116,9 +134,10 @@ public class BookTravelControl {
 		return this.grpDao.saveUserGroup(grpBean);
 	}
 	
-	public void getUserGroups(List<GroupBean> grpBean, UserDataBean dataBean) {
+	public void getUserGroups(List<GroupBean> grpBean) {
+		this.userBean.setUserName(this.logUser.getUserName());
 		List<GroupModel> grpList = new ArrayList<>();
-		grpDao.getUserGroups(grpList, dataBean);
+		grpDao.getUserGroups(grpList,this.userBean);
 		int i;
 		for(i = 0; i < grpList.size(); i++) {
 			GroupBean grpbean = new GroupBean();
@@ -127,12 +146,14 @@ public class BookTravelControl {
 			grpbean.setGroupOwner(grpList.get(i).getOwner());
 			grpBean.add(grpbean);
 		}
+		getParticipateGroups(grpBean);
 	}
 	
 	public List<UserTravelBean> getSuggTicketsInfo(UserTravelBean travBean) {
 		List<TicketModel> tickList = new ArrayList<>();
 		List<UserTravelBean> travList = new ArrayList<>();
-		this.travDao.getSuggestedTickets(travBean, tickList);
+		this.userBean.setUserName(this.logUser.getUserName());
+		this.travDao.getSuggestedTickets(travBean,this.userBean, tickList);
 		int i;
 		for(i = 0; i < tickList.size(); i++) {
 			UserTravelBean trav = new UserTravelBean();

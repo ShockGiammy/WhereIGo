@@ -12,8 +12,8 @@ public class LocationModel {
 		this.city = city;
 	}
 	
-	public void getCountry() {
-		System.out.println(this.country);
+	public String getCountry() {
+		return this.country;
 	}
 	
 	public String getCity() {

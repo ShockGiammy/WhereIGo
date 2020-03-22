@@ -1,6 +1,7 @@
 package logic.controllers;
 
 import logic.dao.UserDao;
+import logic.exceptions.TakenUsernameException;
 import logic.beans.UserDataBean;
 import logic.beans.LogInBean;
 import java.awt.image.BufferedImage;
@@ -31,7 +32,7 @@ public class LoginController {
 		return ret;
 	}
 	
-	public int insertNewUserControl(UserDataBean usrBean) {
+	public int insertNewUserControl(UserDataBean usrBean) throws TakenUsernameException{
 		if(usrBean.getUsername() == null || usrBean.getPassword() == null || usrBean.getName() == null || usrBean.getSurname() == null || usrBean.getDateOfBirth() == null || usrBean.getGender() == null || usrBean.getType() == null ) {
 			return 0;
 		}

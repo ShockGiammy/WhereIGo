@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LocationBean {
 	private String cityName;
@@ -54,7 +56,7 @@ public class LocationBean {
 			try {
 				imageFile = new FileInputStream(locImage);
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			}
 		}
 		return imageFile;

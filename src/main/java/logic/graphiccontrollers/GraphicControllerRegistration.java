@@ -13,9 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
+import logic.exceptions.TakenUsernameException;
 import logic.view.ErrorPopup;
 import logic.view.Window;
 
@@ -84,18 +84,22 @@ public class GraphicControllerRegistration extends Window{
 	}
 	
 	public void registerNowControl(MouseEvent event) {
-		int ret;
-		getImage();
-		this.dataBean.setType(this.typeOfUser.getValue());
-		this.dataBean.setGender(this.gender.getValue());
-		ret = this.loginCtrl.insertNewUserControl(this.dataBean);
-		if(ret == 0) {
-			this.errLogin.displayLoginError("Inserire tutti i dati");
-		}
-		else {
-			setScene("HomePage.fxml");
-			loadScene();
-			nextGuiOnClick(event);
+		try{
+			int ret;
+			getImage();
+			this.dataBean.setType(this.typeOfUser.getValue());
+			this.dataBean.setGender(this.gender.getValue());
+			ret = this.loginCtrl.insertNewUserControl(this.dataBean);
+			if(ret == 0) {
+				this.errLogin.displayLoginError("Inserire tutti i dati");
+			}
+			else {
+				setScene("HomePage.fxml");
+				loadScene();
+				nextGuiOnClick(event);
+			}
+		}catch(TakenUsernameException e) {
+			this.errLogin.displayLoginError("Questo username non è disponibile");
 		}
 	}
 	

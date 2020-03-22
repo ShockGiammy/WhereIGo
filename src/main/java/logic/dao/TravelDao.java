@@ -121,8 +121,11 @@ public class TravelDao extends GeneralConnection{
 		}
 	}
 	
-	public void getSuggestedTickets(UserTravelBean travBean, List<TicketModel> tickList) {
+	public void getSuggestedTickets(UserTravelBean travBean, UserDataBean dataBean, List<TicketModel> tickList) {
 		getConnection();
+		if(checkIfSuggBooked(travBean, dataBean)) {
+			return;
+		}
 		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("select ID, depCity, dateOfDep, dateOfArr, cost from tickets where(arrCity=? and numoftick > 0)")){
 			statement.setString(1, travBean.getCityOfArr());
 			findSuggTickets(statement, tickList, travBean);
@@ -141,5 +144,16 @@ public class TravelDao extends GeneralConnection{
 		}catch(SQLException e) {
 			logger.log(Level.SEVERE,e.getMessage());
 		}
+	}
+	
+	public boolean checkIfSuggBooked(UserTravelBean travBean, UserDataBean dataBean) {
+		List<TicketModel> tickList = new ArrayList<>();
+		getUserTickets(dataBean, tickList);
+		for(int i = 0; i < tickList.size(); i++) {
+			if(tickList.get(i).getArrCity().equalsIgnoreCase(travBean.getCityOfArr())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

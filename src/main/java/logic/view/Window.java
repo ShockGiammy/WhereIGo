@@ -83,7 +83,7 @@ public class Window extends Application{
 		}
 		controller.setTravel(travListBean);
 		List<GroupBean> grpList = new ArrayList<>();
-		travCtrl.getUserGroups(grpList, dataBean);
+		travCtrl.getUserGroups(grpList);
 		controller.setGroups(grpList);
 		nextGuiOnClick(e);
 	}

@@ -178,6 +178,12 @@ values("Amsterdam", "shockGiammy", "Amsterdam Museums (I swear)");
 insert into travelgroups(travCity, groupOwner, title)
 values("San Francisco", "adrianRob", "Trip to the USA");
 
+insert into travelgroups(travCity, groupOwner, title)
+values("Ibiza", "shockGiammy", "Let's go to Ibiza");
+
+insert into travelgroups(travCity, groupOwner, title)
+values("Amsterdam", "adrianRob", "Amsterdam love");
+
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
 values (002, "Roma-Fiumicino" , "Berlino", "2020-04-24", "2020-04-30", 550.15,40);
 
