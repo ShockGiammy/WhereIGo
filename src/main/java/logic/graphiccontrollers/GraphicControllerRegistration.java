@@ -38,7 +38,6 @@ public class GraphicControllerRegistration extends Window{
 	private DateTimeFormatter formatter;
 	private LoginController loginCtrl;
 	private ErrorPopup errLogin;
-	private String today;
 	private File profileImage;
 	
 	@FXML
@@ -51,7 +50,6 @@ public class GraphicControllerRegistration extends Window{
 		this.gender.setValue("Female");
 		this.typeOfUser.setValue("Traveler");
 		this.errLogin = new ErrorPopup();
-		today = formatter.format(java.time.LocalDate.now()); /* needed to manage the dates, change the type to Date and not to String*/
 	}
 	
 	public void getName() {
