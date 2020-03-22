@@ -41,11 +41,6 @@ public class GraphicControllerCreateAccomodation extends Window{
 	@FXML private ChoiceBox<String> type;
 	@FXML private ImageView imageView;
 	@FXML private Button openButton;
-	@FXML private ImageView home;
-	@FXML private ImageView chat;
-	@FXML private ImageView bookTravel;
-	@FXML private ImageView favourite;
-	@FXML private ImageView settings;
 	
 	private LoggedUser logUser;
 	private ManageAnnouncementController control;

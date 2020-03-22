@@ -16,12 +16,6 @@ import logic.controllers.ManageAnnouncementController;
 import logic.view.Window;
 
 public class GraphicControllerRenterAccomodations extends Window{
-	
-	@FXML private ImageView home;
-	@FXML private ImageView chat;
-	@FXML private ImageView bookTravel;
-	@FXML private ImageView favourite;
-	@FXML private ImageView settings;
 
 	@FXML private ListView<HBox> accomodationsList;
 	

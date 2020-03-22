@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import logic.DuplicateUsernameException;
+import logic.exceptions.DuplicateUsernameException;
 import logic.model.Message;
 import logic.model.MessageType;
 import logic.model.User;
 
-public class Server extends Thread{
+public class Server{
 
     /* Setting up variables */
 	private static final int PORT = 2400;

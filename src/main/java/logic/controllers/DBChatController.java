@@ -12,7 +12,7 @@ import logic.graphiccontrollers.GraphicControllerChat;
 import logic.model.Message;
 import logic.model.User;
 
-public class DBChatController { //implements ChatController{
+public class DBChatController {
 	private String username;
 	private ChatDao chatDao;
 	private GraphicControllerChat graphic;
@@ -74,25 +74,11 @@ public class DBChatController { //implements ChatController{
 		}
 	}
 
-	//@Override
 	public void createChat(String renter) {
 		logUser = new LoggedUser();
 		chatDao.createNewChat(logUser.getUserName(), renter);
 	}
 
-
-	//@Override
-	public void notificateMessage(Message msg) {
-		//graphic.newUserNotification(msg);		
-	}
-
-	//@Override
-	public void acceptChat() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	//@Override
 	public void sendMessage(String msg, String receiver) {
 	        Message createMessage = new Message();
 	        createMessage.setName(username);

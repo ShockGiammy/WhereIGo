@@ -21,4 +21,5 @@ module WhereIGo {
 	opens logic.controllers;
 	opens logic.beans;
 	opens logic.model;
+	opens logic.view;
 }

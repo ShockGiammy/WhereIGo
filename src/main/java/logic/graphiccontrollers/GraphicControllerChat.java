@@ -86,12 +86,9 @@ public class GraphicControllerChat extends Window {
             yourMessage.setAlignment(Pos.TOP_RIGHT);
             bl6.setPadding(new Insets(pading, pading,pading, pading));
             yourMessage.getChildren().addAll(bl6, profileImage);
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                	chatPane.getItems().add(yourMessage);
-                	chatPane.scrollTo(yourMessage);
-                }
+            Platform.runLater(() -> {
+                chatPane.getItems().add(yourMessage);
+                chatPane.scrollTo(yourMessage);
             });
         }
         else {
@@ -107,12 +104,9 @@ public class GraphicControllerChat extends Window {
             bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,null, null)));
     		bl6.setPadding(new Insets(pading, pading, pading, pading));
             othersMessage.getChildren().addAll(profileImage, bl6);
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                	chatPane.getItems().add(othersMessage);
-                	chatPane.scrollTo(othersMessage);
-                }
+            Platform.runLater(() -> {
+                chatPane.getItems().add(othersMessage);
+                chatPane.scrollTo(othersMessage);
             });
         }
     }

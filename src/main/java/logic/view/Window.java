@@ -19,7 +19,9 @@ import logic.graphiccontrollers.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 public class Window extends Application{
@@ -28,6 +30,13 @@ public class Window extends Application{
 	private static Scene scene;
 	private static Logger logger = Logger.getLogger("WIG");
 	private static BookTravelControl travCtrl = new BookTravelControl();
+	
+	@FXML protected ImageView home;
+	@FXML protected ImageView keys;
+	@FXML protected ImageView chat;
+	@FXML protected ImageView bookTravel;
+	@FXML protected ImageView favourite;
+	@FXML protected ImageView settings;
 	
 	@Override
 	public void start(Stage primaryStage) {
