@@ -28,12 +28,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class GraphicControllerChat extends Window {
-
-	@FXML private ImageView home;
-	@FXML private ImageView keys;
-	@FXML private ImageView bookTravel;
-	@FXML private ImageView favourite;
-	@FXML private ImageView settings;
 	
     @FXML private TextArea messageBox;
     @FXML private Label usernameLabel;

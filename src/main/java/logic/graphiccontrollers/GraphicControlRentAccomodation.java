@@ -29,13 +29,6 @@ import logic.view.Window;
 
 public class GraphicControlRentAccomodation extends Window{
 	
-	@FXML private ImageView home;
-	@FXML private ImageView keys;
-	@FXML private ImageView chat;
-	@FXML private ImageView bookTravel;
-	@FXML private ImageView favourite;
-	@FXML private ImageView settings;
-	
 	@FXML private ListView<HBox> accomodationList;
 	@FXML private HBox hBox;
 	
