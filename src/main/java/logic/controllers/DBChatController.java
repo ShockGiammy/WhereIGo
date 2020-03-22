@@ -15,11 +15,9 @@ import logic.model.User;
 public class DBChatController { //implements ChatController{
 	private String username;
 	private ChatDao chatDao;
-	private List<Message> chat;
 	private GraphicControllerChat graphic;
 	private ObservableList<User> users;
 	private String status;
-	private String hostname;
 	private Listener listener;
 	private LoggedUser logUser;
 	protected Logger logger = Logger.getLogger("WIG");
@@ -39,7 +37,7 @@ public class DBChatController { //implements ChatController{
 	}
 
 	public List<Message> openChat(String receiver) {
-		chat = chatDao.getSavedMsg(username, receiver);
+		List<Message> chat = chatDao.getSavedMsg(username, receiver);
 		status = chatDao.getStatus(receiver);
 		return chat;
 	}
@@ -67,7 +65,7 @@ public class DBChatController { //implements ChatController{
 	public void execute() {
 		if (status.equals(ONLINE)) {
 			alreadyActive = true;
-			this.hostname = "localhost";
+			String hostname = "localhost";
 			int port = 2400;
 			logger.info("socket attivo");
 			listener = new Listener(hostname, port, username, this);

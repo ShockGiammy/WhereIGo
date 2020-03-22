@@ -17,7 +17,7 @@ public class Listener implements Runnable{
     private String hostname;
     private int port;
     private String username;
-    private static ObjectOutputStream oos;
+    private ObjectOutputStream oos;
     private ObjectInputStream input;
     protected Logger logger = Logger.getLogger("WIG");
 	private DBChatController controller;

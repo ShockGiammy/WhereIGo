@@ -20,16 +20,16 @@ public class Server extends Thread{
 
     /* Setting up variables */
 	private static final int PORT = 2400;
-    private static final HashMap<String, User> names = new HashMap<>();
-    private static HashSet<ObjectOutputStream> writers = new HashSet<>();
-    private static ArrayList<User> users = new ArrayList<>();
+    private final HashMap<String, User> names = new HashMap<>();
+    private HashSet<ObjectOutputStream> writers = new HashSet<>();
+    private ArrayList<User> users = new ArrayList<>();
     protected static Logger logger = Logger.getLogger("WIG");
     private static final String EXCEPTION = "Got an exception!";
     private static final String REMOVED = " has been removed!";
-    private static int connections = 0;
+    private int connections = 0;
     private static final int MAX_CONNECTONS = 1000;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
         logger.info("The chat server is running.");
         Server server = new Server();
         server.startServer();
@@ -55,7 +55,7 @@ public class Server extends Thread{
     }
 
 
-    private static class Handler extends Thread {
+    private class Handler extends Thread {
         private String name;
         private Socket socket;
         private Logger logger = Logger.getLogger("WIG");
