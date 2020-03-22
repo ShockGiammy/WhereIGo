@@ -110,7 +110,6 @@ public class Listener implements Runnable{
     	Message createMessage = new Message();
         createMessage.setName(username);
         createMessage.setType(MessageType.DISCONNECTED);
-        createMessage.setMsg(" ");
         oos.writeObject(createMessage);
     }
 }

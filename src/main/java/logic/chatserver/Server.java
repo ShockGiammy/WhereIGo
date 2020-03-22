@@ -16,10 +16,10 @@ import logic.model.Message;
 import logic.model.MessageType;
 import logic.model.User;
 
-public class Server {
+public class Server extends Thread{
 
     /* Setting up variables */
-    private static final int PORT = 2400;
+	private static final int PORT = 2400;
     private static final HashMap<String, User> names = new HashMap<>();
     private static HashSet<ObjectOutputStream> writers = new HashSet<>();
     private static ArrayList<User> users = new ArrayList<>();
@@ -31,21 +31,27 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
         logger.info("The chat server is running.");
-            
-        try (  
-        	ServerSocket listener = new ServerSocket(PORT);
-        	) {
-        	while (true) {
-        		new Handler(listener.accept()).start();
+        Server server = new Server();
+        server.startServer();
+    }
+        
+     public void startServer() {
+    	 try ( 
+    			 ServerSocket listener = new ServerSocket(PORT);
+    			 ) {   
+    		 while (true) {
+        		Socket socket = listener.accept();
+        		Handler handler = new Handler(socket);
+        		handler.start();
         		connections++;
         		if (connections == MAX_CONNECTONS) {
         			break;
                 }
-            } 
-        } catch (Exception e) {
+            }     		 
+    	}catch (Exception e) {
             logger.log(Level.SEVERE, EXCEPTION);
-    		logger.log(Level.SEVERE, e.getMessage());
-        }
+     		logger.log(Level.SEVERE, e.getMessage());
+    	}
     }
 
 
@@ -56,6 +62,8 @@ public class Server {
         private User user;
         private OutputStream os;
         private InputStream is;
+        private ObjectOutputStream output;
+        private ObjectInputStream input;
 
         public Handler(Socket socket){
             this.socket = socket;
@@ -71,11 +79,11 @@ public class Server {
                 logger.log(Level.SEVERE, e, () -> "Exception in run() method for user: " + name);
 			}
                       
-            try (
+            try {
                 
-            	ObjectOutputStream output = new ObjectOutputStream(os);
-            	ObjectInputStream input = new ObjectInputStream(is);
-            	) {
+            	output = new ObjectOutputStream(os);
+            	input = new ObjectInputStream(is);
+
                 Message firstMessage = (Message) input.readObject();
                 checkDuplicateUsername(firstMessage);
                 writers.add(output);
@@ -103,6 +111,7 @@ public class Server {
                 }
             } catch (SocketException socketException) {
                 logger.log(Level.SEVERE, () -> "Socket Exception for user " + name);
+                logger.log(Level.SEVERE, socketException.getMessage());
             } catch (DuplicateUsernameException duplicateException){
                 logger.log(Level.SEVERE, () -> "Duplicate Username : " + name);
             } catch (Exception e){
@@ -166,7 +175,7 @@ public class Server {
         /*
          * Creates and sends a Message type to the listeners.
          */
-        private static void write(Message msg) throws IOException {
+        private void write(Message msg) throws IOException {
             for (ObjectOutputStream writer : writers) {
                 msg.setUserlist(names);
                 msg.setUsers(users);
@@ -179,7 +188,7 @@ public class Server {
         /*
          * Once a user has been disconnected, we close the open connections and remove the writers
          */
-        private synchronized void closeConnections(String userToRemove)  {
+		private void closeConnections(String userToRemove)  {
             logger.info("closeConnections() method Enter");
             connections--;
             if (name != null) {
@@ -189,6 +198,10 @@ public class Server {
             if (user != null){
                 users.remove(user);
                 logger.info(() -> "User object: " + user + REMOVED);
+            }
+            if (output != null){
+                writers.remove(output);
+                logger.info(() -> "Writer object: " + user + REMOVED);
             }
             if (is != null){
                 try {
@@ -206,19 +219,22 @@ public class Server {
         			logger.log(Level.SEVERE, e.getMessage());
                 }
             }
-            try {
-            	logger.info("closing Socket");
-            	socket.close();
-            } catch (Exception e) {
-            	logger.log(Level.SEVERE, EXCEPTION);
-    			logger.log(Level.SEVERE, e.getMessage());
+            if (input != null){
+                try {
+                    input.close();
+                } catch (IOException e) {
+                	logger.log(Level.SEVERE, EXCEPTION);
+        			logger.log(Level.SEVERE, e.getMessage());
+                }
             }
-            try {
-                removeFromList(userToRemove);
-            } catch (Exception e) {
-            	logger.log(Level.SEVERE, EXCEPTION);
-    			logger.log(Level.SEVERE, e.getMessage());
-            }
+            if (userToRemove != null) {
+            	try {
+            		removeFromList(userToRemove);
+            	} catch (IOException e) {
+            		logger.log(Level.SEVERE, EXCEPTION);
+        			logger.log(Level.SEVERE, e.getMessage());
+				}
+			}
             logger.info("closeConnections() method Exit");
         }
     }

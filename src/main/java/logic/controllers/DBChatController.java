@@ -54,13 +54,14 @@ public class DBChatController { //implements ChatController{
 	}
 	
 	public void closeLastChat() {
-		if (alreadyActive == true) {
+		if (alreadyActive) {
 			try {
 				listener.closeConnection();
 			} catch (IOException e) {
 				logger.log(Level.SEVERE, ()-> "error closeLastChat - oos.writeObject");
 				logger.log(Level.SEVERE, e.getMessage());
 			}
+			alreadyActive = false;
 		}
 	}
 	public void execute() {
