@@ -1,18 +1,13 @@
 package logic.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class Message implements Serializable {
 
-    private String name;
+	private static final long serialVersionUID = 1L;
+	private String name;
     private MessageType type;
     private String msg;
-    private int count;
-    private List<User> list;
-    private List<User> users;
 
     private String status;
 
@@ -38,31 +33,6 @@ public class Message implements Serializable {
 
     public void setType(MessageType status) {
         this.type = status;
-    }
-
-    public List<User> getUserlist() {
-        return list;
-    }
-
-    public void setUserlist(Map<String, User> userList) {
-        this.list = new ArrayList<>(userList.values());
-    }
-
-    public void setOnlineCount(int count){
-        this.count = count;
-    }
-
-    public int getOnlineCount(){
-        return this.count;
-    }
-
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
     }
 
     public void setStatus(String status) {

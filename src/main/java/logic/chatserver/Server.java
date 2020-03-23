@@ -154,7 +154,6 @@ public class Server{
             msg.setMsg(userToRemove + "has left the chat.");
             msg.setType(MessageType.DISCONNECTED);
             msg.setName("SERVER");
-            msg.setUserlist(names);
             write(msg);
             logger.info("removeFromList() method Exit");
             return msg;
@@ -177,9 +176,6 @@ public class Server{
          */
         private void write(Message msg) throws IOException {
             for (ObjectOutputStream writer : writers) {
-                msg.setUserlist(names);
-                msg.setUsers(users);
-                msg.setOnlineCount(names.size());
                 writer.writeObject(msg);
                 writer.reset();
             }
