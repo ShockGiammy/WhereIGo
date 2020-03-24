@@ -17,7 +17,6 @@ public class DBChatController {
 	private ChatDao chatDao;
 	private GraphicControllerChat graphic;
 	private ObservableList<User> users;
-	private String status;
 	private Listener listener;
 	private LoggedUser logUser;
 	protected Logger logger = Logger.getLogger("WIG");
@@ -38,7 +37,6 @@ public class DBChatController {
 
 	public List<Message> openChat(String receiver) {
 		List<Message> chat = chatDao.getSavedMsg(username, receiver);
-		status = chatDao.getStatus(receiver);
 		return chat;
 	}
 	
@@ -62,16 +60,14 @@ public class DBChatController {
 			alreadyActive = false;
 		}
 	}
-	public void execute() {
-		if (status.equals(ONLINE)) {
-			alreadyActive = true;
-			String hostname = "localhost";
-			int port = 2400;
-			logger.info("socket attivo");
-			listener = new Listener(hostname, port, username, this);
-	        Thread x = new Thread(listener);
-	        x.start();
-		}
+	public void execute(String groupNameOrReceiver) {
+		alreadyActive = true;
+		String hostname = "localhost";
+		int port = 2400;
+		logger.info("socket attivo");
+		listener = new Listener(hostname, port, username, this, groupNameOrReceiver);
+	    Thread x = new Thread(listener);
+	    x.start();
 	}
 
 	public void createChat(String renter) {
@@ -80,20 +76,16 @@ public class DBChatController {
 	}
 
 	public void sendMessage(String msg, String receiver) {
-	        Message createMessage = new Message();
-	        createMessage.setName(username);
-	        createMessage.setMsg(msg);
-	        chatDao.saveMessage(createMessage, receiver);
-	        if (status.equals(ONLINE)) {
-		    	try {
-		    		listener.send(msg);
-		        } catch (IOException ex) {
-		        	logger.log(Level.SEVERE, ()-> "Error getting output stream: " + ex.getMessage());
-		        }
-	        }
-	        else {
-	        	addMessage(createMessage);
-	        }
+		Message createMessage = new Message();
+	    createMessage.setName(username);
+	    createMessage.setMsg(msg);
+	    chatDao.saveMessage(createMessage, receiver);
+	    try {
+	    	listener.send(msg);
+	    } catch (IOException ex) {
+		    logger.log(Level.SEVERE, ()-> "Error getting output stream: " + ex.getMessage());
+	    }
+	        
 	}
 	
 	public void addMessage(Message message) {

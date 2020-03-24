@@ -116,7 +116,7 @@ public class GraphicControllerChat extends Window {
     	Node node = userList.getSelectionModel().getSelectedItem().getChildren().get(2);
     	String receiver = ((Text)node).getText();
     	if (!activeChat.getText().equals(receiver)) {
-    		Node node2 =userList.getSelectionModel().getSelectedItem().getChildren().get(1);
+    		Node node2 = userList.getSelectionModel().getSelectedItem().getChildren().get(1);
     		pictureImage = ((ImageView)node2).getImage();
     		displayChat(receiver);
     		setActiveChat(receiver);
@@ -167,7 +167,7 @@ public class GraphicControllerChat extends Window {
     			addToChat(message);
     		}
     	}
-    	chatController.execute();
+    	chatController.execute(receiver);
     }
 
     public void initialize() {

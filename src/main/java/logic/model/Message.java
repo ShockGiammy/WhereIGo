@@ -8,6 +8,7 @@ public class Message implements Serializable {
 	private String name;
     private MessageType type;
     private String msg;
+    private String usersGroup;
 
     private String status;
 
@@ -42,4 +43,12 @@ public class Message implements Serializable {
     public String getStatus() {
         return status;
     }
+
+	public String getUsersGroup() {
+		return usersGroup;
+	}
+
+	public void setUsersGroup(String usersGroup) {
+		this.usersGroup = usersGroup;
+	}
 }

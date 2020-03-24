@@ -137,7 +137,6 @@ public class GraphicControlRentAccomodation extends Window{
 		renter.setText(bean.getRenter());
 		houseDetail.setVisible(true);
 		BufferedImage bufImage = viewer.loadImage(bean.getHouseImage());
-		//rating.setText("5/5");
 		houseDetail.setFitHeight(180);
 		houseDetail.setFitWidth(350);
 		houseDetail.setImage(viewer.convertToFxImage(bufImage));

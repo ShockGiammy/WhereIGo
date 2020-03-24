@@ -7,9 +7,9 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
 
 import logic.exceptions.DuplicateUsernameException;
 import logic.model.Message;
@@ -21,8 +21,7 @@ public class Server{
     /* Setting up variables */
 	private static final int PORT = 2400;
     private final HashMap<String, User> names = new HashMap<>();
-    private HashSet<ObjectOutputStream> writers = new HashSet<>();
-    private ArrayList<User> users = new ArrayList<>();
+    private HashMap<String, HashSet<ObjectOutputStream>> listOfLists = new HashMap<String, HashSet<ObjectOutputStream>>();
     protected static Logger logger = Logger.getLogger("WIG");
     private static final String EXCEPTION = "Got an exception!";
     private static final String REMOVED = " has been removed!";
@@ -64,6 +63,7 @@ public class Server{
         private InputStream is;
         private ObjectOutputStream output;
         private ObjectInputStream input;
+        private String usersGroup;
 
         public Handler(Socket socket){
             this.socket = socket;
@@ -86,9 +86,10 @@ public class Server{
 
                 Message firstMessage = (Message) input.readObject();
                 checkDuplicateUsername(firstMessage);
-                writers.add(output);
-                sendNotification(firstMessage);
+                checkGroupName(firstMessage);
+                               
                 addToList();
+                sendNotification(firstMessage);
 
                 while (socket.isConnected()) {
                     Message inputmsg = (Message) input.readObject();
@@ -128,7 +129,6 @@ public class Server{
                 user = new User();
                 user.setName(firstMessage.getName());
 
-                users.add(user);
                 names.put(name, user);
 
                 logger.info(() -> name + " has been added to the list");
@@ -137,13 +137,41 @@ public class Server{
                 throw new DuplicateUsernameException(firstMessage.getName() + " is already connected");
             }
         }
+        
+        public void checkGroupName(Message msg) {
+        	if (listOfLists.containsKey(msg.getUsersGroup())) {
+        		this.usersGroup = msg.getUsersGroup();
+        		listOfLists.get(usersGroup).add(output);         
+                logger.info(() -> usersGroup + " group already existed");
+        	} 
+        	else if (listOfLists.containsKey(msg.getUsersGroup()+msg.getName())) {
+        		this.usersGroup = msg.getUsersGroup()+msg.getName();
+        		listOfLists.get(usersGroup).add(output);
+        		logger.info(() -> usersGroup + " chat already existed");
+        	} 
+        	else if (listOfLists.containsKey(msg.getName()+msg.getUsersGroup())) {
+        		this.usersGroup = msg.getName()+msg.getUsersGroup();
+        		listOfLists.get(usersGroup).add(output);
+        		logger.info(() -> usersGroup + " chat already existed");
+        	}
+        	else {
+        		HashSet<ObjectOutputStream> writers = new HashSet<>();
+        		writers.add(output);
+        		this.usersGroup = msg.getName()+msg.getUsersGroup();
+        		listOfLists.put(usersGroup, writers);
+        		logger.info(() -> usersGroup + " chat created");
+        	}
+        }
 
         private Message sendNotification(Message firstMessage) throws IOException {
+        	logger.info("sendNotification() method Enter");
             Message msg = new Message();
             msg.setMsg(firstMessage.getName()+" has joined the chat.");
             msg.setType(MessageType.SERVER);
             msg.setName(firstMessage.getName());
+            msg.setUsersGroup(usersGroup);
             write(msg);
+            logger.info("sendNotification() method Exit");
             return msg;
         }
 
@@ -154,6 +182,7 @@ public class Server{
             msg.setMsg(userToRemove + "has left the chat.");
             msg.setType(MessageType.DISCONNECTED);
             msg.setName("SERVER");
+            msg.setUsersGroup(usersGroup);
             write(msg);
             logger.info("removeFromList() method Exit");
             return msg;
@@ -163,11 +192,14 @@ public class Server{
          * For displaying that a user has joined the server
          */
         private Message addToList() throws IOException {
+        	logger.info("addToList() method Enter");
             Message msg = new Message();
             msg.setMsg("Welcome, You have now joined the server! Enjoy chatting!");
             msg.setType(MessageType.CONNECTED);
             msg.setName("SERVER");
+            msg.setUsersGroup(usersGroup);
             write(msg);
+            logger.info("addToList() method Exit");
             return msg;
         }
 
@@ -175,9 +207,13 @@ public class Server{
          * Creates and sends a Message type to the listeners.
          */
         private void write(Message msg) throws IOException {
-            for (ObjectOutputStream writer : writers) {
-                writer.writeObject(msg);
-                writer.reset();
+        	for(Entry<String, HashSet<ObjectOutputStream>> writers : listOfLists.entrySet()) {
+        		if (writers.getKey().equals(msg.getUsersGroup())) {
+        			for (ObjectOutputStream writer : writers.getValue()) {
+        			writer.writeObject(msg);
+        			writer.reset();
+        			}
+        		}
             }
         }
 
@@ -191,12 +227,8 @@ public class Server{
                 names.remove(name);
                 logger.info(() -> "User: " + name + REMOVED);
             }
-            if (user != null){
-                users.remove(user);
-                logger.info(() -> "User object: " + user + REMOVED);
-            }
             if (output != null){
-                writers.remove(output);
+                listOfLists.get(usersGroup).remove(output);
                 logger.info(() -> "Writer object: " + user + REMOVED);
             }
             if (is != null){

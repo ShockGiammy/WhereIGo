@@ -17,17 +17,19 @@ public class Listener implements Runnable{
     private String hostname;
     private int port;
     private String username;
+    private String usersGroup;
     private ObjectOutputStream oos;
     private ObjectInputStream input;
     protected Logger logger = Logger.getLogger("WIG");
 	private DBChatController controller;
 	private int myConnection = 0;
 
-    public Listener(String hostname, int port, String username, DBChatController controller) {
+    public Listener(String hostname, int port, String username, DBChatController controller, String usersGroup) {
         this.hostname = hostname;
         this.port = port;
         this.username = username;
         this.controller = controller;
+        this.usersGroup = usersGroup;
     }
 
     public void run() {
@@ -77,6 +79,7 @@ public class Listener implements Runnable{
                 break;
             case CONNECTED:
             	if (myConnection == 0) {
+            		this.usersGroup = message.getUsersGroup();
             		controller.addServerMessage(message);
             		myConnection++;
             	}
@@ -92,6 +95,7 @@ public class Listener implements Runnable{
         createMessage.setName(username);
         createMessage.setType(MessageType.USER);
         createMessage.setMsg(msg);
+        createMessage.setUsersGroup(usersGroup);
         oos.writeObject(createMessage);
         oos.flush();
     }
@@ -102,6 +106,7 @@ public class Listener implements Runnable{
         createMessage.setName(username);
         createMessage.setType(MessageType.CONNECTED);
         createMessage.setMsg(HASCONNECTED);
+        createMessage.setUsersGroup(usersGroup);
         oos.writeObject(createMessage);
     }
     
