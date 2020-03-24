@@ -12,12 +12,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import logic.ImageViewer;
 import logic.LoggedUser;
-import logic.controllers.DBChatController;
+import logic.controllers.ChatController;
 import logic.model.Message;
 import logic.model.User;
 import logic.view.Window;
@@ -39,7 +40,7 @@ public class GraphicControllerChat extends Window {
     @FXML private Text activeChat;
 
     protected Logger logger = Logger.getLogger("WIG");
-    private DBChatController chatController;
+    private ChatController chatController;
     private String username;
     private double pading = 5.0;
     private ImageViewer viewer;
@@ -47,7 +48,7 @@ public class GraphicControllerChat extends Window {
     private LoggedUser logUser;
 
     public GraphicControllerChat() {
-    	chatController = new DBChatController(this);
+    	chatController = new ChatController(this);
     	logUser = new LoggedUser();
     	this.username = logUser.getUserName();
     	viewer = new ImageViewer();
@@ -112,6 +113,14 @@ public class GraphicControllerChat extends Window {
     	}
     }
     
+    public void updateUserList(List<User> users) {
+    	userList.getItems().clear();
+    	for (User user : users) {
+    		addToUserList(user);
+    	}
+    }
+    
+    
     public void selectUser() {
     	Node node = userList.getSelectionModel().getSelectedItem().getChildren().get(2);
     	String receiver = ((Text)node).getText();
@@ -120,6 +129,7 @@ public class GraphicControllerChat extends Window {
     		pictureImage = ((ImageView)node2).getImage();
     		displayChat(receiver);
     		setActiveChat(receiver);
+    		messageBox.setEditable(true);
     	}
     }
 
@@ -211,5 +221,28 @@ public class GraphicControllerChat extends Window {
         Thread t = new Thread(task);
         t.setDaemon(true);
         t.start();
+    }
+    
+    public void exitChat() {
+    	logger.info("exitChat() method Enter");
+    	chatController.modificateStatus("offline");
+    	chatController.closeLastChat();
+    	logger.info("exitChat() method Exit");
+    }
+    
+    @Override
+    public void goHome(MouseEvent event) {
+    	exitChat();
+    	setScene("HomePage.fxml");
+    	loadScene();
+    	nextGuiOnClick(event);
+    }
+    
+    @Override
+    public void goRent(MouseEvent event) {
+    	exitChat();
+    	setScene("RentAccomodation.fxml");
+    	loadScene();
+    	nextGuiOnClick(event);
     }
 }

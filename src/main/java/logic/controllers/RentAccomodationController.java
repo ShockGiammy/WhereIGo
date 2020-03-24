@@ -34,7 +34,7 @@ public class RentAccomodationController {
 	}
 	
 	public void createChat(String renter) {
-		DBChatController chatController = new DBChatController();
+		ChatController chatController = new ChatController();
 		chatController.createChat(renter);
 	}
 	

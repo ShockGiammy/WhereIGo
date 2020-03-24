@@ -21,10 +21,10 @@ public class Listener implements Runnable{
     private ObjectOutputStream oos;
     private ObjectInputStream input;
     protected Logger logger = Logger.getLogger("WIG");
-	private DBChatController controller;
+	private ChatController controller;
 	private int myConnection = 0;
 
-    public Listener(String hostname, int port, String username, DBChatController controller, String usersGroup) {
+    public Listener(String hostname, int port, String username, ChatController controller, String usersGroup) {
         this.hostname = hostname;
         this.port = port;
         this.username = username;
@@ -75,6 +75,7 @@ public class Listener implements Runnable{
             case SERVER:
             	if (!message.getName().equals(username)) {
             		controller.addServerMessage(message);
+            		controller.updateUsersStatus();
             	}
                 break;
             case CONNECTED:
@@ -86,6 +87,7 @@ public class Listener implements Runnable{
             	break;                      		
             case DISCONNECTED:
             	controller.addServerMessage(message);
+            	controller.updateUsersStatus();
             	break;
         }
     }

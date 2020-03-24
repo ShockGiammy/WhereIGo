@@ -30,7 +30,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goRent" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icona-di-chiavi-42470255.jpg" />
                      </image>
@@ -38,7 +38,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="chat" fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="chat" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goChat" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@download%20(1).png" />
                      </image>

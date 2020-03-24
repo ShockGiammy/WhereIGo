@@ -21,7 +21,7 @@ public class Server{
     /* Setting up variables */
 	private static final int PORT = 2400;
     private final HashMap<String, User> names = new HashMap<>();
-    private HashMap<String, HashSet<ObjectOutputStream>> listOfLists = new HashMap<String, HashSet<ObjectOutputStream>>();
+    private HashMap<String, HashSet<ObjectOutputStream>> listOfLists = new HashMap<>();
     protected static Logger logger = Logger.getLogger("WIG");
     private static final String EXCEPTION = "Got an exception!";
     private static final String REMOVED = " has been removed!";
@@ -85,8 +85,9 @@ public class Server{
             	input = new ObjectInputStream(is);
 
                 Message firstMessage = (Message) input.readObject();
-                checkDuplicateUsername(firstMessage);
+                
                 checkGroupName(firstMessage);
+                checkDuplicateUsername(firstMessage);
                                
                 addToList();
                 sendNotification(firstMessage);
