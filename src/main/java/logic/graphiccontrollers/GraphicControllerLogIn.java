@@ -5,13 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
-import logic.beans.UserTravelBean;
 import logic.controllers.LoginController;
 import logic.view.Window;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.fxml.FXML;
 import logic.view.ErrorPopup;
 
@@ -35,7 +30,6 @@ public class GraphicControllerLogIn extends Window{
 	
 	public void logInControl(MouseEvent event) {
 		if(this.loginCtrl.checkLogInControl(this.usrBean, this.logBean) == 1) {
-			List<UserTravelBean> travList = new ArrayList<>();
 			UserDataBean dataBean = new UserDataBean();
 			dataBean.setUserName(this.logBean.getUserName());
 			goHome(event);

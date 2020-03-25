@@ -19,7 +19,6 @@ import logic.controllers.BookTravelControl;
 public class GraphicControllerHomePage extends TravelerGui{
 	@FXML private ImageView bookATravel;
 	@FXML private ImageView rentAnnPost;
-	@FXML private ImageView userImage;
 	@FXML private Button changeInfo;
 	@FXML private Button moreInfo;
 	@FXML private Button takeTest;

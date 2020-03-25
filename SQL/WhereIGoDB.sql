@@ -26,11 +26,13 @@ create table Usr
 
 create table TravelGroups
 (
-    travCity VARCHAR(45)
-			 references Locations(city),
-	groupOwner VARCHAR(20) not null
-			 references Usr(username),
+    travCity VARCHAR(45),
+	groupOwner VARCHAR(20) not null,
 	title VARCHAR(50) unique NOT NULL,
+    foreign key (travCity)
+			references Locations(city),
+	foreign key (groupOwner)
+			references Usr(username),
 	primary key(groupOwner, title)
 );
 
@@ -38,8 +40,7 @@ create table Post
 (
 	ID int not null,
 	photo LONGBLOB,
-    utente VARCHAR(20)
-			references Usr(username),
+    utente VARCHAR(20),
 	descr VARCHAR(4096),
     beds VARCHAR(5),
     city VARCHAR(30),
@@ -48,17 +49,21 @@ create table Post
     squareMetres VARCHAR(10),
     tipologia VARCHAR(20),
     tipeOfPost VARCHAR(20),
+    foreign key (utente) 
+			references Usr(username),
     primary key(ID, utente)
 );
 
 create table Chat
 (
 	ID int auto_increment primary key,
-	sender VARCHAR(20)
+	sender VARCHAR(20),
+	receiver VARCHAR(20),
+	message VARCHAR(1000),
+    foreign key (sender)
 			references Usr(username),
-	receiver VARCHAR(20)
-			references Usr(username),
-	message VARCHAR(1000)
+	foreign key (receiver)
+			references Usr(username)
 );
 
 create table Tickets
@@ -74,25 +79,29 @@ create table Tickets
 
 create table ParticipatesTo
 (
-	participant VARCHAR(20)
+	participant VARCHAR(20),
+	grp VARCHAR(50),
+    foreign key (participant)
 			references Usr(username),
-	grp VARCHAR(50)
-			references TravelGroups(title)
+	foreign key (grp)
+			references travelgroups(title)
 );
 
 create table Buys
 (
-	ticket int 
+	ticket int, 
+	passenger varchar(20),
+    foreign key (ticket)
 			references tickets(ID),
-	passenger varchar(20)
+	foreign key (passenger)
 			references Usr(username)
 );
-	
-insert into Chat(ID, sender, receiver, message)
-values ("0","ciao", "shockGiammy", "come stai");
 
-insert into Post(ID,  photo, utente, descr, beds, city, address, services, squareMetres, tipologia, tipeOfPost)
-values(1, null, "ciao2", "desc", "4", "cave", "mia via", null, "< 20", "appartamento", null);
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,userstatus)
+values("shockGiammy","pluto","Gian Marco","Falcone","16-03-1998","Male","Traveler","offline");
+
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,userstatus)
+values("adrianRob","pippo","Adrian","Minut","02-02-1997","Male","Traveler","offline");
 
 insert into Locations(country,city,tipeOfPersonality)
 values ("Zanzibar","Tanzania", "Curious");
