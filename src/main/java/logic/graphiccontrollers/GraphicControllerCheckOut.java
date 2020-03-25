@@ -1,8 +1,5 @@
 package logic.graphiccontrollers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -13,9 +10,9 @@ import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
 import logic.view.ErrorPopup;
-import logic.view.Window;
+import logic.view.TravelerGui;
 
-public class GraphicControllerCheckOut extends Window{
+public class GraphicControllerCheckOut extends TravelerGui{
 	@FXML private Text id;
 	@FXML private Text departure;
 	@FXML private Text arrive;
@@ -74,9 +71,6 @@ public class GraphicControllerCheckOut extends Window{
 	
 	public void confirmTrav(MouseEvent e) {
 		this.bookTravCtrl.saveBoughtTicket(this.travbean, this.bean);
-		setScene("HomePage.fxml");
-		loadScene();
-		List<UserTravelBean> list = new ArrayList<>();
-		setUserTickAndGroups(list, bean, e);
+		goHome(e);
 	}
 }

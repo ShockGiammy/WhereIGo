@@ -45,20 +45,17 @@ public class BookTravelControl {
 		this.userBean.setPersonality(this.logUser.getPersonality());
 		List<GroupModel> grpModelList = new ArrayList<>();
 		this.grpDao.retriveSuggestedGroups(this.userBean, grpModelList);
-		int i;
-		for(i = 0; i < grpModelList.size(); i++) {
-			GroupBean bean = new GroupBean();
-			bean.setGroupOwner(grpModelList.get(i).getOwner());
-			bean.setGroupDestination(grpModelList.get(i).getDestination());
-			bean.setGroupTitle(grpModelList.get(i).getDescription());
-			beanList.add(bean);
-		}
+		extractGroups(grpModelList, beanList);
 	}
 	
 	public void getParticipateGroups(List<GroupBean> beanList){
 		this.userBean.setPersonality(this.logUser.getPersonality());
 		List<GroupModel> grpList = new ArrayList<>();
 		this.grpDao.getPartGroups(grpList, userBean);
+		extractGroups(grpList, beanList);
+	}
+	
+	public void extractGroups(List<GroupModel> grpList, List<GroupBean> beanList) {
 		int i;
 		for(i = 0; i < grpList.size(); i++) {
 			GroupBean grpbean = new GroupBean();
@@ -114,9 +111,10 @@ public class BookTravelControl {
 		this.travDao.saveBoughtTickets(tick, dataBean);
 	}
 	
-	public void getBookedTickets(List<UserTravelBean> travBeanList, UserDataBean dataBean) {
+	public void getBookedTickets(List<UserTravelBean> travBeanList) {
+		this.userBean.setUserName(this.logUser.getUserName());
 		List<TicketModel> tickList = new ArrayList<>();
-		this.travDao.getUserTickets(dataBean, tickList);
+		this.travDao.getUserTickets(userBean, tickList);
 		int i;
 		for(i = 0; i < tickList.size(); i++) {
 			UserTravelBean bean = new UserTravelBean();

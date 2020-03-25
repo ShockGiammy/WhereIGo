@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
@@ -13,7 +14,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
    <right>
@@ -57,55 +57,6 @@
                   </Text>
                </children>
             </Pane>
-            <AnchorPane prefHeight="98.0" prefWidth="1059.0">
-               <children>
-                  <ToolBar layoutX="356.0" layoutY="16.0" prefHeight="66.0" prefWidth="435.0" style="-fx-background-color: white;">
-                     <items>
-                        <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#backHome" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@69524.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="home1" disable="true" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@download.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icona-di-chiavi-42470255.jpg" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@download%20(1).png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@favourites-stars.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@download%20(2).png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@16363.png" />
-                           </image>
-                        </ImageView>
-                     </items>
-                  </ToolBar>
-                  <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@WIGLOGO.png" />
-                     </image>
-                  </ImageView>
-                  <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
-               </children>
-            </AnchorPane>
             <ListView fx:id="suggLocView" layoutY="137.0" prefHeight="482.0" prefWidth="360.0" />
             <ListView fx:id="groupsView" layoutX="370.0" layoutY="137.0" prefHeight="482.0" prefWidth="360.0" />
             <Text layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location suggested for you">
@@ -118,6 +69,73 @@
                   <Font size="15.0" />
                </font>
             </Text>
+            <AnchorPane prefHeight="100.0" prefWidth="1100.0">
+               <children>
+                  <ToolBar layoutX="286.0" layoutY="15.0" prefHeight="70.0" prefWidth="451.0" style="-fx-background-color: white;">
+                     <items>
+                        <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/69524.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="bookTravel" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goBookTravel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/download.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="keys" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goRent" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icona-di-chiavi-42470255.jpg" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="chat" fitHeight="55.0" fitWidth="54.0" onMouseClicked="#goChat" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/download%20(1).png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="settings" fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/download%20(2).png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="userImage" fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="exit" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#leaveApp" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/exit.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </items>
+                  </ToolBar>
+                  <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@WIGLOGO.png" />
+                     </image>
+                  </ImageView>
+                  <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
+               </children>
+            </AnchorPane>
          </children>
       </Pane>
    </right>

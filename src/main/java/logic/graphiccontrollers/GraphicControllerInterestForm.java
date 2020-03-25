@@ -1,6 +1,5 @@
 package logic.graphiccontrollers;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -14,9 +13,9 @@ import logic.beans.InterestsBean;
 import logic.beans.UserDataBean;
 import logic.controllers.InterestsController;
 import logic.view.ErrorPopup;
-import logic.view.Window;
+import logic.view.TravelerGui;
 
-public class GraphicControllerInterestForm extends Window{
+public class GraphicControllerInterestForm extends TravelerGui{
 	@FXML private List<RadioButton> rbList1;
 	@FXML private List<RadioButton> rbList2;
 	@FXML private List<RadioButton> rbList3;
@@ -163,8 +162,6 @@ public class GraphicControllerInterestForm extends Window{
 		this.dataBean.setUserName(this.logUser.getUserName());
 		this.intBean.setAnswares(this.questAnsw);
 		this.interCtrl.evaluateInterests(this.intBean);
-		setScene("HomePage.fxml");
-		loadScene();
-		nextGuiOnClick(e);
+		goHome(e);
 	}
 }

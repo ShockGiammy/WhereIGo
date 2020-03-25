@@ -9,14 +9,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import logic.view.ErrorPopup;
-import logic.view.Window;
+import logic.view.TravelerGui;
 import logic.LoggedUser;
 import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
 
-public class GraphicControllerHomePage extends Window{
+public class GraphicControllerHomePage extends TravelerGui{
 	@FXML private ImageView bookATravel;
 	@FXML private ImageView rentAnnPost;
 	@FXML private ImageView userImage;
@@ -39,12 +39,8 @@ public class GraphicControllerHomePage extends Window{
 		this.err = new ErrorPopup();
 		this.logUsr = new LoggedUser();
 		this.userImage.setImage(this.logUsr.getImage());
-	}
-	
-	public void bookTravelControl(MouseEvent event) {
-		setScene("BookTravel.fxml");
-		loadScene();
-		nextGuiOnClick(event);
+		setTravel();
+		setGroups();
 	}
 	
 	public void getInterestControl(MouseEvent event) {
@@ -67,16 +63,18 @@ public class GraphicControllerHomePage extends Window{
 		}
 	}
 	
-	public void setTravel(List<UserTravelBean> travBean) {
+	public void setTravel() {
+		List<UserTravelBean> travBean = new ArrayList<>();
+		this.bookTrav.getBookedTickets(travBean);
 		int i;
 		for(i = 0; i < travBean.size(); i++) {
 			VBox vbox = new VBox(7);
-			Text ident = new Text(String.valueOf(travBean.get(i).getId()));
-			Text depCity = new Text(travBean.get(i).getCityOfDep());
-			Text arrCity = new Text(travBean.get(i).getCityOfArr());
-			Text depDay = new Text(travBean.get(i).getFirstDay().toString());
-			Text retDay = new Text(travBean.get(i).getLastDay().toString());
-			Text money = new Text(String.valueOf(travBean.get(i).getCost()));
+			Text ident = new Text("Travel id : "+travBean.get(i).getId());
+			Text depCity = new Text("Departure city : "+travBean.get(i).getCityOfDep());
+			Text arrCity = new Text("Arrive city : "+travBean.get(i).getCityOfArr());
+			Text depDay = new Text("Departure day : "+travBean.get(i).getFirstDay().toString());
+			Text retDay = new Text("Return day : "+travBean.get(i).getLastDay().toString());
+			Text money = new Text("Cost : "+travBean.get(i).getCost());
 			Button delete = new Button("Cancel travel");
 			delete.setOnMouseClicked(this::deleteTravel);
 			vbox.getChildren().addAll(ident, depCity, depDay, arrCity, retDay, money, delete);
@@ -85,13 +83,15 @@ public class GraphicControllerHomePage extends Window{
 		}
 	}
 	
-	public void setGroups(List<GroupBean> grpBean) {
+	public void setGroups() {
+		List<GroupBean> grpBean = new ArrayList<>();
+		this.bookTrav.getUserGroups(grpBean);
 		int i;
 		for(i = 0; i < grpBean.size(); i++) {
 			VBox vbox = new VBox(7);
-			Text groupTitle = new Text(grpBean.get(i).getGroupTitle());
-			Text groupDest = new Text(grpBean.get(i).getGroupDestination());
-			Text groupLeader = new Text(grpBean.get(i).getGroupOwner());
+			Text groupTitle = new Text("Group name : "+grpBean.get(i).getGroupTitle());
+			Text groupDest = new Text("Group destination : "+grpBean.get(i).getGroupDestination());
+			Text groupLeader = new Text("Group leader : "+grpBean.get(i).getGroupOwner());
 			if(grpBean.get(i).getGroupOwner().equals(logUsr.getUserName())) {
 				Button deleteGroup = new Button("Delete group");
 				deleteGroup.setOnMouseClicked(this::deleteGroup);
@@ -113,7 +113,7 @@ public class GraphicControllerHomePage extends Window{
 			if(this.travelBox.get(i).getChildren().get(6).equals(e.getTarget())) {
 				UserTravelBean delBean = new UserTravelBean();
 				Text id = (Text)this.travelBox.get(i).getChildren().get(0);
-				delBean.setId(Integer.parseInt(id.getText()));
+				delBean.setId(Integer.parseInt(id.getText().substring(12, id.getText().length())));
 				UserDataBean data = new UserDataBean();
 				data.setUserName(logUsr.getUserName());
 				this.bookTrav.deleteSavedTravel(delBean, data);
@@ -132,8 +132,8 @@ public class GraphicControllerHomePage extends Window{
 				GroupBean bean = new GroupBean();
 				Text description = (Text)this.groupBox.get(i).getChildren().get(0);
 				Text owner = (Text)this.groupBox.get(i).getChildren().get(2);
-				bean.setGroupTitle(description.getText());
-				bean.setGroupOwner(owner.getText());
+				bean.setGroupTitle(description.getText().substring(13, description.getText().length()));
+				bean.setGroupOwner(owner.getText().substring(15,owner.getText().length()));
 				this.bookTrav.deleteTravelGroup(bean);
 				VBox temp = this.groupBox.get(i);
 				this.groupBox.remove(i);
@@ -149,7 +149,7 @@ public class GraphicControllerHomePage extends Window{
 			if(this.groupBox.get(i).getChildren().size() == 4 && this.groupBox.get(i).getChildren().get(3).equals(e.getTarget())) {
 				GroupBean bean = new GroupBean();
 				Text description = (Text)this.groupBox.get(i).getChildren().get(0);
-				bean.setGroupTitle(description.getText());
+				bean.setGroupTitle(description.getText().substring(13, description.getText().length()));
 				UserDataBean dBean = new UserDataBean();
 				dBean.setUserName(this.logUsr.getUserName());
 				this.bookTrav.leaveTravelGroup(bean, dBean);
@@ -159,12 +159,6 @@ public class GraphicControllerHomePage extends Window{
 				err.displayLoginError("Gruppo correttamente abbandonato");
 			}
 		}
-	}
-	
-	public void logOut(MouseEvent e) {
-		setScene("Login.fxml");
-		loadScene();
-		nextGuiOnClick(e);
 	}
 }
 

@@ -17,9 +17,9 @@ import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
 import logic.exceptions.TakenUsernameException;
 import logic.view.ErrorPopup;
-import logic.view.Window;
+import logic.view.TravelerGui;
 
-public class GraphicControllerRegistration extends Window{
+public class GraphicControllerRegistration extends TravelerGui{
 	
 	@FXML private TextField name;
 	@FXML private TextField surname;
@@ -92,9 +92,7 @@ public class GraphicControllerRegistration extends Window{
 				this.errLogin.displayLoginError("Inserire tutti i dati");
 			}
 			else {
-				setScene("HomePage.fxml");
-				loadScene();
-				nextGuiOnClick(event);
+				goHome(event);
 			}
 		}catch(TakenUsernameException e) {
 			this.errLogin.displayLoginError("Questo username non è disponibile");

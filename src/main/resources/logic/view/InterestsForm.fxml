@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -8,17 +14,17 @@
 
 <Pane prefHeight="900.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerInterestForm">
    <children>
-      <VBox fx:id="box1" layoutX="14.0" layoutY="96.0" prefHeight="171.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
-      <VBox fx:id="box2" layoutX="14.0" layoutY="343.0" prefHeight="171.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
-      <VBox fx:id="box3" layoutX="14.0" layoutY="595.0" prefHeight="171.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
-      <VBox fx:id="box4" layoutX="491.0" layoutY="96.0" prefHeight="171.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
-      <Button fx:id="submitForm" layoutX="653.0" layoutY="394.0" mnemonicParsing="false" onMouseClicked="#evaluatePersonality" prefHeight="56.0" prefWidth="82.0" text="Submit form" />
-      <Text layoutX="295.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INTERESTS FORM">
+      <VBox fx:id="box1" layoutX="14.0" layoutY="309.0" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
+      <VBox fx:id="box2" layoutX="14.0" layoutY="485.0" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
+      <VBox fx:id="box3" layoutX="14.0" layoutY="663.0" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
+      <VBox fx:id="box4" layoutX="491.0" layoutY="309.0" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
+      <Button fx:id="submitForm" layoutX="623.0" layoutY="509.0" mnemonicParsing="false" onMouseClicked="#evaluatePersonality" prefHeight="56.0" prefWidth="82.0" text="Submit form" />
+      <Text layoutX="295.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INTERESTS FORM">
          <font>
             <Font size="40.0" />
          </font>
       </Text>
-      <VBox layoutX="40.0" layoutY="96.0" prefHeight="171.0" prefWidth="346.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
+      <VBox layoutX="39.0" layoutY="309.0" prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Playing video-games with friends">
                <font>
@@ -42,7 +48,7 @@
             </Text>
          </children>
       </VBox>
-      <VBox layoutX="40.0" layoutY="343.0" prefHeight="171.0" prefWidth="346.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
+      <VBox layoutX="39.0" layoutY="485.0" prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stay at home and watch films/tv series">
                <font>
@@ -66,7 +72,7 @@
             </Text>
          </children>
       </VBox>
-      <VBox layoutX="40.0" layoutY="595.0" prefHeight="171.0" prefWidth="346.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
+      <VBox layoutX="39.0" layoutY="663.0" prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="I like cooperation and team working">
                <font>
@@ -90,7 +96,7 @@
             </Text>
          </children>
       </VBox>
-      <VBox layoutX="517.0" layoutY="96.0" prefHeight="171.0" prefWidth="346.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
+      <VBox layoutX="517.0" layoutY="309.0" prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Perfectly organized">
                <font>
@@ -114,25 +120,92 @@
             </Text>
          </children>
       </VBox>
-      <Text layoutX="15.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What do you like to do in yor free time?">
+      <Text layoutX="14.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What do you like to do in yor free time?">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="15.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What do you prefer for your saturday night?">
+      <Text layoutX="14.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What do you prefer for your saturday night?">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="15.0" layoutY="588.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Which sentence represent you better at work?">
+      <Text layoutX="14.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Which sentence represent you better at work?">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="517.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you think you are a person : ">
+      <Text layoutX="491.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you think you are a person : ">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
+      <AnchorPane prefHeight="100.0" prefWidth="900.0">
+         <children>
+            <ToolBar layoutX="286.0" layoutY="15.0" prefHeight="70.0" prefWidth="451.0" style="-fx-background-color: white;">
+               <items>
+                  <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/69524.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="bookTravel" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goBookTravel" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/download.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="keys" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goRent" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/icona-di-chiavi-42470255.jpg" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="chat" fitHeight="55.0" fitWidth="54.0" onMouseClicked="#goChat" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/download%20(1).png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="settings" fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/download%20(2).png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="userImage" fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="exit" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#leaveApp" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/exit.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </items>
+            </ToolBar>
+            <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@WIGLOGO.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
+         </children>
+      </AnchorPane>
    </children>
 </Pane>

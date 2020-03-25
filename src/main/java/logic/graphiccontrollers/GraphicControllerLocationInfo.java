@@ -10,9 +10,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import logic.ImageViewer;
 import logic.beans.LocationBean;
-import logic.view.Window;
+import logic.view.TravelerGui;
 
-public class GraphicControllerLocationInfo extends Window{
+public class GraphicControllerLocationInfo extends TravelerGui{
 	@FXML private ImageViewer imageView;
 	@FXML private Text cityName;
 	@FXML private Text cityCountry;
@@ -20,7 +20,6 @@ public class GraphicControllerLocationInfo extends Window{
 	@FXML private ImageView locImm;
 	@FXML private Button backButton;
 	
-	/* load all the GUI, maybe exlpoded in 3 methods*/
 	public void setInfo(LocationBean bean) {
 		BufferedImage bufImage;
 		this.imageView = new ImageViewer();
@@ -32,8 +31,6 @@ public class GraphicControllerLocationInfo extends Window{
 	}
 	
 	public void backTrav(MouseEvent e) {
-		setScene("BookTravel.fxml");
-		loadScene();
-		nextGuiOnClick(e);
+		goBookTravel(e);
 	}
 }
