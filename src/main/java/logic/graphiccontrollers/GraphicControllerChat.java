@@ -2,7 +2,6 @@ package logic.graphiccontrollers;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,7 +17,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import logic.ImageViewer;
 import logic.LoggedUser;
 import logic.controllers.ChatController;
@@ -68,11 +66,8 @@ public class GraphicControllerChat extends Window {
     public void setActiveChat(String name) {
     	activeChat.setText(name);
     	Stage primaryStage = (Stage) borderPane.getScene().getWindow();
-		primaryStage.setOnHiding(new EventHandler<WindowEvent>() {
-            public void handle(WindowEvent we) {
-            	exitChat();          
-            }
-        });
+		primaryStage.setOnHiding( e ->
+			exitChat());
     }
 
     public synchronized void addToChat(Message msg) {
