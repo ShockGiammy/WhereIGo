@@ -79,11 +79,13 @@ public class Server{
                 logger.log(Level.SEVERE, e, () -> "Exception in run() method for user: " + name);
 			}
                       
-            try {
-                
-            	output = new ObjectOutputStream(os);
-            	input = new ObjectInputStream(is);
-
+            try (                
+            		ObjectOutputStream outputTry = new ObjectOutputStream(os);
+            		ObjectInputStream inputTry = new ObjectInputStream(is);
+            		) {
+            	output = outputTry;
+            	input = inputTry;
+            	
                 Message firstMessage = (Message) input.readObject();
                 
                 checkGroupName(firstMessage);
