@@ -35,11 +35,11 @@
       <Button fx:id="bookTheTravel" layoutX="691.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#bookTravel" prefHeight="45.0" prefWidth="103.0" text="Book your travel" />
       <AnchorPane prefHeight="100.0" prefWidth="900.0">
          <children>
-            <ToolBar layoutX="286.0" layoutY="15.0" prefHeight="70.0" prefWidth="451.0" style="-fx-background-color: white;">
+            <ToolBar layoutX="286.0" layoutY="15.0" prefHeight="70.0" prefWidth="490.0" style="-fx-background-color: white;">
                <items>
                   <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/69524.png" />
+                        <Image url="@../../images/home.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -47,7 +47,7 @@
                   </ImageView>
                   <ImageView fx:id="bookTravel" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goBookTravel" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/download.png" />
+                        <Image url="@../../images/bookTravelSelected.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -55,7 +55,7 @@
                   </ImageView>
                   <ImageView fx:id="keys" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goRent" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/icona-di-chiavi-42470255.jpg" />
+                        <Image url="@../../images/keys.jpg" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -63,7 +63,7 @@
                   </ImageView>
                   <ImageView fx:id="chat" fitHeight="55.0" fitWidth="54.0" onMouseClicked="#goChat" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/download%20(1).png" />
+                        <Image url="@../../images/chat.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -71,7 +71,7 @@
                   </ImageView>
                   <ImageView fx:id="settings" fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/download%20(2).png" />
+                        <Image url="@../../images/settings.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
