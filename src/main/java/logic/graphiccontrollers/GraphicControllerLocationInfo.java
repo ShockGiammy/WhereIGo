@@ -10,9 +10,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import logic.ImageViewer;
 import logic.beans.LocationBean;
-import logic.view.TravelerGui;
+import logic.view.MenuWindow;
 
-public class GraphicControllerLocationInfo extends TravelerGui{
+public class GraphicControllerLocationInfo extends MenuWindow{
 	@FXML private ImageViewer imageView;
 	@FXML private Text cityName;
 	@FXML private Text cityCountry;

@@ -10,9 +10,9 @@ import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
 import logic.view.ErrorPopup;
-import logic.view.TravelerGui;
+import logic.view.MenuWindow;
 
-public class GraphicControllerCheckOut extends TravelerGui{
+public class GraphicControllerCheckOut extends MenuWindow{
 	@FXML private Text id;
 	@FXML private Text departure;
 	@FXML private Text arrive;

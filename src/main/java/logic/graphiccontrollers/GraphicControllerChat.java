@@ -22,14 +22,14 @@ import logic.LoggedUser;
 import logic.controllers.ChatController;
 import logic.model.Message;
 import logic.model.User;
-import logic.view.TravelerGui;
+import logic.view.MenuWindow;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
 
 import java.util.logging.Logger;
 
-public class GraphicControllerChat extends TravelerGui {
+public class GraphicControllerChat extends MenuWindow {
 	
     @FXML private TextArea messageBox;
     @FXML private Label usernameLabel;
@@ -228,19 +228,16 @@ public class GraphicControllerChat extends TravelerGui {
     	logger.info("exitChat() method Exit");
     }
     
-    @Override
     public void goHome(MouseEvent event) {
     	exitChat();
     	super.goHome(event);
     }
     
-    @Override
     public void goRent(MouseEvent event) {
     	exitChat();
     	super.goRent(event);
     }
     
-    @Override
     public void goBookTravel(MouseEvent event) {
     	exitChat();
     	super.goBookTravel(event);

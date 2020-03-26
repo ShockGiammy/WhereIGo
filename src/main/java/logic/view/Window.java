@@ -50,4 +50,10 @@ public class Window extends Application{
 			logger.log(Level.SEVERE, "Cannot load the scene\n", e);
 		}
 	}
+	
+	public void changeGUI(MouseEvent event, String newScene) {
+		setScene(newScene);
+    	loadScene();
+    	nextGuiOnClick(event);
+	}
 }

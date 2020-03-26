@@ -13,9 +13,9 @@ import logic.beans.InterestsBean;
 import logic.beans.UserDataBean;
 import logic.controllers.InterestsController;
 import logic.view.ErrorPopup;
-import logic.view.TravelerGui;
+import logic.view.MenuWindow;
 
-public class GraphicControllerInterestForm extends TravelerGui{
+public class GraphicControllerInterestForm extends MenuWindow{
 	@FXML private List<RadioButton> rbList1;
 	@FXML private List<RadioButton> rbList2;
 	@FXML private List<RadioButton> rbList3;

@@ -17,8 +17,7 @@ import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
 import logic.exceptions.TakenUsernameException;
 import logic.view.ErrorPopup;
-import logic.view.RenterGui;
-import logic.view.TravelerGui;
+import logic.view.MenuWindow;
 import logic.view.Window;
 
 public class GraphicControllerRegistration extends Window{
@@ -97,13 +96,9 @@ public class GraphicControllerRegistration extends Window{
 			if(ret == 0) {
 				this.errLogin.displayLoginError("Inserire tutti i dati");
 			}
-			else if (this.dataBean.getType().equals("Traveler")){
-				TravelerGui travGui = new TravelerGui();
-				travGui.goHome(event);
-			}
-			else if(this.dataBean.getType().equals("Renter")) {
-				RenterGui rentGui = new RenterGui();
-				rentGui.goHome(event);
+			else {
+				MenuWindow window = new MenuWindow();
+				window.goHome(event);
 			}
 		}catch(TakenUsernameException e) {
 			this.errLogin.displayLoginError("Questo username non è disponibile");
