@@ -7,7 +7,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <Pane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerLogIn">
    <children>
       <Button fx:id="registerButton" layoutX="158.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#registrationControl" prefHeight="69.0" prefWidth="130.0" style="-fx-background-color: #DE9F20;" text="Register">
@@ -35,7 +34,7 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Button fx:id="loginButton" layoutX="382.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#logInControl" prefHeight="69.0" prefWidth="130.0" style="-fx-background-color: #DE9F20;" text="Login">
+      <Button fx:id="loginButton" layoutX="382.0" layoutY="463.0" mnemonicParsing="false" onKeyPressed="#sendMethod" onMouseClicked="#logInControl" prefHeight="69.0" prefWidth="130.0" style="-fx-background-color: #DE9F20;" text="Login">
          <font>
             <Font size="20.0" />
          </font>

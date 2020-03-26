@@ -114,8 +114,8 @@ public class GraphicControllerRenterAccomodations extends RenterGui{
 	}
 	
 	public void setAccomodationInfo(MouseEvent e, RentAccomodationBean bean) {
-		GraphicControllerCreateAccomodation controller = loader.getController();
-		controller.setInfo(bean);
+		GraphicControllerCreateAccomodation controllerCalled = loader.getController();
+		controllerCalled.setInfo(bean);
 		nextGuiOnClick(e);
 	}
 }

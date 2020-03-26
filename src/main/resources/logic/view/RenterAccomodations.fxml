@@ -41,7 +41,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="chat" fitHeight="55.0" fitWidth="54.0" onMouseClicked="#goChat" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="chat" fitHeight="55.0" fitWidth="54.0" onMouseClicked="#goChat" onMouseEntered="#showMouseChat" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/chat.png" />
                      </image>

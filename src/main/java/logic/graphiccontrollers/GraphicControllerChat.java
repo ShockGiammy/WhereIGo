@@ -231,16 +231,18 @@ public class GraphicControllerChat extends TravelerGui {
     @Override
     public void goHome(MouseEvent event) {
     	exitChat();
-    	setScene("HomePage.fxml");
-    	loadScene();
-    	nextGuiOnClick(event);
+    	super.goHome(event);
     }
     
     @Override
     public void goRent(MouseEvent event) {
     	exitChat();
-    	setScene("RentAccomodation.fxml");
-    	loadScene();
-    	nextGuiOnClick(event);
+    	super.goRent(event);
+    }
+    
+    @Override
+    public void goBookTravel(MouseEvent event) {
+    	exitChat();
+    	super.goBookTravel(event);
     }
 }

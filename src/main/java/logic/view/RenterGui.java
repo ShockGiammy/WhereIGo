@@ -1,6 +1,7 @@
 package logic.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -37,5 +38,35 @@ public class RenterGui extends Window implements CommonIcons{
 		setScene("Login.fxml");
 		loadScene();
 		nextGuiOnClick(event);
+	}
+	
+	public void showMouseChat() {
+		Image chatMouse = new Image(getClass().getClassLoader().getResource("images/chatMouse.png").toString());
+		chat.setImage(chatMouse);
+	}
+	
+	public void showMouseKeys() {
+		Image chatMouse = new Image(getClass().getClassLoader().getResource("images/keysMouse.png").toString());
+		keys.setImage(chatMouse);
+	}
+	
+	public void showMouseHome() {
+		Image chatMouse = new Image(getClass().getClassLoader().getResource("images/homeMouse.png").toString());
+		home.setImage(chatMouse);
+	}
+	
+	public void showChat() {
+		Image chatMouse = new Image(getClass().getClassLoader().getResource("images/chat.png").toString());
+		chat.setImage(chatMouse);
+	}
+	
+	public void showMKeys() {
+		Image chatMouse = new Image(getClass().getClassLoader().getResource("images/keys.png").toString());
+		keys.setImage(chatMouse);
+	}
+	
+	public void showHome() {
+		Image chatMouse = new Image(getClass().getClassLoader().getResource("images/home.png").toString());
+		home.setImage(chatMouse);
 	}
 }

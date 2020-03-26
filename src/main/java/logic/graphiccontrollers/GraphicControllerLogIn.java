@@ -2,6 +2,8 @@ package logic.graphiccontrollers;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
@@ -51,6 +53,12 @@ public class GraphicControllerLogIn extends Window{
 		loadScene();
 		nextGuiOnClick(event);
 	}
+	
+    public void sendMethod(KeyEvent event){
+        if (event.getCode() == KeyCode.ENTER) {
+            logInControl(null);
+        }
+    }
 	
 	public void getUserNameControl() {
 		String usName = this.usrname.getText();
