@@ -17,9 +17,11 @@ import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
 import logic.exceptions.TakenUsernameException;
 import logic.view.ErrorPopup;
+import logic.view.RenterGui;
 import logic.view.TravelerGui;
+import logic.view.Window;
 
-public class GraphicControllerRegistration extends TravelerGui{
+public class GraphicControllerRegistration extends Window{
 	
 	@FXML private TextField name;
 	@FXML private TextField surname;
@@ -31,7 +33,7 @@ public class GraphicControllerRegistration extends TravelerGui{
 	@FXML private Button registerNow;
 	@FXML private ImageView profile;
 	@FXML private Button addPhoto;
-	
+	@FXML private Button back;
 	ObservableList<String> gendList = FXCollections.observableArrayList("Female", "Male", "Other");
 	ObservableList<String> typeUsrList = FXCollections.observableArrayList("Traveler", "Renter");
 	private UserDataBean dataBean;
@@ -85,14 +87,23 @@ public class GraphicControllerRegistration extends TravelerGui{
 		try{
 			int ret;
 			getImage();
+			if(this.dataBean.getFileImage() == null) {
+				this.errLogin.displayLoginError("Inserire immagine");
+				return;
+			}
 			this.dataBean.setType(this.typeOfUser.getValue());
 			this.dataBean.setGender(this.gender.getValue());
 			ret = this.loginCtrl.insertNewUserControl(this.dataBean);
 			if(ret == 0) {
 				this.errLogin.displayLoginError("Inserire tutti i dati");
 			}
-			else {
-				goHome(event);
+			else if (this.dataBean.getType().equals("Traveler")){
+				TravelerGui travGui = new TravelerGui();
+				travGui.goHome(event);
+			}
+			else if(this.dataBean.getType().equals("Renter")) {
+				RenterGui rentGui = new RenterGui();
+				rentGui.goHome(event);
 			}
 		}catch(TakenUsernameException e) {
 			this.errLogin.displayLoginError("Questo username non è disponibile");
@@ -113,6 +124,12 @@ public class GraphicControllerRegistration extends TravelerGui{
             Image usrImage = new Image(profileImage.toURI().toString());
             profile.setImage(usrImage);
         }
+    }
+    
+    public void backLogIn(MouseEvent event) {
+    	setScene("Login.fxml");
+    	loadScene();
+    	nextGuiOnClick(event);
     }
 }
 

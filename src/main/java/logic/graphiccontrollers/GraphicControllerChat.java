@@ -22,14 +22,14 @@ import logic.LoggedUser;
 import logic.controllers.ChatController;
 import logic.model.Message;
 import logic.model.User;
-import logic.view.Window;
+import logic.view.TravelerGui;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
 
 import java.util.logging.Logger;
 
-public class GraphicControllerChat extends Window {
+public class GraphicControllerChat extends TravelerGui {
 	
     @FXML private TextArea messageBox;
     @FXML private Label usernameLabel;

@@ -9,6 +9,8 @@ import logic.controllers.LoginController;
 import logic.view.Window;
 import javafx.fxml.FXML;
 import logic.view.ErrorPopup;
+import logic.view.RenterGui;
+import logic.view.TravelerGui;
 
 
 public class GraphicControllerLogIn extends Window{
@@ -30,9 +32,14 @@ public class GraphicControllerLogIn extends Window{
 	
 	public void logInControl(MouseEvent event) {
 		if(this.loginCtrl.checkLogInControl(this.usrBean, this.logBean) == 1) {
-			UserDataBean dataBean = new UserDataBean();
-			dataBean.setUserName(this.logBean.getUserName());
-			goHome(event);
+			if(this.usrBean.getType().equals("Renter")) {
+				RenterGui rentGui = new RenterGui();
+				rentGui.goHome(event);
+			}
+			else if(this.usrBean.getType().equals("Traveler")) {
+				TravelerGui travGui = new TravelerGui();
+				travGui.goHome(event);
+			}
 		}
 		else {
 			this.errLogin.displayLoginError("User not registered or wrong credentials");

@@ -74,7 +74,7 @@ public class TravelDao extends GeneralConnection{
 				statement.setInt(1, tick.getId());
 				statement.execute();
 			}catch(SQLException e) {
-				logger.log(Level.SEVERE, "Failed to update number of tickets \n",e);
+				logger.log(Level.SEVERE, e.getMessage());
 			}
 		}
 		else if(operation == 1) {
@@ -82,7 +82,7 @@ public class TravelDao extends GeneralConnection{
 				statement.setInt(1, tick.getId());
 				statement.execute();
 			}catch(SQLException e) {
-				logger.log(Level.SEVERE, "Failed to update number of tickets \n",e);
+				logger.log(Level.SEVERE, e.getMessage());
 			}
 		}
 	}

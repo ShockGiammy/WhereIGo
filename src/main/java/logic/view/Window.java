@@ -50,22 +50,4 @@ public class Window extends Application{
 			logger.log(Level.SEVERE, "Cannot load the scene\n", e);
 		}
 	}
-	
-    public void goRent(MouseEvent event) {
-    	setScene("RentAccomodation.fxml");
-    	loadScene();
-    	nextGuiOnClick(event);
-    }
-    
-    public void goHome(MouseEvent event) {
-    	setScene("HomePage.fxml");
-    	loadScene();
-    	nextGuiOnClick(event);
-    }
-	
-	public void goChat(MouseEvent event) {
-    	setScene("ChatView.fxml");
-    	loadScene();
-    	nextGuiOnClick(event);
-    }
 }

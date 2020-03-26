@@ -12,7 +12,7 @@ import logic.graphiccontrollers.GraphicControllerCheckOut;
 import logic.graphiccontrollers.GraphicControllerLocationInfo;
 import logic.graphiccontrollers.GraphicControllerTickets;
 
-public class TravelerGui extends Window{
+public class TravelerGui extends Window implements CommonIcons{
 	@FXML protected ImageView home;
 	@FXML protected ImageView keys;
 	@FXML protected ImageView chat;
@@ -47,6 +47,27 @@ public class TravelerGui extends Window{
 	
 	public void leaveApp(MouseEvent event) {
 		setScene("Login.fxml");
+		loadScene();
+		nextGuiOnClick(event);
+	}
+	
+	@Override
+	public void goHome(MouseEvent event) {
+		setScene("HomePage.fxml");
+    	loadScene();
+    	nextGuiOnClick(event);
+	}
+	
+	@Override
+	public void goChat(MouseEvent event) {
+		setScene("ChatView.fxml");
+    	loadScene();
+    	nextGuiOnClick(event);
+	}
+	
+	@Override
+	public void goRent(MouseEvent event) {
+		setScene("RenterAccomodations.fxml");
 		loadScene();
 		nextGuiOnClick(event);
 	}
