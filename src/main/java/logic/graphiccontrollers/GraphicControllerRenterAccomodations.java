@@ -8,14 +8,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import logic.ImageViewer;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.ManageAnnouncementController;
-import logic.view.Window;
+import logic.view.RenterGui;
 
-public class GraphicControllerRenterAccomodations extends Window{
+public class GraphicControllerRenterAccomodations extends RenterGui{
 
 	@FXML private ListView<HBox> accomodationsList;
 	
@@ -110,5 +111,11 @@ public class GraphicControllerRenterAccomodations extends Window{
 		Thread t = new Thread(task);
 		t.setDaemon(true);
 		t.start();
+	}
+	
+	public void setAccomodationInfo(MouseEvent e, RentAccomodationBean bean) {
+		GraphicControllerCreateAccomodation controller = loader.getController();
+		controller.setInfo(bean);
+		nextGuiOnClick(e);
 	}
 }

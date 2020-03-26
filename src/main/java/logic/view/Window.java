@@ -6,8 +6,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import logic.beans.RentAccomodationBean;
-import logic.graphiccontrollers.GraphicControllerCreateAccomodation;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -53,12 +51,6 @@ public class Window extends Application{
 		}
 	}
 	
-	public void setAccomodationInfo(MouseEvent e, RentAccomodationBean bean) {
-		GraphicControllerCreateAccomodation controller = loader.getController();
-		controller.setInfo(bean);
-		nextGuiOnClick(e);
-	}
-    
     public void goRent(MouseEvent event) {
     	setScene("RentAccomodation.fxml");
     	loadScene();

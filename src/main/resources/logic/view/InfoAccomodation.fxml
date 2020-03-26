@@ -7,74 +7,22 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="780.0" prefWidth="828.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerCreateAccomodation">
-   <children>
-      <Text layoutX="35.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <TextField fx:id="city" layoutX="35.0" layoutY="287.0" prefHeight="30.0" prefWidth="221.0" />
-      <Text layoutX="29.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="362.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of beds">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="27.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="363.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="34.0" layoutY="477.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Photos">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="361.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Square Metres">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="363.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Services">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Button fx:id="saveInfo" layoutX="687.0" layoutY="320.0" onMouseClicked="#applyInfo" prefHeight="59.0" prefWidth="101.0" text="Save Info" />
-      <Text layoutX="70.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="APARTMENT INFO">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <TextField fx:id="description" layoutX="33.0" layoutY="198.0" prefHeight="30.0" prefWidth="221.0" />
-      <TextField fx:id="address" layoutX="33.0" layoutY="384.0" prefHeight="30.0" prefWidth="221.0" />
-      <ChoiceBox fx:id="type" layoutX="357.0" layoutY="198.0" prefHeight="30.0" prefWidth="221.0" />
-      <ChoiceBox fx:id="numberBeds" layoutX="357.0" layoutY="508.0" prefHeight="30.0" prefWidth="221.0" />
-      <ChoiceBox fx:id="squareMetres" layoutX="357.0" layoutY="287.0" prefHeight="30.0" prefWidth="221.0" />
-      <AnchorPane prefHeight="92.0" prefWidth="810.0">
-         <children>
-            <ToolBar layoutX="356.0" layoutY="16.0" prefHeight="68.0" prefWidth="396.0" style="-fx-background-color: white;">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerCreateAccomodation">
+   <top>
+      <BorderPane prefHeight="141.0" prefWidth="827.0" BorderPane.alignment="CENTER">
+         <right>
+            <ToolBar prefHeight="68.0" prefWidth="270.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <items>
                   <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@69524.png" />
+                        <Image url="@../../images/home.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -82,26 +30,7 @@
                   </ImageView>
                   <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@icona-di-chiavi-42470255.jpg" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <InnerShadow choke="0.4" color="#bf2e2e" height="60.0" radius="29.5" width="60.0" />
-                     </effect>
-                  </ImageView>
-                  <ImageView fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goChat" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@download%20(1).png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@favourites-stars.png" />
+                        <Image url="@../../images/keysSelected.jpg" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -109,7 +38,7 @@
                   </ImageView>
                   <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@download%20(2).png" />
+                        <Image url="@../../images/chat.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -117,7 +46,7 @@
                   </ImageView>
                   <ImageView fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@16363.png" />
+                        <Image url="@../../images/avatarSelected.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -125,35 +54,97 @@
                   </ImageView>
                </items>
             </ToolBar>
-            <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         </right>
+         <bottom>
+            <Separator prefHeight="15.0" prefWidth="828.0" BorderPane.alignment="CENTER" />
+         </bottom>
+         <left>
+            <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@WIGLOGO.png" />
+                  <Image url="@../../images/star.png" />
                </image>
             </ImageView>
-            <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
+         </left>
+      </BorderPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="627.0" prefWidth="827.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="76.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="city" layoutX="76.0" layoutY="200.0" prefHeight="30.0" prefWidth="221.0" />
+            <Text layoutX="68.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="403.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of beds">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="68.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="404.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="75.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Photos">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="402.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Square Metres">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="404.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Services">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Button fx:id="saveInfo" layoutX="728.0" layoutY="233.0" onMouseClicked="#applyInfo" prefHeight="59.0" prefWidth="101.0" text="Save Info" />
+            <Text layoutX="111.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="APARTMENT INFO">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="description" layoutX="74.0" layoutY="111.0" prefHeight="30.0" prefWidth="221.0" />
+            <TextField fx:id="address" layoutX="74.0" layoutY="297.0" prefHeight="30.0" prefWidth="221.0" />
+            <ChoiceBox fx:id="type" layoutX="398.0" layoutY="111.0" prefHeight="30.0" prefWidth="221.0" />
+            <ChoiceBox fx:id="numberBeds" layoutX="398.0" layoutY="421.0" prefHeight="30.0" prefWidth="221.0" />
+            <ChoiceBox fx:id="squareMetres" layoutX="398.0" layoutY="200.0" prefHeight="30.0" prefWidth="221.0" />
+            <CheckBox fx:id="garden" layoutX="400.0" layoutY="283.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Garden">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="wifi" layoutX="569.0" layoutY="285.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Wifi">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="kitchen" layoutX="569.0" layoutY="322.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="115.0" text="Kitchen">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="bathroom" layoutX="400.0" layoutY="322.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="139.0" text="Bathroom inside">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </CheckBox>
+            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="87.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="openButton" layoutX="196.0" layoutY="370.0" mnemonicParsing="false" onMouseClicked="#insertImage" prefHeight="30.0" prefWidth="101.0" text="Select an Image" />
          </children>
       </AnchorPane>
-      <CheckBox fx:id="garden" layoutX="359.0" layoutY="370.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Garden">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </CheckBox>
-      <CheckBox fx:id="wifi" layoutX="528.0" layoutY="372.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Wifi">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </CheckBox>
-      <CheckBox fx:id="kitchen" layoutX="528.0" layoutY="409.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="115.0" text="Kitchen">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </CheckBox>
-      <CheckBox fx:id="bathroom" layoutX="359.0" layoutY="409.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="139.0" text="Bathroom inside">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </CheckBox>
-      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="46.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="openButton" layoutX="155.0" layoutY="457.0" mnemonicParsing="false" onMouseClicked="#insertImage" prefHeight="30.0" prefWidth="101.0" text="Select an Image" />
-   </children>
-</AnchorPane>
+   </center>
+</BorderPane>

@@ -20,9 +20,9 @@ import logic.LoggedUser;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.ManageAnnouncementController;
 import logic.view.ErrorPopup;
-import logic.view.Window;
+import logic.view.RenterGui;
 
-public class GraphicControllerCreateAccomodation extends Window{
+public class GraphicControllerCreateAccomodation extends RenterGui{
 	
 	ObservableList<String> typeList = FXCollections.observableArrayList("appartamento", "villetta", "monolocale");
 	ObservableList<String> squareList = FXCollections.observableArrayList("< 20", "20 - 39", "40 - 59", "> 60");

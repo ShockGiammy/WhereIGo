@@ -25,9 +25,9 @@ import javafx.scene.text.Text;
 import logic.ImageViewer;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.RentAccomodationController;
-import logic.view.Window;
+import logic.view.TravelerGui;
 
-public class GraphicControlRentAccomodation extends Window{
+public class GraphicControlRentAccomodation extends TravelerGui{
 	
 	@FXML private ListView<HBox> accomodationList;
 	@FXML private HBox hBox;
