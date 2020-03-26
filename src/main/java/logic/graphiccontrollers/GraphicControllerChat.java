@@ -228,16 +228,19 @@ public class GraphicControllerChat extends MenuWindow {
     	logger.info("exitChat() method Exit");
     }
     
+    @Override
     public void goHome(MouseEvent event) {
     	exitChat();
     	super.goHome(event);
     }
     
+    @Override
     public void goRent(MouseEvent event) {
     	exitChat();
     	super.goRent(event);
     }
     
+    @Override
     public void goBookTravel(MouseEvent event) {
     	exitChat();
     	super.goBookTravel(event);

@@ -26,6 +26,7 @@ public class MenuWindow extends Window{
 	@FXML protected ImageView exit;
 	
 	protected String userType;
+	private static final String RENTER = "Renter";
 	
 	public MenuWindow() {
 		LoggedUser logUser = new LoggedUser();
@@ -70,7 +71,7 @@ public class MenuWindow extends Window{
 	}
 
 	public void goHome(MouseEvent event) {
-    	if (userType.equals("Renter")) {
+    	if (userType.equals(RENTER)) {
     		changeGUI(event, "RenterHomePage.fxml");
     	}
     	else {
@@ -79,7 +80,7 @@ public class MenuWindow extends Window{
     }
     
     public void goRent(MouseEvent event) {
-    	if (userType.equals("Renter")) {
+    	if (userType.equals(RENTER)) {
     		changeGUI(event, "RenterAccomodations.fxml");
     	}
     	else {
@@ -88,7 +89,7 @@ public class MenuWindow extends Window{
     }
     
     public void goBookTravel(MouseEvent event) {
-    	if (userType.equals("Renter")) {
+    	if (userType.equals(RENTER)) {
     		Logger logger = Logger.getLogger("WIG");
     		logger.info("method not accessible");
     	}
@@ -98,7 +99,7 @@ public class MenuWindow extends Window{
     }
     
     public void goChat(MouseEvent event) {
-    	if (userType.equals("Renter")) {
+    	if (userType.equals(RENTER)) {
     		changeGUI(event, "ChatViewRenter.fxml");
     	}
     	else {
