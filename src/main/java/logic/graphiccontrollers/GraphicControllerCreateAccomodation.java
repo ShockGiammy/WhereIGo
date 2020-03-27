@@ -42,7 +42,6 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 	@FXML private ImageView imageView;
 	@FXML private Button openButton;
 	
-	private LoggedUser logUser;
 	private ManageAnnouncementController control;
 	private RentAccomodationBean bean;
 	private File houseImage;
@@ -60,7 +59,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		wifi.setSelected(false);
 		bathroom.setSelected(false);
 		kitchen.setSelected(false);
-		this.logUser = new LoggedUser();
+		this.userImage.setImage(this.logUsr.getImage());
 	}
 	
 	public GraphicControllerCreateAccomodation() {
@@ -108,7 +107,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		bean.setHouseImage(houseImage);
 		bean.setSquareMetres(squareMetres.getValue());
 		bean.setType(type.getValue());
-		bean.setRenter(logUser.getUserName());
+		bean.setRenter(this.logUsr.getUserName());
 		control.createAccomodation(bean);
 		goHome(event);
 	}

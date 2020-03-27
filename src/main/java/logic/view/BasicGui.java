@@ -38,8 +38,8 @@ public class BasicGui extends Application{
 	private static final String RENTER = "Renter";
 	private static String sample;
 	private static Scene scene;
-	private static Logger logger = Logger.getLogger("WIG");
-	private LoggedUser logUsr;
+	protected static Logger logger = Logger.getLogger("WIG");
+	protected LoggedUser logUsr;
 	
 	public BasicGui() {
 		this.logUsr = new LoggedUser();

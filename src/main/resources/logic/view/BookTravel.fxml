@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
+<BorderPane prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
    <right>
       <Pane prefHeight="900.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
          <children>
@@ -59,21 +59,21 @@
             </Pane>
             <ListView fx:id="suggLocView" layoutY="137.0" prefHeight="482.0" prefWidth="360.0" />
             <ListView fx:id="groupsView" layoutX="370.0" layoutY="137.0" prefHeight="482.0" prefWidth="360.0" />
-            <Text layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location suggested for you">
+            <Text layoutX="7.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location suggested for you">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <Text layoutX="370.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group travels suggested for you">
+            <Text layoutX="370.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group travels suggested for you">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <AnchorPane prefHeight="100.0" prefWidth="1100.0">
+            <AnchorPane prefHeight="120.0" prefWidth="1040.0" style="-fx-background-color: white;">
                <children>
                   <ToolBar layoutX="286.0" layoutY="15.0" prefHeight="70.0" prefWidth="488.0" style="-fx-background-color: white;">
                      <items>
-                        <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" onMouseEntered="#showMouseHome" onMouseExited="#showHome" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/home.png" />
                            </image>
@@ -81,7 +81,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fx:id="bookTravel" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goBookTravel" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="bookTravel" disable="true" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goBookTravel" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/bookTravelSelected.png" />
                            </image>
@@ -89,7 +89,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fx:id="keys" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goRent" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="keys" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goRent" onMouseEntered="#showMouseKeys" onMouseExited="#showKeys" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/keys.jpg" />
                            </image>
@@ -97,7 +97,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fx:id="chat" fitHeight="55.0" fitWidth="54.0" onMouseClicked="#goChat" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="chat" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goChat" onMouseEntered="#showMouseChat" onMouseExited="#showChat" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/chat.png" />
                            </image>
@@ -130,7 +130,7 @@
                   </ToolBar>
                   <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@WIGLOGO.png" />
+                        <Image url="@../../images/Logo.PNG" />
                      </image>
                   </ImageView>
                   <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />

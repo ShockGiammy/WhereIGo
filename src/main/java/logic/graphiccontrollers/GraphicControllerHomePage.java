@@ -4,7 +4,6 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -17,12 +16,9 @@ import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
 
 public class GraphicControllerHomePage extends BasicGui{
-	@FXML private ImageView bookATravel;
-	@FXML private ImageView rentAnnPost;
 	@FXML private Button changeInfo;
 	@FXML private Button moreInfo;
 	@FXML private Button takeTest;
-	@FXML private Button exitButton;
 	@FXML private List<VBox> travelBox;
 	@FXML private List<VBox> groupBox;
 	@FXML private ListView<VBox> lwTickets;

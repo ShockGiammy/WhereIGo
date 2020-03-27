@@ -29,7 +29,6 @@ public class GraphicControllerInterestForm extends BasicGui{
 	private int[] questAnsw;
 	private InterestsBean intBean;
 	private InterestsController interCtrl;
-	private LoggedUser logUser;
 	private UserDataBean dataBean;
 	private ErrorPopup errPop;
 	
@@ -37,7 +36,7 @@ public class GraphicControllerInterestForm extends BasicGui{
 		this.questAnsw = new int[4];
 		this.intBean = new InterestsBean();
 		this.interCtrl = new InterestsController();
-		this.logUser = new LoggedUser();
+		this.userImage.setImage(this.logUsr.getImage());
 		this.dataBean = new UserDataBean();
 		this.rbList1 = new ArrayList<>();
 		this.rbList2 = new ArrayList<>();
@@ -159,7 +158,7 @@ public class GraphicControllerInterestForm extends BasicGui{
 			errPop.displayLoginError("Please, answare to all questions");
 			return;
 		}
-		this.dataBean.setUserName(this.logUser.getUserName());
+		this.dataBean.setUserName(this.logUsr.getUserName());
 		this.intBean.setAnswares(this.questAnsw);
 		this.interCtrl.evaluateInterests(this.intBean);
 		goHome(e);

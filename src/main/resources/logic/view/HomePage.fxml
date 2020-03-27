@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="800.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerHomePage">
+<Pane prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerHomePage">
    <children>
       <Text layoutX="14.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome back" wrappingWidth="224.0">
          <font>
@@ -30,7 +30,7 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <BorderPane layoutX="9.0" layoutY="174.0" prefHeight="626.0" prefWidth="311.0">
+      <BorderPane layoutX="9.0" layoutY="174.0" prefHeight="506.0" prefWidth="311.0">
          <top>
             <ListView fx:id="lwTickets" prefHeight="506.0" prefWidth="308.0" BorderPane.alignment="CENTER" />
          </top>
@@ -40,24 +40,24 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <BorderPane layoutX="382.0" layoutY="174.0" prefHeight="626.0" prefWidth="311.0">
+      <BorderPane layoutX="382.0" layoutY="174.0" prefHeight="488.0" prefWidth="311.0">
          <top>
             <ListView fx:id="lwGroups" prefHeight="505.0" prefWidth="311.0" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
-      <AnchorPane prefHeight="92.0" prefWidth="810.0">
+      <AnchorPane prefHeight="120.0" prefWidth="1040.0">
          <children>
-            <ToolBar layoutX="327.0" layoutY="15.0" prefHeight="70.0" prefWidth="451.0" style="-fx-background-color: white;">
+            <ToolBar layoutX="286.0" layoutY="15.0" prefHeight="70.0" prefWidth="488.0" style="-fx-background-color: white;">
                <items>
-                  <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="home" disable="true" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/avatarSelected.png" />
+                        <Image url="@../../images/homeSelected.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="bookTravel" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goBookTravel" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bookTravel" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goBookTravel" onMouseEntered="#showMouseTravel" onMouseExited="#showTravel" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/bookTravel.png" />
                      </image>
@@ -65,7 +65,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="keys" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goRent" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="keys" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goRent" onMouseEntered="#showMouseKeys" onMouseExited="#showKeys" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/keys.jpg" />
                      </image>
@@ -73,7 +73,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="chat" fitHeight="55.0" fitWidth="54.0" onMouseClicked="#goChat" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="chat" fitHeight="55.0" fitWidth="54.0" onMouseClicked="#goChat" onMouseEntered="#showMouseChat" onMouseExited="#showChat" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/chat.png" />
                      </image>
@@ -106,11 +106,11 @@
             </ToolBar>
             <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@WIGLOGO.png" />
+                  <Image url="@../../images/Logo.PNG" />
                </image>
             </ImageView>
             <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
-            <Button fx:id="takeTest" layoutX="192.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#getInterestControl" prefHeight="70.0" prefWidth="125.0" text="Take personality test" />
+            <Button fx:id="takeTest" layoutX="795.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#getInterestControl" prefHeight="70.0" prefWidth="124.0" text="Get personality test" />
          </children>
       </AnchorPane>
    </children>

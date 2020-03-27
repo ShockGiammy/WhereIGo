@@ -24,7 +24,6 @@ public class GraphicControllerBookTravel extends BasicGui{
 	private UserTravelBean travBean;
 	private BookTravelControl bookTravCtrl;
 	private GroupBean grpBean;
-	private LoggedUser logUsr;
 	private LocationBean locBean;
 	private List<UserTravelBean> travBeanArray;
 	private ErrorPopup popUp;
@@ -42,12 +41,12 @@ public class GraphicControllerBookTravel extends BasicGui{
 		this.travBeanArray = new ArrayList<>();
 		this.hboxList = new ArrayList<>();
 		this.grpBean = new GroupBean();
-		logUsr = new LoggedUser();
 		this.locBean = new LocationBean();
 		this.travBean = new UserTravelBean();
 		this.bookTravCtrl = new BookTravelControl();
 		this.popUp = new ErrorPopup();
 		this.vboxlist = new ArrayList<>();
+		this.userImage.setImage(this.logUsr.getImage());
 		setLocation();
 		setGroups();
 	}
