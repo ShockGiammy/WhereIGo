@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Level;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import logic.SingletonDbConnection;
 import logic.model.Message;
 import logic.model.User;
 
@@ -16,8 +17,7 @@ public class ChatDao extends GeneralConnection{
 	private static final String EXCEPTION = "Got an exception!";
 
 	public void saveMessage(Message msg, String receiver) {
-		getConnection();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Chat (sender, receiver, message) VALUES (?, ?, ?)")){  
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Chat (sender, receiver, message) VALUES (?, ?, ?)")){  
 			statement.setString(1, msg.getName());
 			statement.setString(2,  receiver);
 			statement.setString(3, msg.getMsg());
@@ -30,8 +30,7 @@ public class ChatDao extends GeneralConnection{
 	}
 
 	public void setStatus(String user, String status) {
-		getConnection();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE usr Set userStatus = ? where username = ?")){   
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("UPDATE usr Set userStatus = ? where username = ?")){   
 			statement.setString(1,  status);
 			statement.setString(2, user);
 			statement.execute();
@@ -43,9 +42,8 @@ public class ChatDao extends GeneralConnection{
 	}
 	
 	public String getStatus(String user) {
-		getConnection();
 		String status = null;
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select userStatus From usr Where (username = ?)")){    
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select userStatus From usr Where (username = ?)")){    
 			statement.setString(1, user);
 			status = retriveStatus(statement);
 		}
@@ -57,9 +55,8 @@ public class ChatDao extends GeneralConnection{
 	}
 	
 	public List<Message> getSavedMsg(String sender, String receiver) {
-		getConnection();
 		List<Message> messages = new ArrayList<>();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Chat Where (sender = ? and receiver = ?) or (sender = ? and receiver = ?)")){    
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Chat Where (sender = ? and receiver = ?) or (sender = ? and receiver = ?)")){    
 			statement.setString(1, sender);
 			statement.setString(2, receiver);
 			statement.setString(3, receiver);
@@ -88,9 +85,8 @@ public class ChatDao extends GeneralConnection{
 	
 		
 	public ObservableList<User> getUsersQuery(String userName) {
-		getConnection();
 		ObservableList<User> users = FXCollections.observableArrayList();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select distinct receiver From Chat Where (sender = ?)")){    
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select distinct receiver From Chat Where (sender = ?)")){    
 			statement.setString(1, userName);
 			retriveUsers(statement, users);
 		}
@@ -98,7 +94,7 @@ public class ChatDao extends GeneralConnection{
 			logger.log(Level.SEVERE, EXCEPTION);
 			logger.log(Level.SEVERE, e.getMessage());
 		}
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select distinct sender From Chat Where (receiver = ?)")){    
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select distinct sender From Chat Where (receiver = ?)")){    
 			statement.setString(1, userName);
 			retriveUsers(statement, users);
 		}
@@ -107,7 +103,7 @@ public class ChatDao extends GeneralConnection{
 			logger.log(Level.SEVERE, e.getMessage());
 		}
 		for (User user : users) {
-			try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select userStatus, profilePicture From usr Where username = ?")){    
+			try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select userStatus, profilePicture From usr Where username = ?")){    
 				statement.setString(1, user.getName());
 				retriveUserInfo(statement, user);
 			}
@@ -166,8 +162,7 @@ public class ChatDao extends GeneralConnection{
 	
 	public void createNewChat(String user, String renter) {
 		if (getSavedMsg(user, renter).isEmpty()) {
-			getConnection();
-			try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Chat (sender, receiver) VALUES (?, ?)")){  
+			try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Chat (sender, receiver) VALUES (?, ?)")){  
 				statement.setString(1, user);
 				statement.setString(2,  renter);
 				statement.execute();

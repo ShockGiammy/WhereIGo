@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 
+import logic.SingletonDbConnection;
 import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.model.GroupModel;
@@ -13,11 +14,10 @@ import logic.model.GroupModel;
 public class GroupDao extends GeneralConnection{
 	
 	public void retriveSuggestedGroups(UserDataBean dataBean, List<GroupModel> modelList) {
-		getConnection();
 		if(dataBean.getPersonality()== null) {
 			return;
 		}
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("select travcity,groupowner,title from travelgroups join locations on travelgroups.travCity=locations.city where tipeOfPersonality=?")){
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select travcity,groupowner,title from travelgroups join locations on travelgroups.travCity=locations.city where tipeOfPersonality=?")){
 			statement.setString(1, dataBean.getPersonality());
 			getSuggestedGroupsDatas(statement, modelList);
 		}catch(SQLException e) {
@@ -38,8 +38,7 @@ public class GroupDao extends GeneralConnection{
 	}
 	
 	public int saveUserGroup(GroupBean grpBean) {
-		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO travelgroups(travCity, groupOwner, title) VALUES(?,?,?)")){
+		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO travelgroups(travCity, groupOwner, title) VALUES(?,?,?)")){
 			statement.setString(1, grpBean.getGroupDestination());
 			statement.setString(2, grpBean.getGroupOwner());
 			statement.setString(3, grpBean.getGroupTitle());
@@ -52,8 +51,7 @@ public class GroupDao extends GeneralConnection{
 	}
 	
 	public void getUserGroups(List<GroupModel> grpModel, UserDataBean dataBean) {
-		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("select distinct travcity,title,groupowner from travelgroups where (groupowner=?)")){
+		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select distinct travcity,title,groupowner from travelgroups where (groupowner=?)")){
 			statement.setString(1, dataBean.getUsername());
 			findUserGroups(grpModel, statement);
 		}catch(SQLException e) {
@@ -74,7 +72,7 @@ public class GroupDao extends GeneralConnection{
 	}
 	
 	public void getPartGroups(List<GroupModel> grpModel, UserDataBean bean) {
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("select groupowner,title,travcity from travelgroups join participatesto on participatesto.grp = travelgroups.title where(participant =?)")){
+		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select groupowner,title,travcity from travelgroups join participatesto on participatesto.grp = travelgroups.title where(participant =?)")){
 			statement.setString(1, bean.getUsername());
 			fetchPartGroup(statement, grpModel);
 		}catch(SQLException e) {
@@ -95,8 +93,7 @@ public class GroupDao extends GeneralConnection{
 	}
 	
 	public void deleteGroup(GroupBean bean) {
-		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("delete from travelgroups where (groupowner=? and title=?)")){
+		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("delete from travelgroups where (groupowner=? and title=?)")){
 			statement.setString(1, bean.getGroupOwner());
 			statement.setString(2, bean.getGroupTitle());
 			statement.execute();
@@ -106,8 +103,7 @@ public class GroupDao extends GeneralConnection{
 	}
 	
 	public int insertParticipant(GroupBean grpBean, UserDataBean dataBean) {
-		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("insert into participatesto(participant, grp) values(?,?)")){
+		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("insert into participatesto(participant, grp) values(?,?)")){
 			statement.setString(2, grpBean.getGroupTitle());
 			statement.setString(1, dataBean.getUsername());
 			statement.execute();
@@ -119,8 +115,7 @@ public class GroupDao extends GeneralConnection{
 	}
 	
 	public void leaveJoinedGroup(GroupBean grpBean, UserDataBean dataBean) {
-		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("delete from participatesto where(participant=? and grp=?)")){
+		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("delete from participatesto where(participant=? and grp=?)")){
 			statement.setString(2, grpBean.getGroupTitle());
 			statement.setString(1, dataBean.getUsername());
 			statement.execute();

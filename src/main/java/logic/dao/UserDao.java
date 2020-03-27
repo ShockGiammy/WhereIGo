@@ -1,5 +1,6 @@
 package logic.dao;
 
+import logic.SingletonDbConnection;
 import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
 import logic.exceptions.TakenUsernameException;
@@ -11,8 +12,7 @@ import java.util.logging.Level;
 public class UserDao extends GeneralConnection{
 	
 	public void insertPersonality(String personality,String username) {
-		getConnection();
-		try (PreparedStatement stm = dbConn.getConnection().prepareStatement("update usr set tipeOfPersonality = ? where username = ?")){
+		try (PreparedStatement stm = SingletonDbConnection.getInstance().getConnection().prepareStatement("update usr set tipeOfPersonality = ? where username = ?")){
 			stm.setString(1, personality);
 			stm.setString(2, username);
 			stm.execute();
@@ -22,12 +22,8 @@ public class UserDao extends GeneralConnection{
 	}
 	
 	public int checkLogInInfo(LogInBean bean, UserDataBean usrBean) {
-		getConnection();
 		int ret = 0;
-		if(dbConn == null) {
-			getConnection();
-		}
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT tipeOfUser,tipeOfPersonality,profilePicture FROM usr WHERE (username=? and passw=?)")){    
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT tipeOfUser,tipeOfPersonality,profilePicture FROM usr WHERE (username=? and passw=?)")){    
 			statement.setString(1,bean.getUserName());
 			statement.setString(2,bean.getPasw());
 			ret = getLoggedUser(statement, usrBean);
@@ -39,8 +35,7 @@ public class UserDao extends GeneralConnection{
 	}
 	
 	public void insertNewUser(UserDataBean usrBean) throws TakenUsernameException {
-		getConnection();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO usr(username, passw, nome, surname, dateOfBirth, gender, tipeOfUser, profilePicture, userStatus) VALUES(?,?,?,?,?,?,?,?,?)")){
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO usr(username, passw, nome, surname, dateOfBirth, gender, tipeOfUser, profilePicture, userStatus) VALUES(?,?,?,?,?,?,?,?,?)")){
 			statement.setString(1, usrBean.getUsername());
 			statement.setString(2, usrBean.getPassword());
 			statement.setString(3, usrBean.getName());
@@ -57,8 +52,7 @@ public class UserDao extends GeneralConnection{
 	}
 	
 	public void getUserDatas(UserDataBean usrBean) {
-		getConnection();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT * FROM usr WHERE (username = ?)")){
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT * FROM usr WHERE (username = ?)")){
 			statement.setString(1, usrBean.getUsername());
 			retriveUser(statement, usrBean);
 		}catch(SQLException e) {
@@ -67,7 +61,6 @@ public class UserDao extends GeneralConnection{
 	}
 	
 	public int getLoggedUser(PreparedStatement statement, UserDataBean usrBean) {
-		getConnection();
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				usrBean.setType(rs.getString(1));
@@ -84,7 +77,6 @@ public class UserDao extends GeneralConnection{
 	}
 	
 	public void retriveUser(PreparedStatement statement, UserDataBean usrBean) {
-		getConnection();
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				usrBean.setName(rs.getString(3));

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import logic.model.TicketModel;
+import logic.SingletonDbConnection;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import java.sql.Date;
@@ -15,12 +16,11 @@ import java.sql.Date;
 public class TravelDao extends GeneralConnection{
 	
 	public List<TicketModel> retriveAvailableTickets(UserTravelBean travBean, UserDataBean bean) throws SQLException {
-		getConnection();
 		List<TicketModel> tickets = new ArrayList<>();
 		if(checkIfBooked(travBean, bean)) {
 			return tickets;
 		}
-		try(PreparedStatement prep = dbConn.getConnection().prepareStatement("SELECT * FROM Tickets WHERE (depCity=? and arrCity=? and dateOfDep=? and dateOfArr=? and numOfTick > 0)")) {
+		try(PreparedStatement prep = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT * FROM Tickets WHERE (depCity=? and arrCity=? and dateOfDep=? and dateOfArr=? and numOfTick > 0)")) {
 			prep.setString(1, travBean.getCityOfDep());
 			prep.setString(2, travBean.getCityOfArr());
 			prep.setString(3, Date.valueOf(travBean.getFirstDay()).toString());
@@ -56,8 +56,7 @@ public class TravelDao extends GeneralConnection{
 	}
 	
 	public void saveBoughtTickets(TicketModel tick, UserDataBean dataBean) {
-		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Buys(ticket, passenger) VALUES(?,?)")){
+		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Buys(ticket, passenger) VALUES(?,?)")){
 			statement.setString(2, dataBean.getUsername());
 			statement.setInt(1, tick.getId());
 			statement.execute();
@@ -68,9 +67,8 @@ public class TravelDao extends GeneralConnection{
 	}
 	
 	public void updateNumberOfTickets(TicketModel tick, int operation) {
-		getConnection();
 		if(operation == 0) {
-			try(PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE tickets SET numOfTick = numOfTick-1 WHERE ID=?")){
+			try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("UPDATE tickets SET numOfTick = numOfTick-1 WHERE ID=?")){
 				statement.setInt(1, tick.getId());
 				statement.execute();
 			}catch(SQLException e) {
@@ -88,8 +86,7 @@ public class TravelDao extends GeneralConnection{
 	}
 	
 	public void getUserTickets(UserDataBean dataBean, List<TicketModel> tickList) {
-		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("SELECT * FROM tickets JOIN buys on tickets.ID = buys.ticket WHERE (passenger=?)")){
+		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT * FROM tickets JOIN buys on tickets.ID = buys.ticket WHERE (passenger=?)")){
 			statement.setString(1, dataBean.getUsername());
 			fetchTickets(statement, tickList);
 		}catch(SQLException e) {
@@ -110,8 +107,7 @@ public class TravelDao extends GeneralConnection{
 	}
 	
 	public void deleteTick(TicketModel tickModel, UserDataBean dataBean) {
-		getConnection();
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("delete from Buys where ticket=? and passenger=?")){
+		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("delete from Buys where ticket=? and passenger=?")){
 			statement.setInt(1, tickModel.getId());
 			statement.setString(2, dataBean.getUsername());
 			statement.execute();
@@ -122,11 +118,10 @@ public class TravelDao extends GeneralConnection{
 	}
 	
 	public void getSuggestedTickets(UserTravelBean travBean, UserDataBean dataBean, List<TicketModel> tickList) {
-		getConnection();
 		if(checkIfSuggBooked(travBean, dataBean)) {
 			return;
 		}
-		try(PreparedStatement statement = dbConn.getConnection().prepareStatement("select ID, depCity, dateOfDep, dateOfArr, cost from tickets where(arrCity=? and numoftick > 0)")){
+		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select ID, depCity, dateOfDep, dateOfArr, cost from tickets where(arrCity=? and numoftick > 0)")){
 			statement.setString(1, travBean.getCityOfArr());
 			findSuggTickets(statement, tickList, travBean);
 		}catch(SQLException e) {

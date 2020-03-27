@@ -10,7 +10,7 @@ public class GeneralConnection {
 	protected SingletonDbConnection dbConn;
 	protected Logger logger = Logger.getLogger("WIG");
 	
-	public void getConnection() {
+	/*public void getConnection() {
 		try{
 			String driverName = "com.mysql.cj.jdbc.Driver";
 			Class.forName(driverName);
@@ -18,5 +18,5 @@ public class GeneralConnection {
 		}catch(ClassNotFoundException e) {
 			logger.log(Level.SEVERE, "ClassNotFoundException occurred", e);
 		}
-	}
+	}*/
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
+import logic.SingletonDbConnection;
 import logic.beans.RentAccomodationBean;
 import logic.model.AccomodationModel;
 
@@ -15,8 +16,7 @@ public class AccomodationCreator extends GeneralConnection{
 	private static final String EXCEPTION = "Got an exception!";
 
 	public AccomodationModel createAccomodation(RentAccomodationBean info) {
-		getConnection();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("INSERT INTO Post(ID,photo,utente,descr,beds,city,address,services,squareMetres,tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")){    
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Post(ID,photo,utente,descr,beds,city,address,services,squareMetres,tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")){    
 			statement.setLong(1, info.getID());
 			statement.setBinaryStream(2,info.getInputFile(), info.getFileLength());		//image
 			statement.setString(3,info.getRenter()); 				//user
@@ -37,9 +37,8 @@ public class AccomodationCreator extends GeneralConnection{
 	}
 
 	public List<RentAccomodationBean> queryDB() {
-		getConnection();
 		List<RentAccomodationBean> beans = new ArrayList<>();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Post")){    
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Post")){    
 			getAccomodationDatas(statement, beans);
 		}catch (SQLException e) {
 			logger.log(Level.SEVERE, EXCEPTION);
@@ -49,9 +48,8 @@ public class AccomodationCreator extends GeneralConnection{
 	}
 	
 	public List<RentAccomodationBean> queryMyAccomodations(String myUsername) {
-		getConnection();
 		List<RentAccomodationBean> beans = new ArrayList<>();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Select * From Post Where utente = ?")){
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Post Where utente = ?")){
 			statement.setString(1, myUsername);
 			getAccomodationDatas(statement, beans);
 		}catch (SQLException e) {
@@ -84,8 +82,7 @@ public class AccomodationCreator extends GeneralConnection{
 	}
 	
 	public void delete(long l) {
-		getConnection();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Delete From Post Where ID = ?")){    
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Delete From Post Where ID = ?")){    
 			statement.setLong(1, l);
 			statement.execute();
 		}catch (SQLException e) {
@@ -95,8 +92,7 @@ public class AccomodationCreator extends GeneralConnection{
 	}
 	
 	public void update(RentAccomodationBean info) {
-		getConnection();
-		try (PreparedStatement statement = dbConn.getConnection().prepareStatement("Update Post Set photo = ? , descr = ? ,beds = ? "
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Update Post Set photo = ? , descr = ? ,beds = ? "
 				+ ",city = ? ,address = ? ,services = ? ,squareMetres = ? ,tipologia = ? Where ID = ?")){
 			statement.setBinaryStream(1,info.getInputFile(), info.getFileLength());		//image
 			statement.setString(2,info.getDescription()); 			//description
