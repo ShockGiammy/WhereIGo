@@ -6,13 +6,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logic.SingletonDbConnection;
 import logic.model.Message;
 import logic.model.User;
 
-public class ChatDao extends GeneralConnection{
+public class ChatDao {
 	
 	private static final String EXCEPTION = "Got an exception!";
 
@@ -24,8 +26,8 @@ public class ChatDao extends GeneralConnection{
 			statement.execute();
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, "Exception Occurred\n");
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, "Exception Occurred\n");
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
 
@@ -36,8 +38,8 @@ public class ChatDao extends GeneralConnection{
 			statement.execute();
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, EXCEPTION);
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
 	
@@ -48,8 +50,8 @@ public class ChatDao extends GeneralConnection{
 			status = retriveStatus(statement);
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, EXCEPTION);
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 		return status;
 	}
@@ -64,8 +66,8 @@ public class ChatDao extends GeneralConnection{
 			retriveSavedMessages(statement, messages);
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, EXCEPTION);
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 		return messages;
 	}
@@ -79,7 +81,7 @@ public class ChatDao extends GeneralConnection{
 				messages.add(message);
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Messages fetch error", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Messages fetch error", e);
 		}
 	}
 	
@@ -91,16 +93,16 @@ public class ChatDao extends GeneralConnection{
 			retriveUsers(statement, users);
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, EXCEPTION);
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select distinct sender From Chat Where (receiver = ?)")){    
 			statement.setString(1, userName);
 			retriveUsers(statement, users);
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, EXCEPTION);
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 		for (User user : users) {
 			try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select userStatus, profilePicture From usr Where username = ?")){    
@@ -108,8 +110,8 @@ public class ChatDao extends GeneralConnection{
 				retriveUserInfo(statement, user);
 			}
 			catch (SQLException e) {
-				logger.log(Level.SEVERE, EXCEPTION);
-				logger.log(Level.SEVERE, e.getMessage());
+				Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			}
 		}
 		return users;
@@ -123,7 +125,7 @@ public class ChatDao extends GeneralConnection{
 				user.setPicture(image);
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "User fetch error", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "User fetch error", e);
 		}
 	}
 	
@@ -144,7 +146,7 @@ public class ChatDao extends GeneralConnection{
 				}
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Users fetch error", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Users fetch error", e);
 		}
 	}
 	
@@ -155,7 +157,7 @@ public class ChatDao extends GeneralConnection{
 				status = rs.getString(1);
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Status fetch error", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Status fetch error", e);
 		}
 		return status;
 	}
@@ -168,8 +170,8 @@ public class ChatDao extends GeneralConnection{
 				statement.execute();
 			}
 			catch (SQLException e) {
-				logger.log(Level.SEVERE, "Exception Occurred\n");
-				logger.log(Level.SEVERE, e.getMessage());
+				Logger.getLogger("WIG").log(Level.SEVERE, "Exception Occurred\n");
+				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			}
 		}
 	}

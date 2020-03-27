@@ -8,13 +8,12 @@ import javafx.scene.input.MouseEvent;
 import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
-import logic.view.Window;
 import javafx.fxml.FXML;
 import logic.view.ErrorPopup;
-import logic.view.MenuWindow;
+import logic.view.BasicGui;
 
 
-public class GraphicControllerLogIn extends Window{
+public class GraphicControllerLogIn {
 	@FXML private PasswordField psw;
 	@FXML private TextField usrname;
 	@FXML private Button loginButton;
@@ -23,18 +22,19 @@ public class GraphicControllerLogIn extends Window{
 	private UserDataBean usrBean;
 	private LoginController loginCtrl;
 	private ErrorPopup errLogin;
+	private BasicGui bgui;
 	
 	public GraphicControllerLogIn() {
 		this.logBean = new LogInBean();
 		this.loginCtrl = new LoginController();
 		this.usrBean = new UserDataBean();
 		this.errLogin = new ErrorPopup();
+		bgui = new BasicGui();
 	}
 	
 	public void logInControl(MouseEvent event) {
 		if(this.loginCtrl.checkLogInControl(this.usrBean, this.logBean) == 1) {
-			MenuWindow window = new MenuWindow();
-			window.goHome(event);
+			bgui.goHome(event);
 		}
 		else {
 			this.errLogin.displayLoginError("User not registered or wrong credentials");
@@ -42,9 +42,7 @@ public class GraphicControllerLogIn extends Window{
 	}
 	
 	public void registrationControl(MouseEvent event) {
-		setScene("Registration.fxml");
-		loadScene();
-		nextGuiOnClick(event);
+		bgui.changeGUI(event, "Registration.fxml");
 	}
 	
 	//da fixare per premere invio e cambiare schermata
@@ -62,11 +60,5 @@ public class GraphicControllerLogIn extends Window{
 	public void getPasswordControl() {
 		String password = this.psw.getText();
 		this.logBean.setPassword(password);
-	}
-	
-	public static void main(String[] args) {
-		setScene("Login.fxml");
-		loadScene();
-		launch(args);
 	}
 }

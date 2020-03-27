@@ -17,10 +17,10 @@ import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
 import logic.view.ErrorPopup;
-import logic.view.MenuWindow;
+import logic.view.BasicGui;
 import javafx.scene.control.TextField;
 
-public class GraphicControllerBookTravel extends MenuWindow{
+public class GraphicControllerBookTravel extends BasicGui{
 	private UserTravelBean travBean;
 	private BookTravelControl bookTravCtrl;
 	private GroupBean grpBean;

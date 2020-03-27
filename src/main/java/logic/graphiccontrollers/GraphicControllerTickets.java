@@ -19,9 +19,9 @@ import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
-import logic.view.MenuWindow;
+import logic.view.BasicGui;
 
-public class GraphicControllerTickets extends MenuWindow{
+public class GraphicControllerTickets extends BasicGui{
 	@FXML private TableView<UserTravelBean> ticketsView;
 	@FXML private TableColumn<UserTravelBean, Integer> ticketId;
 	@FXML private TableColumn<UserTravelBean, String> departureCity;

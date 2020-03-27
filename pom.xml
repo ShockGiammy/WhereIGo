@@ -61,7 +61,7 @@
 				<artifactId>javafx-maven-plugin</artifactId>
 				<version>0.0.3</version>
 				<configuration>
-					<mainClass>logic.graphiccontrollers.GraphicControllerLogIn</mainClass>
+					<mainClass>logic.view.BasicGui</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

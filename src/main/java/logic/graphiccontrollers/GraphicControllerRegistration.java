@@ -15,9 +15,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import logic.beans.UserDataBean;
 import logic.controllers.LoginController;
-import logic.exceptions.TakenUsernameException;
+import logic.exceptions.DuplicateUsernameException;
+import logic.exceptions.GeneralErrorException;
 import logic.view.ErrorPopup;
-import logic.view.MenuWindow;
+import logic.view.BasicGui;
 import logic.view.Window;
 
 public class GraphicControllerRegistration extends Window{
@@ -97,11 +98,14 @@ public class GraphicControllerRegistration extends Window{
 				this.errLogin.displayLoginError("Inserire tutti i dati");
 			}
 			else {
-				MenuWindow window = new MenuWindow();
+				BasicGui window = new BasicGui();
 				window.goHome(event);
 			}
-		}catch(TakenUsernameException e) {
+		}catch(DuplicateUsernameException e) {
 			this.errLogin.displayLoginError("Questo username non è disponibile");
+		}catch(GeneralErrorException e) {
+			this.errLogin.displayLoginError("An error occurred. Please, restart the application");
+			System.exit(-1);
 		}
 	}
 	

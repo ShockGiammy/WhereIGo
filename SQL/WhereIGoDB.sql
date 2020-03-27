@@ -21,7 +21,7 @@ create table Usr
     tipeOfPersonality VARCHAR(20),
     profilePicture LONGBLOB,
     userStatus VARCHAR(15),
-    primary key(username,passw)
+    primary key(username)
 );
 
 create table TravelGroups

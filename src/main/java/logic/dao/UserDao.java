@@ -3,21 +3,25 @@ package logic.dao;
 import logic.SingletonDbConnection;
 import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
-import logic.exceptions.TakenUsernameException;
+import logic.exceptions.DuplicateUsernameException;
+import logic.exceptions.GeneralErrorException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class UserDao extends GeneralConnection{
+public class UserDao {
 	
 	public void insertPersonality(String personality,String username) {
-		try (PreparedStatement stm = SingletonDbConnection.getInstance().getConnection().prepareStatement("update usr set tipeOfPersonality = ? where username = ?")){
+		try (Connection conn = SingletonDbConnection.getInstance().getConnection();
+				PreparedStatement stm = SingletonDbConnection.getInstance().getConnection().prepareStatement("update usr set tipeOfPersonality = ? where username = ?")){
 			stm.setString(1, personality);
 			stm.setString(2, username);
 			stm.execute();
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "SQLException occured during insert", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occured during insert", e);
 		}
 	}
 	
@@ -29,12 +33,12 @@ public class UserDao extends GeneralConnection{
 			ret = getLoggedUser(statement, usrBean);
 			usrBean.setUserName(bean.getUserName());
 		}catch (SQLException e) {
-				logger.log(Level.SEVERE, "SQLException occurred during the fetch of credentials", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred during the fetch of credentials", e);
 		}
 		return ret;
 	}
 	
-	public void insertNewUser(UserDataBean usrBean) throws TakenUsernameException {
+	public void insertNewUser(UserDataBean usrBean) throws DuplicateUsernameException, GeneralErrorException{
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO usr(username, passw, nome, surname, dateOfBirth, gender, tipeOfUser, profilePicture, userStatus) VALUES(?,?,?,?,?,?,?,?,?)")){
 			statement.setString(1, usrBean.getUsername());
 			statement.setString(2, usrBean.getPassword());
@@ -47,7 +51,12 @@ public class UserDao extends GeneralConnection{
 			statement.setString(9, "offline");
 			statement.execute();
 		}catch(SQLException e) {
-			throw new TakenUsernameException(e.getMessage());
+			if(e.getErrorCode() == 1022) {
+				throw new DuplicateUsernameException(e.getMessage());
+			}
+			else {
+				throw new GeneralErrorException(e.getMessage());
+			}
 		}
 	}
 	
@@ -56,7 +65,7 @@ public class UserDao extends GeneralConnection{
 			statement.setString(1, usrBean.getUsername());
 			retriveUser(statement, usrBean);
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "SQLException on fetchin user datas\n", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException on fetchin user datas\n", e);
 		}
 	}
 	
@@ -71,7 +80,7 @@ public class UserDao extends GeneralConnection{
 				return 1;
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Cannot get logged user", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot get logged user", e);
 		}
 		return 0;
 	}
@@ -87,7 +96,7 @@ public class UserDao extends GeneralConnection{
 				usrBean.setPersonality(rs.getString(8));
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "ResultSet fetch fail !", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "ResultSet fetch fail !", e);
 		}
 	}
 }

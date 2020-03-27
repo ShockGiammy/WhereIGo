@@ -9,14 +9,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import logic.view.ErrorPopup;
-import logic.view.MenuWindow;
+import logic.view.BasicGui;
 import logic.LoggedUser;
 import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
 
-public class GraphicControllerHomePage extends MenuWindow{
+public class GraphicControllerHomePage extends BasicGui{
 	@FXML private ImageView bookATravel;
 	@FXML private ImageView rentAnnPost;
 	@FXML private Button changeInfo;

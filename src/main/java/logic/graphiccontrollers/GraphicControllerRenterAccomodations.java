@@ -14,9 +14,9 @@ import javafx.scene.text.Text;
 import logic.ImageViewer;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.ManageAnnouncementController;
-import logic.view.MenuWindow;
+import logic.view.BasicGui;
 
-public class GraphicControllerRenterAccomodations extends MenuWindow{
+public class GraphicControllerRenterAccomodations extends BasicGui{
 
 	@FXML private ListView<HBox> accomodationsList;
 	

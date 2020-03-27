@@ -5,13 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import logic.SingletonDbConnection;
 import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.model.GroupModel;
 
-public class GroupDao extends GeneralConnection{
+public class GroupDao {
 	
 	public void retriveSuggestedGroups(UserDataBean dataBean, List<GroupModel> modelList) {
 		if(dataBean.getPersonality()== null) {
@@ -21,7 +22,7 @@ public class GroupDao extends GeneralConnection{
 			statement.setString(1, dataBean.getPersonality());
 			getSuggestedGroupsDatas(statement, modelList);
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "SQLException occurred\n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred\n",e);
 		}
 	}
 	
@@ -33,7 +34,7 @@ public class GroupDao extends GeneralConnection{
 					modelList.add(grpModel);
 				}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Group fetch error", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Group fetch error", e);
 		}
 	}
 	
@@ -44,7 +45,7 @@ public class GroupDao extends GeneralConnection{
 			statement.setString(3, grpBean.getGroupTitle());
 			statement.execute();
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Cannot insert group", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot insert group", e);
 			return -1;
 		}
 		return 0;
@@ -55,7 +56,7 @@ public class GroupDao extends GeneralConnection{
 			statement.setString(1, dataBean.getUsername());
 			findUserGroups(grpModel, statement);
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
 	
@@ -67,7 +68,7 @@ public class GroupDao extends GeneralConnection{
 				grpModel.add(group);
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
 	
@@ -76,7 +77,7 @@ public class GroupDao extends GeneralConnection{
 			statement.setString(1, bean.getUsername());
 			fetchPartGroup(statement, grpModel);
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
 	
@@ -88,7 +89,7 @@ public class GroupDao extends GeneralConnection{
 				grpList.add(group);
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
 	
@@ -98,7 +99,7 @@ public class GroupDao extends GeneralConnection{
 			statement.setString(2, bean.getGroupTitle());
 			statement.execute();
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
 	
@@ -109,7 +110,7 @@ public class GroupDao extends GeneralConnection{
 			statement.execute();
 			return 0;
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			return -1;
 		}
 	}
@@ -120,7 +121,7 @@ public class GroupDao extends GeneralConnection{
 			statement.setString(1, dataBean.getUsername());
 			statement.execute();
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
 }

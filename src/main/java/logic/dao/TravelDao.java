@@ -7,13 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import logic.model.TicketModel;
 import logic.SingletonDbConnection;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import java.sql.Date;
 
-public class TravelDao extends GeneralConnection{
+public class TravelDao {
 	
 	public List<TicketModel> retriveAvailableTickets(UserTravelBean travBean, UserDataBean bean) throws SQLException {
 		List<TicketModel> tickets = new ArrayList<>();
@@ -27,7 +29,7 @@ public class TravelDao extends GeneralConnection{
 			prep.setString(4, Date.valueOf(travBean.getLastDay()).toString());
 			ticketQuery(tickets, prep);
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Error while retriving tickets\n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while retriving tickets\n",e);
 		}
 		return tickets;
 	}
@@ -40,7 +42,7 @@ public class TravelDao extends GeneralConnection{
 				list.add(tick);
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "ResultSet null \n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "ResultSet null \n",e);
 		}
 	}
 	
@@ -62,7 +64,7 @@ public class TravelDao extends GeneralConnection{
 			statement.execute();
 			updateNumberOfTickets(tick,0);
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Failed to update tickets \n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Failed to update tickets \n",e);
 		}
 	}
 	
@@ -72,15 +74,15 @@ public class TravelDao extends GeneralConnection{
 				statement.setInt(1, tick.getId());
 				statement.execute();
 			}catch(SQLException e) {
-				logger.log(Level.SEVERE, e.getMessage());
+				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			}
 		}
 		else if(operation == 1) {
-			try(PreparedStatement statement = dbConn.getConnection().prepareStatement("UPDATE tickets SET numOfTick = numOfTick+1 WHERE ID=?")){
+			try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("UPDATE tickets SET numOfTick = numOfTick+1 WHERE ID=?")){
 				statement.setInt(1, tick.getId());
 				statement.execute();
 			}catch(SQLException e) {
-				logger.log(Level.SEVERE, e.getMessage());
+				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			}
 		}
 	}
@@ -90,7 +92,7 @@ public class TravelDao extends GeneralConnection{
 			statement.setString(1, dataBean.getUsername());
 			fetchTickets(statement, tickList);
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Error while fetching tickets\n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching tickets\n",e);
 		}
 	}
 	
@@ -102,7 +104,7 @@ public class TravelDao extends GeneralConnection{
 				tickList.add(tick);
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Cannot manipulate tickets resultset \n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot manipulate tickets resultset \n",e);
 		}
 	}
 	
@@ -113,7 +115,7 @@ public class TravelDao extends GeneralConnection{
 			statement.execute();
 			updateNumberOfTickets(tickModel, 1);
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Cannot delete ticket \n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot delete ticket \n",e);
 		}
 	}
 	
@@ -125,7 +127,7 @@ public class TravelDao extends GeneralConnection{
 			statement.setString(1, travBean.getCityOfArr());
 			findSuggTickets(statement, tickList, travBean);
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE,e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE,e.getMessage());
 		}
 	}
 	
@@ -137,7 +139,7 @@ public class TravelDao extends GeneralConnection{
 				tickList.add(tick);
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE,e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE,e.getMessage());
 		}
 	}
 	

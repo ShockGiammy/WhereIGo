@@ -6,12 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import logic.SingletonDbConnection;
 import logic.beans.RentAccomodationBean;
 import logic.model.AccomodationModel;
 
-public class AccomodationCreator extends GeneralConnection{
+public class AccomodationCreator {
 	
 	private static final String EXCEPTION = "Got an exception!";
 
@@ -30,8 +31,8 @@ public class AccomodationCreator extends GeneralConnection{
 			statement.execute();
 		}
 		catch (SQLException e) {
-			logger.log(Level.SEVERE, EXCEPTION);
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 		return new AccomodationModel(info);
 	}
@@ -41,8 +42,8 @@ public class AccomodationCreator extends GeneralConnection{
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Post")){    
 			getAccomodationDatas(statement, beans);
 		}catch (SQLException e) {
-			logger.log(Level.SEVERE, EXCEPTION);
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 		return beans;
 	}
@@ -53,8 +54,8 @@ public class AccomodationCreator extends GeneralConnection{
 			statement.setString(1, myUsername);
 			getAccomodationDatas(statement, beans);
 		}catch (SQLException e) {
-			logger.log(Level.SEVERE, EXCEPTION);
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 		return beans;
 	}
@@ -77,7 +78,7 @@ public class AccomodationCreator extends GeneralConnection{
 				beans.add(bean);
 			}
 		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Location ResultSet error", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Location ResultSet error", e);
 		}
 	}
 	
@@ -86,8 +87,8 @@ public class AccomodationCreator extends GeneralConnection{
 			statement.setLong(1, l);
 			statement.execute();
 		}catch (SQLException e) {
-			logger.log(Level.SEVERE, EXCEPTION);
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
 	
@@ -105,8 +106,8 @@ public class AccomodationCreator extends GeneralConnection{
 			statement.setLong(9, info.getID());
 			statement.execute();
 		}catch (SQLException e) {
-			logger.log(Level.SEVERE, EXCEPTION);
-			logger.log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
 }
