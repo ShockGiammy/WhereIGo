@@ -94,7 +94,7 @@ public class BasicGui extends Application{
 	}
 	
 	public void showMouseKeys() {
-		changeImage(keys, "images/keysMouse.png");
+		changeImage(keys, "images/keysMouse.jpg");
 	}
 	
 	public void showMouseHome() {
@@ -114,7 +114,7 @@ public class BasicGui extends Application{
 	}
 	
 	public void showKeys() {
-		changeImage(keys, "images/keys.png");
+		changeImage(keys, "images/keys.jpg");
 	}
 	
 	public void showHome() {

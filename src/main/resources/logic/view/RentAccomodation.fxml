@@ -90,7 +90,7 @@
       </BorderPane>
    </top>
    <right>
-      <VBox prefHeight="690.0" prefWidth="468.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="660.0" prefWidth="470.0" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="48.0" prefWidth="474.0">
                <children>
@@ -146,9 +146,9 @@
       </VBox>
    </right>
    <center>
-      <Separator orientation="VERTICAL" prefHeight="690.0" prefWidth="20.0" BorderPane.alignment="CENTER" />
+      <Separator orientation="VERTICAL" prefHeight="660.0" prefWidth="20.0" BorderPane.alignment="CENTER" />
    </center>
    <left>
-      <ListView fx:id="accomodationList" prefHeight="690.0" prefWidth="518.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="accomodationList" prefHeight="660.0" prefWidth="520.0" BorderPane.alignment="CENTER" />
    </left>
 </BorderPane>
