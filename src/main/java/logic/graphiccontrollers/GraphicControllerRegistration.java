@@ -19,9 +19,8 @@ import logic.exceptions.DuplicateUsernameException;
 import logic.exceptions.GeneralErrorException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
-import logic.view.Window;
 
-public class GraphicControllerRegistration extends Window{
+public class GraphicControllerRegistration {
 	
 	@FXML private TextField name;
 	@FXML private TextField surname;
@@ -41,6 +40,7 @@ public class GraphicControllerRegistration extends Window{
 	private LoginController loginCtrl;
 	private ErrorPopup errLogin;
 	private File profileImage;
+	private BasicGui bgui;
 	
 	@FXML
 	public void initialize(){
@@ -52,6 +52,7 @@ public class GraphicControllerRegistration extends Window{
 		this.gender.setValue("Female");
 		this.typeOfUser.setValue("Traveler");
 		this.errLogin = new ErrorPopup();
+		this.bgui = new BasicGui();
 	}
 	
 	public void getName() {
@@ -98,8 +99,7 @@ public class GraphicControllerRegistration extends Window{
 				this.errLogin.displayLoginError("Inserire tutti i dati");
 			}
 			else {
-				BasicGui window = new BasicGui();
-				window.goHome(event);
+				bgui.goHome(event);
 			}
 		}catch(DuplicateUsernameException e) {
 			this.errLogin.displayLoginError("Questo username non è disponibile");
@@ -126,9 +126,7 @@ public class GraphicControllerRegistration extends Window{
     }
     
     public void backLogIn(MouseEvent event) {
-    	setScene("Login.fxml");
-    	loadScene();
-    	nextGuiOnClick(event);
+    	bgui.changeGUI(event, "Login.fxml");
     }
 }
 

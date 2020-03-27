@@ -68,11 +68,11 @@ public class BasicGui extends Application{
 	public static void loadScene() {
 		try {
 			loader = new FXMLLoader();
-			URL loc = Window.class.getResource(sample);
+			URL loc = BasicGui.class.getResource(sample);
 			loader.setLocation(loc);
 			Parent newSceneParent = loader.load();
 			scene = new Scene(newSceneParent);
-			scene.getStylesheets().add(Window.class.getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(BasicGui.class.getResource("application.css").toExternalForm());
 		}catch(IOException e) {
 			logger.log(Level.SEVERE, "Cannot load the scene\n", e);
 		}
