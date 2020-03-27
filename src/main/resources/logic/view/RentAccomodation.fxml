@@ -42,7 +42,7 @@
                         <Image url="@../../images/keysSelected.jpg" />
                      </image>
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="NONE" />
                      </cursor>
                   </ImageView>
                   <ImageView fx:id="chat" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goChat" onMouseEntered="#showMouseChat" onMouseExited="#showChat" pickOnBounds="true" preserveRatio="true">
@@ -83,7 +83,7 @@
          <left>
             <ImageView fitHeight="95.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../images/settings.png" />
+                  <Image url="@../../images/Logo.PNG" />
                </image>
             </ImageView>
          </left>

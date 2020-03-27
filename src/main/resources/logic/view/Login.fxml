@@ -34,13 +34,13 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Button fx:id="loginButton" layoutX="382.0" layoutY="463.0" mnemonicParsing="false" onKeyPressed="#sendMethod" onMouseClicked="#logInControl" prefHeight="69.0" prefWidth="130.0" style="-fx-background-color: #DE9F20;" text="Login">
+      <Button fx:id="loginButton" layoutX="382.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#logInControl" prefHeight="69.0" prefWidth="130.0" style="-fx-background-color: #DE9F20;" text="Login">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
       <TextField fx:id="usrname" layoutX="364.0" layoutY="280.0" onKeyTyped="#getUserNameControl" style="-fx-background-color: white;" />
-      <PasswordField fx:id="psw" layoutX="364.0" layoutY="368.0" onKeyTyped="#getPasswordControl" style="-fx-background-color: white;" />
+      <PasswordField fx:id="psw" layoutX="364.0" layoutY="368.0" onKeyPressed="#sendMethod" onKeyTyped="#getPasswordControl" style="-fx-background-color: white;" />
       <Text layoutX="281.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USER LOGIN">
          <font>
             <Font size="30.0" />

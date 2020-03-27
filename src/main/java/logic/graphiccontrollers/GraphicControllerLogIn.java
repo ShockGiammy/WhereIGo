@@ -47,9 +47,10 @@ public class GraphicControllerLogIn extends Window{
 		nextGuiOnClick(event);
 	}
 	
+	//da fixare per premere invio e cambiare schermata
     public void sendMethod(KeyEvent event){
         if (event.getCode() == KeyCode.ENTER) {
-            logInControl(null);
+        	logInControl(null);
         }
     }
 	

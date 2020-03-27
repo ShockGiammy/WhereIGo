@@ -95,9 +95,9 @@
             </ToolBar>
          </right>
          <left>
-            <ImageView fitHeight="95.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="95.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@WIGLOGO.png" />
+                  <Image url="@../../images/Logo.PNG" />
                </image>
             </ImageView>
          </left>
