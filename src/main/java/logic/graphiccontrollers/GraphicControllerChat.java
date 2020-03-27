@@ -18,7 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.ImageViewer;
-import logic.LoggedUser;
 import logic.controllers.ChatController;
 import logic.model.Message;
 import logic.model.User;
@@ -46,12 +45,10 @@ public class GraphicControllerChat extends BasicGui {
     private double pading = 5.0;
     private ImageViewer viewer;
     private Image pictureImage;
-    private LoggedUser logUser;
 
     public GraphicControllerChat() {
     	chatController = new ChatController(this);
-    	logUser = new LoggedUser();
-    	this.username = logUser.getUserName();
+    	this.username = logUsr.getUserName();
     	viewer = new ImageViewer();
     }
     
@@ -77,7 +74,7 @@ public class GraphicControllerChat extends BasicGui {
         	ImageView profileImage = new ImageView();
             profileImage.setFitHeight(32);
             profileImage.setFitWidth(32);
-        	profileImage.setImage(logUser.getImage());
+        	profileImage.setImage(logUsr.getImage());
             
             Label bl6 = new Label();
             bl6.setText(msg.getMsg());
@@ -180,6 +177,7 @@ public class GraphicControllerChat extends BasicGui {
 
     public void initialize() {
 
+    	this.userImage.setImage(this.logUsr.getImage());
         setUserList();
         
         borderPane.setOnMouseReleased(event ->

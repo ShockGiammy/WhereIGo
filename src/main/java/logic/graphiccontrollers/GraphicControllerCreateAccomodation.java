@@ -16,7 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import logic.ImageViewer;
-import logic.LoggedUser;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.ManageAnnouncementController;
 import logic.view.ErrorPopup;

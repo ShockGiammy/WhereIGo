@@ -25,14 +25,12 @@ public class GraphicControllerHomePage extends BasicGui{
 	@FXML private ListView<VBox> lwGroups;
 	private BookTravelControl bookTrav;
 	private ErrorPopup err;
-	private LoggedUser logUsr;
 	
 	public void initialize() {
 		this.travelBox = new ArrayList<>();
 		this.groupBox = new ArrayList<>();
 		this.bookTrav = new BookTravelControl();
 		this.err = new ErrorPopup();
-		this.logUsr = new LoggedUser();
 		this.userImage.setImage(this.logUsr.getImage());
 		setTravel();
 		setGroups();

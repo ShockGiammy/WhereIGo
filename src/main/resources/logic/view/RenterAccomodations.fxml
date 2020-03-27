@@ -57,12 +57,15 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="userImage" fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="userImage" fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
+                     <image>
+                        <Image url="@../../images/avatar.png" />
+                     </image>
                   </ImageView>
-                  <ImageView fx:id="exit" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#leaveApp" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="exit" fitHeight="53.0" fitWidth="55.0" onMouseClicked="#leaveApp" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/exit.png" />
                      </image>

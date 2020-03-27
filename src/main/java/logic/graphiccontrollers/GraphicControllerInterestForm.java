@@ -8,7 +8,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import logic.LoggedUser;
 import logic.beans.InterestsBean;
 import logic.beans.UserDataBean;
 import logic.controllers.InterestsController;
@@ -36,7 +35,6 @@ public class GraphicControllerInterestForm extends BasicGui{
 		this.questAnsw = new int[4];
 		this.intBean = new InterestsBean();
 		this.interCtrl = new InterestsController();
-		this.userImage.setImage(this.logUsr.getImage());
 		this.dataBean = new UserDataBean();
 		this.rbList1 = new ArrayList<>();
 		this.rbList2 = new ArrayList<>();

@@ -38,7 +38,7 @@ public class BasicGui extends Application{
 	private static final String RENTER = "Renter";
 	private static String sample;
 	private static Scene scene;
-	protected static Logger logger = Logger.getLogger("WIG");
+	private static Logger logger = Logger.getLogger("WIG");
 	protected LoggedUser logUsr;
 	
 	public BasicGui() {
@@ -119,6 +119,14 @@ public class BasicGui extends Application{
 	
 	public void showHome() {
 		changeImage(home, "images/home.png");
+	}
+	
+	public void showMouseExit() {
+		changeImage(exit, "images/exitMouse.png");
+	}
+	
+	public void showExit() {
+		changeImage(exit, "images/exit.png");
 	}
 
 	public void goHome(MouseEvent event) {

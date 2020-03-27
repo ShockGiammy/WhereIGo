@@ -57,6 +57,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	@FXML
 	public void initialize() {
 		controller = new RentAccomodationController();
+		this.userImage.setImage(logUsr.getImage());
 		List<RentAccomodationBean> listOfBean = controller.displayAnnouncement();
 		for (RentAccomodationBean bean : listOfBean) {
 			setDisplayInfo(bean);

@@ -23,6 +23,9 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
 	private ManageAnnouncementController controller;
 	private ImageViewer viewer;
 	
+	public void initialize() {
+		this.userImage.setImage(this.logUsr.getImage());
+	}
 	
 	public GraphicControllerRenterAccomodations() {
 		controller = new ManageAnnouncementController();
