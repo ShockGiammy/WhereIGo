@@ -243,4 +243,10 @@ public class GraphicControllerChat extends BasicGui {
     	exitChat();
     	super.goBookTravel(event);
     }
+    
+    @Override
+    public void leaveApp(MouseEvent event) {
+    	exitChat();
+    	super.leaveApp(event);
+    }
 }
