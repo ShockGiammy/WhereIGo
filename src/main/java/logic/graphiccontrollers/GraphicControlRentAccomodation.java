@@ -141,9 +141,9 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		houseDetail.setFitHeight(180);
 		houseDetail.setFitWidth(350);
 		houseDetail.setImage(viewer.convertToFxImage(bufImage));
-		GraphicControllerCreateAccomodation reference = new GraphicControllerCreateAccomodation();
-		reference.setServices(bean);
-		contactRenter.setVisible(true);
+		
+		
+		contactRenter.setVisible(true);		
 	}
 	
 	public void contactRenter(MouseEvent event) {

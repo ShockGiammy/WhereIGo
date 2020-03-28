@@ -68,6 +68,11 @@ public class ChatController {
 			alreadyActive = false;
 		}
 	}
+	
+	public void notConnected() {
+		alreadyActive = false;
+	}
+	
 	public void execute(String groupNameOrReceiver) {
 		alreadyActive = true;
 		String hostname = "localhost";

@@ -69,7 +69,7 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="exit" fitHeight="53.0" fitWidth="55.0" onMouseEntered="#showMouseExit" onMouseExited="#showExit" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="exit" fitHeight="53.0" fitWidth="55.0" onMouseClicked="#leaveApp" onMouseEntered="#showMouseExit" onMouseExited="#showExit" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/exit.png" />
                      </image>

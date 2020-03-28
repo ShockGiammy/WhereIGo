@@ -45,10 +45,10 @@ public class GraphicControllerLogIn {
 		bgui.changeGUI(event, "Registration.fxml");
 	}
 	
-	//da fixare per premere invio e cambiare schermata
     public void sendMethod(KeyEvent event){
         if (event.getCode() == KeyCode.ENTER) {
-        	logInControl(null);
+        	MouseEvent clickEvent = new MouseEvent(loginButton, loginButton, MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, null, 0, false, false, false, false, false, false, false, false, false, false, null);
+        	logInControl(clickEvent);
         }
     }
 	

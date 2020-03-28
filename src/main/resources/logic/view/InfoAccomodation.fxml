@@ -16,7 +16,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerCreateAccomodation">
    <top>
-      <BorderPane prefHeight="141.0" prefWidth="827.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="120.0" prefWidth="1040.0" BorderPane.alignment="CENTER">
          <right>
             <ToolBar prefHeight="68.0" prefWidth="270.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <items>
@@ -44,9 +44,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="userImage" fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/avatarSelected.png" />
+                        <Image url="@../../images/avatar.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -61,7 +61,7 @@
          <left>
             <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../images/star.png" />
+                  <Image url="@../../images/Logo.PNG" />
                </image>
             </ImageView>
          </left>

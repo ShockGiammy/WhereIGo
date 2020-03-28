@@ -23,6 +23,7 @@ public class Listener implements Runnable{
     protected Logger logger = Logger.getLogger("WIG");
 	private ChatController controller;
 	private int myConnection = 0;
+	private boolean close = false;
 
     public Listener(String hostname, int port, String username, ChatController controller, String usersGroup) {
         this.hostname = hostname;
@@ -46,23 +47,27 @@ public class Listener implements Runnable{
 	    }
         catch (IOException e) {
         	logger.info("Could not Connect");
+        	controller.notConnected();
+        	close = true;
         }
-        logger.info("Connection accepted " + socket.getInetAddress() + ":" + socket.getPort());
+        if (!close) {
+        	logger.info("Connection accepted " + socket.getInetAddress() + ":" + socket.getPort());
 
-        try {
-            connect();
-            logger.info("Sockets in and out ready!");
-            while (socket.isConnected()) {
-            	Message message = null;
-                message = (Message) input.readObject();
+        	try {
+        		connect();
+        		logger.info("Sockets in and out ready!");
+        		while (socket.isConnected()) {
+        			Message message = null;
+        			message = (Message) input.readObject();
 
-                if (message != null) {
-                    manageMessage(message);
-                }
-            }
-        }
-        catch (IOException | ClassNotFoundException e) {
-        	logger.info("Connection closed!");       
+        			if (message != null) {
+        				manageMessage(message);
+        			}
+        		}
+        	}
+        	catch (IOException | ClassNotFoundException e) {
+        		logger.info("Connection closed!");       
+        	}
         }
     }
     
