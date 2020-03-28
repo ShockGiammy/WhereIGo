@@ -130,9 +130,9 @@
       </BorderPane>
    </center>
    <top>
-      <AnchorPane prefHeight="120.0" prefWidth="1040.0" BorderPane.alignment="CENTER">
-         <children>
-            <ToolBar layoutX="286.0" layoutY="15.0" prefHeight="70.0" prefWidth="488.0" style="-fx-background-color: white;">
+      <BorderPane prefHeight="120.0" prefWidth="1040.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <right>
+            <ToolBar prefHeight="101.0" prefWidth="457.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <items>
                   <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" onMouseEntered="#showMouseHome" onMouseExited="#showHome" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -142,15 +142,15 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="bookTravel" disable="true" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goBookTravel" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bookTravel" fitHeight="58.0" fitWidth="58.0" onMouseEntered="#showMouseTravel" onMouseExited="#showTravel" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/bookTravelSelected.png" />
+                        <Image url="@../../images/bookTravel.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="keys" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goRent" onMouseEntered="#showMouseKeys" onMouseExited="#showKeys" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="keys" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goRent" onMouseEntered="#showMouseKeys" onMouseExited="#showKeys" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/keys.jpg" />
                      </image>
@@ -158,28 +158,31 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="chat" fitHeight="55.0" fitWidth="54.0" onMouseClicked="#goChat" onMouseEntered="#showMouseChat" onMouseExited="#showChat" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/chat.png" />
+                        <Image url="@../../images/chatSelected.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/star.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="settings" fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="userImage" fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/settings.png" />
+                        <Image url="@../../images/avatar.png" />
                      </image>
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="userImage" fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fx:id="exit" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#leaveApp" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="exit" fitHeight="53.0" fitWidth="55.0" onMouseClicked="#leaveApp" onMouseEntered="#showMouseExit" onMouseExited="#showExit" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/exit.png" />
                      </image>
@@ -189,13 +192,14 @@
                   </ImageView>
                </items>
             </ToolBar>
-            <ImageView fitHeight="75.0" fitWidth="200.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         </right>
+         <left>
+            <ImageView fitHeight="95.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../images/Logo.PNG" />
                </image>
             </ImageView>
-            <Separator layoutX="-7.0" layoutY="85.0" prefHeight="15.0" prefWidth="828.0" />
-         </children>
-      </AnchorPane>
+         </left>
+      </BorderPane>
    </top>
 </BorderPane>
