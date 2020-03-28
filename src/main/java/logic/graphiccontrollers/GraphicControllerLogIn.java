@@ -24,7 +24,8 @@ public class GraphicControllerLogIn {
 	private ErrorPopup errLogin;
 	private BasicGui bgui;
 	
-	public GraphicControllerLogIn() {
+	@FXML
+	public void initialize() {
 		this.logBean = new LogInBean();
 		this.loginCtrl = new LoginController();
 		this.usrBean = new UserDataBean();

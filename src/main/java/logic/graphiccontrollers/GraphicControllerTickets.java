@@ -36,6 +36,7 @@ public class GraphicControllerTickets extends BasicGui{
 	BookTravelControl bookTravCtrl;
 	ObservableList<UserTravelBean> travBeanList = FXCollections.observableArrayList();
 	
+	@FXML
 	public void initialize() {
 		this.bookNowGroup = new ToggleGroup();
 		this.rbList = new ArrayList<>();
@@ -84,5 +85,11 @@ public class GraphicControllerTickets extends BasicGui{
 				setCheckoutValues(travBean, dataBean, e);
 			}
 		}
+	}
+	
+	public void setCheckoutValues(UserTravelBean travBean, UserDataBean dataBean, MouseEvent e) {
+		GraphicControllerCheckOut controller = loader.getController();
+		controller.setInfo(travBean, dataBean);
+		nextGuiOnClick(e);
 	}
 }

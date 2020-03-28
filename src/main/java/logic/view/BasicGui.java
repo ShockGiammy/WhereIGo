@@ -168,24 +168,6 @@ public class BasicGui extends Application{
 	public void leaveApp(MouseEvent event) {
 		changeGUI(event, "Login.fxml");
 	}
-    
-    public void setLocationInfo(MouseEvent e, LocationBean bean) {
-		GraphicControllerLocationInfo controller = loader.getController();
-		controller.setInfo(bean);
-		nextGuiOnClick(e);
-	}
-	
-	public void setTicketsDats(List<UserTravelBean> bean, MouseEvent e) {
-		GraphicControllerTickets controller = loader.getController();
-		controller.setDatas(bean);
-		nextGuiOnClick(e);
-	}
-	
-	public void setCheckoutValues(UserTravelBean travBean, UserDataBean dataBean, MouseEvent e) {
-		GraphicControllerCheckOut controller = loader.getController();
-		controller.setInfo(travBean, dataBean);
-		nextGuiOnClick(e);
-	}
 	
 	public static void main(String[] args) {
 		setScene("Login.fxml");

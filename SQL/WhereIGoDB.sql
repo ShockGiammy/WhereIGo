@@ -29,8 +29,6 @@ create table TravelGroups
     travCity VARCHAR(45),
 	groupOwner VARCHAR(20) not null,
 	title VARCHAR(50) unique NOT NULL,
-    foreign key (travCity)
-			references Locations(city),
 	foreign key (groupOwner)
 			references Usr(username),
 	primary key(groupOwner, title)

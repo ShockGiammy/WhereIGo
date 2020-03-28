@@ -26,6 +26,7 @@ public class GraphicControllerHomePage extends BasicGui{
 	private BookTravelControl bookTrav;
 	private ErrorPopup err;
 	
+	@FXML
 	public void initialize() {
 		this.travelBox = new ArrayList<>();
 		this.groupBox = new ArrayList<>();

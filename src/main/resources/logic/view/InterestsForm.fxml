@@ -1,156 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerInterestForm">
-   <center>
-      <Pane prefHeight="900.0" prefWidth="900.0" style="-fx-background-color: white;">
-         <children>
-            <VBox fx:id="box1" layoutX="14.0" layoutY="108.0" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
-            <VBox fx:id="box2" layoutX="14.0" layoutY="257.0" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
-            <VBox fx:id="box3" layoutX="14.0" layoutY="412.0" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
-            <VBox fx:id="box4" layoutX="478.0" layoutY="108.0" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
-            <Button fx:id="submitForm" layoutX="613.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#evaluatePersonality" prefHeight="56.0" prefWidth="82.0" text="Submit form" />
-            <Text layoutX="336.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INTERESTS FORM">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Text>
-            <VBox layoutX="39.0" layoutY="108.0" prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Playing video-games with friends">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reading books">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doing sports">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Going for nature trips">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-               </children>
-            </VBox>
-            <VBox layoutX="39.0" layoutY="257.0" prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stay at home and watch films/tv series">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Go out with friends for a beer" wrappingWidth="254.4000358581543">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Go to the disco with friends">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Have dinner and then go to sleep">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-               </children>
-            </VBox>
-            <VBox layoutX="39.0" layoutY="412.0" prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="I like cooperation and team working">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="I prefer to work individually" wrappingWidth="254.4000358581543">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="I am so comptetitive and I want always to be right">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="In a team, I am the one who sleeps">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-               </children>
-            </VBox>
-            <VBox layoutX="504.0" layoutY="108.0" prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Perfectly organized">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quite good roganized" wrappingWidth="254.4000358581543">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Poorly organized">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Not organized at all">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-               </children>
-            </VBox>
-            <Text layoutX="14.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What do you like to do in yor free time?">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="14.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What do you prefer for your saturday night?">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="14.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Which sentence represent you better at work?">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="478.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you think you are a person : ">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-   </center>
    <top>
       <BorderPane prefHeight="120.0" prefWidth="1040.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <right>
-            <ToolBar prefHeight="101.0" prefWidth="457.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <ToolBar prefHeight="64.0" prefWidth="458.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <items>
                   <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" onMouseEntered="#showMouseHome" onMouseExited="#showHome" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -160,7 +26,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="bookTravel" fitHeight="58.0" fitWidth="58.0" onMouseEntered="#showMouseTravel" onMouseExited="#showTravel" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bookTravel" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goBookTravel" onMouseEntered="#showMouseTravel" onMouseExited="#showTravel" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/bookTravel.png" />
                      </image>
@@ -176,26 +42,15 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="chat" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goChat" onMouseEntered="#showMouseChat" onMouseExited="#showChat" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/chatSelected.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/star.png" />
+                        <Image url="@../../images/chat.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
                   <ImageView fx:id="userImage" fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/avatar.png" />
-                     </image>
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
@@ -212,12 +67,187 @@
             </ToolBar>
          </right>
          <left>
-            <ImageView fitHeight="95.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="90.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../images/Logo.PNG" />
                </image>
             </ImageView>
          </left>
+         <bottom>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="INTERESTS FORM" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+         </bottom>
       </BorderPane>
    </top>
+   <left>
+      <VBox prefHeight="560.0" prefWidth="422.0" spacing="30.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What do you like to do in yor free time?">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <HBox>
+                     <children>
+                        <VBox fx:id="box1" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
+                        <VBox prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Playing video-games with friends">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reading books">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doing sports">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Going for nature trips">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What do you prefer for your saturday night?">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <HBox>
+                     <children>
+                        <VBox fx:id="box2" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
+                        <VBox prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stay at home and watch films/tv series">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Go out with friends for a beer" wrappingWidth="254.4000358581543">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Go to the disco with friends">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Have dinner and then go to sleep">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Which sentence represent you better at work?">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <HBox>
+                     <children>
+                        <VBox fx:id="box3" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
+                        <VBox prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="I like cooperation and team working">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="I prefer to work individually" wrappingWidth="254.4000358581543">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="I am so comptetitive and I want always to be right">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="In a team, I am the one who sleeps">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets left="60.0" />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="560.0" prefWidth="651.0" spacing="20.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Do you think you are a person : ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <HBox>
+                     <children>
+                        <VBox fx:id="box4" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
+                        <VBox prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Perfectly organized">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quite good roganized" wrappingWidth="254.4000358581543">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Poorly organized">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Not organized at all">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button fx:id="submitForm" mnemonicParsing="false" onMouseClicked="#evaluatePersonality" prefHeight="56.0" prefWidth="98.0" text="Submit form" />
+         </children>
+      </VBox>
+   </center>
 </BorderPane>

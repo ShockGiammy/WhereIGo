@@ -1,138 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerCheckOut">
-   <center>
-      <BorderPane prefHeight="300.0" prefWidth="300.0" BorderPane.alignment="CENTER">
-         <top>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TRAVEL CHECKOUT" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="35.0" />
-               </font>
-            </Text>
-         </top>
-         <center>
-            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox layoutX="305.0" layoutY="1.0" prefHeight="218.0" prefWidth="159.0" spacing="10.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Id" wrappingWidth="159.1999969482422">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departure airport" wrappingWidth="159.1999969482422">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Arrival airport" wrappingWidth="159.1999969482422">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departure day" wrappingWidth="159.1999969482422">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Return day" wrappingWidth="159.1999969482422">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="cost" wrappingWidth="159.1999969482422">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </VBox>
-                  <VBox layoutX="509.0" layoutY="1.0" prefHeight="218.0" prefWidth="159.0" spacing="10.0">
-                     <children>
-                        <Text fx:id="id" strokeType="OUTSIDE" strokeWidth="0.0" text="identif" wrappingWidth="159.1999969482422">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="departure" strokeType="OUTSIDE" strokeWidth="0.0" text="depCity" wrappingWidth="159.1999969482422">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="arrive" strokeType="OUTSIDE" strokeWidth="0.0" text="arrCity" wrappingWidth="159.1999969482422">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="depDay" strokeType="OUTSIDE" strokeWidth="0.0" text="depDay" wrappingWidth="159.1999969482422">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="retDay" strokeType="OUTSIDE" strokeWidth="0.0" text="retDay" wrappingWidth="159.1999969482422">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="cost" strokeType="OUTSIDE" strokeWidth="0.0" text="money" wrappingWidth="159.1999969482422">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </VBox>
-                  <Button fx:id="confirmTrav" layoutX="745.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#confirmTrav" prefHeight="49.0" prefWidth="91.0" text="Confirm travel" />
-                  <Pane layoutX="292.0" layoutY="263.0" prefHeight="218.0" prefWidth="345.0">
-                     <children>
-                        <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE A TRAVEL GROUP">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="3.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="group name :">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="3.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="group admin : ">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="3.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="group destination :">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <TextField fx:id="groupName" layoutX="182.0" layoutY="37.0" />
-                        <TextField fx:id="groupAdmin" layoutX="182.0" layoutY="86.0" />
-                        <TextField fx:id="groupDest" layoutX="182.0" layoutY="132.0" />
-                        <Button fx:id="createGroup" layoutX="209.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#saveNewGroup" prefHeight="39.0" prefWidth="94.0" text="Create group" />
-                     </children>
-                  </Pane>
-               </children>
-            </Pane>
-         </center>
-      </BorderPane>
-   </center>
    <top>
       <BorderPane prefHeight="120.0" prefWidth="1040.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <right>
-            <ToolBar prefHeight="101.0" prefWidth="457.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <ToolBar prefHeight="62.0" prefWidth="458.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <items>
                   <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" onMouseEntered="#showMouseHome" onMouseExited="#showHome" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -142,9 +27,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="bookTravel" fitHeight="58.0" fitWidth="58.0" onMouseEntered="#showMouseTravel" onMouseExited="#showTravel" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bookTravel" disable="true" fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/bookTravel.png" />
+                        <Image url="@../../images/bookTravelSelected.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -158,26 +43,15 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="chat" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goChat" onMouseEntered="#showMouseChat" onMouseExited="#showChat" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/chatSelected.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/star.png" />
+                        <Image url="@../../images/chat.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
                   <ImageView fx:id="userImage" fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/avatar.png" />
-                     </image>
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
@@ -200,6 +74,142 @@
                </image>
             </ImageView>
          </left>
+         <bottom>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TRAVEL CHECKOUT" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+         </bottom>
       </BorderPane>
    </top>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <VBox prefHeight="499.0" prefWidth="666.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="282.0" prefWidth="218.0" spacing="25.0">
+                     <children>
+                        <VBox prefHeight="218.0" prefWidth="159.0" spacing="10.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Id" wrappingWidth="159.1999969482422">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departure airport" wrappingWidth="159.1999969482422">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Arrival airport" wrappingWidth="159.1999969482422">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departure day" wrappingWidth="159.1999969482422">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Return day" wrappingWidth="159.1999969482422">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="cost" wrappingWidth="159.1999969482422">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="218.0" prefWidth="159.0" spacing="10.0">
+                           <children>
+                              <Text fx:id="id" strokeType="OUTSIDE" strokeWidth="0.0" text="identif" wrappingWidth="159.1999969482422">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="departure" strokeType="OUTSIDE" strokeWidth="0.0" text="depCity" wrappingWidth="159.1999969482422">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="arrive" strokeType="OUTSIDE" strokeWidth="0.0" text="arrCity" wrappingWidth="159.1999969482422">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="depDay" strokeType="OUTSIDE" strokeWidth="0.0" text="depDay" wrappingWidth="159.1999969482422">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="retDay" strokeType="OUTSIDE" strokeWidth="0.0" text="retDay" wrappingWidth="159.1999969482422">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cost" strokeType="OUTSIDE" strokeWidth="0.0" text="money" wrappingWidth="159.1999969482422">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <Button fx:id="confirmTrav" mnemonicParsing="false" onMouseClicked="#confirmTrav" prefHeight="49.0" prefWidth="91.0" text="Confirm travel" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="229.0" prefWidth="354.0" spacing="15.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE A TRAVEL GROUP">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <HBox prefHeight="31.0" prefWidth="332.0" spacing="10.0" />
+                        <HBox prefHeight="97.0" prefWidth="383.0">
+                           <children>
+                              <VBox prefHeight="97.0" prefWidth="170.0" spacing="5.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="group name :">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="group admin : ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="group destination :">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="97.0" prefWidth="210.0" spacing="7.0">
+                                 <children>
+                                    <TextField fx:id="groupName" prefHeight="26.0" prefWidth="210.0" />
+                                    <TextField fx:id="groupAdmin" prefHeight="26.0" prefWidth="210.0" />
+                                    <TextField fx:id="groupDest" prefHeight="26.0" prefWidth="210.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="31.0" prefWidth="332.0" spacing="10.0" />
+                        <HBox prefHeight="31.0" prefWidth="332.0" spacing="10.0" />
+                        <Button fx:id="createGroup" mnemonicParsing="false" onMouseClicked="#saveNewGroup" prefHeight="79.0" prefWidth="91.0" text="Create group" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </center>
+         <BorderPane.margin>
+            <Insets left="300.0" />
+         </BorderPane.margin>
+      </BorderPane>
+   </center>
 </BorderPane>

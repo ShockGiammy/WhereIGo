@@ -31,6 +31,7 @@ public class GraphicControllerInterestForm extends BasicGui{
 	private UserDataBean dataBean;
 	private ErrorPopup errPop;
 	
+	@FXML
 	public void initialize() {
 		this.questAnsw = new int[4];
 		this.intBean = new InterestsBean();
@@ -154,11 +155,12 @@ public class GraphicControllerInterestForm extends BasicGui{
 	public void evaluatePersonality(MouseEvent e){
 		if(this.questAnsw[0] == 0 || this.questAnsw[1] == 0 || this.questAnsw[2] == 0 || this.questAnsw[3] == 0) {
 			errPop.displayLoginError("Please, answare to all questions");
-			return;
 		}
-		this.dataBean.setUserName(this.logUsr.getUserName());
-		this.intBean.setAnswares(this.questAnsw);
-		this.interCtrl.evaluateInterests(this.intBean);
-		goHome(e);
+		else {
+			this.dataBean.setUserName(this.logUsr.getUserName());
+			this.intBean.setAnswares(this.questAnsw);
+			this.interCtrl.evaluateInterests(this.intBean);
+			goHome(e);
+		}
 	}
 }

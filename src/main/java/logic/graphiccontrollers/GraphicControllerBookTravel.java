@@ -36,6 +36,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 	@FXML private List<HBox> hboxList;
 	@FXML private List<VBox> vboxlist;
 	
+	@FXML
 	public void initialize() {
 		this.travBeanArray = new ArrayList<>();
 		this.hboxList = new ArrayList<>();
@@ -53,17 +54,18 @@ public class GraphicControllerBookTravel extends BasicGui{
 	public void bookMyTravelControl(MouseEvent event) {
 		if(this.travBean.getFirstDay() == null || this.travBean.getLastDay() == null || this.travBean.getCityOfDep() == null || this.travBean.getCityOfArr() == null) {
 			this.popUp.displayLoginError("Please, insert all datas");
-			return;
-		}
-		int i;
-		i = this.bookTravCtrl.retriveTravelSolutions(travBean, travBeanArray);
-		if(i == -1) {
-			popUp.displayLoginError("No travel available at this moment: either you have already bought the same flight or there are no solutions for these datas");
 		}
 		else {
-			setScene("TicketSolutions.fxml");
-			loadScene();
-			setTicketsDats(this.travBeanArray, event);
+			int i;
+			i = this.bookTravCtrl.retriveTravelSolutions(travBean, travBeanArray);
+			if(i == -1) {
+			popUp.displayLoginError("No travel available at this moment: either you have already bought the same flight or there are no solutions for these datas");
+			}
+			else {
+				setScene("TicketSolutions.fxml");
+				loadScene();
+				setTicketsDatas(this.travBeanArray, event);
+			}
 		}
 	}
 
@@ -166,7 +168,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 				else {
 					setScene("TicketSolutions.fxml");
 					loadScene();
-					setTicketsDats(this.travBeanArray, e);
+					setTicketsDatas(this.travBeanArray, e);
 				}
 			}
 		}
@@ -188,5 +190,17 @@ public class GraphicControllerBookTravel extends BasicGui{
 				}
 			}
 		}
+	}
+	
+	public void setTicketsDatas(List<UserTravelBean> bean, MouseEvent e) {
+		GraphicControllerTickets controller = loader.getController();
+		controller.setDatas(bean);
+		nextGuiOnClick(e);
+	}
+	
+	public void setLocationInfo(MouseEvent e, LocationBean bean) {
+		GraphicControllerLocationInfo controller = loader.getController();
+		controller.setInfo(bean);
+		nextGuiOnClick(e);
 	}
 }

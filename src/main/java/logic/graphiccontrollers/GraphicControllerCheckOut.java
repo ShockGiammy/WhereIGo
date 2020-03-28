@@ -29,7 +29,8 @@ public class GraphicControllerCheckOut extends BasicGui{
 	private UserDataBean bean;
 	private UserTravelBean travbean;
 	
-	public GraphicControllerCheckOut() {
+	@FXML
+	public void initialize() {
 		this.bookTravCtrl = new BookTravelControl();
 		errPop = new ErrorPopup();
 		bean = new UserDataBean();
@@ -55,18 +56,19 @@ public class GraphicControllerCheckOut extends BasicGui{
 	public void saveNewGroup() {
 		if(this.groupName.getText() == null) {
 			errPop.displayLoginError("Inserisci il nome del gruppo");
-			return;
-		}
-		GroupBean grpBean = new GroupBean();
-		grpBean.setGroupTitle(this.groupName.getText());
-		grpBean.setGroupOwner(this.groupAdmin.getText());
-		grpBean.setGroupDestination(this.groupDest.getText());
-		int ret = this.bookTravCtrl.saveGroup(grpBean);
-		if(ret != -1) {
-			errPop.displayLoginError("Gruppo correttamente salvato");
 		}
 		else {
-			errPop.displayLoginError("Errore nel salvataggio del gruppo");
+			GroupBean grpBean = new GroupBean();
+			grpBean.setGroupTitle(this.groupName.getText());
+			grpBean.setGroupOwner(this.groupAdmin.getText());
+			grpBean.setGroupDestination(this.groupDest.getText());
+			int ret = this.bookTravCtrl.saveGroup(grpBean);
+			if(ret != -1) {
+				errPop.displayLoginError("Gruppo correttamente salvato");
+			}
+			else {
+				errPop.displayLoginError("Errore nel salvataggio del gruppo");
+			}
 		}
 	}
 	

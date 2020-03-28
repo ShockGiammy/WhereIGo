@@ -85,28 +85,29 @@ public class GraphicControllerRegistration {
 	}
 	
 	public void registerNowControl(MouseEvent event) {
-		try{
+		try {
 			int ret;
 			getImage();
 			if(this.dataBean.getFileImage() == null) {
 				this.errLogin.displayLoginError("Inserire immagine");
-				return;
-			}
-			this.dataBean.setType(this.typeOfUser.getValue());
-			this.dataBean.setGender(this.gender.getValue());
-			ret = this.loginCtrl.insertNewUserControl(this.dataBean);
-			if(ret == 0) {
-				this.errLogin.displayLoginError("Inserire tutti i dati");
 			}
 			else {
-				bgui.goHome(event);
+				this.dataBean.setType(this.typeOfUser.getValue());
+				this.dataBean.setGender(this.gender.getValue());
+				ret = this.loginCtrl.insertNewUserControl(this.dataBean);
+				if(ret == 0) {
+					this.errLogin.displayLoginError("Inserire tutti i dati");
+				}
+				else {
+					bgui.goHome(event);
+				}
 			}
-		}catch(DuplicateUsernameException e) {
-			this.errLogin.displayLoginError("Questo username non è disponibile");
-		}catch(GeneralErrorException e) {
-			this.errLogin.displayLoginError("An error occurred. Please, restart the application");
-			System.exit(-1);
-		}
+			}catch(DuplicateUsernameException e) {
+				this.errLogin.displayLoginError("Questo username non è disponibile");
+			}catch(GeneralErrorException e) {
+				this.errLogin.displayLoginError("An error occurred. Please, restart the application");
+				System.exit(-1);
+			}
 	}
 	
     public void insertImage() {

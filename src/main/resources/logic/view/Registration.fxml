@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -7,72 +8,115 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerRegistration">
+<BorderPane prefHeight="680.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerRegistration">
+   <top>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRATION FORM" wrappingWidth="463.6171875" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+   </top>
    <center>
-      <Pane prefHeight="800.0" prefWidth="850.0">
+      <VBox prefHeight="551.0" prefWidth="546.0" spacing="22.0" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="41.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <TextField fx:id="surname" layoutX="155.0" layoutY="265.0" onKeyTyped="#getSurname" prefHeight="30.0" prefWidth="221.0" />
-            <Text layoutX="41.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="47.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <DatePicker fx:id="dateOfBirth" layoutX="157.0" layoutY="333.0" onAction="#getDateOfBirth" prefHeight="30.0" prefWidth="230.0" />
-            <Text layoutX="41.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <TextField fx:id="userName" layoutX="543.0" layoutY="196.0" onKeyTyped="#getUserName" prefHeight="30.0" prefWidth="221.0" />
-            <Text layoutX="434.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="434.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Button fx:id="registerNow" layoutX="571.0" layoutY="448.0" mnemonicParsing="false" onMouseClicked="#registerNowControl" prefHeight="59.0" prefWidth="101.0" text="Register now" />
-            <Text layoutX="193.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRATION FORM">
-               <font>
-                  <Font size="48.0" />
-               </font>
-            </Text>
-            <TextField fx:id="name" layoutX="155.0" layoutY="196.0" onKeyTyped="#getName" prefHeight="30.0" prefWidth="221.0" />
-            <PasswordField fx:id="password" layoutX="543.0" layoutY="267.0" onKeyTyped="#getPassword" prefHeight="24.0" prefWidth="222.0" />
-            <Text layoutX="434.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of user">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <ChoiceBox fx:id="gender" layoutX="161.0" layoutY="411.0" prefHeight="26.0" prefWidth="222.0" />
-            <ChoiceBox fx:id="typeOfUser" layoutX="552.0" layoutY="335.0" prefHeight="26.0" prefWidth="222.0" />
-            <Text layoutX="47.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image Profile">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Button fx:id="addPhoto" layoutX="180.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#insertImage" text="Select an Image" />
-            <ImageView fx:id="profile" fitHeight="191.0" fitWidth="209.0" layoutX="90.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="back" layoutX="713.0" layoutY="449.0" mnemonicParsing="false" onMouseClicked="#backLogIn" prefHeight="59.0" prefWidth="101.0" text="Back" />
+            <HBox prefHeight="34.0" prefWidth="485.0" spacing="30.0">
+               <children>
+                  <HBox prefHeight="31.0" prefWidth="244.0" spacing="10.0" />
+                  <HBox prefHeight="31.0" prefWidth="244.0" spacing="10.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="197.0" prefWidth="624.0" spacing="50.0">
+               <children>
+                  <HBox prefHeight="302.0" prefWidth="299.0" spacing="10.0">
+                     <children>
+                        <VBox prefHeight="114.0" prefWidth="102.0" spacing="5.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="302.0" prefWidth="160.0" spacing="3.0">
+                           <children>
+                              <TextField fx:id="name" onKeyTyped="#getName" prefHeight="26.0" prefWidth="160.0" />
+                              <TextField fx:id="surname" onKeyTyped="#getSurname" prefHeight="25.0" prefWidth="160.0" />
+                              <DatePicker fx:id="dateOfBirth" onAction="#getDateOfBirth" prefHeight="25.0" prefWidth="160.0" />
+                              <ChoiceBox fx:id="gender" prefHeight="25.0" prefWidth="160.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="114.0" prefWidth="275.0" spacing="10.0">
+                     <children>
+                        <VBox prefHeight="114.0" prefWidth="106.0" spacing="5.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="85.53656005859375">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type of user">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Image Profile">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="160.0" spacing="3.0">
+                           <children>
+                              <TextField fx:id="userName" onKeyTyped="#getUserName" prefHeight="25.0" prefWidth="160.0" />
+                              <PasswordField fx:id="password" onKeyTyped="#getPassword" prefHeight="25.0" prefWidth="160.0" />
+                              <ChoiceBox fx:id="typeOfUser" prefHeight="25.0" prefWidth="160.0" />
+                              <Button fx:id="addPhoto" mnemonicParsing="false" onMouseClicked="#insertImage" text="Select an Image" />
+                              <ImageView fx:id="profile" fitHeight="91.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="62.0" prefWidth="236.0" spacing="30.0">
+               <children>
+                  <Button fx:id="registerNow" mnemonicParsing="false" onMouseClicked="#registerNowControl" prefHeight="59.0" prefWidth="101.0" text="Register now" />
+                  <Button fx:id="back" mnemonicParsing="false" onMouseClicked="#backLogIn" prefHeight="59.0" prefWidth="101.0" text="Back" />
+               </children>
+            </HBox>
          </children>
-      </Pane>
+         <BorderPane.margin>
+            <Insets left="100.0" />
+         </BorderPane.margin>
+      </VBox>
    </center>
 </BorderPane>
