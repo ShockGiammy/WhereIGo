@@ -118,6 +118,7 @@ public class GraphicControllerInterestForm extends BasicGui{
 		}
 	}
 
+	@SuppressWarnings("exports")
 	public void setGroup(VBox vbox, List<RadioButton> list, ToggleGroup toggle, int n, int who) {
 		int i;
 		for(i = 0; i < n; i++) {

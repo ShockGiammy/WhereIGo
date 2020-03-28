@@ -6,7 +6,6 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -41,10 +40,14 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	@FXML private TextField squareMetres;
 	@FXML private TextField renter;
 	@FXML private ImageView houseDetail;
-	@FXML private CheckBox garden;
-	@FXML private CheckBox wifi;
-	@FXML private CheckBox bathroom;
-	@FXML private CheckBox kitchen;
+	@FXML private Text garden;
+	@FXML private Text wifi;
+	@FXML private Text bathroom;
+	@FXML private Text kitchen;
+	@FXML private Text gardenText;
+	@FXML private Text wifiText;
+	@FXML private Text bathroomText;
+	@FXML private Text kitchenText;
 	@FXML private Button contactRenter;
 	@FXML private TextField rating;
 	
@@ -142,8 +145,50 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		houseDetail.setFitWidth(350);
 		houseDetail.setImage(viewer.convertToFxImage(bufImage));
 		
+		setServices(bean);
 		
 		contactRenter.setVisible(true);		
+	}
+	
+	public void setServices(RentAccomodationBean bean) {
+		
+    	garden.setVisible(true);
+    	gardenText.setVisible(true);
+    	wifi.setVisible(true);
+    	wifiText.setVisible(true);
+    	bathroom.setVisible(true);
+    	bathroomText.setVisible(true);
+    	kitchen.setVisible(true);
+    	kitchenText.setVisible(true);
+    	byte[] list = bean.getServices();
+    	if (bean.getServices() != null) {
+    		for (int i = 0; i <= 3; i++) {
+    			if (list[0] == 1) {
+    				garden.setText("SI ");
+    			}
+    			else {
+    				garden.setText("NO");
+    			}
+    			if (list[1] == 1) {
+    				wifi.setText("SI ");
+    			}
+    			else {
+    				wifi.setText("NO");
+    			}
+    			if (list[2] == 1) {
+    				bathroom.setText("SI ");
+    			}
+    			else {
+    				bathroom.setText("NO");
+    			}
+    			if (list[3] == 1) {
+    				kitchen.setText("SI ");
+    			}
+    			else {
+    				kitchen.setText("NO");
+    			}
+    		}
+		}
 	}
 	
 	public void contactRenter(MouseEvent event) {

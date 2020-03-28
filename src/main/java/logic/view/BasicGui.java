@@ -2,7 +2,6 @@ package logic.view;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,12 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import logic.LoggedUser;
-import logic.beans.LocationBean;
-import logic.beans.UserDataBean;
-import logic.beans.UserTravelBean;
-import logic.graphiccontrollers.GraphicControllerCheckOut;
-import logic.graphiccontrollers.GraphicControllerLocationInfo;
-import logic.graphiccontrollers.GraphicControllerTickets;
 
 public class BasicGui extends Application{
 	
@@ -35,7 +28,6 @@ public class BasicGui extends Application{
 	@FXML protected ImageView exit;
 	
 	protected static FXMLLoader loader = new FXMLLoader();
-	private static final String RENTER = "Renter";
 	private static String sample;
 	private static Scene scene;
 	private static Logger logger = Logger.getLogger("WIG");
@@ -130,38 +122,46 @@ public class BasicGui extends Application{
 	}
 
 	public void goHome(MouseEvent event) {
-    	if (logUsr.getUserType().equals(RENTER)) {
-    		changeGUI(event, "RenterHomePage.fxml");
-    	}
-    	else {
-    		changeGUI(event, "HomePage.fxml");
+		switch (logUsr.getUserType()) {
+			case RENTER:
+				changeGUI(event, "RenterHomePage.fxml");
+				break;
+			case TRAVELER:
+				changeGUI(event, "HomePage.fxml");
+				break;
     	}
     }
     
     public void goRent(MouseEvent event) {
-    	if (logUsr.getUserType().equals(RENTER)) {
-    		changeGUI(event, "RenterAccomodations.fxml");
-    	}
-    	else {
-    		changeGUI(event, "RentAccomodation.fxml");
+    	switch (logUsr.getUserType()) {
+			case RENTER:
+				changeGUI(event, "RenterAccomodations.fxml");
+				break;
+			case TRAVELER:
+				changeGUI(event, "RentAccomodation.fxml");
+				break;
     	}
     }
     
     public void goBookTravel(MouseEvent event) {
-    	if (logUsr.getUserType().equals(RENTER)) {
-    		logger.info("method not accessible");
-    	}
-    	else {
-    		changeGUI(event, "BookTravel.fxml");
+    	switch (logUsr.getUserType()) {
+			case RENTER:
+				logger.info("method not accessible");
+				break;
+			case TRAVELER:
+				changeGUI(event, "BookTravel.fxml");
+				break;
     	}
     }
     
     public void goChat(MouseEvent event) {
-    	if (logUsr.getUserType().equals(RENTER)) {
-    		changeGUI(event, "ChatViewRenter.fxml");
-    	}
-    	else {
-    		changeGUI(event, "ChatView.fxml");
+    	switch (logUsr.getUserType()) {
+			case RENTER:
+				changeGUI(event, "ChatViewRenter.fxml");
+				break;
+			case TRAVELER:
+				changeGUI(event, "ChatView.fxml");
+				break;
     	}
     }
     

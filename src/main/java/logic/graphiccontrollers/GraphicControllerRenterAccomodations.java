@@ -55,6 +55,7 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
             	Text typeValue = new Text();
             	typeValue.setText(bean.getType());
             	Text city = new Text();
+            	city.underlineProperty();
             	city.setText("  City  ");
             	Text cityValue = new Text();
             	cityValue.setText(bean.getCity());

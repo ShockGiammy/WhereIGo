@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControlRentAccomodation">
    <top>
@@ -90,53 +91,106 @@
       </BorderPane>
    </top>
    <right>
-      <VBox prefHeight="660.0" prefWidth="470.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="560.0" prefWidth="485.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="48.0" prefWidth="474.0">
+            <HBox prefHeight="45.0" prefWidth="350.0">
                <children>
-                  <TextField fx:id="address" editable="false" prefHeight="25.0" prefWidth="184.0" visible="false" />
-                  <TextField fx:id="cityDetail" editable="false" prefHeight="25.0" prefWidth="170.0" visible="false" />
+                  <TextField fx:id="address" editable="false" prefHeight="25.0" prefWidth="184.0" visible="false">
+                     <padding>
+                        <Insets left="20.0" top="10.0" />
+                     </padding></TextField>
+                  <TextField fx:id="cityDetail" editable="false" prefHeight="25.0" prefWidth="170.0" visible="false">
+                     <padding>
+                        <Insets left="20.0" top="10.0" />
+                     </padding></TextField>
                </children>
             </HBox>
             <ImageView fx:id="houseDetail" fitHeight="224.0" fitWidth="390.0" pickOnBounds="true" preserveRatio="true" />
-            <TextArea fx:id="description" editable="false" prefHeight="97.0" prefWidth="299.0" visible="false" />
-            <HBox prefHeight="64.0" prefWidth="353.0">
+            <TextArea fx:id="description" editable="false" prefHeight="80.0" prefWidth="350.0" visible="false" />
+            <HBox prefHeight="45.0" prefWidth="350.0">
                <children>
-                  <TextField fx:id="type" editable="false" visible="false" />
+                  <TextField fx:id="type" editable="false" visible="false">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding></TextField>
                   <TextField fx:id="squareMetres" editable="false" prefHeight="25.0" prefWidth="57.0" visible="false" />
                   <TextField fx:id="bedsDetail" editable="false" prefHeight="25.0" prefWidth="57.0" visible="false" />
                   <TextField editable="false" prefHeight="25.0" prefWidth="149.0" visible="false" />
                </children>
             </HBox>
-            <HBox prefHeight="45.0" prefWidth="474.0">
+            <HBox prefHeight="45.0" prefWidth="350.0">
                <children>
-                  <CheckBox fx:id="garden" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Garden" visible="false">
+                  <Text fx:id="gardenText" strokeType="OUTSIDE" strokeWidth="0.0" text="Garden    " visible="false">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="16.0" />
                      </font>
-                  </CheckBox>
-                  <CheckBox fx:id="wifi" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Wifi" visible="false">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="garden" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="16.0" />
                      </font>
-                  </CheckBox>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="wifiText" strokeType="OUTSIDE" strokeWidth="0.0" text="Wifi      " visible="false">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="wifi" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
                </children>
             </HBox>
-            <HBox prefHeight="50.0" prefWidth="474.0">
+            <HBox prefHeight="45.0" prefWidth="350.0">
                <children>
-                  <CheckBox fx:id="kitchen" mnemonicParsing="false" prefHeight="35.0" prefWidth="115.0" text="Kitchen" visible="false">
+                  <Text fx:id="bathroomText" strokeType="OUTSIDE" strokeWidth="0.0" text="Bathroom" visible="false">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="16.0" />
                      </font>
-                  </CheckBox>
-                  <CheckBox fx:id="bathroom" mnemonicParsing="false" prefHeight="35.0" prefWidth="139.0" text="Bathroom inside" visible="false">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="bathroom" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="16.0" />
                      </font>
-                  </CheckBox>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="kitchenText" strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen" visible="false">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="kitchen" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
                </children>
             </HBox>
-            <HBox prefHeight="95.0" prefWidth="374.0">
+            <HBox prefHeight="80.0" prefWidth="350.0">
                <children>
                   <TextField fx:id="renter" editable="false" visible="false" />
                   <Button fx:id="contactRenter" mnemonicParsing="false" onMouseClicked="#contactRenter" prefHeight="33.0" prefWidth="100.0" text="Contact Renter" visible="false" />
@@ -146,9 +200,9 @@
       </VBox>
    </right>
    <center>
-      <Separator orientation="VERTICAL" prefHeight="660.0" prefWidth="20.0" BorderPane.alignment="CENTER" />
+      <Separator orientation="VERTICAL" prefHeight="560.0" prefWidth="20.0" BorderPane.alignment="CENTER" />
    </center>
    <left>
-      <ListView fx:id="accomodationList" prefHeight="660.0" prefWidth="520.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="accomodationList" prefHeight="560.0" prefWidth="540.0" BorderPane.alignment="CENTER" />
    </left>
 </BorderPane>

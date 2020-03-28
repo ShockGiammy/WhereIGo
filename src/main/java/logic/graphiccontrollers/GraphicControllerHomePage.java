@@ -45,15 +45,17 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	public void postRentAnnouncementControl(MouseEvent event) {
 		LoggedUser logUser = new LoggedUser();
-		if (logUser.getUserType().equals("Renter")) {
-			setScene("RenterAccomodations.fxml");
-			loadScene();
-			nextGuiOnClick(event);
-		}
-		else {
-			setScene("RentAccomodation.fxml");
-			loadScene();
-			nextGuiOnClick(event);
+		switch (logUser.getUserType()) {
+			case RENTER:
+				setScene("RenterAccomodations.fxml");
+				loadScene();
+				nextGuiOnClick(event);
+				break;
+			case TRAVELER:
+				setScene("RentAccomodation.fxml");
+				loadScene();
+				nextGuiOnClick(event);
+				break;
 		}
 	}
 	

@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 public class LoggedUser {
 	private static String username;
 	private static String personality;
-	private static String typeOfUser;
+	private static UserType typeOfUser;
 	private static Image proPic;
 	
 	public static void setUserName(String usrName) {
@@ -17,7 +17,15 @@ public class LoggedUser {
 	}
 	
 	public static void setType(String type) {
-		typeOfUser = type;
+		if (type.equals("Renter")) {
+			typeOfUser = UserType.RENTER;
+		}
+		else if (type.equals("Traveler")) {
+			typeOfUser = UserType.TRAVELER;
+		}
+		else {
+			System.out.println("attento!");
+		}
 	}
 	
 	public static void setImage(Image image) {
@@ -32,7 +40,7 @@ public class LoggedUser {
 		return personality;
 	}
 	
-	public String getUserType() {
+	public UserType getUserType() {
 		return typeOfUser;
 	}
 	
