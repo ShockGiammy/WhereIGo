@@ -1,5 +1,4 @@
 package logic.dao;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +19,9 @@ public class LocationDao {
 			getLocations(statement, locBean);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Error while retriving location", e);
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 	}
 	
@@ -44,6 +46,9 @@ public class LocationDao {
 			retriveSuggestedLocations(statement, loc);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException on fetchin locations\n", e);
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 		return loc;
 	}

@@ -70,46 +70,43 @@ public class GraphicControllerBookTravel extends BasicGui{
 	}
 
 	public void setGroups() {
-		List<GroupBean> grpList = new ArrayList<>();
-		int j;
-		int i;
-		this.bookTravCtrl.getGroupsControl(grpList);
-		List<GroupBean> usrGroups = new ArrayList<>();
-		this.bookTravCtrl.getParticipateGroups(usrGroups);
-		for(i = 0; i < grpList.size(); i++) {
-			for(j = 0; j < usrGroups.size(); j++) {
-				if(grpList.get(i).getGroupOwner().equalsIgnoreCase(usrGroups.get(j).getGroupOwner()) && grpList.get(i).getGroupDestination().equalsIgnoreCase(usrGroups.get(j).getGroupDestination()) && grpList.get(i).getGroupTitle().equalsIgnoreCase(usrGroups.get(j).getGroupTitle())) {
-					grpList.remove(i);
-				}
+		if(this.logUsr.getPersonality() != null) {
+			List<GroupBean> grpList = new ArrayList<>();
+			int j;
+			this.bookTravCtrl.getGroupsControl(grpList);
+			for(j = 0; j < grpList.size(); j++) {
+				VBox vbox = new VBox(10);
+				Text title = new Text(grpList.get(j).getGroupTitle());
+				Text owner = new Text(grpList.get(j).getGroupOwner());
+				Text location = new Text(grpList.get(j).getGroupDestination());
+				Button join = new Button("join group");
+				join.setOnMouseClicked(this::joinTheGroup);
+				vbox.getChildren().addAll(title, owner, location, join);
+				this.vboxlist.add(vbox);
+				this.groupsView.getItems().add(vbox);
 			}
-		}
-		for(j = 0; j < grpList.size(); j++) {
-			VBox vbox = new VBox(10);
-			Text title = new Text(grpList.get(j).getGroupTitle());
-			Text owner = new Text(grpList.get(j).getGroupOwner());
-			Text location = new Text(grpList.get(j).getGroupDestination());
-			Button join = new Button("join group");
-			join.setOnMouseClicked(this::joinTheGroup);
-			vbox.getChildren().addAll(title, owner, location, join);
-			this.vboxlist.add(vbox);
-			this.groupsView.getItems().add(vbox);
 		}
 	}
 	
 	public void setLocation() {
-		List<String> suggLoc = new ArrayList<>();
-		suggLoc.addAll(bookTravCtrl.showLocationsControl());
-		int i;
-		for(i = 0; i < suggLoc.size(); i++) {
-			HBox hbox = new HBox(20);
-			Text loc = new Text(suggLoc.get(i));
-			Button info = new Button("Get more info");
-			Button bookNow = new Button("Book a travel");
-			bookNow.setOnMouseClicked(this::bookSuggestedLoc);
-			info.setOnMouseClicked(this::showMoreInfo);
-			hbox.getChildren().addAll(loc,info, bookNow);
-			this.suggLocView.getItems().add(hbox);
-			this.hboxList.add(hbox);
+		if(this.logUsr.getPersonality() == null) {
+			this.popUp.displayLoginError("No suggested location/travel groups to be shown. Please,take personality test");
+		}
+		else {
+			List<String> suggLoc = new ArrayList<>();
+			suggLoc.addAll(bookTravCtrl.showLocationsControl());
+			int i;
+			for(i = 0; i < suggLoc.size(); i++) {
+				HBox hbox = new HBox(20);
+				Text loc = new Text(suggLoc.get(i));
+				Button info = new Button("Get more info");
+				Button bookNow = new Button("Book a travel");
+				bookNow.setOnMouseClicked(this::bookSuggestedLoc);
+				info.setOnMouseClicked(this::showMoreInfo);
+				hbox.getChildren().addAll(loc,info, bookNow);
+				this.suggLocView.getItems().add(hbox);
+				this.hboxList.add(hbox);
+			}
 		}
 	}
 	

@@ -1,5 +1,6 @@
 package logic.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +30,9 @@ public class ChatDao {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Exception Occurred\n");
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
 	}
 
 	public void setStatus(String user, String status) {
@@ -41,6 +45,9 @@ public class ChatDao {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
 	}
 	
 	public String getStatus(String user) {
@@ -52,6 +59,9 @@ public class ChatDao {
 		catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 		return status;
 	}
@@ -68,6 +78,9 @@ public class ChatDao {
 		catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 		return messages;
 	}
@@ -96,6 +109,9 @@ public class ChatDao {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select distinct sender From Chat Where (receiver = ?)")){    
 			statement.setString(1, userName);
 			retriveUsers(statement, users);
@@ -104,14 +120,21 @@ public class ChatDao {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
 		for (User user : users) {
-			try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select userStatus, profilePicture From usr Where username = ?")){    
+			try (Connection conn = SingletonDbConnection.getInstance().getConnection();
+					PreparedStatement statement = conn.prepareStatement("Select userStatus, profilePicture From usr Where username = ?")){    
 				statement.setString(1, user.getName());
 				retriveUserInfo(statement, user);
 			}
 			catch (SQLException e) {
 				Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			}
+			finally {
+				SingletonDbConnection.getInstance().closeConn();
 			}
 		}
 		return users;
@@ -172,6 +195,9 @@ public class ChatDao {
 			catch (SQLException e) {
 				Logger.getLogger("WIG").log(Level.SEVERE, "Exception Occurred\n");
 				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			}
+			finally {
+				SingletonDbConnection.getInstance().closeConn();
 			}
 		}
 	}

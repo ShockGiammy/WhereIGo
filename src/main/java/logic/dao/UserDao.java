@@ -5,7 +5,6 @@ import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
 import logic.exceptions.DuplicateUsernameException;
 import logic.exceptions.GeneralErrorException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,13 +14,15 @@ import java.util.logging.Logger;
 public class UserDao {
 	
 	public void insertPersonality(String personality,String username) {
-		try (Connection conn = SingletonDbConnection.getInstance().getConnection();
-				PreparedStatement stm = SingletonDbConnection.getInstance().getConnection().prepareStatement("update usr set tipeOfPersonality = ? where username = ?")){
+		try (PreparedStatement stm = SingletonDbConnection.getInstance().getConnection().prepareStatement("update usr set tipeOfPersonality = ? where username = ?")){
 			stm.setString(1, personality);
 			stm.setString(2, username);
 			stm.execute();
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occured during insert", e);
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 	}
 	
@@ -34,6 +35,9 @@ public class UserDao {
 			usrBean.setUserName(bean.getUserName());
 		}catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred during the fetch of credentials", e);
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 		return ret;
 	}
@@ -58,6 +62,9 @@ public class UserDao {
 				throw new GeneralErrorException(e.getMessage());
 			}
 		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
 	}
 	
 	public void getUserDatas(UserDataBean usrBean) {
@@ -66,6 +73,9 @@ public class UserDao {
 			retriveUser(statement, usrBean);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException on fetchin user datas\n", e);
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 	}
 	

@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import logic.SingletonDbConnection;
 import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
@@ -15,14 +14,18 @@ import logic.model.GroupModel;
 public class GroupDao {
 	
 	public void retriveSuggestedGroups(UserDataBean dataBean, List<GroupModel> modelList) {
-		if(dataBean.getPersonality()== null) {
-			return;
-		}
-		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select travcity,groupowner,title from travelgroups join locations on travelgroups.travCity=locations.city where tipeOfPersonality=?")){
-			statement.setString(1, dataBean.getPersonality());
-			getSuggestedGroupsDatas(statement, modelList);
-		}catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred\n",e);
+		if(dataBean.getPersonality() != null) {
+			try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select travcity,groupowner,title from travelgroups join locations on travelgroups.travCity=locations.city where (tipeOfPersonality=? and groupowner!=?) and title not in (select grp as title from participatesto where participant = ?)")){
+				statement.setString(1, dataBean.getPersonality());
+				statement.setString(2, dataBean.getUsername());
+				statement.setString(3, dataBean.getUsername());
+				getSuggestedGroupsDatas(statement, modelList);
+			}catch(SQLException e) {
+				Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred\n",e);
+			}
+			finally {
+				SingletonDbConnection.getInstance().closeConn();
+			}
 		}
 	}
 	
@@ -48,6 +51,9 @@ public class GroupDao {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot insert group", e);
 			return -1;
 		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
 		return 0;
 	}
 	
@@ -57,6 +63,9 @@ public class GroupDao {
 			findUserGroups(grpModel, statement);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 	}
 	
@@ -78,6 +87,9 @@ public class GroupDao {
 			fetchPartGroup(statement, grpModel);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 	}
 	
@@ -101,6 +113,9 @@ public class GroupDao {
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
 	}
 	
 	public int insertParticipant(GroupBean grpBean, UserDataBean dataBean) {
@@ -111,8 +126,11 @@ public class GroupDao {
 			return 0;
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
-			return -1;
 		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
+		return -1;
 	}
 	
 	public void leaveJoinedGroup(GroupBean grpBean, UserDataBean dataBean) {
@@ -122,6 +140,9 @@ public class GroupDao {
 			statement.execute();
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 	}
 }

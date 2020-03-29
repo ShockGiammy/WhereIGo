@@ -8,26 +8,24 @@ import java.util.logging.Logger;
 
 public class SingletonDbConnection {
 	private static SingletonDbConnection istance = null;
-	private Connection connection = null;
 	private Logger logger;
+	protected Connection connection = null;
 	private String url = "jdbc:mysql://localhost/whereigo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private String username = "root";
 	private String password = "pippo1998";
 	
 	protected SingletonDbConnection() {
 		this.logger = Logger.getLogger("WIG");
-		try{
-			this.connection = DriverManager.getConnection(url, username, password);
-		}catch(SQLException e) {
-			logger.log(Level.SEVERE, "Connection to DB failed !", e);
-		}
 	}
 	
 	public Connection getConnection() {
-		if(connection != null) {
-			return connection;
+		try{
+			this.connection = DriverManager.getConnection(url, username, password);
+			return this.connection;
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, "Connection to DB failed !", e);
+			return null;
 		}
-		return null;
 	}
 	
 	public static synchronized SingletonDbConnection getInstance(){
@@ -35,5 +33,13 @@ public class SingletonDbConnection {
 			SingletonDbConnection.istance = new SingletonDbConnection();
 		}
 		return SingletonDbConnection.istance;
+	}
+	
+	public void closeConn() {
+		try {
+			this.connection.close();
+		}catch(SQLException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		}
 	}
 }

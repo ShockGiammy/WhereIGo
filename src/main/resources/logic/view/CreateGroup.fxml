@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerCreateGroup">
+   <top>
+      <BorderPane prefHeight="120.0" prefWidth="1040.0" BorderPane.alignment="CENTER">
+         <left>
+            <ImageView fitHeight="95.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../images/Logo.PNG" />
+               </image>
+            </ImageView>
+         </left>
+         <right>
+            <ToolBar prefHeight="69.0" prefWidth="450.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+               <items>
+                  <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" onMouseEntered="#showMouseHome" onMouseExited="#showHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/home.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="bookTravel" disable="true" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goBookTravel" onMouseEntered="#showMouseTravel" onMouseExited="#showTravel" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/bookTravel.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="keys" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goRent" onMouseEntered="#showMouseKeys" onMouseExited="#showKeys" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/keys.jpg" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="chat" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goChat" onMouseEntered="#showMouseChat" onMouseExited="#showChat" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/chat.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="userImage" fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="exit" fitHeight="53.0" fitWidth="55.0" onMouseClicked="#leaveApp" onMouseEntered="#showMouseExit" onMouseExited="#showExit" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/exit.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </items>
+            </ToolBar>
+         </right>
+      </BorderPane>
+   </top>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <VBox prefHeight="229.0" prefWidth="354.0" spacing="15.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE A TRAVEL GROUP">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <HBox prefHeight="31.0" prefWidth="332.0" spacing="10.0" />
+                  <HBox prefHeight="97.0" prefWidth="383.0">
+                     <children>
+                        <VBox prefHeight="97.0" prefWidth="170.0" spacing="5.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="group name :">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="group admin : ">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="group destination :">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="97.0" prefWidth="210.0" spacing="7.0">
+                           <children>
+                              <TextField fx:id="groupName" onKeyTyped="#getName" prefHeight="26.0" prefWidth="210.0" />
+                              <TextField fx:id="groupAdmin" editable="false" prefHeight="26.0" prefWidth="210.0" />
+                              <TextField fx:id="groupDest" onKeyTyped="#getDest" prefHeight="26.0" prefWidth="210.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="31.0" prefWidth="332.0" spacing="10.0" />
+                  <HBox prefHeight="31.0" prefWidth="332.0" spacing="10.0" />
+                  <Button fx:id="createGroup" mnemonicParsing="false" onMouseClicked="#saveUserGroup" prefHeight="79.0" prefWidth="91.0" text="Create group" />
+               </children>
+            </VBox>
+         </center>
+         <BorderPane.margin>
+            <Insets left="300.0" />
+         </BorderPane.margin>
+      </BorderPane>
+   </center>
+</BorderPane>

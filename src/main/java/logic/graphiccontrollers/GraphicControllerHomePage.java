@@ -100,6 +100,11 @@ public class GraphicControllerHomePage extends BasicGui{
 			this.lwGroups.getItems().add(vbox);
 			this.groupBox.add(vbox);
 		}
+		Button newGroup = new Button("Create a new group");
+		newGroup.setOnMouseClicked(this::newGroup);
+		VBox box = new VBox();
+		box.getChildren().add(newGroup);
+		this.lwGroups.getItems().add(box);
 	}
 	
 	public void deleteTravel(MouseEvent e) {
@@ -154,6 +159,10 @@ public class GraphicControllerHomePage extends BasicGui{
 				err.displayLoginError("Gruppo correttamente abbandonato");
 			}
 		}
+	}
+	
+	public void newGroup(MouseEvent e) {
+		changeGUI(e, "CreateGroup.fxml");
 	}
 }
 

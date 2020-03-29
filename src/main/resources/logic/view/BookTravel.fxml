@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
+<BorderPane minHeight="680.0" minWidth="1040.0" prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
    <top>
       <BorderPane prefHeight="120.0" prefWidth="1040.0" BorderPane.alignment="CENTER">
          <left>
@@ -120,10 +120,10 @@
             </Pane>
          </right>
          <center>
-            <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <ListView fx:id="groupsView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
          <left>
-            <ListView fx:id="groupsView" prefHeight="482.0" prefWidth="360.0" BorderPane.alignment="CENTER" />
+            <ListView fx:id="suggLocView" prefHeight="482.0" prefWidth="360.0" BorderPane.alignment="CENTER" />
          </left>
          <top>
             <HBox prefHeight="30.0" prefWidth="1040.0" spacing="120.0" BorderPane.alignment="CENTER">

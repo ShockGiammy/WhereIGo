@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import logic.model.TicketModel;
 import logic.SingletonDbConnection;
 import logic.beans.UserDataBean;
@@ -30,6 +29,9 @@ public class TravelDao {
 			ticketQuery(tickets, prep);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Error while retriving tickets\n",e);
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 		return tickets;
 	}
@@ -66,6 +68,9 @@ public class TravelDao {
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Failed to update tickets \n",e);
 		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
 	}
 	
 	public void updateNumberOfTickets(TicketModel tick, int operation) {
@@ -76,6 +81,9 @@ public class TravelDao {
 			}catch(SQLException e) {
 				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			}
+			finally {
+				SingletonDbConnection.getInstance().closeConn();
+			}
 		}
 		else if(operation == 1) {
 			try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("UPDATE tickets SET numOfTick = numOfTick+1 WHERE ID=?")){
@@ -83,6 +91,9 @@ public class TravelDao {
 				statement.execute();
 			}catch(SQLException e) {
 				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			}
+			finally {
+				SingletonDbConnection.getInstance().closeConn();
 			}
 		}
 	}
@@ -93,6 +104,9 @@ public class TravelDao {
 			fetchTickets(statement, tickList);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching tickets\n",e);
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 	}
 	
@@ -117,6 +131,9 @@ public class TravelDao {
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot delete ticket \n",e);
 		}
+		finally {
+			SingletonDbConnection.getInstance().getConnection();
+		}
 	}
 	
 	public void getSuggestedTickets(UserTravelBean travBean, UserDataBean dataBean, List<TicketModel> tickList) {
@@ -128,6 +145,9 @@ public class TravelDao {
 			findSuggTickets(statement, tickList, travBean);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE,e.getMessage());
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 	}
 	

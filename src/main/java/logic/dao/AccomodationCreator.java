@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import logic.SingletonDbConnection;
 import logic.beans.RentAccomodationBean;
 import logic.model.AccomodationModel;
@@ -34,6 +33,9 @@ public class AccomodationCreator {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
 		return new AccomodationModel(info);
 	}
 
@@ -44,6 +46,9 @@ public class AccomodationCreator {
 		}catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 		return beans;
 	}
@@ -56,6 +61,9 @@ public class AccomodationCreator {
 		}catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 		return beans;
 	}
@@ -90,6 +98,9 @@ public class AccomodationCreator {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
 	}
 	
 	public void update(RentAccomodationBean info) {
@@ -108,6 +119,9 @@ public class AccomodationCreator {
 		}catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
 		}
 	}
 }

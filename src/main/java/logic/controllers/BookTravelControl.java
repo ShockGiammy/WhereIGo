@@ -1,6 +1,3 @@
-/* IMPORTANT : IS BETTER TO CHANGE THE RETURN VALUE OF THE FUNCTION WITH THE THORWS OF AN EXCEPTION, WHICH WILL BE
- *  HANDLED IN THE GRAPHIC CONTROLLER AND WILL DISPLAY AN ERROR MESSAGE*/
-
 package logic.controllers;
 
 import java.sql.SQLException;
@@ -36,13 +33,14 @@ public class BookTravelControl {
 	public List<String> showLocationsControl() {
 		List<String> suggLoc = new ArrayList<>();
 		userBean.setPersonality(logUser.getPersonality());
-		userBean.setUserName(logUser.getUserName());
+		userBean.setUserName(this.logUser.getUserName());
 		suggLoc.addAll(this.locDao.getSuggestedLocations(userBean));
 		return suggLoc;
 	}
 	
 	public void getGroupsControl(List<GroupBean> beanList) {
 		this.userBean.setPersonality(this.logUser.getPersonality());
+		this.userBean.setUserName(this.logUser.getUserName());
 		List<GroupModel> grpModelList = new ArrayList<>();
 		this.grpDao.retriveSuggestedGroups(this.userBean, grpModelList);
 		extractGroups(grpModelList, beanList);
@@ -136,14 +134,7 @@ public class BookTravelControl {
 		this.userBean.setUserName(this.logUser.getUserName());
 		List<GroupModel> grpList = new ArrayList<>();
 		grpDao.getUserGroups(grpList,this.userBean);
-		int i;
-		for(i = 0; i < grpList.size(); i++) {
-			GroupBean grpbean = new GroupBean();
-			grpbean.setGroupTitle(grpList.get(i).getDescription());
-			grpbean.setGroupDestination(grpList.get(i).getDestination());
-			grpbean.setGroupOwner(grpList.get(i).getOwner());
-			grpBean.add(grpbean);
-		}
+		extractGroups(grpList, grpBean);
 		getParticipateGroups(grpBean);
 	}
 	
