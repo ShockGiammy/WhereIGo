@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -55,6 +56,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	private RentAccomodationController controller;
 	private ImageViewer viewer;
 	private int number = 0;
+	private double pading = 5.0;
 	
 	
 	@FXML
@@ -75,31 +77,28 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		BorderPane pane = new BorderPane();
 		Text city = new Text();
 		city.setText("City  ");
+		city.setUnderline(true);
 		Text cityValue = new Text();
 		cityValue.setText(bean.getCity());
 		HBox cityBox = new HBox();
 		cityBox.getChildren().addAll(city, cityValue);
+		cityBox.setPadding(new Insets(pading, pading, pading, pading));
 		VBox vBox = new VBox();
 		HBox bedsBox = new HBox();
 		vBox.getChildren().add(bedsBox);
 		Text beds = new Text();
 		beds.setText("Beds  ");
+		beds.setUnderline(true);
 		Text numberBeds = new Text();
 		numberBeds.setText(bean.getBeds());
 		bedsBox.getChildren().addAll(beds, numberBeds);
+		bedsBox.setPadding(new Insets(pading, pading, pading, pading));
 		ImageView house = new ImageView();
 		BufferedImage bufImage = viewer.loadImage(bean.getHouseImage());
 		house.setFitHeight(150);
 		house.setFitWidth(150);
-		house.setX(25);
+		house.setX(30);
 		house.setImage(viewer.convertToFxImage(bufImage));
-		Text rating2 = new Text();
-		rating2.setText("Rating  ");
-		Text ratingValue = new Text();		
-		ratingValue.setText("5/5");
-		HBox ratingBox = new HBox();
-		ratingBox.getChildren().addAll(rating2, ratingValue);
-		vBox.getChildren().add(ratingBox);
 		Button details = new Button();
 		details.setText("View Details");
 		details.setOnMouseClicked(e -> 
@@ -107,6 +106,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		HBox detailBox = new HBox();
 		detailBox.getChildren().add(details);
 		detailBox.setAlignment(Pos.CENTER_RIGHT);
+		detailBox.setPadding(new Insets(pading, pading, pading, pading));
 		pane.setTop(cityBox);
 		pane.setCenter(house);
 		pane.setRight(vBox);
@@ -160,32 +160,28 @@ public class GraphicControlRentAccomodation extends BasicGui{
     	bathroomText.setVisible(true);
     	kitchen.setVisible(true);
     	kitchenText.setVisible(true);
+    	garden.minWidth(35);
+    	wifi.minWidth(35);
+    	bathroom.minWidth(35);
+    	kitchen.minWidth(35);
+    	garden.setText("NO");
+    	wifi.setText("NO");
+    	bathroom.setText("NO");
+    	kitchen.setText("NO");
     	byte[] list = bean.getServices();
     	if (bean.getServices() != null) {
     		for (int i = 0; i <= 3; i++) {
     			if (list[0] == 1) {
-    				garden.setText("SI ");
-    			}
-    			else {
-    				garden.setText("NO");
+    				garden.setText("SI");
     			}
     			if (list[1] == 1) {
-    				wifi.setText("SI ");
-    			}
-    			else {
-    				wifi.setText("NO");
+    				wifi.setText("SI");
     			}
     			if (list[2] == 1) {
-    				bathroom.setText("SI ");
-    			}
-    			else {
-    				bathroom.setText("NO");
+    				bathroom.setText("SI");
     			}
     			if (list[3] == 1) {
-    				kitchen.setText("SI ");
-    			}
-    			else {
-    				kitchen.setText("NO");
+    				kitchen.setText("SI");
     			}
     		}
 		}

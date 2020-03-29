@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 import logic.LoggedUser;
+import logic.UserType;
 import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
@@ -45,17 +46,15 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	public void postRentAnnouncementControl(MouseEvent event) {
 		LoggedUser logUser = new LoggedUser();
-		switch (logUser.getUserType()) {
-			case RENTER:
-				setScene("RenterAccomodations.fxml");
-				loadScene();
-				nextGuiOnClick(event);
-				break;
-			case TRAVELER:
-				setScene("RentAccomodation.fxml");
-				loadScene();
-				nextGuiOnClick(event);
-				break;
+		if (logUser.getUserType() == UserType.RENTER) {
+			setScene("RenterAccomodations.fxml");
+			loadScene();
+			nextGuiOnClick(event);
+		}
+		else {
+			setScene("RentAccomodation.fxml");
+			loadScene();
+			nextGuiOnClick(event);
 		}
 	}
 	

@@ -23,9 +23,6 @@ public class LoggedUser {
 		else if (type.equals("Traveler")) {
 			typeOfUser = UserType.TRAVELER;
 		}
-		else {
-			System.out.println("attento!");
-		}
 	}
 	
 	public static void setImage(Image image) {
