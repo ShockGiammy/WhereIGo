@@ -8,8 +8,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
@@ -33,13 +31,19 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	@FXML private HBox hBox;
 	
 	//details
-	@FXML private TextArea description;
-	@FXML private TextField cityDetail;
-	@FXML private TextField address;
-	@FXML private TextField bedsDetail;
-	@FXML private TextField type;
-	@FXML private TextField squareMetres;
-	@FXML private TextField renter;
+	@FXML private Text description;
+	@FXML private Text descriptionText;
+	@FXML private Text cityDetail;
+	@FXML private Text address;
+	@FXML private Text addressText;
+	@FXML private Text cityText;
+	@FXML private Text bedsText;
+	@FXML private Text bedsDetail;
+	@FXML private Text type;
+	@FXML private Text typeText;
+	@FXML private Text squareMetres;
+	@FXML private Text squareMetresText;
+	@FXML private Text renter;
 	@FXML private ImageView houseDetail;
 	@FXML private Text garden;
 	@FXML private Text wifi;
@@ -50,7 +54,6 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	@FXML private Text bathroomText;
 	@FXML private Text kitchenText;
 	@FXML private Button contactRenter;
-	@FXML private TextField rating;
 	
 	
 	private RentAccomodationController controller;
@@ -125,17 +128,23 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	}
 	
 	public void setDetail(RentAccomodationBean bean) {
+		descriptionText.setVisible(true);
 		description.setVisible(true);
 		description.setText(bean.getDescription());
 		cityDetail.setVisible(true);
+		cityText.setVisible(true);
 		cityDetail.setText(bean.getCity());
 		address.setVisible(true);
+		addressText.setVisible(true);
 		address.setText(bean.getAddress());
 		bedsDetail.setVisible(true);
+		bedsText.setVisible(true);
 		bedsDetail.setText(bean.getBeds());
 		type.setVisible(true);
+		typeText.setVisible(true);
 		type.setText(bean.getType());
 		squareMetres.setVisible(true);
+		squareMetresText.setVisible(true);
 		squareMetres.setText(bean.getSquareMetres());
 		renter.setVisible(true);
 		renter.setText(bean.getRenter());
@@ -160,10 +169,6 @@ public class GraphicControlRentAccomodation extends BasicGui{
     	bathroomText.setVisible(true);
     	kitchen.setVisible(true);
     	kitchenText.setVisible(true);
-    	garden.minWidth(35);
-    	wifi.minWidth(35);
-    	bathroom.minWidth(35);
-    	kitchen.minWidth(35);
     	garden.setText("NO");
     	wifi.setText("NO");
     	bathroom.setText("NO");

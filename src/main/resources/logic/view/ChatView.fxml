@@ -40,7 +40,8 @@
    <left>
       <VBox maxHeight="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
-            <ListView fx:id="groupMember" prefHeight="174.0" prefWidth="217.0" />
+            <Button fx:id="createGroup" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#createAGroup" prefHeight="25.0" prefWidth="220.0" text="Create a new group" />
+            <ListView fx:id="groupMember" prefHeight="175.0" prefWidth="220.0" />
             <ListView fx:id="userList" focusTraversable="false" maxHeight="1.7976931348623157E308" prefHeight="336.0" prefWidth="217.0" style="-fx-border-image-width: 0;">
             </ListView>
          </children>

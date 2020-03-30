@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.ImageViewer;
 import logic.controllers.ChatController;
@@ -38,6 +40,7 @@ public class GraphicControllerChat extends BasicGui {
     @FXML private BorderPane borderPane;
     @FXML private ListView<HBox> groupMember;
     @FXML private Text activeChat;
+    @FXML private Button createGroup;
 
     protected Logger logger = Logger.getLogger("WIG");
     private ChatController chatController;
@@ -45,6 +48,7 @@ public class GraphicControllerChat extends BasicGui {
     private double pading = 5.0;
     private ImageViewer viewer;
     private Image pictureImage;
+    private List<User> users;
 
     public GraphicControllerChat() {
     	chatController = new ChatController(this);
@@ -108,7 +112,7 @@ public class GraphicControllerChat extends BasicGui {
     }
 
     public void setUserList() {
-    	List<User> users = chatController.getUsers();
+    	users = chatController.getUsers();
     	for (User user : users) {
     		addToUserList(user);
     	}
@@ -217,6 +221,88 @@ public class GraphicControllerChat extends BasicGui {
         Thread t = new Thread(task);
         t.setDaemon(true);
         t.start();
+    }
+    
+    public synchronized void addToGroupList(User user, ListView<HBox> list, ListView<Text> groupList) {
+    	Task<HBox> task = new Task<HBox>() {
+            @Override
+            public HBox call() throws Exception {
+
+            	HBox hBox = new HBox();
+            	
+            	Text name = new Text(user.getName());
+            	
+            	ImageView pictureImageView = new ImageView();
+            	BufferedImage bufImage = viewer.loadImage(user.getPicture());
+            	pictureImageView.setFitHeight(25);
+            	pictureImageView.setFitWidth(25);
+            	pictureImageView.setImage(viewer.convertToFxImage(bufImage));
+            	
+            	Button add = new Button("Add user");
+            	add.setOnAction(e ->
+            		addUser(user, groupList));
+
+            	hBox.getChildren().addAll(pictureImageView, name, add);
+            	hBox.setAlignment(Pos.CENTER_LEFT);
+            	return hBox;
+            }
+    	};
+        task.setOnSucceeded(event ->
+        	list.getItems().add(task.getValue()));
+        
+        Thread t = new Thread(task);
+        t.setDaemon(true);
+        t.start();
+    }
+    
+    public void addUser(User user, ListView<Text> groupList) {
+    	Task<Text> task = new Task<Text>() {
+            @Override
+            public Text call() throws Exception {
+
+            	
+            	Text name = new Text(user.getName());
+            	return name;
+            }
+    	};
+        task.setOnSucceeded(event ->
+        	groupList.getItems().add(task.getValue()));
+        
+        Thread t = new Thread(task);
+        t.setDaemon(true);
+        t.start();
+    }
+    
+    public void createAGroup() {
+    	Stage window = new Stage();
+		window.setWidth(700);
+		window.setHeight(400);
+		window.initModality(Modality.APPLICATION_MODAL); //this avoid user to interact with other users
+		ListView<HBox> list = new ListView<>();
+		ListView<Text> groupList = new ListView<>();
+		VBox groupBox = new VBox();
+		TextField groupName = new TextField("Insert group name");
+		groupName.setOnMouseClicked( event ->
+				groupName.clear());
+		groupBox.getChildren().addAll(groupName, groupList);
+		HBox hBox = new HBox();
+		hBox.getChildren().addAll(list, groupBox);
+		hBox.setAlignment(Pos.CENTER);
+		Button backButton = new Button("Back");
+		backButton.setOnAction(e->window.close());
+		Button confirmButton = new Button("Confirm");
+		confirmButton.setOnAction(event -> 
+			chatController.createGroup(groupName.getText(), groupList));
+		HBox buttonBox = new HBox();
+		buttonBox.getChildren().addAll(backButton, confirmButton);
+		VBox layout = new VBox();
+		layout.getChildren().addAll(hBox, buttonBox);
+		Scene scene = new Scene(layout);
+		window.setScene(scene);
+		for (User user : users) {
+    		addToGroupList(user, list, groupList);
+    	}
+		window.showAndWait();		
     }
     
     public void exitChat() {

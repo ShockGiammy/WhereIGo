@@ -6,8 +6,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
+import javafx.scene.text.Text;
 import logic.LoggedUser;
 import logic.dao.ChatDao;
+import logic.dao.GroupDao;
 import logic.graphiccontrollers.GraphicControllerChat;
 import logic.model.Message;
 import logic.model.User;
@@ -15,6 +18,7 @@ import logic.model.User;
 public class ChatController {
 	private String username;
 	private ChatDao chatDao;
+	private GroupDao groupDao;
 	private GraphicControllerChat graphic;
 	private ObservableList<User> users;
 	private Listener listener;
@@ -25,6 +29,7 @@ public class ChatController {
 	
 	public ChatController(GraphicControllerChat reference) {
 		chatDao = new ChatDao();
+		groupDao = new GroupDao();
 		this.graphic = reference;
 		this.logUser = new LoggedUser();
 		this.username = logUser.getUserName();
@@ -107,5 +112,10 @@ public class ChatController {
 	
 	public void addServerMessage(Message message) {
 		graphic.addAsServer(message);
+	}
+	
+	public void createGroup(String groupName, ListView<Text> groupList) {
+	
+		//groupDao.createNewGroup(logUser.getUserName(), groupList, groupName);
 	}
 }
