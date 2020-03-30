@@ -37,6 +37,7 @@ public class ChatController {
 		this.logUser = new LoggedUser();
 		this.username = logUser.getUserName();
 		chatDao.setStatus(username, ONLINE);
+		grpModel = new ArrayList<>();
 	}
 	
 	public ChatController() {
@@ -136,12 +137,12 @@ public class ChatController {
 		}
 	}
 	
-	public ArrayList<String> getGroups() {
+	public List<String> getGroups() {
 		UserDataBean dataBean = new UserDataBean();
 		dataBean.setUserName(username);
 		groupDao.getUserGroups(grpModel, dataBean);
 		groupDao.getPartGroups(grpModel, dataBean);
-		ArrayList<String> groupNames = new ArrayList<>();
+		List<String> groupNames = new ArrayList<>();
 		for (GroupModel group : grpModel) {
 			groupNames.add(group.getDescription());
 		}

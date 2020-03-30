@@ -122,7 +122,7 @@ public class GraphicControllerChat extends BasicGui {
     }
     
     public void setGroupList() {
-    	ArrayList<String> groupNames = chatController.getGroups();
+    	List<String> groupNames = chatController.getGroups();
     	for (String groupName : groupNames) {
     		addToGroupList(groupName);
     	}
