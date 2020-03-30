@@ -21,11 +21,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.ImageViewer;
 import logic.controllers.ChatController;
+import logic.controllers.ChatType;
 import logic.model.Message;
 import logic.model.User;
 import logic.view.BasicGui;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.logging.Logger;
@@ -38,7 +40,7 @@ public class GraphicControllerChat extends BasicGui {
     @FXML private ImageView userImageView;
     @FXML private ListView<HBox> chatPane;
     @FXML private BorderPane borderPane;
-    @FXML private ListView<HBox> groupMember;
+    @FXML private ListView<Text> groupMember;
     @FXML private Text activeChat;
     @FXML private Button createGroup;
 
@@ -49,6 +51,7 @@ public class GraphicControllerChat extends BasicGui {
     private ImageViewer viewer;
     private Image pictureImage;
     private List<User> users;
+    private List<String> namesList;
 
     public GraphicControllerChat() {
     	chatController = new ChatController(this);
@@ -118,6 +121,43 @@ public class GraphicControllerChat extends BasicGui {
     	}
     }
     
+    public void setGroupList() {
+    	ArrayList<String> groupNames = chatController.getGroups();
+    	for (String groupName : groupNames) {
+    		addToGroupList(groupName);
+    	}
+    }
+    
+    public void addToGroupList(String groupName) {
+    	Task<Text> task = new Task<Text>() {
+            @Override
+            public Text call() throws Exception {
+
+            	Text group = new Text(groupName);
+            	group.setOnMouseClicked(e ->
+        			selectGroup());
+
+            	return group;
+            }
+    	};
+        task.setOnSucceeded(event ->
+        	groupMember.getItems().add(task.getValue()));
+        
+        Thread t = new Thread(task);
+        t.setDaemon(true);
+        t.start();
+    }
+    
+    public void selectGroup() {
+    	Node node = groupMember.getSelectionModel().getSelectedItem();
+    	String name = ((Text)node).getText();
+    	if (!activeChat.getText().equals(name)) {    		
+    		displayChat(name, ChatType.GROUP);
+    		setActiveChat(name);
+    		messageBox.setEditable(true);
+    	}
+    }
+    
     public void updateUserList(List<User> users) {
     	userList.getItems().clear();
     	for (User user : users) {
@@ -132,7 +172,7 @@ public class GraphicControllerChat extends BasicGui {
     	if (!activeChat.getText().equals(receiver)) {
     		Node node2 = userList.getSelectionModel().getSelectedItem().getChildren().get(1);
     		pictureImage = ((ImageView)node2).getImage();
-    		displayChat(receiver);
+    		displayChat(receiver, ChatType.PRIVATE);
     		setActiveChat(receiver);
     		messageBox.setEditable(true);
     	}
@@ -167,10 +207,10 @@ public class GraphicControllerChat extends BasicGui {
         t.start();
     }
     
-    public void displayChat(String receiver) {
+    public void displayChat(String receiver, ChatType type) {
     	chatPane.getItems().clear();
     	chatController.closeLastChat();
-    	List<Message> chat = chatController.openChat(receiver);
+    	List<Message> chat = chatController.openChat(receiver, type);
     	for (Message message : chat) {
     		if (message.getMsg() != null) {
     			addToChat(message);
@@ -183,6 +223,7 @@ public class GraphicControllerChat extends BasicGui {
 
     	this.userImage.setImage(this.logUsr.getImage());
         setUserList();
+        setGroupList();
         
         borderPane.setOnMouseReleased(event ->
             borderPane.setCursor(Cursor.DEFAULT));
@@ -260,13 +301,13 @@ public class GraphicControllerChat extends BasicGui {
             @Override
             public Text call() throws Exception {
 
-            	
-            	Text name = new Text(user.getName());
-            	return name;
+            	return new Text(user.getName());
             }
     	};
-        task.setOnSucceeded(event ->
-        	groupList.getItems().add(task.getValue()));
+        task.setOnSucceeded(event -> {
+        	groupList.getItems().add(task.getValue());
+        	namesList.add(user.getName());
+        });
         
         Thread t = new Thread(task);
         t.setDaemon(true);
@@ -291,14 +332,17 @@ public class GraphicControllerChat extends BasicGui {
 		Button backButton = new Button("Back");
 		backButton.setOnAction(e->window.close());
 		Button confirmButton = new Button("Confirm");
-		confirmButton.setOnAction(event -> 
-			chatController.createGroup(groupName.getText(), groupList));
+		confirmButton.setOnAction(event -> {
+			chatController.createGroup(groupName.getText(), namesList);
+			window.close();
+		});
 		HBox buttonBox = new HBox();
 		buttonBox.getChildren().addAll(backButton, confirmButton);
 		VBox layout = new VBox();
 		layout.getChildren().addAll(hBox, buttonBox);
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
+		namesList = new ArrayList<>();
 		for (User user : users) {
     		addToGroupList(user, list, groupList);
     	}

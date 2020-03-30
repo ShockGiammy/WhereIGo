@@ -1,17 +1,19 @@
 package logic.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
-import javafx.scene.text.Text;
 import logic.LoggedUser;
+import logic.beans.GroupBean;
+import logic.beans.UserDataBean;
 import logic.dao.ChatDao;
 import logic.dao.GroupDao;
 import logic.graphiccontrollers.GraphicControllerChat;
+import logic.model.GroupModel;
 import logic.model.Message;
 import logic.model.User;
 
@@ -26,6 +28,7 @@ public class ChatController {
 	protected Logger logger = Logger.getLogger("WIG");
 	private static final String ONLINE = "online";
 	private boolean alreadyActive = false;
+	private List<GroupModel> grpModel;
 	
 	public ChatController(GraphicControllerChat reference) {
 		chatDao = new ChatDao();
@@ -44,8 +47,13 @@ public class ChatController {
 		chatDao.setStatus(username, status);
 	}
 
-	public List<Message> openChat(String receiver) {
-		return chatDao.getSavedMsg(username, receiver);
+	public List<Message> openChat(String receiver, ChatType type) {
+		if (type == ChatType.PRIVATE) {
+			return chatDao.getSavedMsg(username, receiver);
+		}
+		else {
+			return chatDao.getGroupMsg(receiver);
+		}
 	}
 	
 	public List<User> getUsers() {
@@ -114,8 +122,29 @@ public class ChatController {
 		graphic.addAsServer(message);
 	}
 	
-	public void createGroup(String groupName, ListView<Text> groupList) {
+	public void createGroup(String groupName, List<String> groupList) {
 	
-		//groupDao.createNewGroup(logUser.getUserName(), groupList, groupName);
+		GroupBean grpBean = new GroupBean();
+		grpBean.setGroupOwner(username);
+		grpBean.setGroupTitle(groupName);
+		groupDao.saveUserGroup(grpBean);
+		
+		UserDataBean dataBean = new UserDataBean();
+		for (String user : groupList) {	
+			dataBean.setUserName(user);
+			groupDao.insertParticipant(grpBean, dataBean);
+		}
+	}
+	
+	public ArrayList<String> getGroups() {
+		UserDataBean dataBean = new UserDataBean();
+		dataBean.setUserName(username);
+		groupDao.getUserGroups(grpModel, dataBean);
+		groupDao.getPartGroups(grpModel, dataBean);
+		ArrayList<String> groupNames = new ArrayList<>();
+		for (GroupModel group : grpModel) {
+			groupNames.add(group.getDescription());
+		}
+		return groupNames;
 	}
 }

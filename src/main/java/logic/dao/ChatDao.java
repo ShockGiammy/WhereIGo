@@ -85,6 +85,22 @@ public class ChatDao {
 		return messages;
 	}
 	
+	public List<Message> getGroupMsg(String group) {
+		List<Message> messages = new ArrayList<>();
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Chat Where receiver = ?)")){    
+			statement.setString(1, group);
+			retriveSavedMessages(statement, messages);
+		}
+		catch (SQLException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
+		return messages;
+	}
+	
 	public void retriveSavedMessages(PreparedStatement statement, List<Message> messages) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
