@@ -1,14 +1,18 @@
 package logic.graphiccontrollers;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
+import logic.ImageViewer;
 import logic.LoggedUser;
 import logic.UserType;
 import logic.beans.GroupBean;
@@ -22,20 +26,25 @@ public class GraphicControllerHomePage extends BasicGui{
 	@FXML private Button takeTest;
 	@FXML private List<VBox> travelBox;
 	@FXML private List<VBox> groupBox;
+	@FXML private List <VBox> suggUsersList;
 	@FXML private ListView<VBox> lwTickets;
 	@FXML private ListView<VBox> lwGroups;
+	@FXML private ListView<VBox> lwSuggUsers;
 	private BookTravelControl bookTrav;
 	private ErrorPopup err;
+	private ImageViewer imViewer;
 	
 	@FXML
 	public void initialize() {
 		this.travelBox = new ArrayList<>();
 		this.groupBox = new ArrayList<>();
+		this.suggUsersList = new ArrayList<>();
 		this.bookTrav = new BookTravelControl();
 		this.err = new ErrorPopup();
 		this.userImage.setImage(this.logUsr.getImage());
 		setTravel();
 		setGroups();
+		setSuggUsers();
 	}
 	
 	public void getInterestControl(MouseEvent event) {
@@ -107,6 +116,27 @@ public class GraphicControllerHomePage extends BasicGui{
 		this.lwGroups.getItems().add(box);
 	}
 	
+	public void setSuggUsers() {
+		List<UserDataBean> dataBeanList = new ArrayList<>();
+		this.bookTrav.getSamePersUsers(dataBeanList);
+		for(int i = 0; i < dataBeanList.size(); i++) {
+			VBox vbox= new VBox(7);
+			HBox hbox = new HBox(30);
+			if(dataBeanList.get(i).getByteStream() != null) {
+				BufferedImage bufIm = this.imViewer.loadImage(dataBeanList.get(i).getByteStream());
+				ImageView ivProf = new ImageView();
+				ivProf.setImage(this.imViewer.convertToFxImage(bufIm));
+				hbox.getChildren().add(ivProf);
+			}
+			Text usr = new Text(dataBeanList.get(i).getUsername());
+			hbox.getChildren().add(usr);
+			Button btnChat = new Button("Chat with the user");
+			btnChat.setOnMouseClicked(this::openTheChat);
+			vbox.getChildren().addAll(hbox, btnChat);
+			this.lwSuggUsers.getItems().add(vbox);
+		}
+	}
+	
 	public void deleteTravel(MouseEvent e) {
 		int i;
 		for(i = 0; i < this.travelBox.size(); i++) {
@@ -163,6 +193,19 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	public void newGroup(MouseEvent e) {
 		changeGUI(e, "CreateGroup.fxml");
+	}
+	
+	public void openTheChat(MouseEvent e) {
+		for(int i = 0; i < this.suggUsersList.size(); i++) {
+			if(this.suggUsersList.get(i).getChildren().get(1).equals(e.getTarget())){
+				HBox box = (HBox)this.suggUsersList.get(i).getChildren().get(0);
+				Text usName = (Text)box.getChildren().get(1);
+				UserDataBean usBean = new UserDataBean();
+				usBean.setUserName(usName.getText());
+				/* forse prende anche la foto, la passa a te e ci crea una chat*/
+			}
+		}
+		goChat(e); //aspetto te Gian per sapere che cazzo fare
 	}
 }
 

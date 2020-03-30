@@ -5,9 +5,12 @@ import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
 import logic.exceptions.DuplicateUsernameException;
 import logic.exceptions.GeneralErrorException;
+import logic.model.UserModel;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -107,6 +110,34 @@ public class UserDao {
 			}
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "ResultSet fetch fail !", e);
+		}
+	}
+	
+	public void findSimilarUsers(List<UserModel> usersList, UserModel logUsr) {
+		if(logUsr.getUserPersonality() != null) {
+			try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select username, profilePicture from usr where (tipeOfPersonality=? and username !=?)")){
+				statement.setString(1, logUsr.getUserPersonality());
+				statement.setString(2, logUsr.getUserName());
+				getSimUsers( statement,  usersList);
+			}catch(SQLException e) {
+				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			}
+			finally {
+				SingletonDbConnection.getInstance().closeConn();
+			}
+		}
+	}
+	
+	public void getSimUsers(PreparedStatement statement, List<UserModel> usrModel) {
+		try(ResultSet rs = statement.executeQuery()){
+			while(rs.next()) {
+				UserModel usr = new UserModel();
+				usr.setUserName(rs.getString(1));
+				usr.setPic(rs.getBytes(2));
+				usrModel.add(usr);
+			}
+		}catch(SQLException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
 }

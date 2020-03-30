@@ -3,48 +3,52 @@ package logic.model;
 import logic.beans.UserDataBean;
 
 public class UserModel {
-	protected String name;
-	protected String surname;
-	protected String dateOfBirth;
-	protected String gender;
-	protected String username;
-	protected String personality;
-	protected String userType;
+	private String name;
+	private String surname;
+	private String dateOfBirth;
+	private String gender;
+	private String username;
+	private String personality;
+	private String userType;
+	private byte[] profPic;
 	
-	public void setUserDatas(UserDataBean usrBean) {
-		this.name = usrBean.getName();
-		this.surname = usrBean.getSurname();
-		this.dateOfBirth = usrBean.getDateOfBirth();
-		this.gender = usrBean.getGender();
-		if(usrBean.getPersonality() == null) {
-			this.personality = "None";
-		}
-		else {
-			this.personality = usrBean.getPersonality();
-		}
-		this.userType = usrBean.getType();
-	}
-	
-	public UserDataBean getUserDatas() {
-		UserDataBean usrBean = new UserDataBean();
-		usrBean.setName(this.name);
-		usrBean.setSurname(this.surname);
-		usrBean.setDateOfBirth(this.dateOfBirth);
-		usrBean.setGender(this.gender);
-		usrBean.setPersonality(this.personality);
-		return usrBean;
+	public void setCredentials(String nameOfUsr, String surOfUsr, String dateOfB, String gend) {
+		this.name = nameOfUsr;
+		this.surname = surOfUsr;
+		this.dateOfBirth = dateOfB;
+		this.gender = gend;
 	}
 	
 	public void insertPersonality(String typeOfPers) {
 		personality = typeOfPers;
 	}
 	
-	public void getUserPersonality(UserDataBean dataBean) {
-		dataBean.setPersonality(this.personality);
+	public void setUserPersonality(String pers) {
+		this.personality = pers;
 	}
 	
 	public void setUserName(String userName) {
 		this.username = userName;
+	}
+	
+	public void setPic(byte[] propic) {
+		profPic = propic;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public String getSurname() {
+		return this.surname;
+	}
+	
+	public String getDateOfBirth() {
+		return this.dateOfBirth;
+	}
+	
+	public String getGender() {
+		return this.gender;
 	}
 	
 	public String getUserName() {
@@ -57,5 +61,9 @@ public class UserModel {
 	
 	public String getUserType() {
 		return this.userType;
+	}
+	
+	public byte[] getProfilePic() {
+		return this.profPic;
 	}
 }

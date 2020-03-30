@@ -95,11 +95,11 @@ create table Buys
 			references Usr(username)
 );
 
-insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,userstatus)
-values("shockGiammy","pluto","Gian Marco","Falcone","16-03-1998","Male","Traveler","offline");
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,userstatus)
+values("shockGiammy","pluto","Gian Marco","Falcone","16-03-1998","Male","Traveler","Friendly","offline");
 
-insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,userstatus)
-values("adrianRob","pippo","Adrian","Minut","02-02-1997","Male","Traveler","offline");
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,userstatus)
+values("adrianRob","pippo","Adrian","Minut","02-02-1997","Male","Traveler","Friendly","offline");
 
 insert into Locations(country,city,tipeOfPersonality)
 values ("Zanzibar","Tanzania", "Curious");

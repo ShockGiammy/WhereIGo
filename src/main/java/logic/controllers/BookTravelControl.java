@@ -1,9 +1,9 @@
 package logic.controllers;
 
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import logic.LoggedUser;
 import logic.beans.GroupBean;
 import logic.beans.LocationBean;
@@ -12,8 +12,10 @@ import logic.beans.UserTravelBean;
 import logic.dao.GroupDao;
 import logic.dao.LocationDao;
 import logic.dao.TravelDao;
+import logic.dao.UserDao;
 import logic.model.GroupModel;
 import logic.model.TicketModel;
+import logic.model.UserModel;
 
 public class BookTravelControl {
 	private LoggedUser logUser;
@@ -21,6 +23,7 @@ public class BookTravelControl {
 	private LocationDao locDao;
 	private TravelDao travDao;
 	private GroupDao grpDao;
+	private UserDao usrDao;
 	
 	public BookTravelControl() {
 		this.userBean = new UserDataBean();
@@ -28,6 +31,7 @@ public class BookTravelControl {
 		this.logUser = new LoggedUser();
 		this.travDao = new TravelDao();
 		this.grpDao = new GroupDao();
+		this.usrDao = new UserDao();
 	}
 	
 	public List<String> showLocationsControl() {
@@ -173,5 +177,23 @@ public class BookTravelControl {
 	
 	public void leaveTravelGroup(GroupBean grpBean, UserDataBean dataBean) {
 		this.grpDao.leaveJoinedGroup(grpBean, dataBean);
+	}
+	
+	public void getSamePersUsers(List<UserDataBean> usrList) {
+		List<UserModel> usrModelList = new ArrayList<>();
+		UserModel loggedUsr = new UserModel();
+		loggedUsr.setUserName(this.logUser.getUserName());
+		loggedUsr.setUserPersonality(this.logUser.getPersonality());
+		this.usrDao.findSimilarUsers(usrModelList, loggedUsr);
+		setSimUsersBean(usrList, usrModelList);
+	}
+	
+	public void setSimUsersBean(List<UserDataBean> usrList, List<UserModel> usrModList) {
+		for(int i = 0; i < usrModList.size(); i++) {
+			UserDataBean databean = new UserDataBean();
+			databean.setByteSteam(usrModList.get(i).getProfilePic());
+			databean.setUserName(usrModList.get(i).getUserName());
+			usrList.add(databean);
+		}
 	}
 }
