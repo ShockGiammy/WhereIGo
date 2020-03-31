@@ -15,6 +15,7 @@ import logic.controllers.ChatType;
 import logic.exceptions.DuplicateUsernameException;
 import logic.model.Message;
 import logic.model.MessageType;
+import logic.model.SecureObjectInputStream;
 import logic.model.User;
 
 public class Server{
@@ -63,7 +64,7 @@ public class Server{
         private OutputStream os;
         private InputStream is;
         private ObjectOutputStream output;
-        private ObjectInputStream input;
+        private SecureObjectInputStream input;
         private String usersGroup;
 
         public Handler(Socket socket){
@@ -82,7 +83,7 @@ public class Server{
                       
             try (                
             		ObjectOutputStream outputTry = new ObjectOutputStream(os);
-            		ObjectInputStream inputTry = new ObjectInputStream(is);
+            		SecureObjectInputStream inputTry = new SecureObjectInputStream(is);
             		) {
             	output = outputTry;
             	input = inputTry;
@@ -119,8 +120,11 @@ public class Server{
                 logger.log(Level.SEVERE, socketException.getMessage());
             } catch (DuplicateUsernameException duplicateException){
                 logger.log(Level.SEVERE, () -> "Duplicate Username : " + name);
+            } catch (IOException e) {
+            	logger.log(Level.SEVERE, () -> "Problem with IO deserialization" + e.getMessage());
             } catch (Exception e){
                 logger.log(Level.SEVERE, e, () -> "Exception in run() method in try-with-resources for user: " + name);
+                
             } finally {
                 closeConnections(null);
             }
@@ -241,9 +245,9 @@ public class Server{
                 names.remove(name);
                 logger.info(() -> "User: " + name + REMOVED);
             }
-            if (output != null){
-                listOfLists.get(usersGroup).remove(output);
-                logger.info(() -> "Writer object: " + user + REMOVED);
+            if ((output != null) && (listOfLists.containsKey(usersGroup))) {
+            	listOfLists.get(usersGroup).remove(output);
+            	logger.info(() -> "Writer object: " + user + REMOVED);
             }
             if (is != null){
                 try {

@@ -2,6 +2,7 @@ package logic.controllers;
 
 import logic.model.Message;
 import logic.model.MessageType;
+import logic.model.SecureObjectInputStream;
 
 import java.io.*;
 import java.net.Socket;
@@ -19,7 +20,7 @@ public class Listener implements Runnable{
     private String username;
     private String usersGroup;
     private ObjectOutputStream oos;
-    private ObjectInputStream input;
+    private SecureObjectInputStream input;
     protected Logger logger = Logger.getLogger("WIG");
 	private ChatController controller;
 	private int myConnection = 0;
@@ -40,7 +41,7 @@ public class Listener implements Runnable{
         	socket = new Socket(hostname, port);
             OutputStream outputStream = socket.getOutputStream();
             InputStream is = socket.getInputStream();
-            input = new ObjectInputStream(is);
+            input = new SecureObjectInputStream(is);
             oos = new ObjectOutputStream(outputStream);
         		
         }

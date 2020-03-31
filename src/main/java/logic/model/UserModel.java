@@ -1,7 +1,5 @@
 package logic.model;
 
-import logic.beans.UserDataBean;
-
 public class UserModel {
 	private String name;
 	private String surname;

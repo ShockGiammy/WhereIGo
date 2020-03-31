@@ -1,5 +1,5 @@
 package logic.controllers;
 
-public enum ChatType {
+public enum ChatType{
 	GROUP, PRIVATE;
 }
