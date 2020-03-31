@@ -75,8 +75,8 @@ public class Server{
             try {
 				output = new ObjectOutputStream(socket.getOutputStream());
         		input = new SecureObjectInputStream(socket.getInputStream());
-			} catch (Exception e){
-                logger.log(Level.SEVERE, e, () -> "Exception in run() method for user: " + name);
+			} catch (Exception e) {
+                logger.log(Level.SEVERE, e, () -> "Exception in output/input");
 			}
                       
             try {
@@ -110,12 +110,12 @@ public class Server{
             } catch (SocketException socketException) {
                 logger.log(Level.SEVERE, () -> "Socket Exception for user " + name);
                 logger.log(Level.SEVERE, socketException.getMessage());
-            } catch (DuplicateUsernameException duplicateException){
+            } catch (DuplicateUsernameException duplicateException) {
                 logger.log(Level.SEVERE, () -> "Duplicate Username : " + name);
             } catch (IOException e) {
             	logger.log(Level.SEVERE, () -> "Problem with IO deserialization" + e.getMessage());
-            } catch (Exception e){
-                logger.log(Level.SEVERE, e, () -> "Exception in run() method in try-with-resources for user: " + name);
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, e, () -> "Exception in run() method for user: " + name);
                 
             } finally {
                 closeConnections(null);
@@ -140,26 +140,26 @@ public class Server{
         
         public void checkGroupName(Message msg) {
         	if (msg.getChatType() == ChatType.PRIVATE) {
-        		if (listOfLists.containsKey(msg.getUsersGroup()+msg.getName())) {
-        			this.usersGroup = msg.getUsersGroup()+msg.getName();
+        		if (listOfLists.containsKey(msg.getGroupOrReceiver()+msg.getName())) {
+        			this.usersGroup = msg.getGroupOrReceiver()+msg.getName();
         			listOfLists.get(usersGroup).add(output);
         			logger.info(() -> usersGroup + " chat already existed");
         		} 
-        		else if (listOfLists.containsKey(msg.getName()+msg.getUsersGroup())) {
-        			this.usersGroup = msg.getName()+msg.getUsersGroup();
+        		else if (listOfLists.containsKey(msg.getName()+msg.getGroupOrReceiver())) {
+        			this.usersGroup = msg.getName()+msg.getGroupOrReceiver();
         			listOfLists.get(usersGroup).add(output);
         			logger.info(() -> usersGroup + " chat already existed");
         		}
         		else {
         			HashSet<ObjectOutputStream> writers = new HashSet<>();
         			writers.add(output);
-        			this.usersGroup = msg.getName()+msg.getUsersGroup();
+        			this.usersGroup = msg.getName()+msg.getGroupOrReceiver();
         			listOfLists.put(usersGroup, writers);
         			logger.info(() -> usersGroup + " chat created");
         		}
         	}
         	else {
-        		this.usersGroup = msg.getUsersGroup();
+        		this.usersGroup = msg.getGroupOrReceiver();
         		if (listOfLists.containsKey(usersGroup)) {            		
             		listOfLists.get(usersGroup).add(output);         
                     logger.info(() -> usersGroup + " group already existed");
@@ -179,7 +179,7 @@ public class Server{
             msg.setMsg(firstMessage.getName()+" has joined the chat.");
             msg.setType(MessageType.SERVER);
             msg.setName(firstMessage.getName());
-            msg.setUsersGroup(usersGroup);
+            msg.setGroupOrReceiver(usersGroup);
             write(msg);
             logger.info("sendNotification() method Exit");
             return msg;
@@ -192,7 +192,7 @@ public class Server{
             msg.setMsg(userToRemove + "has left the chat.");
             msg.setType(MessageType.DISCONNECTED);
             msg.setName("SERVER");
-            msg.setUsersGroup(usersGroup);
+            msg.setGroupOrReceiver(usersGroup);
             write(msg);
             logger.info("removeFromList() method Exit");
             return msg;
@@ -207,7 +207,7 @@ public class Server{
             msg.setMsg("Welcome, You have now joined the server! Enjoy chatting!");
             msg.setType(MessageType.CONNECTED);
             msg.setName("SERVER");
-            msg.setUsersGroup(usersGroup);
+            msg.setGroupOrReceiver(usersGroup);
             write(msg);
             logger.info("addToList() method Exit");
             return msg;
@@ -218,7 +218,7 @@ public class Server{
          */
         private void write(Message msg) throws IOException {
         	for(Entry<String, HashSet<ObjectOutputStream>> writers : listOfLists.entrySet()) {
-        		if (writers.getKey().equals(msg.getUsersGroup())) {
+        		if (writers.getKey().equals(msg.getGroupOrReceiver())) {
         			for (ObjectOutputStream writer : writers.getValue()) {
         			writer.writeObject(msg);
         			writer.reset();

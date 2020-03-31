@@ -10,7 +10,7 @@ import logic.controllers.ChatType;
 
 public class SecureObjectInputStream extends ObjectInputStream {
 
-	protected SecureObjectInputStream() throws IOException, SecurityException {
+	protected SecureObjectInputStream() throws IOException {
 		super();
 	}
 

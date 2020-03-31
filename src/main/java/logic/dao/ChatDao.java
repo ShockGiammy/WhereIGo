@@ -19,10 +19,10 @@ public class ChatDao {
 	
 	private static final String EXCEPTION = "Got an exception!";
 
-	public void saveMessage(Message msg, String receiver) {
+	public void saveMessage(Message msg) {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Chat (sender, receiver, message) VALUES (?, ?, ?)")){  
 			statement.setString(1, msg.getName());
-			statement.setString(2,  receiver);
+			statement.setString(2, msg.getGroupOrReceiver());
 			statement.setString(3, msg.getMsg());
 			statement.execute();
 		}
@@ -35,10 +35,10 @@ public class ChatDao {
 		}
 	}
 
-	public void setStatus(String user, String status) {
+	public void setStatus(User user) {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("UPDATE usr Set userStatus = ? where username = ?")){   
-			statement.setString(1,  status);
-			statement.setString(2, user);
+			statement.setString(1, user.getStatus());
+			statement.setString(2, user.getName());
 			statement.execute();
 		}
 		catch (SQLException e) {
@@ -201,11 +201,11 @@ public class ChatDao {
 		return status;
 	}
 	
-	public void createNewChat(String user, String renter) {
-		if (getSavedMsg(user, renter).isEmpty()) {
+	public void createNewChat(Message msg) {
+		if (getSavedMsg(msg.getName(), msg.getGroupOrReceiver()).isEmpty()) {
 			try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Chat (sender, receiver) VALUES (?, ?)")){  
-				statement.setString(1, user);
-				statement.setString(2,  renter);
+				statement.setString(1, msg.getName());
+				statement.setString(2, msg.getGroupOrReceiver());
 				statement.execute();
 			}
 			catch (SQLException e) {

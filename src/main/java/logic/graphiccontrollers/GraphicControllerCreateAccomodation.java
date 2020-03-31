@@ -15,9 +15,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-import logic.ImageViewer;
 import logic.beans.RentAccomodationBean;
-import logic.controllers.ManageAnnouncementController;
+import logic.controllers.ControllerFacade;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
@@ -41,10 +40,9 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 	@FXML private ImageView imageView;
 	@FXML private Button openButton;
 	
-	private ManageAnnouncementController control;
+	private ControllerFacade facade;
 	private RentAccomodationBean bean;
 	private File houseImage;
-	private ImageViewer viewer;
 	
 	@FXML
 	private void initialize() {
@@ -62,9 +60,8 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 	}
 	
 	public GraphicControllerCreateAccomodation() {
-		control = new ManageAnnouncementController();
+		facade = new ControllerFacade();
 		bean = new RentAccomodationBean();
-		viewer = new ImageViewer();
 	}
 
 	public void applyInfo(MouseEvent event) {
@@ -107,7 +104,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		bean.setSquareMetres(squareMetres.getValue());
 		bean.setType(type.getValue());
 		bean.setRenter(this.logUsr.getUserName());
-		control.createAccomodation(bean);
+		facade.createAccomodation(bean);
 		goHome(event);
 	}
     
@@ -143,10 +140,10 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		squareMetres.setVisible(true);
 		squareMetres.setValue(bean.getSquareMetres());
 		imageView.setVisible(true);
-		BufferedImage bufImage = viewer.loadImage(bean.getHouseImage());
+		BufferedImage bufImage = facade.loadImage(bean.getHouseImage());
 		imageView.setFitHeight(180);
 		imageView.setFitWidth(350);
-		imageView.setImage(viewer.convertToFxImage(bufImage));
+		imageView.setImage(facade.convertToFxImage(bufImage));
 		setServices(bean);
     }
     

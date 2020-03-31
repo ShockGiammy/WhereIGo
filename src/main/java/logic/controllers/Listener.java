@@ -88,7 +88,7 @@ public class Listener implements Runnable{
                 break;
             case CONNECTED:
             	if (myConnection == 0) {
-            		this.usersGroup = message.getUsersGroup();
+            		this.usersGroup = message.getGroupOrReceiver();
             		controller.addServerMessage(message);
             		myConnection++;
             	}
@@ -105,7 +105,7 @@ public class Listener implements Runnable{
         createMessage.setName(username);
         createMessage.setType(MessageType.USER);
         createMessage.setMsg(msg);
-        createMessage.setUsersGroup(usersGroup);
+        createMessage.setGroupOrReceiver(usersGroup);
         oos.writeObject(createMessage);
         oos.flush();
     }
@@ -117,7 +117,7 @@ public class Listener implements Runnable{
         createMessage.setType(MessageType.CONNECTED);
         createMessage.setChatType(chatType);
         createMessage.setMsg(HASCONNECTED);
-        createMessage.setUsersGroup(usersGroup);
+        createMessage.setGroupOrReceiver(usersGroup);
         oos.writeObject(createMessage);
     }
     

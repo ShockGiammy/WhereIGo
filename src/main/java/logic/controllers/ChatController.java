@@ -8,8 +8,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import logic.LoggedUser;
-import logic.beans.GroupBean;
-import logic.beans.UserDataBean;
 import logic.dao.ChatDao;
 import logic.dao.GroupDao;
 import logic.exceptions.GroupNameTakenException;
@@ -30,14 +28,17 @@ public class ChatController {
 	private static final String ONLINE = "online";
 	private boolean alreadyActive = false;
 	private List<GroupModel> grpModel;
-	
+	private User myUserModel;
 	public ChatController(ControllerFacade reference) {
 		chatDao = new ChatDao();
 		groupDao = new GroupDao();
 		this.facade = reference;
 		this.logUser = new LoggedUser();
 		this.username = logUser.getUserName();
-		chatDao.setStatus(username, ONLINE);
+		myUserModel = new User();
+		myUserModel.setName(username);
+		myUserModel.setStatus(ONLINE);
+		chatDao.setStatus(myUserModel);
 		grpModel = new ArrayList<>();
 	}
 	
@@ -45,8 +46,9 @@ public class ChatController {
 		chatDao = new ChatDao();
 	}
 	
-	public void modificateStatus(String status) {
-		chatDao.setStatus(username, status);
+	public void modificateMyStatus(String status) {
+		myUserModel.setStatus(status);
+		chatDao.setStatus(myUserModel);
 	}
 
 	public List<Message> openChat(String receiver, ChatType type) {
@@ -100,14 +102,18 @@ public class ChatController {
 
 	public void createChat(String renter) {
 		logUser = new LoggedUser();
-		chatDao.createNewChat(logUser.getUserName(), renter);
+		Message newMessage = new Message();
+		newMessage.setName(logUser.getUserName());
+		newMessage.setGroupOrReceiver(renter);
+		chatDao.createNewChat(newMessage);
 	}
 
 	public void sendMessage(String msg, String receiver) {
 		Message createMessage = new Message();
 	    createMessage.setName(username);
 	    createMessage.setMsg(msg);
-	    chatDao.saveMessage(createMessage, receiver);
+	    createMessage.setGroupOrReceiver(receiver);
+	    chatDao.saveMessage(createMessage);
 	    try {
 	    	listener.send(msg);
 	    } catch (IOException ex) {

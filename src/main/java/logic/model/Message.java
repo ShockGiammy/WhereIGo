@@ -10,7 +10,7 @@ public class Message implements Serializable {
 	private String name;
     private MessageType type;
     private String msg;
-    private String usersGroup;
+    private String groupOrReceiver;
     private ChatType chatType;
 
     private String status;
@@ -47,12 +47,12 @@ public class Message implements Serializable {
         return status;
     }
 
-	public String getUsersGroup() {
-		return usersGroup;
+	public String getGroupOrReceiver() {
+		return groupOrReceiver;
 	}
 
-	public void setUsersGroup(String usersGroup) {
-		this.usersGroup = usersGroup;
+	public void setGroupOrReceiver(String usersGroup) {
+		this.groupOrReceiver = usersGroup;
 	}
 
 	public ChatType getChatType() {

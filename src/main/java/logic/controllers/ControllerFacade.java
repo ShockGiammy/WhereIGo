@@ -41,6 +41,8 @@ public class ControllerFacade {
 		chatController = new ChatController(this);
 	}
 	
+	/*ManageAnnouncementController references methods*/
+	
 	public List<RentAccomodationBean> displayMyAnnouncement() {
 		
 		controllerManage = new ManageAnnouncementController();
@@ -59,6 +61,8 @@ public class ControllerFacade {
 	public void createChat(String renter) {
 		controllerRent.createChat(renter);
 	}
+	
+	/*ChatController references methods*/
 	
 	public List<User> getUsers() {
 		return chatController.getUsers();
@@ -88,7 +92,7 @@ public class ControllerFacade {
 	}
 	
 	public void modificateStatus(String status) {
-		chatController.modificateStatus(status);
+		chatController.modificateMyStatus(status);
 	}
 	
 	public void updateUserList(List<User> users) {
@@ -101,6 +105,13 @@ public class ControllerFacade {
 	
 	public void addAsServer(Message message) {
 		graphicChat.addAsServer(message);
+	}
+	
+	/*CreateAccomodation references methods*/
+	
+	public void createAccomodation(RentAccomodationBean bean) {
+		controllerManage = new ManageAnnouncementController();
+		controllerManage.createAccomodation(bean);
 	}
 	
 	@SuppressWarnings("exports")

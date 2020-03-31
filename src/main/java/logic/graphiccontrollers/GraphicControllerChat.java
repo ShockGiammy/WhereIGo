@@ -160,7 +160,8 @@ public class GraphicControllerChat extends BasicGui {
     }
     
     public void updateUserList(List<User> users) {
-    	userList.getItems().clear();
+    	Platform.runLater(() ->
+    		userList.getItems().clear());
     	for (User user : users) {
     		addToUserList(user);
     	}
