@@ -19,9 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import logic.ImageViewer;
-import logic.controllers.ChatController;
 import logic.controllers.ChatType;
+import logic.controllers.ControllerFacade;
 import logic.model.Message;
 import logic.model.User;
 import logic.view.BasicGui;
@@ -45,24 +44,22 @@ public class GraphicControllerChat extends BasicGui {
     @FXML private Button createGroup;
 
     protected Logger logger = Logger.getLogger("WIG");
-    private ChatController chatController;
     private String username;
     private double pading = 5.0;
-    private ImageViewer viewer;
     private Image pictureImage;
     private List<User> users;
     private List<String> namesList;
+    private ControllerFacade facade;
 
     public GraphicControllerChat() {
-    	chatController = new ChatController(this);
+    	facade = new ControllerFacade(this);
     	this.username = logUsr.getUserName();
-    	viewer = new ImageViewer();
     }
     
     public void sendButtonAction() {
         String msg = messageBox.getText();
         if (!messageBox.getText().isEmpty()) {
-        	chatController.sendMessage(msg, activeChat.getText());
+        	facade.sendMessage(msg, activeChat.getText());
             messageBox.clear();
         }
     }
@@ -115,14 +112,14 @@ public class GraphicControllerChat extends BasicGui {
     }
 
     public void setUserList() {
-    	users = chatController.getUsers();
+    	users = facade.getUsers();
     	for (User user : users) {
     		addToUserList(user);
     	}
     }
     
     public void setGroupList() {
-    	List<String> groupNames = chatController.getGroups();
+    	List<String> groupNames = facade.getGroups();
     	for (String groupName : groupNames) {
     		addToGroupList(groupName);
     	}
@@ -209,14 +206,14 @@ public class GraphicControllerChat extends BasicGui {
     
     public void displayChat(String receiver, ChatType type) {
     	chatPane.getItems().clear();
-    	chatController.closeLastChat();
-    	List<Message> chat = chatController.openChat(receiver, type);
+    	facade.closeLastChat();
+    	List<Message> chat = facade.openChat(receiver, type);
     	for (Message message : chat) {
     		if (message.getMsg() != null) {
     			addToChat(message);
     		}
     	}
-    	chatController.execute(receiver, type);
+    	facade.execute(receiver, type);
     }
 
     public void initialize() {
@@ -244,10 +241,10 @@ public class GraphicControllerChat extends BasicGui {
             	Text name = new Text(user.getName());
             	
             	ImageView pictureImageView = new ImageView();
-            	BufferedImage bufImage = viewer.loadImage(user.getPicture());
+            	BufferedImage bufImage = facade.loadImage(user.getPicture());
             	pictureImageView.setFitHeight(45);
             	pictureImageView.setFitWidth(45);
-            	pictureImageView.setImage(viewer.convertToFxImage(bufImage));
+            	pictureImageView.setImage(facade.convertToFxImage(bufImage));
 
             	hBox.getChildren().addAll(statusImageView, pictureImageView, name);
             	hBox.setAlignment(Pos.CENTER_LEFT);
@@ -274,10 +271,10 @@ public class GraphicControllerChat extends BasicGui {
             	Text name = new Text(user.getName());
             	
             	ImageView pictureImageView = new ImageView();
-            	BufferedImage bufImage = viewer.loadImage(user.getPicture());
+            	BufferedImage bufImage = facade.loadImage(user.getPicture());
             	pictureImageView.setFitHeight(25);
             	pictureImageView.setFitWidth(25);
-            	pictureImageView.setImage(viewer.convertToFxImage(bufImage));
+            	pictureImageView.setImage(facade.convertToFxImage(bufImage));
             	
             	Button add = new Button("Add user");
             	add.setOnAction(e ->
@@ -333,7 +330,7 @@ public class GraphicControllerChat extends BasicGui {
 		backButton.setOnAction(e->window.close());
 		Button confirmButton = new Button("Confirm");
 		confirmButton.setOnAction(event -> {
-			chatController.createGroup(groupName.getText(), namesList);
+			facade.createGroup(groupName.getText(), namesList);
 			window.close();
 		});
 		HBox buttonBox = new HBox();
@@ -351,8 +348,8 @@ public class GraphicControllerChat extends BasicGui {
     
     public void exitChat() {
     	logger.info("exitChat() method Enter");
-    	chatController.modificateStatus("offline");
-    	chatController.closeLastChat();
+    	facade.modificateStatus("offline");
+    	facade.closeLastChat();
     	logger.info("exitChat() method Exit");
     }
     

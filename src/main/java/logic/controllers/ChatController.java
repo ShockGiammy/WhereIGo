@@ -12,7 +12,6 @@ import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.dao.ChatDao;
 import logic.dao.GroupDao;
-import logic.graphiccontrollers.GraphicControllerChat;
 import logic.model.GroupModel;
 import logic.model.Message;
 import logic.model.User;
@@ -21,7 +20,7 @@ public class ChatController {
 	private String username;
 	private ChatDao chatDao;
 	private GroupDao groupDao;
-	private GraphicControllerChat graphic;
+	private ControllerFacade facade;
 	private ObservableList<User> users;
 	private Listener listener;
 	private LoggedUser logUser;
@@ -30,10 +29,10 @@ public class ChatController {
 	private boolean alreadyActive = false;
 	private List<GroupModel> grpModel;
 	
-	public ChatController(GraphicControllerChat reference) {
+	public ChatController(ControllerFacade reference) {
 		chatDao = new ChatDao();
 		groupDao = new GroupDao();
-		this.graphic = reference;
+		this.facade = reference;
 		this.logUser = new LoggedUser();
 		this.username = logUser.getUserName();
 		chatDao.setStatus(username, ONLINE);
@@ -64,7 +63,7 @@ public class ChatController {
 	
 	public void updateUsersStatus() {
 		users = chatDao.getUsersQuery(username);
-		graphic.updateUserList(users);
+		facade.updateUserList(users);
 	}
 
 	public String getUsername() {
@@ -116,11 +115,11 @@ public class ChatController {
 	}
 	
 	public void addMessage(Message message) {
-		graphic.addToChat(message);
+		facade.addToChat(message);
 	}
 	
 	public void addServerMessage(Message message) {
-		graphic.addAsServer(message);
+		facade.addAsServer(message);
 	}
 	
 	public void createGroup(String groupName, List<String> groupList) {

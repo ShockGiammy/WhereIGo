@@ -11,26 +11,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import logic.ImageViewer;
 import logic.beans.RentAccomodationBean;
-import logic.controllers.ManageAnnouncementController;
+import logic.controllers.ControllerFacade;
 import logic.view.BasicGui;
 
 public class GraphicControllerRenterAccomodations extends BasicGui{
 
 	@FXML private ListView<HBox> accomodationsList;
 	
-	private ManageAnnouncementController controller;
-	private ImageViewer viewer;
+	private ControllerFacade facade;
 	
 	public void initialize() {
 		this.userImage.setImage(this.logUsr.getImage());
 	}
 	
 	public GraphicControllerRenterAccomodations() {
-		controller = new ManageAnnouncementController();
-		viewer = new ImageViewer();
-		List<RentAccomodationBean> listOfBean = controller.displayMyAnnouncement();
+		facade = new ControllerFacade();
+		List<RentAccomodationBean> listOfBean = facade.displayMyAnnouncement();
 		for (RentAccomodationBean bean : listOfBean) {
 			setDisplayInfo(bean);
 		}
@@ -45,11 +42,11 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
             	
             	HBox accomodationBox = new HBox();
             	ImageView house = new ImageView();
-            	BufferedImage bufImage = viewer.loadImage(bean.getHouseImage());
+            	BufferedImage bufImage = facade.loadImage(bean.getHouseImage());
             	house.setFitHeight(50);
             	house.setFitWidth(50);
             	house.setX(25);
-            	house.setImage(viewer.convertToFxImage(bufImage));
+            	house.setImage(facade.convertToFxImage(bufImage));
             	Text type = new Text();
             	type.setText("  Type  ");
             	Text typeValue = new Text();
@@ -69,7 +66,7 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
             	Button delete = new Button();
             	delete.setText("Delete");
             	delete.setOnMouseClicked(e -> {
-            		controller.deleteMyAccomodation(bean.getID());
+            		facade.deleteMyAccomodation(bean.getID());
             		delete(accomodationBox);
             	});
 			
@@ -79,7 +76,7 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
 		};
 	    
 	    task.setOnSucceeded(event ->
-		accomodationsList.getItems().add(task.getValue()));
+			accomodationsList.getItems().add(task.getValue()));
 
 	    Thread t = new Thread(task);
 	    t.setDaemon(true);
@@ -110,7 +107,7 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
 		};
     
 		task.setOnSucceeded(event ->
-		accomodationsList.getItems().add(task.getValue()));
+			accomodationsList.getItems().add(task.getValue()));
 
 		Thread t = new Thread(task);
 		t.setDaemon(true);

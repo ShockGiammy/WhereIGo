@@ -20,9 +20,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import logic.ImageViewer;
 import logic.beans.RentAccomodationBean;
-import logic.controllers.RentAccomodationController;
+import logic.controllers.ControllerFacade;
 import logic.view.BasicGui;
 
 public class GraphicControlRentAccomodation extends BasicGui{
@@ -55,25 +54,19 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	@FXML private Text kitchenText;
 	@FXML private Button contactRenter;
 	
-	
-	private RentAccomodationController controller;
-	private ImageViewer viewer;
 	private int number = 0;
 	private double pading = 5.0;
+	private ControllerFacade facade;
 	
 	
 	@FXML
 	public void initialize() {
-		controller = new RentAccomodationController();
 		this.userImage.setImage(logUsr.getImage());
-		List<RentAccomodationBean> listOfBean = controller.displayAnnouncement();
+		facade = new ControllerFacade();
+		List<RentAccomodationBean> listOfBean = facade.displayAnnouncement();
 		for (RentAccomodationBean bean : listOfBean) {
 			setDisplayInfo(bean);
 		}
-	}
-	
-	public GraphicControlRentAccomodation() {
-		viewer = new ImageViewer();
 	}
 	
 	public void setDisplayInfo(RentAccomodationBean bean) {
@@ -97,11 +90,11 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		bedsBox.getChildren().addAll(beds, numberBeds);
 		bedsBox.setPadding(new Insets(pading, pading, pading, pading));
 		ImageView house = new ImageView();
-		BufferedImage bufImage = viewer.loadImage(bean.getHouseImage());
+		BufferedImage bufImage = facade.loadImage(bean.getHouseImage());
 		house.setFitHeight(150);
 		house.setFitWidth(150);
 		house.setX(30);
-		house.setImage(viewer.convertToFxImage(bufImage));
+		house.setImage(facade.convertToFxImage(bufImage));
 		Button details = new Button();
 		details.setText("View Details");
 		details.setOnMouseClicked(e -> 
@@ -149,10 +142,10 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		renter.setVisible(true);
 		renter.setText(bean.getRenter());
 		houseDetail.setVisible(true);
-		BufferedImage bufImage = viewer.loadImage(bean.getHouseImage());
+		BufferedImage bufImage = facade.loadImage(bean.getHouseImage());
 		houseDetail.setFitHeight(180);
 		houseDetail.setFitWidth(350);
-		houseDetail.setImage(viewer.convertToFxImage(bufImage));
+		houseDetail.setImage(facade.convertToFxImage(bufImage));
 		
 		setServices(bean);
 		
@@ -193,7 +186,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	}
 	
 	public void contactRenter(MouseEvent event) {
-		controller.createChat(renter.getText());
+		facade.createChat(renter.getText());
 		setScene("ChatView.fxml");
 		loadScene();
 		nextGuiOnClick(event);
