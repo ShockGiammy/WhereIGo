@@ -1,6 +1,5 @@
 package logic.controllers;
 
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,51 +12,55 @@ import logic.dao.GroupDao;
 import logic.dao.LocationDao;
 import logic.dao.TravelDao;
 import logic.dao.UserDao;
+import logic.exceptions.GroupNameTakenException;
 import logic.model.GroupModel;
 import logic.model.TicketModel;
 import logic.model.UserModel;
 
 public class BookTravelControl {
 	private LoggedUser logUser;
-	private UserDataBean userBean;
+	private UserModel usrMod;
+	private GroupModel grpMod;
 	private LocationDao locDao;
 	private TravelDao travDao;
 	private GroupDao grpDao;
 	private UserDao usrDao;
 	
 	public BookTravelControl() {
-		this.userBean = new UserDataBean();
+		this.usrMod = new UserModel();
 		this.locDao = new LocationDao();
 		this.logUser = new LoggedUser();
 		this.travDao = new TravelDao();
 		this.grpDao = new GroupDao();
 		this.usrDao = new UserDao();
+		this.grpMod = new GroupModel();
 	}
 	
 	public List<String> showLocationsControl() {
 		List<String> suggLoc = new ArrayList<>();
-		userBean.setPersonality(logUser.getPersonality());
-		userBean.setUserName(this.logUser.getUserName());
-		suggLoc.addAll(this.locDao.getSuggestedLocations(userBean));
+		UserDataBean dataBean = new UserDataBean();
+		dataBean.setUserName(this.logUser.getUserName());
+		dataBean.setPersonality(this.logUser.getPersonality());
+		suggLoc.addAll(this.locDao.getSuggestedLocations(dataBean));
 		return suggLoc;
 	}
 	
 	public void getGroupsControl(List<GroupBean> beanList) {
-		this.userBean.setPersonality(this.logUser.getPersonality());
-		this.userBean.setUserName(this.logUser.getUserName());
+		this.usrMod.setUserPersonality(this.logUser.getPersonality());
+		this.usrMod.setUserName(this.logUser.getUserName());
 		List<GroupModel> grpModelList = new ArrayList<>();
-		this.grpDao.retriveSuggestedGroups(this.userBean, grpModelList);
-		extractGroups(grpModelList, beanList);
+		this.grpDao.retriveSuggestedGroups(this.usrMod, grpModelList);
+		extractGroupsControl(grpModelList, beanList);
 	}
 	
-	public void getParticipateGroups(List<GroupBean> beanList){
-		this.userBean.setPersonality(this.logUser.getPersonality());
+	public void getParticipateGroupsControl(List<GroupBean> beanList){
+		this.usrMod.setUserPersonality(this.logUser.getPersonality());
 		List<GroupModel> grpList = new ArrayList<>();
-		this.grpDao.getPartGroups(grpList, userBean);
-		extractGroups(grpList, beanList);
+		this.grpDao.getPartGroups(grpList, usrMod);
+		extractGroupsControl(grpList, beanList);
 	}
 	
-	public void extractGroups(List<GroupModel> grpList, List<GroupBean> beanList) {
+	public void extractGroupsControl(List<GroupModel> grpList, List<GroupBean> beanList) {
 		int i;
 		for(i = 0; i < grpList.size(); i++) {
 			GroupBean grpbean = new GroupBean();
@@ -72,7 +75,7 @@ public class BookTravelControl {
 		this.locDao.retriveLocationInfo(bean);
 	}
 	
-	public int retriveTravelSolutions(UserTravelBean travBean, List<UserTravelBean> travList) {
+	public int retriveTravelSolutionsControl(UserTravelBean travBean, List<UserTravelBean> travList) {
 		List<TicketModel> tickList = new ArrayList<>();
 		int i = 0;
 		try {
@@ -80,10 +83,9 @@ public class BookTravelControl {
 				return -1;
 			}
 			else {
-				LoggedUser logUsr = new LoggedUser();
-				UserDataBean usrDataBean = new UserDataBean();
-				usrDataBean.setUserName(logUsr.getUserName());
-				tickList.addAll(travDao.retriveAvailableTickets(travBean, usrDataBean));
+				UserDataBean dataBean = new UserDataBean();
+				dataBean.setUserName(this.logUser.getUserName());
+				tickList.addAll(travDao.retriveAvailableTickets(travBean, dataBean));
 				if(tickList.isEmpty()) {
 					return -1;
 				}
@@ -107,16 +109,17 @@ public class BookTravelControl {
 		return 0;
 	}
 	
-	public void saveBoughtTicket(UserTravelBean travBean , UserDataBean dataBean) {
+	public void saveBoughtTicketControl(UserTravelBean travBean , UserDataBean dataBean) {
 		TicketModel tick = new TicketModel();
 		tick.setAll(travBean.getId(), travBean.getCityOfDep(), travBean.getCityOfArr(), travBean.getFirstDay(), travBean.getLastDay(), travBean.getCost());
 		this.travDao.saveBoughtTickets(tick, dataBean);
 	}
 	
-	public void getBookedTickets(List<UserTravelBean> travBeanList) {
-		this.userBean.setUserName(this.logUser.getUserName());
+	public void getBookedTicketsControl(List<UserTravelBean> travBeanList) {
+		UserDataBean dataBean = new UserDataBean();
+		dataBean.setUserName(logUser.getUserName());
 		List<TicketModel> tickList = new ArrayList<>();
-		this.travDao.getUserTickets(userBean, tickList);
+		this.travDao.getUserTickets(dataBean, tickList);
 		int i;
 		for(i = 0; i < tickList.size(); i++) {
 			UserTravelBean bean = new UserTravelBean();
@@ -130,23 +133,25 @@ public class BookTravelControl {
 		}
 	}
 	
-	public int saveGroup(GroupBean grpBean) {
-		return this.grpDao.saveUserGroup(grpBean);
+	public void saveGroupControl(GroupBean grpBean) throws GroupNameTakenException {
+		this.grpMod.setAll(grpBean.getGroupOwner(),grpBean.getGroupTitle(), grpBean.getGroupDestination());
+		this.grpDao.saveUserGroup(this.grpMod);
 	}
 	
-	public void getUserGroups(List<GroupBean> grpBean) {
-		this.userBean.setUserName(this.logUser.getUserName());
+	public void getUserGroupsControl(List<GroupBean> grpBean) {
+		this.usrMod.setUserName(this.logUser.getUserName());
 		List<GroupModel> grpList = new ArrayList<>();
-		grpDao.getUserGroups(grpList,this.userBean);
-		extractGroups(grpList, grpBean);
-		getParticipateGroups(grpBean);
+		grpDao.getUserGroups(grpList,this.usrMod);
+		extractGroupsControl(grpList, grpBean);
+		getParticipateGroupsControl(grpBean);
 	}
 	
-	public List<UserTravelBean> getSuggTicketsInfo(UserTravelBean travBean) {
+	public List<UserTravelBean> getSuggTicketsInfoControl(UserTravelBean travBean) {
 		List<TicketModel> tickList = new ArrayList<>();
 		List<UserTravelBean> travList = new ArrayList<>();
-		this.userBean.setUserName(this.logUser.getUserName());
-		this.travDao.getSuggestedTickets(travBean,this.userBean, tickList);
+		UserDataBean dataBean = new UserDataBean();
+		dataBean.setUserName(this.logUser.getUserName());
+		this.travDao.getSuggestedTickets(travBean,dataBean, tickList);
 		int i;
 		for(i = 0; i < tickList.size(); i++) {
 			UserTravelBean trav = new UserTravelBean();
@@ -161,34 +166,41 @@ public class BookTravelControl {
 		return travList;
 	}
 	
-	public int insertParticipant(GroupBean bean, UserDataBean dataBean) {
-		return this.grpDao.insertParticipant(bean, dataBean);
+	public int insertParticipantControl(GroupBean bean) {
+		this.grpMod.setAll(bean.getGroupOwner(), bean.getGroupTitle(), bean.getGroupDestination());
+		usrMod.setUserName(this.logUser.getUserName());
+		return this.grpDao.insertParticipant(grpMod, usrMod);
 	}
 	
-	public void deleteSavedTravel(UserTravelBean travBean, UserDataBean dataBean) {
+	public void deleteSavedTravelControl(UserTravelBean travBean) {
+		UserDataBean dataBean = new UserDataBean();
+		dataBean.setUserName(this.logUser.getUserName());
 		TicketModel tickModel = new TicketModel();
 		tickModel.setId(travBean.getId());
 		this.travDao.deleteTick(tickModel, dataBean);
 	}
 	
-	public void deleteTravelGroup(GroupBean grpBean) {
-		this.grpDao.deleteGroup(grpBean);
+	public void deleteTravelGroupControl(GroupBean grpBean) {
+		this.grpMod.setAll(grpBean.getGroupOwner(), grpBean.getGroupTitle(), grpBean.getGroupDestination());
+		this.grpDao.deleteGroup(grpMod);
 	}
 	
-	public void leaveTravelGroup(GroupBean grpBean, UserDataBean dataBean) {
-		this.grpDao.leaveJoinedGroup(grpBean, dataBean);
+	public void leaveTravelGroupControl(GroupBean grpBean) {
+		this.grpMod.setAll(grpBean.getGroupOwner(), grpBean.getGroupTitle(), grpBean.getGroupDestination());
+		this.usrMod.setUserName(this.logUser.getUserName());
+		this.grpDao.leaveJoinedGroup(grpMod, usrMod);
 	}
 	
-	public void getSamePersUsers(List<UserDataBean> usrList) {
+	public void getSamePersUsersControl(List<UserDataBean> usrList) {
 		List<UserModel> usrModelList = new ArrayList<>();
 		UserModel loggedUsr = new UserModel();
 		loggedUsr.setUserName(this.logUser.getUserName());
 		loggedUsr.setUserPersonality(this.logUser.getPersonality());
 		this.usrDao.findSimilarUsers(usrModelList, loggedUsr);
-		setSimUsersBean(usrList, usrModelList);
+		setSimUsersBeanControl(usrList, usrModelList);
 	}
 	
-	public void setSimUsersBean(List<UserDataBean> usrList, List<UserModel> usrModList) {
+	public void setSimUsersBeanControl(List<UserDataBean> usrList, List<UserModel> usrModList) {
 		for(int i = 0; i < usrModList.size(); i++) {
 			UserDataBean databean = new UserDataBean();
 			databean.setByteSteam(usrModList.get(i).getProfilePic());

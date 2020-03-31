@@ -5,9 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
-import logic.controllers.LoginController;
+import logic.controllers.ControllerFacade;
 import javafx.fxml.FXML;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
@@ -18,23 +17,21 @@ public class GraphicControllerLogIn {
 	@FXML private TextField usrname;
 	@FXML private Button loginButton;
 	@FXML private Button registerButton;
-	private LogInBean logBean;
 	private UserDataBean usrBean;
-	private LoginController loginCtrl;
+	private ControllerFacade facCtrl;
 	private ErrorPopup errLogin;
 	private BasicGui bgui;
 	
 	@FXML
 	public void initialize() {
-		this.logBean = new LogInBean();
-		this.loginCtrl = new LoginController();
+		this.facCtrl = new ControllerFacade();
 		this.usrBean = new UserDataBean();
 		this.errLogin = new ErrorPopup();
 		bgui = new BasicGui();
 	}
 	
 	public void logInControl(MouseEvent event) {
-		if(this.loginCtrl.checkLogInControl(this.usrBean, this.logBean) == 1) {
+		if(this.facCtrl.checkLogIn(this.usrBean) == 1) {
 			bgui.goHome(event);
 		}
 		else {
@@ -55,11 +52,11 @@ public class GraphicControllerLogIn {
 	
 	public void getUserNameControl() {
 		String usName = this.usrname.getText();
-		this.logBean.setUserName(usName);
+		this.usrBean.setUserName(usName);
 	}
 	
 	public void getPasswordControl() {
 		String password = this.psw.getText();
-		this.logBean.setPassword(password);
+		this.usrBean.setPsw(password);
 	}
 }

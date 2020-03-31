@@ -21,9 +21,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.controllers.ChatType;
 import logic.controllers.ControllerFacade;
+import logic.exceptions.GroupNameTakenException;
 import logic.model.Message;
 import logic.model.User;
 import logic.view.BasicGui;
+import logic.view.ErrorPopup;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -50,10 +52,12 @@ public class GraphicControllerChat extends BasicGui {
     private List<User> users;
     private List<String> namesList;
     private ControllerFacade facade;
+    private ErrorPopup err;
 
     public GraphicControllerChat() {
     	facade = new ControllerFacade(this);
     	this.username = logUsr.getUserName();
+    	this.err = new ErrorPopup();
     }
     
     public void sendButtonAction() {
@@ -330,7 +334,11 @@ public class GraphicControllerChat extends BasicGui {
 		backButton.setOnAction(e->window.close());
 		Button confirmButton = new Button("Confirm");
 		confirmButton.setOnAction(event -> {
-			facade.createGroup(groupName.getText(), namesList);
+			try {
+				facade.createGroup(groupName.getText(), namesList);
+			} catch (GroupNameTakenException e1) {
+				this.err.displayLoginError("Nome gruppo non disponibile");
+			}
 			window.close();
 		});
 		HBox buttonBox = new HBox();

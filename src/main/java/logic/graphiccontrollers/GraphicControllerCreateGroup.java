@@ -5,8 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import logic.beans.GroupBean;
-import logic.controllers.BookTravelControl;
+import logic.exceptions.GroupNameTakenException;
 import logic.view.BasicGui;
+import logic.view.ErrorPopup;
 
 public class GraphicControllerCreateGroup extends BasicGui{
 	@FXML private TextField groupName;
@@ -14,7 +15,7 @@ public class GraphicControllerCreateGroup extends BasicGui{
 	@FXML private TextField groupDest;
 	@FXML private Button createGroup;
 	private GroupBean grpBean;
-	private BookTravelControl travCtr;
+	private ErrorPopup err;
 	
 	@FXML
 	public void initialize() {
@@ -22,7 +23,7 @@ public class GraphicControllerCreateGroup extends BasicGui{
 		this.groupAdmin.setText(this.logUsr.getUserName());
 		this.grpBean = new GroupBean();
 		grpBean.setGroupOwner(this.logUsr.getUserName());
-		this.travCtr = new BookTravelControl();
+		this.err = new ErrorPopup();
 	}
 	
 	public void getName() {
@@ -34,7 +35,11 @@ public class GraphicControllerCreateGroup extends BasicGui{
 	}
 	
 	public void saveUserGroup(MouseEvent e) {
-		this.travCtr.saveGroup(this.grpBean);
+		try {
+			this.facCtrl.saveGroup(this.grpBean);
+		} catch (GroupNameTakenException e1) {
+			err.displayLoginError("Nome gruppo non disponibile");
+		}
 		goHome(e);
 	}
 }

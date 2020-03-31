@@ -3,6 +3,7 @@ package logic.controllers;
 import logic.LoggedUser;
 import logic.beans.InterestsBean;
 import logic.dao.UserDao;
+import logic.model.UserModel;
 
 public class InterestsController {
 	private int numbOf1 = 0;
@@ -15,8 +16,10 @@ public class InterestsController {
 		this.usrDao = new UserDao();
 	}
 	
-	public void evaluateInterests(InterestsBean interBean) {
+	public void evaluateInterestsControl(InterestsBean interBean) {
 		LoggedUser logUser = new LoggedUser();
+		UserModel usrMod = new UserModel();
+		usrMod.setUserName(logUser.getUserName());
 		String pers = null;
 		int[] answares = interBean.getAnswares();
 		int i;
@@ -39,19 +42,23 @@ public class InterestsController {
 			}
 		}
 		if(numbOf1 >= 2) {
-			this.usrDao.insertPersonality("Friendly", logUser.getUserName());
+			usrMod.setUserPersonality("Friendly");
+			this.usrDao.insertPersonality(usrMod);
 			pers = "Friendly";
 		}
 		if(numbOf2 >= 2) {
-			this.usrDao.insertPersonality("Adventurer", logUser.getUserName());
+			usrMod.setUserPersonality("Adventurer");
+			this.usrDao.insertPersonality(usrMod);
 			pers = "Adventurer";
 		}
 		if(numbOf3 >= 2) {
-			this.usrDao.insertPersonality("Lone wolf", logUser.getUserName());
+			usrMod.setUserPersonality("Lone wolf");
+			this.usrDao.insertPersonality(usrMod);
 			pers = "Lone wolf";
 		}
 		if(numbOf4 >= 2) {
-			this.usrDao.insertPersonality("Lazybone", logUser.getUserName());
+			usrMod.setUserPersonality("Lazybone");
+			this.usrDao.insertPersonality(usrMod);
 			pers = "Lazybone";
 		}
 		LoggedUser.setPersonality(pers);

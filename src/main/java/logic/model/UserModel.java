@@ -17,10 +17,6 @@ public class UserModel {
 		this.gender = gend;
 	}
 	
-	public void insertPersonality(String typeOfPers) {
-		personality = typeOfPers;
-	}
-	
 	public void setUserPersonality(String pers) {
 		this.personality = pers;
 	}

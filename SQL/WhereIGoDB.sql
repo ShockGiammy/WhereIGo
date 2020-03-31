@@ -30,7 +30,7 @@ create table TravelGroups
 	groupOwner VARCHAR(20) not null,
 	title VARCHAR(50) unique NOT NULL,
 	foreign key (groupOwner)
-			references Usr(username),
+			references Usr(username) on delete cascade,
 	primary key(groupOwner, title)
 );
 
@@ -48,7 +48,7 @@ create table Post
     tipologia VARCHAR(20),
     tipeOfPost VARCHAR(20),
     foreign key (utente) 
-			references Usr(username),
+			references Usr(username) on delete cascade,
     primary key(ID, utente)
 );
 
@@ -59,9 +59,9 @@ create table Chat
 	receiver VARCHAR(50),
 	message VARCHAR(1000),
     foreign key (sender)
-			references Usr(username),
+			references Usr(username) on delete cascade,
 	foreign key (receiver)
-			references Usr(username)
+			references Usr(username) on delete cascade
 );
 
 create table Tickets
@@ -80,9 +80,9 @@ create table ParticipatesTo
 	participant VARCHAR(20),
 	grp VARCHAR(50),
     foreign key (participant)
-			references Usr(username),
+			references Usr(username) on delete cascade,
 	foreign key (grp)
-			references travelgroups(title)
+			references travelgroups(title) on delete cascade
 );
 
 create table Buys
@@ -90,9 +90,9 @@ create table Buys
 	ticket int, 
 	passenger varchar(20),
     foreign key (ticket)
-			references tickets(ID),
+			references tickets(ID) on delete cascade,
 	foreign key (passenger)
-			references Usr(username)
+			references Usr(username) on delete cascade
 );
 
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,userstatus)

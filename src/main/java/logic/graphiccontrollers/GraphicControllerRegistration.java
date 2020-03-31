@@ -14,9 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import logic.beans.UserDataBean;
-import logic.controllers.LoginController;
+import logic.controllers.ControllerFacade;
 import logic.exceptions.DuplicateUsernameException;
-import logic.exceptions.GeneralErrorException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
@@ -37,22 +36,22 @@ public class GraphicControllerRegistration {
 	ObservableList<String> typeUsrList = FXCollections.observableArrayList("Traveler", "Renter");
 	private UserDataBean dataBean;
 	private DateTimeFormatter formatter;
-	private LoginController loginCtrl;
 	private ErrorPopup errLogin;
 	private File profileImage;
 	private BasicGui bgui;
+	private ControllerFacade facCtrl;
 	
 	@FXML
 	public void initialize(){
 		this.dataBean = new UserDataBean();
 		this.formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-		this.loginCtrl = new LoginController();
 		this.gender.setItems(gendList);
 		this.typeOfUser.setItems(typeUsrList);
 		this.gender.setValue("Female");
 		this.typeOfUser.setValue("Traveler");
 		this.errLogin = new ErrorPopup();
 		this.bgui = new BasicGui();
+		this.facCtrl = new ControllerFacade();
 	}
 	
 	public void getName() {
@@ -94,7 +93,7 @@ public class GraphicControllerRegistration {
 			else {
 				this.dataBean.setType(this.typeOfUser.getValue());
 				this.dataBean.setGender(this.gender.getValue());
-				ret = this.loginCtrl.insertNewUserControl(this.dataBean);
+				ret = this.facCtrl.insertNewUser(this.dataBean);
 				if(ret == 0) {
 					this.errLogin.displayLoginError("Inserire tutti i dati");
 				}
@@ -104,10 +103,7 @@ public class GraphicControllerRegistration {
 			}
 			}catch(DuplicateUsernameException e) {
 				this.errLogin.displayLoginError("Questo username non è disponibile");
-			}catch(GeneralErrorException e) {
-				this.errLogin.displayLoginError("An error occurred. Please, restart the application");
-				System.exit(-1);
-			}
+		}
 	}
 	
     public void insertImage() {

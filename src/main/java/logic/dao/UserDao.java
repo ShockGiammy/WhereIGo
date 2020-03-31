@@ -1,10 +1,8 @@
 package logic.dao;
 
 import logic.SingletonDbConnection;
-import logic.beans.LogInBean;
 import logic.beans.UserDataBean;
 import logic.exceptions.DuplicateUsernameException;
-import logic.exceptions.GeneralErrorException;
 import logic.model.UserModel;
 
 import java.sql.PreparedStatement;
@@ -16,10 +14,10 @@ import java.util.logging.Logger;
 
 public class UserDao {
 	
-	public void insertPersonality(String personality,String username) {
+	public void insertPersonality(UserModel usrModel) {
 		try (PreparedStatement stm = SingletonDbConnection.getInstance().getConnection().prepareStatement("update usr set tipeOfPersonality = ? where username = ?")){
-			stm.setString(1, personality);
-			stm.setString(2, username);
+			stm.setString(1, usrModel.getUserPersonality());
+			stm.setString(2, usrModel.getUserName());
 			stm.execute();
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occured during insert", e);
@@ -29,13 +27,12 @@ public class UserDao {
 		}
 	}
 	
-	public int checkLogInInfo(LogInBean bean, UserDataBean usrBean) {
+	public int checkLogInInfo(UserDataBean bean) {
 		int ret = 0;
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT tipeOfUser,tipeOfPersonality,profilePicture FROM usr WHERE (username=? and passw=?)")){    
-			statement.setString(1,bean.getUserName());
-			statement.setString(2,bean.getPasw());
-			ret = getLoggedUser(statement, usrBean);
-			usrBean.setUserName(bean.getUserName());
+			statement.setString(1,bean.getUsername());
+			statement.setString(2,bean.getPassword());
+			ret = getLoggedUser(statement, bean);
 		}catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred during the fetch of credentials", e);
 		}
@@ -45,7 +42,7 @@ public class UserDao {
 		return ret;
 	}
 	
-	public void insertNewUser(UserDataBean usrBean) throws DuplicateUsernameException, GeneralErrorException{
+	public void insertNewUser(UserDataBean usrBean) throws DuplicateUsernameException {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO usr(username, passw, nome, surname, dateOfBirth, gender, tipeOfUser, profilePicture, userStatus) VALUES(?,?,?,?,?,?,?,?,?)")){
 			statement.setString(1, usrBean.getUsername());
 			statement.setString(2, usrBean.getPassword());
@@ -58,11 +55,8 @@ public class UserDao {
 			statement.setString(9, "offline");
 			statement.execute();
 		}catch(SQLException e) {
-			if(e.getErrorCode() == 1022) {
+			if(e.getErrorCode() == 1062) {
 				throw new DuplicateUsernameException(e.getMessage());
-			}
-			else {
-				throw new GeneralErrorException(e.getMessage());
 			}
 		}
 		finally {

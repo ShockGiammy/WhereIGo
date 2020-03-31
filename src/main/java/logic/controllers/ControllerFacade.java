@@ -5,12 +5,17 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import logic.ImageViewer;
+import logic.beans.GroupBean;
+import logic.beans.InterestsBean;
+import logic.beans.LocationBean;
 import logic.beans.RentAccomodationBean;
-import logic.controllers.RentAccomodationController;
+import logic.beans.UserDataBean;
+import logic.beans.UserTravelBean;
+import logic.exceptions.DuplicateUsernameException;
+import logic.exceptions.GroupNameTakenException;
 import logic.graphiccontrollers.GraphicControllerChat;
 import logic.model.Message;
 import logic.model.User;
-import logic.controllers.ChatController;
 
 public class ControllerFacade {
 
@@ -19,9 +24,15 @@ public class ControllerFacade {
 	private ChatController chatController;
 	private ImageViewer viewer;
 	private GraphicControllerChat graphicChat;
+	private BookTravelControl bookTravCtrl;
+	private InterestsController intCtrl;
+	private LoginController loginCtrl;
 	
 	public ControllerFacade() {
 		viewer = new ImageViewer();
+		this.bookTravCtrl = new BookTravelControl();
+		this.intCtrl = new InterestsController();
+		this.loginCtrl = new LoginController();
 	}
 	
 	public ControllerFacade(GraphicControllerChat reference) {
@@ -33,8 +44,7 @@ public class ControllerFacade {
 	public List<RentAccomodationBean> displayMyAnnouncement() {
 		
 		controllerManage = new ManageAnnouncementController();
-		List<RentAccomodationBean> listOfBean = controllerManage.displayMyAnnouncement();
-		return listOfBean;		
+		return controllerManage.displayMyAnnouncement();	
 	}
 	
 	public void deleteMyAccomodation(long id) {
@@ -73,7 +83,7 @@ public class ControllerFacade {
 		chatController.execute(receiver, type);
 	}
 	
-	public void createGroup(String groupName, List<String> groupList) {
+	public void createGroup(String groupName, List<String> groupList) throws GroupNameTakenException {
 		chatController.createGroup(groupName, groupList);
 	}
 	
@@ -101,5 +111,83 @@ public class ControllerFacade {
 	@SuppressWarnings("exports")
 	public Image convertToFxImage(BufferedImage image) {
 		return viewer.convertToFxImage(image);
+	}
+	
+	/*BookTravelControl references methods*/
+	
+	public List<String> showLocations() {
+		return this.bookTravCtrl.showLocationsControl();
+	}
+	
+	public void getGroups(List<GroupBean> beanList) {
+		this.bookTravCtrl.getGroupsControl(beanList);
+	}
+	
+	public void getParticipateGroups(List<GroupBean> beanList) {
+		this.bookTravCtrl.getParticipateGroupsControl(beanList);
+	}
+	
+	public void retriveLocInfo(LocationBean bean) {
+		this.bookTravCtrl.retriveLocInfoControl(bean);
+	}
+	
+	public int retriveTravelSolutions(UserTravelBean travBean, List<UserTravelBean> travList) {
+		return this.bookTravCtrl.retriveTravelSolutionsControl(travBean, travList);
+	}
+	
+	public void saveBoughtTicket(UserTravelBean travBean , UserDataBean dataBean) {
+		this.bookTravCtrl.saveBoughtTicketControl(travBean , dataBean);
+	}
+	
+	public void getBookedTickets(List<UserTravelBean> travBeanList) {
+		this.bookTravCtrl.getBookedTicketsControl(travBeanList);
+	}
+	
+	public void saveGroup(GroupBean grpBean) throws GroupNameTakenException {
+		this.bookTravCtrl.saveGroupControl(grpBean);
+	}
+	
+	public void getUserGroups(List<GroupBean> grpBean) {
+		this.bookTravCtrl.getUserGroupsControl(grpBean);
+	}
+	
+	public List<UserTravelBean> getSuggTicketsInfo(UserTravelBean travBean) {
+		return this.bookTravCtrl.getSuggTicketsInfoControl(travBean);
+	}
+	
+	public int insertParticipant(GroupBean bean) {
+		return this.bookTravCtrl.insertParticipantControl(bean);
+	}
+	
+	public void deleteSavedTravel(UserTravelBean travBean) {
+		this.bookTravCtrl.deleteSavedTravelControl(travBean);
+	}
+	
+	public void deleteTravelGroup(GroupBean grpBean) {
+		this.bookTravCtrl.deleteTravelGroupControl(grpBean);
+	}
+	
+	public void leaveTravelGroup(GroupBean grpBean) {
+		this.bookTravCtrl.leaveTravelGroupControl(grpBean);
+	}
+	
+	public void getSamePersUsers(List<UserDataBean> usrList) {
+		this.bookTravCtrl.getSamePersUsersControl(usrList);
+	}
+	
+	/* methods calls of the Interest Controller*/
+	
+	public void evaluateInterests(InterestsBean interBean) {
+		this.intCtrl.evaluateInterestsControl(interBean);
+	}
+	
+	/* methods calls of the Login Controller*/
+	
+	public int checkLogIn(UserDataBean logBean) {
+		return this.loginCtrl.checkLogInControl(logBean);
+	}
+	
+	public int insertNewUser(UserDataBean usrBean) throws DuplicateUsernameException {
+		return this.loginCtrl.insertNewUserControl(usrBean);
 	}
 }

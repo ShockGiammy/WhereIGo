@@ -8,7 +8,7 @@ import javafx.scene.text.Text;
 import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
-import logic.controllers.BookTravelControl;
+import logic.exceptions.GroupNameTakenException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
@@ -24,14 +24,12 @@ public class GraphicControllerCheckOut extends BasicGui{
 	@FXML private TextField groupDest;
 	@FXML private Button createGroup;
 	@FXML private Button confirmTrav;
-	private BookTravelControl bookTravCtrl;
 	private ErrorPopup errPop;
 	private UserDataBean bean;
 	private UserTravelBean travbean;
 	
 	@FXML
 	public void initialize() {
-		this.bookTravCtrl = new BookTravelControl();
 		errPop = new ErrorPopup();
 		bean = new UserDataBean();
 		travbean = new UserTravelBean();
@@ -58,22 +56,20 @@ public class GraphicControllerCheckOut extends BasicGui{
 			errPop.displayLoginError("Inserisci il nome del gruppo");
 		}
 		else {
-			GroupBean grpBean = new GroupBean();
-			grpBean.setGroupTitle(this.groupName.getText());
-			grpBean.setGroupOwner(this.groupAdmin.getText());
-			grpBean.setGroupDestination(this.groupDest.getText());
-			int ret = this.bookTravCtrl.saveGroup(grpBean);
-			if(ret != -1) {
-				errPop.displayLoginError("Gruppo correttamente salvato");
-			}
-			else {
-				errPop.displayLoginError("Errore nel salvataggio del gruppo");
+			try {
+				GroupBean grpBean = new GroupBean();
+				grpBean.setGroupTitle(this.groupName.getText());
+				grpBean.setGroupOwner(this.groupAdmin.getText());
+				grpBean.setGroupDestination(this.groupDest.getText());
+				this.facCtrl.saveGroup(grpBean);
+			}catch(GroupNameTakenException e) {
+				errPop.displayLoginError("Nome del gruppo già scelto. Per favore, inserire un nome diverso");
 			}
 		}
 	}
 	
 	public void confirmTrav(MouseEvent e) {
-		this.bookTravCtrl.saveBoughtTicket(this.travbean, this.bean);
+		this.facCtrl.saveBoughtTicket(this.travbean, this.bean);
 		goHome(e);
 	}
 }

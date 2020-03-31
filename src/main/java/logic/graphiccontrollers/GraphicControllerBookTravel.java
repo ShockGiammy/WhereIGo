@@ -14,14 +14,12 @@ import logic.beans.GroupBean;
 import logic.beans.LocationBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
-import logic.controllers.BookTravelControl;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 import javafx.scene.control.TextField;
 
 public class GraphicControllerBookTravel extends BasicGui{
 	private UserTravelBean travBean;
-	private BookTravelControl bookTravCtrl;
 	private GroupBean grpBean;
 	private LocationBean locBean;
 	private List<UserTravelBean> travBeanArray;
@@ -43,7 +41,6 @@ public class GraphicControllerBookTravel extends BasicGui{
 		this.grpBean = new GroupBean();
 		this.locBean = new LocationBean();
 		this.travBean = new UserTravelBean();
-		this.bookTravCtrl = new BookTravelControl();
 		this.popUp = new ErrorPopup();
 		this.vboxlist = new ArrayList<>();
 		this.userImage.setImage(this.logUsr.getImage());
@@ -57,7 +54,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 		}
 		else {
 			int i;
-			i = this.bookTravCtrl.retriveTravelSolutions(travBean, travBeanArray);
+			i = this.facCtrl.retriveTravelSolutions(travBean, travBeanArray);
 			if(i == -1) {
 			popUp.displayLoginError("No travel available at this moment: either you have already bought the same flight or there are no solutions for these datas");
 			}
@@ -73,7 +70,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 		if(this.logUsr.getPersonality() != null) {
 			List<GroupBean> grpList = new ArrayList<>();
 			int j;
-			this.bookTravCtrl.getGroupsControl(grpList);
+			this.facCtrl.getGroups(grpList);
 			for(j = 0; j < grpList.size(); j++) {
 				VBox vbox = new VBox(10);
 				Text title = new Text(grpList.get(j).getGroupTitle());
@@ -94,7 +91,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 		}
 		else {
 			List<String> suggLoc = new ArrayList<>();
-			suggLoc.addAll(bookTravCtrl.showLocationsControl());
+			suggLoc.addAll(facCtrl.showLocations());
 			int i;
 			for(i = 0; i < suggLoc.size(); i++) {
 				HBox hbox = new HBox(20);
@@ -132,7 +129,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 			if(this.hboxList.get(i).getChildren().get(1).equals(e.getTarget())) {
 				Text text = (Text)this.hboxList.get(i).getChildren().get(0);
 				this.locBean.setCityName(text.getText());
-				this.bookTravCtrl.retriveLocInfoControl(this.locBean);
+				this.facCtrl.retriveLocInfo(this.locBean);
 				loadLocInfo(e);
 			}
 		}
@@ -158,7 +155,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 			if(this.hboxList.get(i).getChildren().get(2).equals(e.getTarget())) {
 				Text city = (Text)this.hboxList.get(i).getChildren().get(0);
 				this.travBean.setArrCity(city.getText());
-				this.travBeanArray.addAll(this.bookTravCtrl.getSuggTicketsInfo(this.travBean));
+				this.travBeanArray.addAll(this.facCtrl.getSuggTicketsInfo(this.travBean));
 				if(this.travBeanArray.isEmpty()) {
 					this.popUp.displayLoginError("Nessun viaggio disponibile o viaggio già prenotato");
 				}
@@ -177,9 +174,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 			if(this.vboxlist.get(i).getChildren().get(3).equals(e.getTarget())) {
 				Text title = (Text)this.vboxlist.get(i).getChildren().get(0);
 				this.grpBean.setGroupTitle(title.getText());
-				UserDataBean usrDBean = new UserDataBean();
-				usrDBean.setUserName(this.logUsr.getUserName());
-				if(this.bookTravCtrl.insertParticipant(this.grpBean, usrDBean) == 0) {
+				if(this.facCtrl.insertParticipant(this.grpBean) == 0) {
 					this.popUp.displayLoginError("Gruppo correttamente joinato");
 				}
 				else {

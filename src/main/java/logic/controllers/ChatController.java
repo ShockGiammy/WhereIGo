@@ -12,9 +12,11 @@ import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.dao.ChatDao;
 import logic.dao.GroupDao;
+import logic.exceptions.GroupNameTakenException;
 import logic.model.GroupModel;
 import logic.model.Message;
 import logic.model.User;
+import logic.model.UserModel;
 
 public class ChatController {
 	private String username;
@@ -122,25 +124,24 @@ public class ChatController {
 		facade.addAsServer(message);
 	}
 	
-	public void createGroup(String groupName, List<String> groupList) {
+	public void createGroup(String groupName, List<String> groupList) throws GroupNameTakenException {
 	
-		GroupBean grpBean = new GroupBean();
-		grpBean.setGroupOwner(username);
-		grpBean.setGroupTitle(groupName);
-		groupDao.saveUserGroup(grpBean);
+		GroupModel grpMod = new GroupModel();
+		grpMod.setAll(this.logUser.getUserName(), groupName, null);
+		groupDao.saveUserGroup(grpMod);
 		
-		UserDataBean dataBean = new UserDataBean();
+		UserModel userData = new UserModel();
 		for (String user : groupList) {	
-			dataBean.setUserName(user);
-			groupDao.insertParticipant(grpBean, dataBean);
+			userData.setUserName(user);
+			groupDao.insertParticipant(grpMod, userData);
 		}
 	}
 	
 	public List<String> getGroups() {
-		UserDataBean dataBean = new UserDataBean();
-		dataBean.setUserName(username);
-		groupDao.getUserGroups(grpModel, dataBean);
-		groupDao.getPartGroups(grpModel, dataBean);
+		UserModel usrMod = new UserModel();
+		usrMod.setUserName(username);
+		groupDao.getUserGroups(grpModel, usrMod);
+		groupDao.getPartGroups(grpModel, usrMod);
 		List<String> groupNames = new ArrayList<>();
 		for (GroupModel group : grpModel) {
 			groupNames.add(group.getDescription());

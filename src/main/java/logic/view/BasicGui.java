@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import logic.LoggedUser;
 import logic.UserType;
+import logic.controllers.ControllerFacade;
 
 public class BasicGui extends Application{
 	
@@ -33,9 +34,11 @@ public class BasicGui extends Application{
 	private static Scene scene;
 	private static Logger logger = Logger.getLogger("WIG");
 	protected LoggedUser logUsr;
+	protected ControllerFacade facCtrl;
 	
 	public BasicGui() {
 		this.logUsr = new LoggedUser();
+		this.facCtrl = new ControllerFacade();
 	}
 	
 	@Override

@@ -18,7 +18,6 @@ import logic.UserType;
 import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
-import logic.controllers.BookTravelControl;
 
 public class GraphicControllerHomePage extends BasicGui{
 	@FXML private Button changeInfo;
@@ -30,7 +29,6 @@ public class GraphicControllerHomePage extends BasicGui{
 	@FXML private ListView<VBox> lwTickets;
 	@FXML private ListView<VBox> lwGroups;
 	@FXML private ListView<VBox> lwSuggUsers;
-	private BookTravelControl bookTrav;
 	private ErrorPopup err;
 	private ImageViewer imViewer;
 	
@@ -39,7 +37,6 @@ public class GraphicControllerHomePage extends BasicGui{
 		this.travelBox = new ArrayList<>();
 		this.groupBox = new ArrayList<>();
 		this.suggUsersList = new ArrayList<>();
-		this.bookTrav = new BookTravelControl();
 		this.err = new ErrorPopup();
 		this.userImage.setImage(this.logUsr.getImage());
 		setTravel();
@@ -69,7 +66,7 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	public void setTravel() {
 		List<UserTravelBean> travBean = new ArrayList<>();
-		this.bookTrav.getBookedTickets(travBean);
+		this.facCtrl.getBookedTickets(travBean);
 		int i;
 		for(i = 0; i < travBean.size(); i++) {
 			VBox vbox = new VBox(7);
@@ -89,7 +86,7 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	public void setGroups() {
 		List<GroupBean> grpBean = new ArrayList<>();
-		this.bookTrav.getUserGroups(grpBean);
+		this.facCtrl.getUserGroups(grpBean);
 		int i;
 		for(i = 0; i < grpBean.size(); i++) {
 			VBox vbox = new VBox(7);
@@ -118,7 +115,7 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	public void setSuggUsers() {
 		List<UserDataBean> dataBeanList = new ArrayList<>();
-		this.bookTrav.getSamePersUsers(dataBeanList);
+		this.facCtrl.getSamePersUsers(dataBeanList);
 		for(int i = 0; i < dataBeanList.size(); i++) {
 			VBox vbox= new VBox(7);
 			HBox hbox = new HBox(30);
@@ -144,9 +141,7 @@ public class GraphicControllerHomePage extends BasicGui{
 				UserTravelBean delBean = new UserTravelBean();
 				Text id = (Text)this.travelBox.get(i).getChildren().get(0);
 				delBean.setId(Integer.parseInt(id.getText().substring(12, id.getText().length())));
-				UserDataBean data = new UserDataBean();
-				data.setUserName(logUsr.getUserName());
-				this.bookTrav.deleteSavedTravel(delBean, data);
+				this.facCtrl.deleteSavedTravel(delBean);
 				VBox temp = this.travelBox.get(i);
 				this.travelBox.remove(i);
 				this.lwTickets.getItems().remove(temp);
@@ -164,7 +159,7 @@ public class GraphicControllerHomePage extends BasicGui{
 				Text owner = (Text)this.groupBox.get(i).getChildren().get(2);
 				bean.setGroupTitle(description.getText().substring(13, description.getText().length()));
 				bean.setGroupOwner(owner.getText().substring(15,owner.getText().length()));
-				this.bookTrav.deleteTravelGroup(bean);
+				this.facCtrl.deleteTravelGroup(bean);
 				VBox temp = this.groupBox.get(i);
 				this.groupBox.remove(i);
 				this.lwGroups.getItems().remove(temp);
@@ -180,9 +175,7 @@ public class GraphicControllerHomePage extends BasicGui{
 				GroupBean bean = new GroupBean();
 				Text description = (Text)this.groupBox.get(i).getChildren().get(0);
 				bean.setGroupTitle(description.getText().substring(13, description.getText().length()));
-				UserDataBean dBean = new UserDataBean();
-				dBean.setUserName(this.logUsr.getUserName());
-				this.bookTrav.leaveTravelGroup(bean, dBean);
+				this.facCtrl.leaveTravelGroup(bean);
 				VBox temp = this.groupBox.get(i);
 				this.groupBox.remove(i);
 				this.lwGroups.getItems().remove(temp);
