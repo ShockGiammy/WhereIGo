@@ -56,7 +56,7 @@ create table Chat
 (
 	ID int auto_increment primary key,
 	sender VARCHAR(20),
-	receiver VARCHAR(20),
+	receiver VARCHAR(50),
 	message VARCHAR(1000),
     foreign key (sender)
 			references Usr(username),
@@ -211,8 +211,3 @@ values (007, "Roma-Fiumicino" , "Berlino", "2020-03-20", "2020-03-22", 450.15,40
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
 values (008, "Roma-Fiumicino" , "Berlino", "2020-03-20", "2020-03-22", 452.15,0);
-	
-
-
-
-

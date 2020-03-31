@@ -87,7 +87,7 @@ public class ChatDao {
 	
 	public List<Message> getGroupMsg(String group) {
 		List<Message> messages = new ArrayList<>();
-		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Chat Where receiver = ?)")){    
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Chat Where receiver = ?")){    
 			statement.setString(1, group);
 			retriveSavedMessages(statement, messages);
 		}

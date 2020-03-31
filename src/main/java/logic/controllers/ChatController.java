@@ -87,12 +87,12 @@ public class ChatController {
 		alreadyActive = false;
 	}
 	
-	public void execute(String groupNameOrReceiver) {
+	public void execute(String groupNameOrReceiver, ChatType type) {
 		alreadyActive = true;
 		String hostname = "localhost";
 		int port = 2400;
 		logger.info("socket attivo");
-		listener = new Listener(hostname, port, username, this, groupNameOrReceiver);
+		listener = new Listener(hostname, port, username, this, groupNameOrReceiver, type);
 	    Thread x = new Thread(listener);
 	    x.start();
 	}

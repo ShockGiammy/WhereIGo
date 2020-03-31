@@ -24,13 +24,15 @@ public class Listener implements Runnable{
 	private ChatController controller;
 	private int myConnection = 0;
 	private boolean close = false;
+	private ChatType chatType;
 
-    public Listener(String hostname, int port, String username, ChatController controller, String usersGroup) {
+    public Listener(String hostname, int port, String username, ChatController controller, String usersGroup, ChatType type) {
         this.hostname = hostname;
         this.port = port;
         this.username = username;
         this.controller = controller;
         this.usersGroup = usersGroup;
+        this.chatType = type;
     }
 
     public void run() {
@@ -112,6 +114,7 @@ public class Listener implements Runnable{
         Message createMessage = new Message();
         createMessage.setName(username);
         createMessage.setType(MessageType.CONNECTED);
+        createMessage.setChatType(chatType);
         createMessage.setMsg(HASCONNECTED);
         createMessage.setUsersGroup(usersGroup);
         oos.writeObject(createMessage);

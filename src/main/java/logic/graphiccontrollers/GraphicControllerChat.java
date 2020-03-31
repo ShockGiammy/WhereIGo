@@ -216,7 +216,7 @@ public class GraphicControllerChat extends BasicGui {
     			addToChat(message);
     		}
     	}
-    	chatController.execute(receiver);
+    	chatController.execute(receiver, type);
     }
 
     public void initialize() {

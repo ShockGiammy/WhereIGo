@@ -2,6 +2,8 @@ package logic.model;
 
 import java.io.Serializable;
 
+import logic.controllers.ChatType;
+
 public class Message implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -9,6 +11,7 @@ public class Message implements Serializable {
     private MessageType type;
     private String msg;
     private String usersGroup;
+    private ChatType chatType;
 
     private String status;
 
@@ -50,5 +53,13 @@ public class Message implements Serializable {
 
 	public void setUsersGroup(String usersGroup) {
 		this.usersGroup = usersGroup;
+	}
+
+	public ChatType getChatType() {
+		return chatType;
+	}
+
+	public void setChatType(ChatType chatType) {
+		this.chatType = chatType;
 	}
 }

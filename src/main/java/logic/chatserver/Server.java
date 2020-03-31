@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
 
+import logic.controllers.ChatType;
 import logic.exceptions.DuplicateUsernameException;
 import logic.model.Message;
 import logic.model.MessageType;
@@ -142,27 +143,37 @@ public class Server{
         }
         
         public void checkGroupName(Message msg) {
-        	if (listOfLists.containsKey(msg.getUsersGroup())) {
-        		this.usersGroup = msg.getUsersGroup();
-        		listOfLists.get(usersGroup).add(output);         
-                logger.info(() -> usersGroup + " group already existed");
-        	} 
-        	else if (listOfLists.containsKey(msg.getUsersGroup()+msg.getName())) {
-        		this.usersGroup = msg.getUsersGroup()+msg.getName();
-        		listOfLists.get(usersGroup).add(output);
-        		logger.info(() -> usersGroup + " chat already existed");
-        	} 
-        	else if (listOfLists.containsKey(msg.getName()+msg.getUsersGroup())) {
-        		this.usersGroup = msg.getName()+msg.getUsersGroup();
-        		listOfLists.get(usersGroup).add(output);
-        		logger.info(() -> usersGroup + " chat already existed");
+        	if (msg.getChatType() == ChatType.PRIVATE) {
+        		if (listOfLists.containsKey(msg.getUsersGroup()+msg.getName())) {
+        			this.usersGroup = msg.getUsersGroup()+msg.getName();
+        			listOfLists.get(usersGroup).add(output);
+        			logger.info(() -> usersGroup + " chat already existed");
+        		} 
+        		else if (listOfLists.containsKey(msg.getName()+msg.getUsersGroup())) {
+        			this.usersGroup = msg.getName()+msg.getUsersGroup();
+        			listOfLists.get(usersGroup).add(output);
+        			logger.info(() -> usersGroup + " chat already existed");
+        		}
+        		else {
+        			HashSet<ObjectOutputStream> writers = new HashSet<>();
+        			writers.add(output);
+        			this.usersGroup = msg.getName()+msg.getUsersGroup();
+        			listOfLists.put(usersGroup, writers);
+        			logger.info(() -> usersGroup + " chat created");
+        		}
         	}
         	else {
-        		HashSet<ObjectOutputStream> writers = new HashSet<>();
-        		writers.add(output);
-        		this.usersGroup = msg.getName()+msg.getUsersGroup();
-        		listOfLists.put(usersGroup, writers);
-        		logger.info(() -> usersGroup + " chat created");
+        		this.usersGroup = msg.getUsersGroup();
+        		if (listOfLists.containsKey(usersGroup)) {            		
+            		listOfLists.get(usersGroup).add(output);         
+                    logger.info(() -> usersGroup + " group already existed");
+        		}
+        		else {
+        			HashSet<ObjectOutputStream> writers = new HashSet<>();
+        			writers.add(output);
+        			listOfLists.put(usersGroup, writers);
+        			logger.info(() -> usersGroup + " group created");
+        		}
         	}
         }
 
