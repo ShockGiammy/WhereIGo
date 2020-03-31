@@ -61,8 +61,6 @@ public class Server{
         private Socket socket;
         private Logger logger = Logger.getLogger("WIG");
         private User user;
-        private OutputStream os;
-        private InputStream is;
         private ObjectOutputStream output;
         private SecureObjectInputStream input;
         private String usersGroup;
@@ -75,19 +73,13 @@ public class Server{
         public void run() {
             logger.info("Attempting to connect a user...");
             try {
-				is = socket.getInputStream();
-				os = socket.getOutputStream();
+				output = new ObjectOutputStream(socket.getOutputStream());
+        		input = new SecureObjectInputStream(socket.getInputStream());
 			} catch (Exception e){
                 logger.log(Level.SEVERE, e, () -> "Exception in run() method for user: " + name);
 			}
                       
-            try (                
-            		ObjectOutputStream outputTry = new ObjectOutputStream(os);
-            		SecureObjectInputStream inputTry = new SecureObjectInputStream(is);
-            		) {
-            	output = outputTry;
-            	input = inputTry;
-            	
+            try {
                 Message firstMessage = (Message) input.readObject();
                 
                 checkGroupName(firstMessage);
@@ -248,22 +240,6 @@ public class Server{
             if ((output != null) && (listOfLists.containsKey(usersGroup))) {
             	listOfLists.get(usersGroup).remove(output);
             	logger.info(() -> "Writer object: " + user + REMOVED);
-            }
-            if (is != null){
-                try {
-                    is.close();
-                } catch (IOException e) {
-                	logger.log(Level.SEVERE, EXCEPTION);
-        			logger.log(Level.SEVERE, e.getMessage());
-                }
-            }
-            if (os != null){
-                try {
-                    os.close();
-                } catch (IOException e) {
-                	logger.log(Level.SEVERE, EXCEPTION);
-        			logger.log(Level.SEVERE, e.getMessage());
-                }
             }
             if (input != null){
                 try {
