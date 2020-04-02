@@ -22,21 +22,18 @@ public class ControllerFacade {
 	private ManageAnnouncementController controllerManage;
 	private RentAccomodationController controllerRent;
 	private ChatController chatController;
-	private ImageViewer viewer;
 	private GraphicControllerChat graphicChat;
 	private BookTravelControl bookTravCtrl;
 	private InterestsController intCtrl;
 	private LoginController loginCtrl;
 	
 	public ControllerFacade() {
-		viewer = new ImageViewer();
 		this.bookTravCtrl = new BookTravelControl();
 		this.intCtrl = new InterestsController();
 		this.loginCtrl = new LoginController();
 	}
 	
 	public ControllerFacade(GraphicControllerChat reference) {
-		viewer = new ImageViewer();
 		this.graphicChat = reference;
 		chatController = new ChatController(this);
 	}
@@ -116,11 +113,13 @@ public class ControllerFacade {
 	
 	@SuppressWarnings("exports")
 	public BufferedImage loadImage(byte[] bs) {
+		ImageViewer viewer = new ImageViewer();
 		return viewer.loadImage(bs);
 	}
 	
 	@SuppressWarnings("exports")
 	public Image convertToFxImage(BufferedImage image) {
+		ImageViewer viewer = new ImageViewer();
 		return viewer.convertToFxImage(image);
 	}
 	

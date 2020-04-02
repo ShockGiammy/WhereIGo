@@ -3,18 +3,14 @@ package logic.controllers;
 import logic.dao.UserDao;
 import logic.exceptions.DuplicateUsernameException;
 import logic.beans.UserDataBean;
-import java.awt.image.BufferedImage;
 import javafx.scene.image.Image;
-import logic.ImageViewer;
 import logic.LoggedUser;
 
 public class LoginController {
 	private UserDao usrDao;
-	private ImageViewer imView;
 	
 	public LoginController() {
 		this.usrDao = new UserDao();
-		this.imView = new ImageViewer();
 	}
 	
 	public int checkLogInControl(UserDataBean logBean) {
@@ -24,7 +20,6 @@ public class LoginController {
 			LoggedUser.setUserName(logBean.getUsername());
 			LoggedUser.setPersonality(logBean.getPersonality());
 			LoggedUser.setType(logBean.getType());
-			LoggedUser.setImage(setUserImageControl(logBean));
 		}
 		return ret;
 	}
@@ -42,11 +37,5 @@ public class LoginController {
 		else {
 			return -1;
 		}
-	}
-	
-	public Image setUserImageControl(UserDataBean dataBean) {
-		BufferedImage bufImage;
-		bufImage = this.imView.loadImage(dataBean.getByteStream());
-		return imView.convertToFxImage(bufImage);
 	}
 }

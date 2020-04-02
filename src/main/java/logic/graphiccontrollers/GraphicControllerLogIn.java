@@ -1,12 +1,18 @@
 package logic.graphiccontrollers;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import logic.ImageViewer;
+import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.controllers.ControllerFacade;
+
+import java.awt.image.BufferedImage;
+
 import javafx.fxml.FXML;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
@@ -19,6 +25,7 @@ public class GraphicControllerLogIn {
 	@FXML private Button registerButton;
 	private UserDataBean usrBean;
 	private ControllerFacade facCtrl;
+	private ImageViewer imView;
 	private ErrorPopup errLogin;
 	private BasicGui bgui;
 	
@@ -28,10 +35,12 @@ public class GraphicControllerLogIn {
 		this.usrBean = new UserDataBean();
 		this.errLogin = new ErrorPopup();
 		bgui = new BasicGui();
+		this.imView = new ImageViewer();
 	}
 	
 	public void logInControl(MouseEvent event) {
 		if(this.facCtrl.checkLogIn(this.usrBean) == 1) {
+			LoggedUser.setImage(setUserImageControl(this.usrBean));
 			bgui.goHome(event);
 		}
 		else {
@@ -58,5 +67,11 @@ public class GraphicControllerLogIn {
 	public void getPasswordControl() {
 		String password = this.psw.getText();
 		this.usrBean.setPsw(password);
+	}
+	
+	public Image setUserImageControl(UserDataBean dataBean) {
+		BufferedImage bufImage;
+		bufImage = this.imView.loadImage(dataBean.getByteStream());
+		return imView.convertToFxImage(bufImage);
 	}
 }

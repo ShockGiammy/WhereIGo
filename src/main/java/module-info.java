@@ -15,6 +15,7 @@ module WhereIGo {
 	requires mysql.connector.java;
 	requires java.desktop;
 	requires javafx.media;
+	requires servlet.api;
 	
 	opens logic;
 	opens logic.graphiccontrollers;
