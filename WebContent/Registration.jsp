@@ -7,14 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="">
-		Name : <input type="text" name="name">
-		Surname : <input type="text" name="surname">
-		Date of birth : <input type="date" name="dateofbirth">
-		Gender : <input type="text" name="gender">
-		Type of user : <input type="text" name="typeOfUsr">
-		UserName : <input type="text" name="username">
-		Password : <input type="password" name="pawsd">
+	<form action="registerNow" method="post">
+	<table>
+		<tr><td>Name : <input type="text" name="name"></td>
+		<td>Surname : <input type="text" name="surname"></td></tr>
+		<tr><td>Date of birth : <input type="date" name="dateofbirth"></td>
+		<td>Type of user : <input type="text" name="typeOfUsr"></td></tr>
+		<tr><td>Username : <input type="text" name="username"></td>
+		<td>Password : <input type="password" name="paswd"></tr></td>
+		<td>Gender : <input type="text" name="gender"></td></tr>
+		</table>
 		<input type="submit" value="register now">
 	</form>
 </body>

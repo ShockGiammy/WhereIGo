@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+
+#login{
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  	font-size: 1em;
+	background-color: green;
+	padding-top: 0.75rem;
+  	padding-bottom: 0.75rem;
+  	text-align: left;
+  	caption-side: bottom;
+}
+
+#register{
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  	font-size: 1em;
+	background-color: orange;
+	padding-top: 0.75rem;
+  	padding-bottom: 0.75rem;
+  	text-align: left;
+  	caption-side: bottom;
+}

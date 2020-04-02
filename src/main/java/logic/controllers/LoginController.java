@@ -29,8 +29,6 @@ public class LoginController {
 			LoggedUser.setUserName(usrBean.getUsername());
 			LoggedUser.setPersonality(usrBean.getPersonality());
 			LoggedUser.setType(usrBean.getType());
-			Image usrImage = new Image(usrBean.getFileImage().toURI().toString());
-	        LoggedUser.setImage(usrImage);
 			this.usrDao.insertNewUser(usrBean);
 			return 0;
 		}
