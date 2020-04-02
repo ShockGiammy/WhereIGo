@@ -26,12 +26,12 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
 	}
 	
 	public GraphicControllerRenterAccomodations() {
+		addCreateLabel();
 		facade = new ControllerFacade();
 		List<RentAccomodationBean> listOfBean = facade.displayMyAnnouncement();
 		for (RentAccomodationBean bean : listOfBean) {
 			setDisplayInfo(bean);
 		}
-		addCreateLabel();
 	}
 		
 	private synchronized void setDisplayInfo(RentAccomodationBean bean) {

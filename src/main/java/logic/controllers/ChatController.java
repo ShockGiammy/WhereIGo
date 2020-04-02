@@ -3,6 +3,7 @@ package logic.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import logic.LoggedUser;
 import logic.dao.ChatDao;
 import logic.dao.GroupDao;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.ServerDownException;
 import logic.model.GroupModel;
 import logic.model.Message;
 import logic.model.User;
@@ -29,6 +31,8 @@ public class ChatController {
 	private boolean alreadyActive = false;
 	private List<GroupModel> grpModel;
 	private User myUserModel;
+	private Semaphore semaphore;
+	
 	public ChatController(ControllerFacade reference) {
 		chatDao = new ChatDao();
 		groupDao = new GroupDao();
@@ -90,14 +94,28 @@ public class ChatController {
 		alreadyActive = false;
 	}
 	
-	public void execute(String groupNameOrReceiver, ChatType type) {
+	public void connected() {
 		alreadyActive = true;
+	}
+	
+	public void execute(String groupNameOrReceiver, ChatType type) throws ServerDownException {
+		connected();
 		String hostname = "localhost";
 		int port = 2400;
 		logger.info("socket attivo");
-		listener = new Listener(hostname, port, username, this, groupNameOrReceiver, type);
+		semaphore = new Semaphore(1);
+		listener = new Listener(hostname, port, username, this, groupNameOrReceiver, type, semaphore);
 	    Thread x = new Thread(listener);
 	    x.start();
+	    try {
+			semaphore.acquire(2);
+		} catch (InterruptedException e) {
+			logger.log(Level.SEVERE, ()-> "Semaphore(2) not acquirable: " + e.getMessage());
+			Thread.currentThread().interrupt();
+		}
+	    if (!alreadyActive) {
+			throw new ServerDownException(username);
+		}	   
 	}
 
 	public void createChat(String renter) {
@@ -109,17 +127,18 @@ public class ChatController {
 	}
 
 	public void sendMessage(String msg, String receiver) {
-		Message createMessage = new Message();
-	    createMessage.setName(username);
-	    createMessage.setMsg(msg);
-	    createMessage.setGroupOrReceiver(receiver);
-	    chatDao.saveMessage(createMessage);
-	    try {
-	    	listener.send(msg);
-	    } catch (IOException ex) {
-		    logger.log(Level.SEVERE, ()-> "Error getting output stream: " + ex.getMessage());
-	    }
-	        
+		if (alreadyActive) {
+			Message createMessage = new Message();
+			createMessage.setName(username);
+			createMessage.setMsg(msg);
+			createMessage.setGroupOrReceiver(receiver);
+			chatDao.saveMessage(createMessage);
+			try {
+				listener.send(msg);
+			} catch (IOException ex) {
+				logger.log(Level.SEVERE, ()-> "Error getting output stream: " + ex.getMessage());
+			}
+		}	        
 	}
 	
 	public void addMessage(Message message) {

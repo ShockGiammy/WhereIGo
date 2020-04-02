@@ -45,13 +45,21 @@
 			<version>1.7</version>
 			<type>jar</type>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+   			<groupId>javax.servlet</groupId>
+    		<artifactId>javax.servlet-api</artifactId>
+   			<version>4.0.1</version>
+  			<scope>compile</scope>
+  			<optional>true</optional>
+		</dependency>	
 	</dependencies>
 		<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
+				<version>3.8.1</version>
 				<configuration>
 					<release>11</release>
 				</configuration>
@@ -59,7 +67,7 @@
 			<plugin>
 				<groupId>org.openjfx</groupId>
 				<artifactId>javafx-maven-plugin</artifactId>
-				<version>0.0.3</version>
+				<version>0.0.4</version>
 				<configuration>
 					<mainClass>logic.view.BasicGui</mainClass>
 				</configuration>

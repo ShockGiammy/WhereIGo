@@ -13,6 +13,7 @@ import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.exceptions.DuplicateUsernameException;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.ServerDownException;
 import logic.graphiccontrollers.GraphicControllerChat;
 import logic.model.Message;
 import logic.model.User;
@@ -80,7 +81,7 @@ public class ControllerFacade {
 	public List<Message> openChat(String receiver, ChatType type) {
 		return chatController.openChat(receiver, type);
 	}
-	public void execute(String receiver, ChatType type) {
+	public void execute(String receiver, ChatType type) throws ServerDownException {
 		chatController.execute(receiver, type);
 	}
 	

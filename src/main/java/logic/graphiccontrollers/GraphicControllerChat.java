@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import logic.controllers.ChatType;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.ServerDownException;
 import logic.model.Message;
 import logic.model.User;
 import logic.view.BasicGui;
@@ -71,7 +72,7 @@ public class GraphicControllerChat extends BasicGui {
     public void setActiveChat(String name) {
     	activeChat.setText(name);
     	Stage primaryStage = (Stage) borderPane.getScene().getWindow();
-		primaryStage.setOnHiding( e ->
+    	primaryStage.setOnHiding( e ->
 			exitChat());
     }
 
@@ -152,9 +153,9 @@ public class GraphicControllerChat extends BasicGui {
     public void selectGroup() {
     	Node node = groupMember.getSelectionModel().getSelectedItem();
     	String name = ((Text)node).getText();
-    	if (!activeChat.getText().equals(name)) {    		
-    		displayChat(name, ChatType.GROUP);
+    	if (!activeChat.getText().equals(name)) {
     		setActiveChat(name);
+    		displayChat(name, ChatType.GROUP);
     		messageBox.setEditable(true);
     	}
     }
@@ -174,8 +175,8 @@ public class GraphicControllerChat extends BasicGui {
     	if (!activeChat.getText().equals(receiver)) {
     		Node node2 = userList.getSelectionModel().getSelectedItem().getChildren().get(1);
     		pictureImage = ((ImageView)node2).getImage();
-    		displayChat(receiver, ChatType.PRIVATE);
     		setActiveChat(receiver);
+    		displayChat(receiver, ChatType.PRIVATE);   		
     		messageBox.setEditable(true);
     	}
     }
@@ -218,7 +219,14 @@ public class GraphicControllerChat extends BasicGui {
     			addToChat(message);
     		}
     	}
-    	facade.execute(receiver, type);
+    	try {
+			facade.execute(receiver, type);
+		} catch (ServerDownException e) {
+			ErrorPopup error = new ErrorPopup();
+        	error.displayLoginError("I'm sorry " + e.getMessage() + "\nServer is down\nYou are going to be redirected to the Home Page");
+        	MouseEvent clickEvent = new MouseEvent(home, home, MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, null, 0, false, false, false, false, false, false, false, false, false, false, null);
+        	super.goHome(clickEvent);
+		}
     }
 
     public void initialize() {

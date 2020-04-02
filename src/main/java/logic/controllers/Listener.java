@@ -7,6 +7,7 @@ import logic.model.SecureObjectInputStream;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +20,7 @@ public class Listener implements Runnable{
     private int port;
     private String username;
     private String usersGroup;
+    private Semaphore semaphore;
     private ObjectOutputStream oos;
     private SecureObjectInputStream input;
     protected Logger logger = Logger.getLogger("WIG");
@@ -27,17 +29,19 @@ public class Listener implements Runnable{
 	private boolean close = false;
 	private ChatType chatType;
 
-    public Listener(String hostname, int port, String username, ChatController controller, String usersGroup, ChatType type) {
+    public Listener(String hostname, int port, String username, ChatController controller, String usersGroup, ChatType type, Semaphore semaphore) {
         this.hostname = hostname;
         this.port = port;
         this.username = username;
         this.controller = controller;
         this.usersGroup = usersGroup;
         this.chatType = type;
+        this.semaphore = semaphore;
     }
 
     public void run() {
         try {
+        	semaphore.acquire();
         	socket = new Socket(hostname, port);
             OutputStream outputStream = socket.getOutputStream();
             InputStream is = socket.getInputStream();
@@ -47,13 +51,21 @@ public class Listener implements Runnable{
         }
 	    catch (UnknownHostException ex) {
 	    	logger.log(Level.FINE, ()-> "Server not found: " + ex.getMessage());
+	    	semaphore.release(2);
 	    }
         catch (IOException e) {
         	logger.info("Could not Connect");
         	controller.notConnected();
         	close = true;
+        	semaphore.release(2);
+        }
+        catch (InterruptedException e1) {
+        	logger.log(Level.FINE, ()-> "Semaphore not acquirable: " + e1.getMessage());
+        	Thread.currentThread().interrupt();
+        	semaphore.release(2);
         }
         if (!close) {
+        	semaphore.release(2);
         	logger.info("Connection accepted " + socket.getInetAddress() + ":" + socket.getPort());
 
         	try {
@@ -71,6 +83,9 @@ public class Listener implements Runnable{
         	catch (IOException | ClassNotFoundException e) {
         		logger.info("Connection closed!");       
         	}
+        }
+        else {
+        	Thread.currentThread().interrupt();
         }
     }
     
