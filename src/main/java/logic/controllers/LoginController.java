@@ -3,7 +3,6 @@ package logic.controllers;
 import logic.dao.UserDao;
 import logic.exceptions.DuplicateUsernameException;
 import logic.beans.UserDataBean;
-import javafx.scene.image.Image;
 import logic.LoggedUser;
 
 public class LoginController {

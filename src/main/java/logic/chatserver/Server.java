@@ -122,7 +122,7 @@ public class Server{
             }
         }
 
-        private synchronized void checkDuplicateUsername(Message firstMessage) throws DuplicateUsernameException {
+        private synchronized void checkDuplicateUsername(Message firstMessage) throws DuplicateUsernameException, IOException {
             logger.info(firstMessage.getName() + " is trying to connect");
             if (!names.containsKey(firstMessage.getName())) {
                 this.name = firstMessage.getName();
@@ -134,6 +134,14 @@ public class Server{
                 logger.info(() -> name + " has been added to the list");
             } else {
                 logger.log(Level.SEVERE, () -> firstMessage.getName() + " is already connected");
+                Message msg = new Message();
+                msg.setMsg(firstMessage.getName()+" We are sorry.\nYour account is already connected to our server.\nPlease check"
+                		+ " that you have no other active connections and remember to not reveal the password to anyone.");
+                msg.setType(MessageType.CONNECTED);
+                msg.setName(firstMessage.getName());
+                msg.setGroupOrReceiver(usersGroup);
+                output.writeObject(msg);
+                output.reset();
                 throw new DuplicateUsernameException(firstMessage.getName() + " is already connected");
             }
         }

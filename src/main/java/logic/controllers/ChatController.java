@@ -31,7 +31,6 @@ public class ChatController {
 	private boolean alreadyActive = false;
 	private List<GroupModel> grpModel;
 	private User myUserModel;
-	private Semaphore semaphore;
 	
 	public ChatController(ControllerFacade reference) {
 		chatDao = new ChatDao();
@@ -103,7 +102,7 @@ public class ChatController {
 		String hostname = "localhost";
 		int port = 2400;
 		logger.info("socket attivo");
-		semaphore = new Semaphore(1);
+		Semaphore semaphore = new Semaphore(1);
 		listener = new Listener(hostname, port, username, this, groupNameOrReceiver, type, semaphore);
 	    Thread x = new Thread(listener);
 	    x.start();

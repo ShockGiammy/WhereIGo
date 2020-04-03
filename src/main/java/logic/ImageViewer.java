@@ -30,7 +30,7 @@ public class ImageViewer {
 			}
 			try {
 				String listingFolder = System.getProperty("user.dir");
-				File tempFile = File.createTempFile("output", ".tmp", new File(listingFolder));
+				File tempFile = File.createTempFile("output", ".tmp", new File(listingFolder + "/cache"));
 				ImageIO.write(bImage, "jpg", tempFile);
 				tempFile.deleteOnExit();
 			} catch (IOException e) {
