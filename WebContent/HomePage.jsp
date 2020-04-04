@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ include file = "NavigationBar.html"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,28 +23,6 @@
 %>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">WhereIGo</a>
-		 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    		<span class="navbar-toggler-icon"></span>
- 		 </button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-    		<ul class="navbar-nav mr-auto">
-      			<li class="nav-item active">
-        			<a class="nav-link" href="moveTo" id="homep">Home <span class="sr-only">(current)</span></a>
-      			</li>
-      			<li class="nav-item">
-       				<a class="nav-link" href="#" id="booktrav">Book a travel</a>
-      			</li>
-      			<li class="nav-item">
-       				<a class="nav-link" href="#">Rent accomodation</a>
-      			</li>
-      			<li class="nav-item">
-       				<a class="nav-link" href="#">Chat with users</a>
-      			</li>
-      		</ul>
-      	</div>
-      </nav>
 		<div class="table-responsive-sm">
 		<table class="table">
 		<thead>
