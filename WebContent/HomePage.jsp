@@ -23,7 +23,7 @@
 %>
 
 <body>
-		<div class="table-responsive-sm">
+	<div class="table-responsive-sm">
 		<table class="table">
 		<thead>
 			<tr>
