@@ -30,7 +30,7 @@ public class ImageViewer {
 			}
 			try {
 				String listingFolder = System.getProperty("user.dir");
-				File tempFile = File.createTempFile("output", ".tmp", new File(listingFolder + "/cache"));
+				File tempFile = File.createTempFile("output", ".tmp", new File(listingFolder));
 				ImageIO.write(bImage, "jpg", tempFile);
 				tempFile.deleteOnExit();
 			} catch (IOException e) {
@@ -40,7 +40,7 @@ public class ImageViewer {
 		}
 		return bImage;
 	}
-	
+
 	@SuppressWarnings("exports")
 	public Image convertToFxImage(BufferedImage image) {
 	    WritableImage wr = null;

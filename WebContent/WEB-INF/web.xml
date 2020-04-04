@@ -27,4 +27,5 @@
   	<servlet-name>HomePage</servlet-name>
   	<url-pattern>/moveTo</url-pattern>
   </servlet-mapping>
+
 </web-app>

@@ -3,6 +3,7 @@ package logic.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,7 @@ public class HomePageServlet extends HttpServlet {
 		String page = null;
 		if(act.equalsIgnoreCase("gohome")) {
 			changeP.loadHomePageUserInfo(request);
-			page = "HomePage.jsp";
+			page = "HomePage.jsp";	
 		}
 		else if(act.equalsIgnoreCase("gobooktravel")) {
 			page = "BookTravelStart.jsp";
@@ -30,11 +31,11 @@ public class HomePageServlet extends HttpServlet {
 			cities.addAll(fac.showLocations());
 			request.setAttribute("cities", cities);
 		}
-		else if(act.equalsIgnoreCase("goRentAccomodation")) {
+		else if(act.equalsIgnoreCase("RentAnAccomodation")) {
 			page = "RentAnAccomodation.jsp";
 		}
-		else if(act.equalsIgnoreCase("goChatRenter")) {
-			page = "ChatRenter.jsp";
+		else if(act.equalsIgnoreCase("ChatRenter")) {
+			page =	"ChatRenter.jsp";	
 		}
 		changeP.forwardPage(page, request, response);
 	}

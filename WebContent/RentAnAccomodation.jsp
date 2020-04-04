@@ -15,6 +15,10 @@
 <%@ page import="logic.beans.RentAccomodationBean" %>
 <%@ page import="java.util.List" language="java" %>
 <%@ page import="logic.controllers.ControllerFacade" %>
+<%@page import="java.awt.image.BufferedImage"%>
+<%@page import="javax.imageio.ImageIO"%>
+<%@page import="java.io.*"%>
+<%@page import="java.util.Base64"%>
 <br>
 	<div>
 		<table style="display: inline-block;" id="AccomodationsTable">
@@ -23,24 +27,24 @@
 			<td>City</td>
 			<td>houseImage</td>
 			<td>Beds</td>
+			<td>Contact</td>
 		</tr>
 		<%
 		ControllerFacade facade = new ControllerFacade();
-		List<RentAccomodationBean> list = facade.displayAnnouncement();
-		//(List<RentAccomodationBean>)request.getAttribute("listOfBean");
-
+		List<RentAccomodationBean> listOfBean = facade.displayAnnouncement();
+		
 		// print the information about every category of the list
-		for(RentAccomodationBean bean : list) {
+		for(RentAccomodationBean bean : listOfBean) {
 		%>
 		<tr>
 			<td><%=bean.getCity()%></td>
-			<td><%=bean.getHouseImage()%></td>
+			<td><img alt="house" src="data:image/jpg;base64, <%out.println(new String(Base64.getEncoder().encodeToString(bean.getHouseImage())));%>" width="240" height="300"/></td>		
 			<td><%=bean.getBeds()%></td>
 		</tr>
 		<%
 			}
 		%>
+		</table>
 	</div>
-
 </body>
 </html>
