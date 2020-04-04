@@ -2,15 +2,19 @@
     pageEncoding="ISO-8859-1"%>
     <%@ include file="NavigationBar.html" %>
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Rent Accomodation</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 
 <%@ page import="logic.beans.RentAccomodationBean" %>
 <%@ page import="java.util.List" language="java" %>
+<%@ page import="logic.controllers.ControllerFacade" %>
 <br>
 	<div>
 		<table style="display: inline-block;" id="AccomodationsTable">
@@ -21,7 +25,9 @@
 			<td>Beds</td>
 		</tr>
 		<%
-		List<RentAccomodationBean> list = (List<RentAccomodationBean>)request.getAttribute("listOfBean");
+		ControllerFacade facade = new ControllerFacade();
+		List<RentAccomodationBean> list = facade.displayAnnouncement();
+		//(List<RentAccomodationBean>)request.getAttribute("listOfBean");
 
 		// print the information about every category of the list
 		for(RentAccomodationBean bean : list) {

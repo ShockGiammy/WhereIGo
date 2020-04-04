@@ -30,6 +30,12 @@ public class HomePageServlet extends HttpServlet {
 			cities.addAll(fac.showLocations());
 			request.setAttribute("cities", cities);
 		}
+		else if(act.equalsIgnoreCase("goRentAccomodation")) {
+			page = "RentAnAccomodation.jsp";
+		}
+		else if(act.equalsIgnoreCase("goChatRenter")) {
+			page = "ChatRenter.jsp";
+		}
 		changeP.forwardPage(page, request, response);
 	}
 }

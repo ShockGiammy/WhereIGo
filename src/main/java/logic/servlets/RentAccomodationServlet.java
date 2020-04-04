@@ -14,7 +14,7 @@ import logic.controllers.ControllerFacade;
 public class RentAccomodationServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static ControllerFacade facade = new ControllerFacade();;
+	private static ControllerFacade facade = new ControllerFacade();
 	
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) {
