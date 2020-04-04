@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
@@ -29,6 +30,10 @@ public class LoginServlet extends HttpServlet {
 				List<UserTravelBean> travBeanList = new ArrayList<>();
 				facCtrl.getBookedTickets(travBeanList);
 				req.setAttribute("travels", travBeanList);
+				List<GroupBean> gBeanList = new ArrayList<>();
+				facCtrl.getParticipateGroups(gBeanList);
+				facCtrl.getParticipateGroups(gBeanList);
+				req.setAttribute("groups", gBeanList);
 				RequestDispatcher rd = req.getRequestDispatcher("HomePage.jsp");
 				ChangePageServlet change = new ChangePageServlet();
 				change.forwardPage(rd, req, resp);

@@ -18,4 +18,13 @@
   	<servlet-name>Registration</servlet-name>
   	<url-pattern>/registerNow</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>HomePage</servlet-name>
+  	<servlet-class>logic.servlets.HomePageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>HomePage</servlet-name>
+  	<url-pattern>/moveTo</url-pattern>
+  </servlet-mapping>
 </web-app>

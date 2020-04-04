@@ -131,7 +131,7 @@ public class ControllerFacade {
 	}
 	
 	public void getGroups(List<GroupBean> beanList) {
-		this.bookTravCtrl.getGroupsControl(beanList);
+		this.bookTravCtrl.getSuggestedGroupsControl(beanList);
 	}
 	
 	public void getParticipateGroups(List<GroupBean> beanList) {

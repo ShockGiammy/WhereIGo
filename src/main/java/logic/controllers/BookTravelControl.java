@@ -45,7 +45,7 @@ public class BookTravelControl {
 		return suggLoc;
 	}
 	
-	public void getGroupsControl(List<GroupBean> beanList) {
+	public void getSuggestedGroupsControl(List<GroupBean> beanList) {
 		this.usrMod.setUserPersonality(this.logUser.getPersonality());
 		this.usrMod.setUserName(this.logUser.getUserName());
 		List<GroupModel> grpModelList = new ArrayList<>();
