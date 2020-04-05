@@ -35,7 +35,10 @@ public class HomePageServlet extends HttpServlet {
 			page = "RentAnAccomodation.jsp";
 		}
 		else if(act.equalsIgnoreCase("ChatRenter")) {
-			page =	"ChatRenter.jsp";	
+			page =	"ChatRenter.jsp";
+		}
+		else if(act.equalsIgnoreCase("ContactRenter")) {
+			page =	"ChatRenter.jsp";
 		}
 		changeP.forwardPage(page, request, response);
 	}
