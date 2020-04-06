@@ -32,6 +32,7 @@ public class ControllerFacade {
 		this.bookTravCtrl = new BookTravelControl();
 		this.intCtrl = new InterestsController();
 		this.loginCtrl = new LoginController();
+		this.chatController = new ChatController(this);
 	}
 	
 	public ControllerFacade(GraphicControllerChat reference) {
@@ -75,6 +76,7 @@ public class ControllerFacade {
 	}
 	
 	public void closeLastChat() {
+		chatController.modificateMyStatus("offline");
 		chatController.closeLastChat();
 	}
 	
@@ -87,10 +89,6 @@ public class ControllerFacade {
 	
 	public void createGroup(String groupName, List<String> groupList) throws GroupNameTakenException {
 		chatController.createGroup(groupName, groupList);
-	}
-	
-	public void modificateStatus(String status) {
-		chatController.modificateMyStatus(status);
 	}
 	
 	public void updateUserList(List<User> users) {

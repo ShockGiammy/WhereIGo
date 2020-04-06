@@ -32,13 +32,10 @@ public class HomePageServlet extends HttpServlet {
 			request.setAttribute("cities", cities);
 		}
 		else if(act.equalsIgnoreCase("RentAnAccomodation")) {
-			page = "RentAnAccomodation.jsp";
+			page = "rent";
 		}
 		else if(act.equalsIgnoreCase("ChatRenter")) {
-			page =	"ChatRenter.jsp";
-		}
-		else if(act.equalsIgnoreCase("ContactRenter")) {
-			page =	"ChatRenter.jsp";
+			page =	"chatRenter";
 		}
 		changeP.forwardPage(page, request, response);
 	}

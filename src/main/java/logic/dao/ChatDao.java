@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import logic.SingletonDbConnection;
 import logic.model.Message;
 import logic.model.User;
@@ -115,8 +113,8 @@ public class ChatDao {
 	}
 	
 		
-	public ObservableList<User> getUsersQuery(String userName) {
-		ObservableList<User> users = FXCollections.observableArrayList();
+	public List<User> getUsersQuery(String userName) {
+		List<User> users = new ArrayList<>();
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select distinct receiver From Chat Where (sender = ?)")){    
 			statement.setString(1, userName);
 			retriveUsers(statement, users);
@@ -168,7 +166,7 @@ public class ChatDao {
 		}
 	}
 	
-	public void retriveUsers(PreparedStatement statement, ObservableList<User> users) {
+	public void retriveUsers(PreparedStatement statement, List<User> users) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				int helpVar = 0;

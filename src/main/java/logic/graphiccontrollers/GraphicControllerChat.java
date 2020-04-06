@@ -365,7 +365,6 @@ public class GraphicControllerChat extends BasicGui {
     
     public void exitChat() {
     	logger.info("exitChat() method Enter");
-    	facade.modificateStatus("offline");
     	facade.closeLastChat();
     	logger.info("exitChat() method Exit");
     }

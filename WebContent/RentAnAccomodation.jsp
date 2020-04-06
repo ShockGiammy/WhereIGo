@@ -14,9 +14,6 @@
 
 <%@ page import="logic.beans.RentAccomodationBean" %>
 <%@ page import="java.util.List" language="java" %>
-<%@ page import="logic.controllers.ControllerFacade" %>
-<%@page import="java.awt.image.BufferedImage"%>
-<%@page import="javax.imageio.ImageIO"%>
 <%@page import="java.io.*"%>
 <%@page import="java.util.Base64"%>
 <br>
@@ -38,9 +35,8 @@
 			</tr>
 		</thead>
 		<%
-		ControllerFacade facade = new ControllerFacade();
-		List<RentAccomodationBean> listOfBean = facade.displayAnnouncement();
-		
+		int i = 0;
+		List<RentAccomodationBean> listOfBean = (List<RentAccomodationBean>)request.getAttribute("list");		
 		// print the information about every category of the list
 		for(RentAccomodationBean bean : listOfBean) {
 			byte[] list = bean.getServices();
@@ -48,7 +44,7 @@
 		<tr>
 			<td><%=bean.getCity()%></td>
 			<td><%=bean.getAddress()%></td>
-			<td><img alt="house" src="data:image/jpg;base64, <%out.println(new String(Base64.getEncoder().encodeToString(bean.getHouseImage())));%>" width="150" height="150"/></td>		
+			<td><img alt="house" src="data:image/jpg;base64, <%out.println(new String(Base64.getEncoder().encodeToString(bean.getHouseImage())));%>" width="150" height="120"/></td>		
 			<td><%=bean.getDescription()%></td>
 			<td><%=bean.getBeds()%></td>
 			<td><%=bean.getType()%></td>
@@ -67,7 +63,7 @@
 			</td>
 			<td><%=bean.getRenter()%></td>
 			<td>
-       			<a class="btn btn-info btn-l" href="moveTo?action=ContactRenter" id="contact">Contact<br>Renter</a>
+       			<a class="btn btn-info btn-l" href="rent?action=ContactRenter" id="contact">Contact<br>Renter</a>
 			</td>
 		</tr>
 		<%

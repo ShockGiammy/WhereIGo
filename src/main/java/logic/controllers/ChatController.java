@@ -7,7 +7,6 @@ import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import logic.LoggedUser;
 import logic.dao.ChatDao;
 import logic.dao.GroupDao;
@@ -23,7 +22,7 @@ public class ChatController {
 	private ChatDao chatDao;
 	private GroupDao groupDao;
 	private ControllerFacade facade;
-	private ObservableList<User> users;
+	private List<User> users;
 	private Listener listener;
 	private LoggedUser logUser;
 	protected Logger logger = Logger.getLogger("WIG");
