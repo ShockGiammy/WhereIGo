@@ -6,7 +6,6 @@ import java.util.List;
 import logic.beans.RentAccomodationBean;
 import logic.dao.AccomodationCreator;
 import logic.model.AccomodationModel;
-import logic.view.ErrorPopup;
 
 public class RentAccomodationController {
 
@@ -19,16 +18,10 @@ public class RentAccomodationController {
 	}
 	
 	public List<RentAccomodationBean> displayAnnouncement() {
-		List<RentAccomodationBean> listOfBean = dao.queryDB();
-		if (listOfBean.isEmpty()) {
-			ErrorPopup error = new ErrorPopup();
-			error.displayLoginError("no accomodation to been shown");
-		}
-		else {
-			for (RentAccomodationBean bean : listOfBean) {
-				AccomodationModel accomodation = new AccomodationModel(bean);
-				listOfAccomodation.add(accomodation);
-			}
+		List<RentAccomodationBean> listOfBean = dao.queryDB();		
+		for (RentAccomodationBean bean : listOfBean) {
+			AccomodationModel accomodation = new AccomodationModel(bean);
+			listOfAccomodation.add(accomodation);
 		}
 		return listOfBean;
 	}
