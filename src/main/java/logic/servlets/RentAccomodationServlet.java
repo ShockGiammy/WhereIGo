@@ -33,8 +33,4 @@ public class RentAccomodationServlet extends HttpServlet {
 			changeP.forwardPage(pagejsp, req, resp);
 		}
 	}
-	
-	public void initialize() {
-		
-	}
 }

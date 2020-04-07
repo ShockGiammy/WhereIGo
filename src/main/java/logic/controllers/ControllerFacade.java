@@ -96,11 +96,11 @@ public class ControllerFacade {
 	}
 	
 	public void addToChat(Message message) {
-		graphicChat.addToChat(message);
+		//graphicChat.addToChat(message);
 	}
 	
 	public void addAsServer(Message message) {
-		graphicChat.addAsServer(message);
+		//graphicChat.addAsServer(message);
 	}
 	
 	/*CreateAccomodation references methods*/
