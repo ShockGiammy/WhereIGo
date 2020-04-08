@@ -73,8 +73,8 @@ public class GraphicControllerHomePage extends BasicGui{
 			Text ident = new Text("Travel id : "+travBean.get(i).getId());
 			Text depCity = new Text("Departure city : "+travBean.get(i).getCityOfDep());
 			Text arrCity = new Text("Arrive city : "+travBean.get(i).getCityOfArr());
-			Text depDay = new Text("Departure day : "+travBean.get(i).getFirstDay().toString());
-			Text retDay = new Text("Return day : "+travBean.get(i).getLastDay().toString());
+			Text depDay = new Text("Departure day : "+travBean.get(i).getFirstDay());
+			Text retDay = new Text("Return day : "+travBean.get(i).getLastDay());
 			Text money = new Text("Cost : "+travBean.get(i).getCost());
 			Button delete = new Button("Cancel travel");
 			delete.setOnMouseClicked(this::deleteTravel);

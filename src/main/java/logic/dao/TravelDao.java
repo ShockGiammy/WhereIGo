@@ -4,6 +4,7 @@ package logic.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -52,7 +53,7 @@ public class TravelDao {
 		List<TicketModel> tickList = new ArrayList<>();
 		getUserTickets(dataBean, tickList);
 		for(int i = 0; i < tickList.size(); i++) {
-			if((tickList.get(i).getDepCity().toLowerCase()).equals(trav.getCityOfDep()) && (tickList.get(i).getArrCity().toLowerCase()).equals(trav.getCityOfArr()) && tickList.get(i).getDepDay().compareTo(trav.getFirstDay()) == 0 && tickList.get(i).getArrDay().compareTo(trav.getLastDay()) == 0) {
+			if((tickList.get(i).getDepCity().toLowerCase()).equals(trav.getCityOfDep()) && (tickList.get(i).getArrCity().toLowerCase()).equals(trav.getCityOfArr()) && tickList.get(i).getDepDay().compareTo(LocalDate.parse(trav.getFirstDay())) == 0 && tickList.get(i).getArrDay().compareTo(LocalDate.parse(trav.getLastDay())) == 0) {
 				return true;
 			}
 		}

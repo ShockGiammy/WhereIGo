@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class UserTravelBean {
 	private Integer id;
-	private LocalDate firstDay;
-	private LocalDate lastDay;
+	private String firstDay;
+	private String lastDay;
 	private String cityOfDep;
 	private String cityOfArr;
 	private Float cost;
@@ -15,11 +15,11 @@ public class UserTravelBean {
 	}
 	
 	public void setFirstDay(LocalDate firstDay) {
-		this.firstDay = firstDay;
+		this.firstDay = firstDay.toString();
 	}
 	
 	public void setLastDay(LocalDate lastDay) {
-		this.lastDay = lastDay;
+		this.lastDay = lastDay.toString();
 	}
 	
 	public void setDepCity(String depCity) {
@@ -38,11 +38,11 @@ public class UserTravelBean {
 		return this.id;
 	}
 	
-	public LocalDate getFirstDay() {
+	public String getFirstDay() {
 		return this.firstDay;
 	}
 	
-	public LocalDate getLastDay() {
+	public String getLastDay() {
 		return this.lastDay;
 	}
 	

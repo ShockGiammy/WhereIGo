@@ -26,8 +26,8 @@ public class GraphicControllerTickets extends BasicGui{
 	@FXML private TableColumn<UserTravelBean, Integer> ticketId;
 	@FXML private TableColumn<UserTravelBean, String> departureCity;
 	@FXML private TableColumn<UserTravelBean, String> arrivalCity;
-	@FXML private TableColumn<UserTravelBean, LocalDate> departureDay;
-	@FXML private TableColumn<UserTravelBean, LocalDate> arrivalDate;
+	@FXML private TableColumn<UserTravelBean, String> departureDay;
+	@FXML private TableColumn<UserTravelBean, String> arrivalDate;
 	@FXML private TableColumn<UserTravelBean, Float> cost;
 	@FXML private List<RadioButton> rbList;
 	@FXML private ToggleGroup bookNowGroup;
@@ -74,8 +74,8 @@ public class GraphicControllerTickets extends BasicGui{
 				travBean.setId(this.ticketId.getCellData(i));
 				travBean.setDepCity(this.departureCity.getCellData(i));
 				travBean.setArrCity(this.arrivalCity.getCellData(i));
-				travBean.setFirstDay(this.departureDay.getCellData(i));
-				travBean.setLastDay(this.arrivalDate.getCellData(i));
+				travBean.setFirstDay(LocalDate.parse(this.departureDay.getCellData(i)));
+				travBean.setLastDay(LocalDate.parse(this.arrivalDate.getCellData(i)));
 				travBean.setCost(this.cost.getCellData(i));
 				LoggedUser logusr = new LoggedUser();
 				UserDataBean dataBean = new UserDataBean();

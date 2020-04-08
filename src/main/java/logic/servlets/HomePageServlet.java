@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import logic.beans.GroupBean;
 import logic.controllers.ControllerFacade;
 
 @WebServlet("/HomePageServlet")
@@ -28,10 +30,13 @@ public class HomePageServlet extends HttpServlet {
 			page = "BookTravelStart.jsp";
 			ControllerFacade fac = new ControllerFacade();
 			List<String> cities = new ArrayList<>();
+			List<GroupBean> beanList = new ArrayList<>();
 			cities.addAll(fac.showLocations());
+			fac.getGroups(beanList);
+			request.setAttribute("grouplist", beanList);
 			request.setAttribute("cities", cities);
 		}
-		else if(act.equalsIgnoreCase("RentAnAccomodation")) {
+		else if(act.equalsIgnoreCase("rentAnAccomodation")) {
 			page = "rent";
 		}
 		else if(act.equalsIgnoreCase("ChatRenter")) {

@@ -1,6 +1,7 @@
 package logic.controllers;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import logic.LoggedUser;
@@ -79,7 +80,7 @@ public class BookTravelControl {
 		List<TicketModel> tickList = new ArrayList<>();
 		int i = 0;
 		try {
-			if(travBean.getFirstDay().compareTo(travBean.getLastDay()) > 0) {
+			if(LocalDate.parse(travBean.getFirstDay()).compareTo(LocalDate.parse(travBean.getLastDay())) > 0) {
 				return -1;
 			}
 			else {
@@ -109,9 +110,11 @@ public class BookTravelControl {
 		return 0;
 	}
 	
-	public void saveBoughtTicketControl(UserTravelBean travBean , UserDataBean dataBean) {
+	public void saveBoughtTicketControl(UserTravelBean travBean) {
 		TicketModel tick = new TicketModel();
-		tick.setAll(travBean.getId(), travBean.getCityOfDep(), travBean.getCityOfArr(), travBean.getFirstDay(), travBean.getLastDay(), travBean.getCost());
+		tick.setAll(travBean.getId(), travBean.getCityOfDep(), travBean.getCityOfArr(), LocalDate.parse(travBean.getFirstDay()), LocalDate.parse(travBean.getLastDay()), travBean.getCost());
+		UserDataBean dataBean = new UserDataBean();
+		dataBean.setUserName(this.logUser.getUserName());
 		this.travDao.saveBoughtTickets(tick, dataBean);
 	}
 	

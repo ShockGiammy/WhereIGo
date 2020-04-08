@@ -144,8 +144,8 @@ public class ControllerFacade {
 		return this.bookTravCtrl.retriveTravelSolutionsControl(travBean, travList);
 	}
 	
-	public void saveBoughtTicket(UserTravelBean travBean , UserDataBean dataBean) {
-		this.bookTravCtrl.saveBoughtTicketControl(travBean , dataBean);
+	public void saveBoughtTicket(UserTravelBean travBean) {
+		this.bookTravCtrl.saveBoughtTicketControl(travBean);
 	}
 	
 	public void getBookedTickets(List<UserTravelBean> travBeanList) {

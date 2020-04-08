@@ -14,7 +14,7 @@
 		<tr><td>Date of birth : <input type="date" name="dateofbirth"></td>
 		<td>Type of user : <input type="text" name="typeOfUsr"></td></tr>
 		<tr><td>Username : <input type="text" name="username"></td>
-		<td>Password : <input type="password" name="paswd"></tr></td>
+		<td>Password : <input type="password" name="paswd"></td></tr>
 		<td>Gender : <input type="text" name="gender"></td></tr>
 		</table>
 		<input type="submit" value="register now">

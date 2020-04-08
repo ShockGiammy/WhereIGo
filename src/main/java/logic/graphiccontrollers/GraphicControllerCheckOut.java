@@ -42,8 +42,8 @@ public class GraphicControllerCheckOut extends BasicGui{
 		this.id.setText(String.valueOf(travBean.getId()));
 		this.departure.setText(travBean.getCityOfDep());
 		this.arrive.setText(travBean.getCityOfArr());
-		this.depDay.setText(travBean.getFirstDay().toString());
-		this.retDay.setText(travBean.getLastDay().toString());
+		this.depDay.setText(travBean.getFirstDay());
+		this.retDay.setText(travBean.getLastDay());
 		this.cost.setText(String.valueOf(travBean.getCost()));
 		this.groupAdmin.setText(dataBean.getUsername());
 		this.groupAdmin.setEditable(false);
@@ -69,7 +69,7 @@ public class GraphicControllerCheckOut extends BasicGui{
 	}
 	
 	public void confirmTrav(MouseEvent e) {
-		this.facCtrl.saveBoughtTicket(this.travbean, this.bean);
+		this.facCtrl.saveBoughtTicket(this.travbean);
 		goHome(e);
 	}
 }
