@@ -25,19 +25,16 @@ public class GraphicControllerCheckOut extends BasicGui{
 	@FXML private Button createGroup;
 	@FXML private Button confirmTrav;
 	private ErrorPopup errPop;
-	private UserDataBean bean;
 	private UserTravelBean travbean;
 	
 	@FXML
 	public void initialize() {
 		errPop = new ErrorPopup();
-		bean = new UserDataBean();
 		travbean = new UserTravelBean();
 		this.userImage.setImage(this.logUsr.getImage());
 	}
 	
 	public void setInfo(UserTravelBean travBean, UserDataBean dataBean) {
-		this.bean = dataBean;
 		this.travbean = travBean;
 		this.id.setText(String.valueOf(travBean.getId()));
 		this.departure.setText(travBean.getCityOfDep());

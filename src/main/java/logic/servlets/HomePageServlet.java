@@ -3,6 +3,8 @@ package logic.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logic.beans.GroupBean;
+import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
 
 @WebServlet("/HomePageServlet")
@@ -41,6 +44,18 @@ public class HomePageServlet extends HttpServlet {
 		}
 		else if(act.equalsIgnoreCase("ChatRenter")) {
 			page =	"chatRenter";
+		}
+		else if(act.equalsIgnoreCase("delTick")) {
+			ControllerFacade fac = new ControllerFacade();
+			UserTravelBean travBean = new UserTravelBean();
+			try {
+				travBean.setId(Integer.valueOf(request.getParameter("id")));
+				fac.deleteSavedTravel(travBean);
+				page = "HomePage.jsp";
+				changeP.loadHomePageUserInfo(request);
+			}catch(NumberFormatException e) {
+				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			}
 		}
 		changeP.forwardPage(page, request, response);
 	}

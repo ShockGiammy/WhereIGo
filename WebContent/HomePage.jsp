@@ -37,6 +37,7 @@
 							<th scope="col">Arrive city</th>
 							<th scope="col">Arrive date</th>
 							<th scope="col">Cost</th>
+							<th scope=col">Delete ticket</th>
 						</tr>
 					</thead>
 						<%
@@ -50,6 +51,7 @@
 						<td><%=bean.getCityOfArr()%></td>
 						<td><%=bean.getLastDay()%></td>
 						<td><%=bean.getCost()%></td>
+						<td><a href="HomePageServlet?action=delTick&id=<%=bean.getId()%>" class="btn btn-danger btn-md">Delete</a>
 						<%
 							}
 						%>
