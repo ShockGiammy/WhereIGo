@@ -92,15 +92,25 @@ public class ControllerFacade {
 	}
 	
 	public void updateUserList(List<User> users) {
-		graphicChat.updateUserList(users);
+		if (graphicChat!=null) {
+			graphicChat.updateUserList(users);
+		}
 	}
 	
 	public void addToChat(Message message) {
-		//graphicChat.addToChat(message);
+		if (graphicChat!=null) {
+		graphicChat.addToChat(message);
+		}
 	}
 	
 	public void addAsServer(Message message) {
-		//graphicChat.addAsServer(message);
+		if (graphicChat!=null) {
+			graphicChat.addAsServer(message);
+		}
+	}
+	
+	public User getUser(String user) {
+		return chatController.getUser(user);
 	}
 	
 	/*CreateAccomodation references methods*/

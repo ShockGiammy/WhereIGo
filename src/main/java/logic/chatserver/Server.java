@@ -113,7 +113,7 @@ public class Server{
             } catch (DuplicateUsernameException duplicateException) {
                 logger.log(Level.SEVERE, () -> "Duplicate Username : " + name);
             } catch (IOException e) {
-            	logger.log(Level.SEVERE, () -> "Problem with IO deserialization" + e.getMessage());
+            	logger.log(Level.SEVERE, () -> "Problem with IO deserialization " + e.getMessage());
             } catch (Exception e) {
                 logger.log(Level.SEVERE, e, () -> "Exception in run() method for user: " + name);
                 

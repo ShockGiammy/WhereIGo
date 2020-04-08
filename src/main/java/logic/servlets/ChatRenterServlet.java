@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import logic.LoggedUser;
 import logic.controllers.ChatType;
 import logic.controllers.ControllerFacade;
-import logic.exceptions.ServerDownException;
 import logic.model.Message;
 import logic.model.User;
 
@@ -20,7 +19,7 @@ public class ChatRenterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
+	public void service(HttpServletRequest req, HttpServletResponse resp) {
 		
 		ChangePageServlet changeP = new ChangePageServlet();
 		
@@ -30,34 +29,30 @@ public class ChatRenterServlet extends HttpServlet {
 		req.setAttribute("users", users);
 		List<String> groups = facade.getGroups();
 		req.setAttribute("groups", groups);
-		req.setAttribute("I", logUser.getUserName());
+		
+		User myInfo = facade.getUser(logUser.getUserName());
+		myInfo.setName(logUser.getUserName());
+		req.setAttribute("I", myInfo);
+		
+		if (req.getParameter("message") != null) {
+			facade.sendMessage(req.getParameter("message"), req.getParameter("receiver"));
+		}
 
 		List<Message> chat = null;
+		User userChat = null;
 		if (req.getParameter("chat") != null) {
-			facade.closeLastChat();
 			if (req.getParameter("chat").equals("private")) {
 				chat = facade.openChat(req.getParameter("user"), ChatType.PRIVATE);
-				try {
-					facade.execute(req.getParameter("user"), ChatType.PRIVATE);
-				} catch (ServerDownException e) {				
-					String page = "ErrorPage.jsp";
-					changeP.forwardPage(page, req, resp);
-				}
+				userChat = facade.getUser(req.getParameter("user"));
+				userChat.setName(req.getParameter("user"));
 			} else if (req.getParameter("chat").equals("group")) {
 				chat = facade.openChat(req.getParameter("user"), ChatType.GROUP);
-				try {
-					facade.execute(req.getParameter("user"), ChatType.GROUP);
-				} catch (ServerDownException e) {
-					String page = "ErrorPage.jsp";
-					changeP.forwardPage(page, req, resp);
-				}
 			}
 		}
+		req.setAttribute("userChat", userChat);
 		req.setAttribute("chat", chat);
 			
 		String page = "prova.jsp";
 		changeP.forwardPage(page, req, resp);
 	}
-	
-
 }

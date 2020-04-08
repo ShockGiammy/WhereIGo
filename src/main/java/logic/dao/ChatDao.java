@@ -215,4 +215,31 @@ public class ChatDao {
 			}
 		}
 	}
+	
+	public User getUser(String userName) {
+		User user = new User();
+		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select profilePicture From usr Where username = ?")){    
+			statement.setString(1, userName);
+			retriveUserPicture(statement, user);
+		}
+		catch (SQLException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}
+		finally {
+			SingletonDbConnection.getInstance().closeConn();
+		}
+		return user;
+	}
+	
+	public void retriveUserPicture(PreparedStatement statement, User user) {
+		try(ResultSet rs = statement.executeQuery()){
+			while(rs.next()) {
+				byte[] image = rs.getBytes(1);
+				user.setPicture(image);
+			}
+		}catch(SQLException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, "User fetch error", e);
+		}
+	}
 }

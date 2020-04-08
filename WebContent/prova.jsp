@@ -5,6 +5,29 @@
 <html>
 <head>
 <style>
+.msg_card_body{
+			overflow-y: auto;
+		}
+.msg_cotainer_send{
+		margin-top: auto;
+		margin-bottom: auto;
+		margin-right: 10px;
+		border-radius: 25px;
+		background-color: #78e08f;
+		padding: 10px;
+		position: relative;
+	}
+	.msg_cotainer{
+		margin-top: auto;
+		margin-bottom: auto;
+		margin-left: 10px;
+		border-radius: 25px;
+		background-color: #82ccdd;
+		padding: 10px;
+		position: relative;
+	}
+	
+	
 .container{max-width:1170px; margin:auto;}
 img{ max-width:100%;}
 .inbox_people {
@@ -52,10 +75,15 @@ img{ max-width:100%;}
 
 .active_chat{ background:#ebebeb;}
 
-.incoming_msg_img {
-  display: inline-block;
-  width: 6%;
-}
+.img_cont{
+			position: relative;
+			height: 70px;
+			width: 70px;
+	}
+	.img_cont_msg{
+			height: 40px;
+			width: 40px;
+	}
 .received_msg {
   display: inline-block;
   padding: 0 0 0 10px;
@@ -109,11 +137,11 @@ img{ max-width:100%;}
   color: #fff;
   cursor: pointer;
   font-size: 17px;
-  height: 33px;
+  height: 35px;
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 11px;
-  width: 33px;
+  width: 37px;
 }
 .messaging { padding: 0 0 50px 0;}
 .msg_history {
@@ -136,7 +164,20 @@ List<User> users = (List<User>)request.getAttribute("users");
 List<String> groups = (List<String>)request.getAttribute("groups");
 %>
 <div class="container">
+<%
+User userChat = (User)request.getAttribute("userChat");
+if (userChat!= null) {
+%>
+<h3 class=" text-center"><%=userChat.getName() %></h3>
+<input type="hidden" value="<%=userChat.getName() %>" id="receiver"/>
+<%
+}
+else {
+%>
 <h3 class=" text-center">Chat</h3>
+<%
+}
+%>
 <div class="messaging">
       <div class="inbox_msg">
         <div class="inbox_people">
@@ -152,7 +193,8 @@ List<String> groups = (List<String>)request.getAttribute("groups");
 			%>
             <div class="chat_list">
               <div class="chat_people">
-                <div class="chat_img"> <img src="data:image/jpg;base64, <%out.println(new String(Base64.getEncoder().encodeToString(user.getPicture())));%>" alt="UserImage" width="45" height="45">
+                <div class="chat_img"> 
+                <img class="rounded-circle user_img_msg" src="data:image/jpg;base64, <%out.println(new String(Base64.getEncoder().encodeToString(user.getPicture())));%>" alt="UserImage" width="45" height="45">
                 </div>
                 <div class="chat_ib">
                   <a href="chatRenter?chat=private&user=<%out.println(user.getName());%>" class="btn btn-primary stretched-link"><%=user.getName()%></a>
@@ -180,30 +222,41 @@ List<String> groups = (List<String>)request.getAttribute("groups");
         <div class="mesgs">
           <div class="msg_history">
           <%
-          String userName = (String)request.getAttribute("I");
+          User myInfo = (User)request.getAttribute("I");
+          String userName = myInfo.getName();
+          String myImage = null;
+          if (myInfo.getPicture()!= null) {
+        	  myImage = new String(Base64.getEncoder().encodeToString(myInfo.getPicture()));
+      	}
           List<Message> chat = (List<Message>)request.getAttribute("chat");
+          String pictureImage = null;
+        	 
           if (chat!= null) {
+        	if (userChat!= null) {
+    	  		pictureImage = new String(Base64.getEncoder().encodeToString(userChat.getPicture()));
+        	}
           	for (Message message : chat) {
       			if (message.getMsg() != null) {
-      				if (message.getName().equals(userName)) {
+      				if (!message.getName().equals(userName)) {
           			%>          
-            		<div class="incoming_msg">
-              	  		<div class="incoming_msg_img">
-              	  			<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+              	  	<div class="d-flex justify-content-start mb-4">
+              	  		<div class="img_cont_msg">
+              	  			<img src="data:image/jpg;base64, <%out.println(pictureImage);%>" alt="userImage" class="rounded-circle user_img_msg">
               	  		</div>
-              	  	<div class="received_msg">
-                	<div class="received_withd_msg">
-                  	  <p><%=message.getMsg() %></p>
-              	  	</div>
+						<div class="msg_cotainer">
+                  	  	<%=message.getName()+": "+message.getMsg() %>
+              	  		</div>
             	  </div>
-            	</div>
             	<% 
             	}
       			else { %>
-            	<div class="outgoing_msg">
-              	  <div class="sent_msg">
-                    <p><%=message.getMsg() %></p>
-            	  </div>
+            	<div class="d-flex justify-content-end mb-4">
+					<div class="msg_cotainer_send">
+                    <%=userName+": "+message.getMsg() %>
+                    </div>
+                    <div class="img_cont_msg">
+                    <img src="data:image/jpg;base64, <%out.println(myImage);%>" alt="userImage" class="rounded-circle user_img_msg">
+              	  	</div>
             	</div>
             		<% 
       					}
@@ -214,8 +267,10 @@ List<String> groups = (List<String>)request.getAttribute("groups");
           </div>
           <div class="type_msg">
             <div class="input_msg_write">
-              <input type="text" class="write_msg" placeholder="Type a message" />
-              <button class="msg_send_btn" type="button" onclick="sendMessage()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              <input type="text" class="write_msg" placeholder="Type a message" id="textMsg"/>
+              <button class="msg_send_btn" type="button" onclick="sendMessage()">
+              	<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+              </button>
             </div>
         </div>
       </div>
@@ -224,7 +279,18 @@ List<String> groups = (List<String>)request.getAttribute("groups");
 </div>
 <script>
 function sendMessage() {
-	console.log("Put a message here.");
+	var message = document.getElementById("textMsg").value;
+	var receiver = document.getElementById("receiver").value;
+	document.getElementById("textMsg").clean;
+	$.ajax( {
+		type: "POST",
+		data:{
+			message : message,
+			receiver : receiver
+		},
+		url: "chatRenter"
+	});
+	location.reload(true);
 }
 </script>
 </body>

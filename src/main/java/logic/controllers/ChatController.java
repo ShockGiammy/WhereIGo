@@ -125,12 +125,12 @@ public class ChatController {
 	}
 
 	public void sendMessage(String msg, String receiver) {
+		Message createMessage = new Message();
+		createMessage.setName(username);
+		createMessage.setMsg(msg);
+		createMessage.setGroupOrReceiver(receiver);
+		chatDao.saveMessage(createMessage);
 		if (alreadyActive) {
-			Message createMessage = new Message();
-			createMessage.setName(username);
-			createMessage.setMsg(msg);
-			createMessage.setGroupOrReceiver(receiver);
-			chatDao.saveMessage(createMessage);
 			try {
 				listener.send(msg);
 			} catch (IOException ex) {
@@ -170,5 +170,9 @@ public class ChatController {
 			groupNames.add(group.getDescription());
 		}
 		return groupNames;
+	}
+	
+	public User getUser(String user) {
+		return chatDao.getUser(user);
 	}
 }
