@@ -63,7 +63,7 @@
 			</td>
 			<td><%=bean.getRenter()%></td>
 			<td>
-       			<a class="btn btn-info btn-l" href="rent?action=ContactRenter" id="contact">Contact<br>Renter</a>
+       			<a class="btn btn-info btn-l" href="rent?action=ContactRenter&renter=<%=bean.getRenter()%>" id="contact">Contact<br>Renter</a>
 			</td>
 		</tr>
 		<%

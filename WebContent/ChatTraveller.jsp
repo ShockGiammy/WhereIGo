@@ -6,30 +6,32 @@
 <head>
 <style>
 .msg_card_body{
-			overflow-y: auto;
-		}
+	overflow-y: auto;
+	}
 .msg_cotainer_send{
-		margin-top: auto;
-		margin-bottom: auto;
-		margin-right: 10px;
-		border-radius: 25px;
-		background-color: #78e08f;
-		padding: 10px;
-		position: relative;
-	}
-	.msg_cotainer{
-		margin-top: auto;
-		margin-bottom: auto;
-		margin-left: 10px;
-		border-radius: 25px;
-		background-color: #82ccdd;
-		padding: 10px;
-		position: relative;
-	}
-	
-	
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: 10px;
+	border-radius: 25px;
+	background-color: #78e08f;
+	padding: 10px;
+	position: relative;
+}
+.msg_cotainer{
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 10px;
+	border-radius: 25px;
+	background-color: #82ccdd;
+	padding: 10px;
+	position: relative;
+}
+
 .container{max-width:1170px; margin:auto;}
 img{ max-width:100%;}
+
+.headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
+
 .inbox_people {
   background: #f8f8f8 none repeat scroll 0 0;
   float: left;
@@ -41,12 +43,11 @@ img{ max-width:100%;}
   clear: both;
   overflow: hidden;
 }
+
 .top_spac{ margin: 20px 0 0;}
 
 
 .recent_heading {float: left; width:45%;}
-
-.headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
 
 .recent_heading h4 {
   color: #05728f;
@@ -59,6 +60,7 @@ img{ max-width:100%;}
   float: left;
   width: 11%;
 }
+
 .chat_ib {
   float: left;
   padding: 0 0 0 15px;
@@ -66,6 +68,7 @@ img{ max-width:100%;}
 }
 
 .chat_people{ overflow:hidden; clear:both;}
+
 .chat_list {
   border-bottom: 1px solid #c4c4c4;
   margin: 0;
@@ -76,50 +79,21 @@ img{ max-width:100%;}
 .active_chat{ background:#ebebeb;}
 
 .img_cont{
-			position: relative;
-			height: 70px;
-			width: 70px;
-	}
-	.img_cont_msg{
-			height: 40px;
-			width: 40px;
-	}
-.received_msg {
-  display: inline-block;
-  padding: 0 0 0 10px;
-  vertical-align: top;
-  width: 92%;
- }
- .received_withd_msg p {
-  background: #ebebeb none repeat scroll 0 0;
-  border-radius: 3px;
-  color: #646464;
-  font-size: 14px;
-  margin: 0;
-  padding: 5px 10px 5px 12px;
-  width: 100%;
+	position: relative;
+	height: 70px;
+	width: 70px;
+}
+.img_cont_msg{
+	height: 40px;
+	width: 40px;
 }
 
-.received_withd_msg { width: 57%;}
 .mesgs {
   float: left;
   padding: 30px 15px 0 25px;
   width: 60%;
 }
 
- .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
-  border-radius: 3px;
-  font-size: 14px;
-  margin: 0; color:#fff;
-  padding: 5px 10px 5px 12px;
-  width:100%;
-}
-.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
-.sent_msg {
-  float: right;
-  width: 46%;
-}
 .input_msg_write input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   border: medium none;
@@ -197,7 +171,7 @@ else {
                 <img class="rounded-circle user_img_msg" src="data:image/jpg;base64, <%out.println(new String(Base64.getEncoder().encodeToString(user.getPicture())));%>" alt="UserImage" width="45" height="45">
                 </div>
                 <div class="chat_ib">
-                  <a href="chatRenter?chat=private&user=<%out.println(user.getName());%>" class="btn btn-primary stretched-link"><%=user.getName()%></a>
+                  <a href="ChatTraveller?chat=private&user=<%out.println(user.getName());%>" class="btn btn-primary stretched-link"><%=user.getName()%></a>
                 </div>
                 
               </div>
@@ -210,7 +184,7 @@ else {
 			<div class="chat_list">
               <div class="chat_people">
                 <div class="chat_ib">
-                  <a href="chatRenter?chat=group&user=<%out.println(group);%>" class="btn btn-primary stretched-link"><%=group%></a>
+                  <a href="ChatTraveller?chat=group&user=<%out.println(group);%>" class="btn btn-primary stretched-link"><%=group%></a>
                 </div>
               </div>
 			</div>
@@ -288,9 +262,11 @@ function sendMessage() {
 			message : message,
 			receiver : receiver
 		},
-		url: "chatRenter"
+		url: "ChatTraveller"
 	});
-	location.reload(true);
+	setTimeout(function() {
+		window.location.href = "ChatTraveller?chat=private"+"&user="+receiver;
+	}, 500);
 }
 </script>
 </body>

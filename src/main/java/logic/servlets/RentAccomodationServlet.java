@@ -19,18 +19,20 @@ public class RentAccomodationServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		
 		ControllerFacade facade = new ControllerFacade();
-		List<RentAccomodationBean> listOfBean = facade.displayAnnouncement();
-		req.setAttribute("list", listOfBean);
 		
 		ChangePageServlet changeP = new ChangePageServlet();
-		String page =	"RentAnAccomodation.jsp";
-		changeP.forwardPage(page, req, resp);
-		
+		String page = null;
 		
 		String act = req.getParameter("action");
 		if(act.equalsIgnoreCase("ContactRenter")) {
-			String pagejsp =	"chatRenter";
-			changeP.forwardPage(pagejsp, req, resp);
+			facade.createChat(req.getParameter("renter"));
+			page = "ChatTraveller";
 		}
+		else if (act.equalsIgnoreCase("rentAnAccomodation")) {
+			List<RentAccomodationBean> listOfBean = facade.displayAnnouncement();
+			req.setAttribute("list", listOfBean);
+			page = "RentAnAccomodation.jsp";
+		}
+		changeP.forwardPage(page, req, resp);	
 	}
 }

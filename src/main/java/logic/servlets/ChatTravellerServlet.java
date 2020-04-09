@@ -13,8 +13,8 @@ import logic.controllers.ControllerFacade;
 import logic.model.Message;
 import logic.model.User;
 
-@WebServlet("/ChatRenter")
-public class ChatRenterServlet extends HttpServlet {
+@WebServlet("/ChatTraveller")
+public class ChatTravellerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -52,7 +52,7 @@ public class ChatRenterServlet extends HttpServlet {
 		req.setAttribute("userChat", userChat);
 		req.setAttribute("chat", chat);
 			
-		String page = "ChatRenter.jsp";
+		String page = "ChatTraveller.jsp";
 		changeP.forwardPage(page, req, resp);
 	}
 }

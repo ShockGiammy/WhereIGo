@@ -57,11 +57,11 @@ public class ControllerFacade {
 		return controllerRent.displayAnnouncement();
 	}
 	
-	public void createChat(String renter) {
-		controllerRent.createChat(renter);
-	}
-	
 	/*ChatController references methods*/
+	
+	public void createChat(String renter) {
+		chatController.createChat(renter);
+	}
 	
 	public List<User> getUsers() {
 		return chatController.getUsers();
@@ -99,7 +99,7 @@ public class ControllerFacade {
 	
 	public void addToChat(Message message) {
 		if (graphicChat!=null) {
-		graphicChat.addToChat(message);
+			graphicChat.addToChat(message);
 		}
 	}
 	

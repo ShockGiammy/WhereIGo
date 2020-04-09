@@ -1,8 +1,6 @@
 package logic.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,12 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logic.beans.GroupBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
 
-@WebServlet("/HomePageServlet")
-public class HomePageServlet extends HttpServlet {
+@WebServlet("/RenterHomePageServlet")
+public class RenterHomePageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
@@ -26,24 +23,14 @@ public class HomePageServlet extends HttpServlet {
 		String act = request.getParameter("action");
 		String page = null;
 		if(act.equalsIgnoreCase("gohome")) {
-			changeP.loadHomePageUserInfo(request);
+			//changeP.loadHomePageUserInfo(request);
 			page = "HomePage.jsp";	
 		}
-		else if(act.equalsIgnoreCase("gobooktravel")) {
-			page = "BookTravelStart.jsp";
-			ControllerFacade fac = new ControllerFacade();
-			List<String> cities = new ArrayList<>();
-			List<GroupBean> beanList = new ArrayList<>();
-			cities.addAll(fac.showLocations());
-			fac.getGroups(beanList);
-			request.setAttribute("grouplist", beanList);
-			request.setAttribute("cities", cities);
-		}
-		else if(act.equalsIgnoreCase("rentAnAccomodation")) {
+		else if(act.equalsIgnoreCase("RenterAccomodation")) {
 			page = "rent";
 		}
-		else if(act.equalsIgnoreCase("ChatTraveller")) {
-			page =	"ChatTraveller";
+		else if(act.equalsIgnoreCase("ChatRenter")) {
+			page =	"ChatRenter";
 		}
 		else if(act.equalsIgnoreCase("delTick")) {
 			ControllerFacade fac = new ControllerFacade();
