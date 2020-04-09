@@ -1,5 +1,6 @@
 package logic.view;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -15,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import logic.ImageViewer;
 import logic.LoggedUser;
 import logic.UserType;
 import logic.controllers.ControllerFacade;
@@ -35,10 +37,12 @@ public class BasicGui extends Application{
 	private static Logger logger = Logger.getLogger("WIG");
 	protected LoggedUser logUsr;
 	protected ControllerFacade facCtrl;
+	private ImageViewer imView;
 	
 	public BasicGui() {
 		this.logUsr = new LoggedUser();
 		this.facCtrl = new ControllerFacade();
+		this.imView = new ImageViewer();
 	}
 	
 	@Override
@@ -169,5 +173,10 @@ public class BasicGui extends Application{
 		setScene("Login.fxml");
 		loadScene();
 		launch(args);
+	}
+	
+	public Image setUserImage() {
+		BufferedImage bufImage = this.imView.loadImage(this.logUsr.getImage());
+		return imView.convertToFxImage(bufImage);
 	}
 }

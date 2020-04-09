@@ -56,7 +56,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		wifi.setSelected(false);
 		bathroom.setSelected(false);
 		kitchen.setSelected(false);
-		this.userImage.setImage(this.logUsr.getImage());
+		this.userImage.setImage(setUserImage());
 	}
 	
 	public GraphicControllerCreateAccomodation() {

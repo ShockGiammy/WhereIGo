@@ -41,7 +41,7 @@ public class GraphicControllerTickets extends BasicGui{
 		this.bookNowGroup = new ToggleGroup();
 		this.rbList = new ArrayList<>();
 		bookTravCtrl = new BookTravelControl();
-		this.userImage.setImage(this.logUsr.getImage());
+		this.userImage.setImage(setUserImage());
 	}
 	
 	public void setDatas(List<UserTravelBean> travBean) {

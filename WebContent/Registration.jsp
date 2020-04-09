@@ -9,21 +9,37 @@
 <meta charset="ISO-8859-1">
 <title>Registration</title>
 </head>
+
+</head>
+
+<%
+	if(request.getAttribute("errorMsg") != null){
+%>
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  		<p><%=request.getAttribute("errorMsg") %></p>
+  	 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    	<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
+<%
+	}
+%>
+
 <body>
-	<form action="registerNow" method="post">
+	<form action="LoginServlet" method="post">
 	<div class="container">
 	<h1>Registration form</h1>	
 	<div class="row">
 	<div class="col-4">
 	<div class="form-horizontal">	
 		<div class="form-group">
-			<label for="name" class="col-sm-2 control-label">Name :</label>
+			<label for="name" class="col-md-6 control-label">Name :</label>
 			<div class="col-sm-10">
 				<input type="text" name="name" id="name" placeholder="name">
 			</div>
 		</div><br>
 		<div class="form-group">
-			<label for="surname" class="col-sm-2 control-label">Surname :</label>
+			<label for="surname" class="col-md-6 control-label">Surname :</label>
 			<div class="col-sm-10">
 				<input type="text" name="surname" id="surname" placeholder="surname">
 			</div>
@@ -35,7 +51,7 @@
 			</div>
 		</div><br>
 		<div class="form-group">
-			<label for="gender" class="col-sm-2 control-label">Gender :</label>
+			<label for="gender" class="col-md-6 control-label">Gender :</label>
 			<div class="col-sm-10">
 				<input type="text" name="gender" id="gender">
 			</div>
@@ -52,13 +68,13 @@
 			</div>
 		</div><br>
 		<div class="form-group">
-			<label for="username" class="col-sm-2 control-label">Username :</label>
+			<label for="username" class="col-md-6 control-label">Username :</label>
 			<div class="col-sm-10">
 				<input type="text" name="username" id="username" placeholder="username">
 			</div>
 		</div><br>
 		<div class="form-group">
-			<label for="password" class="col-sm-2 control-label">Password :</label>
+			<label for="password" class="col-md-6 control-label">Password :</label>
 			<div class="col-sm-10">
 				<input type="password" name="password" id="password" placeholder="password">
 			</div>
@@ -68,7 +84,7 @@
 				Photo:
 			</div>
 		</div><br>
-		<input type="submit" value="register now">
+		<input type="submit" value="register now" name="regnow">
 	</div>
 	</div>
 	</div>

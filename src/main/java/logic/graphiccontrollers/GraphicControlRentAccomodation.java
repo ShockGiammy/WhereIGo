@@ -62,7 +62,6 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	
 	@FXML
 	public void initialize() {
-		this.userImage.setImage(logUsr.getImage());
 		facade = new ControllerFacade();
 		List<RentAccomodationBean> listOfBean = facade.displayAnnouncement();
 		if (listOfBean.isEmpty()) {
@@ -74,6 +73,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 			setDisplayInfo(bean);
 			}
 		}
+		this.userImage.setImage(setUserImage());
 	}
 	
 	public void setDisplayInfo(RentAccomodationBean bean) {

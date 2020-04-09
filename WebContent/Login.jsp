@@ -11,6 +11,20 @@
  <script src="https://kit.fontawesome.com/5b3fd9b7f5.js" crossorigin="anonymous"></script>
 
 </head>
+
+<%
+	if(request.getAttribute("errorMsg") != null){
+%>
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  		<p><%=request.getAttribute("errorMsg") %></p>
+  	 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    	<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
+<%
+	}
+%>
+
 <body>
 	<form action="getLoginInfo" method="post">
 		<div class="container">
@@ -23,7 +37,7 @@
 				</div><br>
 				<div class="input-icons">
 					<i class="fas fa-key"></i>
-					<input id="password" name="password" type="text" placeholder="password" class="input-field"/>
+					<input id="password" name="password" type="password" placeholder="password" class="input-field"/>
 				</div><br><br>
 				<input type="submit" name="reg" value="register" class= "btn btn-info btn-l">
 				<input type= "submit" name="log" value="login" class="btn btn-success btn-l">

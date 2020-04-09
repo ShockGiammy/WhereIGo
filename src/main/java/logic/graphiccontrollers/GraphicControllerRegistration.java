@@ -94,10 +94,11 @@ public class GraphicControllerRegistration {
 				this.dataBean.setType(this.typeOfUser.getValue());
 				this.dataBean.setGender(this.gender.getValue());
 				ret = this.facCtrl.insertNewUser(this.dataBean);
-				if(ret == 0) {
+				if(ret == -1) {
 					this.errLogin.displayLoginError("Inserire tutti i dati");
 				}
 				else {
+					bgui.setUserImage();
 					bgui.goHome(event);
 				}
 			}

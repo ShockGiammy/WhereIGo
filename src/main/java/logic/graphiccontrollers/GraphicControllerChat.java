@@ -19,6 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import logic.ImageViewer;
 import logic.controllers.ChatType;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.GroupNameTakenException;
@@ -59,6 +60,7 @@ public class GraphicControllerChat extends BasicGui {
     	facade = new ControllerFacade(this);
     	this.username = logUsr.getUserName();
     	this.err = new ErrorPopup();
+    	this.userImage.setImage(setUserImage());
     }
     
     public void sendButtonAction() {
@@ -83,7 +85,10 @@ public class GraphicControllerChat extends BasicGui {
         	ImageView profileImage = new ImageView();
             profileImage.setFitHeight(32);
             profileImage.setFitWidth(32);
-        	profileImage.setImage(logUsr.getImage());
+            ImageViewer imView = new ImageViewer();
+            BufferedImage bufImage;
+    		bufImage = imView.loadImage(this.logUsr.getImage());
+    		profileImage.setImage(imView.convertToFxImage(bufImage));
             
             Label bl6 = new Label();
             bl6.setText(msg.getMsg());
@@ -230,8 +235,6 @@ public class GraphicControllerChat extends BasicGui {
     }
 
     public void initialize() {
-
-    	this.userImage.setImage(this.logUsr.getImage());
         setUserList();
         setGroupList();
         

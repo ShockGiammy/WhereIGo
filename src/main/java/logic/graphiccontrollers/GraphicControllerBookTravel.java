@@ -43,7 +43,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 		this.travBean = new UserTravelBean();
 		this.popUp = new ErrorPopup();
 		this.vboxlist = new ArrayList<>();
-		this.userImage.setImage(this.logUsr.getImage());
+		this.userImage.setImage(setUserImage());
 		setLocation();
 		setGroups();
 	}

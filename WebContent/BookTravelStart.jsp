@@ -14,10 +14,22 @@
 <%@ page import="logic.beans.GroupBean" language="java" %>
 
 <%
-	List<String> cities = new ArrayList<>();
-	cities = (ArrayList<String>)request.getAttribute("cities");
-	List<GroupBean> groupBeanL = new ArrayList<>();
-	groupBeanL = (ArrayList<GroupBean>)request.getAttribute("grouplist");
+	if(request.getAttribute("fineMsg") !=  null){
+%>
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+  		<p><%=request.getAttribute("fineMsg") %></p>
+  	 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    	<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
+<%
+	}
+%>
+<%
+		List<String> cities = new ArrayList<>();
+		cities = (ArrayList<String>)request.getAttribute("cities");
+		List<GroupBean> groupBeanL = new ArrayList<>();
+		groupBeanL = (ArrayList<GroupBean>)request.getAttribute("grouplist");
 %>
 
 <body>

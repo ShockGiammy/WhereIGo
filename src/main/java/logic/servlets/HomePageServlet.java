@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import logic.LoggedUser;
+import logic.UserType;
 import logic.beans.GroupBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
@@ -22,12 +24,18 @@ public class HomePageServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LoggedUser logusr = new LoggedUser();
 		ChangePageServlet changeP = new ChangePageServlet();
 		String act = request.getParameter("action");
 		String page = null;
 		if(act.equalsIgnoreCase("gohome")) {
-			changeP.loadHomePageUserInfo(request);
-			page = "HomePage.jsp";	
+			if(logusr.getUserType() == UserType.RENTER) {
+				//carica la home page del renter
+			}
+			else {
+				changeP.loadHomePageUserInfo(request);
+				page = "HomePage.jsp";
+			}
 		}
 		else if(act.equalsIgnoreCase("gobooktravel")) {
 			page = "BookTravelStart.jsp";
@@ -38,13 +46,23 @@ public class HomePageServlet extends HttpServlet {
 			fac.getGroups(beanList);
 			request.setAttribute("grouplist", beanList);
 			request.setAttribute("cities", cities);
+			if(beanList.isEmpty() && cities.isEmpty()) {
+				request.setAttribute("fineMsg", "No suggestions for you, please take our personality test!");
+			}
 		}
 		else if(act.equalsIgnoreCase("rentAnAccomodation")) {
-			page = "rent";
+			if(logusr.getUserType() == UserType.RENTER) {
+				//carica la rent accomodation del renter
+			}
+			else {
+				page = "RentAnAccomodation.jsp";
+			}
 		}
 		else if(act.equalsIgnoreCase("ChatTraveller")) {
-			page =	"ChatTraveller";
+			page =	"ChatTraveller.jsp";
 		}
+		
+		/* da spostare nella servlet del book travel*/
 		else if(act.equalsIgnoreCase("delTick")) {
 			ControllerFacade fac = new ControllerFacade();
 			UserTravelBean travBean = new UserTravelBean();

@@ -44,6 +44,7 @@ public class GraphicControllerInterestForm extends BasicGui{
 		setGroup(this.box2, this.rbList2, this.tgList.get(1), 4, 2);
 		setGroup(this.box3, this.rbList3, this.tgList.get(2), 4, 3);
 		setGroup(this.box4, this.rbList4, this.tgList.get(3), 4, 4);
+		this.userImage.setImage(setUserImage());
 	}
 	
 	public void manageGroup1() {

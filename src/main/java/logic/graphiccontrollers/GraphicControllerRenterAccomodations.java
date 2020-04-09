@@ -21,10 +21,6 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
 	
 	private ControllerFacade facade;
 	
-	public void initialize() {
-		this.userImage.setImage(this.logUsr.getImage());
-	}
-	
 	public GraphicControllerRenterAccomodations() {
 		addCreateLabel();
 		facade = new ControllerFacade();
@@ -32,6 +28,7 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
 		for (RentAccomodationBean bean : listOfBean) {
 			setDisplayInfo(bean);
 		}
+		this.userImage.setImage(setUserImage());
 	}
 		
 	private synchronized void setDisplayInfo(RentAccomodationBean bean) {

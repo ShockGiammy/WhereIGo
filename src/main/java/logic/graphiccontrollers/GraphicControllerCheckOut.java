@@ -31,7 +31,7 @@ public class GraphicControllerCheckOut extends BasicGui{
 	public void initialize() {
 		errPop = new ErrorPopup();
 		travbean = new UserTravelBean();
-		this.userImage.setImage(this.logUsr.getImage());
+		this.userImage.setImage(setUserImage());
 	}
 	
 	public void setInfo(UserTravelBean travBean, UserDataBean dataBean) {

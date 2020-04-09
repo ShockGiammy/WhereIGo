@@ -19,11 +19,11 @@ public class GraphicControllerCreateGroup extends BasicGui{
 	
 	@FXML
 	public void initialize() {
-		this.userImage.setImage(this.logUsr.getImage());
 		this.groupAdmin.setText(this.logUsr.getUserName());
 		this.grpBean = new GroupBean();
 		grpBean.setGroupOwner(this.logUsr.getUserName());
 		this.err = new ErrorPopup();
+		this.userImage.setImage(setUserImage());
 	}
 	
 	public void getName() {

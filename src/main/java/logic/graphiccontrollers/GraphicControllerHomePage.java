@@ -38,7 +38,7 @@ public class GraphicControllerHomePage extends BasicGui{
 		this.groupBox = new ArrayList<>();
 		this.suggUsersList = new ArrayList<>();
 		this.err = new ErrorPopup();
-		this.userImage.setImage(this.logUsr.getImage());
+		this.userImage.setImage(setUserImage());
 		setTravel();
 		setGroups();
 		setSuggUsers();
