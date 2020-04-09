@@ -12,18 +12,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import logic.beans.RentAccomodationBean;
-import logic.controllers.ControllerFacade;
 import logic.view.BasicGui;
 
 public class GraphicControllerRenterAccomodations extends BasicGui{
 
 	@FXML private ListView<HBox> accomodationsList;
 	
-	private ControllerFacade facade;
-	
 	public GraphicControllerRenterAccomodations() {
 		addCreateLabel();
-		facade = new ControllerFacade();
 		List<RentAccomodationBean> listOfBean = facade.displayMyAnnouncement();
 		for (RentAccomodationBean bean : listOfBean) {
 			setDisplayInfo(bean);

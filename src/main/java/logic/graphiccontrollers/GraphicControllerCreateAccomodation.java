@@ -16,7 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import logic.beans.RentAccomodationBean;
-import logic.controllers.ControllerFacade;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
@@ -40,7 +39,6 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 	@FXML private ImageView imageView;
 	@FXML private Button openButton;
 	
-	private ControllerFacade facade;
 	private RentAccomodationBean bean;
 	private File houseImage;
 	
@@ -60,7 +58,6 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 	}
 	
 	public GraphicControllerCreateAccomodation() {
-		facade = new ControllerFacade();
 		bean = new RentAccomodationBean();
 	}
 

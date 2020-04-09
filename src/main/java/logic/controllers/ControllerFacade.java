@@ -21,30 +21,29 @@ import logic.model.User;
 public class ControllerFacade {
 
 	private ManageAnnouncementController controllerManage;
-	private RentAccomodationController controllerRent;
 	private ChatController chatController;
 	private GraphicControllerChat graphicChat;
 	private BookTravelControl bookTravCtrl;
 	private InterestsController intCtrl;
 	private LoginController loginCtrl;
+	private ImageViewer viewer;
 	
 	public ControllerFacade() {
+		if (controllerManage == null) {
+			this.viewer = new ImageViewer();
+		}
 		this.bookTravCtrl = new BookTravelControl();
 		this.intCtrl = new InterestsController();
 		this.loginCtrl = new LoginController();
 		this.chatController = new ChatController(this);
 	}
 	
-	public ControllerFacade(GraphicControllerChat reference) {
-		this.graphicChat = reference;
-		chatController = new ChatController(this);
-	}
-	
 	/*ManageAnnouncementController references methods*/
 	
 	public List<RentAccomodationBean> displayMyAnnouncement() {
-		
-		controllerManage = new ManageAnnouncementController();
+		if (controllerManage == null) {
+			controllerManage = new ManageAnnouncementController();
+		}
 		return controllerManage.displayMyAnnouncement();	
 	}
 	
@@ -53,11 +52,18 @@ public class ControllerFacade {
 	}
 	
 	public List<RentAccomodationBean> displayAnnouncement() {
-		controllerRent = new RentAccomodationController();
+		RentAccomodationController controllerRent = new RentAccomodationController();
 		return controllerRent.displayAnnouncement();
 	}
 	
 	/*ChatController references methods*/
+	
+	public void callChatController(GraphicControllerChat reference) {
+		this.graphicChat = reference;
+		if (chatController == null) {
+			chatController = new ChatController(this);
+		}
+	}
 	
 	public void createChat(String renter) {
 		chatController.createChat(renter);
@@ -116,19 +122,19 @@ public class ControllerFacade {
 	/*CreateAccomodation references methods*/
 	
 	public void createAccomodation(RentAccomodationBean bean) {
-		controllerManage = new ManageAnnouncementController();
+		if (controllerManage == null) {
+			controllerManage = new ManageAnnouncementController();
+		}
 		controllerManage.createAccomodation(bean);
 	}
 	
 	@SuppressWarnings("exports")
 	public BufferedImage loadImage(byte[] bs) {
-		ImageViewer viewer = new ImageViewer();
 		return viewer.loadImage(bs);
 	}
 	
 	@SuppressWarnings("exports")
 	public Image convertToFxImage(BufferedImage image) {
-		ImageViewer viewer = new ImageViewer();
 		return viewer.convertToFxImage(image);
 	}
 	

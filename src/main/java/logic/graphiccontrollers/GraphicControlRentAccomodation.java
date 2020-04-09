@@ -21,7 +21,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import logic.beans.RentAccomodationBean;
-import logic.controllers.ControllerFacade;
 import logic.view.BasicGui;
 import logic.view.ErrorPopup;
 
@@ -57,12 +56,12 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	
 	private int number = 0;
 	private double pading = 5.0;
-	private ControllerFacade facade;
 	
 	
 	@FXML
 	public void initialize() {
-		facade = new ControllerFacade();
+		this.userImage.setImage(setUserImage());
+		
 		List<RentAccomodationBean> listOfBean = facade.displayAnnouncement();
 		if (listOfBean.isEmpty()) {
 			ErrorPopup error = new ErrorPopup();
@@ -73,7 +72,6 @@ public class GraphicControlRentAccomodation extends BasicGui{
 			setDisplayInfo(bean);
 			}
 		}
-		this.userImage.setImage(setUserImage());
 	}
 	
 	public void setDisplayInfo(RentAccomodationBean bean) {

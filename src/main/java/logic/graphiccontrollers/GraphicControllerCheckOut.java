@@ -58,7 +58,7 @@ public class GraphicControllerCheckOut extends BasicGui{
 				grpBean.setGroupTitle(this.groupName.getText());
 				grpBean.setGroupOwner(this.groupAdmin.getText());
 				grpBean.setGroupDestination(this.groupDest.getText());
-				this.facCtrl.saveGroup(grpBean);
+				this.facade.saveGroup(grpBean);
 			}catch(GroupNameTakenException e) {
 				errPop.displayLoginError("Nome del gruppo già scelto. Per favore, inserire un nome diverso");
 			}
@@ -66,7 +66,7 @@ public class GraphicControllerCheckOut extends BasicGui{
 	}
 	
 	public void confirmTrav(MouseEvent e) {
-		this.facCtrl.saveBoughtTicket(this.travbean);
+		this.facade.saveBoughtTicket(this.travbean);
 		goHome(e);
 	}
 }

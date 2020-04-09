@@ -54,7 +54,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 		}
 		else {
 			int i;
-			i = this.facCtrl.retriveTravelSolutions(travBean, travBeanArray);
+			i = this.facade.retriveTravelSolutions(travBean, travBeanArray);
 			if(i == -1) {
 			popUp.displayLoginError("No travel available at this moment: either you have already bought the same flight or there are no solutions for these datas");
 			}
@@ -70,7 +70,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 		if(this.logUsr.getPersonality() != null) {
 			List<GroupBean> grpList = new ArrayList<>();
 			int j;
-			this.facCtrl.getGroups(grpList);
+			this.facade.getGroups(grpList);
 			for(j = 0; j < grpList.size(); j++) {
 				VBox vbox = new VBox(10);
 				Text title = new Text(grpList.get(j).getGroupTitle());
@@ -91,7 +91,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 		}
 		else {
 			List<String> suggLoc = new ArrayList<>();
-			suggLoc.addAll(facCtrl.showLocations());
+			suggLoc.addAll(facade.showLocations());
 			int i;
 			for(i = 0; i < suggLoc.size(); i++) {
 				HBox hbox = new HBox(20);
@@ -129,7 +129,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 			if(this.hboxList.get(i).getChildren().get(1).equals(e.getTarget())) {
 				Text text = (Text)this.hboxList.get(i).getChildren().get(0);
 				this.locBean.setCityName(text.getText());
-				this.facCtrl.retriveLocInfo(this.locBean);
+				this.facade.retriveLocInfo(this.locBean);
 				loadLocInfo(e);
 			}
 		}
@@ -155,7 +155,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 			if(this.hboxList.get(i).getChildren().get(2).equals(e.getTarget())) {
 				Text city = (Text)this.hboxList.get(i).getChildren().get(0);
 				this.travBean.setArrCity(city.getText());
-				this.travBeanArray.addAll(this.facCtrl.getSuggTicketsInfo(this.travBean));
+				this.travBeanArray.addAll(this.facade.getSuggTicketsInfo(this.travBean));
 				if(this.travBeanArray.isEmpty()) {
 					this.popUp.displayLoginError("Nessun viaggio disponibile o viaggio già prenotato");
 				}
@@ -174,7 +174,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 			if(this.vboxlist.get(i).getChildren().get(3).equals(e.getTarget())) {
 				Text title = (Text)this.vboxlist.get(i).getChildren().get(0);
 				this.grpBean.setGroupTitle(title.getText());
-				if(this.facCtrl.insertParticipant(this.grpBean) == 0) {
+				if(this.facade.insertParticipant(this.grpBean) == 0) {
 					this.popUp.displayLoginError("Gruppo correttamente joinato");
 				}
 				else {

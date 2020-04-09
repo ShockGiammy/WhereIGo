@@ -66,7 +66,7 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	public void setTravel() {
 		List<UserTravelBean> travBean = new ArrayList<>();
-		this.facCtrl.getBookedTickets(travBean);
+		this.facade.getBookedTickets(travBean);
 		int i;
 		for(i = 0; i < travBean.size(); i++) {
 			VBox vbox = new VBox(7);
@@ -86,7 +86,7 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	public void setGroups() {
 		List<GroupBean> grpBean = new ArrayList<>();
-		this.facCtrl.getUserGroups(grpBean);
+		this.facade.getUserGroups(grpBean);
 		int i;
 		for(i = 0; i < grpBean.size(); i++) {
 			VBox vbox = new VBox(7);
@@ -115,7 +115,7 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	public void setSuggUsers() {
 		List<UserDataBean> dataBeanList = new ArrayList<>();
-		this.facCtrl.getSamePersUsers(dataBeanList);
+		this.facade.getSamePersUsers(dataBeanList);
 		for(int i = 0; i < dataBeanList.size(); i++) {
 			VBox vbox= new VBox(7);
 			HBox hbox = new HBox(30);
@@ -141,7 +141,7 @@ public class GraphicControllerHomePage extends BasicGui{
 				UserTravelBean delBean = new UserTravelBean();
 				Text id = (Text)this.travelBox.get(i).getChildren().get(0);
 				delBean.setId(Integer.parseInt(id.getText().substring(12, id.getText().length())));
-				this.facCtrl.deleteSavedTravel(delBean);
+				this.facade.deleteSavedTravel(delBean);
 				VBox temp = this.travelBox.get(i);
 				this.travelBox.remove(i);
 				this.lwTickets.getItems().remove(temp);
@@ -159,7 +159,7 @@ public class GraphicControllerHomePage extends BasicGui{
 				Text owner = (Text)this.groupBox.get(i).getChildren().get(2);
 				bean.setGroupTitle(description.getText().substring(13, description.getText().length()));
 				bean.setGroupOwner(owner.getText().substring(15,owner.getText().length()));
-				this.facCtrl.deleteTravelGroup(bean);
+				this.facade.deleteTravelGroup(bean);
 				VBox temp = this.groupBox.get(i);
 				this.groupBox.remove(i);
 				this.lwGroups.getItems().remove(temp);
@@ -175,7 +175,7 @@ public class GraphicControllerHomePage extends BasicGui{
 				GroupBean bean = new GroupBean();
 				Text description = (Text)this.groupBox.get(i).getChildren().get(0);
 				bean.setGroupTitle(description.getText().substring(13, description.getText().length()));
-				this.facCtrl.leaveTravelGroup(bean);
+				this.facade.leaveTravelGroup(bean);
 				VBox temp = this.groupBox.get(i);
 				this.groupBox.remove(i);
 				this.lwGroups.getItems().remove(temp);

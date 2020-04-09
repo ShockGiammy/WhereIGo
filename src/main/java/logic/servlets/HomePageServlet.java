@@ -61,6 +61,12 @@ public class HomePageServlet extends HttpServlet {
 		else if(act.equalsIgnoreCase("ChatTraveller")) {
 			page =	"ChatTraveller.jsp";
 		}
+		else if(act.equalsIgnoreCase("RenterAccomodation")) {
+			page = "rent";
+		}
+		else if(act.equalsIgnoreCase("ChatRenter")) {
+			page =	"ChatRenter";
+		}
 		
 		/* da spostare nella servlet del book travel*/
 		else if(act.equalsIgnoreCase("delTick")) {

@@ -36,7 +36,7 @@ public class GraphicControllerCreateGroup extends BasicGui{
 	
 	public void saveUserGroup(MouseEvent e) {
 		try {
-			this.facCtrl.saveGroup(this.grpBean);
+			this.facade.saveGroup(this.grpBean);
 		} catch (GroupNameTakenException e1) {
 			err.displayLoginError("Nome gruppo non disponibile");
 		}

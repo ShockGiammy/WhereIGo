@@ -35,11 +35,13 @@ public class BasicGui extends Application{
 	private static Scene scene;
 	private static Logger logger = Logger.getLogger("WIG");
 	protected LoggedUser logUsr;
-	protected ControllerFacade facCtrl;
+	protected ControllerFacade facade;
 	
 	public BasicGui() {
 		this.logUsr = new LoggedUser();
-		this.facCtrl = new ControllerFacade();
+		if (facade == null) {
+			this.facade = new ControllerFacade();
+		}
 	}
 	
 	@Override
@@ -173,7 +175,7 @@ public class BasicGui extends Application{
 	}
 	
 	public Image setUserImage() {
-		BufferedImage bufImage = this.facCtrl.loadImage(this.logUsr.getImage());
-		return facCtrl.convertToFxImage(bufImage);
+		BufferedImage bufImage = this.facade.loadImage(this.logUsr.getImage());
+		return facade.convertToFxImage(bufImage);
 	}
 }

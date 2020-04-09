@@ -158,7 +158,7 @@ public class GraphicControllerInterestForm extends BasicGui{
 		else {
 			this.dataBean.setUserName(this.logUsr.getUserName());
 			this.intBean.setAnswares(this.questAnsw);
-			this.facCtrl.evaluateInterests(this.intBean);
+			this.facade.evaluateInterests(this.intBean);
 			goHome(e);
 		}
 	}
