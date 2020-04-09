@@ -16,7 +16,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import logic.ImageViewer;
 import logic.LoggedUser;
 import logic.UserType;
 import logic.controllers.ControllerFacade;
@@ -37,12 +36,10 @@ public class BasicGui extends Application{
 	private static Logger logger = Logger.getLogger("WIG");
 	protected LoggedUser logUsr;
 	protected ControllerFacade facCtrl;
-	private ImageViewer imView;
 	
 	public BasicGui() {
 		this.logUsr = new LoggedUser();
 		this.facCtrl = new ControllerFacade();
-		this.imView = new ImageViewer();
 	}
 	
 	@Override
@@ -176,7 +173,7 @@ public class BasicGui extends Application{
 	}
 	
 	public Image setUserImage() {
-		BufferedImage bufImage = this.imView.loadImage(this.logUsr.getImage());
-		return imView.convertToFxImage(bufImage);
+		BufferedImage bufImage = this.facCtrl.loadImage(this.logUsr.getImage());
+		return facCtrl.convertToFxImage(bufImage);
 	}
 }
