@@ -28,10 +28,10 @@ public class RentRenterServlet extends HttpServlet {
 			req.setAttribute("list", listOfBean);
 			page = "ManageAccomodations.jsp";
 		}
-		else if (act.equalsIgnoreCase("Update")) {
-			
-			page = "ManageAccomodations.jsp";
-		}
+		//else if (act.equalsIgnoreCase("Update")) {
+		//<!--href="RentRenter?action=Update&renter=<%=//bean.getRenter()%>"  -->	
+		//	page = "ManageAccomodations.jsp";
+		//}
 		else if (act.equalsIgnoreCase("Delete")) {
 			facade.deleteMyAccomodation(Integer.parseInt(req.getParameter("id")));
 			page = "ManageAccomodations.jsp";

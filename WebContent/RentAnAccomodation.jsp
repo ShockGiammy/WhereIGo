@@ -35,7 +35,6 @@
 			</tr>
 		</thead>
 		<%
-		int i = 0;
 		List<RentAccomodationBean> listOfBean = (List<RentAccomodationBean>)request.getAttribute("list");		
 		// print the information about every category of the list
 		for(RentAccomodationBean bean : listOfBean) {
