@@ -31,7 +31,7 @@
        				<a class="nav-link" href="moveTo?action=Chat">Chat with users&nbsp&nbsp&nbsp</a>
       			</li>
       			<%
-      			byte[] image = (byte[])request.getAttribute("image");
+      			byte[] image = (byte[])session.getAttribute("image");
       			%>
       			<li class="nav-item">
       				<div>

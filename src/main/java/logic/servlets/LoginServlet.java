@@ -4,6 +4,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import logic.LoggedUser;
 import logic.beans.UserDataBean;
@@ -37,7 +38,8 @@ public class LoginServlet extends HttpServlet {
 		if(ret == 1) {
 			changeP.loadHomePageUserInfo(request);
 			LoggedUser logUsr = new LoggedUser();
-			request.setAttribute("image", logUsr.getImage());
+			HttpSession session = request.getSession();
+			session.setAttribute("image", logUsr.getImage());
 			changeP.forwardPage("HomePage.jsp", request, response);
 		}
 		else {
