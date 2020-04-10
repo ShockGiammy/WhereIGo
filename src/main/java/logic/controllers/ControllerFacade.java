@@ -29,9 +29,6 @@ public class ControllerFacade {
 	private ImageViewer viewer;
 	
 	public ControllerFacade() {
-		if (controllerManage == null) {
-			this.viewer = new ImageViewer();
-		}
 		this.bookTravCtrl = new BookTravelControl();
 		this.intCtrl = new InterestsController();
 		this.loginCtrl = new LoginController();
@@ -130,6 +127,9 @@ public class ControllerFacade {
 	
 	@SuppressWarnings("exports")
 	public BufferedImage loadImage(byte[] bs) {
+		if (viewer == null) {
+			this.viewer = new ImageViewer();
+		}
 		return viewer.loadImage(bs);
 	}
 	

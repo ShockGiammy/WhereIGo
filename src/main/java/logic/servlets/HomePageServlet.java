@@ -52,20 +52,19 @@ public class HomePageServlet extends HttpServlet {
 		}
 		else if(act.equalsIgnoreCase("rentAnAccomodation")) {
 			if(logusr.getUserType() == UserType.RENTER) {
-				//carica la rent accomodation del renter
+				//page = "rent";
 			}
 			else {
-				page = "RentAnAccomodation.jsp";
+				page = "RentTraveller";
 			}
 		}
-		else if(act.equalsIgnoreCase("ChatTraveller")) {
-			page =	"ChatTraveller.jsp";
-		}
-		else if(act.equalsIgnoreCase("RenterAccomodation")) {
-			page = "rent";
-		}
-		else if(act.equalsIgnoreCase("ChatRenter")) {
-			page =	"ChatRenter";
+		else if(act.equalsIgnoreCase("Chat")) {
+			if(logusr.getUserType() == UserType.RENTER) {
+				page =	"ChatRenter";
+			}
+			else {
+				page =	"ChatTraveller";
+			}
 		}
 		
 		/* da spostare nella servlet del book travel*/

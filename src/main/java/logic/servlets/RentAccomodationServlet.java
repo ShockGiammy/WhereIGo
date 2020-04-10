@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.ControllerFacade;
 
-@WebServlet("/rent")
+@WebServlet("/RentTraveller")
 public class RentAccomodationServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

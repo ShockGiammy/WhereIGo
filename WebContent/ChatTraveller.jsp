@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Chat</title>
 <style>
 .msg_card_body{
 	overflow-y: auto;
