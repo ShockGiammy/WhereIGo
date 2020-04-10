@@ -4,6 +4,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.DuplicateUsernameException;
@@ -34,6 +36,8 @@ public class LoginServlet extends HttpServlet {
 		int ret = facCtrl.checkLogIn(dataBean);
 		if(ret == 1) {
 			changeP.loadHomePageUserInfo(request);
+			LoggedUser logUsr = new LoggedUser();
+			request.setAttribute("image", logUsr.getImage());
 			changeP.forwardPage("HomePage.jsp", request, response);
 		}
 		else {

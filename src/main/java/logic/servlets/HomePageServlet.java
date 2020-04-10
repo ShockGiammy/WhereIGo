@@ -50,9 +50,9 @@ public class HomePageServlet extends HttpServlet {
 				request.setAttribute("fineMsg", "No suggestions for you, please take our personality test!");
 			}
 		}
-		else if(act.equalsIgnoreCase("rentAnAccomodation")) {
+		else if(act.equalsIgnoreCase("Rent")) {
 			if(logusr.getUserType() == UserType.RENTER) {
-				//page = "rent";
+				page = "RentRenter";
 			}
 			else {
 				page = "RentTraveller";

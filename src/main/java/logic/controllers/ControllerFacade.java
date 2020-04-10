@@ -45,6 +45,9 @@ public class ControllerFacade {
 	}
 	
 	public void deleteMyAccomodation(long id) {
+		if (controllerManage == null) {
+			controllerManage = new ManageAnnouncementController();
+		}
 		controllerManage.deleteMyAccomodation(id);
 	}
 	

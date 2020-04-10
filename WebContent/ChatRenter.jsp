@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Chat</title>
 <style>
 .msg_card_body{
 	overflow-y: auto;
@@ -45,7 +46,6 @@ img{ max-width:100%;}
 }
 
 .top_spac{ margin: 20px 0 0;}
-
 
 .recent_heading {float: left; width:45%;}
 
@@ -124,7 +124,6 @@ img{ max-width:100%;}
 }
 </style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
 </head>
@@ -135,7 +134,6 @@ img{ max-width:100%;}
 <%@ page import="logic.model.Message" %>
 <%
 List<User> users = (List<User>)request.getAttribute("users");
-List<String> groups = (List<String>)request.getAttribute("groups");
 %>
 <div class="container">
 <%
@@ -157,7 +155,7 @@ else {
         <div class="inbox_people">
           <div class="headind_srch">
             <div class="recent_heading">
-              <h4>Users and Groups</h4>
+              <h4>Users</h4>
             </div>
           </div>
           <div class="inbox_chat">
@@ -178,17 +176,6 @@ else {
 			</div>
 			<%
 				}
-			}
-          	for(String group : groups) {
-			%>
-			<div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_ib">
-                  <a href="ChatRenter?chat=group&user=<%out.println(group);%>" class="btn btn-primary stretched-link"><%=group%></a>
-                </div>
-              </div>
-			</div>
-            <%
 			}
 			%>           
           </div>

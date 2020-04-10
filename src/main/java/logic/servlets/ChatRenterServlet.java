@@ -23,16 +23,15 @@ public class ChatRenterServlet extends HttpServlet {
 		
 		ChangePageServlet changeP = new ChangePageServlet();
 		
-		LoggedUser logUser = new LoggedUser();
+		LoggedUser logUser = new LoggedUser();		
 		ControllerFacade facade = new ControllerFacade();
-		List<User> users = facade.getUsers();
-		req.setAttribute("users", users);
-		List<String> groups = facade.getGroups();
-		req.setAttribute("groups", groups);
 		
 		User myInfo = facade.getUser(logUser.getUserName());
 		myInfo.setName(logUser.getUserName());
 		req.setAttribute("I", myInfo);
+		
+		List<User> users = facade.getUsers();
+		req.setAttribute("users", users);
 		
 		if (req.getParameter("message") != null) {
 			facade.sendMessage(req.getParameter("message"), req.getParameter("receiver"));
@@ -40,14 +39,10 @@ public class ChatRenterServlet extends HttpServlet {
 
 		List<Message> chat = null;
 		User userChat = null;
-		if (req.getParameter("chat") != null) {
-			if (req.getParameter("chat").equals("private")) {
-				chat = facade.openChat(req.getParameter("user"), ChatType.PRIVATE);
-				userChat = facade.getUser(req.getParameter("user"));
-				userChat.setName(req.getParameter("user"));
-			} else if (req.getParameter("chat").equals("group")) {
-				chat = facade.openChat(req.getParameter("user"), ChatType.GROUP);
-			}
+		if (req.getParameter("chat") != null && req.getParameter("chat").equals("private")) {
+			chat = facade.openChat(req.getParameter("user"), ChatType.PRIVATE);
+			userChat = facade.getUser(req.getParameter("user"));
+			userChat.setName(req.getParameter("user"));
 		}
 		req.setAttribute("userChat", userChat);
 		req.setAttribute("chat", chat);

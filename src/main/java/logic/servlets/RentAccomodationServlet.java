@@ -28,7 +28,7 @@ public class RentAccomodationServlet extends HttpServlet {
 			facade.createChat(req.getParameter("renter"));
 			page = "ChatTraveller";
 		}
-		else if (act.equalsIgnoreCase("rentAnAccomodation")) {
+		else if (act.equalsIgnoreCase("Rent")) {
 			List<RentAccomodationBean> listOfBean = facade.displayAnnouncement();
 			req.setAttribute("list", listOfBean);
 			page = "RentAnAccomodation.jsp";

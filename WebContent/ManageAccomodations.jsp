@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ include file="NavigationBar.jsp" %>
+    <%@ include file="RenterNavigationBar.html" %>
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Rent Accomodation</title>
+<title>Manage your accomodations</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
@@ -30,8 +29,8 @@
 				<th scope="col">Square Metres</th>
 				<th scope="col">Services</th>
 				<th scope="col">included</th>
-				<th scope="col">Renter</th>
-				<th scope="col">Contacts</th>
+				<th scope="col">Update Info</th>
+				<th scope="col">Delete</th>
 			</tr>
 		</thead>
 		<%
@@ -61,9 +60,11 @@
 				<%if(list[2] == 1) out.println("SI"); else out.println("NO");%><br>
 				<%if(list[3] == 1) out.println("SI"); else out.println("NO");%>			 
 			</td>
-			<td><%=bean.getRenter()%></td>
 			<td>
-       			<a class="btn btn-info btn-l" href="RentTraveller?action=ContactRenter&renter=<%=bean.getRenter()%>" id="contact">Contact<br>Renter</a>
+       			<a class="btn btn-info btn-l" href="RentRenter?action=Update&renter=<%=bean.getRenter()%>" id="update">Update<br>Info</a>
+			</td>
+			<td>
+				<a class="btn btn-info btn-l" href="RentRenter?action=Delete&id=<%=bean.getID()%>" id="delete">Delete</a>
 			</td>
 		</tr>
 		<%
