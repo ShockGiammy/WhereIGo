@@ -12,7 +12,6 @@ import logic.LoggedUser;
 import logic.beans.RentAccomodationBean;
 import logic.dao.AccomodationCreator;
 import logic.model.AccomodationModel;
-import logic.view.ErrorPopup;
 
 public class ManageAnnouncementController {
 	
@@ -52,15 +51,9 @@ public class ManageAnnouncementController {
 	
 	public List<RentAccomodationBean> displayMyAnnouncement() {
 		List<RentAccomodationBean> listOfBeans = creator.queryMyAccomodations(username);
-		if (listOfBeans.isEmpty()) {
-			ErrorPopup error = new ErrorPopup();
-			error.displayLoginError("no accomodation to been shown");
-		}
-		else {
-			for (RentAccomodationBean bean : listOfBeans) {
-				AccomodationModel accomodation = new AccomodationModel(bean);
-				listOfAccomodation.add(accomodation);
-			}
+		for (RentAccomodationBean bean : listOfBeans) {
+			AccomodationModel accomodation = new AccomodationModel(bean);
+			listOfAccomodation.add(accomodation);
 		}
 		return listOfBeans;
 	}

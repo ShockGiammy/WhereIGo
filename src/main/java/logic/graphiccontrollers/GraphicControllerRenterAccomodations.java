@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import logic.beans.RentAccomodationBean;
 import logic.view.BasicGui;
+import logic.view.ErrorPopup;
 
 public class GraphicControllerRenterAccomodations extends BasicGui{
 
@@ -20,11 +21,17 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
 	
 	public GraphicControllerRenterAccomodations() {
 		addCreateLabel();
-		List<RentAccomodationBean> listOfBean = facade.displayMyAnnouncement();
-		for (RentAccomodationBean bean : listOfBean) {
-			setDisplayInfo(bean);
-		}
 		this.userImage.setImage(setUserImage());
+		List<RentAccomodationBean> listOfBean = facade.displayMyAnnouncement();
+		if (listOfBean.isEmpty()) {
+			ErrorPopup error = new ErrorPopup();
+			error.displayLoginError("no accomodation to been shown");
+		}
+		else {
+			for (RentAccomodationBean bean : listOfBean) {
+				setDisplayInfo(bean);
+			}
+		}	
 	}
 		
 	private synchronized void setDisplayInfo(RentAccomodationBean bean) {

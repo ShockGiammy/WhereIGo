@@ -67,7 +67,7 @@
          </left>
       </BorderPane>
    </top>
-   <center>
+   <left>
       <AnchorPane prefHeight="627.0" prefWidth="827.0" BorderPane.alignment="CENTER">
          <children>
             <Text layoutX="76.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
@@ -76,7 +76,7 @@
                </font>
             </Text>
             <TextField fx:id="city" layoutX="76.0" layoutY="200.0" prefHeight="30.0" prefWidth="221.0" />
-            <Text layoutX="68.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City">
+            <Text layoutX="76.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City">
                <font>
                   <Font size="18.0" />
                </font>
@@ -86,7 +86,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text layoutX="68.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+            <Text layoutX="74.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
                <font>
                   <Font size="18.0" />
                </font>
@@ -146,5 +146,5 @@
             <Button fx:id="openButton" layoutX="196.0" layoutY="370.0" mnemonicParsing="false" onMouseClicked="#insertImage" prefHeight="30.0" prefWidth="101.0" text="Select an Image" />
          </children>
       </AnchorPane>
-   </center>
+   </left>
 </BorderPane>

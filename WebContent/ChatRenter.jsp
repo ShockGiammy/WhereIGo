@@ -181,7 +181,7 @@ else {
           </div>
         </div>
         <div class="mesgs">
-          <div class="msg_history">
+          <div class="msg_history" id="chatMessages">
           <%
           User myInfo = (User)request.getAttribute("I");
           String userName = myInfo.getName();
@@ -239,6 +239,9 @@ else {
   </div>
 </div>
 <script>
+var objDiv = document.getElementById("chatMessages");
+objDiv.scrollTop = objDiv.scrollHeight;
+
 function sendMessage() {
 	var message = document.getElementById("textMsg").value;
 	var receiver = document.getElementById("receiver").value;

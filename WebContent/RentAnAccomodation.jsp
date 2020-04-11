@@ -43,7 +43,9 @@
 		<tr>
 			<td><%=bean.getCity()%></td>
 			<td><%=bean.getAddress()%></td>
-			<td><img alt="house" src="data:image/jpg;base64, <%out.println(new String(Base64.getEncoder().encodeToString(bean.getHouseImage())));%>" width="150" height="120"/></td>		
+			<td><img alt="house" src="data:image/jpg;base64, <%if (bean.getHouseImage()!= null) { 
+													out.println(new String(Base64.getEncoder().encodeToString(bean.getHouseImage())));
+													}%>" width="150" height="120"/></td>		
 			<td><%=bean.getDescription()%></td>
 			<td><%=bean.getBeds()%></td>
 			<td><%=bean.getType()%></td>
