@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logic.beans.GroupBean;
+import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
 
@@ -24,7 +25,7 @@ public class ChangePageServlet extends HttpServlet{
 		try {
 			rd.forward(request, response);
 		}catch(ServletException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "ServletException");
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		} catch (IOException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "IOException");
 		}
@@ -36,8 +37,10 @@ public class ChangePageServlet extends HttpServlet{
 		facCtrl.getBookedTickets(travBeanList);
 		request.setAttribute("travels", travBeanList);
 		List<GroupBean> gBeanList = new ArrayList<>();
-		facCtrl.getParticipateGroups(gBeanList);
-		facCtrl.getParticipateGroups(gBeanList);
+		facCtrl.getUserGroups(gBeanList);
 		request.setAttribute("groups", gBeanList);
+		List<UserDataBean> dBeanList = new ArrayList<>();
+		facCtrl.getSamePersUsers(dBeanList);
+		request.setAttribute("users", dBeanList);
 	}
 }

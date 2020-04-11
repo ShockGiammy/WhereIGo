@@ -33,11 +33,11 @@
 %>
 
 <body>
-	<form action="BookTravelServlet" method="post">
-	<div class="container-fluid" style="text-align:center;">
+	<form action="BookTravelServlet" method="get">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-6" style="margin-right:20px;">
-				<h1>Location suggested for you</h1>
+			<div class="col-xs-6" style="margin-right:30px;">
+				<p class="h5">Location suggested for you</p>
 				<ul class="list-group">
 					<%
 						for(int i = 0; i < cities.size(); i++) {
@@ -48,9 +48,9 @@
 					%>
 				</ul>
 			</div>
-			<div class="col-xs-6" style="margin-right:20px;">
-				<h1>Travel groups suggested for you</h1>
-				<table class="table">
+			<div class="col-xs-6" style="margin-right:30px;">
+				<p class="h5">Travel groups suggested for you</p>
+				<table class="table table-sm">
 					<thead>
 						<tr>
 							<th scope="col">Group name</th>
@@ -67,24 +67,50 @@
 						<td><%=gbean.getGroupTitle()%></td>
 						<td><%=gbean.getGroupOwner()%></td>
 						<td><%=gbean.getGroupDestination()%></td>
-						<td> <input type="submit" name="join" class= "btn btn-success btn-l"></td>
+						<td><a href="BookTravelServlet?action=joinGroup&descr=<%=gbean.getGroupTitle()%>" class= "btn btn-success btn-l">Join group</a></td>
 						<%
 							}
 						%>
 					</tr>
 				</table>
 			</div>
-			<div>
-				<h1>Book your travel</h1>
-				Departure city <input type="text" name="depCity">
-				<br>
-				Arrive city <input type="text" name="arrCity">
-				<br>
-				Departure date <input type="date" name="depDate">
-				<br>
-				Return date <input type="date" name="retDate">
-				<br>
-				<input type="submit" name="checkSol" value="Find travels" class= "btn btn-info btn-l">
+			<div class="col-xs-6">
+					<div class="container">
+					<p class="h5">Book your travel</p>
+						<div class="row">
+							<div class="col-4">
+								<div class="form-horiontal">
+									<div class="form-group">
+										<label for="dep" class="col-xs-2 control-label">Departure city</label>
+										<input type="text" name="depCity" id="dep">
+									</div>
+									<div class="form-group">
+										<label for="arr" class="col-xs-2 control-label">Arrive city</label>
+										<input type="text" name="arrCity" id="arr">
+									</div>
+								</div>
+							</div>
+							<div class="col-4">
+								<div class="form-horiontal">
+									<div class="form-group">
+										<label for="depDate" class="col-xs-2 control-label">Departure date</label>
+										<input type="date" name="depDate" id="depDate">
+									</div>
+								</div>
+								<div class="form-horiontal">
+									<div class="form-group">
+										<label for="retDate">Return date</label>
+										<input type="date" name="retDate" id="retDate">
+									</div>
+								<div class="form-horiontal">
+									<div class="form-group">
+										<input type="submit" name="checkSol" value="Find travels" class= "btn btn-info btn-l">
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -87,7 +87,7 @@
          <children>
             <VBox>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What do you like to do in yor free time?">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What do you like to do in your free time?">
                      <font>
                         <Font size="18.0" />
                      </font>

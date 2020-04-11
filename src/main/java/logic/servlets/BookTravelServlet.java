@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import logic.LoggedUser;
+import logic.beans.GroupBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
 
@@ -41,17 +43,35 @@ public class BookTravelServlet extends HttpServlet {
 			changeP.loadHomePageUserInfo(request);
 			changeP.forwardPage("HomePage.jsp", request, response);
 		}
+		
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		String dest = "HomePage.jsp";
 		UserTravelBean travBean = new UserTravelBean();
+		String action = request.getParameter("action");
 		ChangePageServlet changeP = new ChangePageServlet();
-		if(request.getParameter("action").equalsIgnoreCase("goconf")) {	
+		if(action.equalsIgnoreCase("goconf")) {	
 			setTick(request, travBean);
 			request.setAttribute("tick", travBean);
-			changeP.forwardPage("BuyTicket.jsp", request, response);
+			dest = "BuyTicket.jsp";
 		}
+		else if(action.equalsIgnoreCase("delTick")) {
+			deleteTicket(request);
+			changeP.loadHomePageUserInfo(request);
+		}
+		else if(action.equalsIgnoreCase("delGroup")) {
+			deleteGroup(request);
+			changeP.loadHomePageUserInfo(request);
+		}
+		else if(action.equalsIgnoreCase("joinGroup")) {
+			joinGroup(request);
+			dest="BookTravelStart.jsp";
+			HomePageServlet hpServ = new HomePageServlet();
+			hpServ.loadBookTravelSugg(request);
+		}
+		changeP.forwardPage(dest, request, response);
 	}
 	
 	private void setTick(HttpServletRequest request, UserTravelBean travBean) {
@@ -65,5 +85,37 @@ public class BookTravelServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
+	}
+	
+	private void deleteTicket(HttpServletRequest request) {
+		ControllerFacade fac = new ControllerFacade();
+		UserTravelBean travBean = new UserTravelBean();
+		try {
+			travBean.setId(Integer.valueOf(request.getParameter("id")));
+			fac.deleteSavedTravel(travBean);
+		}catch(NumberFormatException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}
+	}
+	
+	private void deleteGroup(HttpServletRequest request) {
+		ControllerFacade fac = new ControllerFacade();
+		GroupBean bean = new GroupBean();
+		bean.setGroupTitle(request.getParameter("groupName"));
+		bean.setGroupOwner(request.getParameter("groupOwner"));
+		LoggedUser logUsr = new LoggedUser();
+		if(request.getParameter("groupOwner").equalsIgnoreCase(logUsr.getUserName())){
+			fac.deleteTravelGroup(bean);
+		}
+		else {
+			fac.leaveTravelGroup(bean);
+		}
+	}
+	
+	private void joinGroup(HttpServletRequest request) {
+		GroupBean gBean = new GroupBean();
+		gBean.setGroupTitle(request.getParameter("descr"));
+		ControllerFacade fac = new ControllerFacade();
+		fac.insertParticipant(gBean);
 	}
 }

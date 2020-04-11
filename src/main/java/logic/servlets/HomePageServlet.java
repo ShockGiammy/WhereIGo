@@ -3,19 +3,14 @@ package logic.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import logic.LoggedUser;
 import logic.UserType;
 import logic.beans.GroupBean;
-import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
 
 @WebServlet("/HomePageServlet")
@@ -39,16 +34,7 @@ public class HomePageServlet extends HttpServlet {
 		}
 		else if(act.equalsIgnoreCase("gobooktravel")) {
 			page = "BookTravelStart.jsp";
-			ControllerFacade fac = new ControllerFacade();
-			List<String> cities = new ArrayList<>();
-			List<GroupBean> beanList = new ArrayList<>();
-			cities.addAll(fac.showLocations());
-			fac.getGroups(beanList);
-			request.setAttribute("grouplist", beanList);
-			request.setAttribute("cities", cities);
-			if(beanList.isEmpty() && cities.isEmpty()) {
-				request.setAttribute("fineMsg", "No suggestions for you, please take our personality test!");
-			}
+			 loadBookTravelSugg(request);
 		}
 		else if(act.equalsIgnoreCase("Rent")) {
 			if(logusr.getUserType() == UserType.RENTER) {
@@ -66,20 +52,22 @@ public class HomePageServlet extends HttpServlet {
 				page =	"ChatTraveller";
 			}
 		}
-		
-		/* da spostare nella servlet del book travel*/
-		else if(act.equalsIgnoreCase("delTick")) {
-			ControllerFacade fac = new ControllerFacade();
-			UserTravelBean travBean = new UserTravelBean();
-			try {
-				travBean.setId(Integer.valueOf(request.getParameter("id")));
-				fac.deleteSavedTravel(travBean);
-				page = "HomePage.jsp";
-				changeP.loadHomePageUserInfo(request);
-			}catch(NumberFormatException e) {
-				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
-			}
+		else if(act.equalsIgnoreCase("personality")) {
+			page="PersonalityTest.jsp";
 		}
 		changeP.forwardPage(page, request, response);
+	}
+	
+	public void loadBookTravelSugg(HttpServletRequest request) {
+		ControllerFacade fac = new ControllerFacade();
+		List<String> cities = new ArrayList<>();
+		List<GroupBean> beanList = new ArrayList<>();
+		cities.addAll(fac.showLocations());
+		fac.getGroups(beanList);
+		request.setAttribute("grouplist", beanList);
+		request.setAttribute("cities", cities);
+		if(beanList.isEmpty() && cities.isEmpty()) {
+			request.setAttribute("fineMsg", "No suggestions for you, please take our personality test!");
+		}
 	}
 }

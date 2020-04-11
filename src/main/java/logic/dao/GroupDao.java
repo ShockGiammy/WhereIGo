@@ -123,7 +123,7 @@ public class GroupDao {
 	
 	public int insertParticipant(GroupModel grpBean, UserModel dataBean) {
 		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("insert into participatesto(participant, grp) values(?,?)")){
-			statement.setString(2, grpBean.getDestination());
+			statement.setString(2, grpBean.getDescription());
 			statement.setString(1, dataBean.getUserName());
 			statement.execute();
 			return 0;

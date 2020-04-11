@@ -151,10 +151,6 @@ public class ControllerFacade {
 		this.bookTravCtrl.getSuggestedGroupsControl(beanList);
 	}
 	
-	public void getParticipateGroups(List<GroupBean> beanList) {
-		this.bookTravCtrl.getParticipateGroupsControl(beanList);
-	}
-	
 	public void retriveLocInfo(LocationBean bean) {
 		this.bookTravCtrl.retriveLocInfoControl(bean);
 	}
