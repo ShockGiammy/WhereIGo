@@ -19,9 +19,13 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
 
 	@FXML private ListView<HBox> accomodationsList;
 	
+	@FXML
+	public void initialize() {
+		this.userImage.setImage(setUserImage());
+	}
+	
 	public GraphicControllerRenterAccomodations() {
 		addCreateLabel();
-		this.userImage.setImage(setUserImage());
 		List<RentAccomodationBean> listOfBean = facade.displayMyAnnouncement();
 		if (listOfBean.isEmpty()) {
 			ErrorPopup error = new ErrorPopup();

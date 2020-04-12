@@ -21,14 +21,6 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="bookTravel" fitHeight="58.0" fitWidth="58.0" onMouseEntered="#showMouseTravel" onMouseExited="#showTravel" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/bookTravel.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
                   <ImageView fx:id="keys" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goRent" onMouseEntered="#showMouseKeys" onMouseExited="#showKeys" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/keys.jpg" />
@@ -40,14 +32,6 @@
                   <ImageView fx:id="chat" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goChat" onMouseEntered="#showMouseChat" onMouseExited="#showChat" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/chat.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/star.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />

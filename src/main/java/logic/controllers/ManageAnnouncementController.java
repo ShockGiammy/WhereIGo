@@ -3,6 +3,8 @@ package logic.controllers;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
@@ -25,7 +27,7 @@ public class ManageAnnouncementController {
 	public ManageAnnouncementController() {
 		LoggedUser logUser = new LoggedUser();
 		this.username = logUser.getUserName();
-		listOfAccomodation = new ArrayList<>();
+		listOfAccomodation = Collections.synchronizedList(new ArrayList<>());
 		creator = new AccomodationCreator();
 	}
 	
@@ -62,8 +64,10 @@ public class ManageAnnouncementController {
 		creator.delete(l);
 	}
 	
-	public void updateMyAccomodation(RentAccomodationBean beanToUpdate) {
-		for (AccomodationModel accomodation : listOfAccomodation) {
+	public synchronized void updateMyAccomodation(RentAccomodationBean beanToUpdate) {
+		Iterator<AccomodationModel> iterator = listOfAccomodation.iterator();
+	    while(iterator.hasNext()) {
+	    	AccomodationModel accomodation = iterator.next();
 			if (accomodation.getInfo().getID() == beanToUpdate.getID()) {
 				listOfAccomodation.remove(accomodation);
 				AccomodationModel accomodationUpdated = new AccomodationModel(beanToUpdate);

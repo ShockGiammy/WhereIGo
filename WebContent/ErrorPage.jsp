@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isErrorPage="true"%>
+    <%@ include file="RenterNavigationBar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,6 @@
 </head>
 <body bgcolor = "red">
 	Error
-	<%= exception.getMessage() %>
 
 </body>
 </html>

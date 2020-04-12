@@ -119,7 +119,8 @@
 			<td><%=bean.getAddress()%></td>
 			<td><img alt="house" src="data:image/jpg;base64, <%if (bean.getHouseImage()!= null) {
 													out.println(new String(Base64.getEncoder().encodeToString(bean.getHouseImage())));
-													}%>" width="150" height="120"/></td>		
+													}%>" width="150" height="120"/>
+													<input type="hidden" id="base64House"></td>		
 			<td><%=bean.getDescription()%></td>
 			<td><%=bean.getBeds()%></td>
 			<td><%=bean.getType()%></td>
@@ -137,17 +138,32 @@
 				<%if(list[3] == 1) out.println("SI"); else out.println("NO");%>			 
 			</td>
 			<td>
-       			<button  class="btn btn-info btn-l" id="update" value="<%=bean.getID() %>">Update<br>Info</button>
+       			<a class="btn btn-info btn-l" id="update" href="RentRenter?action=requestToUpdate&id=<%=bean.getID()%>">Update<br>Info</a>
 			</td>
 			<td>
 				<a class="btn btn-danger btn-l" href="RentRenter?action=Delete&id=<%=bean.getID()%>" id="delete">Delete</a>
 			</td>
 		</tr>
 		<%
-			}
+			} 
 		%>
 		</table>
 	</div>
+	<% 
+	RentAccomodationBean beanToUpdate = null;
+	if (request.getAttribute("bean") != null) {
+		beanToUpdate = (RentAccomodationBean)request.getAttribute("bean");
+	}
+	if (beanToUpdate!= null) { 
+	%>	
+		<input type="hidden" id="toBeUpdate" value="<%=beanToUpdate.getID()%>">
+	<%
+	} else {
+	%>
+		<input type="hidden" id="toBeUpdate" value="false">
+	<%
+	}
+	%>
 	<!-- The Modal -->
 <div id="createOrUpdate" class="modal">
 
@@ -162,11 +178,11 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="city" placeholder="Enter City">
+      <input type="text" class="form-control" id="city" <% if (beanToUpdate != null) {%> value="<%=beanToUpdate.getCity()%>" <% } else {%> placeholder="Enter City" <% } %>>
     </div>
     <div class="form-group col-md-6">
       <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" id="address" placeholder="Enter Address">
+      <input type="text" class="form-control" id="address" <% if (beanToUpdate != null) {%> value="<%=beanToUpdate.getAddress()%>" <% } else {%> placeholder="Enter Address" <% } %>>
     </div>
   </div>
   <div class="form-row">
@@ -174,9 +190,9 @@
       <div class="form-group">
     	<label for="FormControlSelect">Type of Apartment</label>
     	<select class="form-control" id="type">
-       	<option>appartamento</option>
-      	<option>villetta</option>
-      	<option>monolocale</option>
+       	<option value="appartamento" <% if (beanToUpdate != null && beanToUpdate.getType().equals("appartamento")) {%> selected <% } %>>appartamento</option>
+      	<option value="villetta" <% if (beanToUpdate != null && beanToUpdate.getType().equals("villetta")) {%> selected <% } %>>villetta</option>
+      	<option value="monolocale" <% if (beanToUpdate != null && beanToUpdate.getType().equals("monolocale")) {%> selected <% } %>>monolocale</option>
     	</select>
   	  </div>
     </div>
@@ -184,10 +200,10 @@
       <div class="form-group">
     	<label for="FormControlSelect">Square Metres</label>
     	<select class="form-control" id="squareMetres">
-    	<option>&lt; 20</option>
-      	<option>20 - 39</option>
-      	<option>40 - 59</option>
-      	<option>> 60</option>
+    	<option value="&lt; 20" <% if (beanToUpdate != null && beanToUpdate.getSquareMetres().equals("< 20")) {%> selected <% } %> >&lt; 20</option>
+      	<option value="20 - 39" <% if (beanToUpdate != null && beanToUpdate.getSquareMetres().equals("20 - 39")) {%> selected <% } %>>20 - 39</option>
+      	<option value="40 - 59" <% if (beanToUpdate != null && beanToUpdate.getSquareMetres().equals("40 - 59")) {%> selected <% } %>>40 - 59</option>
+      	<option value="> 60" <% if (beanToUpdate != null && beanToUpdate.getSquareMetres().equals("> 60")) {%> selected <% } %>>> 60</option>
     	</select>
   	  </div>
     </div>
@@ -195,14 +211,14 @@
       <div class="form-group">
     	<label for="FormControlSelect">Beds</label>
     	<select class="form-control" id="beds">
-      	<option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>>8</option>
+      	<option value="1" <% if (beanToUpdate != null && beanToUpdate.getBeds().equals("1")) {%> selected <% } %> >1</option>
+        <option value="2" <% if (beanToUpdate != null && beanToUpdate.getBeds().equals("2")) {%> selected <% } %>>2</option>
+        <option value="3" <% if (beanToUpdate != null && beanToUpdate.getBeds().equals("3")) {%> selected <% } %>>3</option>
+        <option value="4" <% if (beanToUpdate != null && beanToUpdate.getBeds().equals("4")) {%> selected <% } %>>4</option>
+        <option value="5" <% if (beanToUpdate != null && beanToUpdate.getBeds().equals("5")) {%> selected <% } %>>5</option>
+        <option value="6" <% if (beanToUpdate != null && beanToUpdate.getBeds().equals("6")) {%> selected <% } %>>6</option>
+        <option value="7" <% if (beanToUpdate != null && beanToUpdate.getBeds().equals("7")) {%> selected <% } %>>7</option>
+        <option value="8" <% if (beanToUpdate != null && beanToUpdate.getBeds().equals(">8")) {%> selected <% } %>>>8</option>
     	</select>
   	  </div>
     </div>
@@ -210,12 +226,13 @@
   <div class="form-row">
   <div class="form-group col-md-6">
     <label for="FormControlTextarea">Description</label>
-    <textarea class="form-control" id="description" rows="3" placeholder="Enter a short description of the house..."></textarea>
+    <textarea class="form-control" id="description" rows="3" <% if (beanToUpdate != null) {%> placeholder="<%=beanToUpdate.getDescription()%>"
+    	<% } else { %> placeholder="Enter a short description of the house..." <% } %>></textarea>
   </div>
   <div class="form-group col-md-6">
     <label for="FormControlFile">Select a photo</label>
-    <input type="file" class="form-control-file" id="houseImage" accept="image/png, image/jpg, image/PNG, image/JPG">
-    <input type="hidden" id="base64House" name="base64House">
+    <input type="file" class="form-control-file" id="houseImage" accept="image/jpg, image/png">
+    <input type="hidden" id="base64House" name="base64House" <% if (beanToUpdate != null) { %> value="<%=new String(Base64.getEncoder().encodeToString(beanToUpdate.getHouseImage()))%>" <% } %>>
   </div>
   </div>
   <div class="form-group col-md-4">
@@ -224,13 +241,15 @@
   </label>
   <div class="form-row">
   	<div class="form-check">
-  		<input class="form-check-input" type="checkbox" value="" id="garden">
+  		<input class="form-check-input" type="checkbox" value="" id="garden" 
+  			<% if (beanToUpdate != null && beanToUpdate.getServices()[0]==1) { %> checked <% } %>>
   		<label class="form-check-label" for="garden">
     	Garden &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   		</label>
   	</div>
   	<div class="form-check">
-    	<input class="form-check-input" type="checkbox" value="" id="wifi">
+    	<input class="form-check-input" type="checkbox" value="" id="wifi"
+    		<% if (beanToUpdate != null && beanToUpdate.getServices()[1]==1) { %> checked <% } %>>
     	<label class="form-check-label" for="wifi">
     	Wifi
     	</label>
@@ -238,13 +257,15 @@
   </div>
   <div class="form-row">
   	<div class="form-check">
-  		<input class="form-check-input" type="checkbox" value="" id="bathroom">
+  		<input class="form-check-input" type="checkbox" value="" id="bathroom"
+  		 	<% if (beanToUpdate != null && beanToUpdate.getServices()[2]==1) { %> checked <% } %>>
   		<label class="form-check-label" for="bathroom">
     	Bathroom &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   		</label>
   	</div>
   	<div class="form-check">
-    	<input class="form-check-input" type="checkbox" value="" id="kitchen">
+    	<input class="form-check-input" type="checkbox" value="" id="kitchen"
+    		<% if (beanToUpdate != null && beanToUpdate.getServices()[3]==1) { %> checked <% } %>>
     	<label class="form-check-label" for="kitchen">
     	Kitchen
     	</label>
@@ -266,19 +287,18 @@
 var modal = document.getElementById("createOrUpdate");
 
 // Get the button that opens the modal
-var update = document.getElementById("update");
 var create = document.getElementById("create");
 var cancel = document.getElementById("cancel");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal
-update.onclick = function() {
-  document.getElementById("service").value = "Update";
-  modal.style.display = "block";
+if (document.getElementById("toBeUpdate").value != "false") {
+	document.getElementById("service").value = "Update";
+	modal.style.display = "block";
 }
 
+// When the user clicks on the button, open the modal
 create.onclick = function() {
   document.getElementById("service").value = "Create";
   modal.style.display = "block";
@@ -288,10 +308,18 @@ create.onclick = function() {
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
+  document.getElementById("toBeUpdate").value = "false";
   modal.style.display = "none";
+  setTimeout(function() {
+	window.location.href = "RentRenter";
+  }, 1000);
 }
 cancel.onclick = function() {
+  document.getElementById("toBeUpdate").value = "false";
   modal.style.display = "none";
+  setTimeout(function() {
+	window.location.href = "RentRenter";
+  }, 1000);
 }
 
 function confirm() {
@@ -307,11 +335,11 @@ function confirm() {
 	var kitchen = document.getElementById("kitchen").checked;
 	var service = document.getElementById("service").value;
 	var houseImage = document.getElementById("base64House").value;
+	var id = document.getElementById("toBeUpdate").value;
 	
 	$.ajax( {
 		type: "POST",
 		data:{
-			service : service,
 			city : city,
 			address : address,
 			type : type,
@@ -323,6 +351,8 @@ function confirm() {
 			wifi : wifi,
 			bathroom : bathroom,
 			kitchen : kitchen,
+			service : service,
+			id : id
 		},
 		url: "RentRenter"
 	});
@@ -337,7 +367,9 @@ $("#houseImage").change(function() {
 	reader.readAsBinaryString(file);
 	reader.onload = function() {
 		codedImg = btoa(reader.result);
+		console.log(codedImg);
 		document.getElementById('base64House').value = codedImg;
+		console.log(document.getElementById('base64House').value);
 	};
 	reader.onerror = function(error) {
 		alert("Invalid file");
