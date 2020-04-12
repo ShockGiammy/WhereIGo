@@ -98,29 +98,21 @@ public class RentRenterServlet extends HttpServlet {
 			bean.setHouseImage(tempFile);
 		}
 		byte[] listOfServices = new byte[4];
+		listOfServices[0] = 0;
+		listOfServices[1] = 0;
+		listOfServices[2] = 0;
+		listOfServices[3] = 0;
 		if (req.getParameter("garden").equals("true")) {
 			listOfServices[0] = 1;
-		}
-		else { 
-			listOfServices[0] = 0;
 		}
 		if (req.getParameter("wifi").equals("true")) {
 			listOfServices[1] = 1;
 		}
-		else { 
-			listOfServices[1] = 0;
-		}
 		if (req.getParameter("bathroom").equals("true")) {
 			listOfServices[2] = 1;
 		}
-		else { 
-			listOfServices[2] = 0;
-		}
 		if (req.getParameter("kitchen").equals("true")) {
 			listOfServices[3] = 1;
-		}
-		else { 
-			listOfServices[3] = 0;
 		}
 		bean.setServices(listOfServices);
 		return bean;
