@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import logic.LoggedUser;
 import logic.beans.GroupBean;
+import logic.beans.LocationBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
 
@@ -71,6 +72,20 @@ public class BookTravelServlet extends HttpServlet {
 			HomePageServlet hpServ = new HomePageServlet();
 			hpServ.loadBookTravelSugg(request);
 		}
+		else if(action.equalsIgnoreCase("moreInfo")) {
+			loadLocInfo(request);
+			dest="LocationInfo.jsp";
+		}
+		else if(action.equalsIgnoreCase("bookshort")) {
+			travBean.setDepCity(request.getParameter("city"));
+			findSuggTravels(request, travBean);
+			dest="TicketsSolutions.jsp";
+			if(request.getAttribute("notravels") != null) {
+				dest="BookTravelStart.jsp";
+				HomePageServlet hpServ = new HomePageServlet();
+				hpServ.loadBookTravelSugg(request);
+			}
+		}
 		changeP.forwardPage(dest, request, response);
 	}
 	
@@ -117,5 +132,23 @@ public class BookTravelServlet extends HttpServlet {
 		gBean.setGroupTitle(request.getParameter("descr"));
 		ControllerFacade fac = new ControllerFacade();
 		fac.insertParticipant(gBean);
+	}
+	
+	private void loadLocInfo(HttpServletRequest request) {
+		LocationBean locBean = new LocationBean();
+		locBean.setCityName(request.getParameter("city"));
+		ControllerFacade fac = new ControllerFacade();
+		fac.retriveLocInfo(locBean);
+		request.setAttribute("location", locBean);
+	}
+	
+	private void findSuggTravels(HttpServletRequest request, UserTravelBean travBean) {
+		List<UserTravelBean> travBeanList = new ArrayList<>();
+		ControllerFacade fac = new ControllerFacade();
+		travBeanList.addAll(fac.getSuggTicketsInfo(travBean));
+		if(travBeanList.isEmpty()) {
+			request.setAttribute("notravels", "Sorry! No travels available for the request city");
+		}
+		request.setAttribute("tickets", travBeanList);
 	}
 }

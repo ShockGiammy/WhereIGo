@@ -23,25 +23,25 @@
 		<div class="container">
 			<div>Tickets available</div>
 				<div class="row">
-				<div class="col">Ticket ID</div>
-				<div class="col">Departure city</div>
-				<div class="col">Departure date</div>
-				<div class="col">Arrive city</div>
-				<div class="col">Return date</div>
-				<div class="col">Cost</div>
-				<div class="col">Book now</div>
+				<div class="col-md">Ticket ID</div>
+				<div class="col-md">Departure city</div>
+				<div class="col-md">Departure date</div>
+				<div class="col-md">Arrive city</div>
+				<div class="col-md">Return date</div>
+				<div class="col-md">Cost</div>
+				<div class="col-md">Book now</div>
 				<div class="w-100"></div>
 				<%
 					for(int i = 0; i < travBeanList.size(); i++){
 						UserTravelBean travBean = travBeanList.get(i);
 				%>
-				<div class="col"><%=travBean.getId()%></div>
-				<div class="col"><%=travBean.getCityOfDep()%></div>
-				<div class="col"><%=travBean.getFirstDay()%></div>
-				<div class="col"><%=travBean.getCityOfArr()%></div>
-				<div class="col"><%=travBean.getLastDay()%></div>
-				<div class="col"><%=travBean.getCost()%></div>
-				<div class="col"><a href="BookTravelServlet?action=goconf&id=<%out.println(travBean.getId());%>&depCity=<%out.println(travBean.getCityOfDep());%>&arrCity=<%out.println(travBean.getCityOfArr());%>&depDate=<%out.println(travBean.getFirstDay());%>&retDate=<%out.println(travBean.getLastDay());%>&cost=<%out.println(travBean.getCost());%>" class="btn">Confirm</a></div>
+				<div class="col-md"><%=travBean.getId()%></div>
+				<div class="col-md"><%=travBean.getCityOfDep()%></div>
+				<div class="col-md"><%=travBean.getFirstDay()%></div>
+				<div class="col-md"><%=travBean.getCityOfArr()%></div>
+				<div class="col-md"><%=travBean.getLastDay()%></div>
+				<div class="col-md"><%=travBean.getCost()%></div>
+				<div class="col-md"><a href="BookTravelServlet?action=goconf&id=<%out.println(travBean.getId());%>&depCity=<%out.println(travBean.getCityOfDep());%>&arrCity=<%out.println(travBean.getCityOfArr());%>&depDate=<%out.println(travBean.getFirstDay());%>&retDate=<%out.println(travBean.getLastDay());%>&cost=<%out.println(travBean.getCost());%>" class="btn btn-success">Confirm</a></div>
 				<div class="w-100"></div>
 				<%
 					}

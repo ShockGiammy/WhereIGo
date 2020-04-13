@@ -25,6 +25,20 @@
 <%
 	}
 %>
+
+<%
+	if(request.getAttribute("notravels") !=  null){
+%>
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+  		<p><%=request.getAttribute("notravels") %></p>
+  	 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    	<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
+<%
+	}
+%>
+
 <%
 		List<String> cities = new ArrayList<>();
 		cities = (ArrayList<String>)request.getAttribute("cities");
@@ -36,19 +50,29 @@
 	<form action="BookTravelServlet" method="get">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-6" style="margin-right:30px;">
+			<div class="col-xs-6" style="margin-right:60px;">
 				<p class="h5">Location suggested for you</p>
-				<ul class="list-group">
+				<div class="container">
 					<%
 						for(int i = 0; i < cities.size(); i++) {
 					%>
-					<li class="list-group-item"><%=cities.get(i)%></li>
-					<%
-						}
-					%>
-				</ul>
+					<div class="row">
+						<div class="col-sm">
+							<%=cities.get(i)%>
+						</div>
+						<div class="col-sm">
+							<a href="BookTravelServlet?action=moreInfo&city=<%=cities.get(i)%>" class="btn btn-info">More info</a>
+						</div>
+						<div class="col-sm">
+							<a href="BookTravelServlet?action=bookshort&city=<%=cities.get(i)%>" class="btn btn-success">Book now</a>
+						</div>
+					</div>
+						<%
+							}
+						%>
+				</div>
 			</div>
-			<div class="col-xs-6" style="margin-right:30px;">
+			<div class="col-xs-6" style="margin-right:60px;">
 				<p class="h5">Travel groups suggested for you</p>
 				<table class="table table-sm">
 					<thead>
@@ -81,25 +105,23 @@
 							<div class="col-4">
 								<div class="form-horiontal">
 									<div class="form-group">
-										<label for="dep" class="col-xs-2 control-label">Departure city</label>
+										<label for="dep" style="white-space: nowrap">Departure city</label>
 										<input type="text" name="depCity" id="dep">
 									</div>
 									<div class="form-group">
-										<label for="arr" class="col-xs-2 control-label">Arrive city</label>
+										<label for="arr" style="white-space: nowrap">Arrive city</label>
 										<input type="text" name="arrCity" id="arr">
 									</div>
 								</div>
-							</div>
-							<div class="col-4">
 								<div class="form-horiontal">
 									<div class="form-group">
-										<label for="depDate" class="col-xs-2 control-label">Departure date</label>
+										<label for="depDate" style="white-space: nowrap">Departure date</label>
 										<input type="date" name="depDate" id="depDate">
 									</div>
 								</div>
 								<div class="form-horiontal">
 									<div class="form-group">
-										<label for="retDate">Return date</label>
+										<label for="retDate" style="white-space: nowrap">Return date</label>
 										<input type="date" name="retDate" id="retDate">
 									</div>
 								<div class="form-horiontal">
