@@ -12,7 +12,7 @@
 <%@ page import="java.util.Base64"%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">WhereIGo</a>
-			<img alt="LOGO" src="C:\Users\gianm\Desktop\WIG\trunk\src\main\resources\images\Logo.PNG" height="95" width="265">
+			<img alt="LOGO" src="webimm/Logo.PNG" height="95" width="265">
 		 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
  		 </button>

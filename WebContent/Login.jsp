@@ -8,7 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
- <script src="https://kit.fontawesome.com/5b3fd9b7f5.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -25,18 +24,23 @@
 	}
 %>
 
-<body>
+<style>
+	body {
+    background-image: url("back.jpg") no-repeat center center;
+    background-size: cover;
+}
+</style>
+
+<body style="background-image : url('webimm/back.jpg');">
 	<form action="getLoginInfo" method="post">
 		<div class="container">
 			<div class="parent-div d-flex align-items-center justify-content-center">
 			<div class="child-div">
 			<h1>Login</h1>
 				<div class="input-icons">
-					<i class="fas fa-user"></i>
 					<input id="username" name="username" type="text" placeholder="username" class="input-field"/>
 				</div><br>
 				<div class="input-icons">
-					<i class="fas fa-key"></i>
 					<input id="password" name="password" type="password" placeholder="password" class="input-field"/>
 				</div><br><br>
 				<input type="submit" name="reg" value="register" class= "btn btn-info btn-l">

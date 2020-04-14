@@ -1,17 +1,30 @@
 package logic.servlets;
 
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import javax.servlet.http.Part;
 import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.DuplicateUsernameException;
 
 @WebServlet("/LoginServlet")
+@MultipartConfig
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -57,6 +70,7 @@ public class LoginServlet extends HttpServlet {
 		dataBean.setType(request.getParameter("type"));
 		dataBean.setUserName(request.getParameter("username"));
 		dataBean.setPsw(request.getParameter("password"));
+		//dataBean.setUsrImage(retreiveImage(request));
 		ControllerFacade facCtrl = new ControllerFacade();
 		try {
 			facCtrl.insertNewUser(dataBean);
@@ -66,5 +80,20 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("errorMsg", "Username not available");
 			changeP.forwardPage("Registration.jsp", request, response);
 		}
+	}
+	
+	private InputStream retreiveImage(HttpServletRequest request) {
+		try {
+			Part filePart = request.getPart("photo");
+			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+			InputStream is = filePart.getInputStream();
+			//Files.copy(is, fileName, StandardCopyOption.REPLACE_EXISTING);
+			
+		} catch (IOException e1) {
+			Logger.getLogger("WIG").log(Level.SEVERE, e1.getMessage());
+		} catch (ServletException e1) {
+			Logger.getLogger("WIG").log(Level.SEVERE, "Servlet exception while parsing file\n");
+		}
+		return null;
 	}
 }

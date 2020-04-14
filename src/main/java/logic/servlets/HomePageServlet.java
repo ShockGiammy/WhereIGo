@@ -55,6 +55,9 @@ public class HomePageServlet extends HttpServlet {
 		else if(act.equalsIgnoreCase("personality")) {
 			page="PersonalityTest.jsp";
 		}
+		else if(act.equalsIgnoreCase("exit")) {
+			page = "Login.jsp";
+		}
 		changeP.forwardPage(page, request, response);
 	}
 	

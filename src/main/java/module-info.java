@@ -16,6 +16,7 @@ module WhereIGo {
 	requires java.desktop;
 	requires javafx.media;
 	requires javax.servlet.api;
+	requires java.base;
 	
 	opens logic;
 	opens logic.graphiccontrollers;

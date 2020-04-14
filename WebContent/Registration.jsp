@@ -26,7 +26,7 @@
 %>
 
 <body>
-	<form action="LoginServlet" method="post">
+	<form action="LoginServlet" method="post" enctype="multipart/form-data">
 	<div class="container">
 	<h1>Registration form</h1>	
 	<div class="row">
@@ -81,10 +81,13 @@
 		</div><br>
 		<div class="form-group">
 			<div class="col-sm-10">
-				Photo:
+				<label for="input-file" class="col-md-6 control-label">Profile photo :</label>
+				<div class="file-upload-wrapper">
+					<input type="file" id="input-file" name="photo" class="file-upload" data-height="500"/>
+				</div>
 			</div>
 		</div><br>
-		<input type="submit" value="register now" name="regnow">
+		<input type="submit" value="register now" name="regnow" class="btn btn-success btn-lg">
 	</div>
 	</div>
 	</div>
