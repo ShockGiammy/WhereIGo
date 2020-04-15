@@ -3,6 +3,7 @@ package logic.graphiccontrollers;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -69,60 +70,78 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		}
 		else {
 			for (RentAccomodationBean bean : listOfBean) {
-			setDisplayInfo(bean);
+			setDisplayBoxInfo(bean);
 			}
 		}
 	}
 	
-	public void setDisplayInfo(RentAccomodationBean bean) {
-		BorderPane pane = new BorderPane();
-		Text city = new Text();
-		city.setText("City  ");
-		city.setUnderline(true);
-		Text cityValue = new Text();
-		cityValue.setText(bean.getCity());
-		HBox cityBox = new HBox();
-		cityBox.getChildren().addAll(city, cityValue);
-		cityBox.setPadding(new Insets(pading, pading, pading, pading));
-		VBox vBox = new VBox();
-		HBox bedsBox = new HBox();
-		vBox.getChildren().add(bedsBox);
-		Text beds = new Text();
-		beds.setText("Beds  ");
-		beds.setUnderline(true);
-		Text numberBeds = new Text();
-		numberBeds.setText(bean.getBeds());
-		bedsBox.getChildren().addAll(beds, numberBeds);
-		bedsBox.setPadding(new Insets(pading, pading, pading, pading));
-		ImageView house = new ImageView();
-		BufferedImage bufImage = facade.loadImage(bean.getHouseImage());
-		house.setFitHeight(150);
-		house.setFitWidth(150);
-		house.setX(30);
-		house.setImage(facade.convertToFxImage(bufImage));
-		Button details = new Button();
-		details.setText("View Details");
-		details.setOnMouseClicked(e -> 
-    		setDetail(bean));
-		HBox detailBox = new HBox();
-		detailBox.getChildren().add(details);
-		detailBox.setAlignment(Pos.CENTER_RIGHT);
-		detailBox.setPadding(new Insets(pading, pading, pading, pading));
-		pane.setTop(cityBox);
-		pane.setCenter(house);
-		pane.setRight(vBox);
-		pane.setBottom(detailBox);
-		pane.setBorder(new Border(new BorderStroke(Color.BLUE, 
-	            BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+	public void setDisplayBoxInfo(RentAccomodationBean bean) {
+		
 		if (number == 0) {
 			hBox = new HBox();
-			hBox.getChildren().add(pane);
-			accomodationList.getItems().addAll(hBox);
+			setDisplayInfo(bean, hBox);
+			accomodationList.getItems().addAll(hBox);	
 		}
 		else {
-			hBox.getChildren().add(pane);
+			setDisplayInfo(bean, hBox);
 		}
 		number = (number+1)%2;
+	}
+	
+	public void setDisplayInfo(RentAccomodationBean bean, HBox box) {
+		
+		Task<BorderPane> task = new Task<BorderPane>() {
+            @Override
+            public BorderPane call() {
+            	BorderPane pane = new BorderPane();
+            	Text city = new Text();
+            	city.setText("City  ");
+            	city.setUnderline(true);
+            	Text cityValue = new Text();
+            	cityValue.setText(bean.getCity());
+            	HBox cityBox = new HBox();
+            	cityBox.getChildren().addAll(city, cityValue);
+            	cityBox.setPadding(new Insets(pading, pading, pading, pading));
+            	VBox vBox = new VBox();
+				HBox bedsBox = new HBox();
+				vBox.getChildren().add(bedsBox);
+				Text beds = new Text();
+				beds.setText("Beds  ");
+				beds.setUnderline(true);
+				Text numberBeds = new Text();
+				numberBeds.setText(bean.getBeds());
+				bedsBox.getChildren().addAll(beds, numberBeds);
+				bedsBox.setPadding(new Insets(pading, pading, pading, pading));
+				ImageView house = new ImageView();
+				BufferedImage bufImage = facade.loadImage(bean.getHouseImage());
+				house.setFitHeight(150);
+				house.setFitWidth(150);
+				house.setX(30);
+				house.setImage(facade.convertToFxImage(bufImage));
+				Button details = new Button();
+				details.setText("View Details");
+				details.setOnMouseClicked(e -> 
+    				setDetail(bean));
+				HBox detailBox = new HBox();
+				detailBox.getChildren().add(details);
+				detailBox.setAlignment(Pos.CENTER_RIGHT);
+				detailBox.setPadding(new Insets(pading, pading, pading, pading));
+				pane.setTop(cityBox);
+				pane.setCenter(house);
+				pane.setRight(vBox);
+				pane.setBottom(detailBox);
+				pane.setBorder(new Border(new BorderStroke(Color.BLUE, 
+	            BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+			return pane;
+            }
+        };
+        
+		task.setOnSucceeded(event ->
+			box.getChildren().add(task.getValue()));
+			
+		Thread t = new Thread(task);
+	    t.setDaemon(true);
+	    t.start();    	
 	}
 	
 	public void setDetail(RentAccomodationBean bean) {

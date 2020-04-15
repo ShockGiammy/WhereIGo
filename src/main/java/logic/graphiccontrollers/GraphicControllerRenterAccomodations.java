@@ -42,7 +42,7 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
 		
 		Task<HBox> task = new Task<HBox>() {
             @Override
-            public HBox call() throws Exception {
+            public HBox call() {
             	
             	HBox accomodationBox = new HBox();
             	ImageView house = new ImageView();

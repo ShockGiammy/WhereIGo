@@ -130,7 +130,7 @@ public class GraphicControllerChat extends BasicGui {
     public void addToGroupList(String groupName) {
     	Task<Text> task = new Task<Text>() {
             @Override
-            public Text call() throws Exception {
+            public Text call() {
 
             	Text group = new Text(groupName);
             	group.setOnMouseClicked(e ->
@@ -188,7 +188,7 @@ public class GraphicControllerChat extends BasicGui {
     public synchronized void addAsServer(Message msg) {
         Task<HBox> task = new Task<HBox>() {
             @Override
-            public HBox call() throws Exception {
+            public HBox call() {
                 Label bl6 = new Label();
                 bl6.setText(msg.getMsg());
                 bl6.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE,
@@ -241,7 +241,7 @@ public class GraphicControllerChat extends BasicGui {
     	
     	Task<HBox> task = new Task<HBox>() {
             @Override
-            public HBox call() throws Exception {
+            public HBox call() {
 
             	HBox hBox = new HBox();
 
@@ -275,7 +275,7 @@ public class GraphicControllerChat extends BasicGui {
     public synchronized void addToGroupList(User user, ListView<HBox> list, ListView<Text> groupList) {
     	Task<HBox> task = new Task<HBox>() {
             @Override
-            public HBox call() throws Exception {
+            public HBox call() {
 
             	HBox hBox = new HBox();
             	
@@ -307,7 +307,7 @@ public class GraphicControllerChat extends BasicGui {
     public void addUser(User user, ListView<Text> groupList) {
     	Task<Text> task = new Task<Text>() {
             @Override
-            public Text call() throws Exception {
+            public Text call() {
 
             	return new Text(user.getName());
             }
