@@ -117,7 +117,7 @@ img{ max-width:100%;}
   top: 11px;
   width: 37px;
 }
-.messaging { padding: 0 0 50px 0;}
+.messaging { padding: 0 0 18px 0;}
 .msg_history {
   height: 516px;
   overflow-y: auto;
@@ -239,6 +239,8 @@ else {
   </div>
 </div>
 <script>
+window.scrollTo(0, document.body.scrollHeight);
+
 var objDiv = document.getElementById("chatMessages");
 objDiv.scrollTop = objDiv.scrollHeight;
 

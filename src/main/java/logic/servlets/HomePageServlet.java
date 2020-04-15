@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import logic.LoggedUser;
 import logic.UserType;
 import logic.beans.GroupBean;
@@ -56,6 +58,8 @@ public class HomePageServlet extends HttpServlet {
 			page="PersonalityTest.jsp";
 		}
 		else if(act.equalsIgnoreCase("exit")) {
+			HttpSession session = request.getSession();
+			session.removeAttribute("image");
 			page = "Login.jsp";
 		}
 		changeP.forwardPage(page, request, response);

@@ -1,6 +1,5 @@
 package logic.servlets;
 
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -69,6 +68,9 @@ public class LoginServlet extends HttpServlet {
 		try {
 			facCtrl.insertNewUser(dataBean);
 			changeP.loadHomePageUserInfo(request);
+			LoggedUser logUsr = new LoggedUser();
+			HttpSession session = request.getSession();
+			session.setAttribute("image", logUsr.getImage());
 			changeP.forwardPage("HomePage.jsp", request, response);
 		} catch (DuplicateUsernameException e) {
 			request.setAttribute("errorMsg", "Username not available");
