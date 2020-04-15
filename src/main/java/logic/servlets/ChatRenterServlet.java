@@ -24,7 +24,7 @@ public class ChatRenterServlet extends HttpServlet {
 		ChangePageServlet changeP = new ChangePageServlet();
 		
 		LoggedUser logUser = new LoggedUser();		
-		ControllerFacade facade = new ControllerFacade();
+		ControllerFacade facade = new ControllerFacade(this);
 		
 		User myInfo = facade.getUser(logUser.getUserName());
 		myInfo.setName(logUser.getUserName());

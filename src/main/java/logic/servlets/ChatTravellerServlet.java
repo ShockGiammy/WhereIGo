@@ -24,7 +24,7 @@ public class ChatTravellerServlet extends HttpServlet {
 		ChangePageServlet changeP = new ChangePageServlet();
 		
 		LoggedUser logUser = new LoggedUser();
-		ControllerFacade facade = new ControllerFacade();
+		ControllerFacade facade = new ControllerFacade(this);
 		List<User> users = facade.getUsers();
 		req.setAttribute("users", users);
 		List<String> groups = facade.getGroups();

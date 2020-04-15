@@ -17,6 +17,8 @@ import logic.exceptions.ServerDownException;
 import logic.graphiccontrollers.GraphicControllerChat;
 import logic.model.Message;
 import logic.model.User;
+import logic.servlets.ChatRenterServlet;
+import logic.servlets.ChatTravellerServlet;
 
 public class ControllerFacade {
 
@@ -31,40 +33,26 @@ public class ControllerFacade {
 	public ControllerFacade() {
 		this.bookTravCtrl = new BookTravelControl();
 		this.intCtrl = new InterestsController();
-		this.loginCtrl = new LoginController();
-		this.chatController = new ChatController(this);
-	}
-	
-	/*ManageAnnouncementController references methods*/
-	
-	public List<RentAccomodationBean> displayMyAnnouncement() {
-		if (controllerManage == null) {
-			controllerManage = new ManageAnnouncementController();
-		}
-		return controllerManage.displayMyAnnouncement();	
-	}
-	
-	public void deleteMyAccomodation(long id) {
-		if (controllerManage == null) {
-			controllerManage = new ManageAnnouncementController();
-		}
-		controllerManage.deleteMyAccomodation(id);
-	}
-	
-	public List<RentAccomodationBean> displayAnnouncement() {
-		RentAccomodationController controllerRent = new RentAccomodationController();
-		return controllerRent.displayAnnouncement();
+		this.loginCtrl = new LoginController();	
 	}
 	
 	/*ChatController references methods*/
 	
 	public void callChatController(GraphicControllerChat reference) {
 		this.graphicChat = reference;
-		if (chatController == null) {
-			chatController = new ChatController(this);
-		}
+		chatController = new ChatController(this);
 	}
 	
+	@SuppressWarnings("exports")
+	public ControllerFacade(ChatTravellerServlet chatTravellerServlet) {
+		this.chatController = new ChatController(this);
+	}
+	
+	@SuppressWarnings("exports")
+	public ControllerFacade(ChatRenterServlet chatRenterServlet) {
+		this.chatController = new ChatController(this);
+	}
+
 	public void createChat(String renter) {
 		chatController.createChat(renter);
 	}
@@ -117,6 +105,27 @@ public class ControllerFacade {
 	
 	public User getUser(String user) {
 		return chatController.getUser(user);
+	}
+	
+	/*ManageAnnouncementController references methods*/
+
+	public List<RentAccomodationBean> displayMyAnnouncement() {
+		if (controllerManage == null) {
+			controllerManage = new ManageAnnouncementController();
+		}
+		return controllerManage.displayMyAnnouncement();	
+	}
+	
+	public void deleteMyAccomodation(long id) {
+		if (controllerManage == null) {
+			controllerManage = new ManageAnnouncementController();
+		}
+		controllerManage.deleteMyAccomodation(id);
+	}
+	
+	public List<RentAccomodationBean> displayAnnouncement() {
+		RentAccomodationController controllerRent = new RentAccomodationController();
+		return controllerRent.displayAnnouncement();
 	}
 	
 	/*CreateAccomodation references methods*/
