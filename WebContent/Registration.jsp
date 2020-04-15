@@ -26,7 +26,7 @@
 %>
 
 <body>
-	<form action="LoginServlet" method="post" enctype="multipart/form-data">
+	<form action="LoginServlet" method="post">
 	<div class="container">
 	<h1>Registration form</h1>	
 	<div class="row">
@@ -47,13 +47,17 @@
 		<div class="form-group">
 			<label for="dateofb" class="col-md-6 control-label">Date of birth :</label>
 			<div class="col-sm-10">
-				<input type="text" name="dateofb" id="dateofb" placeholder="date of birth">
+				<input type="date" name="dateofb" id="dateofb" placeholder="date of birth">
 			</div>
 		</div><br>
 		<div class="form-group">
 			<label for="gender" class="col-md-6 control-label">Gender :</label>
 			<div class="col-sm-10">
-				<input type="text" name="gender" id="gender">
+				<select class="form-control" id="gender" name="gender">
+					<option value="Female">Female</option>
+					<option value="Male">Male</option>
+					<option value="Other">Other</option>
+				</select>
 			</div>
 		</div>
 	</div>
@@ -64,7 +68,10 @@
 		<div class="form-group">
 			<label for="type" class="col-md-6 control-label">User type :</label>
 			<div class="col-sm-10">
-				<input type="text" name="type" id="type">
+				<select class="form-control" name="type" id="type">
+					<option value="Traveler">Traveler</option>
+					<option value="Renter">Renter</option>
+				</select>
 			</div>
 		</div><br>
 		<div class="form-group">
@@ -81,9 +88,10 @@
 		</div><br>
 		<div class="form-group">
 			<div class="col-sm-10">
-				<label for="input-file" class="col-md-6 control-label">Profile photo :</label>
+				<label for="profImage" class="col-md-6 control-label">Profile photo :</label>
 				<div class="file-upload-wrapper">
-					<input type="file" id="input-file" name="photo" class="file-upload" data-height="500"/>
+					<input type="file" class="form-control-file" id="profImage" name="profImage" accept="image/jpg, image/png">
+					<input type="hidden" id="prof64Image" name="prof64Image">
 				</div>
 			</div>
 		</div><br>
