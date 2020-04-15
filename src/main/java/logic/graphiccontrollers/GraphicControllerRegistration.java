@@ -98,6 +98,7 @@ public class GraphicControllerRegistration {
 					this.errLogin.displayLoginError("Inserire tutti i dati");
 				}
 				else {
+					this.errLogin.displayLoginError("Correttamente registrato");
 					bgui.setUserImage();
 					bgui.goHome(event);
 				}

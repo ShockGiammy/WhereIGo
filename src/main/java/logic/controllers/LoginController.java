@@ -3,6 +3,12 @@ package logic.controllers;
 import logic.dao.UserDao;
 import logic.exceptions.DuplicateUsernameException;
 import logic.beans.UserDataBean;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import logic.LoggedUser;
 
 public class LoginController {
@@ -29,7 +35,13 @@ public class LoginController {
 			LoggedUser.setUserName(usrBean.getUsername());
 			LoggedUser.setPersonality(usrBean.getPersonality());
 			LoggedUser.setType(usrBean.getType());
-			LoggedUser.setImage(usrBean.getByteStream());
+			byte[] imm = null;
+			try {
+				imm = Files.readAllBytes(usrBean.getFileImage().toPath());
+			} catch (IOException e) {
+				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			}
+			LoggedUser.setImage(imm);
 			this.usrDao.insertNewUser(usrBean);
 			return 0;
 		}
