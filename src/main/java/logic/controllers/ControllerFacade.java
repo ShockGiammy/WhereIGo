@@ -26,14 +26,11 @@ public class ControllerFacade {
 	private ChatController chatController;
 	private GraphicControllerChat graphicChat;
 	private BookTravelControl bookTravCtrl;
-	private InterestsController intCtrl;
 	private LoginController loginCtrl;
 	private ImageViewer viewer;
 	
 	public ControllerFacade() {
-		this.bookTravCtrl = new BookTravelControl();
-		this.intCtrl = new InterestsController();
-		this.loginCtrl = new LoginController();	
+		this.chatController = new ChatController(this);
 	}
 	
 	/*ChatController references methods*/
@@ -153,74 +150,91 @@ public class ControllerFacade {
 	/*BookTravelControl references methods*/
 	
 	public List<String> showLocations() {
+		this.bookTravCtrl = new BookTravelControl();
 		return this.bookTravCtrl.showLocationsControl();
 	}
 	
 	public void getGroups(List<GroupBean> beanList) {
+		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.getSuggestedGroupsControl(beanList);
 	}
 	
 	public void retriveLocInfo(LocationBean bean) {
+		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.retriveLocInfoControl(bean);
 	}
 	
 	public int retriveTravelSolutions(UserTravelBean travBean, List<UserTravelBean> travList) {
+		this.bookTravCtrl = new BookTravelControl();
 		return this.bookTravCtrl.retriveTravelSolutionsControl(travBean, travList);
 	}
 	
 	public void saveBoughtTicket(UserTravelBean travBean) {
+		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.saveBoughtTicketControl(travBean);
 	}
 	
 	public void getBookedTickets(List<UserTravelBean> travBeanList) {
+		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.getBookedTicketsControl(travBeanList);
 	}
 	
 	public void saveGroup(GroupBean grpBean) throws GroupNameTakenException {
+		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.saveGroupControl(grpBean);
 	}
 	
 	public void getUserGroups(List<GroupBean> grpBean) {
+		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.getUserGroupsControl(grpBean);
 	}
 	
 	public List<UserTravelBean> getSuggTicketsInfo(UserTravelBean travBean) {
+		this.bookTravCtrl = new BookTravelControl();
 		return this.bookTravCtrl.getSuggTicketsInfoControl(travBean);
 	}
 	
 	public int insertParticipant(GroupBean bean) {
+		this.bookTravCtrl = new BookTravelControl();
 		return this.bookTravCtrl.insertParticipantControl(bean);
 	}
 	
 	public void deleteSavedTravel(UserTravelBean travBean) {
+		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.deleteSavedTravelControl(travBean);
 	}
 	
 	public void deleteTravelGroup(GroupBean grpBean) {
+		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.deleteTravelGroupControl(grpBean);
 	}
 	
 	public void leaveTravelGroup(GroupBean grpBean) {
+		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.leaveTravelGroupControl(grpBean);
 	}
 	
 	public void getSamePersUsers(List<UserDataBean> usrList) {
+		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.getSamePersUsersControl(usrList);
 	}
 	
 	/* methods calls of the Interest Controller*/
 	
 	public void evaluateInterests(InterestsBean interBean) {
-		this.intCtrl.evaluateInterestsControl(interBean);
+		InterestsController intCtrl = new InterestsController();
+		intCtrl.evaluateInterestsControl(interBean);
 	}
 	
 	/* methods calls of the Login Controller*/
 	
 	public int checkLogIn(UserDataBean logBean) {
+		this.loginCtrl = new LoginController();
 		return this.loginCtrl.checkLogInControl(logBean);
 	}
 	
 	public int insertNewUser(UserDataBean usrBean) throws DuplicateUsernameException {
+		this.loginCtrl = new LoginController();
 		return this.loginCtrl.insertNewUserControl(usrBean);
 	}
 }

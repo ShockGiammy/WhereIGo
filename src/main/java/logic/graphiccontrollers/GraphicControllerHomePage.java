@@ -39,6 +39,7 @@ public class GraphicControllerHomePage extends BasicGui{
 		this.suggUsersList = new ArrayList<>();
 		this.err = new ErrorPopup();
 		this.userImage.setImage(setUserImage());
+		this.imViewer = new ImageViewer();
 		setTravel();
 		setGroups();
 		setSuggUsers();
@@ -118,14 +119,17 @@ public class GraphicControllerHomePage extends BasicGui{
 		this.facade.getSamePersUsers(dataBeanList);
 		for(int i = 0; i < dataBeanList.size(); i++) {
 			VBox vbox= new VBox(7);
-			HBox hbox = new HBox(30);
+			HBox hbox = new HBox(3);
 			if(dataBeanList.get(i).getByteStream() != null) {
 				BufferedImage bufIm = this.imViewer.loadImage(dataBeanList.get(i).getByteStream());
 				ImageView ivProf = new ImageView();
 				ivProf.setImage(this.imViewer.convertToFxImage(bufIm));
+				ivProf.setFitHeight(50);
+				ivProf.setFitWidth(50);
 				hbox.getChildren().add(ivProf);
 			}
 			Text usr = new Text(dataBeanList.get(i).getUsername());
+			usr.setStyle("-fx-font: 24 arial;");
 			hbox.getChildren().add(usr);
 			Button btnChat = new Button("Chat with the user");
 			btnChat.setOnMouseClicked(this::openTheChat);
