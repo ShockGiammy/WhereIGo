@@ -244,6 +244,14 @@ window.scrollTo(0, document.body.scrollHeight);
 var objDiv = document.getElementById("chatMessages");
 objDiv.scrollTop = objDiv.scrollHeight;
 
+var input = document.getElementById("textMsg");
+input.addEventListener("keyup", function(event) {
+	if (event.keyCode === 13) {
+ 		event.preventDefault();
+ 		sendMessage();
+	}
+});
+
 function sendMessage() {
 	var message = document.getElementById("textMsg").value;
 	var receiver = document.getElementById("receiver").value;

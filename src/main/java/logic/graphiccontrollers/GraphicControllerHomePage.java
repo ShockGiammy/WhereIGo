@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
-import logic.ImageViewer;
 import logic.LoggedUser;
 import logic.UserType;
 import logic.beans.GroupBean;
@@ -30,7 +29,6 @@ public class GraphicControllerHomePage extends BasicGui{
 	@FXML private ListView<VBox> lwGroups;
 	@FXML private ListView<VBox> lwSuggUsers;
 	private ErrorPopup err;
-	private ImageViewer imViewer;
 	
 	@FXML
 	public void initialize() {
@@ -39,7 +37,6 @@ public class GraphicControllerHomePage extends BasicGui{
 		this.suggUsersList = new ArrayList<>();
 		this.err = new ErrorPopup();
 		this.userImage.setImage(setUserImage());
-		this.imViewer = new ImageViewer();
 		setTravel();
 		setGroups();
 		setSuggUsers();
@@ -121,9 +118,9 @@ public class GraphicControllerHomePage extends BasicGui{
 			VBox vbox= new VBox(7);
 			HBox hbox = new HBox(3);
 			if(dataBeanList.get(i).getByteStream() != null) {
-				BufferedImage bufIm = this.imViewer.loadImage(dataBeanList.get(i).getByteStream());
+				BufferedImage bufIm = facade.loadImage(dataBeanList.get(i).getByteStream());
 				ImageView ivProf = new ImageView();
-				ivProf.setImage(this.imViewer.convertToFxImage(bufIm));
+				ivProf.setImage(facade.convertToFxImage(bufIm));
 				ivProf.setFitHeight(50);
 				ivProf.setFitWidth(50);
 				hbox.getChildren().add(ivProf);

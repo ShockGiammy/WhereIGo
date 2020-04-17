@@ -30,7 +30,6 @@ public class ControllerFacade {
 	private ImageViewer viewer;
 	
 	public ControllerFacade() {
-		this.chatController = new ChatController(this);
 	}
 	
 	/*ChatController references methods*/
