@@ -1,16 +1,26 @@
 package logic.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class UserModel {
 	private String name;
 	private String surname;
-	private String dateOfBirth;
+	private LocalDate dateOfBirth;
 	private String gender;
 	private String username;
+	private String password;
 	private String personality;
 	private String userType;
 	private byte[] profPic;
+	private File profImage;
 	
-	public void setCredentials(String nameOfUsr, String surOfUsr, String dateOfB, String gend) {
+	public void setCredentials(String nameOfUsr, String surOfUsr, LocalDate dateOfB, String gend) {
 		this.name = nameOfUsr;
 		this.surname = surOfUsr;
 		this.dateOfBirth = dateOfB;
@@ -25,8 +35,20 @@ public class UserModel {
 		this.username = userName;
 	}
 	
+	public void setPaswd(String pass) {
+		this.password = pass;
+	}
+	
+	public void setUserType(String utype) {
+		this.userType = utype;
+	}
+	
 	public void setPic(byte[] propic) {
 		profPic = propic;
+	}
+	
+	public void setImage(File usrImage) {
+		this.profImage = usrImage;
 	}
 	
 	public String getName() {
@@ -37,7 +59,7 @@ public class UserModel {
 		return this.surname;
 	}
 	
-	public String getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return this.dateOfBirth;
 	}
 	
@@ -57,7 +79,25 @@ public class UserModel {
 		return this.userType;
 	}
 	
+	public String getPaswd() {
+		return this.password;
+	}
+	
 	public byte[] getProfilePic() {
 		return this.profPic;
+	}
+	
+	public InputStream getInputFile() {
+		InputStream imageInputFile = null;
+		try {
+			imageInputFile = new FileInputStream(this.profImage);
+		} catch (FileNotFoundException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}
+		return imageInputFile;
+	}
+	
+	public long getFileLength() {
+		return this.profImage.length();
 	}
 }

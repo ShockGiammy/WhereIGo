@@ -18,11 +18,6 @@ public class GraphicControllerLocationInfo extends BasicGui{
 	@FXML private ImageView locImm;
 	@FXML private Button backButton;
 	
-	@FXML
-	public void initialize() {
-		this.userImage.setImage(setUserImage());
-	}
-	
 	public void setInfo(LocationBean bean) {
 		BufferedImage bufImage;
 		bufImage = facade.loadImage(bean.getStream());

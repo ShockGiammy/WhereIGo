@@ -15,6 +15,7 @@ import logic.dao.TravelDao;
 import logic.dao.UserDao;
 import logic.exceptions.GroupNameTakenException;
 import logic.model.GroupModel;
+import logic.model.LocationModel;
 import logic.model.TicketModel;
 import logic.model.UserModel;
 
@@ -39,10 +40,10 @@ public class BookTravelControl {
 	
 	public List<String> showLocationsControl() {
 		List<String> suggLoc = new ArrayList<>();
-		UserDataBean dataBean = new UserDataBean();
-		dataBean.setUserName(this.logUser.getUserName());
-		dataBean.setPersonality(this.logUser.getPersonality());
-		suggLoc.addAll(this.locDao.getSuggestedLocations(dataBean));
+		UserModel usrModel = new UserModel();
+		usrModel.setUserName(this.logUser.getUserName());
+		usrModel.setUserPersonality(this.logUser.getPersonality());
+		suggLoc.addAll(this.locDao.getSuggestedLocations(usrModel));
 		return suggLoc;
 	}
 	
@@ -73,7 +74,12 @@ public class BookTravelControl {
 	}
 	
 	public void retriveLocInfoControl(LocationBean bean) {
-		this.locDao.retriveLocationInfo(bean);
+		LocationModel locModel = new LocationModel();
+		locModel.setCity(bean.getCityName());
+		this.locDao.retriveLocationInfo(locModel);
+		bean.setCountryName(locModel.getCountry());
+		bean.setDescription(locModel.getDescription());
+		bean.setStream(locModel.getPhoto());
 	}
 	
 	public int retriveTravelSolutionsControl(UserTravelBean travBean, List<UserTravelBean> travList) {
@@ -84,9 +90,10 @@ public class BookTravelControl {
 				return -1;
 			}
 			else {
-				UserDataBean dataBean = new UserDataBean();
-				dataBean.setUserName(this.logUser.getUserName());
-				tickList.addAll(travDao.retriveAvailableTickets(travBean, dataBean));
+				this.usrMod.setUserName(this.logUser.getUserName());
+				TicketModel tick = new TicketModel();
+				tick.setAll(travBean.getCityOfDep(), travBean.getCityOfArr(), LocalDate.parse(travBean.getFirstDay()), LocalDate.parse(travBean.getLastDay()));
+				tickList.addAll(travDao.retriveAvailableTickets(tick, usrMod));
 				if(tickList.isEmpty()) {
 					return -1;
 				}
@@ -112,17 +119,17 @@ public class BookTravelControl {
 	
 	public void saveBoughtTicketControl(UserTravelBean travBean) {
 		TicketModel tick = new TicketModel();
-		tick.setAll(travBean.getId(), travBean.getCityOfDep(), travBean.getCityOfArr(), LocalDate.parse(travBean.getFirstDay()), LocalDate.parse(travBean.getLastDay()), travBean.getCost());
-		UserDataBean dataBean = new UserDataBean();
-		dataBean.setUserName(this.logUser.getUserName());
-		this.travDao.saveBoughtTickets(tick, dataBean);
+		tick.setAll(travBean.getCityOfDep(), travBean.getCityOfArr(), LocalDate.parse(travBean.getFirstDay()), LocalDate.parse(travBean.getLastDay()));
+		tick.setId(Integer.parseInt(travBean.getId()));
+		tick.setCost(Float.parseFloat(travBean.getCost()));
+		this.usrMod.setUserName(this.logUser.getUserName());
+		this.travDao.saveBoughtTickets(tick, this.usrMod);
 	}
 	
 	public void getBookedTicketsControl(List<UserTravelBean> travBeanList) {
-		UserDataBean dataBean = new UserDataBean();
-		dataBean.setUserName(logUser.getUserName());
+		this.usrMod.setUserName(logUser.getUserName());
 		List<TicketModel> tickList = new ArrayList<>();
-		this.travDao.getUserTickets(dataBean, tickList);
+		this.travDao.getUserTickets(usrMod, tickList);
 		int i;
 		for(i = 0; i < tickList.size(); i++) {
 			UserTravelBean bean = new UserTravelBean();
@@ -152,9 +159,10 @@ public class BookTravelControl {
 	public List<UserTravelBean> getSuggTicketsInfoControl(UserTravelBean travBean) {
 		List<TicketModel> tickList = new ArrayList<>();
 		List<UserTravelBean> travList = new ArrayList<>();
-		UserDataBean dataBean = new UserDataBean();
-		dataBean.setUserName(this.logUser.getUserName());
-		this.travDao.getSuggestedTickets(travBean,dataBean, tickList);
+		this.usrMod.setUserName(this.logUser.getUserName());
+		TicketModel tickMod = new TicketModel();
+		tickMod.setArrCity(travBean.getCityOfArr());
+		this.travDao.getSuggestedTickets(tickMod,this.usrMod, tickList);
 		int i;
 		for(i = 0; i < tickList.size(); i++) {
 			UserTravelBean trav = new UserTravelBean();
@@ -176,11 +184,10 @@ public class BookTravelControl {
 	}
 	
 	public void deleteSavedTravelControl(UserTravelBean travBean) {
-		UserDataBean dataBean = new UserDataBean();
-		dataBean.setUserName(this.logUser.getUserName());
+		this.usrMod.setUserName(this.logUser.getUserName());
 		TicketModel tickModel = new TicketModel();
-		tickModel.setId(travBean.getId());
-		this.travDao.deleteTick(tickModel, dataBean);
+		tickModel.setId(Integer.parseInt(travBean.getId()));
+		this.travDao.deleteTick(tickModel, usrMod);
 	}
 	
 	public void deleteTravelGroupControl(GroupBean grpBean) {

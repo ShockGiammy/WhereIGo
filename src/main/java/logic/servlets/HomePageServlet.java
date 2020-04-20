@@ -69,8 +69,7 @@ public class HomePageServlet extends HttpServlet {
 		ControllerFacade fac = new ControllerFacade();
 		List<String> cities = new ArrayList<>();
 		List<GroupBean> beanList = new ArrayList<>();
-		cities.addAll(fac.showLocations());
-		fac.getGroups(beanList);
+		fac.loadBookTravSuggestion(cities, beanList);
 		request.setAttribute("grouplist", beanList);
 		request.setAttribute("cities", cities);
 		if(beanList.isEmpty() && cities.isEmpty()) {

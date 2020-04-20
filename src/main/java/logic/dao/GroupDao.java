@@ -84,9 +84,9 @@ public class GroupDao {
 		}
 	}
 	
-	public void getPartGroups(List<GroupModel> grpModel, UserModel bean) {
+	public void getPartGroups(List<GroupModel> grpModel, UserModel usrMod) {
 		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select groupowner,title,travcity from travelgroups join participatesto on participatesto.grp = travelgroups.title where(participant =?)")){
-			statement.setString(1, bean.getUserName());
+			statement.setString(1, usrMod.getUserName());
 			fetchPartGroup(statement, grpModel);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());

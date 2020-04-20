@@ -148,14 +148,10 @@ public class ControllerFacade {
 	
 	/*BookTravelControl references methods*/
 	
-	public List<String> showLocations() {
+	public void loadBookTravSuggestion(List<String> suggLoc, List<GroupBean> gBeanList) {
 		this.bookTravCtrl = new BookTravelControl();
-		return this.bookTravCtrl.showLocationsControl();
-	}
-	
-	public void getGroups(List<GroupBean> beanList) {
-		this.bookTravCtrl = new BookTravelControl();
-		this.bookTravCtrl.getSuggestedGroupsControl(beanList);
+		suggLoc.addAll(this.bookTravCtrl.showLocationsControl());
+		this.bookTravCtrl.getSuggestedGroupsControl(gBeanList);
 	}
 	
 	public void retriveLocInfo(LocationBean bean) {
@@ -173,19 +169,16 @@ public class ControllerFacade {
 		this.bookTravCtrl.saveBoughtTicketControl(travBean);
 	}
 	
-	public void getBookedTickets(List<UserTravelBean> travBeanList) {
+	public void getTravHomePageDatas(List<UserTravelBean> travBeanList, List<GroupBean> grpBean, List<UserDataBean> usrList) {
 		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.getBookedTicketsControl(travBeanList);
+		this.bookTravCtrl.getUserGroupsControl(grpBean);
+		this.bookTravCtrl.getSamePersUsersControl(usrList);
 	}
 	
 	public void saveGroup(GroupBean grpBean) throws GroupNameTakenException {
 		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.saveGroupControl(grpBean);
-	}
-	
-	public void getUserGroups(List<GroupBean> grpBean) {
-		this.bookTravCtrl = new BookTravelControl();
-		this.bookTravCtrl.getUserGroupsControl(grpBean);
 	}
 	
 	public List<UserTravelBean> getSuggTicketsInfo(UserTravelBean travBean) {
@@ -211,11 +204,6 @@ public class ControllerFacade {
 	public void leaveTravelGroup(GroupBean grpBean) {
 		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.leaveTravelGroupControl(grpBean);
-	}
-	
-	public void getSamePersUsers(List<UserDataBean> usrList) {
-		this.bookTravCtrl = new BookTravelControl();
-		this.bookTravCtrl.getSamePersUsersControl(usrList);
 	}
 	
 	/* methods calls of the Interest Controller*/

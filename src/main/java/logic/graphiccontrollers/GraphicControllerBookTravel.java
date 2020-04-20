@@ -24,6 +24,8 @@ public class GraphicControllerBookTravel extends BasicGui{
 	private LocationBean locBean;
 	private List<UserTravelBean> travBeanArray;
 	private ErrorPopup popUp;
+	private List<GroupBean> grpList;
+	private List<String> suggLoc;
 	@FXML private DatePicker firstDay;
 	@FXML private DatePicker lastDay;
 	@FXML private TextField departureCity;
@@ -44,6 +46,9 @@ public class GraphicControllerBookTravel extends BasicGui{
 		this.popUp = new ErrorPopup();
 		this.vboxlist = new ArrayList<>();
 		this.userImage.setImage(setUserImage());
+		this.grpList = new ArrayList<>();
+		this.suggLoc = new ArrayList<>();
+		this.facade.loadBookTravSuggestion(suggLoc, grpList);
 		setLocation();
 		setGroups();
 	}
@@ -68,9 +73,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 
 	public void setGroups() {
 		if(this.logUsr.getPersonality() != null) {
-			List<GroupBean> grpList = new ArrayList<>();
 			int j;
-			this.facade.getGroups(grpList);
 			for(j = 0; j < grpList.size(); j++) {
 				VBox vbox = new VBox(10);
 				Text title = new Text(grpList.get(j).getGroupTitle());
@@ -90,8 +93,6 @@ public class GraphicControllerBookTravel extends BasicGui{
 			this.popUp.displayLoginError("No suggested location/travel groups to be shown. Please,take personality test");
 		}
 		else {
-			List<String> suggLoc = new ArrayList<>();
-			suggLoc.addAll(facade.showLocations());
 			int i;
 			for(i = 0; i < suggLoc.size(); i++) {
 				HBox hbox = new HBox(20);

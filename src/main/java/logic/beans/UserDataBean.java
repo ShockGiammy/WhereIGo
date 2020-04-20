@@ -1,8 +1,10 @@
 package logic.beans;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,8 +30,8 @@ public class UserDataBean {
 		this.surname = surname;
 	}
 	
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth.toString();
 	}
 	
 	public void setGender(String gender) {
@@ -118,5 +120,10 @@ public class UserDataBean {
 	
 	public File getFileImage() {
 		return this.profImage;
+	}
+	
+	/* method needed to the Servlets*/
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 }

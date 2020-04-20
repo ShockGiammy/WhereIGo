@@ -1,7 +1,6 @@
 package logic.graphiccontrollers;
-import java.io.File;
-import java.time.format.DateTimeFormatter;
 
+import java.io.File;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -35,7 +34,6 @@ public class GraphicControllerRegistration {
 	ObservableList<String> gendList = FXCollections.observableArrayList("Female", "Male", "Other");
 	ObservableList<String> typeUsrList = FXCollections.observableArrayList("Traveler", "Renter");
 	private UserDataBean dataBean;
-	private DateTimeFormatter formatter;
 	private ErrorPopup errLogin;
 	private File profileImage;
 	private BasicGui bgui;
@@ -44,7 +42,6 @@ public class GraphicControllerRegistration {
 	@FXML
 	public void initialize(){
 		this.dataBean = new UserDataBean();
-		this.formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
 		this.gender.setItems(gendList);
 		this.typeOfUser.setItems(typeUsrList);
 		this.gender.setValue("Female");
@@ -65,8 +62,7 @@ public class GraphicControllerRegistration {
 	}
 	
 	public void getDateOfBirth() {
-		String birth = this.dateOfBirth.getValue().format(formatter);
-		this.dataBean.setDateOfBirth(birth);
+		this.dataBean.setDateOfBirth(this.dateOfBirth.getValue());
 	}
 	
 	public void getUserName() {

@@ -18,29 +18,26 @@ import javafx.scene.layout.VBox;
 import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
-import logic.controllers.BookTravelControl;
 import logic.view.BasicGui;
 
 public class GraphicControllerTickets extends BasicGui{
 	@FXML private TableView<UserTravelBean> ticketsView;
-	@FXML private TableColumn<UserTravelBean, Integer> ticketId;
+	@FXML private TableColumn<UserTravelBean, String> ticketId;
 	@FXML private TableColumn<UserTravelBean, String> departureCity;
 	@FXML private TableColumn<UserTravelBean, String> arrivalCity;
 	@FXML private TableColumn<UserTravelBean, String> departureDay;
 	@FXML private TableColumn<UserTravelBean, String> arrivalDate;
-	@FXML private TableColumn<UserTravelBean, Float> cost;
+	@FXML private TableColumn<UserTravelBean, String> cost;
 	@FXML private List<RadioButton> rbList;
 	@FXML private ToggleGroup bookNowGroup;
 	@FXML private VBox vbox;
 	@FXML private Button bookTheTravel;
-	BookTravelControl bookTravCtrl;
 	ObservableList<UserTravelBean> travBeanList = FXCollections.observableArrayList();
 	
 	@FXML
 	public void initialize() {
 		this.bookNowGroup = new ToggleGroup();
 		this.rbList = new ArrayList<>();
-		bookTravCtrl = new BookTravelControl();
 		this.userImage.setImage(setUserImage());
 	}
 	
@@ -71,12 +68,12 @@ public class GraphicControllerTickets extends BasicGui{
 		UserTravelBean travBean = new UserTravelBean();
 		for(i = 0; i < this.rbList.size(); i++) {
 			if(this.bookNowGroup.getSelectedToggle().equals(this.rbList.get(i))) {
-				travBean.setId(this.ticketId.getCellData(i));
+				travBean.setId(Integer.valueOf(this.ticketId.getCellData(i)));
 				travBean.setDepCity(this.departureCity.getCellData(i));
 				travBean.setArrCity(this.arrivalCity.getCellData(i));
 				travBean.setFirstDay(LocalDate.parse(this.departureDay.getCellData(i)));
 				travBean.setLastDay(LocalDate.parse(this.arrivalDate.getCellData(i)));
-				travBean.setCost(this.cost.getCellData(i));
+				travBean.setCost(Float.parseFloat(this.cost.getCellData(i)));
 				LoggedUser logusr = new LoggedUser();
 				UserDataBean dataBean = new UserDataBean();
 				dataBean.setUserName(logusr.getUserName());

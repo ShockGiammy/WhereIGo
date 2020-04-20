@@ -34,13 +34,11 @@ public class ChangePageServlet extends HttpServlet{
 	public void loadHomePageUserInfo(HttpServletRequest request) {
 		ControllerFacade facCtrl = new ControllerFacade();
 		List<UserTravelBean> travBeanList = new ArrayList<>();
-		facCtrl.getBookedTickets(travBeanList);
-		request.setAttribute("travels", travBeanList);
 		List<GroupBean> gBeanList = new ArrayList<>();
-		facCtrl.getUserGroups(gBeanList);
-		request.setAttribute("groups", gBeanList);
 		List<UserDataBean> dBeanList = new ArrayList<>();
-		facCtrl.getSamePersUsers(dBeanList);
+		facCtrl.getTravHomePageDatas(travBeanList, gBeanList, dBeanList);
+		request.setAttribute("travels", travBeanList);
+		request.setAttribute("groups", gBeanList);
 		request.setAttribute("users", dBeanList);
 	}
 }

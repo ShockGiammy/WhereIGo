@@ -1,10 +1,9 @@
 package logic.dao;
 
 import logic.SingletonDbConnection;
-import logic.beans.UserDataBean;
 import logic.exceptions.DuplicateUsernameException;
 import logic.model.UserModel;
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,12 +26,12 @@ public class UserDao {
 		}
 	}
 	
-	public int checkLogInInfo(UserDataBean bean) {
+	public int checkLogInInfo(UserModel usrMod) {
 		int ret = 0;
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT tipeOfUser,tipeOfPersonality,profilePicture FROM usr WHERE (username=? and passw=?)")){    
-			statement.setString(1,bean.getUsername());
-			statement.setString(2,bean.getPassword());
-			ret = getLoggedUser(statement, bean);
+			statement.setString(1,usrMod.getUserName());
+			statement.setString(2,usrMod.getPaswd());
+			ret = getLoggedUser(statement, usrMod);
 		}catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred during the fetch of credentials", e);
 		}
@@ -42,16 +41,16 @@ public class UserDao {
 		return ret;
 	}
 	
-	public void insertNewUser(UserDataBean usrBean) throws DuplicateUsernameException {
+	public void insertNewUser(UserModel usrModel) throws DuplicateUsernameException {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO usr(username, passw, nome, surname, dateOfBirth, gender, tipeOfUser, profilePicture, userStatus) VALUES(?,?,?,?,?,?,?,?,?)")){
-			statement.setString(1, usrBean.getUsername());
-			statement.setString(2, usrBean.getPassword());
-			statement.setString(3, usrBean.getName());
-			statement.setString(4, usrBean.getSurname());
-			statement.setString(5, usrBean.getDateOfBirth());
-			statement.setString(6, usrBean.getGender());
-			statement.setString(7, usrBean.getType());
-			statement.setBinaryStream(8, usrBean.getInputFile(), usrBean.getFileLength());
+			statement.setString(1, usrModel.getUserName());
+			statement.setString(2, usrModel.getPaswd());
+			statement.setString(3, usrModel.getName());
+			statement.setString(4, usrModel.getSurname());
+			statement.setDate(5, Date.valueOf(usrModel.getDateOfBirth()));
+			statement.setString(6, usrModel.getGender());
+			statement.setString(7, usrModel.getUserType());
+			statement.setBinaryStream(8, usrModel.getInputFile(), usrModel.getFileLength());
 			statement.setString(9, "offline");
 			statement.execute();
 		}catch(SQLException e) {
@@ -64,10 +63,10 @@ public class UserDao {
 		}
 	}
 	
-	public void getUserDatas(UserDataBean usrBean) {
+	public void getUserDatas(UserModel usrModel) {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT * FROM usr WHERE (username = ?)")){
-			statement.setString(1, usrBean.getUsername());
-			retriveUser(statement, usrBean);
+			statement.setString(1, usrModel.getUserName());
+			retriveUser(statement, usrModel);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException on fetchin user datas\n", e);
 		}
@@ -76,14 +75,14 @@ public class UserDao {
 		}
 	}
 	
-	public int getLoggedUser(PreparedStatement statement, UserDataBean usrBean) {
+	public int getLoggedUser(PreparedStatement statement, UserModel usrMod) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
-				usrBean.setType(rs.getString(1));
+				usrMod.setUserType(rs.getString(1));
 				if(rs.getString(2) != null) {
-					usrBean.setPersonality(rs.getString(2));
+					usrMod.setUserPersonality(rs.getString(2));
 				}
-				usrBean.setByteSteam(rs.getBytes(3));
+				usrMod.setPic(rs.getBytes(3));
 				return 1;
 			}
 		}catch(SQLException e) {
@@ -92,15 +91,14 @@ public class UserDao {
 		return 0;
 	}
 	
-	public void retriveUser(PreparedStatement statement, UserDataBean usrBean) {
+	public void retriveUser(PreparedStatement statement, UserModel usrModel) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
-				usrBean.setName(rs.getString(3));
-				usrBean.setSurname(rs.getString(4));
-				usrBean.setDateOfBirth(rs.getString(5));
-				usrBean.setGender(rs.getString(6));
-				usrBean.setType(rs.getString(7));
-				usrBean.setPersonality(rs.getString(8));
+				usrModel.setCredentials(rs.getString(3), rs.getString(4), rs.getDate(5).toLocalDate(), rs.getString(6));
+				usrModel.setUserType(rs.getString(7));
+				if(rs.getString(8) != null) {
+					usrModel.setUserPersonality(rs.getString(8));
+				}
 			}
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "ResultSet fetch fail !", e);

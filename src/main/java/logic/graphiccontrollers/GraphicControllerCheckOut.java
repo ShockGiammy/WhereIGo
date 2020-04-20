@@ -49,7 +49,7 @@ public class GraphicControllerCheckOut extends BasicGui{
 	}
 	
 	public void saveNewGroup() {
-		if(this.groupName.getText() == null) {
+		if(this.groupName.getText().equalsIgnoreCase("")) {
 			errPop.displayLoginError("Inserisci il nome del gruppo");
 		}
 		else {

@@ -1,32 +1,30 @@
 /* This dao is in charge of retrive datas about all the flight tickets currently available*/
-
 package logic.dao;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logic.model.TicketModel;
+import logic.model.UserModel;
 import logic.SingletonDbConnection;
-import logic.beans.UserDataBean;
-import logic.beans.UserTravelBean;
 import java.sql.Date;
 
 public class TravelDao {
 	
-	public List<TicketModel> retriveAvailableTickets(UserTravelBean travBean, UserDataBean bean) throws SQLException {
+	public List<TicketModel> retriveAvailableTickets(TicketModel tickMod, UserModel usrMod) throws SQLException {
 		List<TicketModel> tickets = new ArrayList<>();
-		if(checkIfBooked(travBean, bean)) {
+		if(checkIfBooked(tickMod, usrMod)) {
 			return tickets;
 		}
 		try(PreparedStatement prep = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT * FROM Tickets WHERE (depCity=? and arrCity=? and dateOfDep=? and dateOfArr=? and numOfTick > 0)")) {
-			prep.setString(1, travBean.getCityOfDep());
-			prep.setString(2, travBean.getCityOfArr());
-			prep.setString(3, Date.valueOf(travBean.getFirstDay()).toString());
-			prep.setString(4, Date.valueOf(travBean.getLastDay()).toString());
+			prep.setString(1, tickMod.getDepCity());
+			prep.setString(2, tickMod.getArrCity());
+			prep.setString(3, Date.valueOf(tickMod.getDepDay()).toString());
+			prep.setString(4, Date.valueOf(tickMod.getArrDay()).toString());
 			ticketQuery(tickets, prep);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Error while retriving tickets\n",e);
@@ -39,30 +37,26 @@ public class TravelDao {
 	
 	public void ticketQuery(List<TicketModel> list, PreparedStatement prep) {
 		try (ResultSet rs = prep.executeQuery()){
-			while(rs.next()) {
-				TicketModel tick= new TicketModel();
-				tick.setAll(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getFloat(6));
-				list.add(tick);
-			}
+			setFetchedTick(rs, list);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "ResultSet null \n",e);
 		}
 	}
 	
-	public boolean checkIfBooked(UserTravelBean trav, UserDataBean dataBean) {
+	public boolean checkIfBooked(TicketModel tickMod, UserModel usrMod) {
 		List<TicketModel> tickList = new ArrayList<>();
-		getUserTickets(dataBean, tickList);
+		getUserTickets(usrMod, tickList);
 		for(int i = 0; i < tickList.size(); i++) {
-			if((tickList.get(i).getDepCity().toLowerCase()).equals(trav.getCityOfDep()) && (tickList.get(i).getArrCity().toLowerCase()).equals(trav.getCityOfArr()) && tickList.get(i).getDepDay().compareTo(LocalDate.parse(trav.getFirstDay())) == 0 && tickList.get(i).getArrDay().compareTo(LocalDate.parse(trav.getLastDay())) == 0) {
+			if((tickList.get(i).getDepCity().toLowerCase()).equals(tickMod.getDepCity()) && (tickList.get(i).getArrCity().toLowerCase()).equals(tickMod.getArrCity()) && tickList.get(i).getDepDay().compareTo(tickMod.getDepDay()) == 0 && tickList.get(i).getArrDay().compareTo(tickMod.getArrDay()) == 0) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public void saveBoughtTickets(TicketModel tick, UserDataBean dataBean) {
+	public void saveBoughtTickets(TicketModel tick, UserModel dataBean) {
 		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Buys(ticket, passenger) VALUES(?,?)")){
-			statement.setString(2, dataBean.getUsername());
+			statement.setString(2, dataBean.getUserName());
 			statement.setInt(1, tick.getId());
 			statement.execute();
 			updateNumberOfTickets(tick,0);
@@ -99,9 +93,9 @@ public class TravelDao {
 		}
 	}
 	
-	public void getUserTickets(UserDataBean dataBean, List<TicketModel> tickList) {
+	public void getUserTickets(UserModel usrMod, List<TicketModel> tickList) {
 		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT * FROM tickets JOIN buys on tickets.ID = buys.ticket WHERE (passenger=?)")){
-			statement.setString(1, dataBean.getUsername());
+			statement.setString(1, usrMod.getUserName());
 			fetchTickets(statement, tickList);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching tickets\n",e);
@@ -113,20 +107,16 @@ public class TravelDao {
 	
 	public void fetchTickets(PreparedStatement statement, List<TicketModel> tickList) {
 		try(ResultSet rs = statement.executeQuery()){
-			while(rs.next()) {
-				TicketModel tick = new TicketModel();
-				tick.setAll(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getFloat(6));
-				tickList.add(tick);
-			}
+			setFetchedTick(rs, tickList);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot manipulate tickets resultset \n",e);
 		}
 	}
 	
-	public void deleteTick(TicketModel tickModel, UserDataBean dataBean) {
+	public void deleteTick(TicketModel tickModel, UserModel usrMod) {
 		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("delete from Buys where ticket=? and passenger=?")){
 			statement.setInt(1, tickModel.getId());
-			statement.setString(2, dataBean.getUsername());
+			statement.setString(2, usrMod.getUserName());
 			statement.execute();
 			updateNumberOfTickets(tickModel, 1);
 		}catch(SQLException e) {
@@ -137,13 +127,13 @@ public class TravelDao {
 		}
 	}
 	
-	public void getSuggestedTickets(UserTravelBean travBean, UserDataBean dataBean, List<TicketModel> tickList) {
-		if(checkIfSuggBooked(travBean, dataBean)) {
+	public void getSuggestedTickets(TicketModel tickMod, UserModel usrMod, List<TicketModel> tickList) {
+		if(checkIfSuggBooked(tickMod, usrMod)) {
 			return;
 		}
 		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select ID, depCity, dateOfDep, dateOfArr, cost from tickets where(arrCity=? and numoftick > 0)")){
-			statement.setString(1, travBean.getCityOfArr());
-			findSuggTickets(statement, tickList, travBean);
+			statement.setString(1, tickMod.getArrCity());
+			findSuggTickets(statement, tickList, tickMod);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE,e.getMessage());
 		}
@@ -152,11 +142,13 @@ public class TravelDao {
 		}
 	}
 	
-	public void findSuggTickets(PreparedStatement statement, List<TicketModel> tickList, UserTravelBean travBean) {
+	public void findSuggTickets(PreparedStatement statement, List<TicketModel> tickList, TicketModel tickModel) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				TicketModel tick = new TicketModel();
-				tick.setAll(rs.getInt(1), rs.getString(2), travBean.getCityOfArr(), rs.getDate(3).toLocalDate(), rs.getDate(4).toLocalDate(), rs.getFloat(5));
+				tick.setAll(rs.getString(2), tickModel.getArrCity(), rs.getDate(3).toLocalDate(), rs.getDate(4).toLocalDate());
+				tick.setId(rs.getInt(1));
+				tick.setCost(rs.getFloat(5));
 				tickList.add(tick);
 			}
 		}catch(SQLException e) {
@@ -164,14 +156,28 @@ public class TravelDao {
 		}
 	}
 	
-	public boolean checkIfSuggBooked(UserTravelBean travBean, UserDataBean dataBean) {
+	public boolean checkIfSuggBooked(TicketModel tickMod, UserModel usrMod) {
 		List<TicketModel> tickList = new ArrayList<>();
-		getUserTickets(dataBean, tickList);
+		getUserTickets(usrMod, tickList);
 		for(int i = 0; i < tickList.size(); i++) {
-			if(tickList.get(i).getArrCity().equalsIgnoreCase(travBean.getCityOfArr())) {
+			if(tickList.get(i).getArrCity().equalsIgnoreCase(tickMod.getArrCity())) {
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public void setFetchedTick(ResultSet rs, List<TicketModel> tickList) {
+		try {
+			while(rs.next()) {
+				TicketModel tick= new TicketModel();
+				tick.setAll(rs.getString(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate());
+				tick.setId(rs.getInt(1));
+				tick.setCost(rs.getFloat(6));
+				tickList.add(tick);
+			}
+		}catch(SQLException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot manipulate tickets resultset \n",e);
+		}
 	}
 }

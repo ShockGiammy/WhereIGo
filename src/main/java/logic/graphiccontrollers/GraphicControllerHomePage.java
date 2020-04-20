@@ -29,6 +29,9 @@ public class GraphicControllerHomePage extends BasicGui{
 	@FXML private ListView<VBox> lwGroups;
 	@FXML private ListView<VBox> lwSuggUsers;
 	private ErrorPopup err;
+	private List<UserTravelBean> travBean;
+	private List<GroupBean> grpBean;
+	private List<UserDataBean> dataBeanList;
 	
 	@FXML
 	public void initialize() {
@@ -37,6 +40,10 @@ public class GraphicControllerHomePage extends BasicGui{
 		this.suggUsersList = new ArrayList<>();
 		this.err = new ErrorPopup();
 		this.userImage.setImage(setUserImage());
+		this.travBean = new ArrayList<>();
+		this.grpBean = new ArrayList<>();
+		this.dataBeanList = new ArrayList<>();
+		this.facade.getTravHomePageDatas(this.travBean, this.grpBean, this.dataBeanList);
 		setTravel();
 		setGroups();
 		setSuggUsers();
@@ -63,8 +70,6 @@ public class GraphicControllerHomePage extends BasicGui{
 	}
 	
 	public void setTravel() {
-		List<UserTravelBean> travBean = new ArrayList<>();
-		this.facade.getBookedTickets(travBean);
 		int i;
 		for(i = 0; i < travBean.size(); i++) {
 			VBox vbox = new VBox(7);
@@ -83,8 +88,6 @@ public class GraphicControllerHomePage extends BasicGui{
 	}
 	
 	public void setGroups() {
-		List<GroupBean> grpBean = new ArrayList<>();
-		this.facade.getUserGroups(grpBean);
 		int i;
 		for(i = 0; i < grpBean.size(); i++) {
 			VBox vbox = new VBox(7);
@@ -112,8 +115,6 @@ public class GraphicControllerHomePage extends BasicGui{
 	}
 	
 	public void setSuggUsers() {
-		List<UserDataBean> dataBeanList = new ArrayList<>();
-		this.facade.getSamePersUsers(dataBeanList);
 		for(int i = 0; i < dataBeanList.size(); i++) {
 			VBox vbox= new VBox(7);
 			HBox hbox = new HBox(3);
