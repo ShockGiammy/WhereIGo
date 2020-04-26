@@ -44,7 +44,6 @@ public class MessageFactory {
 			createMessage.setMsg(msg);
 			createMessage.setGroupOrReceiver(receiver);
 			createMessage.setType(messageType);
-			//chatDao.saveMessage(createMessage); no SAVE
 		}
 		else {
 			createMessage = new GroupMessage();
@@ -52,7 +51,6 @@ public class MessageFactory {
 			createMessage.setMsg(msg);
 			createMessage.setGroupOrReceiver(receiver);
 			createMessage.setType(messageType);
-			//chatDao.saveMessage(createMessage); no SAVE
 		}
 		return createMessage;
 	}
@@ -63,7 +61,6 @@ public class MessageFactory {
 			createMessage.setName(sender);
 			createMessage.setMsg(msg);
 			createMessage.setGroupOrReceiver(receiver);
-			chatDao.saveMessage(createMessage); // sposta nel messaggio
-		}
+			createMessage.save();		}
 	}
 }

@@ -1,13 +1,14 @@
 package logic.model;
 
 import logic.controllers.ChatType;
+import logic.dao.ChatDao;
 
 public class PrivateMessage implements Message {
 
 	private static final long serialVersionUID = 1L;
 	private String name;
     private MessageType type;
-    private String msg;
+    private String privateMsg;
     private String receiver;
     private ChatType chatType = ChatType.PRIVATE;
     private String status;
@@ -21,11 +22,11 @@ public class PrivateMessage implements Message {
     }
 
     public String getMsg() {
-        return msg;
+        return privateMsg;
     }
 
     public void setMsg(String msg) {
-        this.msg = msg;
+        this.privateMsg = msg;
     }
 
     public MessageType getType() {
@@ -54,5 +55,10 @@ public class PrivateMessage implements Message {
 
 	public ChatType getChatType() {
 		return chatType;
+	}
+	
+	public void save() {
+		ChatDao dao = new ChatDao();
+		dao.saveMessage(this);
 	}
 }

@@ -1,47 +1,53 @@
 package logic.model;
 
 import logic.controllers.ChatType;
+import logic.dao.ChatDao;
 
 public class GroupMessage implements Message{
 	
 	private static final long serialVersionUID = 1L;
-	private String name;
+	private String myName;
     private MessageType type;
-    private String msg;
+    private String groupMsg;
     private String group;
     private ChatType chatType = ChatType.GROUP;
-    private String status;
+    private String myStatus;
 
     public String getName() {
-        return name;
+        return myName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.myName = name;
     }
 
     public String getMsg() {
-        return msg;
+        return groupMsg;
     }
 
     public void setMsg(String msg) {
-        this.msg = msg;
+        this.groupMsg = msg;
     }
 
     public MessageType getType() {
         return type;
     }
+    
+    public void save() {
+		ChatDao dao = new ChatDao();
+		dao.saveMessage(this);
+	}
 
     public void setType(MessageType type) {
         this.type = type;
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        this.myStatus = status;
     }
 
     public String getStatus() {
-        return status;
+        return myStatus;
     }
 
 	public String getGroupOrReceiver() {

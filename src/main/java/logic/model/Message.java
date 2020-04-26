@@ -17,4 +17,5 @@ public interface Message extends Serializable{
 	public String getGroupOrReceiver();
 	public void setGroupOrReceiver(String usersGroup);
 	public ChatType getChatType();
+	public void save();
 }
