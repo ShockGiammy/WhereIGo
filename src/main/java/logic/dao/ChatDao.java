@@ -11,17 +11,18 @@ import java.util.logging.Logger;
 
 import logic.SingletonDbConnection;
 import logic.model.Message;
+import logic.model.PrivateMessage;
 import logic.model.User;
 
 public class ChatDao {
 	
 	private static final String EXCEPTION = "Got an exception!";
 
-	public void saveMessage(Message msg) {
+	public void saveMessage(Message createMessage) {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Chat (sender, receiver, message) VALUES (?, ?, ?)")){  
-			statement.setString(1, msg.getName());
-			statement.setString(2, msg.getGroupOrReceiver());
-			statement.setString(3, msg.getMsg());
+			statement.setString(1, createMessage.getName());
+			statement.setString(2, createMessage.getGroupOrReceiver());
+			statement.setString(3, createMessage.getMsg());
 			statement.execute();
 		}
 		catch (SQLException e) {
@@ -102,7 +103,7 @@ public class ChatDao {
 	public void retriveSavedMessages(PreparedStatement statement, List<Message> messages) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
-				Message message = new Message();
+				PrivateMessage message = new PrivateMessage();
 				message.setName(rs.getString(2));
 				message.setMsg(rs.getString(4));
 				messages.add(message);
@@ -199,7 +200,7 @@ public class ChatDao {
 		return status;
 	}
 	
-	public void createNewChat(Message msg) {
+	public void createNewChat(PrivateMessage msg) {
 		if (getSavedMsg(msg.getName(), msg.getGroupOrReceiver()).isEmpty()) {
 			try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Chat (sender, receiver) VALUES (?, ?)")){  
 				statement.setString(1, msg.getName());

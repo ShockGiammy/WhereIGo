@@ -28,6 +28,7 @@ public class Listener implements Runnable{
 	private int myConnection = 0;
 	private boolean close = false;
 	private ChatType chatType;
+	private MessageFactory factory;
 
     public Listener(String hostname, int port, String username, ChatController controller, String usersGroup, ChatType type, Semaphore semaphore) {
         this.hostname = hostname;
@@ -37,6 +38,7 @@ public class Listener implements Runnable{
         this.usersGroup = usersGroup;
         this.chatType = type;
         this.semaphore = semaphore;
+        this.factory = new MessageFactory();
     }
 
     public void run() {
@@ -116,31 +118,20 @@ public class Listener implements Runnable{
     }
 
     public void send(String msg) throws IOException {
-        Message createMessage = new Message();
-        createMessage.setName(username);
-        createMessage.setType(MessageType.USER);
-        createMessage.setMsg(msg);
-        createMessage.setGroupOrReceiver(usersGroup);
+    	Message createMessage = factory.createMessage(username, chatType, msg, usersGroup, MessageType.USER);
         oos.writeObject(createMessage);
         oos.flush();
     }
-    
+
     /* This method is used to send a connecting message */
     public void connect() throws IOException {
-        Message createMessage = new Message();
-        createMessage.setName(username);
-        createMessage.setType(MessageType.CONNECTED);
-        createMessage.setChatType(chatType);
-        createMessage.setMsg(HASCONNECTED);
-        createMessage.setGroupOrReceiver(usersGroup);
+    	Message createMessage = factory.createMessage(username, chatType, HASCONNECTED, usersGroup, MessageType.CONNECTED);
         oos.writeObject(createMessage);
     }
-    
+
     public void closeConnection() throws IOException{
-    	logger.info("closeConnection method entered");  
-    	Message createMessage = new Message();
-        createMessage.setName(username);
-        createMessage.setType(MessageType.DISCONNECTED);
+    	logger.info("closeConnection method entered");
+    	Message createMessage = factory.createMessage(username, chatType, null, null, MessageType.DISCONNECTED);
         oos.writeObject(createMessage);
     }
 }

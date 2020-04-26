@@ -73,8 +73,8 @@ public class GraphicControllerChat extends BasicGui {
 			exitChat());
     }
 
-    public synchronized void addToChat(Message msg) {
-        if (msg.getName().equals(username)) {
+    public synchronized void addToChat(Message message) {
+        if (message.getName().equals(username)) {
         	HBox yourMessage = new HBox();
         	
         	ImageView profileImage = new ImageView();
@@ -83,7 +83,7 @@ public class GraphicControllerChat extends BasicGui {
             profileImage.setImage(myImage);
             
             Label bl6 = new Label();
-            bl6.setText(msg.getMsg());
+            bl6.setText(message.getMsg());
             bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, null, null)));
             yourMessage.setAlignment(Pos.TOP_RIGHT);
             bl6.setPadding(new Insets(pading, pading,pading, pading));
@@ -102,7 +102,7 @@ public class GraphicControllerChat extends BasicGui {
         	profileImage.setImage(pictureImage);
         	
             Label bl6 = new Label();
-            bl6.setText(msg.getName() + ": " + msg.getMsg());
+            bl6.setText(message.getName() + ": " + message.getMsg());
             bl6.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE,null, null)));
     		bl6.setPadding(new Insets(pading, pading, pading, pading));
             othersMessage.getChildren().addAll(profileImage, bl6);

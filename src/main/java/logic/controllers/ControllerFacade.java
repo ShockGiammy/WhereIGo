@@ -50,6 +50,9 @@ public class ControllerFacade {
 	}
 
 	public void createChat(String renter) {
+		if (chatController == null) {
+			chatController = new ChatController();
+		}
 		chatController.createChat(renter);
 	}
 	

@@ -22,9 +22,6 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
 	@FXML
 	public void initialize() {
 		this.userImage.setImage(setUserImage());
-	}
-	
-	public GraphicControllerRenterAccomodations() {
 		addCreateLabel();
 		List<RentAccomodationBean> listOfBean = facade.displayMyAnnouncement();
 		if (listOfBean.isEmpty()) {

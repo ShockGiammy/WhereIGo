@@ -32,7 +32,7 @@
       			%>
       			<li class="nav-item">
       				<div>
-              	  		<img src="data:image/jpg;base64, <%out.println(new String(Base64.getEncoder().encodeToString(image)));%>" height="45px" width="45px" alt="userImage" class="rounded-circle user_img_msg">       		
+              	  		<img src="data:image/jpg;base64, <%if (image!=null) { out.println(new String(Base64.getEncoder().encodeToString(image))); }%>" height="45px" width="45px" alt="userImage" class="rounded-circle user_img_msg">       		
               		</div>
               	</li>
       			<li class="nav-item">

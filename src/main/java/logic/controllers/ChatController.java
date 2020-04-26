@@ -30,6 +30,7 @@ public class ChatController {
 	private boolean alreadyActive = false;
 	private List<GroupModel> grpModel;
 	private User myUserModel;
+	private MessageFactory factory;
 	
 	public ChatController(ControllerFacade reference) {
 		chatDao = new ChatDao();
@@ -37,6 +38,7 @@ public class ChatController {
 		this.facade = reference;
 		this.logUser = new LoggedUser();
 		this.username = logUser.getUserName();
+		this.factory = new MessageFactory();
 		myUserModel = new User();
 		myUserModel.setName(username);
 		myUserModel.setStatus(ONLINE);
@@ -46,6 +48,7 @@ public class ChatController {
 	
 	public ChatController() {
 		chatDao = new ChatDao();
+		factory = new MessageFactory();
 	}
 	
 	public void modificateMyStatus(String status) {
@@ -54,12 +57,7 @@ public class ChatController {
 	}
 
 	public List<Message> openChat(String receiver, ChatType type) {
-		if (type == ChatType.PRIVATE) {
-			return chatDao.getSavedMsg(username, receiver);
-		}
-		else {
-			return chatDao.getGroupMsg(receiver);
-		}
+		return factory.openChat(username, receiver, type);
 	}
 	
 	public List<User> getUsers() {
@@ -118,18 +116,12 @@ public class ChatController {
 
 	public void createChat(String renter) {
 		logUser = new LoggedUser();
-		Message newMessage = new Message();
-		newMessage.setName(logUser.getUserName());
-		newMessage.setGroupOrReceiver(renter);
-		chatDao.createNewChat(newMessage);
+		factory.createChat(ChatType.PRIVATE, logUser.getUserName(), renter);
+		
 	}
 
 	public void sendMessage(String msg, String receiver) {
-		Message createMessage = new Message();
-		createMessage.setName(username);
-		createMessage.setMsg(msg);
-		createMessage.setGroupOrReceiver(receiver);
-		chatDao.saveMessage(createMessage);
+		factory.saveMessage(username, ChatType.PRIVATE, msg, receiver);
 		if (alreadyActive) {
 			try {
 				listener.send(msg);
@@ -147,8 +139,7 @@ public class ChatController {
 		facade.addAsServer(message);
 	}
 	
-	public void createGroup(String groupName, List<String> groupList) throws GroupNameTakenException {
-	
+	public void createGroup(String groupName, List<String> groupList) throws GroupNameTakenException {	
 		GroupModel grpMod = new GroupModel();
 		grpMod.setAll(this.logUser.getUserName(), groupName, null);
 		groupDao.saveUserGroup(grpMod);

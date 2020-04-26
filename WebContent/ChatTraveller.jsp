@@ -132,25 +132,25 @@ img{ max-width:100%;}
 <%@ page import="java.util.List" language="java" %>
 <%@ page import="logic.model.User" %>
 <%@ page import="java.util.Base64"%>
-<%@ page import="logic.model.Message" %>
+<%@ page import="logic.model.PrivateMessage" %>
 <%
-List<User> users = (List<User>)request.getAttribute("users");
+	List<User> users = (List<User>)request.getAttribute("users");
 List<String> groups = (List<String>)request.getAttribute("groups");
 %>
 <div class="container">
 <%
-User userChat = (User)request.getAttribute("userChat");
+	User userChat = (User)request.getAttribute("userChat");
 if (userChat!= null) {
 %>
-<h3 class=" text-center"><%=userChat.getName() %></h3>
-<input type="hidden" value="<%=userChat.getName() %>" id="receiver"/>
+<h3 class=" text-center"><%=userChat.getName()%></h3>
+<input type="hidden" value="<%=userChat.getName()%>" id="receiver"/>
 <%
-}
+	}
 else {
 %>
 <h3 class=" text-center">Chat</h3>
 <%
-}
+	}
 %>
 <div class="messaging">
       <div class="inbox_msg">
@@ -162,9 +162,9 @@ else {
           </div>
           <div class="inbox_chat">
           <%
-			for(User user : users) {
-				if (user.getPicture()!=null) {
-			%>
+          	for(User user : users) {
+          		if (user.getPicture()!=null) {
+          %>
             <div class="chat_list">
               <div class="chat_people">
                 <div class="chat_img"> 
@@ -178,8 +178,8 @@ else {
 			</div>
 			<%
 				}
-			}
-          	for(String group : groups) {
+				}
+			          	for(String group : groups) {
 			%>
 			<div class="chat_list">
               <div class="chat_people">
@@ -189,30 +189,30 @@ else {
               </div>
 			</div>
             <%
-			}
-			%>           
+            	}
+            %>           
           </div>
         </div>
         <div class="mesgs">
           <div class="msg_history" id="chatMessages">
           <%
-          User myInfo = (User)request.getAttribute("I");
-          String userName = myInfo.getName();
-          String myImage = null;
-          if (myInfo.getPicture()!= null) {
-        	  myImage = new String(Base64.getEncoder().encodeToString(myInfo.getPicture()));
-      	}
-          List<Message> chat = (List<Message>)request.getAttribute("chat");
-          String pictureImage = null;
-        	 
-          if (chat!= null) {
-        	if (userChat!= null) {
-    	  		pictureImage = new String(Base64.getEncoder().encodeToString(userChat.getPicture()));
-        	}
-          	for (Message message : chat) {
-      			if (message.getMsg() != null) {
-      				if (!message.getName().equals(userName)) {
-          			%>          
+          	User myInfo = (User)request.getAttribute("I");
+                    String userName = myInfo.getName();
+                    String myImage = null;
+                    if (myInfo.getPicture()!= null) {
+                  	  myImage = new String(Base64.getEncoder().encodeToString(myInfo.getPicture()));
+                	}
+                    List<PrivateMessage> chat = (List<PrivateMessage>)request.getAttribute("chat");
+                    String pictureImage = null;
+                  	 
+                    if (chat!= null) {
+                  	if (userChat!= null) {
+              	  		pictureImage = new String(Base64.getEncoder().encodeToString(userChat.getPicture()));
+                  	}
+                    	for (PrivateMessage message : chat) {
+                			if (message.getMsg() != null) {
+                				if (!message.getName().equals(userName)) {
+          %>          
               	  	<div class="d-flex justify-content-start mb-4">
               	  		<div class="img_cont_msg">
               	  			<img src="data:image/jpg;base64, <%out.println(pictureImage);%>" alt="userImage" class="rounded-circle user_img_msg">

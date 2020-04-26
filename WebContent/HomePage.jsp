@@ -97,7 +97,7 @@
 							UserDataBean bean = dBeanList.get(i);
 						%>
 						<div class="row">
-							<div><img src="data:image/jpg;base64, <%out.println(new String(Base64.getEncoder().encodeToString(bean.getByteStream())));%>" height="35px" width="35px" alt="userImage" class="rounded-circle user_img_msg"></div>
+							<div><img src="data:image/jpg;base64, <%if (bean.getByteStream()!= null) { out.println(new String(Base64.getEncoder().encodeToString(bean.getByteStream()))); }%>" height="35px" width="35px" alt="userImage" class="rounded-circle user_img_msg"></div>
 							<div style="font-size:20px;"><%=bean.getUsername()%></div>
 							<div class="col-sm"><a href="ChatTraveller?action=openChat" class="btn btn-info btn-l">Contact</a></div>
 						</div><br>
