@@ -9,13 +9,14 @@ import java.util.logging.Logger;
 
 import logic.LoggedUser;
 import logic.beans.MessageBean;
+import logic.beans.UserChatBean;
 import logic.dao.ChatDao;
 import logic.dao.GroupDao;
 import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.ServerDownException;
 import logic.model.GroupModel;
 import logic.model.Message;
-import logic.model.User;
+import logic.model.UserChatModel;
 import logic.model.UserModel;
 
 public class ChatController {
@@ -23,14 +24,14 @@ public class ChatController {
 	private ChatDao chatDao;
 	private GroupDao groupDao;
 	private ControllerFacade facade;
-	private List<User> users;
+	private List<UserChatModel> users;
 	private Listener listener;
 	private LoggedUser logUser;
 	protected Logger logger = Logger.getLogger("WIG");
 	private static final String ONLINE = "online";
 	private boolean alreadyActive = false;
 	private List<GroupModel> grpModel;
-	private User myUserModel;
+	private UserChatModel myUserModel;
 	private MessageFactory factory;
 	
 	public ChatController(ControllerFacade reference) {
@@ -40,7 +41,7 @@ public class ChatController {
 		this.logUser = new LoggedUser();
 		this.username = logUser.getUserName();
 		this.factory = new MessageFactory();
-		myUserModel = new User();
+		myUserModel = new UserChatModel();
 		myUserModel.setName(username);
 		myUserModel.setStatus(ONLINE);
 		chatDao.setStatus(myUserModel);
@@ -54,7 +55,7 @@ public class ChatController {
 	
 	public void modificateMyStatus(String status) {
 		myUserModel.setStatus(status);
-		chatDao.setStatus(myUserModel);
+		myUserModel.saveStatus();
 	}
 
 	public List<MessageBean> openChat(String receiver, ChatType type) {
@@ -68,14 +69,24 @@ public class ChatController {
 		return beanMessages;
 	}
 	
-	public List<User> getUsers() {
+	public List<UserChatBean> getUsers() {
 		users = chatDao.getUsersQuery(username);
-		return users;
+		List<UserChatBean> usersBean = new ArrayList<>();
+		for (UserChatModel user : users) {
+			UserChatBean userBean = new UserChatBean(user);			
+			usersBean.add(userBean);
+		}
+		return usersBean;
 	}
 	
 	public void updateUsersStatus() {
 		users = chatDao.getUsersQuery(username);
-		facade.updateUserList(users);
+		List<UserChatBean> usersBean = new ArrayList<>();
+		for (UserChatModel user : users) {
+			UserChatBean userBean = new UserChatBean(user);			
+			usersBean.add(userBean);
+		}
+		facade.updateUserList(usersBean);
 	}
 
 	public String getUsername() {
@@ -173,7 +184,8 @@ public class ChatController {
 		return groupNames;
 	}
 	
-	public User getUser(String user) {
-		return chatDao.getUser(user);
+	public UserChatBean getUser(String user) {
+		UserChatModel selectedUser = chatDao.getUser(user);
+		return new UserChatBean(selectedUser);
 	}
 }

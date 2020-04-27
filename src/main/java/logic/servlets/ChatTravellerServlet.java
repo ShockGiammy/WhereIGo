@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import logic.LoggedUser;
 import logic.beans.MessageBean;
+import logic.beans.UserChatBean;
 import logic.controllers.ChatType;
 import logic.controllers.ControllerFacade;
-import logic.model.User;
 
 @WebServlet("/ChatTraveller")
 public class ChatTravellerServlet extends HttpServlet {
@@ -25,12 +25,12 @@ public class ChatTravellerServlet extends HttpServlet {
 		
 		LoggedUser logUser = new LoggedUser();
 		ControllerFacade facade = new ControllerFacade(this);
-		List<User> users = facade.getUsers();
+		List<UserChatBean> users = facade.getUsers();
 		req.setAttribute("users", users);
 		List<String> groups = facade.getGroups();
 		req.setAttribute("groups", groups);
 		
-		User myInfo = facade.getUser(logUser.getUserName());
+		UserChatBean myInfo = facade.getUser(logUser.getUserName());
 		myInfo.setName(logUser.getUserName());
 		req.setAttribute("I", myInfo);
 		
@@ -39,7 +39,7 @@ public class ChatTravellerServlet extends HttpServlet {
 		}
 
 		List<MessageBean> chat = null;
-		User userChat = null;
+		UserChatBean userChat = null;
 		if (req.getParameter("chat") != null) {
 			if (req.getParameter("chat").equals("private")) {
 				chat = facade.openChat(req.getParameter("user"), ChatType.PRIVATE);

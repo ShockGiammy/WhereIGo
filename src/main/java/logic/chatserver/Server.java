@@ -16,13 +16,13 @@ import logic.exceptions.DuplicateUsernameException;
 import logic.model.PrivateMessage;
 import logic.model.MessageType;
 import logic.model.SecureObjectInputStream;
-import logic.model.User;
+import logic.model.UserChatModel;
 
 public class Server{
 
     /* Setting up variables */
 	private static final int PORT = 2400;
-    private final HashMap<String, User> names = new HashMap<>();
+    private final HashMap<String, UserChatModel> names = new HashMap<>();
     private HashMap<String, HashSet<ObjectOutputStream>> listOfLists = new HashMap<>();
     protected static Logger logger = Logger.getLogger("WIG");
     private static final String EXCEPTION = "Got an exception!";
@@ -60,7 +60,7 @@ public class Server{
         private String name;
         private Socket socket;
         private Logger logger = Logger.getLogger("WIG");
-        private User user;
+        private UserChatModel user;
         private ObjectOutputStream output;
         private SecureObjectInputStream input;
         private String usersGroup;
@@ -126,7 +126,7 @@ public class Server{
             logger.info(firstMessage.getName() + " is trying to connect");
             if (!names.containsKey(firstMessage.getName())) {
                 this.name = firstMessage.getName();
-                user = new User();
+                user = new UserChatModel();
                 user.setName(firstMessage.getName());
 
                 names.put(name, user);

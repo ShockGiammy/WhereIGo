@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import logic.SingletonDbConnection;
 import logic.model.Message;
 import logic.model.PrivateMessage;
-import logic.model.User;
+import logic.model.UserChatModel;
 
 public class ChatDao {
 	
@@ -34,7 +34,7 @@ public class ChatDao {
 		}
 	}
 
-	public void setStatus(User user) {
+	public void setStatus(UserChatModel user) {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("UPDATE usr Set userStatus = ? where username = ?")){   
 			statement.setString(1, user.getStatus());
 			statement.setString(2, user.getName());
@@ -114,8 +114,8 @@ public class ChatDao {
 	}
 	
 		
-	public List<User> getUsersQuery(String userName) {
-		List<User> users = new ArrayList<>();
+	public List<UserChatModel> getUsersQuery(String userName) {
+		List<UserChatModel> users = new ArrayList<>();
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select distinct receiver From Chat Where (sender = ?)")){    
 			statement.setString(1, userName);
 			retriveUsers(statement, users);
@@ -138,7 +138,7 @@ public class ChatDao {
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
 		}
-		for (User user : users) {
+		for (UserChatModel user : users) {
 			try (Connection conn = SingletonDbConnection.getInstance().getConnection();
 					PreparedStatement statement = conn.prepareStatement("Select userStatus, profilePicture From usr Where username = ?")){    
 				statement.setString(1, user.getName());
@@ -155,7 +155,7 @@ public class ChatDao {
 		return users;
 	}
 	
-	public void retriveUserInfo(PreparedStatement statement, User user) {
+	public void retriveUserInfo(PreparedStatement statement, UserChatModel user) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				user.setStatus(rs.getString(1));
@@ -167,18 +167,18 @@ public class ChatDao {
 		}
 	}
 	
-	public void retriveUsers(PreparedStatement statement, List<User> users) {
+	public void retriveUsers(PreparedStatement statement, List<UserChatModel> users) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				int helpVar = 0;
 				String name = rs.getString(1);
-				for (User user : users) {
+				for (UserChatModel user : users) {
 					if (user.getName().contentEquals(name)) {
 						helpVar = 1;
 					}
 				}
 				if (helpVar == 0) {
-					User newUser = new User();
+					UserChatModel newUser = new UserChatModel();
 					newUser.setName(name);
 					users.add(newUser);
 				}
@@ -217,8 +217,8 @@ public class ChatDao {
 		}
 	}
 	
-	public User getUser(String userName) {
-		User user = new User();
+	public UserChatModel getUser(String userName) {
+		UserChatModel user = new UserChatModel();
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select profilePicture From usr Where username = ?")){    
 			statement.setString(1, userName);
 			retriveUserPicture(statement, user);
@@ -233,7 +233,7 @@ public class ChatDao {
 		return user;
 	}
 	
-	public void retriveUserPicture(PreparedStatement statement, User user) {
+	public void retriveUserPicture(PreparedStatement statement, UserChatModel user) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				byte[] image = rs.getBytes(1);

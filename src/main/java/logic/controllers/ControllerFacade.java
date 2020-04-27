@@ -10,13 +10,13 @@ import logic.beans.InterestsBean;
 import logic.beans.LocationBean;
 import logic.beans.MessageBean;
 import logic.beans.RentAccomodationBean;
+import logic.beans.UserChatBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.exceptions.DuplicateUsernameException;
 import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.ServerDownException;
 import logic.graphiccontrollers.GraphicControllerChat;
-import logic.model.User;
 import logic.servlets.ChatRenterServlet;
 import logic.servlets.ChatTravellerServlet;
 
@@ -56,7 +56,7 @@ public class ControllerFacade {
 		chatController.createChat(renter);
 	}
 	
-	public List<User> getUsers() {
+	public List<UserChatBean> getUsers() {
 		return chatController.getUsers();
 	}
 	
@@ -84,7 +84,7 @@ public class ControllerFacade {
 		chatController.createGroup(groupName, groupList);
 	}
 	
-	public void updateUserList(List<User> users) {
+	public void updateUserList(List<UserChatBean> users) {
 		if (graphicChat!=null) {
 			graphicChat.updateUserList(users);
 		}
@@ -102,7 +102,7 @@ public class ControllerFacade {
 		}
 	}
 	
-	public User getUser(String user) {
+	public UserChatBean getUser(String user) {
 		return chatController.getUser(user);
 	}
 	

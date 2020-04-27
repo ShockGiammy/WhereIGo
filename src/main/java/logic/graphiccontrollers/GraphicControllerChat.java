@@ -20,10 +20,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.beans.MessageBean;
+import logic.beans.UserChatBean;
 import logic.controllers.ChatType;
 import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.ServerDownException;
-import logic.model.User;
 import logic.view.BasicGui;
 import logic.view.ErrorPopup;
 
@@ -49,7 +49,7 @@ public class GraphicControllerChat extends BasicGui {
     private String username;
     private double pading = 5.0;
     private Image pictureImage;
-    private List<User> users;
+    private List<UserChatBean> users;
     private List<String> namesList;
     private Image myImage;
 
@@ -115,7 +115,7 @@ public class GraphicControllerChat extends BasicGui {
 
     public void setUserList() {
     	users = facade.getUsers();
-    	for (User user : users) {
+    	for (UserChatBean user : users) {
     		addToUserList(user);
     	}
     }
@@ -157,10 +157,10 @@ public class GraphicControllerChat extends BasicGui {
     	}
     }
     
-    public void updateUserList(List<User> users) {
+    public void updateUserList(List<UserChatBean> users) {
     	Platform.runLater(() ->
     		userList.getItems().clear());
-    	for (User user : users) {
+    	for (UserChatBean user : users) {
     		addToUserList(user);
     	}
     }
@@ -237,7 +237,7 @@ public class GraphicControllerChat extends BasicGui {
             borderPane.setCursor(Cursor.DEFAULT));
     }
 
-    public synchronized void addToUserList(User user) {
+    public synchronized void addToUserList(UserChatBean user) {
     	
     	Task<HBox> task = new Task<HBox>() {
             @Override
@@ -272,7 +272,7 @@ public class GraphicControllerChat extends BasicGui {
         t.start();
     }
     
-    public synchronized void addToGroupList(User user, ListView<HBox> list, ListView<Text> groupList) {
+    public synchronized void addToGroupList(UserChatBean user, ListView<HBox> list, ListView<Text> groupList) {
     	Task<HBox> task = new Task<HBox>() {
             @Override
             public HBox call() {
@@ -304,7 +304,7 @@ public class GraphicControllerChat extends BasicGui {
         t.start();
     }
     
-    public void addUser(User user, ListView<Text> groupList) {
+    public void addUser(UserChatBean user, ListView<Text> groupList) {
     	Task<Text> task = new Task<Text>() {
             @Override
             public Text call() {
@@ -356,7 +356,7 @@ public class GraphicControllerChat extends BasicGui {
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
 		namesList = new ArrayList<>();
-		for (User user : users) {
+		for (UserChatBean user : users) {
     		addToGroupList(user, list, groupList);
     	}
 		window.showAndWait();		
