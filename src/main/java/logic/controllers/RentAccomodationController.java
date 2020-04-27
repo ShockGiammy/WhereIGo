@@ -18,10 +18,11 @@ public class RentAccomodationController {
 	}
 	
 	public List<RentAccomodationBean> displayAnnouncement() {
-		List<RentAccomodationBean> listOfBean = dao.queryDB();		
-		for (RentAccomodationBean bean : listOfBean) {
-			AccomodationModel accomodation = new AccomodationModel(bean);
-			listOfAccomodation.add(accomodation);
+		listOfAccomodation = dao.queryDB();
+		List<RentAccomodationBean> listOfBean = new ArrayList<>();
+		for (AccomodationModel model : listOfAccomodation) {
+			RentAccomodationBean bean = model.getInfo();
+			listOfBean.add(bean);
 		}
 		return listOfBean;
 	}

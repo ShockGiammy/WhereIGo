@@ -39,10 +39,10 @@ public class AccomodationCreator {
 		return new AccomodationModel(info);
 	}
 
-	public List<RentAccomodationBean> queryDB() {
-		List<RentAccomodationBean> beans = new ArrayList<>();
+	public List<AccomodationModel> queryDB() {
+		List<AccomodationModel> models = new ArrayList<>();
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Post")){    
-			getAccomodationDatas(statement, beans);
+			getAccomodationDatas(statement, models);
 		}catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
@@ -50,14 +50,14 @@ public class AccomodationCreator {
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
 		}
-		return beans;
+		return models;
 	}
 	
-	public List<RentAccomodationBean> queryMyAccomodations(String myUsername) {
-		List<RentAccomodationBean> beans = new ArrayList<>();
+	public List<AccomodationModel> queryMyAccomodations(String myUsername) {
+		List<AccomodationModel> models = new ArrayList<>();
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Post Where utente = ?")){
 			statement.setString(1, myUsername);
-			getAccomodationDatas(statement, beans);
+			getAccomodationDatas(statement, models);
 		}catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
@@ -65,10 +65,10 @@ public class AccomodationCreator {
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
 		}
-		return beans;
+		return models;
 	}
 	
-	public void getAccomodationDatas(PreparedStatement statement, List<RentAccomodationBean> beans) {
+	public void getAccomodationDatas(PreparedStatement statement, List<AccomodationModel> models) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				RentAccomodationBean bean = new RentAccomodationBean();
@@ -83,7 +83,8 @@ public class AccomodationCreator {
 				bean.setServices(rs.getBytes(8));
 				bean.setSquareMetres(rs.getString(9));
 				bean.setType(rs.getString(10));
-				beans.add(bean);
+				AccomodationModel model = new AccomodationModel(bean);
+				models.add(model);
 			}
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Location ResultSet error", e);

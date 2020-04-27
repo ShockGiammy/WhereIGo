@@ -3,7 +3,10 @@ package logic.beans;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +24,6 @@ public class RentAccomodationBean {
 	private byte[] services;
 	private byte[] inputF;
 	protected Logger logger = Logger.getLogger("WIG");
-	
 	
 	public void setBeds(String numBeds) {
 		this.beds= numBeds;	
@@ -94,6 +96,10 @@ public class RentAccomodationBean {
 		}
 		return imageInputFile;
 	}
+	
+	public File getHouseFile() {
+		return this.houseImage;
+	}
 
 	public long getFileLength() {
 		long len = 0;
@@ -105,6 +111,13 @@ public class RentAccomodationBean {
 	
 	public void setHouseImage(File houseImage) {
 		this.houseImage = houseImage;
+		if (houseImage != null) {
+			try {
+				this.inputF = Files.readAllBytes(houseImage.toPath());
+			} catch (IOException e) {
+				logger.log(Level.SEVERE, e.getMessage());
+			}
+		}
 	}
 	
 	public byte[] getServices() {
@@ -122,6 +135,20 @@ public class RentAccomodationBean {
 	
 	public void setInputStream(byte[] inputS) {
 		this.inputF = inputS;
+		if (inputS != null) {
+			String listingFolder = System.getProperty("user.dir");
+			try {
+				houseImage = File.createTempFile("output", ".tmp", new File(listingFolder + "/cache"));
+				houseImage.deleteOnExit();
+			} catch (IOException e) {
+				logger.log(Level.SEVERE, e.getMessage());
+			}
+			try (FileOutputStream fileOuputStream = new FileOutputStream(houseImage)){
+				fileOuputStream.write(inputS);
+			} catch (IOException e) {
+				logger.log(Level.SEVERE, e.getMessage());
+			}
+		}
 	}
 
 	public byte[] getHouseImage() {

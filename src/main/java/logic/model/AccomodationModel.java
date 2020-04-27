@@ -1,6 +1,7 @@
 package logic.model;
 
 import logic.beans.RentAccomodationBean;
+import logic.dao.AccomodationCreator;
 public class AccomodationModel {
 	
 	private String renter;
@@ -46,5 +47,23 @@ public class AccomodationModel {
 		}
 		accomodationInfo.setServices(services);
 		return accomodationInfo;
+	}
+	
+	public void createAccomodation() {
+		AccomodationCreator dao = new AccomodationCreator();
+		dao.createAccomodation(this.getInfo());
+	}
+	
+	public void updateAccomodation() {
+		AccomodationCreator dao = new AccomodationCreator();
+		dao.update(this.getInfo());
+	}
+	
+	public void setID(int id) {
+		this.id = id;
+	}
+	
+	public long getID() {
+		return this.id;
 	}
 }

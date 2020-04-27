@@ -44,7 +44,7 @@ public class ChatController {
 		myUserModel = new UserChatModel();
 		myUserModel.setName(username);
 		myUserModel.setStatus(ONLINE);
-		chatDao.setStatus(myUserModel);
+		myUserModel.saveStatus();
 		grpModel = new ArrayList<>();
 	}
 	
@@ -58,8 +58,7 @@ public class ChatController {
 		myUserModel.saveStatus();
 	}
 
-	public List<MessageBean> openChat(String receiver, ChatType type) {
-		
+	public List<MessageBean> openChat(String receiver, ChatType type) {		
 		List<Message> messages = factory.openChat(username, receiver, type);
 		List<MessageBean> beanMessages = new ArrayList<>();
 		for (Message message : messages) {

@@ -141,6 +141,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		imageView.setFitHeight(180);
 		imageView.setFitWidth(350);
 		imageView.setImage(facade.convertToFxImage(bufImage));
+		houseImage = bean.getHouseFile();
 		setServices(bean);
     }
     

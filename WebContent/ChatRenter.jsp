@@ -133,7 +133,7 @@ img{ max-width:100%;}
 <%@ page import="java.util.Base64"%>
 <%@ page import="logic.beans.MessageBean" %>
 <%
-	List<UserChatBean> users = (List<UserChatBean>)request.getAttribute("users");
+List<UserChatBean> users = (List<UserChatBean>)request.getAttribute("users");
 %>
 <div class="container">
 <%
@@ -161,7 +161,7 @@ else {
           <div class="inbox_chat">
           <%
           	for(UserChatBean user : users) {
-                    		if (user.getPicture()!=null) {
+            	if (user.getPicture()!=null) {
           %>
             <div class="chat_list">
               <div class="chat_people">
@@ -171,12 +171,11 @@ else {
                 <div class="chat_ib">
                   <a href="ChatRenter?chat=private&user=<%out.println(user.getName());%>" class="btn btn-primary stretched-link"><%=user.getName()%></a>
                 </div>
-                
               </div>
 			</div>
 			<%
-				}
-					}
+            	}
+			}
 			%>           
           </div>
         </div>

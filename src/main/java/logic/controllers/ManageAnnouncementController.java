@@ -17,7 +17,6 @@ import logic.model.AccomodationModel;
 
 public class ManageAnnouncementController {
 	
-	private RentAccomodationBean info;
 	private Random rand;
 	protected Logger logger = Logger.getLogger("WIG");
 	private AccomodationCreator creator;
@@ -31,14 +30,10 @@ public class ManageAnnouncementController {
 		creator = new AccomodationCreator();
 	}
 	
-	public ManageAnnouncementController(RentAccomodationBean bean) {
-		this.info = bean;		
-	}
-	
 	public void createAccomodation(RentAccomodationBean bean) {
-		this.info = bean;
-		if (bean.getID() != 0) {
-			updateMyAccomodation(bean);
+		AccomodationModel model = new AccomodationModel(bean);
+		if (model.getID() != 0) {
+			updateMyAccomodation(model);
 		}
 		else {
 			try {
@@ -46,16 +41,17 @@ public class ManageAnnouncementController {
 			} catch (NoSuchAlgorithmException e) {
 				logger.log(Level.SEVERE, e.getMessage());
 			}
-			bean.setID(this.rand.nextInt(100000));
-			creator.createAccomodation(info);
+			model.setID(this.rand.nextInt(100000));
+			model.createAccomodation();
 		}
 	}
 	
 	public List<RentAccomodationBean> displayMyAnnouncement() {
-		List<RentAccomodationBean> listOfBeans = creator.queryMyAccomodations(username);
-		for (RentAccomodationBean bean : listOfBeans) {
-			AccomodationModel accomodation = new AccomodationModel(bean);
-			listOfAccomodation.add(accomodation);
+		listOfAccomodation = creator.queryMyAccomodations(username);
+		List<RentAccomodationBean> listOfBeans = new ArrayList<>();
+		for (AccomodationModel model : listOfAccomodation) {
+			RentAccomodationBean bean = model.getInfo();
+			listOfBeans.add(bean);
 		}
 		return listOfBeans;
 	}
@@ -64,16 +60,15 @@ public class ManageAnnouncementController {
 		creator.delete(l);
 	}
 	
-	public synchronized void updateMyAccomodation(RentAccomodationBean beanToUpdate) {
+	public synchronized void updateMyAccomodation(AccomodationModel modelToUpdate) {
 		Iterator<AccomodationModel> iterator = listOfAccomodation.iterator();
 	    while(iterator.hasNext()) {
 	    	AccomodationModel accomodation = iterator.next();
-			if (accomodation.getInfo().getID() == beanToUpdate.getID()) {
+			if (accomodation.getInfo().getID() == modelToUpdate.getID()) {
 				listOfAccomodation.remove(accomodation);
-				AccomodationModel accomodationUpdated = new AccomodationModel(beanToUpdate);
-				listOfAccomodation.add(accomodationUpdated);
+				listOfAccomodation.add(modelToUpdate);
 			}
 		}
-		creator.update(beanToUpdate);
+	    modelToUpdate.updateAccomodation();
 	}
 }
