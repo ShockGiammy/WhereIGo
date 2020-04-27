@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import logic.LoggedUser;
+import logic.beans.MessageBean;
 import logic.dao.ChatDao;
 import logic.dao.GroupDao;
 import logic.exceptions.GroupNameTakenException;
@@ -56,8 +57,15 @@ public class ChatController {
 		chatDao.setStatus(myUserModel);
 	}
 
-	public List<Message> openChat(String receiver, ChatType type) {
-		return factory.openChat(username, receiver, type);
+	public List<MessageBean> openChat(String receiver, ChatType type) {
+		
+		List<Message> messages = factory.openChat(username, receiver, type);
+		List<MessageBean> beanMessages = new ArrayList<>();
+		for (Message message : messages) {
+			MessageBean newMessage = new MessageBean(message);
+			beanMessages.add(newMessage);
+		}
+		return beanMessages;
 	}
 	
 	public List<User> getUsers() {
@@ -132,11 +140,13 @@ public class ChatController {
 	}
 	
 	public void addMessage(Message message) {
-		facade.addToChat(message);
+		MessageBean msg = new MessageBean(message);
+		facade.addToChat(msg);
 	}
 	
 	public void addServerMessage(Message message) {
-		facade.addAsServer(message);
+		MessageBean msg = new MessageBean(message);
+		facade.addAsServer(msg);
 	}
 	
 	public void createGroup(String groupName, List<String> groupList) throws GroupNameTakenException {	

@@ -131,13 +131,13 @@ img{ max-width:100%;}
 <%@ page import="java.util.List" language="java" %>
 <%@ page import="logic.model.User" %>
 <%@ page import="java.util.Base64"%>
-<%@ page import="logic.model.PrivateMessage" %>
+<%@ page import="logic.beans.MessageBean" %>
 <%
-	List<User> users = (List<User>)request.getAttribute("users");
+List<User> users = (List<User>)request.getAttribute("users");
 %>
 <div class="container">
 <%
-	User userChat = (User)request.getAttribute("userChat");
+User userChat = (User)request.getAttribute("userChat");
 if (userChat!= null) {
 %>
 <h3 class=" text-center"><%=userChat.getName()%></h3>
@@ -189,14 +189,14 @@ else {
                     if (myInfo.getPicture()!= null) {
                   	  myImage = new String(Base64.getEncoder().encodeToString(myInfo.getPicture()));
                 	}
-                    List<PrivateMessage> chat = (List<PrivateMessage>)request.getAttribute("chat");
+                    List<MessageBean> chat = (List<MessageBean>)request.getAttribute("chat");
                     String pictureImage = null;
                   	 
                     if (chat!= null) {
                   	if (userChat!= null) {
               	  		pictureImage = new String(Base64.getEncoder().encodeToString(userChat.getPicture()));
                   	}
-                    	for (PrivateMessage message : chat) {
+                    	for (MessageBean message : chat) {
                 			if (message.getMsg() != null) {
                 				if (!message.getName().equals(userName)) {
           %>          

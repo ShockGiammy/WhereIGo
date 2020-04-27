@@ -19,10 +19,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import logic.beans.MessageBean;
 import logic.controllers.ChatType;
 import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.ServerDownException;
-import logic.model.Message;
 import logic.model.User;
 import logic.view.BasicGui;
 import logic.view.ErrorPopup;
@@ -73,7 +73,7 @@ public class GraphicControllerChat extends BasicGui {
 			exitChat());
     }
 
-    public synchronized void addToChat(Message message) {
+    public synchronized void addToChat(MessageBean message) {
         if (message.getName().equals(username)) {
         	HBox yourMessage = new HBox();
         	
@@ -185,7 +185,7 @@ public class GraphicControllerChat extends BasicGui {
     }
 
     /* Method to display server messages */
-    public synchronized void addAsServer(Message msg) {
+    public synchronized void addAsServer(MessageBean msg) {
         Task<HBox> task = new Task<HBox>() {
             @Override
             public HBox call() {
@@ -210,8 +210,8 @@ public class GraphicControllerChat extends BasicGui {
     public void displayChat(String receiver, ChatType type) {
     	chatPane.getItems().clear();
     	facade.closeLastChat();
-    	List<Message> chat = facade.openChat(receiver, type);
-    	for (Message message : chat) {
+    	List<MessageBean> chat = facade.openChat(receiver, type);
+    	for (MessageBean message : chat) {
     		if (message.getMsg() != null) {
     			addToChat(message);
     		}

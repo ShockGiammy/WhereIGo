@@ -8,6 +8,7 @@ import logic.ImageViewer;
 import logic.beans.GroupBean;
 import logic.beans.InterestsBean;
 import logic.beans.LocationBean;
+import logic.beans.MessageBean;
 import logic.beans.RentAccomodationBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
@@ -15,7 +16,6 @@ import logic.exceptions.DuplicateUsernameException;
 import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.ServerDownException;
 import logic.graphiccontrollers.GraphicControllerChat;
-import logic.model.Message;
 import logic.model.User;
 import logic.servlets.ChatRenterServlet;
 import logic.servlets.ChatTravellerServlet;
@@ -73,7 +73,7 @@ public class ControllerFacade {
 		chatController.closeLastChat();
 	}
 	
-	public List<Message> openChat(String receiver, ChatType type) {
+	public List<MessageBean> openChat(String receiver, ChatType type) {
 		return chatController.openChat(receiver, type);
 	}
 	public void execute(String receiver, ChatType type) throws ServerDownException {
@@ -90,13 +90,13 @@ public class ControllerFacade {
 		}
 	}
 	
-	public void addToChat(Message message) {
+	public void addToChat(MessageBean message) {
 		if (graphicChat!=null) {
 			graphicChat.addToChat(message);
 		}
 	}
 	
-	public void addAsServer(Message message) {
+	public void addAsServer(MessageBean message) {
 		if (graphicChat!=null) {
 			graphicChat.addAsServer(message);
 		}

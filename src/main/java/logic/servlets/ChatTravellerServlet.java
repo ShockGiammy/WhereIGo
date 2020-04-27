@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logic.LoggedUser;
+import logic.beans.MessageBean;
 import logic.controllers.ChatType;
 import logic.controllers.ControllerFacade;
-import logic.model.Message;
 import logic.model.User;
 
 @WebServlet("/ChatTraveller")
@@ -38,7 +38,7 @@ public class ChatTravellerServlet extends HttpServlet {
 			facade.sendMessage(req.getParameter("message"), req.getParameter("receiver"));
 		}
 
-		List<Message> chat = null;
+		List<MessageBean> chat = null;
 		User userChat = null;
 		if (req.getParameter("chat") != null) {
 			if (req.getParameter("chat").equals("private")) {
