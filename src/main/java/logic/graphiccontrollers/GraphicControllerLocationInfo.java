@@ -1,7 +1,4 @@
-/* should @Override the initialize method*/
 package logic.graphiccontrollers;
-
-import java.awt.image.BufferedImage;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,9 +16,7 @@ public class GraphicControllerLocationInfo extends BasicGui{
 	@FXML private Button backButton;
 	
 	public void setInfo(LocationBean bean) {
-		BufferedImage bufImage;
-		bufImage = facade.loadImage(bean.getStream());
-		locImm.setImage(facade.convertToFxImage(bufImage));
+		locImm.setImage(facade.loadImage(bean.getStream()));
 		this.cityName.setText(bean.getCityName());
 		this.cityCountry.setText(bean.getCountryName());
 		this.description.setText(bean.getDescription());

@@ -1,6 +1,5 @@
 package logic.view;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -175,7 +174,6 @@ public class BasicGui extends Application{
 	}
 	
 	public Image setUserImage() {
-		BufferedImage bufImage = this.facade.loadImage(this.logUsr.getImage());
-		return facade.convertToFxImage(bufImage);
+		return facade.loadImage(this.logUsr.getImage());
 	}
 }

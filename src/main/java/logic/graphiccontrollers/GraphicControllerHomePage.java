@@ -1,5 +1,5 @@
 package logic.graphiccontrollers;
-import java.awt.image.BufferedImage;
+
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -119,9 +119,8 @@ public class GraphicControllerHomePage extends BasicGui{
 			VBox vbox= new VBox(7);
 			HBox hbox = new HBox(3);
 			if(dataBeanList.get(i).getByteStream() != null) {
-				BufferedImage bufIm = facade.loadImage(dataBeanList.get(i).getByteStream());
 				ImageView ivProf = new ImageView();
-				ivProf.setImage(facade.convertToFxImage(bufIm));
+				ivProf.setImage(facade.loadImage(dataBeanList.get(i).getByteStream()));
 				ivProf.setFitHeight(50);
 				ivProf.setFitWidth(50);
 				hbox.getChildren().add(ivProf);

@@ -1,6 +1,5 @@
 package logic.graphiccontrollers;
 
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 import javafx.concurrent.Task;
@@ -43,11 +42,10 @@ public class GraphicControllerRenterAccomodations extends BasicGui{
             	
             	HBox accomodationBox = new HBox();
             	ImageView house = new ImageView();
-            	BufferedImage bufImage = facade.loadImage(bean.getHouseImage());
             	house.setFitHeight(50);
             	house.setFitWidth(50);
             	house.setX(25);
-            	house.setImage(facade.convertToFxImage(bufImage));
+            	house.setImage(facade.loadImage(bean.getHouseImage()));
             	Text type = new Text();
             	type.setText("  Type  ");
             	Text typeValue = new Text();

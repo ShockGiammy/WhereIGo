@@ -16,9 +16,7 @@ import javafx.scene.image.WritableImage;
 
 public class ImageViewer {
 
-	
-	@SuppressWarnings("exports")
-	public BufferedImage loadImage(byte[] bs) {
+	public Image loadImage(byte[] bs) {
 		Logger logger = Logger.getLogger("WIG");
 		BufferedImage bImage = null;
 		if (bs != null) {
@@ -38,7 +36,7 @@ public class ImageViewer {
 			}
 			
 		}
-		return bImage;
+		return convertToFxImage(bImage);
 	}
 	
 	@SuppressWarnings("exports")

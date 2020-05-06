@@ -1,6 +1,5 @@
 package logic.controllers;
 
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 import javafx.scene.image.Image;
@@ -136,17 +135,11 @@ public class ControllerFacade {
 		controllerManage.createAccomodation(bean);
 	}
 	
-	@SuppressWarnings("exports")
-	public BufferedImage loadImage(byte[] bs) {
+	public Image loadImage(byte[] bs) {
 		if (viewer == null) {
 			this.viewer = new ImageViewer();
 		}
 		return viewer.loadImage(bs);
-	}
-	
-	@SuppressWarnings("exports")
-	public Image convertToFxImage(BufferedImage image) {
-		return viewer.convertToFxImage(image);
 	}
 	
 	/*BookTravelControl references methods*/

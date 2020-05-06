@@ -1,6 +1,5 @@
 package logic.graphiccontrollers;
 
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 import javafx.concurrent.Task;
@@ -113,11 +112,10 @@ public class GraphicControlRentAccomodation extends BasicGui{
 				bedsBox.getChildren().addAll(beds, numberBeds);
 				bedsBox.setPadding(new Insets(pading, pading, pading, pading));
 				ImageView house = new ImageView();
-				BufferedImage bufImage = facade.loadImage(bean.getHouseImage());
 				house.setFitHeight(150);
 				house.setFitWidth(150);
 				house.setX(30);
-				house.setImage(facade.convertToFxImage(bufImage));
+				house.setImage(facade.loadImage(bean.getHouseImage()));
 				Button details = new Button();
 				details.setText("View Details");
 				details.setOnMouseClicked(e -> 
@@ -166,10 +164,9 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		renter.setVisible(true);
 		renter.setText(bean.getRenter());
 		houseDetail.setVisible(true);
-		BufferedImage bufImage = facade.loadImage(bean.getHouseImage());
 		houseDetail.setFitHeight(180);
 		houseDetail.setFitWidth(350);
-		houseDetail.setImage(facade.convertToFxImage(bufImage));
+		houseDetail.setImage(facade.loadImage(bean.getHouseImage()));
 		
 		setServices(bean);
 		

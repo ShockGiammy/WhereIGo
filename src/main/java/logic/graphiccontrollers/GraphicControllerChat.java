@@ -27,7 +27,6 @@ import logic.exceptions.ServerDownException;
 import logic.view.BasicGui;
 import logic.view.ErrorPopup;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -252,10 +251,9 @@ public class GraphicControllerChat extends BasicGui {
             	Text name = new Text(user.getName());
             	
             	ImageView pictureImageView = new ImageView();
-            	BufferedImage bufImage = facade.loadImage(user.getPicture());
             	pictureImageView.setFitHeight(45);
             	pictureImageView.setFitWidth(45);
-            	pictureImageView.setImage(facade.convertToFxImage(bufImage));
+            	pictureImageView.setImage(facade.loadImage(user.getPicture()));
 
             	hBox.getChildren().addAll(statusImageView, pictureImageView, name);
             	hBox.setAlignment(Pos.CENTER_LEFT);
@@ -282,10 +280,9 @@ public class GraphicControllerChat extends BasicGui {
             	Text name = new Text(user.getName());
             	
             	ImageView pictureImageView = new ImageView();
-            	BufferedImage bufImage = facade.loadImage(user.getPicture());
             	pictureImageView.setFitHeight(25);
             	pictureImageView.setFitWidth(25);
-            	pictureImageView.setImage(facade.convertToFxImage(bufImage));
+            	pictureImageView.setImage(facade.loadImage(user.getPicture()));
             	
             	Button add = new Button("Add user");
             	add.setOnAction(e ->

@@ -1,8 +1,6 @@
 package logic.graphiccontrollers;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -137,10 +135,9 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		squareMetres.setVisible(true);
 		squareMetres.setValue(bean.getSquareMetres());
 		imageView.setVisible(true);
-		BufferedImage bufImage = facade.loadImage(bean.getHouseImage());
 		imageView.setFitHeight(180);
 		imageView.setFitWidth(350);
-		imageView.setImage(facade.convertToFxImage(bufImage));
+		imageView.setImage(facade.loadImage(bean.getHouseImage()));
 		houseImage = bean.getHouseFile();
 		setServices(bean);
     }
