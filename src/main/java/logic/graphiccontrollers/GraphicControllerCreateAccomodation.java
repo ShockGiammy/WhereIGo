@@ -93,7 +93,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		bean.setDescription(description.getText());
 		if (houseImage == null) {
         	ErrorPopup error = new ErrorPopup();
-        	error.displayLoginError("immagine non inserita");
+        	error.displayLoginError("Image not found");
         }
 		bean.setHouseImage(houseImage);
 		bean.setSquareMetres(squareMetres.getValue());
