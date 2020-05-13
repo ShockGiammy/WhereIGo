@@ -18,8 +18,16 @@ public class UserTravelBean {
 		this.firstDay = firstDay.toString();
 	}
 	
+	public void setFirstDay(String firstDay) {
+		this.firstDay = firstDay;
+	}
+	
 	public void setLastDay(LocalDate lastDay) {
 		this.lastDay = lastDay.toString();
+	}
+	
+	public void setLastDay(String lastDay) {
+		this.lastDay = lastDay;
 	}
 	
 	public void setDepCity(String depCity) {
@@ -34,7 +42,11 @@ public class UserTravelBean {
 		this.cost = String.valueOf(money);
 	}
 	
-	public String getId() {
+	public Integer getId() {
+		return Integer.valueOf(this.id);
+	}
+	
+	public String getParsedId() {
 		return this.id;
 	}
 	
@@ -42,8 +54,16 @@ public class UserTravelBean {
 		return this.firstDay;
 	}
 	
+	public LocalDate getFirstDayPars() {
+		return LocalDate.parse(this.firstDay);
+	}
+	
 	public String getLastDay() {
 		return this.lastDay;
+	}
+	
+	public LocalDate getLastDayPars() {
+		return LocalDate.parse(this.lastDay);
 	}
 	
 	public String getCityOfDep(){
@@ -54,7 +74,11 @@ public class UserTravelBean {
 		return this.cityOfArr;
 	}
 	
-	public String getCost() {
+	public Float getCost() {
+		return Float.valueOf(this.cost);
+	}
+	
+	public String getParsedCost() {
 		return this.cost;
 	}
 }

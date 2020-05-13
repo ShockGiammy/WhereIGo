@@ -26,7 +26,8 @@ public class TravelDao {
 			prep.setString(3, Date.valueOf(tickMod.getDepDay()).toString());
 			prep.setString(4, Date.valueOf(tickMod.getArrDay()).toString());
 			ticketQuery(tickets, prep);
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Error while retriving tickets\n",e);
 		}
 		finally {
@@ -38,7 +39,8 @@ public class TravelDao {
 	public void ticketQuery(List<TicketModel> list, PreparedStatement prep) {
 		try (ResultSet rs = prep.executeQuery()){
 			setFetchedTick(rs, list);
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "ResultSet null \n",e);
 		}
 	}
@@ -60,7 +62,8 @@ public class TravelDao {
 			statement.setInt(1, tick.getId());
 			statement.execute();
 			updateNumberOfTickets(tick,0);
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Failed to update tickets \n",e);
 		}
 		finally {
@@ -73,7 +76,8 @@ public class TravelDao {
 			try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("UPDATE tickets SET numOfTick = numOfTick-1 WHERE ID=?")){
 				statement.setInt(1, tick.getId());
 				statement.execute();
-			}catch(SQLException e) {
+			}
+			catch(SQLException e) {
 				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			}
 			finally {
@@ -84,7 +88,8 @@ public class TravelDao {
 			try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("UPDATE tickets SET numOfTick = numOfTick+1 WHERE ID=?")){
 				statement.setInt(1, tick.getId());
 				statement.execute();
-			}catch(SQLException e) {
+			}
+			catch(SQLException e) {
 				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			}
 			finally {
@@ -97,7 +102,8 @@ public class TravelDao {
 		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT * FROM tickets JOIN buys on tickets.ID = buys.ticket WHERE (passenger=?)")){
 			statement.setString(1, usrMod.getUserName());
 			fetchTickets(statement, tickList);
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching tickets\n",e);
 		}
 		finally {
@@ -108,7 +114,8 @@ public class TravelDao {
 	public void fetchTickets(PreparedStatement statement, List<TicketModel> tickList) {
 		try(ResultSet rs = statement.executeQuery()){
 			setFetchedTick(rs, tickList);
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot manipulate tickets resultset \n",e);
 		}
 	}
@@ -119,7 +126,8 @@ public class TravelDao {
 			statement.setString(2, usrMod.getUserName());
 			statement.execute();
 			updateNumberOfTickets(tickModel, 1);
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot delete ticket \n",e);
 		}
 		finally {
@@ -134,7 +142,8 @@ public class TravelDao {
 		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select ID, depCity, dateOfDep, dateOfArr, cost from tickets where(arrCity=? and numoftick > 0)")){
 			statement.setString(1, tickMod.getArrCity());
 			findSuggTickets(statement, tickList, tickMod);
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE,e.getMessage());
 		}
 		finally {
@@ -151,7 +160,8 @@ public class TravelDao {
 				tick.setCost(rs.getFloat(5));
 				tickList.add(tick);
 			}
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE,e.getMessage());
 		}
 	}
@@ -176,7 +186,8 @@ public class TravelDao {
 				tick.setCost(rs.getFloat(6));
 				tickList.add(tick);
 			}
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot manipulate tickets resultset \n",e);
 		}
 	}

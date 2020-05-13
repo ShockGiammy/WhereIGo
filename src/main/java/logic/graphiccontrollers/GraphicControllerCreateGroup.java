@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import logic.beans.GroupBean;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.NullValueException;
 import logic.view.BasicGui;
 import logic.view.ErrorPopup;
 
@@ -37,9 +38,13 @@ public class GraphicControllerCreateGroup extends BasicGui{
 	public void saveUserGroup(MouseEvent e) {
 		try {
 			this.facade.saveGroup(this.grpBean);
-		} catch (GroupNameTakenException e1) {
+			goHome(e);
+		} 
+		catch (GroupNameTakenException e1) {
 			err.displayLoginError("Nome gruppo non disponibile");
 		}
-		goHome(e);
+		catch(NullValueException e2) {
+			err.displayLoginError(e2.getErrorMessage());
+		}
 	}
 }

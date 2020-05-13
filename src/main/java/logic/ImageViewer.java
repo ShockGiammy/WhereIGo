@@ -23,7 +23,8 @@ public class ImageViewer {
 			ByteArrayInputStream bi = new ByteArrayInputStream(bs);
 			try {
 				bImage = ImageIO.read(bi);
-			} catch (IOException e) {
+			} 
+			catch (IOException e) {
 				logger.log(Level.SEVERE, e.getMessage());
 			}
 			try {
@@ -31,7 +32,8 @@ public class ImageViewer {
 				File tempFile = File.createTempFile("output", ".tmp", new File(listingFolder + "/cache"));
 				ImageIO.write(bImage, "jpg", tempFile);
 				tempFile.deleteOnExit();
-			} catch (IOException e) {
+			} 
+			catch (IOException e) {
 				logger.log(Level.SEVERE, e.getMessage());
 			}
 			

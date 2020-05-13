@@ -20,7 +20,8 @@ public class GroupDao {
 				statement.setString(2, usrMod.getUserName());
 				statement.setString(3, usrMod.getUserName());
 				getSuggestedGroupsDatas(statement, modelList);
-			}catch(SQLException e) {
+			}
+			catch(SQLException e) {
 				Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred\n",e);
 			}
 			finally {
@@ -36,7 +37,8 @@ public class GroupDao {
 					grpModel.setAll(rs.getString(2), rs.getString(3), rs.getString(1));
 					modelList.add(grpModel);
 				}
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Group fetch error", e);
 		}
 	}
@@ -47,7 +49,8 @@ public class GroupDao {
 			statement.setString(2, grpMod.getOwner());
 			statement.setString(3, grpMod.getDescription());
 			statement.execute();
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			if(e.getErrorCode() == 1062) {
 				throw new GroupNameTakenException(e.getMessage());
 			}
@@ -64,7 +67,8 @@ public class GroupDao {
 		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select distinct travcity,title,groupowner from travelgroups where (groupowner=?)")){
 			statement.setString(1, usrMod.getUserName());
 			findUserGroups(grpModel, statement);
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 		finally {
@@ -79,7 +83,8 @@ public class GroupDao {
 				group.setAll(rs.getString(3), rs.getString(2), rs.getString(1));
 				grpModel.add(group);
 			}
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
@@ -88,7 +93,8 @@ public class GroupDao {
 		try(PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select groupowner,title,travcity from travelgroups join participatesto on participatesto.grp = travelgroups.title where(participant =?)")){
 			statement.setString(1, usrMod.getUserName());
 			fetchPartGroup(statement, grpModel);
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 		finally {
@@ -103,7 +109,8 @@ public class GroupDao {
 				group.setAll(rs.getString(1), rs.getString(2), rs.getString(3));
 				grpList.add(group);
 			}
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}
@@ -113,7 +120,8 @@ public class GroupDao {
 			statement.setString(1, grpMod.getOwner());
 			statement.setString(2, grpMod.getDescription());
 			statement.execute();
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 		finally {
@@ -127,7 +135,8 @@ public class GroupDao {
 			statement.setString(1, dataBean.getUserName());
 			statement.execute();
 			return 0;
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 		finally {
@@ -141,7 +150,8 @@ public class GroupDao {
 			statement.setString(2, grpBean.getDescription());
 			statement.setString(1, dataBean.getUserName());
 			statement.execute();
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 		finally {

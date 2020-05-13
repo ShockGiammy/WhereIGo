@@ -42,7 +42,8 @@ public class LoginServlet extends HttpServlet {
 		ControllerFacade facCtrl = new ControllerFacade();
 		int ret = facCtrl.checkLogIn(dataBean);
 		if(ret == 1) {
-			changeP.loadHomePageUserInfo(request);
+			HomePageServlet hpServ = new HomePageServlet();
+			hpServ.loadHomePageUserInfo(request);
 			LoggedUser logUsr = new LoggedUser();
 			HttpSession session = request.getSession();
 			session.setAttribute("image", logUsr.getImage());
@@ -66,8 +67,9 @@ public class LoginServlet extends HttpServlet {
 		retreiveImage(request, dataBean);
 		ControllerFacade facCtrl = new ControllerFacade();
 		try {
+			HomePageServlet hpServ = new HomePageServlet();
 			facCtrl.insertNewUser(dataBean);
-			changeP.loadHomePageUserInfo(request);
+			hpServ.loadHomePageUserInfo(request);
 			LoggedUser logUsr = new LoggedUser();
 			HttpSession session = request.getSession();
 			session.setAttribute("image", logUsr.getImage());

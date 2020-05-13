@@ -14,6 +14,7 @@ import logic.dao.LocationDao;
 import logic.dao.TravelDao;
 import logic.dao.UserDao;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.NullValueException;
 import logic.model.GroupModel;
 import logic.model.LocationModel;
 import logic.model.TicketModel;
@@ -119,9 +120,9 @@ public class BookTravelControl {
 	
 	public void saveBoughtTicketControl(UserTravelBean travBean) {
 		TicketModel tick = new TicketModel();
-		tick.setAll(travBean.getCityOfDep(), travBean.getCityOfArr(), LocalDate.parse(travBean.getFirstDay()), LocalDate.parse(travBean.getLastDay()));
-		tick.setId(Integer.parseInt(travBean.getId()));
-		tick.setCost(Float.parseFloat(travBean.getCost()));
+		tick.setAll(travBean.getCityOfDep(), travBean.getCityOfArr(), travBean.getFirstDayPars(), travBean.getLastDayPars());
+		tick.setId(travBean.getId());
+		tick.setCost(travBean.getCost());
 		this.usrMod.setUserName(this.logUser.getUserName());
 		this.travDao.saveBoughtTickets(tick, this.usrMod);
 	}
@@ -143,9 +144,14 @@ public class BookTravelControl {
 		}
 	}
 	
-	public void saveGroupControl(GroupBean grpBean) throws GroupNameTakenException {
-		this.grpMod.setAll(grpBean.getGroupOwner(),grpBean.getGroupTitle(), grpBean.getGroupDestination());
-		this.grpDao.saveUserGroup(this.grpMod);
+	public void saveGroupControl(GroupBean grpBean) throws GroupNameTakenException, NullValueException {
+		if(grpBean.getGroupDestination() == null || grpBean.getGroupTitle() == null) {
+			throw new NullValueException("Please insert a group name and a group destination");
+		}
+		else {
+			this.grpMod.setAll(grpBean.getGroupOwner(),grpBean.getGroupTitle(), grpBean.getGroupDestination());
+			this.grpDao.saveUserGroup(this.grpMod);
+		}
 	}
 	
 	public void getUserGroupsControl(List<GroupBean> grpBean) {
@@ -186,7 +192,7 @@ public class BookTravelControl {
 	public void deleteSavedTravelControl(UserTravelBean travBean) {
 		this.usrMod.setUserName(this.logUser.getUserName());
 		TicketModel tickModel = new TicketModel();
-		tickModel.setId(Integer.parseInt(travBean.getId()));
+		tickModel.setId(travBean.getId());
 		this.travDao.deleteTick(tickModel, usrMod);
 	}
 	

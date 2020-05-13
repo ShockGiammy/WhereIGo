@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import logic.LoggedUser;
 import logic.UserType;
 import logic.beans.GroupBean;
+import logic.beans.UserDataBean;
+import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
 
 @WebServlet("/HomePageServlet")
@@ -30,7 +32,7 @@ public class HomePageServlet extends HttpServlet {
 				//carica la home page del renter
 			}
 			else {
-				changeP.loadHomePageUserInfo(request);
+				loadHomePageUserInfo(request);
 				page = "HomePage.jsp";
 			}
 		}
@@ -75,5 +77,16 @@ public class HomePageServlet extends HttpServlet {
 		if(beanList.isEmpty() && cities.isEmpty()) {
 			request.setAttribute("fineMsg", "No suggestions for you, please take our personality test!");
 		}
+	}
+	
+	public void loadHomePageUserInfo(HttpServletRequest request) {
+		ControllerFacade facCtrl = new ControllerFacade();
+		List<UserTravelBean> travBeanList = new ArrayList<>();
+		List<GroupBean> gBeanList = new ArrayList<>();
+		List<UserDataBean> dBeanList = new ArrayList<>();
+		facCtrl.getTravHomePageDatas(travBeanList, gBeanList, dBeanList);
+		request.setAttribute("travels", travBeanList);
+		request.setAttribute("groups", gBeanList);
+		request.setAttribute("users", dBeanList);
 	}
 }

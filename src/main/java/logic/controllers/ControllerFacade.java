@@ -14,6 +14,7 @@ import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.exceptions.DuplicateUsernameException;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.NullValueException;
 import logic.exceptions.ServerDownException;
 import logic.graphiccontrollers.GraphicControllerChat;
 import logic.servlets.ChatRenterServlet;
@@ -172,7 +173,7 @@ public class ControllerFacade {
 		this.bookTravCtrl.getSamePersUsersControl(usrList);
 	}
 	
-	public void saveGroup(GroupBean grpBean) throws GroupNameTakenException {
+	public void saveGroup(GroupBean grpBean) throws GroupNameTakenException, NullValueException{
 		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.saveGroupControl(grpBean);
 	}

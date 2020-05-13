@@ -48,12 +48,12 @@
 								UserTravelBean bean = tBeanList.get(i);
 						%>
 					<tr>
-						<td><%=bean.getId()%></td>
+						<td><%=bean.getParsedId()%></td>
 						<td><%=bean.getCityOfDep()%></td>
 						<td><%=bean.getFirstDay()%></td>
 						<td><%=bean.getCityOfArr()%></td>
 						<td><%=bean.getLastDay()%></td>
-						<td><%=bean.getCost()%></td>
+						<td><%=bean.getParsedCost()%></td>
 						<td><a href="BookTravelServlet?action=delTick&id=<%=bean.getId()%>" class="btn btn-danger btn-md">Delete</a>
 						<%
 							}

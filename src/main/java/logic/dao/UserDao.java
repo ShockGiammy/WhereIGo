@@ -18,7 +18,8 @@ public class UserDao {
 			stm.setString(1, usrModel.getUserPersonality());
 			stm.setString(2, usrModel.getUserName());
 			stm.execute();
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occured during insert", e);
 		}
 		finally {
@@ -32,7 +33,8 @@ public class UserDao {
 			statement.setString(1,usrMod.getUserName());
 			statement.setString(2,usrMod.getPaswd());
 			ret = getLoggedUser(statement, usrMod);
-		}catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred during the fetch of credentials", e);
 		}
 		finally {
@@ -53,7 +55,8 @@ public class UserDao {
 			statement.setBinaryStream(8, usrModel.getInputFile(), usrModel.getFileLength());
 			statement.setString(9, "offline");
 			statement.execute();
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			if(e.getErrorCode() == 1062) {
 				throw new DuplicateUsernameException(e.getMessage());
 			}
@@ -67,7 +70,8 @@ public class UserDao {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT * FROM usr WHERE (username = ?)")){
 			statement.setString(1, usrModel.getUserName());
 			retriveUser(statement, usrModel);
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException on fetchin user datas\n", e);
 		}
 		finally {
@@ -85,7 +89,8 @@ public class UserDao {
 				usrMod.setPic(rs.getBytes(3));
 				return 1;
 			}
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot get logged user", e);
 		}
 		return 0;
@@ -100,7 +105,8 @@ public class UserDao {
 					usrModel.setUserPersonality(rs.getString(8));
 				}
 			}
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "ResultSet fetch fail !", e);
 		}
 	}
@@ -111,7 +117,8 @@ public class UserDao {
 				statement.setString(1, logUsr.getUserPersonality());
 				statement.setString(2, logUsr.getUserName());
 				getSimUsers( statement,  usersList);
-			}catch(SQLException e) {
+			}
+			catch(SQLException e) {
 				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			}
 			finally {
@@ -128,7 +135,8 @@ public class UserDao {
 				usr.setPic(rs.getBytes(2));
 				usrModel.add(usr);
 			}
-		}catch(SQLException e) {
+		}
+		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
 	}

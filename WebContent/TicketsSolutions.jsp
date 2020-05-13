@@ -35,12 +35,12 @@
 					for(int i = 0; i < travBeanList.size(); i++){
 						UserTravelBean travBean = travBeanList.get(i);
 				%>
-				<div class="col-md"><%=travBean.getId()%></div>
+				<div class="col-md"><%=travBean.getParsedId()%></div>
 				<div class="col-md"><%=travBean.getCityOfDep()%></div>
 				<div class="col-md"><%=travBean.getFirstDay()%></div>
 				<div class="col-md"><%=travBean.getCityOfArr()%></div>
 				<div class="col-md"><%=travBean.getLastDay()%></div>
-				<div class="col-md"><%=travBean.getCost()%></div>
+				<div class="col-md"><%=travBean.getParsedCost()%></div>
 				<div class="col-md"><a href="BookTravelServlet?action=goconf&id=<%out.println(travBean.getId());%>&depCity=<%out.println(travBean.getCityOfDep());%>&arrCity=<%out.println(travBean.getCityOfArr());%>&depDate=<%out.println(travBean.getFirstDay());%>&retDate=<%out.println(travBean.getLastDay());%>&cost=<%out.println(travBean.getCost());%>" class="btn btn-success">Confirm</a></div>
 				<div class="w-100"></div>
 				<%

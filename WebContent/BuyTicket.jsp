@@ -21,7 +21,7 @@
 		<div class="form-group row">
 			<label for="id" class="col-sm-2 col-form-label">Ticket id :</label>
 			<div class="col-sm-10">
-				<input type="text" value="<%=travBean.getId()%>" name="id" id= "id" readonly class="col-sm-2 col-form-label"><br>
+				<input type="text" value="<%=travBean.getParsedId()%>" name="id" id= "id" readonly class="col-sm-2 col-form-label"><br>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -51,7 +51,7 @@
 		<div class="form-group row">
 			<label for="cost" class="col-sm-2 col-form-label">Cost :</label>
 			<div class="col-sm-10">
-				<input type="text" value="<%=travBean.getCost()%>" name="cost" id="cost" readonly class="col-sm-2 col-form-label"><br>
+				<input type="text" value="<%=travBean.getParsedCost()%>" name="cost" id="cost" readonly class="col-sm-2 col-form-label"><br>
 			</div>
 		</div>
 		<div>

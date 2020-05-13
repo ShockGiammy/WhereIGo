@@ -8,10 +8,44 @@
 <title>Book your travel</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
 <%@ page import="java.util.ArrayList" language="java" %>
 <%@ page import="java.util.List" language="java" %>
 <%@ page import="logic.beans.GroupBean" language="java" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    var dtToday = new Date();
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+    $('#depDate').attr('min', maxDate);
+});
+</script>
+
+<script type="text/javascript">
+$(function(){
+	var dtToday = new Date();
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+    $('#retDate').attr('min', maxDate); 
+});
+</script>
+
+</head>
+
 
 <%
 	if(request.getAttribute("fineMsg") !=  null){
@@ -40,14 +74,29 @@
 %>
 
 <%
+	if(request.getAttribute("alreadybought") !=  null){
+%>
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+  		<p><%=request.getAttribute("alreadybought") %></p>
+  	 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    	<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
+<%
+	}
+%>
+
+
+<%
 		List<String> cities = new ArrayList<>();
 		cities = (ArrayList<String>)request.getAttribute("cities");
 		List<GroupBean> groupBeanL = new ArrayList<>();
 		groupBeanL = (ArrayList<GroupBean>)request.getAttribute("grouplist");
 %>
 
+
 <body>
-	<form action="BookTravelServlet" method="get">
+	<form action="BookTravelServlet" method="post">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-6" style="margin-right:60px;">

@@ -34,6 +34,10 @@ public class UserDataBean {
 		this.dateOfBirth = dateOfBirth.toString();
 	}
 	
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
@@ -72,6 +76,10 @@ public class UserDataBean {
 	
 	public String getDateOfBirth() {
 		return this.dateOfBirth;
+	}
+	
+	public LocalDate getLocDateOfBirth() {
+		return LocalDate.parse(this.dateOfBirth);
 	}
 	
 	public String getGender() {
@@ -120,10 +128,5 @@ public class UserDataBean {
 	
 	public File getFileImage() {
 		return this.profImage;
-	}
-	
-	/* method needed to the Servlets*/
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
 	}
 }

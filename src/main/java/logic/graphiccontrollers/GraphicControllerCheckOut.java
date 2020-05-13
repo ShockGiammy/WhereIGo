@@ -9,6 +9,7 @@ import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.NullValueException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
@@ -36,12 +37,12 @@ public class GraphicControllerCheckOut extends BasicGui{
 	
 	public void setInfo(UserTravelBean travBean, UserDataBean dataBean) {
 		this.travbean = travBean;
-		this.id.setText(String.valueOf(travBean.getId()));
+		this.id.setText(travBean.getParsedId());
 		this.departure.setText(travBean.getCityOfDep());
 		this.arrive.setText(travBean.getCityOfArr());
 		this.depDay.setText(travBean.getFirstDay());
 		this.retDay.setText(travBean.getLastDay());
-		this.cost.setText(String.valueOf(travBean.getCost()));
+		this.cost.setText(travBean.getParsedCost());
 		this.groupAdmin.setText(dataBean.getUsername());
 		this.groupAdmin.setEditable(false);
 		this.groupDest.setText(travBean.getCityOfArr());
@@ -59,8 +60,12 @@ public class GraphicControllerCheckOut extends BasicGui{
 				grpBean.setGroupOwner(this.groupAdmin.getText());
 				grpBean.setGroupDestination(this.groupDest.getText());
 				this.facade.saveGroup(grpBean);
-			}catch(GroupNameTakenException e) {
+			}
+			catch(GroupNameTakenException e) {
 				errPop.displayLoginError("Nome del gruppo già scelto. Per favore, inserire un nome diverso");
+			}
+			catch(NullValueException e1) {
+				errPop.displayLoginError(e1.getErrorMessage());
 			}
 		}
 	}

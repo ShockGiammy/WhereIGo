@@ -22,6 +22,7 @@ import logic.controllers.ControllerFacade;
 @WebServlet("/BookTravelServlet")
 public class BookTravelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static String defPage = "BookTravelStart.jsp";
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,12 +37,21 @@ public class BookTravelServlet extends HttpServlet {
 			List<UserTravelBean> travBeanList = new ArrayList<>();
 			facCtr.retriveTravelSolutions(travBean, travBeanList);
 			request.setAttribute("tickets", travBeanList);
-			changeP.forwardPage("TicketsSolutions.jsp", request, response);
+			if(travBeanList.isEmpty()) {
+				request.setAttribute("alreadybought", "Sorry, no tickets to be shown for the selcted destination/dates");
+				HomePageServlet hpServ = new HomePageServlet();
+				hpServ.loadBookTravelSugg(request);
+				changeP.forwardPage(defPage, request, response);
+			}
+			else {
+				changeP.forwardPage("TicketsSolutions.jsp", request, response);
+			}
 		}
 		else if(request.getParameter("savetick") != null) {
+			HomePageServlet hpServ = new HomePageServlet();
 			setTick(request, travBean);
 			facCtr.saveBoughtTicket(travBean);
-			changeP.loadHomePageUserInfo(request);
+			hpServ.loadHomePageUserInfo(request);
 			changeP.forwardPage("HomePage.jsp", request, response);
 		}
 		
@@ -60,15 +70,17 @@ public class BookTravelServlet extends HttpServlet {
 		}
 		else if(action.equalsIgnoreCase("delTick")) {
 			deleteTicket(request);
-			changeP.loadHomePageUserInfo(request);
+			HomePageServlet hpServ = new HomePageServlet();
+			hpServ.loadHomePageUserInfo(request);
 		}
 		else if(action.equalsIgnoreCase("delGroup")) {
 			deleteGroup(request);
-			changeP.loadHomePageUserInfo(request);
+			HomePageServlet hpServ = new HomePageServlet();
+			hpServ.loadHomePageUserInfo(request);
 		}
 		else if(action.equalsIgnoreCase("joinGroup")) {
 			joinGroup(request);
-			dest="BookTravelStart.jsp";
+			dest = defPage;
 			HomePageServlet hpServ = new HomePageServlet();
 			hpServ.loadBookTravelSugg(request);
 		}
@@ -77,13 +89,13 @@ public class BookTravelServlet extends HttpServlet {
 			dest="LocationInfo.jsp";
 		}
 		else if(action.equalsIgnoreCase("bookshort")) {
-			travBean.setDepCity(request.getParameter("city"));
+			travBean.setArrCity(request.getParameter("city"));
 			findSuggTravels(request, travBean);
 			dest="TicketsSolutions.jsp";
 			if(request.getAttribute("notravels") != null) {
-				dest="BookTravelStart.jsp";
 				HomePageServlet hpServ = new HomePageServlet();
 				hpServ.loadBookTravelSugg(request);
+				dest = defPage;
 			}
 		}
 		changeP.forwardPage(dest, request, response);

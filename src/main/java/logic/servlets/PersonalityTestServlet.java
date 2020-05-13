@@ -31,7 +31,8 @@ public class PersonalityTestServlet extends HttpServlet {
 				ControllerFacade fac = new ControllerFacade();
 				fac.evaluateInterests(intBean);
 				ChangePageServlet changeP = new ChangePageServlet();
-				changeP.loadHomePageUserInfo(request);
+				HomePageServlet hpServ = new HomePageServlet();
+				hpServ.loadHomePageUserInfo(request);
 				changeP.forwardPage("HomePage.jsp", request, response);
 			}catch(NumberFormatException e) {
 				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());

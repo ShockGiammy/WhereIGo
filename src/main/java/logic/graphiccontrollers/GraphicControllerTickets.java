@@ -1,9 +1,8 @@
 package logic.graphiccontrollers;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,12 +21,12 @@ import logic.view.BasicGui;
 
 public class GraphicControllerTickets extends BasicGui{
 	@FXML private TableView<UserTravelBean> ticketsView;
-	@FXML private TableColumn<UserTravelBean, String> ticketId;
+	@FXML private TableColumn<UserTravelBean, Integer> ticketId;
 	@FXML private TableColumn<UserTravelBean, String> departureCity;
 	@FXML private TableColumn<UserTravelBean, String> arrivalCity;
 	@FXML private TableColumn<UserTravelBean, String> departureDay;
 	@FXML private TableColumn<UserTravelBean, String> arrivalDate;
-	@FXML private TableColumn<UserTravelBean, String> cost;
+	@FXML private TableColumn<UserTravelBean, Float> cost;
 	@FXML private List<RadioButton> rbList;
 	@FXML private ToggleGroup bookNowGroup;
 	@FXML private VBox vbox;
@@ -68,12 +67,12 @@ public class GraphicControllerTickets extends BasicGui{
 		UserTravelBean travBean = new UserTravelBean();
 		for(i = 0; i < this.rbList.size(); i++) {
 			if(this.bookNowGroup.getSelectedToggle().equals(this.rbList.get(i))) {
-				travBean.setId(Integer.valueOf(this.ticketId.getCellData(i)));
+				travBean.setId(this.ticketId.getCellData(i));
 				travBean.setDepCity(this.departureCity.getCellData(i));
 				travBean.setArrCity(this.arrivalCity.getCellData(i));
-				travBean.setFirstDay(LocalDate.parse(this.departureDay.getCellData(i)));
-				travBean.setLastDay(LocalDate.parse(this.arrivalDate.getCellData(i)));
-				travBean.setCost(Float.parseFloat(this.cost.getCellData(i)));
+				travBean.setFirstDay(this.departureDay.getCellData(i));
+				travBean.setLastDay(this.arrivalDate.getCellData(i));
+				travBean.setCost(this.cost.getCellData(i));
 				LoggedUser logusr = new LoggedUser();
 				UserDataBean dataBean = new UserDataBean();
 				dataBean.setUserName(logusr.getUserName());
