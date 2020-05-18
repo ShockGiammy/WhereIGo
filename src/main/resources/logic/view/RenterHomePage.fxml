@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,7 +12,7 @@
    <top>
       <BorderPane prefHeight="120.0" prefWidth="1040.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <right>
-            <ToolBar prefHeight="101.0" prefWidth="457.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <ToolBar prefHeight="70.0" prefWidth="460.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <items>
                   <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -63,6 +64,9 @@
                </image>
             </ImageView>
          </left>
+         <bottom>
+            <Separator prefHeight="15.0" prefWidth="1040.0" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
    </top>
    <rotationAxis>

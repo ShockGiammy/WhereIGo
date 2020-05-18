@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="borderPane" maxHeight="620.0" maxWidth="1040.0" prefHeight="620.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerRenterAccomodations">
+<BorderPane fx:id="borderPane" prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerRenterAccomodations">
    <rotationAxis>
       <Point3D />
    </rotationAxis>
@@ -18,12 +18,12 @@
             </ListView>
    </center>
    <top>
-      <BorderPane prefHeight="120.0" prefWidth="1040.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="120.0" prefWidth="1040.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <bottom>
-            <Separator prefHeight="15.0" prefWidth="828.0" BorderPane.alignment="CENTER" />
+            <Separator prefHeight="15.0" prefWidth="1040.0" BorderPane.alignment="CENTER" />
          </bottom>
          <right>
-            <ToolBar prefHeight="70.0" prefWidth="395.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <ToolBar prefHeight="70.0" prefWidth="460.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <items>
                   <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" onMouseEntered="#showMouseHome" onMouseExited="#showHome" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -49,14 +49,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="settings" fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/settings.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
                   <ImageView fx:id="userImage" fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
@@ -77,7 +69,7 @@
             </ToolBar>
          </right>
          <left>
-            <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="95.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../../images/Logo.PNG" />
                </image>

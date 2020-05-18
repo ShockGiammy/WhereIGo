@@ -69,8 +69,16 @@ public class ControllerFacade {
 	}
 	
 	public void closeLastChat() {
+		chatController.closeLastChat();
+	}
+	
+	public void closeLastChatAndExit() {
 		chatController.modificateMyStatus("offline");
 		chatController.closeLastChat();
+	}
+	
+	public void setOfflineStatus() {
+		chatController.modificateMyStatus("offline");
 	}
 	
 	public List<MessageBean> openChat(String receiver, ChatType type) {

@@ -29,6 +29,7 @@ public class ChatRenterServlet extends HttpServlet {
 		UserChatBean myInfo = facade.getUser(logUser.getUserName());
 		myInfo.setName(logUser.getUserName());
 		req.setAttribute("I", myInfo);
+		facade.setOfflineStatus();
 		
 		List<UserChatBean> users = facade.getUsers();
 		req.setAttribute("users", users);

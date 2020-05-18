@@ -33,6 +33,7 @@ public class ChatTravellerServlet extends HttpServlet {
 		UserChatBean myInfo = facade.getUser(logUser.getUserName());
 		myInfo.setName(logUser.getUserName());
 		req.setAttribute("I", myInfo);
+		facade.setOfflineStatus();
 		
 		if (req.getParameter("message") != null) {
 			facade.sendMessage(req.getParameter("message"), req.getParameter("receiver"));
