@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import logic.beans.InterestsBean;
 import logic.beans.UserDataBean;
+import logic.exceptions.MissingAnswareException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
@@ -24,14 +25,14 @@ public class GraphicControllerInterestForm extends BasicGui{
 	@FXML private VBox box4;
 	@FXML private List<ToggleGroup> tgList;
 	@FXML private Button submitForm;
-	private int[] questAnsw;
+	private List<Integer> questAnsw;
 	private InterestsBean intBean;
 	private UserDataBean dataBean;
 	private ErrorPopup errPop;
 	
 	@FXML
 	public void initialize() {
-		this.questAnsw = new int[4];
+		this.questAnsw = new ArrayList<>();
 		this.intBean = new InterestsBean();
 		this.dataBean = new UserDataBean();
 		this.rbList1 = new ArrayList<>();
@@ -49,61 +50,61 @@ public class GraphicControllerInterestForm extends BasicGui{
 	
 	public void manageGroup1() {
 		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(0))) {
-			this.questAnsw[0] = 2;
+			this.questAnsw.add(2);
 		}
 		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(1))) {
-			this.questAnsw[0] = 1;
+			this.questAnsw.add(1);
 		}
 		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(2))) {
-			this.questAnsw[0] = 4;
+			this.questAnsw.add(4);
 		}
 		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(3))) {
-			this.questAnsw[0] = 3;
+			this.questAnsw.add(3);
 		}
 	}
 		
 	public void manageGroup2() {
 		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(0))) {
-			this.questAnsw[1] = 4;
+			this.questAnsw.add(4);
 		}
 		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(1))) {
-			this.questAnsw[1] = 1;
+			this.questAnsw.add(1);
 		}
 		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(2))) {
-			this.questAnsw[1] = 2;
+			this.questAnsw.add(2);
 		}
 		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(3))) {
-			this.questAnsw[1] = 3;
+			this.questAnsw.add(3);
 		}
 	}
 	
 	public void manageGroup3() {
 		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(0))) {
-			this.questAnsw[2] = 1;
+			this.questAnsw.add(1);
 		}
 		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(1))) {
-			this.questAnsw[2] = 3;
+			this.questAnsw.add(3);
 		}
 		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(2))) {
-			this.questAnsw[2] = 2;
+			this.questAnsw.add(2);
 		}
 		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(3))) {
-			this.questAnsw[2] = 4;
+			this.questAnsw.add(4);
 		}
 	}
 	
 	public void manageGroup4() {
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(0))) {
-			this.questAnsw[3] = 2;
+			this.questAnsw.add(2);
 		}
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(1))) {
-			this.questAnsw[3] = 3;
+			this.questAnsw.add(3);
 		}
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(2))) {
-			this.questAnsw[3] = 1;
+			this.questAnsw.add(1);
 		}
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(3))) {
-			this.questAnsw[3] = 4;
+			this.questAnsw.add(4);
 		}
 	}
 	
@@ -152,14 +153,14 @@ public class GraphicControllerInterestForm extends BasicGui{
 		}
 	
 	public void evaluatePersonality(MouseEvent e){
-		if(this.questAnsw[0] == 0 || this.questAnsw[1] == 0 || this.questAnsw[2] == 0 || this.questAnsw[3] == 0) {
-			errPop.displayLoginError("Please, answare to all questions");
-		}
-		else {
+		try{
 			this.dataBean.setUserName(this.logUsr.getUserName());
 			this.intBean.setAnswares(this.questAnsw);
 			this.facade.evaluateInterests(this.intBean);
 			goHome(e);
+		}
+		catch(MissingAnswareException e1) {
+			this.errPop.displayLoginError(e1.getMsg());
 		}
 	}
 }

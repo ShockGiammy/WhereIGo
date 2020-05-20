@@ -15,7 +15,7 @@ import java.sql.Date;
 
 public class TravelDao {
 	
-	public List<TicketModel> retriveAvailableTickets(TicketModel tickMod, UserModel usrMod) throws SQLException {
+	public List<TicketModel> retriveAvailableTickets(TicketModel tickMod, UserModel usrMod) {
 		List<TicketModel> tickets = new ArrayList<>();
 		if(checkIfBooked(tickMod, usrMod)) {
 			return tickets;

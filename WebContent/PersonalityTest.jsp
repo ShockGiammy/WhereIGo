@@ -10,6 +10,20 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
+
+<%
+	if(request.getAttribute("error") != null){
+%>
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+  		<p><%=request.getAttribute("error") %></p>
+  	 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    	<span aria-hidden="true">&times;</span>
+  		</button>
+</div>
+<%
+	}		
+%>
+
 <body>
 <form action="PersonalityTestServlet" method="post">
 	<div class="container">

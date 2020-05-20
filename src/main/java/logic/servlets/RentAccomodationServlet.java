@@ -20,7 +20,7 @@ public class RentAccomodationServlet extends HttpServlet {
 		
 		ControllerFacade facade = new ControllerFacade();
 		
-		ChangePageServlet changeP = new ChangePageServlet();
+		JspChangePage changeP = new JspChangePage();
 		String page = null;
 		
 		String act = req.getParameter("action");

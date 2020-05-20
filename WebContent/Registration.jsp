@@ -10,8 +10,6 @@
 <title>Registration</title>
 </head>
 
-</head>
-
 <%
 	if(request.getAttribute("errorMsg") != null){
 %>

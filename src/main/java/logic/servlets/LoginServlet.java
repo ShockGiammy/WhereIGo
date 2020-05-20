@@ -16,46 +16,44 @@ import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.DuplicateUsernameException;
+import logic.exceptions.NullValueException;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static String errMsg = "errorMsg";
+	private static String defPage = "Registration.jsp";
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
-		ChangePageServlet changeP = new ChangePageServlet();
+		JspChangePage changeP = new JspChangePage();
 		if(request.getParameter("log") != null) {
 			servLogIn(request, response, changeP);
 		}
 		else if(request.getParameter("reg") != null){
-			changeP.forwardPage("Registration.jsp", request, response);
+			changeP.forwardPage(defPage, request, response);
 		}
 		else if(request.getParameter("regnow") != null) {
 			servRegister(request,  response,  changeP);
 		}
 	}
 	
-	public void servLogIn(HttpServletRequest request, HttpServletResponse response, ChangePageServlet changeP) {
+	public void servLogIn(HttpServletRequest request, HttpServletResponse response, JspChangePage changeP) {
 		UserDataBean dataBean = new UserDataBean();
 		dataBean.setUserName(request.getParameter("username"));
 		dataBean.setPsw(request.getParameter("password"));
 		ControllerFacade facCtrl = new ControllerFacade();
 		int ret = facCtrl.checkLogIn(dataBean);
 		if(ret == 1) {
-			HomePageServlet hpServ = new HomePageServlet();
-			hpServ.loadHomePageUserInfo(request);
-			LoggedUser logUsr = new LoggedUser();
-			HttpSession session = request.getSession();
-			session.setAttribute("image", logUsr.getImage());
-			changeP.forwardPage("HomePage.jsp", request, response);
+			homePageCall(request, response, changeP);
 		}
 		else {
-			request.setAttribute("errorMsg", "Invalid username or password");
+			request.setAttribute(errMsg, "Invalid username or password");
 			changeP.forwardPage("Login.jsp", request, response);
 		}
 	}
 	
-	public void servRegister(HttpServletRequest request, HttpServletResponse response, ChangePageServlet changeP) {
+	public void servRegister(HttpServletRequest request, HttpServletResponse response, JspChangePage changeP) {
 		UserDataBean dataBean = new UserDataBean();
 		dataBean.setName(request.getParameter("name"));
 		dataBean.setSurname(request.getParameter("surname"));
@@ -67,16 +65,16 @@ public class LoginServlet extends HttpServlet {
 		retreiveImage(request, dataBean);
 		ControllerFacade facCtrl = new ControllerFacade();
 		try {
-			HomePageServlet hpServ = new HomePageServlet();
 			facCtrl.insertNewUser(dataBean);
-			hpServ.loadHomePageUserInfo(request);
-			LoggedUser logUsr = new LoggedUser();
-			HttpSession session = request.getSession();
-			session.setAttribute("image", logUsr.getImage());
-			changeP.forwardPage("HomePage.jsp", request, response);
-		} catch (DuplicateUsernameException e) {
-			request.setAttribute("errorMsg", "Username not available");
-			changeP.forwardPage("Registration.jsp", request, response);
+			homePageCall(request, response, changeP);
+		} 
+		catch (DuplicateUsernameException e) {
+			request.setAttribute(errMsg, "Username not available");
+			changeP.forwardPage(defPage, request, response);
+		}
+		catch(NullValueException e) {
+			request.setAttribute(errMsg, e.getErrorMessage());
+			changeP.forwardPage(defPage, request, response);
 		}
 	}
 	
@@ -100,5 +98,15 @@ public class LoginServlet extends HttpServlet {
 			}
 			dataBean.setUsrImage(tempFile);
 		}
+	}
+	
+	private void homePageCall(HttpServletRequest request, HttpServletResponse response, JspChangePage changeP) {
+		HomePageServlet hpServ = new HomePageServlet();
+		hpServ.loadHomePageUserInfo(request);
+		LoggedUser logUsr = new LoggedUser();
+		HttpSession session = request.getSession();
+		session.setAttribute("image", logUsr.getImage());
+		session.setAttribute("usrname", logUsr.getUserName());
+		changeP.forwardPage("HomePage.jsp", request, response);
 	}
 }

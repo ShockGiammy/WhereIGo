@@ -27,7 +27,7 @@ public class RentRenterServlet extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse resp) {
 		
-		ChangePageServlet changeP = new ChangePageServlet();	
+		JspChangePage changeP = new JspChangePage();	
 		ControllerFacade facade = new ControllerFacade();
 	
 		RentAccomodationBean beanToUpdate = null;
@@ -63,7 +63,7 @@ public class RentRenterServlet extends HttpServlet {
 		changeP.forwardPage(page, req, resp);	
 	}
 	
-	public RentAccomodationBean setAccomodationInfo(HttpServletRequest req, HttpServletResponse resp, ChangePageServlet changeP) {
+	public RentAccomodationBean setAccomodationInfo(HttpServletRequest req, HttpServletResponse resp, JspChangePage changeP) {
 		RentAccomodationBean bean = new RentAccomodationBean();
 		LoggedUser logUser = new LoggedUser();
 		Logger logger = Logger.getLogger("WIG");

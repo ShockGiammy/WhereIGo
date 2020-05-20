@@ -2,9 +2,9 @@ package logic.controllers;
 
 import logic.dao.UserDao;
 import logic.exceptions.DuplicateUsernameException;
+import logic.exceptions.NullValueException;
 import logic.model.UserModel;
 import logic.beans.UserDataBean;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
@@ -34,8 +34,11 @@ public class LoginController {
 		return ret;
 	}
 	
-	public int insertNewUserControl(UserDataBean usrBean) throws DuplicateUsernameException {
-		if(usrBean.getUsername() != null && usrBean.getPassword() != null && usrBean.getName() != null && usrBean.getSurname() != null && usrBean.getDateOfBirth() != null && usrBean.getGender() != null && usrBean.getType() != null ) {
+	public void insertNewUserControl(UserDataBean usrBean) throws DuplicateUsernameException, NullValueException {
+		if((usrBean.getUsername() == null || usrBean.getUsername().equalsIgnoreCase("")) || (usrBean.getPassword() == null || usrBean.getPassword().equalsIgnoreCase(""))|| (usrBean.getName() == null || usrBean.getName().equalsIgnoreCase("")) || (usrBean.getSurname() == null || usrBean.getSurname().equalsIgnoreCase("")) || (usrBean.getDateOfBirth() == null || usrBean.getDateOfBirth().equalsIgnoreCase("")) || (usrBean.getGender() == null || usrBean.getGender().equalsIgnoreCase("")) || (usrBean.getType() == null || usrBean.getType().equalsIgnoreCase(""))) {
+			throw new NullValueException("Please, insert all datas");
+		}
+		else {
 			this.usrModel.setCredentials(usrBean.getUsername(), usrBean.getSurname(), LocalDate.parse(usrBean.getDateOfBirth()), usrBean.getGender());
 			this.usrModel.setUserName(usrBean.getUsername());
 			this.usrModel.setPaswd(usrBean.getPassword());
@@ -51,10 +54,6 @@ public class LoginController {
 			}
 			LoggedUser.setImage(imm);
 			this.usrDao.insertNewUser(this.usrModel);
-			return 0;
-		}
-		else {
-			return -1;
 		}
 	}
 }

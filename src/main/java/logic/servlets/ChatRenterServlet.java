@@ -21,7 +21,7 @@ public class ChatRenterServlet extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse resp) {
 		
-		ChangePageServlet changeP = new ChangePageServlet();
+		JspChangePage changeP = new JspChangePage();
 		
 		LoggedUser logUser = new LoggedUser();		
 		ControllerFacade facade = new ControllerFacade(this);

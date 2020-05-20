@@ -48,10 +48,10 @@ $(function(){
 
 
 <%
-	if(request.getAttribute("fineMsg") !=  null){
+	if(request.getAttribute("bookmessage") !=  null){
 %>
 <div class="alert alert-info alert-dismissible fade show" role="alert">
-  		<p><%=request.getAttribute("fineMsg") %></p>
+  		<p><%=request.getAttribute("bookmessage") %></p>
   	 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
     	<span aria-hidden="true">&times;</span>
   		</button>
@@ -59,33 +59,6 @@ $(function(){
 <%
 	}
 %>
-
-<%
-	if(request.getAttribute("notravels") !=  null){
-%>
-<div class="alert alert-info alert-dismissible fade show" role="alert">
-  		<p><%=request.getAttribute("notravels") %></p>
-  	 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    	<span aria-hidden="true">&times;</span>
-  		</button>
-	</div>
-<%
-	}
-%>
-
-<%
-	if(request.getAttribute("alreadybought") !=  null){
-%>
-<div class="alert alert-info alert-dismissible fade show" role="alert">
-  		<p><%=request.getAttribute("alreadybought") %></p>
-  	 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    	<span aria-hidden="true">&times;</span>
-  		</button>
-	</div>
-<%
-	}
-%>
-
 
 <%
 		List<String> cities = new ArrayList<>();

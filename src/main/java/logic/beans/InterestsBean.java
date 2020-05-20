@@ -1,20 +1,20 @@
 package logic.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InterestsBean {
-	private int[] answares;
+	private List<Integer> answares;
 	
 	public InterestsBean() {
-		answares = new int[4];
+		answares = new ArrayList<>();
 	}
 	
-	public void setAnswares(int[] answ) {
-		this.answares[0] = answ[0];
-		this.answares[1] = answ[1];
-		this.answares[2] = answ[2];
-		this.answares[3] = answ[3];
+	public void setAnswares(List<Integer> answ) {
+		this.answares.addAll(answ);
 	}
 
-	public int[] getAnswares() {
+	public List<Integer> getAnswares() {
 		return this.answares;
 	}
 }

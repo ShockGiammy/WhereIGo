@@ -27,16 +27,10 @@ public class GraphicControllerCreateGroup extends BasicGui{
 		this.userImage.setImage(setUserImage());
 	}
 	
-	public void getName() {
-		this.grpBean.setGroupTitle(this.groupName.getText());
-	}
-	
-	public void getDest() {
-		this.grpBean.setGroupDestination(this.groupDest.getText());
-	}
-	
 	public void saveUserGroup(MouseEvent e) {
 		try {
+			this.grpBean.setGroupTitle(this.groupName.getText());
+			this.grpBean.setGroupDestination(this.groupDest.getText());
 			this.facade.saveGroup(this.grpBean);
 			goHome(e);
 		} 

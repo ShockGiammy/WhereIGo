@@ -1,5 +1,6 @@
 package logic.graphiccontrollers;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -10,10 +11,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import logic.DatePickerLimiter;
 import logic.beans.GroupBean;
 import logic.beans.LocationBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
+import logic.exceptions.BigDateException;
+import logic.exceptions.EmptyListException;
+import logic.exceptions.NullValueException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 import javafx.scene.control.TextField;
@@ -26,6 +31,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 	private ErrorPopup popUp;
 	private List<GroupBean> grpList;
 	private List<String> suggLoc;
+	private DatePickerLimiter dpLim;
 	@FXML private DatePicker firstDay;
 	@FXML private DatePicker lastDay;
 	@FXML private TextField departureCity;
@@ -48,26 +54,30 @@ public class GraphicControllerBookTravel extends BasicGui{
 		this.userImage.setImage(setUserImage());
 		this.grpList = new ArrayList<>();
 		this.suggLoc = new ArrayList<>();
+		dpLim = new DatePickerLimiter();
+		dpLim.restrictDatePicker(this.firstDay, LocalDate.now());
+		dpLim.restrictDatePicker(this.lastDay, LocalDate.now());
 		this.facade.loadBookTravSuggestion(suggLoc, grpList);
 		setLocation();
 		setGroups();
 	}
 	
 	public void bookMyTravelControl(MouseEvent event) {
-		if(this.travBean.getFirstDay() == null || this.travBean.getLastDay() == null || this.travBean.getCityOfDep() == null || this.travBean.getCityOfArr() == null) {
-			this.popUp.displayLoginError("Please, insert all datas");
-		}
-		else {
-			int i;
-			i = this.facade.retriveTravelSolutions(travBean, travBeanArray);
-			if(i == -1) {
+		try {
+			this.facade.retriveTravelSolutions(travBean, travBeanArray);
 			popUp.displayLoginError("No travel available at this moment: either you have already bought the same flight or there are no solutions for these datas");
-			}
-			else {
-				setScene("TicketSolutions.fxml");
-				loadScene();
-				setTicketsDatas(this.travBeanArray, event);
-			}
+			setScene("TicketSolutions.fxml");
+			loadScene();
+			setTicketsDatas(this.travBeanArray, event);
+		}
+		catch(NullValueException e) {
+			this.popUp.displayLoginError(e.getErrorMessage());
+		}
+		catch(EmptyListException e) {
+			this.popUp.displayLoginError("No available travels for the requested cities/dates");
+		}
+		catch(BigDateException e) {
+			this.popUp.displayLoginError(e.getMessage());
 		}
 	}
 
@@ -156,14 +166,14 @@ public class GraphicControllerBookTravel extends BasicGui{
 			if(this.hboxList.get(i).getChildren().get(2).equals(e.getTarget())) {
 				Text city = (Text)this.hboxList.get(i).getChildren().get(0);
 				this.travBean.setArrCity(city.getText());
-				this.travBeanArray.addAll(this.facade.getSuggTicketsInfo(this.travBean));
-				if(this.travBeanArray.isEmpty()) {
-					this.popUp.displayLoginError("Nessun viaggio disponibile o viaggio già prenotato");
-				}
-				else {
+				try {
+					this.travBeanArray.addAll(this.facade.getSuggTicketsInfo(this.travBean));
 					setScene("TicketSolutions.fxml");
 					loadScene();
 					setTicketsDatas(this.travBeanArray, e);
+				}
+				catch(EmptyListException e1) {
+					this.popUp.displayLoginError("Nessun viaggio disponibile o viaggio già prenotato");
 				}
 			}
 		}

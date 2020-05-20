@@ -1,8 +1,10 @@
 package logic.controllers;
 
+import java.util.List;
 import logic.LoggedUser;
 import logic.beans.InterestsBean;
 import logic.dao.UserDao;
+import logic.exceptions.MissingAnswareException;
 import logic.model.UserModel;
 
 public class InterestsController {
@@ -16,15 +18,17 @@ public class InterestsController {
 		this.usrDao = new UserDao();
 	}
 	
-	public void evaluateInterestsControl(InterestsBean interBean) {
+	public void evaluateInterestsControl(InterestsBean interBean) throws MissingAnswareException {
+		List<Integer> answ = interBean.getAnswares();
+		if(answ.size() <= 3) {
+			throw new MissingAnswareException("Pelase answare to all questions");
+		}
 		LoggedUser logUser = new LoggedUser();
 		UserModel usrMod = new UserModel();
 		usrMod.setUserName(logUser.getUserName());
 		String pers = null;
-		int[] answares = interBean.getAnswares();
-		int i;
-		for(i = 0; i < answares.length; i++) {
-			switch(answares[i]) {
+		for(int i = 0; i < answ.size(); i++) {
+			switch(answ.get(i)) {
 				case(1):
 					numbOf1 += 1;
 					break;

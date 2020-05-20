@@ -1,6 +1,5 @@
 package logic.controllers;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +12,8 @@ import logic.dao.GroupDao;
 import logic.dao.LocationDao;
 import logic.dao.TravelDao;
 import logic.dao.UserDao;
+import logic.exceptions.BigDateException;
+import logic.exceptions.EmptyListException;
 import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.NullValueException;
 import logic.model.GroupModel;
@@ -83,39 +84,26 @@ public class BookTravelControl {
 		bean.setStream(locModel.getPhoto());
 	}
 	
-	public int retriveTravelSolutionsControl(UserTravelBean travBean, List<UserTravelBean> travList) {
+	public void retriveTravelSolutionsControl(UserTravelBean travBean, List<UserTravelBean> travList) throws BigDateException, EmptyListException, NullValueException {
 		List<TicketModel> tickList = new ArrayList<>();
-		int i = 0;
-		try {
-			if(LocalDate.parse(travBean.getFirstDay()).compareTo(LocalDate.parse(travBean.getLastDay())) > 0) {
-				return -1;
+		if((travBean.getFirstDay() == null || travBean.getFirstDay().equalsIgnoreCase("")) || (travBean.getLastDay() == null || travBean.getLastDay().equalsIgnoreCase("")) || (travBean.getCityOfDep() == null || travBean.getCityOfDep().equalsIgnoreCase("")) || (travBean.getCityOfArr() == null || travBean.getCityOfArr().equalsIgnoreCase(""))) {
+			throw new NullValueException("Please, insert all datas");
+		}
+		if(LocalDate.parse(travBean.getFirstDay()).compareTo(LocalDate.parse(travBean.getLastDay())) >= 0) {
+			throw new BigDateException("Departure date is before Return date");
+		}
+		else {
+			this.usrMod.setUserName(this.logUser.getUserName());
+			TicketModel tick = new TicketModel();
+			tick.setAll(travBean.getCityOfDep(), travBean.getCityOfArr(), LocalDate.parse(travBean.getFirstDay()), LocalDate.parse(travBean.getLastDay()));
+			tickList.addAll(travDao.retriveAvailableTickets(tick, usrMod));
+			if(tickList.isEmpty()) {
+				throw new EmptyListException();
 			}
 			else {
-				this.usrMod.setUserName(this.logUser.getUserName());
-				TicketModel tick = new TicketModel();
-				tick.setAll(travBean.getCityOfDep(), travBean.getCityOfArr(), LocalDate.parse(travBean.getFirstDay()), LocalDate.parse(travBean.getLastDay()));
-				tickList.addAll(travDao.retriveAvailableTickets(tick, usrMod));
-				if(tickList.isEmpty()) {
-					return -1;
-				}
-				else {
-					while(i < tickList.size()) {
-						UserTravelBean bean = new UserTravelBean();
-						bean.setId(tickList.get(i).getId());
-						bean.setFirstDay(tickList.get(i).getDepDay());
-						bean.setLastDay(tickList.get(i).getArrDay());
-						bean.setArrCity(tickList.get(i).getArrCity());
-						bean.setDepCity(tickList.get(i).getDepCity());
-						bean.setCost(tickList.get(i).getMoney());
-						travList.add(bean);
-						i+=1;
-					}
-				}
+				setTickInfo(tickList, travList);
 			}
-		}catch(SQLException e) {
-			return -1;
 		}
-		return 0;
 	}
 	
 	public void saveBoughtTicketControl(UserTravelBean travBean) {
@@ -131,21 +119,11 @@ public class BookTravelControl {
 		this.usrMod.setUserName(logUser.getUserName());
 		List<TicketModel> tickList = new ArrayList<>();
 		this.travDao.getUserTickets(usrMod, tickList);
-		int i;
-		for(i = 0; i < tickList.size(); i++) {
-			UserTravelBean bean = new UserTravelBean();
-			bean.setId(tickList.get(i).getId());
-			bean.setDepCity(tickList.get(i).getDepCity());
-			bean.setArrCity(tickList.get(i).getArrCity());
-			bean.setFirstDay(tickList.get(i).getDepDay());
-			bean.setLastDay(tickList.get(i).getArrDay());
-			bean.setCost(tickList.get(i).getMoney());
-			travBeanList.add(bean);
-		}
+		setTickInfo(tickList, travBeanList);
 	}
 	
 	public void saveGroupControl(GroupBean grpBean) throws GroupNameTakenException, NullValueException {
-		if(grpBean.getGroupDestination() == null || grpBean.getGroupTitle() == null) {
+		if((grpBean.getGroupDestination() == null ||grpBean.getGroupDestination().equalsIgnoreCase("")) || (grpBean.getGroupTitle() == null || grpBean.getGroupTitle().equalsIgnoreCase(""))) {
 			throw new NullValueException("Please insert a group name and a group destination");
 		}
 		else {
@@ -162,24 +140,17 @@ public class BookTravelControl {
 		getParticipateGroupsControl(grpBean);
 	}
 	
-	public List<UserTravelBean> getSuggTicketsInfoControl(UserTravelBean travBean) {
+	public List<UserTravelBean> getSuggTicketsInfoControl(UserTravelBean travBean) throws EmptyListException{
 		List<TicketModel> tickList = new ArrayList<>();
 		List<UserTravelBean> travList = new ArrayList<>();
 		this.usrMod.setUserName(this.logUser.getUserName());
 		TicketModel tickMod = new TicketModel();
 		tickMod.setArrCity(travBean.getCityOfArr());
 		this.travDao.getSuggestedTickets(tickMod,this.usrMod, tickList);
-		int i;
-		for(i = 0; i < tickList.size(); i++) {
-			UserTravelBean trav = new UserTravelBean();
-			trav.setId(tickList.get(i).getId());
-			trav.setDepCity(tickList.get(i).getDepCity());
-			trav.setArrCity(tickList.get(i).getArrCity());
-			trav.setFirstDay(tickList.get(i).getDepDay());
-			trav.setLastDay(tickList.get(i).getArrDay());
-			trav.setCost(tickList.get(i).getMoney());
-			travList.add(trav);
+		if(tickList.isEmpty()) {
+			throw new EmptyListException();
 		}
+		setTickInfo(tickList, travList);
 		return travList;
 	}
 	
@@ -222,6 +193,19 @@ public class BookTravelControl {
 			databean.setByteSteam(usrModList.get(i).getProfilePic());
 			databean.setUserName(usrModList.get(i).getUserName());
 			usrList.add(databean);
+		}
+	}
+	
+	private void setTickInfo(List<TicketModel> tickList, List<UserTravelBean> travBeanList) {
+		for(int i = 0; i < tickList.size(); i++) {
+			UserTravelBean trav = new UserTravelBean();
+			trav.setId(tickList.get(i).getId());
+			trav.setDepCity(tickList.get(i).getDepCity());
+			trav.setArrCity(tickList.get(i).getArrCity());
+			trav.setFirstDay(tickList.get(i).getDepDay());
+			trav.setLastDay(tickList.get(i).getArrDay());
+			trav.setCost(tickList.get(i).getMoney());
+			travBeanList.add(trav);
 		}
 	}
 }

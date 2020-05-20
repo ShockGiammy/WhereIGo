@@ -14,6 +14,10 @@ public class UserTravelBean {
 		this.id = String.valueOf(ident);
 	}
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 	public void setFirstDay(LocalDate firstDay) {
 		this.firstDay = firstDay.toString();
 	}
@@ -40,6 +44,10 @@ public class UserTravelBean {
 	
 	public void setCost(float money) {
 		this.cost = String.valueOf(money);
+	}
+	
+	public void setCost(String money) {
+		this.cost = money;
 	}
 	
 	public Integer getId() {

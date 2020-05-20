@@ -110,9 +110,9 @@
                         </VBox>
                         <VBox prefHeight="97.0" prefWidth="210.0" spacing="7.0">
                            <children>
-                              <TextField fx:id="groupName" onKeyTyped="#getName" prefHeight="26.0" prefWidth="210.0" />
+                              <TextField fx:id="groupName" prefHeight="26.0" prefWidth="210.0" />
                               <TextField fx:id="groupAdmin" editable="false" prefHeight="26.0" prefWidth="210.0" />
-                              <TextField fx:id="groupDest" onKeyTyped="#getDest" prefHeight="26.0" prefWidth="210.0" />
+                              <TextField fx:id="groupDest" prefHeight="26.0" prefWidth="210.0" />
                            </children>
                         </VBox>
                      </children>

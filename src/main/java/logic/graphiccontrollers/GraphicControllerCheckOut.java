@@ -50,23 +50,19 @@ public class GraphicControllerCheckOut extends BasicGui{
 	}
 	
 	public void saveNewGroup() {
-		if(this.groupName.getText().equalsIgnoreCase("")) {
-			errPop.displayLoginError("Inserisci il nome del gruppo");
+		try {
+			GroupBean grpBean = new GroupBean();
+			grpBean.setGroupTitle(this.groupName.getText());
+			grpBean.setGroupOwner(this.groupAdmin.getText());
+			grpBean.setGroupDestination(this.groupDest.getText());
+			this.facade.saveGroup(grpBean);
+			errPop.displayLoginError("Gruppo salvato correttamente");
 		}
-		else {
-			try {
-				GroupBean grpBean = new GroupBean();
-				grpBean.setGroupTitle(this.groupName.getText());
-				grpBean.setGroupOwner(this.groupAdmin.getText());
-				grpBean.setGroupDestination(this.groupDest.getText());
-				this.facade.saveGroup(grpBean);
-			}
-			catch(GroupNameTakenException e) {
-				errPop.displayLoginError("Nome del gruppo già scelto. Per favore, inserire un nome diverso");
-			}
-			catch(NullValueException e1) {
-				errPop.displayLoginError(e1.getErrorMessage());
-			}
+		catch(GroupNameTakenException e) {
+			errPop.displayLoginError("Nome del gruppo già scelto. Per favore, inserire un nome diverso");
+		}
+		catch(NullValueException e1) {
+			errPop.displayLoginError(e1.getErrorMessage());
 		}
 	}
 	

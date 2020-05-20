@@ -24,7 +24,7 @@ public class HomePageServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LoggedUser logusr = new LoggedUser();
-		ChangePageServlet changeP = new ChangePageServlet();
+		JspChangePage changeP = new JspChangePage();
 		String act = request.getParameter("action");
 		String page = null;
 		if(act.equalsIgnoreCase("gohome")) {
@@ -38,7 +38,7 @@ public class HomePageServlet extends HttpServlet {
 		}
 		else if(act.equalsIgnoreCase("gobooktravel")) {
 			page = "BookTravelStart.jsp";
-			 loadBookTravelSugg(request);
+			loadBookTravelSugg(request);
 		}
 		else if(act.equalsIgnoreCase("Rent")) {
 			if(logusr.getUserType() == UserType.RENTER) {

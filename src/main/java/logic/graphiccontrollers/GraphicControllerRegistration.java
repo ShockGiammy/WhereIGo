@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 import logic.beans.UserDataBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.DuplicateUsernameException;
+import logic.exceptions.NullValueException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
@@ -81,26 +82,24 @@ public class GraphicControllerRegistration {
 	
 	public void registerNowControl(MouseEvent event) {
 		try {
-			int ret;
 			getImage();
 			if(this.dataBean.getFileImage() == null) {
-				this.errLogin.displayLoginError("Inserire immagine");
+				this.errLogin.displayLoginError("Insert an image");
 			}
 			else {
 				this.dataBean.setType(this.typeOfUser.getValue());
 				this.dataBean.setGender(this.gender.getValue());
-				ret = this.facCtrl.insertNewUser(this.dataBean);
-				if(ret == -1) {
-					this.errLogin.displayLoginError("Inserire tutti i dati");
-				}
-				else {
-					this.errLogin.displayLoginError("Correttamente registrato");
-					bgui.setUserImage();
-					bgui.goHome(event);
-				}
+				this.facCtrl.insertNewUser(this.dataBean);
+				this.errLogin.displayLoginError("Correcty Registered");
+				bgui.setUserImage();
+				bgui.goHome(event);
 			}
-			}catch(DuplicateUsernameException e) {
-				this.errLogin.displayLoginError("Questo username non è disponibile");
+		}
+		catch(DuplicateUsernameException e) {
+			this.errLogin.displayLoginError("Username not available");
+		}
+		catch(NullValueException e) {
+			this.errLogin.displayLoginError(e.getErrorMessage());
 		}
 	}
 	

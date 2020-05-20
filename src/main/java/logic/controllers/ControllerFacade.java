@@ -12,8 +12,11 @@ import logic.beans.RentAccomodationBean;
 import logic.beans.UserChatBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
+import logic.exceptions.BigDateException;
 import logic.exceptions.DuplicateUsernameException;
+import logic.exceptions.EmptyListException;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.MissingAnswareException;
 import logic.exceptions.NullValueException;
 import logic.exceptions.ServerDownException;
 import logic.graphiccontrollers.GraphicControllerChat;
@@ -164,9 +167,9 @@ public class ControllerFacade {
 		this.bookTravCtrl.retriveLocInfoControl(bean);
 	}
 	
-	public int retriveTravelSolutions(UserTravelBean travBean, List<UserTravelBean> travList) {
+	public void retriveTravelSolutions(UserTravelBean travBean, List<UserTravelBean> travList) throws BigDateException, EmptyListException, NullValueException {
 		this.bookTravCtrl = new BookTravelControl();
-		return this.bookTravCtrl.retriveTravelSolutionsControl(travBean, travList);
+		this.bookTravCtrl.retriveTravelSolutionsControl(travBean, travList);
 	}
 	
 	public void saveBoughtTicket(UserTravelBean travBean) {
@@ -186,7 +189,7 @@ public class ControllerFacade {
 		this.bookTravCtrl.saveGroupControl(grpBean);
 	}
 	
-	public List<UserTravelBean> getSuggTicketsInfo(UserTravelBean travBean) {
+	public List<UserTravelBean> getSuggTicketsInfo(UserTravelBean travBean) throws EmptyListException {
 		this.bookTravCtrl = new BookTravelControl();
 		return this.bookTravCtrl.getSuggTicketsInfoControl(travBean);
 	}
@@ -213,7 +216,7 @@ public class ControllerFacade {
 	
 	/* methods calls of the Interest Controller*/
 	
-	public void evaluateInterests(InterestsBean interBean) {
+	public void evaluateInterests(InterestsBean interBean) throws MissingAnswareException {
 		InterestsController intCtrl = new InterestsController();
 		intCtrl.evaluateInterestsControl(interBean);
 	}
@@ -225,8 +228,8 @@ public class ControllerFacade {
 		return this.loginCtrl.checkLogInControl(logBean);
 	}
 	
-	public int insertNewUser(UserDataBean usrBean) throws DuplicateUsernameException {
+	public void insertNewUser(UserDataBean usrBean) throws DuplicateUsernameException, NullValueException {
 		this.loginCtrl = new LoginController();
-		return this.loginCtrl.insertNewUserControl(usrBean);
+		this.loginCtrl.insertNewUserControl(usrBean);
 	}
 }
