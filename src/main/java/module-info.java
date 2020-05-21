@@ -12,11 +12,10 @@ module WhereIGo {
 	requires javafx.controls;
 	requires javafx.fxml;
 	requires transitive javafx.graphics;
-	requires mysql.connector.java;
 	requires java.desktop;
 	requires javafx.media;
-	requires javax.servlet.api;
 	requires java.base;
+	requires transitive javax.servlet.api;
 	
 	opens logic;
 	opens logic.graphiccontrollers;

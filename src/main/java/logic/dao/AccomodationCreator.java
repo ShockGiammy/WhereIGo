@@ -71,19 +71,18 @@ public class AccomodationCreator {
 	public void getAccomodationDatas(PreparedStatement statement, List<AccomodationModel> models) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
-				RentAccomodationBean bean = new RentAccomodationBean();
-				bean.setID(rs.getLong(1));
+				AccomodationModel model = new AccomodationModel();
+				model.setID(rs.getLong(1));
 				byte[] image = rs.getBytes(2);
-				bean.setInputStream(image);
-				bean.setRenter(rs.getString(3));
-				bean.setDescription(rs.getString(4));
-				bean.setBeds(rs.getString(5));
-				bean.setCity(rs.getString(6));
-				bean.setAddress(rs.getString(7));
-				bean.setServices(rs.getBytes(8));
-				bean.setSquareMetres(rs.getString(9));
-				bean.setType(rs.getString(10));
-				AccomodationModel model = new AccomodationModel(bean);
+				model.setHouseImageBytes(image);
+				model.setRenter(rs.getString(3));
+				model.setDescription(rs.getString(4));
+				model.setBeds(rs.getString(5));
+				model.setCity(rs.getString(6));
+				model.setAddress(rs.getString(7));
+				model.setServices(rs.getBytes(8));
+				model.setSquareMetres(rs.getString(9));
+				model.setType(rs.getString(10));
 				models.add(model);
 			}
 		}catch(SQLException e) {

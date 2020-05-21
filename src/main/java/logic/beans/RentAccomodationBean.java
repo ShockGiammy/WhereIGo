@@ -151,6 +151,7 @@ public class RentAccomodationBean {
 		}
 	}
 
+
 	public byte[] getHouseImage() {
 		return inputF;
 	}

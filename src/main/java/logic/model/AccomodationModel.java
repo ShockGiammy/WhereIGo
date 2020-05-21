@@ -31,6 +31,9 @@ public class AccomodationModel {
 		services = new byte[4];
 		services = bean.getServices();
 	}
+	
+	public AccomodationModel() {
+	}
 
 	public RentAccomodationBean getInfo() {
 		RentAccomodationBean accomodationInfo = new RentAccomodationBean();
@@ -59,11 +62,48 @@ public class AccomodationModel {
 		dao.update(this.getInfo());
 	}
 	
-	public void setID(int id) {
+	public void setID(long id) {
 		this.id = id;
 	}
 	
 	public long getID() {
 		return this.id;
+	}
+	
+	public void setBeds(String numBeds) {
+		this.beds= numBeds;	
+	}
+	
+	public void setRenter(String renter) {
+		this.renter = renter;
+	}
+	
+	public void setCity(String citta) {
+		this.city = citta;
+	}
+
+	public void setAddress(String indirizzo) {
+		this.address = indirizzo;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setSquareMetres(String squareMetres) {
+		this.squareMetres = squareMetres;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setServices(byte[] listOfServices) {
+		this.services = new byte[4];
+		this.services = listOfServices;
+	}
+
+	public void setHouseImageBytes(byte[] input) {
+		this.houseImage = input;
 	}
 }
