@@ -10,6 +10,8 @@ import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import logic.exceptions.LengthFieldException;
+
 public class RentAccomodationBean {
 	
 	private long id;
@@ -29,7 +31,14 @@ public class RentAccomodationBean {
 		this.beds= numBeds;	
 	}
 	
-	public void setRenter(String renter) {
+	public void setRenter(String renter) throws LengthFieldException {
+		if (renter.length() >= 20) {
+			throw new LengthFieldException("Renter name too long");
+		}
+		this.renter = renter;
+	}
+	
+	public void setRenterFromDB(String renter) {
 		this.renter = renter;
 	}
 	
@@ -49,7 +58,14 @@ public class RentAccomodationBean {
 		return city;
 	}
 
-	public void setCity(String citta) {
+	public void setCity(String citta) throws LengthFieldException {
+		if (citta.length() >= 30) {
+			throw new LengthFieldException("City name too long");
+		}
+		this.city = citta;
+	}
+	
+	public void setCityFromDB(String citta) {
 		this.city = citta;
 	}
 
@@ -57,7 +73,14 @@ public class RentAccomodationBean {
 		return address;
 	}
 
-	public void setAddress(String indirizzo) {
+	public void setAddress(String indirizzo) throws LengthFieldException {
+		if (indirizzo.length() >= 40) {
+			throw new LengthFieldException("Address too long");
+		}
+		this.address = indirizzo;
+	}
+	
+	public void setAddressFromDB(String indirizzo) {
 		this.address = indirizzo;
 	}
 
@@ -81,7 +104,14 @@ public class RentAccomodationBean {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(String description) throws LengthFieldException {
+		if (description.length() >= 4096) {
+			throw new LengthFieldException("Description too long");
+		}
+		this.description = description;
+	}
+	
+	public void setDescriptionFromDB(String description) {
 		this.description = description;
 	}
 

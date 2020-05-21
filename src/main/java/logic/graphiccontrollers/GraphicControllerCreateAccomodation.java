@@ -14,12 +14,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import logic.beans.RentAccomodationBean;
+import logic.exceptions.LengthFieldException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
 public class GraphicControllerCreateAccomodation extends BasicGui{
 	
-	ObservableList<String> typeList = FXCollections.observableArrayList("appartamento", "villetta", "monolocale");
+	ObservableList<String> typeList = FXCollections.observableArrayList("apartment", "cottage", "studio flat");
 	ObservableList<String> squareList = FXCollections.observableArrayList("< 20", "20 - 39", "40 - 59", "> 60");
 	ObservableList<String> beds = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", ">8");
 	
@@ -42,7 +43,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 	
 	@FXML
 	private void initialize() {
-		type.setValue("appartamento");
+		type.setValue("apartment");
 		type.setItems(typeList);
 		squareMetres.setValue("< 20");
 		squareMetres.setItems(squareList);
@@ -88,9 +89,15 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		String numBeds = numberBeds.getValue();
 		bean.setBeds(numBeds);
 		bean.setServices(listOfServices);
-		bean.setCity(city.getText());
-		bean.setAddress(address.getText());
-		bean.setDescription(description.getText());
+		try {
+			bean.setCity(city.getText());
+			bean.setAddress(address.getText());
+			bean.setDescription(description.getText());
+			bean.setRenter(this.logUsr.getUserName());
+		} catch (LengthFieldException e) {
+			ErrorPopup error = new ErrorPopup();
+        	error.displayLoginError(e.getMsg());
+		}
 		if (houseImage == null) {
         	ErrorPopup error = new ErrorPopup();
         	error.displayLoginError("Image not found");
@@ -98,7 +105,6 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		bean.setHouseImage(houseImage);
 		bean.setSquareMetres(squareMetres.getValue());
 		bean.setType(type.getValue());
-		bean.setRenter(this.logUsr.getUserName());
 		facade.createAccomodation(bean);
 		goHome(event);
 	}

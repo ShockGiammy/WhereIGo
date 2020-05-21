@@ -1,5 +1,6 @@
 package logic.beans;
 
+import logic.exceptions.LengthFieldException;
 import logic.model.Message;
 
 public class MessageBean {
@@ -24,7 +25,10 @@ public class MessageBean {
         return msg;
     }
 
-    public void setMsg(String msg) {
+    public void setMsg(String msg) throws LengthFieldException {
+    	if (msg.length() >= 1000) {
+			throw new LengthFieldException("Message too long");
+		}
         this.msg = msg;
     }
 }

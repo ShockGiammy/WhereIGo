@@ -39,12 +39,12 @@ public class AccomodationModel {
 		RentAccomodationBean accomodationInfo = new RentAccomodationBean();
 		accomodationInfo.setID(id);
 		accomodationInfo.setBeds(beds);
-		accomodationInfo.setRenter(renter);
-		accomodationInfo.setCity(city);
-		accomodationInfo.setAddress(address);
+		accomodationInfo.setRenterFromDB(renter);
+		accomodationInfo.setCityFromDB(city);
+		accomodationInfo.setAddressFromDB(address);
 		accomodationInfo.setType(type);
 		accomodationInfo.setSquareMetres(squareMetres);
-		accomodationInfo.setDescription(description);
+		accomodationInfo.setDescriptionFromDB(description);
 		if (this.houseImage != null) {
 			accomodationInfo.setInputStream(houseImage);
 		}

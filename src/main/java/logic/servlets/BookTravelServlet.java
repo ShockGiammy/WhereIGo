@@ -130,7 +130,7 @@ public class BookTravelServlet extends HttpServlet {
 		try {
 			bean.setGroupTitle(request.getParameter("groupName"));
 		} catch (LengthFieldException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Errir while deleting group");
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while deleting group");
 		}
 		bean.setGroupOwner(request.getParameter("groupOwner"));
 		LoggedUser logUsr = new LoggedUser();
@@ -147,7 +147,7 @@ public class BookTravelServlet extends HttpServlet {
 		try {
 			gBean.setGroupTitle(request.getParameter("descr"));
 		} catch (LengthFieldException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Errir while joining group");
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while joining group");
 		}
 		this.facCtrl.insertParticipant(gBean);
 	}

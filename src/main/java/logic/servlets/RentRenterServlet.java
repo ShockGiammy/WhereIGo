@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import logic.LoggedUser;
 import logic.beans.RentAccomodationBean;
 import logic.controllers.ControllerFacade;
+import logic.exceptions.LengthFieldException;
 
 @WebServlet("/RentRenter")
 public class RentRenterServlet extends HttpServlet {
@@ -23,6 +24,7 @@ public class RentRenterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String SERVICE = "service";
 	private static final String ACTION = "action";
+	private static final String ERROR = "ErrorPage.jsp";
 	
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse resp) {
@@ -68,12 +70,18 @@ public class RentRenterServlet extends HttpServlet {
 		LoggedUser logUser = new LoggedUser();
 		Logger logger = Logger.getLogger("WIG");
 		bean.setBeds(req.getParameter("beds"));
-		bean.setCity(req.getParameter("city"));
-		bean.setAddress(req.getParameter("address"));
-		bean.setDescription(req.getParameter("description"));
+		try {
+			bean.setCity(req.getParameter("city"));
+			bean.setAddress(req.getParameter("address"));
+			bean.setDescription(req.getParameter("description"));
+			bean.setRenter(logUser.getUserName());
+		} catch (LengthFieldException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+			String page = ERROR;
+			changeP.forwardPage(page, req, resp);
+		}
 		bean.setSquareMetres(req.getParameter("squareMetres"));
-		bean.setType(req.getParameter("type"));
-		bean.setRenter(logUser.getUserName());
+		bean.setType(req.getParameter("type"));	
 		if (req.getParameter("houseImage") != null) {
 			byte[] decodedImg = Base64.getDecoder().decode(req.getParameter("houseImage"));
 			String listingFolder = System.getProperty("user.dir");
@@ -83,7 +91,7 @@ public class RentRenterServlet extends HttpServlet {
 				tempFile.deleteOnExit();
 			} catch (IOException e) {
 				logger.log(Level.SEVERE, e.getMessage());
-				String page = "ErrorPage.jsp";
+				String page = ERROR;
 				changeP.forwardPage(page, req, resp);
 			}
 			try (
@@ -92,7 +100,7 @@ public class RentRenterServlet extends HttpServlet {
 				fos.write(decodedImg);
 			} catch (IOException e) {
 				logger.log(Level.SEVERE, e.getMessage());
-				String page = "ErrorPage.jsp";
+				String page = ERROR;
 				changeP.forwardPage(page, req, resp);
 			}
 			bean.setHouseImage(tempFile);

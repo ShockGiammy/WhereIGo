@@ -99,7 +99,7 @@
 				<th scope="col">houseImage</th>
 				<th scope="col">Description</th>
 				<th scope="col">Beds</th>
-				<th scope="col">Type of Appartment</th>
+				<th scope="col">Type of Accomodation</th>
 				<th scope="col">Square Metres</th>
 				<th scope="col">Services</th>
 				<th scope="col">included</th>
@@ -190,9 +190,9 @@
       <div class="form-group">
     	<label for="FormControlSelect">Type of Apartment</label>
     	<select class="form-control" id="type">
-       	<option value="appartamento" <% if (beanToUpdate != null && beanToUpdate.getType().equals("appartamento")) {%> selected <% } %>>appartamento</option>
-      	<option value="villetta" <% if (beanToUpdate != null && beanToUpdate.getType().equals("villetta")) {%> selected <% } %>>villetta</option>
-      	<option value="monolocale" <% if (beanToUpdate != null && beanToUpdate.getType().equals("monolocale")) {%> selected <% } %>>monolocale</option>
+       	<option value="apartment" <% if (beanToUpdate != null && beanToUpdate.getType().equals("apartment")) {%> selected <% } %>>appartamento</option>
+      	<option value="cottage" <% if (beanToUpdate != null && beanToUpdate.getType().equals("cottage")) {%> selected <% } %>>villetta</option>
+      	<option value="studio flat" <% if (beanToUpdate != null && beanToUpdate.getType().equals("studio flat")) {%> selected <% } %>>monolocale</option>
     	</select>
   	  </div>
     </div>
