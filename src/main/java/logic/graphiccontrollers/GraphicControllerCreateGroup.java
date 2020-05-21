@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import logic.beans.GroupBean;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.LengthFieldException;
 import logic.exceptions.NullValueException;
 import logic.view.BasicGui;
 import logic.view.ErrorPopup;
@@ -29,8 +30,7 @@ public class GraphicControllerCreateGroup extends BasicGui{
 	
 	public void saveUserGroup(MouseEvent e) {
 		try {
-			this.grpBean.setGroupTitle(this.groupName.getText());
-			this.grpBean.setGroupDestination(this.groupDest.getText());
+			checkValues();
 			this.facade.saveGroup(this.grpBean);
 			goHome(e);
 		} 
@@ -39,6 +39,19 @@ public class GraphicControllerCreateGroup extends BasicGui{
 		}
 		catch(NullValueException e2) {
 			err.displayLoginError(e2.getErrorMessage());
+		}
+	}
+	
+	private void checkValues() {
+		try {
+			this.grpBean.setGroupTitle(this.groupName.getText());
+		} catch (LengthFieldException e1) {
+			this.err.displayLoginError(e1.getMsg());
+		}
+		try {
+			this.grpBean.setGroupDestination(this.groupDest.getText());
+		} catch (LengthFieldException e1) {
+			this.err.displayLoginError(e1.getMsg());
 		}
 	}
 }

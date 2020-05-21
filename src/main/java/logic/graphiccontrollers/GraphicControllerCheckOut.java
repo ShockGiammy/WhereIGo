@@ -9,6 +9,7 @@ import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.LengthFieldException;
 import logic.exceptions.NullValueException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
@@ -52,9 +53,17 @@ public class GraphicControllerCheckOut extends BasicGui{
 	public void saveNewGroup() {
 		try {
 			GroupBean grpBean = new GroupBean();
-			grpBean.setGroupTitle(this.groupName.getText());
+			try {
+				grpBean.setGroupTitle(this.groupName.getText());
+			} catch (LengthFieldException e) {
+				this.errPop.displayLoginError(e.getMsg());
+			}
 			grpBean.setGroupOwner(this.groupAdmin.getText());
-			grpBean.setGroupDestination(this.groupDest.getText());
+			try {
+				grpBean.setGroupDestination(this.groupDest.getText());
+			} catch (LengthFieldException e) {
+				this.errPop.displayLoginError(e.getMessage());
+			}
 			this.facade.saveGroup(grpBean);
 			errPop.displayLoginError("Gruppo salvato correttamente");
 		}

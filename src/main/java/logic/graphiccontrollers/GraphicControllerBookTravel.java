@@ -2,6 +2,9 @@ package logic.graphiccontrollers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -16,6 +19,7 @@ import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.exceptions.BigDateException;
 import logic.exceptions.EmptyListException;
+import logic.exceptions.LengthFieldException;
 import logic.exceptions.NullValueException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
@@ -51,7 +55,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 		this.userImage.setImage(setUserImage());
 		this.grpList = new ArrayList<>();
 		this.suggLoc = new ArrayList<>();
-		this.facade.loadBookTravSuggestion(suggLoc, grpList);
+		loadSugg();
 		setLocation();
 		setGroups();
 	}
@@ -178,7 +182,11 @@ public class GraphicControllerBookTravel extends BasicGui{
 		for(i = 0; i < this.vboxlist.size(); i++) {
 			if(this.vboxlist.get(i).getChildren().get(3).equals(e.getTarget())) {
 				Text title = (Text)this.vboxlist.get(i).getChildren().get(0);
-				this.grpBean.setGroupTitle(title.getText());
+				try {
+					this.grpBean.setGroupTitle(title.getText());
+				} catch (LengthFieldException e1) {
+					this.popUp.displayLoginError(e1.getMsg());
+				}
 				if(this.facade.insertParticipant(this.grpBean) == 0) {
 					this.popUp.displayLoginError("Gruppo correttamente joinato");
 				}
@@ -186,6 +194,14 @@ public class GraphicControllerBookTravel extends BasicGui{
 					this.popUp.displayLoginError("Errore nel join del gruppo");
 				}
 			}
+		}
+	}
+	
+	public void loadSugg() {
+		try {
+			this.facade.loadBookTravSuggestion(suggLoc, grpList);
+		} catch (LengthFieldException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching suggestions..");
 		}
 	}
 	

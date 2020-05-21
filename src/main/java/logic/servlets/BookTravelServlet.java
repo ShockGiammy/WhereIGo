@@ -18,6 +18,7 @@ import logic.controllers.ControllerFacade;
 import logic.exceptions.BigDateException;
 import logic.exceptions.EmptyListException;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.LengthFieldException;
 import logic.exceptions.NullValueException;
 
 @WebServlet("/BookTravelServlet")
@@ -126,7 +127,11 @@ public class BookTravelServlet extends HttpServlet {
 	
 	private void deleteGroup(HttpServletRequest request) {
 		GroupBean bean = new GroupBean();
-		bean.setGroupTitle(request.getParameter("groupName"));
+		try {
+			bean.setGroupTitle(request.getParameter("groupName"));
+		} catch (LengthFieldException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, "Errir while deleting group");
+		}
 		bean.setGroupOwner(request.getParameter("groupOwner"));
 		LoggedUser logUsr = new LoggedUser();
 		if(request.getParameter("groupOwner").equalsIgnoreCase(logUsr.getUserName())){ //can subistute with session
@@ -139,7 +144,11 @@ public class BookTravelServlet extends HttpServlet {
 	
 	private void joinGroup(HttpServletRequest request) {
 		GroupBean gBean = new GroupBean();
-		gBean.setGroupTitle(request.getParameter("descr"));
+		try {
+			gBean.setGroupTitle(request.getParameter("descr"));
+		} catch (LengthFieldException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, "Errir while joining group");
+		}
 		this.facCtrl.insertParticipant(gBean);
 	}
 	
@@ -182,9 +191,8 @@ public class BookTravelServlet extends HttpServlet {
 		try {
 			ControllerFacade facCtr = new ControllerFacade();
 			GroupBean gBean = new GroupBean();
-			gBean.setGroupTitle(request.getParameter("groupname"));
 			gBean.setGroupOwner(request.getParameter("owner"));
-			gBean.setGroupDestination(request.getParameter("dest"));
+			checkGroupValue(request, gBean);
 			facCtr.saveGroup(gBean);
 			request.setAttribute(msg, "Group successfully saved");
 			nPage = hp;
@@ -209,6 +217,19 @@ public class BookTravelServlet extends HttpServlet {
 		}
 		else if (code == 1) {
 			hpServ.loadBookTravelSugg(request);
+		}
+	}
+	
+	private void checkGroupValue(HttpServletRequest request, GroupBean gBean) {
+		try {
+			gBean.setGroupTitle(request.getParameter("groupname"));
+		} catch (LengthFieldException e) {
+			request.setAttribute(msg, e.getMsg());
+		}
+		try {
+			gBean.setGroupDestination(request.getParameter("dest"));
+		} catch (LengthFieldException e1) {
+			request.setAttribute(msg, e1.getMsg());
 		}
 	}
 }

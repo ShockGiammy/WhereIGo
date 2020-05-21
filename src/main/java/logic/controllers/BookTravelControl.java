@@ -15,6 +15,7 @@ import logic.dao.UserDao;
 import logic.exceptions.BigDateException;
 import logic.exceptions.EmptyListException;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.LengthFieldException;
 import logic.exceptions.NullValueException;
 import logic.model.GroupModel;
 import logic.model.LocationModel;
@@ -49,7 +50,7 @@ public class BookTravelControl {
 		return suggLoc;
 	}
 	
-	public void getSuggestedGroupsControl(List<GroupBean> beanList) {
+	public void getSuggestedGroupsControl(List<GroupBean> beanList) throws LengthFieldException {
 		this.usrMod.setUserPersonality(this.logUser.getPersonality());
 		this.usrMod.setUserName(this.logUser.getUserName());
 		List<GroupModel> grpModelList = new ArrayList<>();
@@ -57,14 +58,14 @@ public class BookTravelControl {
 		extractGroupsControl(grpModelList, beanList);
 	}
 	
-	public void getParticipateGroupsControl(List<GroupBean> beanList){
+	public void getParticipateGroupsControl(List<GroupBean> beanList) throws LengthFieldException{
 		this.usrMod.setUserPersonality(this.logUser.getPersonality());
 		List<GroupModel> grpList = new ArrayList<>();
 		this.grpDao.getPartGroups(grpList, usrMod);
 		extractGroupsControl(grpList, beanList);
 	}
 	
-	public void extractGroupsControl(List<GroupModel> grpList, List<GroupBean> beanList) {
+	public void extractGroupsControl(List<GroupModel> grpList, List<GroupBean> beanList) throws LengthFieldException {
 		int i;
 		for(i = 0; i < grpList.size(); i++) {
 			GroupBean grpbean = new GroupBean();
@@ -132,7 +133,7 @@ public class BookTravelControl {
 		}
 	}
 	
-	public void getUserGroupsControl(List<GroupBean> grpBean) {
+	public void getUserGroupsControl(List<GroupBean> grpBean) throws LengthFieldException {
 		this.usrMod.setUserName(this.logUser.getUserName());
 		List<GroupModel> grpList = new ArrayList<>();
 		grpDao.getUserGroups(grpList,this.usrMod);

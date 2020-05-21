@@ -16,10 +16,12 @@ import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
+import logic.exceptions.LengthFieldException;
 
 @WebServlet("/HomePageServlet")
 public class HomePageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static String msg = "fineMsg";
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -71,11 +73,15 @@ public class HomePageServlet extends HttpServlet {
 		ControllerFacade fac = new ControllerFacade();
 		List<String> cities = new ArrayList<>();
 		List<GroupBean> beanList = new ArrayList<>();
-		fac.loadBookTravSuggestion(cities, beanList);
-		request.setAttribute("grouplist", beanList);
-		request.setAttribute("cities", cities);
-		if(beanList.isEmpty() && cities.isEmpty()) {
-			request.setAttribute("fineMsg", "No suggestions for you, please take our personality test!");
+		try {
+			fac.loadBookTravSuggestion(cities, beanList);
+			request.setAttribute("grouplist", beanList);
+			request.setAttribute("cities", cities);
+			if(beanList.isEmpty() && cities.isEmpty()) {
+				request.setAttribute(msg, "No suggestions for you, please take our personality test!");
+			}
+		} catch (LengthFieldException e) {
+			request.setAttribute(msg, "Error while loading info");
 		}
 	}
 	
@@ -84,9 +90,13 @@ public class HomePageServlet extends HttpServlet {
 		List<UserTravelBean> travBeanList = new ArrayList<>();
 		List<GroupBean> gBeanList = new ArrayList<>();
 		List<UserDataBean> dBeanList = new ArrayList<>();
-		facCtrl.getTravHomePageDatas(travBeanList, gBeanList, dBeanList);
-		request.setAttribute("travels", travBeanList);
-		request.setAttribute("groups", gBeanList);
-		request.setAttribute("users", dBeanList);
+		try {
+			facCtrl.getTravHomePageDatas(travBeanList, gBeanList, dBeanList);
+			request.setAttribute("travels", travBeanList);
+			request.setAttribute("groups", gBeanList);
+			request.setAttribute("users", dBeanList);
+		} catch (LengthFieldException e) {
+			request.setAttribute(msg, "Error while loading info");
+		}
 	}
 }

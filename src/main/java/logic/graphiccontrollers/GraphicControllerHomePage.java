@@ -2,6 +2,9 @@ package logic.graphiccontrollers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -17,6 +20,7 @@ import logic.UserType;
 import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
+import logic.exceptions.LengthFieldException;
 
 public class GraphicControllerHomePage extends BasicGui{
 	@FXML private Button changeInfo;
@@ -43,7 +47,11 @@ public class GraphicControllerHomePage extends BasicGui{
 		this.travBean = new ArrayList<>();
 		this.grpBean = new ArrayList<>();
 		this.dataBeanList = new ArrayList<>();
-		this.facade.getTravHomePageDatas(this.travBean, this.grpBean, this.dataBeanList);
+		try {
+			this.facade.getTravHomePageDatas(this.travBean, this.grpBean, this.dataBeanList);
+		} catch (LengthFieldException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while charging HomePage datas");
+		}
 		setTravel();
 		setGroups();
 		setSuggUsers();
@@ -158,7 +166,11 @@ public class GraphicControllerHomePage extends BasicGui{
 				GroupBean bean = new GroupBean();
 				Text description = (Text)this.groupBox.get(i).getChildren().get(0);
 				Text owner = (Text)this.groupBox.get(i).getChildren().get(2);
-				bean.setGroupTitle(description.getText().substring(13, description.getText().length()));
+				try {
+					bean.setGroupTitle(description.getText().substring(13, description.getText().length()));
+				} catch (LengthFieldException e1) {
+					this.err.displayLoginError(e1.getMsg());
+				}
 				bean.setGroupOwner(owner.getText().substring(15,owner.getText().length()));
 				this.facade.deleteTravelGroup(bean);
 				VBox temp = this.groupBox.get(i);
@@ -175,7 +187,11 @@ public class GraphicControllerHomePage extends BasicGui{
 			if(this.groupBox.get(i).getChildren().size() == 4 && this.groupBox.get(i).getChildren().get(3).equals(e.getTarget())) {
 				GroupBean bean = new GroupBean();
 				Text description = (Text)this.groupBox.get(i).getChildren().get(0);
-				bean.setGroupTitle(description.getText().substring(13, description.getText().length()));
+				try {
+					bean.setGroupTitle(description.getText().substring(13, description.getText().length()));
+				} catch (LengthFieldException e1) {
+					this.err.displayLoginError(e1.getMsg());
+				}
 				this.facade.leaveTravelGroup(bean);
 				VBox temp = this.groupBox.get(i);
 				this.groupBox.remove(i);
