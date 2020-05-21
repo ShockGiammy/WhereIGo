@@ -10,7 +10,7 @@ public class BigDateException extends Exception{
 		cause = message;
 	}
 	
-	public String getMessage() {
+	public String getMsg() {
 		return this.cause;
 	}
 }

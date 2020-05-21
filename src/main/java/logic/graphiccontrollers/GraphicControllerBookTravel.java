@@ -1,6 +1,5 @@
 package logic.graphiccontrollers;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -11,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import logic.DatePickerLimiter;
 import logic.beans.GroupBean;
 import logic.beans.LocationBean;
 import logic.beans.UserDataBean;
@@ -31,7 +29,6 @@ public class GraphicControllerBookTravel extends BasicGui{
 	private ErrorPopup popUp;
 	private List<GroupBean> grpList;
 	private List<String> suggLoc;
-	private DatePickerLimiter dpLim;
 	@FXML private DatePicker firstDay;
 	@FXML private DatePicker lastDay;
 	@FXML private TextField departureCity;
@@ -54,9 +51,6 @@ public class GraphicControllerBookTravel extends BasicGui{
 		this.userImage.setImage(setUserImage());
 		this.grpList = new ArrayList<>();
 		this.suggLoc = new ArrayList<>();
-		dpLim = new DatePickerLimiter();
-		dpLim.restrictDatePicker(this.firstDay, LocalDate.now());
-		dpLim.restrictDatePicker(this.lastDay, LocalDate.now());
 		this.facade.loadBookTravSuggestion(suggLoc, grpList);
 		setLocation();
 		setGroups();

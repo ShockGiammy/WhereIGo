@@ -1,7 +1,6 @@
 package controllertests;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 import logic.beans.UserDataBean;
