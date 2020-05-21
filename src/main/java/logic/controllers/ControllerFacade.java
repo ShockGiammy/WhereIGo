@@ -16,7 +16,6 @@ import logic.exceptions.BigDateException;
 import logic.exceptions.DuplicateUsernameException;
 import logic.exceptions.EmptyListException;
 import logic.exceptions.GroupNameTakenException;
-import logic.exceptions.LengthFieldException;
 import logic.exceptions.MissingAnswareException;
 import logic.exceptions.NullValueException;
 import logic.exceptions.ServerDownException;
@@ -157,7 +156,7 @@ public class ControllerFacade {
 	
 	/*BookTravelControl references methods*/
 	
-	public void loadBookTravSuggestion(List<String> suggLoc, List<GroupBean> gBeanList) throws LengthFieldException {
+	public void loadBookTravSuggestion(List<String> suggLoc, List<GroupBean> gBeanList) {
 		this.bookTravCtrl = new BookTravelControl();
 		suggLoc.addAll(this.bookTravCtrl.showLocationsControl());
 		this.bookTravCtrl.getSuggestedGroupsControl(gBeanList);
@@ -178,7 +177,7 @@ public class ControllerFacade {
 		this.bookTravCtrl.saveBoughtTicketControl(travBean);
 	}
 	
-	public void getTravHomePageDatas(List<UserTravelBean> travBeanList, List<GroupBean> grpBean, List<UserDataBean> usrList) throws LengthFieldException {
+	public void getTravHomePageDatas(List<UserTravelBean> travBeanList, List<GroupBean> grpBean, List<UserDataBean> usrList) {
 		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.getBookedTicketsControl(travBeanList);
 		this.bookTravCtrl.getUserGroupsControl(grpBean);

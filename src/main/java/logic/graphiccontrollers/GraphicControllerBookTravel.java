@@ -2,9 +2,6 @@ package logic.graphiccontrollers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -15,11 +12,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import logic.beans.GroupBean;
 import logic.beans.LocationBean;
-import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.exceptions.BigDateException;
 import logic.exceptions.EmptyListException;
-import logic.exceptions.LengthFieldException;
 import logic.exceptions.NullValueException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
@@ -27,7 +22,6 @@ import javafx.scene.control.TextField;
 
 public class GraphicControllerBookTravel extends BasicGui{
 	private UserTravelBean travBean;
-	private GroupBean grpBean;
 	private LocationBean locBean;
 	private List<UserTravelBean> travBeanArray;
 	private ErrorPopup popUp;
@@ -47,35 +41,28 @@ public class GraphicControllerBookTravel extends BasicGui{
 	public void initialize() {
 		this.travBeanArray = new ArrayList<>();
 		this.hboxList = new ArrayList<>();
-		this.grpBean = new GroupBean();
 		this.locBean = new LocationBean();
-		this.travBean = new UserTravelBean();
 		this.popUp = new ErrorPopup();
 		this.vboxlist = new ArrayList<>();
 		this.userImage.setImage(setUserImage());
 		this.grpList = new ArrayList<>();
 		this.suggLoc = new ArrayList<>();
-		loadSugg();
+		this.facade.loadBookTravSuggestion(suggLoc, grpList);
 		setLocation();
 		setGroups();
 	}
 	
 	public void bookMyTravelControl(MouseEvent event) {
+		this.travBean = new UserTravelBean();
 		try {
-			this.facade.retriveTravelSolutions(travBean, travBeanArray);
-			popUp.displayLoginError("No travel available at this moment: either you have already bought the same flight or there are no solutions for these datas");
-			setScene("TicketSolutions.fxml");
-			loadScene();
-			setTicketsDatas(this.travBeanArray, event);
-		}
-		catch(NullValueException e) {
-			this.popUp.displayLoginError(e.getErrorMessage());
-		}
-		catch(EmptyListException e) {
-			this.popUp.displayLoginError("No available travels for the requested cities/dates");
-		}
-		catch(BigDateException e) {
-			this.popUp.displayLoginError(e.getMessage());
+			travBean.setFirstDay(this.firstDay.getValue());
+			travBean.setLastDay(this.lastDay.getValue());
+			/* the problem of the null value on the cities is irrelevant, can be avoided*/
+			travBean.setArrCity(this.arrivalCity.getText());
+			travBean.setDepCity(this.departureCity.getText());
+			checkBookSol(event);
+		}catch (NullValueException e) {
+			this.popUp.displayLoginError(e.getNullExcMsg());
 		}
 	}
 
@@ -116,22 +103,6 @@ public class GraphicControllerBookTravel extends BasicGui{
 		}
 	}
 	
-	public void getFirstDay() {
-		travBean.setFirstDay(this.firstDay.getValue());
-	}
-	
-	public void getLastDay() {
-		travBean.setLastDay(this.lastDay.getValue());
-	}
-	
-	public void getArrivalCity() {
-		travBean.setArrCity(this.arrivalCity.getText());
-	}
-	
-	public void getDepartureCity() {
-		travBean.setDepCity(this.departureCity.getText());
-	}
-	
 	public void showMoreInfo(MouseEvent e) {
 		int i;
 		for(i = 0; i < this.hboxList.size(); i++) {
@@ -142,14 +113,6 @@ public class GraphicControllerBookTravel extends BasicGui{
 				loadLocInfo(e);
 			}
 		}
-	}
-	
-	public void backHome(MouseEvent e) {
-		UserDataBean dataBean = new UserDataBean();
-		dataBean.setUserName(logUsr.getUserName());
-		setScene("HomePage.fxml");
-		loadScene();
-		nextGuiOnClick(e);
 	}
 	
 	public void loadLocInfo(MouseEvent e) {
@@ -163,7 +126,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 		for(i = 0; i < this.hboxList.size(); i++) {
 			if(this.hboxList.get(i).getChildren().get(2).equals(e.getTarget())) {
 				Text city = (Text)this.hboxList.get(i).getChildren().get(0);
-				this.travBean.setArrCity(city.getText());
+				this.travBean = new UserTravelBean(city.getText());
 				try {
 					this.travBeanArray.addAll(this.facade.getSuggTicketsInfo(this.travBean));
 					setScene("TicketSolutions.fxml");
@@ -182,12 +145,8 @@ public class GraphicControllerBookTravel extends BasicGui{
 		for(i = 0; i < this.vboxlist.size(); i++) {
 			if(this.vboxlist.get(i).getChildren().get(3).equals(e.getTarget())) {
 				Text title = (Text)this.vboxlist.get(i).getChildren().get(0);
-				try {
-					this.grpBean.setGroupTitle(title.getText());
-				} catch (LengthFieldException e1) {
-					this.popUp.displayLoginError(e1.getMsg());
-				}
-				if(this.facade.insertParticipant(this.grpBean) == 0) {
+				GroupBean grpBean = new GroupBean(title.getText());
+				if(this.facade.insertParticipant(grpBean) == 0) {
 					this.popUp.displayLoginError("Gruppo correttamente joinato");
 				}
 				else {
@@ -197,11 +156,21 @@ public class GraphicControllerBookTravel extends BasicGui{
 		}
 	}
 	
-	public void loadSugg() {
+	private void checkBookSol(MouseEvent event) {
 		try {
-			this.facade.loadBookTravSuggestion(suggLoc, grpList);
-		} catch (LengthFieldException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching suggestions..");
+			this.facade.retriveTravelSolutions(travBean, travBeanArray);
+			setScene("TicketSolutions.fxml");
+			loadScene();
+			setTicketsDatas(this.travBeanArray, event);
+		}
+		catch(NullValueException e) {
+			this.popUp.displayLoginError(e.getNullExcMsg());
+		}
+		catch(EmptyListException e) {
+			this.popUp.displayLoginError("No available travels for the requested cities/dates");
+		}
+		catch(BigDateException e) {
+			this.popUp.displayLoginError(e.getMessage());
 		}
 	}
 	

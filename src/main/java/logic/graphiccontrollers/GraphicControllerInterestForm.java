@@ -9,7 +9,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import logic.beans.InterestsBean;
-import logic.beans.UserDataBean;
 import logic.exceptions.MissingAnswareException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
@@ -27,14 +26,12 @@ public class GraphicControllerInterestForm extends BasicGui{
 	@FXML private Button submitForm;
 	private List<Integer> questAnsw;
 	private InterestsBean intBean;
-	private UserDataBean dataBean;
 	private ErrorPopup errPop;
 	
 	@FXML
 	public void initialize() {
 		this.questAnsw = new ArrayList<>();
 		this.intBean = new InterestsBean();
-		this.dataBean = new UserDataBean();
 		this.rbList1 = new ArrayList<>();
 		this.rbList2 = new ArrayList<>();
 		this.rbList3 = new ArrayList<>();
@@ -154,7 +151,6 @@ public class GraphicControllerInterestForm extends BasicGui{
 	
 	public void evaluatePersonality(MouseEvent e){
 		try{
-			this.dataBean.setUserName(this.logUsr.getUserName());
 			this.intBean.setAnswares(this.questAnsw);
 			this.facade.evaluateInterests(this.intBean);
 			goHome(e);

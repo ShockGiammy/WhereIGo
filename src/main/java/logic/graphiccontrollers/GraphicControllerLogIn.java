@@ -18,7 +18,6 @@ public class GraphicControllerLogIn {
 	@FXML private TextField usrname;
 	@FXML private Button loginButton;
 	@FXML private Button registerButton;
-	private UserDataBean usrBean;
 	private ControllerFacade facCtrl;
 	private ErrorPopup errLogin;
 	private BasicGui bgui;
@@ -26,13 +25,13 @@ public class GraphicControllerLogIn {
 	@FXML
 	public void initialize() {
 		this.facCtrl = new ControllerFacade();
-		this.usrBean = new UserDataBean();
 		this.errLogin = new ErrorPopup();
 		bgui = new BasicGui();
 	}
 	
 	public void logInControl(MouseEvent event) {
-		if(this.facCtrl.checkLogIn(this.usrBean) == 1) {
+		UserDataBean usrBean = new UserDataBean(this.usrname.getText(), this.psw.getText());
+		if(this.facCtrl.checkLogIn(usrBean) == 1) {
 			bgui.goHome(event);
 		}
 		else {
@@ -50,14 +49,4 @@ public class GraphicControllerLogIn {
         	logInControl(clickEvent);
         }
     }
-	
-	public void getUserNameControl() {
-		String usName = this.usrname.getText();
-		this.usrBean.setUserName(usName);
-	}
-	
-	public void getPasswordControl() {
-		String password = this.psw.getText();
-		this.usrBean.setPsw(password);
-	}
 }

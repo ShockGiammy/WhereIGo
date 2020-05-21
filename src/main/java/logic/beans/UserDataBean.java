@@ -8,6 +8,9 @@ import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import logic.exceptions.LengthFieldException;
+import logic.exceptions.NullValueException;
+
 
 public class UserDataBean {
 	private String name;
@@ -22,19 +25,50 @@ public class UserDataBean {
 	private File profImage;
 	private Logger logger = Logger.getLogger("WIG");
 	
-	public void setName(String name) {
+	public UserDataBean() {
+		
+	}
+	
+	public UserDataBean(String usrname, String paswd) {
+		this.userName = usrname;
+		this.psw = paswd;
+	}
+	
+	public UserDataBean(String uname) {
+		this.userName = uname;
+	}
+	
+	public void setName(String name) throws LengthFieldException, NullValueException {
+		if(name == null || name.equalsIgnoreCase("")) {
+			throw new NullValueException("Please insert a valid name");
+		}
+		else if(name.length() > 20) {
+			throw new LengthFieldException("Too many character for name field");
+		}
 		this.name = name;
 	}
 	
-	public void setSurname(String surname) {
+	public void setSurname(String surname) throws LengthFieldException, NullValueException{
+		if((surname == null || surname.equalsIgnoreCase(""))){
+			throw new NullValueException("Please insert a valid surname");
+		}
+		else if(surname.length() > 20) {
+			throw new LengthFieldException("Too many character for surname field");
+		}
 		this.surname = surname;
 	}
 	
-	public void setDateOfBirth(LocalDate dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) throws NullValueException {
+		if(dateOfBirth == null){
+			throw new NullValueException("Please insert a valid date of birth");
+		}
 		this.dateOfBirth = dateOfBirth.toString();
 	}
 	
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) throws NullValueException {
+		if(dateOfBirth == null || dateOfBirth.equalsIgnoreCase("")){
+			throw new NullValueException("Please insert a valid date of birth");
+		}
 		this.dateOfBirth = dateOfBirth;
 	}
 	
@@ -50,11 +84,23 @@ public class UserDataBean {
 		this.typeOfUser = typeOfUsr;
 	}
 	
-	public void setUserName(String usrName) {
+	public void setUserName(String usrName) throws LengthFieldException, NullValueException {
+		if(usrName == null || usrName.equalsIgnoreCase("")) {
+			throw new NullValueException("Please insert a valid username");
+		}
+		else if(usrName.length() > 20) {
+			throw new LengthFieldException("Too many character for username field");
+		}
 		this.userName = usrName;
 	}
 	
-	public void setPsw(String passwd) {
+	public void setPsw(String passwd) throws LengthFieldException, NullValueException {
+		if(passwd == null || passwd.equalsIgnoreCase("")) {
+			throw new NullValueException("Please insert a valid password");
+		}
+		else if(passwd.length() > 20) {
+			throw new LengthFieldException("Too many character for password field");
+		}
 		this.psw = passwd;
 	}
 	
@@ -62,7 +108,10 @@ public class UserDataBean {
 		this.profImStream = stream;
 	}
 	
-	public void setUsrImage(File usrImage) {
+	public void setUsrImage(File usrImage) throws NullValueException {
+		if(usrImage == null) {
+			throw new NullValueException("Please insert user image");
+		}
 		this.profImage = usrImage;
 	}
 	

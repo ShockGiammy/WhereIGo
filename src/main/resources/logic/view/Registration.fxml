@@ -60,9 +60,9 @@
                         </VBox>
                         <VBox prefHeight="302.0" prefWidth="160.0" spacing="3.0">
                            <children>
-                              <TextField fx:id="name" onKeyTyped="#getName" prefHeight="26.0" prefWidth="160.0" />
-                              <TextField fx:id="surname" onKeyTyped="#getSurname" prefHeight="25.0" prefWidth="160.0" />
-                              <DatePicker fx:id="dateOfBirth" onAction="#getDateOfBirth" prefHeight="25.0" prefWidth="160.0" />
+                              <TextField fx:id="name" prefHeight="26.0" prefWidth="160.0" />
+                              <TextField fx:id="surname" prefHeight="25.0" prefWidth="160.0" />
+                              <DatePicker fx:id="dateOfBirth" prefHeight="25.0" prefWidth="160.0" />
                               <ChoiceBox fx:id="gender" prefHeight="25.0" prefWidth="160.0" />
                            </children>
                         </VBox>
@@ -96,8 +96,8 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="160.0" spacing="3.0">
                            <children>
-                              <TextField fx:id="userName" onKeyTyped="#getUserName" prefHeight="25.0" prefWidth="160.0" />
-                              <PasswordField fx:id="password" onKeyTyped="#getPassword" prefHeight="25.0" prefWidth="160.0" />
+                              <TextField fx:id="userName" prefHeight="25.0" prefWidth="160.0" />
+                              <PasswordField fx:id="password" prefHeight="25.0" prefWidth="160.0" />
                               <ChoiceBox fx:id="typeOfUser" prefHeight="25.0" prefWidth="160.0" />
                               <Button fx:id="addPhoto" mnemonicParsing="false" onMouseClicked="#insertImage" text="Select an Image" />
                               <ImageView fx:id="profile" fitHeight="91.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" />

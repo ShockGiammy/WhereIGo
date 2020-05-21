@@ -46,8 +46,8 @@
                         </VBox>
                         <VBox prefHeight="61.0" prefWidth="198.0" spacing="10.0" style="-fx-background-color: white;">
                            <children>
-                              <TextField fx:id="usrname" onKeyTyped="#getUserNameControl" style="-fx-background-color: CFCCCB;" />
-                              <PasswordField fx:id="psw" onKeyPressed="#sendMethod" onKeyTyped="#getPasswordControl" style="-fx-background-color: CFCCCB;" />
+                              <TextField fx:id="usrname" style="-fx-background-color: CFCCCB;" />
+                              <PasswordField fx:id="psw" onKeyPressed="#sendMethod" style="-fx-background-color: CFCCCB;" />
                            </children>
                            <padding>
                               <Insets top="5.0" />

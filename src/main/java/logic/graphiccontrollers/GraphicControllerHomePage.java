@@ -2,9 +2,6 @@ package logic.graphiccontrollers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -20,7 +17,6 @@ import logic.UserType;
 import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
-import logic.exceptions.LengthFieldException;
 
 public class GraphicControllerHomePage extends BasicGui{
 	@FXML private Button changeInfo;
@@ -47,11 +43,7 @@ public class GraphicControllerHomePage extends BasicGui{
 		this.travBean = new ArrayList<>();
 		this.grpBean = new ArrayList<>();
 		this.dataBeanList = new ArrayList<>();
-		try {
-			this.facade.getTravHomePageDatas(this.travBean, this.grpBean, this.dataBeanList);
-		} catch (LengthFieldException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Error while charging HomePage datas");
-		}
+		this.facade.getTravHomePageDatas(this.travBean, this.grpBean, this.dataBeanList);
 		setTravel();
 		setGroups();
 		setSuggUsers();
@@ -163,14 +155,9 @@ public class GraphicControllerHomePage extends BasicGui{
 		int i;
 		for(i = 0; i < this.groupBox.size(); i++) {
 			if(this.groupBox.get(i).getChildren().size() == 4 && this.groupBox.get(i).getChildren().get(3).equals(e.getTarget())) {
-				GroupBean bean = new GroupBean();
 				Text description = (Text)this.groupBox.get(i).getChildren().get(0);
 				Text owner = (Text)this.groupBox.get(i).getChildren().get(2);
-				try {
-					bean.setGroupTitle(description.getText().substring(13, description.getText().length()));
-				} catch (LengthFieldException e1) {
-					this.err.displayLoginError(e1.getMsg());
-				}
+				GroupBean bean = new GroupBean(description.getText().substring(13, description.getText().length()));
 				bean.setGroupOwner(owner.getText().substring(15,owner.getText().length()));
 				this.facade.deleteTravelGroup(bean);
 				VBox temp = this.groupBox.get(i);
@@ -185,13 +172,8 @@ public class GraphicControllerHomePage extends BasicGui{
 		int i;
 		for(i = 0; i < this.groupBox.size(); i++) {
 			if(this.groupBox.get(i).getChildren().size() == 4 && this.groupBox.get(i).getChildren().get(3).equals(e.getTarget())) {
-				GroupBean bean = new GroupBean();
 				Text description = (Text)this.groupBox.get(i).getChildren().get(0);
-				try {
-					bean.setGroupTitle(description.getText().substring(13, description.getText().length()));
-				} catch (LengthFieldException e1) {
-					this.err.displayLoginError(e1.getMsg());
-				}
+				GroupBean bean = new GroupBean(description.getText().substring(13, description.getText().length()));
 				this.facade.leaveTravelGroup(bean);
 				VBox temp = this.groupBox.get(i);
 				this.groupBox.remove(i);
@@ -210,8 +192,7 @@ public class GraphicControllerHomePage extends BasicGui{
 			if(this.suggUsersList.get(i).getChildren().get(1).equals(e.getTarget())){
 				HBox box = (HBox)this.suggUsersList.get(i).getChildren().get(0);
 				Text usName = (Text)box.getChildren().get(1);
-				UserDataBean usBean = new UserDataBean();
-				usBean.setUserName(usName.getText());
+				UserDataBean usBean = new UserDataBean(usName.getText());
 				/* forse prende anche la foto, la passa a te e ci crea una chat*/
 			}
 		}

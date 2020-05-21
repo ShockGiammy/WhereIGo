@@ -48,8 +48,7 @@ public class TestBookTravelControl {
 	/* with this test we check if the short book functionality works properly*/
 	@Test
 	public void checkShortFlights() throws EmptyListException {
-		UserTravelBean travBean = new UserTravelBean();
-		travBean.setArrCity("Berlino");
+		UserTravelBean travBean = new UserTravelBean("Berlino");
 		List<UserTravelBean> travBeanList = new ArrayList<>();
 		travBeanList.addAll(this.btCtrl.getSuggTicketsInfoControl(travBean));
 		assertEquals(4,travBeanList.size(),5);

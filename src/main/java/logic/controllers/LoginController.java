@@ -2,7 +2,6 @@ package logic.controllers;
 
 import logic.dao.UserDao;
 import logic.exceptions.DuplicateUsernameException;
-import logic.exceptions.NullValueException;
 import logic.model.UserModel;
 import logic.beans.UserDataBean;
 import java.io.IOException;
@@ -34,26 +33,21 @@ public class LoginController {
 		return ret;
 	}
 	
-	public void insertNewUserControl(UserDataBean usrBean) throws DuplicateUsernameException, NullValueException {
-		if((usrBean.getUsername() == null || usrBean.getUsername().equalsIgnoreCase("")) || (usrBean.getPassword() == null || usrBean.getPassword().equalsIgnoreCase(""))|| (usrBean.getName() == null || usrBean.getName().equalsIgnoreCase("")) || (usrBean.getSurname() == null || usrBean.getSurname().equalsIgnoreCase("")) || (usrBean.getDateOfBirth() == null || usrBean.getDateOfBirth().equalsIgnoreCase("")) || (usrBean.getGender() == null || usrBean.getGender().equalsIgnoreCase("")) || (usrBean.getType() == null || usrBean.getType().equalsIgnoreCase(""))) {
-			throw new NullValueException("Please, insert all datas");
+	public void insertNewUserControl(UserDataBean usrBean) throws DuplicateUsernameException {
+		this.usrModel.setCredentials(usrBean.getUsername(), usrBean.getSurname(), LocalDate.parse(usrBean.getDateOfBirth()), usrBean.getGender());
+		this.usrModel.setUserName(usrBean.getUsername());
+		this.usrModel.setPaswd(usrBean.getPassword());
+		this.usrModel.setImage(usrBean.getFileImage());
+		this.usrModel.setUserType(usrBean.getType());
+		LoggedUser.setUserName(usrBean.getUsername());
+		LoggedUser.setType(usrBean.getType());
+		byte[] imm = null;
+		try {
+			imm = Files.readAllBytes(usrBean.getFileImage().toPath());
+		} catch (IOException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
-		else {
-			this.usrModel.setCredentials(usrBean.getUsername(), usrBean.getSurname(), LocalDate.parse(usrBean.getDateOfBirth()), usrBean.getGender());
-			this.usrModel.setUserName(usrBean.getUsername());
-			this.usrModel.setPaswd(usrBean.getPassword());
-			this.usrModel.setImage(usrBean.getFileImage());
-			this.usrModel.setUserType(usrBean.getType());
-			LoggedUser.setUserName(usrBean.getUsername());
-			LoggedUser.setType(usrBean.getType());
-			byte[] imm = null;
-			try {
-				imm = Files.readAllBytes(usrBean.getFileImage().toPath());
-			} catch (IOException e) {
-				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
-			}
-			LoggedUser.setImage(imm);
-			this.usrDao.insertNewUser(this.usrModel);
-		}
+		LoggedUser.setImage(imm);
+		this.usrDao.insertNewUser(this.usrModel);
 	}
 }

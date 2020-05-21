@@ -28,9 +28,20 @@ public class GraphicControllerCreateGroup extends BasicGui{
 		this.userImage.setImage(setUserImage());
 	}
 	
-	public void saveUserGroup(MouseEvent e) {
+	public void saveUserGroup(MouseEvent event) {
 		try {
-			checkValues();
+			this.grpBean.setGroupTitle(this.groupName.getText());
+			this.grpBean.setGroupDestination(this.groupDest.getText());
+			checkValues(event);
+		} catch (LengthFieldException e1) {
+			this.err.displayLoginError(e1.getMsg());
+		} catch (NullValueException e) {
+			this.err.displayLoginError(e.getNullExcMsg());
+		}
+	}
+	
+	private void checkValues(MouseEvent e) {
+		try {
 			this.facade.saveGroup(this.grpBean);
 			goHome(e);
 		} 
@@ -38,20 +49,7 @@ public class GraphicControllerCreateGroup extends BasicGui{
 			err.displayLoginError("Nome gruppo non disponibile");
 		}
 		catch(NullValueException e2) {
-			err.displayLoginError(e2.getErrorMessage());
-		}
-	}
-	
-	private void checkValues() {
-		try {
-			this.grpBean.setGroupTitle(this.groupName.getText());
-		} catch (LengthFieldException e1) {
-			this.err.displayLoginError(e1.getMsg());
-		}
-		try {
-			this.grpBean.setGroupDestination(this.groupDest.getText());
-		} catch (LengthFieldException e1) {
-			this.err.displayLoginError(e1.getMsg());
+			err.displayLoginError(e2.getNullExcMsg());
 		}
 	}
 }

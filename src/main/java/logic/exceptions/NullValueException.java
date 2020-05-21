@@ -8,7 +8,7 @@ public class NullValueException extends Exception{
 		errorMsg = message;
 	}
 	
-	public String getErrorMessage() {
+	public String getNullExcMsg() {
 		return this.errorMsg;
 	}
 }

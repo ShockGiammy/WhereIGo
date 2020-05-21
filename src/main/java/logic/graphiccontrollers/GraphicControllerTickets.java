@@ -64,18 +64,13 @@ public class GraphicControllerTickets extends BasicGui{
 	
 	public void bookTravel(MouseEvent e) {
 		int i;
-		UserTravelBean travBean = new UserTravelBean();
 		for(i = 0; i < this.rbList.size(); i++) {
 			if(this.bookNowGroup.getSelectedToggle().equals(this.rbList.get(i))) {
+				UserTravelBean travBean = new UserTravelBean(this.departureDay.getCellData(i), this.arrivalDate.getCellData(i), this.departureCity.getCellData(i), this.arrivalCity.getCellData(i));
 				travBean.setId(this.ticketId.getCellData(i));
-				travBean.setDepCity(this.departureCity.getCellData(i));
-				travBean.setArrCity(this.arrivalCity.getCellData(i));
-				travBean.setFirstDay(this.departureDay.getCellData(i));
-				travBean.setLastDay(this.arrivalDate.getCellData(i));
 				travBean.setCost(this.cost.getCellData(i));
 				LoggedUser logusr = new LoggedUser();
-				UserDataBean dataBean = new UserDataBean();
-				dataBean.setUserName(logusr.getUserName());
+				UserDataBean dataBean = new UserDataBean(logusr.getUserName());
 				setScene("TicketCheckout.fxml");
 				loadScene();
 				setCheckoutValues(travBean, dataBean, e);

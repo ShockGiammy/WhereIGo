@@ -92,13 +92,13 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <DatePicker fx:id="firstDay" layoutX="122.0" layoutY="78.0" onAction="#getFirstDay" prefHeight="27.0" prefWidth="190.0" />
+                  <DatePicker fx:id="firstDay" layoutX="122.0" layoutY="78.0" prefHeight="27.0" prefWidth="190.0" />
                   <Text layoutX="10.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last day">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <DatePicker fx:id="lastDay" layoutX="122.0" layoutY="145.0" onAction="#getLastDay" prefHeight="27.0" prefWidth="190.0" />
+                  <DatePicker fx:id="lastDay" layoutX="122.0" layoutY="145.0" prefHeight="27.0" prefWidth="190.0" />
                   <Button fx:id="bookMyTravel" layoutX="153.0" layoutY="362.0" mnemonicParsing="false" onMouseClicked="#bookMyTravelControl" prefHeight="41.0" prefWidth="127.0" text="Book my travel" textOverrun="WORD_ELLIPSIS" underline="true">
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -109,8 +109,8 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="departureCity" layoutX="122.0" layoutY="213.0" onKeyTyped="#getDepartureCity" prefHeight="27.0" prefWidth="190.0" />
-                  <TextField fx:id="arrivalCity" layoutX="122.0" layoutY="287.0" onKeyTyped="#getArrivalCity" prefHeight="27.0" prefWidth="190.0" />
+                  <TextField fx:id="departureCity" layoutX="122.0" layoutY="213.0" prefHeight="27.0" prefWidth="190.0" />
+                  <TextField fx:id="arrivalCity" layoutX="122.0" layoutY="287.0" prefHeight="27.0" prefWidth="190.0" />
                   <Text layoutX="10.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City of arrive">
                      <font>
                         <Font size="18.0" />

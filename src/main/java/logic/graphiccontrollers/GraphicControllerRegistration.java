@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 import logic.beans.UserDataBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.DuplicateUsernameException;
+import logic.exceptions.LengthFieldException;
 import logic.exceptions.NullValueException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
@@ -52,54 +53,20 @@ public class GraphicControllerRegistration {
 		this.facCtrl = new ControllerFacade();
 	}
 	
-	public void getName() {
-		String nameOfUsr = this.name.getText();
-		this.dataBean.setName(nameOfUsr);
-	}
-	
-	public void getSurname() {
-		String snameOfUsr = this.surname.getText();
-		this.dataBean.setSurname(snameOfUsr);
-	}
-	
-	public void getDateOfBirth() {
-		this.dataBean.setDateOfBirth(this.dateOfBirth.getValue());
-	}
-	
-	public void getUserName() {
-		String user = this.userName.getText();
-		this.dataBean.setUserName(user);
-	}
-	
-	public void getPassword() {
-		String paswd = this.password.getText();
-		this.dataBean.setPsw(paswd);
-	}
-	
-	public void getImage() {
-		this.dataBean.setUsrImage(profileImage);
-	}
-	
 	public void registerNowControl(MouseEvent event) {
-		try {
-			getImage();
-			if(this.dataBean.getFileImage() == null) {
-				this.errLogin.displayLoginError("Insert an image");
-			}
-			else {
-				this.dataBean.setType(this.typeOfUser.getValue());
-				this.dataBean.setGender(this.gender.getValue());
-				this.facCtrl.insertNewUser(this.dataBean);
-				this.errLogin.displayLoginError("Correcty Registered");
-				bgui.setUserImage();
-				bgui.goHome(event);
-			}
-		}
-		catch(DuplicateUsernameException e) {
-			this.errLogin.displayLoginError("Username not available");
-		}
-		catch(NullValueException e) {
-			this.errLogin.displayLoginError(e.getErrorMessage());
+		this.dataBean = new UserDataBean();
+	    try {
+	    	this.dataBean.setName(this.name.getText());
+	    	this.dataBean.setSurname(this.surname.getText());
+	    	this.dataBean.setDateOfBirth(this.dateOfBirth.getValue());
+	    	this.dataBean.setUserName(this.userName.getText());
+	    	this.dataBean.setPsw(this.password.getText());
+	    	this.dataBean.setUsrImage(this.profileImage);
+	    	register(event);
+	    }catch(LengthFieldException e ) {
+	    	this.errLogin.displayLoginError(e.getMsg());
+	    }catch (NullValueException e) {
+	    	this.errLogin.displayLoginError(e.getNullExcMsg());
 		}
 	}
 	
@@ -117,6 +84,23 @@ public class GraphicControllerRegistration {
             Image usrImage = new Image(profileImage.toURI().toString());
             profile.setImage(usrImage);
         }
+    }
+    
+    private void register(MouseEvent event) {
+    	try {
+    		this.dataBean.setType(this.typeOfUser.getValue());
+    		this.dataBean.setGender(this.gender.getValue());
+    		this.facCtrl.insertNewUser(this.dataBean);
+    		this.errLogin.displayLoginError("Correcty Registered");
+    		bgui.setUserImage();
+    		bgui.goHome(event);
+    	}
+    	catch(DuplicateUsernameException e) {
+			this.errLogin.displayLoginError("Username not available");
+		}
+		catch(NullValueException e) {
+			this.errLogin.displayLoginError(e.getNullExcMsg());
+		}
     }
     
     public void backLogIn(MouseEvent event) {

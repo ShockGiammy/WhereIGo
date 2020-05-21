@@ -15,8 +15,6 @@ import logic.dao.UserDao;
 import logic.exceptions.BigDateException;
 import logic.exceptions.EmptyListException;
 import logic.exceptions.GroupNameTakenException;
-import logic.exceptions.LengthFieldException;
-import logic.exceptions.NullValueException;
 import logic.model.GroupModel;
 import logic.model.LocationModel;
 import logic.model.TicketModel;
@@ -50,7 +48,7 @@ public class BookTravelControl {
 		return suggLoc;
 	}
 	
-	public void getSuggestedGroupsControl(List<GroupBean> beanList) throws LengthFieldException {
+	public void getSuggestedGroupsControl(List<GroupBean> beanList) {
 		this.usrMod.setUserPersonality(this.logUser.getPersonality());
 		this.usrMod.setUserName(this.logUser.getUserName());
 		List<GroupModel> grpModelList = new ArrayList<>();
@@ -58,20 +56,17 @@ public class BookTravelControl {
 		extractGroupsControl(grpModelList, beanList);
 	}
 	
-	public void getParticipateGroupsControl(List<GroupBean> beanList) throws LengthFieldException{
+	public void getParticipateGroupsControl(List<GroupBean> beanList) {
 		this.usrMod.setUserPersonality(this.logUser.getPersonality());
 		List<GroupModel> grpList = new ArrayList<>();
 		this.grpDao.getPartGroups(grpList, usrMod);
 		extractGroupsControl(grpList, beanList);
 	}
 	
-	public void extractGroupsControl(List<GroupModel> grpList, List<GroupBean> beanList) throws LengthFieldException {
+	public void extractGroupsControl(List<GroupModel> grpList, List<GroupBean> beanList) {
 		int i;
 		for(i = 0; i < grpList.size(); i++) {
-			GroupBean grpbean = new GroupBean();
-			grpbean.setGroupOwner(grpList.get(i).getOwner());
-			grpbean.setGroupTitle(grpList.get(i).getDescription());
-			grpbean.setGroupDestination(grpList.get(i).getDestination());
+			GroupBean grpbean = new GroupBean(grpList.get(i).getDescription(), grpList.get(i).getOwner(), grpList.get(i).getDestination());
 			beanList.add(grpbean);
 		}
 	}
@@ -85,11 +80,8 @@ public class BookTravelControl {
 		bean.setStream(locModel.getPhoto());
 	}
 	
-	public void retriveTravelSolutionsControl(UserTravelBean travBean, List<UserTravelBean> travList) throws BigDateException, EmptyListException, NullValueException {
+	public void retriveTravelSolutionsControl(UserTravelBean travBean, List<UserTravelBean> travList) throws BigDateException, EmptyListException {
 		List<TicketModel> tickList = new ArrayList<>();
-		if((travBean.getFirstDay() == null || travBean.getFirstDay().equalsIgnoreCase("")) || (travBean.getLastDay() == null || travBean.getLastDay().equalsIgnoreCase("")) || (travBean.getCityOfDep() == null || travBean.getCityOfDep().equalsIgnoreCase("")) || (travBean.getCityOfArr() == null || travBean.getCityOfArr().equalsIgnoreCase(""))) {
-			throw new NullValueException("Please, insert all datas");
-		}
 		if(LocalDate.parse(travBean.getFirstDay()).compareTo(LocalDate.parse(travBean.getLastDay())) >= 0) {
 			throw new BigDateException("Departure date is before Return date");
 		}
@@ -123,17 +115,12 @@ public class BookTravelControl {
 		setTickInfo(tickList, travBeanList);
 	}
 	
-	public void saveGroupControl(GroupBean grpBean) throws GroupNameTakenException, NullValueException {
-		if((grpBean.getGroupDestination() == null ||grpBean.getGroupDestination().equalsIgnoreCase("")) || (grpBean.getGroupTitle() == null || grpBean.getGroupTitle().equalsIgnoreCase(""))) {
-			throw new NullValueException("Please insert a group name and a group destination");
-		}
-		else {
-			this.grpMod.setAll(grpBean.getGroupOwner(),grpBean.getGroupTitle(), grpBean.getGroupDestination());
-			this.grpDao.saveUserGroup(this.grpMod);
-		}
+	public void saveGroupControl(GroupBean grpBean) throws GroupNameTakenException {
+		this.grpMod.setAll(grpBean.getGroupOwner(),grpBean.getGroupTitle(), grpBean.getGroupDestination());
+		this.grpDao.saveUserGroup(this.grpMod);
 	}
 	
-	public void getUserGroupsControl(List<GroupBean> grpBean) throws LengthFieldException {
+	public void getUserGroupsControl(List<GroupBean> grpBean) {
 		this.usrMod.setUserName(this.logUser.getUserName());
 		List<GroupModel> grpList = new ArrayList<>();
 		grpDao.getUserGroups(grpList,this.usrMod);
@@ -190,21 +177,16 @@ public class BookTravelControl {
 	
 	public void setSimUsersBeanControl(List<UserDataBean> usrList, List<UserModel> usrModList) {
 		for(int i = 0; i < usrModList.size(); i++) {
-			UserDataBean databean = new UserDataBean();
+			UserDataBean databean = new UserDataBean(usrModList.get(i).getUserName());
 			databean.setByteSteam(usrModList.get(i).getProfilePic());
-			databean.setUserName(usrModList.get(i).getUserName());
 			usrList.add(databean);
 		}
 	}
 	
 	private void setTickInfo(List<TicketModel> tickList, List<UserTravelBean> travBeanList) {
 		for(int i = 0; i < tickList.size(); i++) {
-			UserTravelBean trav = new UserTravelBean();
+			UserTravelBean trav = new UserTravelBean(tickList.get(i).getDepDay(), tickList.get(i).getArrDay(), tickList.get(i).getDepCity(), tickList.get(i).getArrCity());
 			trav.setId(tickList.get(i).getId());
-			trav.setDepCity(tickList.get(i).getDepCity());
-			trav.setArrCity(tickList.get(i).getArrCity());
-			trav.setFirstDay(tickList.get(i).getDepDay());
-			trav.setLastDay(tickList.get(i).getArrDay());
 			trav.setCost(tickList.get(i).getMoney());
 			travBeanList.add(trav);
 		}
