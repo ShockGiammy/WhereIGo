@@ -12,10 +12,10 @@
 <%@ page import="logic.beans.UserTravelBean" language="java" %>
 
 <%
-	if(request.getAttribute("error") !=  null){
+	if(request.getAttribute("bookmessage") !=  null){
 %>
 <div class="alert alert-info alert-dismissible fade show" role="alert">
-  		<p><%=request.getAttribute("error") %></p>
+  		<p><%=request.getAttribute("bookmessage") %></p>
   	 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
     	<span aria-hidden="true">&times;</span>
   		</button>
@@ -94,6 +94,9 @@
 		</div>
 		<div>
 			<input type="submit" name="savetick" value="Confirm" class= "btn btn-success btn-md">
+		</div>
+		<div>
+			<input type="submit" name="savebookgroup" value="Create a group" class= "btn btn-success btn-md">
 		</div>
 		</div>
 		

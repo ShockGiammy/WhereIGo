@@ -9,10 +9,10 @@
 </head>
 
 <%
-	if(request.getAttribute("error") !=  null){
+	if(request.getAttribute("bookmessage") !=  null){
 %>
 <div class="alert alert-info alert-dismissible fade show" role="alert">
-  		<p><%=request.getAttribute("error") %></p>
+  		<p><%=request.getAttribute("bookmessage") %></p>
   	 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
     	<span aria-hidden="true">&times;</span>
   		</button>

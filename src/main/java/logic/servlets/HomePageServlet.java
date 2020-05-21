@@ -9,14 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import logic.LoggedUser;
 import logic.UserType;
 import logic.beans.GroupBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
-import logic.exceptions.LengthFieldException;
 
 @WebServlet("/HomePageServlet")
 public class HomePageServlet extends HttpServlet {
@@ -73,15 +71,11 @@ public class HomePageServlet extends HttpServlet {
 		ControllerFacade fac = new ControllerFacade();
 		List<String> cities = new ArrayList<>();
 		List<GroupBean> beanList = new ArrayList<>();
-		try {
-			fac.loadBookTravSuggestion(cities, beanList);
-			request.setAttribute("grouplist", beanList);
-			request.setAttribute("cities", cities);
-			if(beanList.isEmpty() && cities.isEmpty()) {
-				request.setAttribute(msg, "No suggestions for you, please take our personality test!");
-			}
-		} catch (LengthFieldException e) {
-			request.setAttribute(msg, "Error while loading info");
+		fac.loadBookTravSuggestion(cities, beanList);
+		request.setAttribute("grouplist", beanList);
+		request.setAttribute("cities", cities);
+		if(beanList.isEmpty() && cities.isEmpty()) {
+			request.setAttribute(msg, "No suggestions for you, please take our personality test!");
 		}
 	}
 	
@@ -90,13 +84,9 @@ public class HomePageServlet extends HttpServlet {
 		List<UserTravelBean> travBeanList = new ArrayList<>();
 		List<GroupBean> gBeanList = new ArrayList<>();
 		List<UserDataBean> dBeanList = new ArrayList<>();
-		try {
-			facCtrl.getTravHomePageDatas(travBeanList, gBeanList, dBeanList);
-			request.setAttribute("travels", travBeanList);
-			request.setAttribute("groups", gBeanList);
-			request.setAttribute("users", dBeanList);
-		} catch (LengthFieldException e) {
-			request.setAttribute(msg, "Error while loading info");
-		}
+		facCtrl.getTravHomePageDatas(travBeanList, gBeanList, dBeanList);
+		request.setAttribute("travels", travBeanList);
+		request.setAttribute("groups", gBeanList);
+		request.setAttribute("users", dBeanList);
 	}
 }

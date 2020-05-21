@@ -40,33 +40,39 @@ public class BookTravelServlet extends HttpServlet {
 		UserTravelBean travBean = new UserTravelBean();
 		if(request.getParameter("checkSol") != null) {
 			setTick(request, travBean);
-			List<UserTravelBean> travBeanList = new ArrayList<>();
-			findTravels(travBean, travBeanList, request);
 			if(request.getAttribute(msg) != null) {
-				HomePageServlet hpServ = new HomePageServlet();
-				hpServ.loadBookTravelSugg(request);
+				setInfo(request, 1);
 				changeP.forwardPage(booktrav, request, response);
 			}
 			else {
-				changeP.forwardPage("TicketsSolutions.jsp", request, response);
+				List<UserTravelBean> travBeanList = new ArrayList<>();
+				findTravels(travBean, travBeanList, request);
+				if(request.getAttribute(msg) != null) {
+					setInfo(request, 1);
+					changeP.forwardPage(booktrav, request, response);
+				}
+				else {
+					changeP.forwardPage("TicketsSolutions.jsp", request, response);
+				}
 			}
 		}
 		else if(request.getParameter("savetick") != null) {
-			setTick(request, travBean);
-			this.facCtrl.saveBoughtTicket(travBean);
-			saveGroup(request, response);
+			saveMyTicket(request, response, travBean);
 		}
 		else if(request.getParameter("savegroup") != null) {
-			saveGroup(request, response);
+			saveMyGroup(request, response);
+		}
+		else if(request.getParameter("savebookgroup") != null) {
+			saveBookedGroup(request, response);
 		}
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		String dest = booktrav;
-		UserTravelBean travBean = new UserTravelBean();
 		String action = request.getParameter("action");
-		if(action.equalsIgnoreCase("goconf")) {	
+		if(action.equalsIgnoreCase("goconf")) {
+			UserTravelBean travBean = new UserTravelBean();
 			setTick(request, travBean);
 			request.setAttribute("tick", travBean);
 			dest = "BuyTicket.jsp";
@@ -90,7 +96,7 @@ public class BookTravelServlet extends HttpServlet {
 			dest="LocationInfo.jsp";
 		}
 		else if(action.equalsIgnoreCase("bookshort")) {
-			travBean.setArrCity(request.getParameter("city"));
+			UserTravelBean travBean = new UserTravelBean(request.getParameter("city"));
 			findSuggTravels(request, travBean);
 			dest="TicketsSolutions.jsp";
 			if(request.getAttribute(msg) != null) {
@@ -105,13 +111,17 @@ public class BookTravelServlet extends HttpServlet {
 	}
 	
 	private void setTick(HttpServletRequest request, UserTravelBean travBean) {
-		travBean.setDepCity(request.getParameter("depCity"));
-		travBean.setArrCity(request.getParameter("arrCity"));
-		travBean.setFirstDay(request.getParameter("depDate"));
-		travBean.setLastDay(request.getParameter("retDate"));
-		if(request.getParameter("cost") != null && request.getParameter("id") != null) {
-			travBean.setCost(request.getParameter("cost"));
-			travBean.setId(request.getParameter("id"));
+		try {
+			travBean.setDepCity(request.getParameter("depCity"));
+			travBean.setArrCity(request.getParameter("arrCity"));
+			travBean.setFirstDay(request.getParameter("depDate"));
+			travBean.setLastDay(request.getParameter("retDate"));
+			if(request.getParameter("id") != null && request.getParameter("cost") != null) {
+				travBean.setId(request.getParameter("id"));
+				travBean.setCost(request.getParameter("cost"));
+			}
+		} catch (NullValueException e) {
+			request.setAttribute(msg, e.getNullExcMsg());
 		}
 	}
 	
@@ -126,13 +136,7 @@ public class BookTravelServlet extends HttpServlet {
 	}
 	
 	private void deleteGroup(HttpServletRequest request) {
-		GroupBean bean = new GroupBean();
-		try {
-			bean.setGroupTitle(request.getParameter("groupName"));
-		} catch (LengthFieldException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Error while deleting group");
-		}
-		bean.setGroupOwner(request.getParameter("groupOwner"));
+		GroupBean bean = new GroupBean(request.getParameter("groupName"), request.getParameter("groupOwner"));
 		LoggedUser logUsr = new LoggedUser();
 		if(request.getParameter("groupOwner").equalsIgnoreCase(logUsr.getUserName())){ //can subistute with session
 			this.facCtrl.deleteTravelGroup(bean);
@@ -143,13 +147,14 @@ public class BookTravelServlet extends HttpServlet {
 	}
 	
 	private void joinGroup(HttpServletRequest request) {
-		GroupBean gBean = new GroupBean();
+<<<<<<< .mine		GroupBean gBean = new GroupBean(request.getParameter("descr"));
+=======		GroupBean gBean = new GroupBean();
 		try {
 			gBean.setGroupTitle(request.getParameter("descr"));
 		} catch (LengthFieldException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Error while joining group");
 		}
-		this.facCtrl.insertParticipant(gBean);
+>>>>>>> .theirs		this.facCtrl.insertParticipant(gBean);
 	}
 	
 	private void loadLocInfo(HttpServletRequest request) {
@@ -179,25 +184,24 @@ public class BookTravelServlet extends HttpServlet {
 			request.setAttribute(msg, "Sorry, no tickets to be shown for the selcted destination/dates");
 		}
 		catch(NullValueException e) {
-			request.setAttribute(msg, e.getErrorMessage());
+			request.setAttribute(msg, e.getNullExcMsg());
 		}
 		catch(BigDateException e) {
 			request.setAttribute(msg, e.getMessage());
 		}
 	}
 	
-	private void saveGroup(HttpServletRequest request, HttpServletResponse response) {
-		String nPage = "CreateGroup.jsp";
+	private boolean saveGroup(HttpServletRequest request) {
 		try {
 			ControllerFacade facCtr = new ControllerFacade();
 			GroupBean gBean = new GroupBean();
 			gBean.setGroupOwner(request.getParameter("owner"));
-			checkGroupValue(request, gBean);
-			facCtr.saveGroup(gBean);
-			request.setAttribute(msg, "Group successfully saved");
-			nPage = hp;
-			HomePageServlet hpServ = new HomePageServlet();
-			hpServ.loadHomePageUserInfo(request);
+			setGroupDatas(request, gBean);
+			if(request.getAttribute(msg) == null) {
+				request.setAttribute(msg, "Group correctly saved");
+				facCtr.saveGroup(gBean);
+				return true;
+			}
 		}
 		catch(GroupNameTakenException e) {
 			request.setAttribute(msg, "Group name already taken, please choose another");
@@ -205,9 +209,44 @@ public class BookTravelServlet extends HttpServlet {
 		catch (NullValueException e) {
 			request.setAttribute(msg, "Please insert a valid group name and a valid destination");
 		}
-		finally {
-			changeP.forwardPage(nPage, request, response);
+		return false;
+	}
+	
+	private void setGroupDatas(HttpServletRequest request, GroupBean gBean) {
+		try {
+			gBean.setGroupTitle(request.getParameter("groupname"));
+			gBean.setGroupDestination(request.getParameter("dest"));
+		}catch(NullValueException e) {
+			request.setAttribute(msg, e.getNullExcMsg());
+		} catch (LengthFieldException e) {
+			request.setAttribute(msg, e.getMsg());
 		}
+	}
+	
+	private void saveMyTicket(HttpServletRequest request, HttpServletResponse response, UserTravelBean travBean) {
+		setTick(request, travBean);
+		this.facCtrl.saveBoughtTicket(travBean);
+		setInfo(request, 0);
+		changeP.forwardPage("HomePage.jsp", request, response);
+	}
+	
+	private void saveMyGroup(HttpServletRequest request, HttpServletResponse response) {
+		saveGroup(request);
+		if(request.getAttribute(msg) != null) {
+			changeP.forwardPage("CreateGroup.jsp", request, response);
+		}
+		else {
+			setInfo(request, 0);
+			changeP.forwardPage(hp, request, response);
+		}
+	}
+	
+	private void saveBookedGroup(HttpServletRequest request, HttpServletResponse response) {
+		saveGroup(request);
+		UserTravelBean travBean = new UserTravelBean();
+		setTick(request, travBean);
+		request.setAttribute("tick", travBean);
+		changeP.forwardPage("BuyTicket.jsp", request, response);
 	}
 	
 	private void setInfo(HttpServletRequest request, int code) {
@@ -217,19 +256,6 @@ public class BookTravelServlet extends HttpServlet {
 		}
 		else if (code == 1) {
 			hpServ.loadBookTravelSugg(request);
-		}
-	}
-	
-	private void checkGroupValue(HttpServletRequest request, GroupBean gBean) {
-		try {
-			gBean.setGroupTitle(request.getParameter("groupname"));
-		} catch (LengthFieldException e) {
-			request.setAttribute(msg, e.getMsg());
-		}
-		try {
-			gBean.setGroupDestination(request.getParameter("dest"));
-		} catch (LengthFieldException e1) {
-			request.setAttribute(msg, e1.getMsg());
 		}
 	}
 }

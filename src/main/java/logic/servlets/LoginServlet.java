@@ -16,6 +16,7 @@ import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.DuplicateUsernameException;
+import logic.exceptions.LengthFieldException;
 import logic.exceptions.NullValueException;
 
 @WebServlet("/LoginServlet")
@@ -39,9 +40,7 @@ public class LoginServlet extends HttpServlet {
 	}
 	
 	public void servLogIn(HttpServletRequest request, HttpServletResponse response, JspChangePage changeP) {
-		UserDataBean dataBean = new UserDataBean();
-		dataBean.setUserName(request.getParameter("username"));
-		dataBean.setPsw(request.getParameter("password"));
+		UserDataBean dataBean = new UserDataBean(request.getParameter("username"), request.getParameter("password"));
 		ControllerFacade facCtrl = new ControllerFacade();
 		int ret = facCtrl.checkLogIn(dataBean);
 		if(ret == 1) {
@@ -55,26 +54,30 @@ public class LoginServlet extends HttpServlet {
 	
 	public void servRegister(HttpServletRequest request, HttpServletResponse response, JspChangePage changeP) {
 		UserDataBean dataBean = new UserDataBean();
-		dataBean.setName(request.getParameter("name"));
-		dataBean.setSurname(request.getParameter("surname"));
-		dataBean.setDateOfBirth(request.getParameter("dateofb"));
-		dataBean.setGender(request.getParameter("gender"));
-		dataBean.setType(request.getParameter("type"));
-		dataBean.setUserName(request.getParameter("username"));
-		dataBean.setPsw(request.getParameter("password"));
-		retreiveImage(request, dataBean);
-		ControllerFacade facCtrl = new ControllerFacade();
-		try {
-			facCtrl.insertNewUser(dataBean);
-			homePageCall(request, response, changeP);
-		} 
-		catch (DuplicateUsernameException e) {
-			request.setAttribute(errMsg, "Username not available");
+		setUserDatas(request, dataBean);
+		if(request.getAttribute(errMsg) != null) {
 			changeP.forwardPage(defPage, request, response);
 		}
-		catch(NullValueException e) {
-			request.setAttribute(errMsg, e.getErrorMessage());
-			changeP.forwardPage(defPage, request, response);
+		else {
+			retreiveImage(request, dataBean);
+			if(request.getAttribute(errMsg) != null) {
+				changeP.forwardPage(defPage, request, response);
+			}
+			else {
+				ControllerFacade facCtrl = new ControllerFacade();
+				try {
+					facCtrl.insertNewUser(dataBean);
+					homePageCall(request, response, changeP);
+				} 
+				catch (DuplicateUsernameException e) {
+					request.setAttribute(errMsg, "Username not available");
+					changeP.forwardPage(defPage, request, response);
+				}
+				catch(NullValueException e) {
+					request.setAttribute(errMsg, e.getMessage());
+					changeP.forwardPage(defPage, request, response);
+				}
+			}
 		}
 	}
 	
@@ -96,8 +99,28 @@ public class LoginServlet extends HttpServlet {
 			} catch (IOException e) {
 				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			}
-			dataBean.setUsrImage(tempFile);
+			try {
+				dataBean.setUsrImage(tempFile);
+			} catch (NullValueException e) {
+				request.setAttribute(errMsg, e.getNullExcMsg());
+			}
 		}
+	}
+	
+	private void setUserDatas(HttpServletRequest request, UserDataBean dataBean) {
+		try {
+			dataBean.setName(request.getParameter("name"));
+			dataBean.setSurname(request.getParameter("surname"));
+			dataBean.setUserName(request.getParameter("username"));
+			dataBean.setPsw(request.getParameter("password"));
+			dataBean.setDateOfBirth(request.getParameter("dateofb"));
+    	}catch(LengthFieldException e) {
+    		request.setAttribute(errMsg, e.getMsg());
+    	}catch(NullValueException e) {
+    		request.setAttribute(errMsg, e.getNullExcMsg());
+    	}
+		dataBean.setGender(request.getParameter("gender"));
+		dataBean.setType(request.getParameter("type"));
 	}
 	
 	private void homePageCall(HttpServletRequest request, HttpServletResponse response, JspChangePage changeP) {
