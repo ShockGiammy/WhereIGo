@@ -42,15 +42,15 @@ public class ChatRenterServlet extends HttpServlet {
         	try {
 				message = new MessageBean(req.getParameter("message"), req.getParameter("receiver"));
 			} catch (LengthFieldException e) {
-				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 				String page = "ErrorPage.jsp";
 				changeP.forwardPage(page, req, resp);
+				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());				
 			}
 			facade.sendMessage(message);
 		}
-
-		List<MessageBean> chat = null;
+		
 		UserChatBean userChat = null;
+		List<MessageBean> chat = null;
 		if (req.getParameter("chat") != null && req.getParameter("chat").equals("private")) {
 			chat = facade.openChat(req.getParameter("user"), ChatType.PRIVATE);
 			userChat = facade.getUser(req.getParameter("user"));
