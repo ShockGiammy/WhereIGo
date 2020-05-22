@@ -17,7 +17,6 @@ import logic.exceptions.DuplicateUsernameException;
 import logic.exceptions.EmptyListException;
 import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.MissingAnswareException;
-import logic.exceptions.NullValueException;
 import logic.exceptions.ServerDownException;
 import logic.graphiccontrollers.GraphicControllerChat;
 import logic.servlets.ChatRenterServlet;
@@ -167,7 +166,7 @@ public class ControllerFacade {
 		this.bookTravCtrl.retriveLocInfoControl(bean);
 	}
 	
-	public void retriveTravelSolutions(UserTravelBean travBean, List<UserTravelBean> travList) throws BigDateException, EmptyListException, NullValueException {
+	public void retriveTravelSolutions(UserTravelBean travBean, List<UserTravelBean> travList) throws BigDateException, EmptyListException {
 		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.retriveTravelSolutionsControl(travBean, travList);
 	}
@@ -184,7 +183,7 @@ public class ControllerFacade {
 		this.bookTravCtrl.getSamePersUsersControl(usrList);
 	}
 	
-	public void saveGroup(GroupBean grpBean) throws GroupNameTakenException, NullValueException{
+	public void saveGroup(GroupBean grpBean) throws GroupNameTakenException {
 		this.bookTravCtrl = new BookTravelControl();
 		this.bookTravCtrl.saveGroupControl(grpBean);
 	}
@@ -228,7 +227,7 @@ public class ControllerFacade {
 		return this.loginCtrl.checkLogInControl(logBean);
 	}
 	
-	public void insertNewUser(UserDataBean usrBean) throws DuplicateUsernameException, NullValueException {
+	public void insertNewUser(UserDataBean usrBean) throws DuplicateUsernameException {
 		this.loginCtrl = new LoginController();
 		this.loginCtrl.insertNewUserControl(usrBean);
 	}

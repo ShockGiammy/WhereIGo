@@ -25,13 +25,11 @@ public class GraphicControllerInterestForm extends BasicGui{
 	@FXML private List<ToggleGroup> tgList;
 	@FXML private Button submitForm;
 	private List<Integer> questAnsw;
-	private InterestsBean intBean;
 	private ErrorPopup errPop;
 	
 	@FXML
 	public void initialize() {
 		this.questAnsw = new ArrayList<>();
-		this.intBean = new InterestsBean();
 		this.rbList1 = new ArrayList<>();
 		this.rbList2 = new ArrayList<>();
 		this.rbList3 = new ArrayList<>();
@@ -151,8 +149,8 @@ public class GraphicControllerInterestForm extends BasicGui{
 	
 	public void evaluatePersonality(MouseEvent e){
 		try{
-			this.intBean.setAnswares(this.questAnsw);
-			this.facade.evaluateInterests(this.intBean);
+			InterestsBean intBean = new InterestsBean(this.questAnsw);
+			this.facade.evaluateInterests(intBean);
 			goHome(e);
 		}
 		catch(MissingAnswareException e1) {

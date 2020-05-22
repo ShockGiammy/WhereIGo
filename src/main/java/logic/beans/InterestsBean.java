@@ -6,12 +6,9 @@ import java.util.List;
 public class InterestsBean {
 	private List<Integer> answares;
 	
-	public InterestsBean() {
+	public InterestsBean(List<Integer> answ) {
 		answares = new ArrayList<>();
-	}
-	
-	public void setAnswares(List<Integer> answ) {
-		this.answares.addAll(answ);
+		answares.addAll(answ);
 	}
 
 	public List<Integer> getAnswares() {

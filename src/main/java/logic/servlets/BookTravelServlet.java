@@ -177,9 +177,6 @@ public class BookTravelServlet extends HttpServlet {
 		catch(EmptyListException e) {
 			request.setAttribute(msg, "Sorry, no tickets to be shown for the selcted destination/dates");
 		}
-		catch(NullValueException e) {
-			request.setAttribute(msg, e.getNullExcMsg());
-		}
 		catch(BigDateException e) {
 			request.setAttribute(msg, e.getMessage());
 		}
@@ -200,9 +197,6 @@ public class BookTravelServlet extends HttpServlet {
 		catch(GroupNameTakenException e) {
 			request.setAttribute(msg, "Group name already taken, please choose another");
 		} 
-		catch (NullValueException e) {
-			request.setAttribute(msg, "Please insert a valid group name and a valid destination");
-		}
 		return false;
 	}
 	

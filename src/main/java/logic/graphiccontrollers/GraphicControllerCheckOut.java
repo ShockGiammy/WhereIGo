@@ -72,9 +72,6 @@ public class GraphicControllerCheckOut extends BasicGui{
 		catch(GroupNameTakenException e) {
 			errPop.displayLoginError("Nome del gruppo già scelto. Per favore, inserire un nome diverso");
 		}
-		catch(NullValueException e1) {
-			errPop.displayLoginError(e1.getNullExcMsg());
-		}
 	}
 	
 	public void confirmTrav(MouseEvent e) {

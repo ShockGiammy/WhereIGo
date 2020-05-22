@@ -48,8 +48,5 @@ public class GraphicControllerCreateGroup extends BasicGui{
 		catch (GroupNameTakenException e1) {
 			err.displayLoginError("Nome gruppo non disponibile");
 		}
-		catch(NullValueException e2) {
-			err.displayLoginError(e2.getNullExcMsg());
-		}
 	}
 }

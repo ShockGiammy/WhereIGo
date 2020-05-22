@@ -73,10 +73,6 @@ public class LoginServlet extends HttpServlet {
 					request.setAttribute(errMsg, "Username not available");
 					changeP.forwardPage(defPage, request, response);
 				}
-				catch(NullValueException e) {
-					request.setAttribute(errMsg, e.getMessage());
-					changeP.forwardPage(defPage, request, response);
-				}
 			}
 		}
 	}
@@ -89,19 +85,19 @@ public class LoginServlet extends HttpServlet {
 			try {
 				tempFile = File.createTempFile("output", ".tmp", new File(listingFolder));
 				tempFile.deleteOnExit();
-			} catch (IOException e) {
+			}catch (IOException e) {
 				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			}
 			try (
 					FileOutputStream fos = new FileOutputStream(tempFile);
 					) {
 				fos.write(decodedImg);
-			} catch (IOException e) {
+			}catch (IOException e) {
 				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 			}
 			try {
 				dataBean.setUsrImage(tempFile);
-			} catch (NullValueException e) {
+			}catch (NullValueException e) {
 				request.setAttribute(errMsg, e.getNullExcMsg());
 			}
 		}

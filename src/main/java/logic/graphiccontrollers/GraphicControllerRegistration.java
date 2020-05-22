@@ -98,9 +98,6 @@ public class GraphicControllerRegistration {
     	catch(DuplicateUsernameException e) {
 			this.errLogin.displayLoginError("Username not available");
 		}
-		catch(NullValueException e) {
-			this.errLogin.displayLoginError(e.getNullExcMsg());
-		}
     }
     
     public void backLogIn(MouseEvent event) {

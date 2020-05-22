@@ -109,7 +109,7 @@ public class UserDataBean {
 	}
 	
 	public void setUsrImage(File usrImage) throws NullValueException {
-		if(usrImage == null) {
+		if(usrImage == null || usrImage.length() == 0) {
 			throw new NullValueException("Please insert user image");
 		}
 		this.profImage = usrImage;

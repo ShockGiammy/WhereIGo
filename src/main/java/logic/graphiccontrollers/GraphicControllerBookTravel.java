@@ -163,9 +163,6 @@ public class GraphicControllerBookTravel extends BasicGui{
 			loadScene();
 			setTicketsDatas(this.travBeanArray, event);
 		}
-		catch(NullValueException e) {
-			this.popUp.displayLoginError(e.getNullExcMsg());
-		}
 		catch(EmptyListException e) {
 			this.popUp.displayLoginError("No available travels for the requested cities/dates");
 		}
