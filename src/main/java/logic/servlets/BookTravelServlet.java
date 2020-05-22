@@ -147,14 +147,8 @@ public class BookTravelServlet extends HttpServlet {
 	}
 	
 	private void joinGroup(HttpServletRequest request) {
-<<<<<<< .mine		GroupBean gBean = new GroupBean(request.getParameter("descr"));
-=======		GroupBean gBean = new GroupBean();
-		try {
-			gBean.setGroupTitle(request.getParameter("descr"));
-		} catch (LengthFieldException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Error while joining group");
-		}
->>>>>>> .theirs		this.facCtrl.insertParticipant(gBean);
+		GroupBean gBean = new GroupBean(request.getParameter("descr"));
+		this.facCtrl.insertParticipant(gBean);
 	}
 	
 	private void loadLocInfo(HttpServletRequest request) {
