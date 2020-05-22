@@ -1,6 +1,8 @@
 package logic.servlets;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +14,7 @@ import logic.beans.MessageBean;
 import logic.beans.UserChatBean;
 import logic.controllers.ChatType;
 import logic.controllers.ControllerFacade;
+import logic.exceptions.LengthFieldException;
 
 @WebServlet("/ChatTraveller")
 public class ChatTravellerServlet extends HttpServlet {
@@ -36,7 +39,15 @@ public class ChatTravellerServlet extends HttpServlet {
 		facade.setOfflineStatus();
 		
 		if (req.getParameter("message") != null) {
-			facade.sendMessage(req.getParameter("message"), req.getParameter("receiver"));
+			MessageBean message = null;
+        	try {
+				message = new MessageBean(req.getParameter("message"), req.getParameter("receiver"));
+        	} catch (LengthFieldException e) {
+        		Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+    			String page = "ErrorPage.jsp";
+    			changeP.forwardPage(page, req, resp);
+			}     	
+			facade.sendMessage(message);
 		}
 
 		List<MessageBean> chat = null;

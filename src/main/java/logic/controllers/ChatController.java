@@ -138,11 +138,11 @@ public class ChatController {
 		
 	}
 
-	public void sendMessage(String msg, String receiver) {
-		factory.saveMessage(username, ChatType.PRIVATE, msg, receiver);
+	public void sendMessage(MessageBean message) {
+		factory.saveMessage(username, ChatType.PRIVATE, message.getMsg(), message.getName());
 		if (alreadyActive) {
 			try {
-				listener.send(msg);
+				listener.send(message.getMsg());
 			} catch (IOException ex) {
 				logger.log(Level.SEVERE, ()-> "Error getting output stream: " + ex.getMessage());
 			}

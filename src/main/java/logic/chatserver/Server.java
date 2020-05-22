@@ -197,7 +197,7 @@ public class Server{
         private PrivateMessage removeFromList(String userToRemove) throws IOException {
             logger.info("removeFromList() method Enter");
             PrivateMessage msg = new PrivateMessage();
-            msg.setMsg(userToRemove + "has left the chat.");
+            msg.setMsg(userToRemove + " has left the chat.");
             msg.setType(MessageType.DISCONNECTED);
             msg.setName("SERVER");
             msg.setGroupOrReceiver(usersGroup);

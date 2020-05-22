@@ -67,8 +67,8 @@ public class ControllerFacade {
 		return chatController.getGroups();
 	}
 	
-	public void sendMessage(String msg, String receiver) {
-		chatController.sendMessage(msg, receiver);
+	public void sendMessage(MessageBean msg) {
+		chatController.sendMessage(msg);
 	}
 	
 	public void closeLastChat() {

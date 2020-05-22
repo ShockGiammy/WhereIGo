@@ -87,7 +87,7 @@ public class RentRenterServlet extends HttpServlet {
 			String listingFolder = System.getProperty("user.dir");
 			File tempFile = null;
 			try {
-				tempFile = File.createTempFile("output", ".tmp", new File(listingFolder));
+				tempFile = File.createTempFile("output", ".tmp", new File(listingFolder + "/cache"));
 				tempFile.deleteOnExit();
 			} catch (IOException e) {
 				logger.log(Level.SEVERE, e.getMessage());

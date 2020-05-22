@@ -23,6 +23,7 @@ import logic.beans.MessageBean;
 import logic.beans.UserChatBean;
 import logic.controllers.ChatType;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.LengthFieldException;
 import logic.exceptions.ServerDownException;
 import logic.view.BasicGui;
 import logic.view.ErrorPopup;
@@ -60,7 +61,14 @@ public class GraphicControllerChat extends BasicGui {
     public void sendButtonAction() {
         String msg = messageBox.getText();
         if (!messageBox.getText().isEmpty()) {
-        	facade.sendMessage(msg, activeChat.getText());
+        	MessageBean message = null;
+        	try {
+				message = new MessageBean(msg, activeChat.getText());
+			} catch (LengthFieldException e) {
+				ErrorPopup error = new ErrorPopup();
+	        	error.displayLoginError(e.getMsg());
+			}
+        	facade.sendMessage(message);
             messageBox.clear();
         }
     }

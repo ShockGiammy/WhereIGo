@@ -12,7 +12,18 @@ public class MessageBean {
     	this.name = model.getName();
     	this.msg = model.getMsg();
     }
-    
+
+	public MessageBean(String msg, String receiver) throws LengthFieldException {
+		if (msg.length() >= 1000) {
+			throw new LengthFieldException("Message too long");
+		}
+        this.msg = msg;
+        if (receiver.length() >= 50) {
+        	throw new LengthFieldException("Receiver too long");
+		}
+        this.name = receiver;
+	}
+
 	public String getName() {
         return name;
     }
@@ -25,10 +36,7 @@ public class MessageBean {
         return msg;
     }
 
-    public void setMsg(String msg) throws LengthFieldException {
-    	if (msg.length() >= 1000) {
-			throw new LengthFieldException("Message too long");
-		}
+    public void setMsg(String msg) {
         this.msg = msg;
     }
 }

@@ -120,7 +120,7 @@
 			<td><img alt="house" src="data:image/jpg;base64, <%if (bean.getHouseImage()!= null) {
 													out.println(new String(Base64.getEncoder().encodeToString(bean.getHouseImage())));
 													}%>" width="150" height="120"/>
-													<input type="hidden" id="base64House"></td>		
+													<input type="hidden" id="base64HousePrev"></td>		
 			<td><%=bean.getDescription()%></td>
 			<td><%=bean.getBeds()%></td>
 			<td><%=bean.getType()%></td>
@@ -190,9 +190,9 @@
       <div class="form-group">
     	<label for="FormControlSelect">Type of Apartment</label>
     	<select class="form-control" id="type">
-       	<option value="apartment" <% if (beanToUpdate != null && beanToUpdate.getType().equals("apartment")) {%> selected <% } %>>appartamento</option>
-      	<option value="cottage" <% if (beanToUpdate != null && beanToUpdate.getType().equals("cottage")) {%> selected <% } %>>villetta</option>
-      	<option value="studio flat" <% if (beanToUpdate != null && beanToUpdate.getType().equals("studio flat")) {%> selected <% } %>>monolocale</option>
+       	<option value="apartment" <% if (beanToUpdate != null && beanToUpdate.getType().equals("apartment")) {%> selected <% } %>>apartment</option>
+      	<option value="cottage" <% if (beanToUpdate != null && beanToUpdate.getType().equals("cottage")) {%> selected <% } %>>cottage</option>
+      	<option value="studio flat" <% if (beanToUpdate != null && beanToUpdate.getType().equals("studio flat")) {%> selected <% } %>>studio flat</option>
     	</select>
   	  </div>
     </div>
@@ -226,8 +226,11 @@
   <div class="form-row">
   <div class="form-group col-md-6">
     <label for="FormControlTextarea">Description</label>
-    <textarea class="form-control" id="description" rows="3" <% if (beanToUpdate != null) {%> placeholder="<%=beanToUpdate.getDescription()%>"
-    	<% } else { %> placeholder="Enter a short description of the house..." <% } %>></textarea>
+    <% if (beanToUpdate != null) {%>
+    <textarea class="form-control" id="description" rows="3" ><%=beanToUpdate.getDescription()%></textarea>	 
+    <% } else { %>
+    <textarea class="form-control" id="description" rows="3" placeholder="Enter a short description of the house..."></textarea>
+     <% } %>
   </div>
   <div class="form-group col-md-6">
     <label for="FormControlFile">Select a photo</label>
