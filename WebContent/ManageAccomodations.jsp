@@ -361,7 +361,7 @@ function confirm() {
 	});
 	setTimeout(function() {
 		window.location.href = "RentRenter";
-	}, 1000);
+	}, 1300);
 }
 
 $("#houseImage").change(function() {

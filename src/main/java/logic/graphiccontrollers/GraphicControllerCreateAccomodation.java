@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,7 +27,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 	
 	@FXML private ChoiceBox<String> numberBeds;
 	@FXML private Button saveInfo;
-	@FXML private TextField description;
+	@FXML private TextArea description;
 	@FXML private TextField city;
 	@FXML private TextField address;
 	@FXML private CheckBox bathroom;

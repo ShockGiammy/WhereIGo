@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
@@ -16,7 +17,7 @@
 
 <BorderPane prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerCreateAccomodation">
    <top>
-      <BorderPane prefHeight="120.0" prefWidth="1040.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="120.0" prefWidth="1040.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <right>
             <ToolBar prefHeight="68.0" prefWidth="270.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <items>
@@ -36,15 +37,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/chat.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fx:id="userImage" fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="userImage" fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/avatar.png" />
                      </image>
@@ -56,7 +49,7 @@
             </ToolBar>
          </right>
          <bottom>
-            <Separator prefHeight="15.0" prefWidth="828.0" BorderPane.alignment="CENTER" />
+            <Separator prefHeight="15.0" prefWidth="1040.0" BorderPane.alignment="CENTER" />
          </bottom>
          <left>
             <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -68,15 +61,15 @@
       </BorderPane>
    </top>
    <left>
-      <AnchorPane prefHeight="627.0" prefWidth="827.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="571.0" prefWidth="1040.0" BorderPane.alignment="CENTER">
          <children>
             <Text layoutX="76.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="city" layoutX="76.0" layoutY="200.0" prefHeight="30.0" prefWidth="221.0" />
-            <Text layoutX="76.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City">
+            <TextField fx:id="city" layoutX="78.0" layoutY="323.0" prefHeight="30.0" prefWidth="221.0" />
+            <Text layoutX="78.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City">
                <font>
                   <Font size="18.0" />
                </font>
@@ -86,7 +79,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text layoutX="74.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+            <Text layoutX="76.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
                <font>
                   <Font size="18.0" />
                </font>
@@ -96,7 +89,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text layoutX="75.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Photos">
+            <Text layoutX="684.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Photos">
                <font>
                   <Font size="18.0" />
                </font>
@@ -111,14 +104,13 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button fx:id="saveInfo" layoutX="728.0" layoutY="233.0" onMouseClicked="#applyInfo" prefHeight="59.0" prefWidth="101.0" text="Save Info" />
+            <Button fx:id="saveInfo" layoutX="755.0" layoutY="392.0" onMouseClicked="#applyInfo" prefHeight="59.0" prefWidth="101.0" text="Save Info" />
             <Text layoutX="111.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="APARTMENT INFO">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <TextField fx:id="description" layoutX="74.0" layoutY="111.0" prefHeight="30.0" prefWidth="221.0" />
-            <TextField fx:id="address" layoutX="74.0" layoutY="297.0" prefHeight="30.0" prefWidth="221.0" />
+            <TextField fx:id="address" layoutX="76.0" layoutY="420.0" prefHeight="30.0" prefWidth="221.0" />
             <ChoiceBox fx:id="type" layoutX="398.0" layoutY="111.0" prefHeight="30.0" prefWidth="221.0" />
             <ChoiceBox fx:id="numberBeds" layoutX="398.0" layoutY="421.0" prefHeight="30.0" prefWidth="221.0" />
             <ChoiceBox fx:id="squareMetres" layoutX="398.0" layoutY="200.0" prefHeight="30.0" prefWidth="221.0" />
@@ -142,8 +134,9 @@
                   <Font size="15.0" />
                </font>
             </CheckBox>
-            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="87.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="openButton" layoutX="196.0" layoutY="370.0" mnemonicParsing="false" onMouseClicked="#insertImage" prefHeight="30.0" prefWidth="101.0" text="Select an Image" />
+            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="696.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="openButton" layoutX="805.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#insertImage" prefHeight="30.0" prefWidth="101.0" text="Select an Image" />
+            <TextArea fx:id="description" layoutX="78.0" layoutY="112.0" prefHeight="157.0" prefWidth="234.0" />
          </children>
       </AnchorPane>
    </left>
