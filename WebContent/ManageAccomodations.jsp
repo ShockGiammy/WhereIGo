@@ -83,8 +83,8 @@
 
 <%@ page import="logic.beans.RentAccomodationBean" %>
 <%@ page import="java.util.List" language="java" %>
-<%@page import="java.io.*"%>
-<%@page import="java.util.Base64"%>
+<%@ page import="java.io.*"%>
+<%@ page import="java.util.Base64"%>
 <br>
 	<div>
 		<button  class="btn btn-secondary btn-lg btn-block" id="create">Create a new accomodation</button>

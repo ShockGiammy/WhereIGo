@@ -29,7 +29,7 @@ public class HomePageServlet extends HttpServlet {
 		String page = null;
 		if(act.equalsIgnoreCase("gohome")) {
 			if(logusr.getUserType() == UserType.RENTER) {
-				//carica la home page del renter
+				page = "RenterHomePage.jsp";
 			}
 			else {
 				loadHomePageUserInfo(request);

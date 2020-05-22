@@ -46,7 +46,6 @@ create table Post
     services BLOB,
     squareMetres VARCHAR(10),
     tipologia VARCHAR(20),
-    tipeOfPost VARCHAR(20),
     foreign key (utente) 
 			references Usr(username) on delete cascade,
     primary key(ID, utente)

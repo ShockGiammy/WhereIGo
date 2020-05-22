@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.LoggedUser;
+import logic.UserType;
 import logic.beans.UserDataBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.DuplicateUsernameException;
@@ -126,6 +127,11 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("image", logUsr.getImage());
 		session.setAttribute("usrname", logUsr.getUserName());
-		changeP.forwardPage("HomePage.jsp", request, response);
+		if (logUsr.getUserType() == UserType.RENTER) {
+			changeP.forwardPage("RenterHomePage.jsp", request, response);
+		}
+		else {
+			changeP.forwardPage("HomePage.jsp", request, response);
+		}
 	}
 }
