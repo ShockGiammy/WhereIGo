@@ -27,7 +27,7 @@ public class PersonalityTestServlet extends HttpServlet {
 				answares.add(Integer.valueOf(request.getParameter("answ4")));
 				InterestsBean intBean = new InterestsBean(answares);
 				ControllerFacade fac = new ControllerFacade();
-				fac.evaluateInterests(intBean);
+				request.setAttribute("error", "This is your personality : "+fac.evaluateInterests(intBean));
 				JspChangePage changeP = new JspChangePage();
 				HomePageServlet hpServ = new HomePageServlet();
 				hpServ.loadHomePageUserInfo(request);

@@ -216,9 +216,9 @@ public class ControllerFacade {
 	
 	/* methods calls of the Interest Controller*/
 	
-	public void evaluateInterests(InterestsBean interBean) throws MissingAnswareException {
+	public String evaluateInterests(InterestsBean interBean) throws MissingAnswareException {
 		InterestsController intCtrl = new InterestsController();
-		intCtrl.evaluateInterestsControl(interBean);
+		return intCtrl.evaluateInterestsControl(interBean);
 	}
 	
 	/* methods calls of the Login Controller*/

@@ -18,7 +18,7 @@ public class InterestsController {
 		this.usrDao = new UserDao();
 	}
 	
-	public void evaluateInterestsControl(InterestsBean interBean) throws MissingAnswareException {
+	public String evaluateInterestsControl(InterestsBean interBean) throws MissingAnswareException {
 		List<Integer> answ = interBean.getAnswares();
 		if(answ.size() <= 3) {
 			throw new MissingAnswareException("Pelase answare to all questions");
@@ -45,26 +45,27 @@ public class InterestsController {
 					break;
 			}
 		}
-		if(numbOf1 >= 2) {
+		if(numbOf1 >= numbOf2 && numbOf1 >= numbOf3 && numbOf1 >= numbOf4) {
 			usrMod.setUserPersonality("Friendly");
 			this.usrDao.insertPersonality(usrMod);
 			pers = "Friendly";
 		}
-		if(numbOf2 >= 2) {
+		else if(numbOf2 >= numbOf1 && numbOf2 >= numbOf3 && numbOf2 >= numbOf4) {
 			usrMod.setUserPersonality("Adventurer");
 			this.usrDao.insertPersonality(usrMod);
 			pers = "Adventurer";
 		}
-		if(numbOf3 >= 2) {
+		else if(numbOf3 >= numbOf1 && numbOf3 >= numbOf2 && numbOf3 >= numbOf4) {
 			usrMod.setUserPersonality("Lone wolf");
 			this.usrDao.insertPersonality(usrMod);
 			pers = "Lone wolf";
 		}
-		if(numbOf4 >= 2) {
+		else if(numbOf4 >= numbOf1 && numbOf4 >= numbOf2 && numbOf4 >= numbOf3) {
 			usrMod.setUserPersonality("Lazybone");
 			this.usrDao.insertPersonality(usrMod);
 			pers = "Lazybone";
 		}
 		LoggedUser.setPersonality(pers);
+		return pers;
 	}
 }

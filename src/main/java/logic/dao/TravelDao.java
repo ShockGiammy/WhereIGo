@@ -57,7 +57,7 @@ public class TravelDao {
 		List<TicketModel> tickList = new ArrayList<>();
 		getUserTickets(usrMod, tickList);
 		for(int i = 0; i < tickList.size(); i++) {
-			if((tickList.get(i).getDepCity().toLowerCase()).equals(tickMod.getDepCity()) && (tickList.get(i).getArrCity().toLowerCase()).equals(tickMod.getArrCity()) && tickList.get(i).getDepDay().compareTo(tickMod.getDepDay()) == 0 && tickList.get(i).getArrDay().compareTo(tickMod.getArrDay()) == 0) {
+			if((tickList.get(i).getDepCity()).equalsIgnoreCase(tickMod.getDepCity()) && (tickList.get(i).getArrCity()).equalsIgnoreCase(tickMod.getArrCity()) && tickList.get(i).getDepDay().compareTo(tickMod.getDepDay()) == 0 && tickList.get(i).getArrDay().compareTo(tickMod.getArrDay()) == 0) {
 				return true;
 			}
 		}

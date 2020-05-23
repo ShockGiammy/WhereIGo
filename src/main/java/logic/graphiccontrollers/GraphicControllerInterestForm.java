@@ -150,7 +150,7 @@ public class GraphicControllerInterestForm extends BasicGui{
 	public void evaluatePersonality(MouseEvent e){
 		try{
 			InterestsBean intBean = new InterestsBean(this.questAnsw);
-			this.facade.evaluateInterests(intBean);
+			this.errPop.displayLoginError("This is your personality : "+this.facade.evaluateInterests(intBean));
 			goHome(e);
 		}
 		catch(MissingAnswareException e1) {

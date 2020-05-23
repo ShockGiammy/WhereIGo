@@ -1,6 +1,9 @@
 package controllertests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
@@ -9,6 +12,7 @@ import logic.LoggedUser;
 import logic.beans.GroupBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.BookTravelControl;
+import logic.exceptions.BigDateException;
 import logic.exceptions.EmptyListException;
 import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.LengthFieldException;
@@ -17,7 +21,7 @@ import logic.exceptions.NullValueException;
 
 public class TestBookTravelControl {
 	private BookTravelControl btCtrl;
-	
+
 	public TestBookTravelControl() {
 		btCtrl = new BookTravelControl();
 	}
@@ -42,13 +46,20 @@ public class TestBookTravelControl {
 		assertEquals(numb1, numb2, 0); //we set 0 as delta because we want the values to be exactly the same
 	}
 	
-	/* with this test we check if the short book functionality works properly*/
+	/* with this test we check if the book functionality works properly*/
 	@Test
-	public void checkShortFlights() throws EmptyListException {
-		UserTravelBean travBean = new UserTravelBean("Berlino");
-		List<UserTravelBean> travBeanList = new ArrayList<>();
-		travBeanList.addAll(this.btCtrl.getSuggTicketsInfoControl(travBean));
-		assertEquals(4,travBeanList.size(),5);
+	public void testBookFlight() throws EmptyListException, BigDateException {
+		List<UserTravelBean> testTravList = new ArrayList<>();
+		this.btCtrl.getBookedTicketsControl(testTravList);
+		int prevNum = testTravList.size();
+		testTravList.clear();
+		UserTravelBean travBean = new UserTravelBean(LocalDate.parse("2020-07-23"), LocalDate.parse("2020-07-25"), "Torino-Caselle", "San Francisco");
+		this.btCtrl.retriveTravelSolutionsControl(travBean, testTravList);
+		this.btCtrl.saveBoughtTicketControl(testTravList.get(0)); //we save the first ticket available
+		testTravList.clear();
+		this.btCtrl.getBookedTicketsControl(testTravList);
+		int currNum = testTravList.size();
+		assertNotEquals(prevNum, currNum);
 	}
 	
 	/* this test will assert if a flight is correctly booked and then cancelled*/
