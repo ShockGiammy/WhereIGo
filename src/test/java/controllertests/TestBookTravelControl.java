@@ -39,7 +39,7 @@ public class TestBookTravelControl {
 		testBeanList.clear();
 		btCtrl.getUserGroupsControl(testBeanList);
 		int numb2 = testBeanList.size();
-		assertEquals(numb1, numb2, 0); //we set 0 as delta becouse we want the values to be exactly the sae
+		assertEquals(numb1, numb2, 0); //we set 0 as delta because we want the values to be exactly the same
 	}
 	
 	/* with this test we check if the short book functionality works properly*/
