@@ -11,7 +11,20 @@ public class TicketModel {
 	private LocalDate arriveDate;
 	private float cost;
 	
-	public void setAll(String depCity, String arrCity, LocalDate depDate, LocalDate arrDate) {
+	public TicketModel(int id) {
+		this.id = id;
+	}
+	
+	public TicketModel(String arrCity) {
+		this.arrivalCity = arrCity;
+	}
+	
+	public TicketModel(String depCity, String arrCity) {
+		this.departureCity = depCity;
+		this.arrivalCity = arrCity;
+	}
+	
+	public TicketModel(String depCity, String arrCity, LocalDate depDate, LocalDate arrDate) {
 		this.departureCity = depCity;
 		this.arrivalCity = arrCity;
 		this.departureDate = depDate;
@@ -24,10 +37,6 @@ public class TicketModel {
 	
 	public void setCost(float cost) {
 		this.cost = cost;
-	}
-	
-	public void setArrCity(String arrCity) {
-		this.arrivalCity = arrCity;
 	}
 	
 	public int getId() {

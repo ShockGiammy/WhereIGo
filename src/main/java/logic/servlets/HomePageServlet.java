@@ -71,9 +71,11 @@ public class HomePageServlet extends HttpServlet {
 		ControllerFacade fac = new ControllerFacade();
 		List<String> cities = new ArrayList<>();
 		List<GroupBean> beanList = new ArrayList<>();
-		fac.loadBookTravSuggestion(cities, beanList);
+		List<UserTravelBean> currTrav = new ArrayList<>();
+		fac.loadBookTravSuggestion(cities, beanList, currTrav);
 		request.setAttribute("grouplist", beanList);
 		request.setAttribute("cities", cities);
+		setDepAndArr(request, currTrav);
 		if(beanList.isEmpty() && cities.isEmpty()) {
 			request.setAttribute(msg, "No suggestions for you, please take our personality test!");
 		}
@@ -88,5 +90,16 @@ public class HomePageServlet extends HttpServlet {
 		request.setAttribute("travels", travBeanList);
 		request.setAttribute("groups", gBeanList);
 		request.setAttribute("users", dBeanList);
+	}
+	
+	private void setDepAndArr(HttpServletRequest request, List<UserTravelBean> travList) {
+		List<String> depCities = new ArrayList<>();
+		List<String> arrCities = new ArrayList<>();
+		for(int i = 0; i < travList.size(); i++) {
+			depCities.add(travList.get(i).getCityOfDep());
+			arrCities.add(travList.get(i).getCityOfArr());
+		}
+		request.setAttribute("arrcit", arrCities);
+		request.setAttribute("depcit", depCities);
 	}
 }

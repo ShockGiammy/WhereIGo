@@ -44,6 +44,29 @@ $(function(){
 });
 </script>
 
+<style type="text/css">
+	select.depcity {
+    width:auto;
+}
+
+/*IE FIX */
+select#depcity {
+    width:200%;
+}
+
+</style>
+
+<style type="text/css">
+	select.arrcity {
+    width:auto;
+}
+
+/*IE FIX */
+select#arrcity {
+    width:200%;
+}
+</style>
+
 </head>
 
 
@@ -65,6 +88,10 @@ $(function(){
 		cities = (ArrayList<String>)request.getAttribute("cities");
 		List<GroupBean> groupBeanL = new ArrayList<>();
 		groupBeanL = (ArrayList<GroupBean>)request.getAttribute("grouplist");
+		List<String> depCities = new ArrayList<>();
+		depCities = (ArrayList<String>)request.getAttribute("depcit");
+		List<String> arrCities = new ArrayList<>();
+		arrCities = (ArrayList<String>)request.getAttribute("arrcit");
 %>
 
 
@@ -128,11 +155,27 @@ $(function(){
 								<div class="form-horiontal">
 									<div class="form-group">
 										<label for="dep" style="white-space: nowrap">Departure city</label>
-										<input type="text" name="depCity" id="dep">
+										<select class="depcity" name="depCity" id="depcity">
+											<%
+												for(int i = 0; i < depCities.size(); i++){
+											%>
+											<option value="<%=depCities.get(i)%>"><%=depCities.get(i)%></option>
+											<%
+												}
+											%>
+										</select>
 									</div>
 									<div class="form-group">
 										<label for="arr" style="white-space: nowrap">Arrive city</label>
-										<input type="text" name="arrCity" id="arr">
+										<select class="arrcity" name="arrCity" id="arrcity">
+											<%
+												for(int i = 0; i < arrCities.size(); i++){
+											%>
+											<option value="<%=arrCities.get(i)%>"><%=arrCities.get(i)%></option>
+											<%
+												}
+											%>
+										</select>
 									</div>
 								</div>
 								<div class="form-horiontal">

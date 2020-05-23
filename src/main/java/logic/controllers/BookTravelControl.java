@@ -39,6 +39,16 @@ public class BookTravelControl {
 		this.grpMod = new GroupModel();
 	}
 	
+	public void setAvailableTick(List<UserTravelBean> avTrav) {
+		List<TicketModel> avModTickList = new ArrayList<>();
+		this.travDao.findCurrTravels(avModTickList);
+		for(int i = 0; i < avModTickList.size(); i++) {
+			UserTravelBean travB = new UserTravelBean(avModTickList.get(i).getArrCity());
+			travB.setDepCity(avModTickList.get(i).getDepCity());
+			avTrav.add(travB);
+		}
+	}
+	
 	public List<String> showLocationsControl() {
 		List<String> suggLoc = new ArrayList<>();
 		UserModel usrModel = new UserModel();
@@ -87,8 +97,7 @@ public class BookTravelControl {
 		}
 		else {
 			this.usrMod.setUserName(this.logUser.getUserName());
-			TicketModel tick = new TicketModel();
-			tick.setAll(travBean.getCityOfDep(), travBean.getCityOfArr(), LocalDate.parse(travBean.getFirstDay()), LocalDate.parse(travBean.getLastDay()));
+			TicketModel tick = new TicketModel(travBean.getCityOfDep(), travBean.getCityOfArr(), LocalDate.parse(travBean.getFirstDay()), LocalDate.parse(travBean.getLastDay()));
 			tickList.addAll(travDao.retriveAvailableTickets(tick, usrMod));
 			if(tickList.isEmpty()) {
 				throw new EmptyListException();
@@ -100,8 +109,7 @@ public class BookTravelControl {
 	}
 	
 	public void saveBoughtTicketControl(UserTravelBean travBean) {
-		TicketModel tick = new TicketModel();
-		tick.setAll(travBean.getCityOfDep(), travBean.getCityOfArr(), travBean.getFirstDayPars(), travBean.getLastDayPars());
+		TicketModel tick = new TicketModel(travBean.getCityOfDep(), travBean.getCityOfArr(), travBean.getFirstDayPars(), travBean.getLastDayPars());
 		tick.setId(travBean.getId());
 		tick.setCost(travBean.getCost());
 		this.usrMod.setUserName(this.logUser.getUserName());
@@ -132,8 +140,7 @@ public class BookTravelControl {
 		List<TicketModel> tickList = new ArrayList<>();
 		List<UserTravelBean> travList = new ArrayList<>();
 		this.usrMod.setUserName(this.logUser.getUserName());
-		TicketModel tickMod = new TicketModel();
-		tickMod.setArrCity(travBean.getCityOfArr());
+		TicketModel tickMod = new TicketModel(travBean.getCityOfArr());
 		this.travDao.getSuggestedTickets(tickMod,this.usrMod, tickList);
 		if(tickList.isEmpty()) {
 			throw new EmptyListException();
@@ -150,8 +157,7 @@ public class BookTravelControl {
 	
 	public void deleteSavedTravelControl(UserTravelBean travBean) {
 		this.usrMod.setUserName(this.logUser.getUserName());
-		TicketModel tickModel = new TicketModel();
-		tickModel.setId(travBean.getId());
+		TicketModel tickModel = new TicketModel(travBean.getId());
 		this.travDao.deleteTick(tickModel, usrMod);
 	}
 	

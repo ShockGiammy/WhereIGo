@@ -2,8 +2,12 @@ package logic.graphiccontrollers;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -18,19 +22,21 @@ import logic.exceptions.EmptyListException;
 import logic.exceptions.NullValueException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
-import javafx.scene.control.TextField;
 
 public class GraphicControllerBookTravel extends BasicGui{
+	private ObservableList<String> depCities;
+	private ObservableList<String> arrCities;
 	private UserTravelBean travBean;
 	private LocationBean locBean;
 	private List<UserTravelBean> travBeanArray;
 	private ErrorPopup popUp;
 	private List<GroupBean> grpList;
 	private List<String> suggLoc;
+	private List<UserTravelBean> avalTrav;  //used to load available travels
 	@FXML private DatePicker firstDay;
 	@FXML private DatePicker lastDay;
-	@FXML private TextField departureCity;
-	@FXML private TextField arrivalCity;
+	@FXML private ChoiceBox<String> departureCity;
+	@FXML private ChoiceBox<String> arrivalCity;
 	@FXML private Button bookMyTravel;
 	@FXML private ListView<HBox> suggLocView;
 	@FXML private ListView<VBox> groupsView;
@@ -47,7 +53,9 @@ public class GraphicControllerBookTravel extends BasicGui{
 		this.userImage.setImage(setUserImage());
 		this.grpList = new ArrayList<>();
 		this.suggLoc = new ArrayList<>();
-		this.facade.loadBookTravSuggestion(suggLoc, grpList);
+		avalTrav = new ArrayList<>();  //used to load available travels
+		this.facade.loadBookTravSuggestion(suggLoc, grpList, avalTrav); // we load all the suggestion for the user
+		setDepAndArr();
 		setLocation();
 		setGroups();
 	}
@@ -57,15 +65,27 @@ public class GraphicControllerBookTravel extends BasicGui{
 		try {
 			travBean.setFirstDay(this.firstDay.getValue());
 			travBean.setLastDay(this.lastDay.getValue());
-			/* the problem of the null value on the cities is irrelevant, can be avoided*/
-			travBean.setArrCity(this.arrivalCity.getText());
-			travBean.setDepCity(this.departureCity.getText());
+			travBean.setArrCity(this.arrivalCity.getValue());
+			travBean.setDepCity(this.departureCity.getValue());
 			checkBookSol(event);
 		}catch (NullValueException e) {
 			this.popUp.displayLoginError(e.getNullExcMsg());
 		}
 	}
-
+	
+	public void setDepAndArr() {
+		List<String> dep = new ArrayList<>();
+		List<String> arr = new ArrayList<>();
+		for(int i = 0; i < this.avalTrav.size(); i++) {
+			arr.add(this.avalTrav.get(i).getCityOfArr());
+			dep.add(this.avalTrav.get(i).getCityOfDep());
+		}
+		this.arrCities = FXCollections.observableArrayList(arr);
+		this.depCities = FXCollections.observableArrayList(dep);
+		this.departureCity.setItems(this.depCities);
+		this.arrivalCity.setItems(this.arrCities);
+	}
+	
 	public void setGroups() {
 		if(this.logUsr.getPersonality() != null) {
 			int j;

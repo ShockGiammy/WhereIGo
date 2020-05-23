@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="680.0" minWidth="1040.0" prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
+<BorderPane minHeight="680.0" minWidth="1040.0" prefHeight="680.0" prefWidth="1041.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerBookTravel">
    <top>
       <BorderPane prefHeight="120.0" prefWidth="1040.0" BorderPane.alignment="CENTER">
          <left>
@@ -79,51 +80,11 @@
    </top>
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <right>
-            <Pane prefHeight="482.0" prefWidth="360.0" style="-fx-background-color: #19ca8b;" BorderPane.alignment="CENTER">
-               <children>
-                  <Text layoutX="19.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give us your travel info" wrappingWidth="254.94927978515625">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="13.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First day">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <DatePicker fx:id="firstDay" layoutX="122.0" layoutY="78.0" prefHeight="27.0" prefWidth="190.0" />
-                  <Text layoutX="10.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last day">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <DatePicker fx:id="lastDay" layoutX="122.0" layoutY="145.0" prefHeight="27.0" prefWidth="190.0" />
-                  <Button fx:id="bookMyTravel" layoutX="153.0" layoutY="362.0" mnemonicParsing="false" onMouseClicked="#bookMyTravelControl" prefHeight="41.0" prefWidth="127.0" text="Book my travel" textOverrun="WORD_ELLIPSIS" underline="true">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Text layoutX="10.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City of depart">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="departureCity" layoutX="122.0" layoutY="213.0" prefHeight="27.0" prefWidth="190.0" />
-                  <TextField fx:id="arrivalCity" layoutX="122.0" layoutY="287.0" prefHeight="27.0" prefWidth="190.0" />
-                  <Text layoutX="10.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City of arrive">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-               </children>
-            </Pane>
-         </right>
          <center>
-            <ListView fx:id="groupsView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <ListView fx:id="groupsView" prefHeight="200.0" prefWidth="347.0" BorderPane.alignment="CENTER" />
          </center>
          <left>
-            <ListView fx:id="suggLocView" prefHeight="482.0" prefWidth="360.0" BorderPane.alignment="CENTER" />
+            <ListView fx:id="suggLocView" minWidth="347.0" prefHeight="482.0" prefWidth="347.0" BorderPane.alignment="CENTER" />
          </left>
          <top>
             <HBox prefHeight="30.0" prefWidth="1040.0" spacing="120.0" BorderPane.alignment="CENTER">
@@ -138,9 +99,64 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Give us your travel info" wrappingWidth="254.94927978515625">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
                </children>
             </HBox>
          </top>
+         <right>
+            <BorderPane prefHeight="447.0" prefWidth="334.0" BorderPane.alignment="CENTER">
+               <center>
+                  <HBox prefHeight="234.0" prefWidth="347.0" spacing="20.0" style="-fx-background-color: #19ca8b;;" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox prefHeight="204.0" prefWidth="110.0" spacing="10.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First day">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last day">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City of depart">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City of arrive">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="134.0" prefWidth="166.0" spacing="7.0">
+                           <children>
+                              <DatePicker fx:id="firstDay" prefHeight="27.0" prefWidth="170.0" />
+                              <DatePicker fx:id="lastDay" prefHeight="27.0" prefWidth="170.0" />
+                              <ChoiceBox fx:id="departureCity" prefHeight="27.0" prefWidth="170.0" />
+                              <ChoiceBox fx:id="arrivalCity" prefHeight="27.0" prefWidth="170.0" />
+                              <Button fx:id="bookMyTravel" mnemonicParsing="false" onMouseClicked="#bookMyTravelControl" prefHeight="41.0" prefWidth="127.0" text="Book my travel" textOverrun="WORD_ELLIPSIS" underline="true">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets left="15.0" top="25.0" />
+                     </padding>
+                  </HBox>
+               </center>
+            </BorderPane>
+         </right>
       </BorderPane>
    </center>
 </BorderPane>

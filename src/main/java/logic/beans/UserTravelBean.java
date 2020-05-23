@@ -70,17 +70,11 @@ public class UserTravelBean {
 		this.lastDay = lastDay;
 	}
 	
-	public void setDepCity(String depCity) throws NullValueException {
-		if(depCity == null || depCity.equalsIgnoreCase("")) {
-			throw new NullValueException("Insert a valid departure city");
-		}
+	public void setDepCity(String depCity) {
 		this.cityOfDep = depCity;
 	}
 	
-	public void setArrCity(String arrCity) throws NullValueException {
-		if(arrCity == null || arrCity.equalsIgnoreCase("")) {
-			throw new NullValueException("Insert a valid arrive city");
-		}
+	public void setArrCity(String arrCity) {
 		this.cityOfArr = arrCity;
 	}
 	

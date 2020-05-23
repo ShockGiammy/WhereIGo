@@ -15,6 +15,14 @@ import java.sql.Date;
 
 public class TravelDao {
 	
+	public void findCurrTravels(List<TicketModel> tickModList) {
+		try(PreparedStatement prep = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT DISTINCT depcity,arrcity FROM Tickets")){
+			fetchCurrTicks(prep, tickModList);
+		} catch (SQLException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, "No available tickets at the moment",e);
+		}
+	}
+	
 	public List<TicketModel> retriveAvailableTickets(TicketModel tickMod, UserModel usrMod) {
 		List<TicketModel> tickets = new ArrayList<>();
 		if(checkIfBooked(tickMod, usrMod)) {
@@ -154,8 +162,7 @@ public class TravelDao {
 	public void findSuggTickets(PreparedStatement statement, List<TicketModel> tickList, TicketModel tickModel) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
-				TicketModel tick = new TicketModel();
-				tick.setAll(rs.getString(2), tickModel.getArrCity(), rs.getDate(3).toLocalDate(), rs.getDate(4).toLocalDate());
+				TicketModel tick = new TicketModel(rs.getString(2), tickModel.getArrCity(), rs.getDate(3).toLocalDate(), rs.getDate(4).toLocalDate());
 				tick.setId(rs.getInt(1));
 				tick.setCost(rs.getFloat(5));
 				tickList.add(tick);
@@ -180,8 +187,7 @@ public class TravelDao {
 	public void setFetchedTick(ResultSet rs, List<TicketModel> tickList) {
 		try {
 			while(rs.next()) {
-				TicketModel tick= new TicketModel();
-				tick.setAll(rs.getString(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate());
+				TicketModel tick= new TicketModel(rs.getString(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate());
 				tick.setId(rs.getInt(1));
 				tick.setCost(rs.getFloat(6));
 				tickList.add(tick);
@@ -189,6 +195,17 @@ public class TravelDao {
 		}
 		catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot manipulate tickets resultset \n",e);
+		}
+	}
+	
+	private void fetchCurrTicks(PreparedStatement ps, List<TicketModel> listTick) {
+		try(ResultSet rs = ps.executeQuery()){
+			while(rs.next()) {
+				TicketModel tickMod = new TicketModel(rs.getString(1), rs.getString(2));
+				listTick.add(tickMod);
+			}
+		} catch (SQLException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching tickets : no ticket available \n",e);
 		}
 	}
 }

@@ -92,7 +92,7 @@
 				</table>
 				</div>
 				
-				<div class="col-xs-6">
+				<div>
 					<p class="h5">Travelers suggested for you</p>
 					<div class="container">
 						<%

@@ -89,14 +89,14 @@
                   <TableColumn fx:id="cost" prefWidth="67.20001220703125" text="Cost" />
               </columns>
             </TableView>
-            <VBox prefHeight="303.0" prefWidth="95.0">
+            <VBox prefHeight="303.0" prefWidth="95.0" spacing="5.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Book now" wrappingWidth="80.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Text>
-                  <VBox fx:id="vbox" prefHeight="318.0" prefWidth="95.0" spacing="8.0" />
+                  <VBox fx:id="vbox" prefHeight="295.0" prefWidth="95.0" spacing="8.0" />
                </children>
             </VBox>
             <Button fx:id="bookTheTravel" mnemonicParsing="false" onMouseClicked="#bookTravel" prefHeight="55.0" prefWidth="104.0" text="Book yuor travel" />

@@ -155,10 +155,11 @@ public class ControllerFacade {
 	
 	/*BookTravelControl references methods*/
 	
-	public void loadBookTravSuggestion(List<String> suggLoc, List<GroupBean> gBeanList) {
+	public void loadBookTravSuggestion(List<String> suggLoc, List<GroupBean> gBeanList, List<UserTravelBean> avTrav) {
 		this.bookTravCtrl = new BookTravelControl();
 		suggLoc.addAll(this.bookTravCtrl.showLocationsControl());
 		this.bookTravCtrl.getSuggestedGroupsControl(gBeanList);
+		this.bookTravCtrl.setAvailableTick(avTrav);
 	}
 	
 	public void retriveLocInfo(LocationBean bean) {
