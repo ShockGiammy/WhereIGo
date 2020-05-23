@@ -24,8 +24,6 @@ import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
 public class GraphicControllerBookTravel extends BasicGui{
-	private ObservableList<String> depCities;
-	private ObservableList<String> arrCities;
 	private UserTravelBean travBean;
 	private LocationBean locBean;
 	private List<UserTravelBean> travBeanArray;
@@ -40,16 +38,12 @@ public class GraphicControllerBookTravel extends BasicGui{
 	@FXML private Button bookMyTravel;
 	@FXML private ListView<HBox> suggLocView;
 	@FXML private ListView<VBox> groupsView;
-	@FXML private List<HBox> hboxList;
-	@FXML private List<VBox> vboxlist;
 	
 	@FXML
 	public void initialize() {
 		this.travBeanArray = new ArrayList<>();
-		this.hboxList = new ArrayList<>();
 		this.locBean = new LocationBean();
 		this.popUp = new ErrorPopup();
-		this.vboxlist = new ArrayList<>();
 		this.userImage.setImage(setUserImage());
 		this.grpList = new ArrayList<>();
 		this.suggLoc = new ArrayList<>();
@@ -80,10 +74,10 @@ public class GraphicControllerBookTravel extends BasicGui{
 			arr.add(this.avalTrav.get(i).getCityOfArr());
 			dep.add(this.avalTrav.get(i).getCityOfDep());
 		}
-		this.arrCities = FXCollections.observableArrayList(arr);
-		this.depCities = FXCollections.observableArrayList(dep);
-		this.departureCity.setItems(this.depCities);
-		this.arrivalCity.setItems(this.arrCities);
+		ObservableList<String> arrCities = FXCollections.observableArrayList(arr);
+		ObservableList<String> depCities = FXCollections.observableArrayList(dep);
+		this.departureCity.setItems(depCities);
+		this.arrivalCity.setItems(arrCities);
 	}
 	
 	public void setGroups() {
@@ -97,7 +91,6 @@ public class GraphicControllerBookTravel extends BasicGui{
 				Button join = new Button("join group");
 				join.setOnMouseClicked(this::joinTheGroup);
 				vbox.getChildren().addAll(title, owner, location, join);
-				this.vboxlist.add(vbox);
 				this.groupsView.getItems().add(vbox);
 			}
 		}
@@ -118,16 +111,16 @@ public class GraphicControllerBookTravel extends BasicGui{
 				info.setOnMouseClicked(this::showMoreInfo);
 				hbox.getChildren().addAll(loc,info, bookNow);
 				this.suggLocView.getItems().add(hbox);
-				this.hboxList.add(hbox);
 			}
 		}
 	}
 	
 	public void showMoreInfo(MouseEvent e) {
 		int i;
-		for(i = 0; i < this.hboxList.size(); i++) {
-			if(this.hboxList.get(i).getChildren().get(1).equals(e.getTarget())) {
-				Text text = (Text)this.hboxList.get(i).getChildren().get(0);
+		ObservableList<HBox> loc = FXCollections.observableArrayList(this.suggLocView.getItems());
+		for(i = 0; i < loc.size(); i++) {
+			if(loc.get(i).getChildren().get(1).equals(e.getTarget())) {
+				Text text = (Text)loc.get(i).getChildren().get(0);
 				this.locBean.setCityName(text.getText());
 				this.facade.retriveLocInfo(this.locBean);
 				loadLocInfo(e);
@@ -143,9 +136,10 @@ public class GraphicControllerBookTravel extends BasicGui{
 	
 	public void bookSuggestedLoc(MouseEvent e) {
 		int i;
-		for(i = 0; i < this.hboxList.size(); i++) {
-			if(this.hboxList.get(i).getChildren().get(2).equals(e.getTarget())) {
-				Text city = (Text)this.hboxList.get(i).getChildren().get(0);
+		ObservableList<HBox> travls = FXCollections.observableArrayList(this.suggLocView.getItems());
+		for(i = 0; i < travls.size(); i++) {
+			if(travls.get(i).getChildren().get(2).equals(e.getTarget())) {
+				Text city = (Text)travls.get(i).getChildren().get(0);
 				this.travBean = new UserTravelBean(city.getText());
 				try {
 					this.travBeanArray.addAll(this.facade.getSuggTicketsInfo(this.travBean));
@@ -162,12 +156,15 @@ public class GraphicControllerBookTravel extends BasicGui{
 	
 	public void joinTheGroup(MouseEvent e) {
 		int i;
-		for(i = 0; i < this.vboxlist.size(); i++) {
-			if(this.vboxlist.get(i).getChildren().get(3).equals(e.getTarget())) {
-				Text title = (Text)this.vboxlist.get(i).getChildren().get(0);
+		ObservableList<VBox> groups = FXCollections.observableArrayList(this.groupsView.getItems());
+		for(i = 0; i < groups.size(); i++) {
+			if(groups.get(i).getChildren().get(3).equals(e.getTarget())) {
+				Text title = (Text)groups.get(i).getChildren().get(0);
 				GroupBean grpBean = new GroupBean(title.getText());
 				if(this.facade.insertParticipant(grpBean) == 0) {
 					this.popUp.displayLoginError("Gruppo correttamente joinato");
+					VBox temp = groups.get(i);
+					this.groupsView.getItems().remove(temp);
 				}
 				else {
 					this.popUp.displayLoginError("Errore nel join del gruppo");

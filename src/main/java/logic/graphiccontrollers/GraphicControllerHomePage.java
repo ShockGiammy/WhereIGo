@@ -2,6 +2,9 @@ package logic.graphiccontrollers;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -22,12 +25,9 @@ public class GraphicControllerHomePage extends BasicGui{
 	@FXML private Button changeInfo;
 	@FXML private Button moreInfo;
 	@FXML private Button takeTest;
-	@FXML private List<VBox> travelBox;
-	@FXML private List<VBox> groupBox;
-	@FXML private List <VBox> suggUsersList;
 	@FXML private ListView<VBox> lwTickets;
 	@FXML private ListView<VBox> lwGroups;
-	@FXML private ListView<VBox> lwSuggUsers;
+	@FXML private ListView<HBox> lwSuggUsers;
 	private ErrorPopup err;
 	private List<UserTravelBean> travBean;
 	private List<GroupBean> grpBean;
@@ -35,9 +35,6 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	@FXML
 	public void initialize() {
-		this.travelBox = new ArrayList<>();
-		this.groupBox = new ArrayList<>();
-		this.suggUsersList = new ArrayList<>();
 		this.err = new ErrorPopup();
 		this.userImage.setImage(setUserImage());
 		this.travBean = new ArrayList<>();
@@ -83,7 +80,6 @@ public class GraphicControllerHomePage extends BasicGui{
 			delete.setOnMouseClicked(this::deleteTravel);
 			vbox.getChildren().addAll(ident, depCity, depDay, arrCity, retDay, money, delete);
 			this.lwTickets.getItems().add(vbox);
-			this.travelBox.add(vbox);
 		}
 	}
 	
@@ -105,7 +101,6 @@ public class GraphicControllerHomePage extends BasicGui{
 				vbox.getChildren().addAll(groupTitle, groupDest, groupLeader,leaveGroup);
 			}
 			this.lwGroups.getItems().add(vbox);
-			this.groupBox.add(vbox);
 		}
 		Button newGroup = new Button("Create a new group");
 		newGroup.setOnMouseClicked(this::newGroup);
@@ -116,7 +111,6 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	public void setSuggUsers() {
 		for(int i = 0; i < dataBeanList.size(); i++) {
-			VBox vbox= new VBox(7);
 			HBox hbox = new HBox(3);
 			if(dataBeanList.get(i).getByteStream() != null) {
 				ImageView ivProf = new ImageView();
@@ -130,21 +124,21 @@ public class GraphicControllerHomePage extends BasicGui{
 			hbox.getChildren().add(usr);
 			Button btnChat = new Button("Chat with the user");
 			btnChat.setOnMouseClicked(this::openTheChat);
-			vbox.getChildren().addAll(hbox, btnChat);
-			this.lwSuggUsers.getItems().add(vbox);
+			hbox.getChildren().add(btnChat);
+			this.lwSuggUsers.getItems().add(hbox);
 		}
 	}
 	
 	public void deleteTravel(MouseEvent e) {
 		int i;
-		for(i = 0; i < this.travelBox.size(); i++) {
-			if(this.travelBox.get(i).getChildren().get(6).equals(e.getTarget())) {
+		ObservableList<VBox> travels = FXCollections.observableArrayList(this.lwTickets.getItems());
+		for(i = 0; i < travels.size(); i++) {
+			if(travels.get(i).getChildren().get(6).equals(e.getTarget())) {
 				UserTravelBean delBean = new UserTravelBean();
-				Text id = (Text)this.travelBox.get(i).getChildren().get(0);
+				Text id = (Text)travels.get(i).getChildren().get(0);
 				delBean.setId(Integer.parseInt(id.getText().substring(12, id.getText().length())));
 				this.facade.deleteSavedTravel(delBean);
-				VBox temp = this.travelBox.get(i);
-				this.travelBox.remove(i);
+				VBox temp = travels.get(i);
 				this.lwTickets.getItems().remove(temp);
 				err.displayLoginError("Prenotazione correttamente cancellata");
 			}
@@ -153,15 +147,16 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	public void deleteGroup(MouseEvent e) {
 		int i;
-		for(i = 0; i < this.groupBox.size(); i++) {
-			if(this.groupBox.get(i).getChildren().size() == 4 && this.groupBox.get(i).getChildren().get(3).equals(e.getTarget())) {
-				Text description = (Text)this.groupBox.get(i).getChildren().get(0);
-				Text owner = (Text)this.groupBox.get(i).getChildren().get(2);
+		ObservableList<VBox> grps = FXCollections.observableArrayList(this.lwGroups.getItems());
+		for(i = 0; i < grps.size(); i++) {
+			if(grps.get(i).getChildren().size() == 4 && grps.get(i).getChildren().get(3).equals(e.getTarget())) {
+				Text description = (Text)grps.get(i).getChildren().get(0);
+				Text owner = (Text)grps.get(i).getChildren().get(2);
 				GroupBean bean = new GroupBean(description.getText().substring(13, description.getText().length()));
 				bean.setGroupOwner(owner.getText().substring(15,owner.getText().length()));
 				this.facade.deleteTravelGroup(bean);
-				VBox temp = this.groupBox.get(i);
-				this.groupBox.remove(i);
+				VBox temp = grps.get(i);
+				grps.remove(i);
 				this.lwGroups.getItems().remove(temp);
 				err.displayLoginError("Gruppo correttamente cancellato");
 			}
@@ -170,13 +165,14 @@ public class GraphicControllerHomePage extends BasicGui{
 	
 	public void leaveGroup(MouseEvent e) {
 		int i;
-		for(i = 0; i < this.groupBox.size(); i++) {
-			if(this.groupBox.get(i).getChildren().size() == 4 && this.groupBox.get(i).getChildren().get(3).equals(e.getTarget())) {
-				Text description = (Text)this.groupBox.get(i).getChildren().get(0);
+		ObservableList<VBox> grps = FXCollections.observableArrayList(this.lwGroups.getItems());
+		for(i = 0; i < grps.size(); i++) {
+			if(grps.get(i).getChildren().size() == 4 && grps.get(i).getChildren().get(3).equals(e.getTarget())) {
+				Text description = (Text)grps.get(i).getChildren().get(0);
 				GroupBean bean = new GroupBean(description.getText().substring(13, description.getText().length()));
 				this.facade.leaveTravelGroup(bean);
-				VBox temp = this.groupBox.get(i);
-				this.groupBox.remove(i);
+				VBox temp = grps.get(i);
+				grps.remove(temp);
 				this.lwGroups.getItems().remove(temp);
 				err.displayLoginError("Gruppo correttamente abbandonato");
 			}
@@ -188,10 +184,10 @@ public class GraphicControllerHomePage extends BasicGui{
 	}
 	
 	public void openTheChat(MouseEvent e) {
-		for(int i = 0; i < this.suggUsersList.size(); i++) {
-			if(this.suggUsersList.get(i).getChildren().get(1).equals(e.getTarget())){
-				HBox box = (HBox)this.suggUsersList.get(i).getChildren().get(0);
-				Text usName = (Text)box.getChildren().get(1);
+		ObservableList<HBox> usrs = FXCollections.observableArrayList(this.lwSuggUsers.getItems());
+		for(int i = 0; i < usrs.size(); i++) {
+			if(usrs.get(i).getChildren().get(2).equals(e.getTarget())){
+				Text usName = (Text)usrs.get(i).getChildren().get(1);
 				this.facade.createChat(usName.getText());
 			}
 		}
