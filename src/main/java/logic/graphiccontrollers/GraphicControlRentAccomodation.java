@@ -208,9 +208,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	
 	public void contactRenter(MouseEvent event) {
 		facade.createChat(renter.getText());
-		setScene("ChatView.fxml");
-		loadScene();
-		nextGuiOnClick(event);
+		goChat(event);
 	}
 }
 

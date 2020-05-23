@@ -192,11 +192,10 @@ public class GraphicControllerHomePage extends BasicGui{
 			if(this.suggUsersList.get(i).getChildren().get(1).equals(e.getTarget())){
 				HBox box = (HBox)this.suggUsersList.get(i).getChildren().get(0);
 				Text usName = (Text)box.getChildren().get(1);
-				UserDataBean usBean = new UserDataBean(usName.getText());
-				/* forse prende anche la foto, la passa a te e ci crea una chat*/
+				this.facade.createChat(usName.getText());
 			}
 		}
-		goChat(e); //aspetto te Gian per sapere che cazzo fare
+		goChat(e);
 	}
 }
 
