@@ -50,6 +50,8 @@ public class ChatController {
 	
 	public ChatController() {
 		chatDao = new ChatDao();
+		this.logUser = new LoggedUser();
+		this.username = logUser.getUserName();
 		factory = new MessageFactory();
 	}
 	
