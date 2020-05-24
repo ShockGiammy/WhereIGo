@@ -79,18 +79,18 @@ public class UserTravelBean {
 	}
 	
 	public void setCost(float money) {
-		this.cost = String.valueOf(money);
+		this.cost = String.valueOf(money)+"€";
 	}
 	
 	public void setCost(String money) {
 		this.cost = money;
 	}
 	
-	public Integer getId() {
+	public Integer getParsedId() {
 		return Integer.valueOf(this.id);
 	}
 	
-	public String getParsedId() {
+	public String getId() {
 		return this.id;
 	}
 	
@@ -118,11 +118,24 @@ public class UserTravelBean {
 		return this.cityOfArr;
 	}
 	
-	public Float getCost() {
-		return Float.valueOf(this.cost);
+	public Float getParsedCost() {
+		return Float.valueOf(floatParse());
 	}
 	
-	public String getParsedCost() {
+	public String getCost() {
 		return this.cost;
+	}
+	
+	private String floatParse() {
+		StringBuilder bld = new StringBuilder();
+		for(int i = 0; i < this.cost.length(); i++) {
+			if(Character.isDigit(this.cost.charAt(i))) {
+				bld.append(this.cost.charAt(i));
+			}
+			else {
+				break;
+			}
+		}
+		return bld.toString();
 	}
 }

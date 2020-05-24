@@ -38,12 +38,12 @@ public class GraphicControllerCheckOut extends BasicGui{
 	
 	public void setInfo(UserTravelBean travBean, UserDataBean dataBean) {
 		this.travbean = travBean;
-		this.id.setText(travBean.getParsedId());
+		this.id.setText(travBean.getId());
 		this.departure.setText(travBean.getCityOfDep());
 		this.arrive.setText(travBean.getCityOfArr());
 		this.depDay.setText(travBean.getFirstDay());
 		this.retDay.setText(travBean.getLastDay());
-		this.cost.setText(travBean.getParsedCost());
+		this.cost.setText(travBean.getCost());
 		this.groupAdmin.setText(dataBean.getUsername());
 		this.groupAdmin.setEditable(false);
 		this.groupDest.setText(travBean.getCityOfArr());

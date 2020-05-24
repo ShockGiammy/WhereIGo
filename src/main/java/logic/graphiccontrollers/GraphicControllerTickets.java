@@ -21,12 +21,12 @@ import logic.view.BasicGui;
 
 public class GraphicControllerTickets extends BasicGui{
 	@FXML private TableView<UserTravelBean> ticketsView;
-	@FXML private TableColumn<UserTravelBean, Integer> ticketId;
+	@FXML private TableColumn<UserTravelBean, String> ticketId;
 	@FXML private TableColumn<UserTravelBean, String> departureCity;
 	@FXML private TableColumn<UserTravelBean, String> arrivalCity;
 	@FXML private TableColumn<UserTravelBean, String> departureDay;
 	@FXML private TableColumn<UserTravelBean, String> arrivalDate;
-	@FXML private TableColumn<UserTravelBean, Float> cost;
+	@FXML private TableColumn<UserTravelBean, String> cost;
 	@FXML private List<RadioButton> rbList;
 	@FXML private ToggleGroup bookNowGroup;
 	@FXML private VBox vbox;

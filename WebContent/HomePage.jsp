@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ include file = "NavigationBar.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Home Page</title>
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
 <%@ page import="java.util.ArrayList" language="java" %>
@@ -48,12 +48,12 @@
 								UserTravelBean bean = tBeanList.get(i);
 						%>
 					<tr>
-						<td><%=bean.getParsedId()%></td>
-						<td><%=bean.getCityOfDep()%></td>
-						<td><%=bean.getFirstDay()%></td>
-						<td><%=bean.getCityOfArr()%></td>
-						<td><%=bean.getLastDay()%></td>
-						<td><%=bean.getParsedCost()%></td>
+						<td id="id"><%=bean.getId()%></td>
+						<td id="depCity"><%=bean.getCityOfDep()%></td>
+						<td id="depDay"><%=bean.getFirstDay()%></td>
+						<td id="arrCity"><%=bean.getCityOfArr()%></td>
+						<td id="retDay"><%=bean.getLastDay()%></td>
+						<td id="cost"><%=bean.getCost()%></td>
 						<td><a href="BookTravelServlet?action=delTick&id=<%=bean.getId()%>" class="btn btn-danger btn-md">Delete</a>
 						<%
 							}
@@ -78,9 +78,9 @@
 							GroupBean gbean = gBeanList.get(i);
 					%>
 				<tr>
-					<td><%=gbean.getGroupTitle()%></td>
-					<td><%=gbean.getGroupOwner()%></td>
-					<td><%=gbean.getGroupDestination()%></td>
+					<td id="grouptitle"><%=gbean.getGroupTitle()%></td>
+					<td id="groupowner"><%=gbean.getGroupOwner()%></td>
+					<td id="groupdest"><%=gbean.getGroupDestination()%></td>
 					<td><a href="BookTravelServlet?action=delGroup&groupName=<%=gbean.getGroupTitle()%>&groupOwner=<%=gbean.getGroupOwner()%>" class="btn btn-danger btn-l">Delete/Leave</a></td>
 				</tr>
 				<%

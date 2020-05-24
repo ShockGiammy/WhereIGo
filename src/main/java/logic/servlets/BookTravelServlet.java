@@ -221,8 +221,7 @@ public class BookTravelServlet extends HttpServlet {
 	}
 	
 	private void saveMyGroup(HttpServletRequest request, HttpServletResponse response) {
-		saveGroup(request);
-		if(request.getAttribute(msg) != null) {
+		if(!saveGroup(request)) {
 			changeP.forwardPage("CreateGroup.jsp", request, response);
 		}
 		else {

@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ include file = "NavigationBar.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Book your travel</title>
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <%@ page import="java.util.ArrayList" language="java" %>
 <%@ page import="java.util.List" language="java" %>
 <%@ page import="logic.beans.GroupBean" language="java" %>
@@ -110,10 +110,10 @@ select#arrcity {
 							<%=cities.get(i)%>
 						</div>
 						<div class="col-sm">
-							<a href="BookTravelServlet?action=moreInfo&city=<%=cities.get(i)%>" class="btn btn-info">More info</a>
+							<a href="BookTravelServlet?action=moreInfo&city=<%=cities.get(i)%>" class="btn btn-info btn-sm">More info</a>
 						</div>
 						<div class="col-sm">
-							<a href="BookTravelServlet?action=bookshort&city=<%=cities.get(i)%>" class="btn btn-success">Book now</a>
+							<a href="BookTravelServlet?action=bookshort&city=<%=cities.get(i)%>" class="btn btn-success btn-sm" style="white-space: nowrap;">Book now</a>
 						</div>
 					</div>
 						<%
@@ -154,7 +154,7 @@ select#arrcity {
 							<div class="col-4">
 								<div class="form-horiontal">
 									<div class="form-group">
-										<label for="dep" style="white-space: nowrap">Departure city</label>
+										<label for="dep" style="white-space: nowrap;">Departure city</label>
 										<select class="depcity" name="depCity" id="depcity">
 											<%
 												for(int i = 0; i < depCities.size(); i++){
@@ -166,7 +166,7 @@ select#arrcity {
 										</select>
 									</div>
 									<div class="form-group">
-										<label for="arr" style="white-space: nowrap">Arrive city</label>
+										<label for="arr" style="white-space: nowrap;">Arrive city</label>
 										<select class="arrcity" name="arrCity" id="arrcity">
 											<%
 												for(int i = 0; i < arrCities.size(); i++){
@@ -180,13 +180,13 @@ select#arrcity {
 								</div>
 								<div class="form-horiontal">
 									<div class="form-group">
-										<label for="depDate" style="white-space: nowrap">Departure date</label>
+										<label for="depDate" style="white-space: nowrap;">Departure date</label>
 										<input type="date" name="depDate" id="depDate">
 									</div>
 								</div>
 								<div class="form-horiontal">
 									<div class="form-group">
-										<label for="retDate" style="white-space: nowrap">Return date</label>
+										<label for="retDate" style="white-space: nowrap;">Return date</label>
 										<input type="date" name="retDate" id="retDate">
 									</div>
 								<div class="form-horiontal">
@@ -202,8 +202,8 @@ select#arrcity {
 		</div>
 	</div>
 	</form>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>		
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>		
 </body>
 </html>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ include file="RenterNavigationBar.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -73,7 +73,7 @@
 }
 </style>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Manage your accomodations</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">

@@ -110,8 +110,8 @@ public class BookTravelControl {
 	
 	public void saveBoughtTicketControl(UserTravelBean travBean) {
 		TicketModel tick = new TicketModel(travBean.getCityOfDep(), travBean.getCityOfArr(), travBean.getFirstDayPars(), travBean.getLastDayPars());
-		tick.setId(travBean.getId());
-		tick.setCost(travBean.getCost());
+		tick.setId(travBean.getParsedId());
+		tick.setCost(travBean.getParsedCost());
 		this.usrMod.setUserName(this.logUser.getUserName());
 		this.travDao.saveBoughtTickets(tick, this.usrMod);
 	}
@@ -157,7 +157,7 @@ public class BookTravelControl {
 	
 	public void deleteSavedTravelControl(UserTravelBean travBean) {
 		this.usrMod.setUserName(this.logUser.getUserName());
-		TicketModel tickModel = new TicketModel(travBean.getId());
+		TicketModel tickModel = new TicketModel(travBean.getParsedId());
 		this.travDao.deleteTick(tickModel, usrMod);
 	}
 	

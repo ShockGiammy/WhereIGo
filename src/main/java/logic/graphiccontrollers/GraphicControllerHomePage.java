@@ -136,7 +136,7 @@ public class GraphicControllerHomePage extends BasicGui{
 			if(travels.get(i).getChildren().get(6).equals(e.getTarget())) {
 				UserTravelBean delBean = new UserTravelBean();
 				Text id = (Text)travels.get(i).getChildren().get(0);
-				delBean.setId(Integer.parseInt(id.getText().substring(12, id.getText().length())));
+				delBean.setId(id.getText().substring(12, id.getText().length()));
 				this.facade.deleteSavedTravel(delBean);
 				VBox temp = travels.get(i);
 				this.lwTickets.getItems().remove(temp);
