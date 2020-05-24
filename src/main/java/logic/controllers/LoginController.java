@@ -4,6 +4,9 @@ import logic.dao.UserDao;
 import logic.exceptions.DuplicateUsernameException;
 import logic.model.UserModel;
 import logic.beans.UserDataBean;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
@@ -41,11 +44,21 @@ public class LoginController {
 		this.usrModel.setUserType(usrBean.getType());
 		LoggedUser.setUserName(usrBean.getUsername());
 		LoggedUser.setType(usrBean.getType());
-		byte[] imm = null;
-		try {
+		byte[] imm = new byte[(int)usrBean.getFileLength()];
+		/*try {
 			imm = Files.readAllBytes(usrBean.getFileImage().toPath());
 		} catch (IOException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		}*/
+		try (FileInputStream is = new FileInputStream(usrBean.getFileImage())){
+			int count = 0;
+			while((count = is.read(imm)) > 0) {
+				Logger.getLogger("WIG").log(Level.FINE, "Reading file");
+			}
+		} catch (FileNotFoundException e) {
+			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+		} catch (IOException e1) {
+			Logger.getLogger("WIG").log(Level.SEVERE, e1.getMessage());
 		}
 		LoggedUser.setImage(imm);
 		this.usrDao.insertNewUser(this.usrModel);
