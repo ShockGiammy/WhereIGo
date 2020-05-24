@@ -100,6 +100,15 @@ values("shockGiammy","pluto","Gian Marco","Falcone","16-03-1998","Male","Travele
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,userstatus)
 values("adrianRob","pippo","Adrian","Minut","02-02-1997","Male","Traveler","Friendly","offline");
 
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,userstatus)
+values("pierc","pierc","Pierciro","Caliandro","18-02-1998","Male","Traveler","Friendly","offline");
+
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,userstatus)
+values("Traveler","Traveler","Traveler","Traveler","16-03-1998","Male","Traveler","Friendly","offline");
+
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,userstatus)
+values("Renter","Renter","Renter","Renter","16-03-1998","Male","Renter","Friendly","offline");
+
 insert into Locations(country,city,tipeOfPersonality)
 values ("Zanzibar","Tanzania", "Curious");
 
