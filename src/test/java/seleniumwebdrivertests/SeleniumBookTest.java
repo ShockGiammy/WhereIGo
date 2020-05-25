@@ -26,5 +26,6 @@ public class SeleniumBookTest {
 		String actualCity = depCity.getText();
 		chromed.findElement(By.xpath("/html/body/form/div/div/div[1]/table/tbody/tr/td[7]/a")).click();
 		assertEquals(confCity, actualCity);
+		chromed.close();
 	}
 }

@@ -306,8 +306,6 @@ create.onclick = function() {
   document.getElementById("service").value = "Create";
   modal.style.display = "block";
 }
-	
-//var bean = document.getElementById("update").value;
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -317,6 +315,7 @@ span.onclick = function() {
 	window.location.href = "RentRenter";
   }, 1000);
 }
+
 cancel.onclick = function() {
   document.getElementById("toBeUpdate").value = "false";
   modal.style.display = "none";
