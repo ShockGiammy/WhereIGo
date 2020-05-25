@@ -65,7 +65,7 @@ create table Chat
 
 create table Tickets
 (
-	ID int primary key AUTO_INCREMENT,
+	ID int primary key,
 	depCity VARCHAR(50),
     arrCity VARCHAR(50),
 	dateOfDep date,
@@ -100,100 +100,187 @@ values("Traveler","Traveler","Traveler","Traveler","16-03-1998","Male","Traveler
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilePicture,userstatus)
 values("Renter","Renter","Renter","Renter","16-03-1998","Male","Renter","Friendly",LOAD_FILE('C:/Program Files/MySQL/MySQL Server 8.0/Uploads/avatar.png'),"offline");
 
-insert into Locations(country,city,tipeOfPersonality)
-values ("Zanzibar","Tanzania", "Curious");
-
-insert into Locations(country,city,tipeOfPersonality)
-values ("Turkey","Istanbul", "Curious");
-
-insert into Locations(country,city,tipeOfPersonality)
-values ("Morocco","Marrakech", "Curious");
-
-insert into Locations(country,city,tipeOfPersonality)
-values ("UK","London", "Lone wolf");
-
-insert into Locations(country,city,tipeOfPersonality)
-values ("Australia","Ayers rock", "Lone wolf");
-
-insert into Locations(country,city,tipeOfPersonality)
-values ("Russia","Transiberiana", "Lone wolf");
+insert into Locations(country,city,tipeOfPersonality, photo1, descr)
+values ("Tanzania","Zanzibar", "Adventurer", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/zanzibar.jpg'), "Zanzibar is the semi-autonomous part of Tanzania in East Africa.
+ It is composed of the Zanzibar Archipelago in the Indian Ocean, 25–50 kilometres (16–31 mi) off the coast of the mainland, and consists of many small islands and two large ones: Unguja (the main island, referred to informally as Zanzibar) and Pemba.
+ The capital is Zanzibar City, located on the island of Unguja.
+ Its historic centre is Stone Town, which is a World Heritage Site.
+ Zanzibar’s coastline offers some of the best beaches in the world, but sand and surf vary depending on what side of the island you’re on.
+ On the east coast, waves break over coral reefs and sand bars offshore, and low tide reveals small pools of starfish, small minnows, and anemones.
+ Up north, ocean swimming is much less susceptible to the tides, and smooth beaches and white sand make for dazzling days in the sun.");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
-values ("Netherlands","Amsterdam", "Friendly",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/dam1.jpg'), "Amsterdam, conosciuta anche come la Venezia del Nord 
-per i suoi numerosi canali, è una delle città più affascinanti del mondo, 
-un piccolo paradiso tanto amato ed apprezzato dai turisti per il suo aspetto romantico e mutevole, là dove perdersi tra le molteplici attività culturali, 
-le architetture antiche e moderne ed i suoi musei. 
-Amsterdam è caratterizzata anche da un lato più giovanile, quello che l'ha portata a conquistarsi il titolo capitale del divertimento e del proibito, 
-famosa per i suoi coffeeshop e l'atmosfera rilassata e liberale che si respira in ogni angolo della città.");
+values ("Turkey","Istanbul", "Adventurer", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/istanbul.jpg'), "Istanbul, a fascinating city built on two Continents, divided by the Bosphorus Strait.
+ This is one of the greatest cities in the world where you can see a modern western city combined with a traditional eastern city, it's a melting pot of many civilizations and different people.
+ Istanbul was also announced by the European Union as the 2010 European Capital of Culture.
+ Since the Republic in 1923, Istanbul continued to grow and today it boosted its population over 15,5 million people living in this spread out city.
+ This makes Istanbul the largest city of Turkey and one of the biggest cities in the world.");
 
-insert into Locations(country,city,tipeOfPersonality, descr)
-values ("Spain","Ibiza", "Friendly", "Rinomata per la vita notturna e per i locali di tendenza, che la rendono una delle mete preferite dei giovani di tutta l’Europa e non solo,
-Ibiza è la terza isola per estensione dell’Arcipelago spagnolo delle Baleari.
-Dichiarata Patrimonio dell’Umanità nel 1999, Ibiza è un’isola calda sotto tutti i punti di vista: climatico, caratteriale e geologico.
-Nella bella Ibiza è impossibile annoiarsi. La vita isolana è movimentata praticamente ventiquattro ore su ventiquattro.
-Di giorno, vi è una vasta offerta di attività nautiche, praticabili in quasi ogni angolo dell’isola, anche per conto proprio.
-Molto divertenti sono ad esempio le escursioni via mare per raggiungere le spiagge di Formentera.
-Le serate sono all’insegna della movida, grazie all’interminabile schiera di locali, discoteche e pub presenti sull’isola.");
+insert into Locations(country,city,tipeOfPersonality, photo1, descr)
+values ("Morocco","Marrakech", "Adventurer", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/marrakech.jpg'), "Marrakech is the second largest city of Morocco and is known as the Red City.
+ It has about 800,000 inhabitants and most of the houses are colored read.
+ Marrakech MedinaIt is truly a colorful city of entertainment and is called the one of the pearls of morocco.
+ It is the major economic center and has several upcoming industries and markets.
+ You would find it very interesting to roam around the city of Marrakech.
+ The little souks in the small alleys and squares are very interesting and you can find them dedicated to specific crafts.
+ You can even watch part of their process of making them.");
 
-insert into Locations(country,city,tipeOfPersonality, descr)
-values ("USA","San Francisco", "Friendly", "Da città simbolo degli hippie e della controrivoluzione giovanile degli anni Sessanta a cuore pulsante di una rinascita culturale guidata dall’arte e dal design e soprattutto dalla tecnologia.
-È questa la storia di San Francisco, la città più liberal d’America nonché uno dei simboli più famosi al mondo della West Coast statunitense.
-Adagiata su una baia e perennemente illuminata da una luce naturale abbagliante, San Francisco, è una città distribuita su ben 40 colline.
-Per questo motivo i suoi marciapiedi sono spesso sostituiti da scalinate. 
-I caratteristici tram a cremagliera (cable car),  aperti su entrambi i lati, arrancano sulle salite della città che poi si trasformano in discese a picco verso l’azzurro dell’Oceano Pacifico.
-Come succede a Lombard Street, la strada più fotografata del mondo e postata su Instagram, location perfetta per i rocamboleschi inseguimenti dei film d’azione tanto cari al cinema hollywoodiano.
-A colpire subito l’attenzione dei turisti è sicuramente l’eclettismo architettonico ma anche culturale di quella che è stata definita “la città della pioggia, del vento e della nebbia“");
+insert into Locations(country,city,tipeOfPersonality, photo1, descr)
+values ("UK","London", "Lone wolf", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/london.jpg'), "Nothing prepares you for your first taste of London.
+ This great world city is far more than just the capital of the United Kingdom of Great Britain and Northern Ireland.
+ London is bustling, vibrant, multicultural and cosmopolitan.
+ London is both old and new, a place where traditional pubs rub shoulders with the newest cocktail bars.
+ Its most ancient castle is right next door to its newest skyscrapers.
+ London's energy, as 8.
+6 million people go about their everyday lives, is tangible in every journey on the Underground and every walk along the banks of the River Thames.
+ From the palaces of shopping to the real Buckingham Palace, London really does have it all.");
 
-insert into Locations(country,city,tipeOfPersonality, descr)
-values ("Ungary","Budapest", "Lazybone", "In origine formata da due città distinte, Buda e Pest, sviluppatesi sulle rive del Danubio, Budapest è considerata da molti come la Parigi dell’Est grazie anche all’atmosfera fin de siècle che si respira lungo i suoi viali.
-Da un lato l’antica e Buda, con il suo castello, patrimonio dell’UNESCO, il Palazzo Reale, la chiesa di Matthias e i bastioni dei Pescatori che dall’alto di un colle offrono una splendida vista sulla città.
-Dall’altro la moderna Pest, vivace e dalle ampie vie accoglie i più famosi monumenti della città, come il Parlamento e la Basilica di Santo Stefano, insieme a fulgidi esempi di Art Nouveau, tra questi spicca il bellissimo Ponte delle Catene.
-Da non dimenticare le pasticcerie con la calorica Dobostorta del Café Gerbeaud e le terme.
-Budapest infatti vanta diverse stazioni termali, già note all’epoca romana furono ampliate durante il periodo turco fino al 1920 quando si guadagnò la reputazione di città delle terme.
-Infine l’Isola Margherita, sospesa in mezzo al Danubio è un piccolo polmone verde in cui passeggiare e rilassarsi nelle calde giornate primaverili ed estive.");
+insert into Locations(country,city,tipeOfPersonality, photo1, descr)
+values ("Australia","Ayers rock", "Lone wolf", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/ayers_rock.jpg'), "The monoliths unbelievable size and immense cultural significance to local Indigenous people has made it an icon of Australia, and its magnificence cannot be understated.
+The unmitigated remoteness of this destination has done nothing to curb the enthusiasm of people from around the world to come and visit the rock, watching it stand magnificently above the flat, arid landscape that’s spread out around it in every direction.
+More than 250,000 people visit the Uluru-Kata Tjuta National Park each year, despite it being hundreds of kilometres from the nearest major town and almost 1000km from the Northern Territory’s capital Darwin. 
+Although this may seem like a setback, it does wonders to make this destination a truly special one. In an environment largely unimpacted by European settlement, Uluru and the Red Centre have mostly maintained their original beauty.
+A trip to Australia is simply not complete without a visit to Uluru. 
+Do not miss your opportunity to explore the majestic monolith and have your breath stolen by the stunning horizon in front of you.");
 
-insert into Locations(country,city,tipeOfPersonality, descr)
-values ("UK","Bath", "Lazybone" , "Elegante e armoniosa cittadina termale sul fiume Avon, nel distretto unitario di Bath e North East Somerset (un tempo contea di Avon), 18 km a SE di Bristol.
-È centro residenziale e meta turistica molto frequentata, la cui importanza e lo stesso nome sono legati alle terme, già note ai Romani.
-Dell'antica Aquae Sulis gli scavi iniziati nel 1755 hanno portato alla luce notevoli resti.
-La nuova Bath si formò attorno a un'abbazia benedettina e prese a svolgere un'attività prevalentemente commerciale e manifatturiera (lanifici).
-A partire dal sec. XVIII si affermò come località di soggiorno e centro termale. Per il fascino dell'impianto urbanistico la città è stata dichiarata Patrimonio mondiale dell'umanità dall'UNESCO.
-Nel 1966 è stato fondato il Politecnico di Bath.
-Bath è una città vivace dal punto di vista artistico-culturale.
-Ogni mese vi si svolge una manifestazione diversa, ma è soprattutto durante la stagione estiva che i teatri, le piazze e i parchi cittadini sono caratterizzati da svariati concerti e mostre.");
+insert into Locations(country,city,tipeOfPersonality, photo1, descr)
+values ("South Korea","Gyeongju", "Lone wolf", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/gyeongju.jpg'), "f you’re into ancient cultures and traditions – or just want a break from the fast cars and bright lights of South Korea’s cities – take a day trip to Gyeongju, South Korea’s ancient capital.
+Gyeongju is a city in the North Gyeongsang Province, near the southeastern coast of mainland Korea. It’s an hour’s drive or bus ride north of Busan, a perfect day trip for those seeking a cultural experience.
+If you’re a foodie and wondering about the cuisine, food in Gyeongju is generally typical of the cuisine elsewhere in Gyeongsang province – spicy and salty. However, they do have local specialties that include Gyeongju bread, a red-bean pastry, and beopju, a traditional Korean liquor.
+If you’re looking for seafood dishes, though, head to Gampo-eup, a coastal town on the east district of Gyeongju where you can enjoy fresh seafood and jeotgal (fermented salted seafood). You’ll find hundreds of seafood restaurants along Gampo Harbor where you can get raw fish dishes, abalone soup, grilled seafood, and more.");
 
-insert into Locations(country,city,tipeOfPersonality)
-values ("Italy","Saturnia", "Lazybone");
+insert into Locations(country,city,tipeOfPersonality, photo1, descr)
+values ("Netherlands","Amsterdam", "Friendly",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/amsterdam.jpg'), "Amsterdam is one of the greatest small cities in the world.
+ From Amsterdam canals to world-famous Amsterdam museums and historical Amsterdam sights, it is one of the most romantic and beautiful cities in Europe.
+ Canal cruises are a popular way to see the city from the perspective of its canals.
+ Amsterdam is also a city of tolerance and diversity.
+ It has all the advantages of a big city: rich culture, lively Amsterdam nightlife, international restaurants, good transport - but is quiet, and largely thanks to its extensive canals, has a little road traffic.
+ In this city your destination is never far away, but get a bike for an authentic local experience.");
 
-insert into Locations(country,city,tipeOfPersonality)
-values ("Uganda","Paraa", "Adventurer");
+insert into Locations(country,city,tipeOfPersonality,photo1, descr)
+values ("Spain","Ibiza", "Friendly", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/ibiza.jpg'), "Ibiza is often referred to as the “white island” and “party capital of the world” - a neat pair of monikers to describe the difference between day and night in this beautiful Spanish paradise.
+ Ibiza is home to more than 60 beaches that attract visitors from all over the globe, and boasts some of the world’s best nightclubs, which keep partiers entertained from sundown until dawn.
+ There are plenty of things to see and do in Ibiza, with a sunset boat cruise topping the list of relaxation.
+ Beneath the waves, giant grouper and moray eels haunt the reefs and wrecks of the Mediterranean.
+ Alternatively, visitors can explore the island’s mystery and history on land at the Can Marca smugglers’ caves, historic cemeteries, quaint villages, and pirate towers dotted about the island.");
 
-insert into Locations(country,city,tipeOfPersonality)
-values ("Tanzania","Kilimangiaro", "Adventurer");
+insert into Locations(country,city,tipeOfPersonality, photo1, descr)
+values ("USA","San Francisco", "Friendly", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/sanfrancisco.jpg'), "San Francisco holds a secure place in the United States’ romantic dream of itself—a cool, elegant, handsome, worldly seaport whose steep streets offer breathtaking views of one of the world’s greatest bays.
+ According to the dream, San Franciscans are sophisticates whose lives hold full measures of such civilized pleasures as music, art, and good food.
+ Their children are to be pitied, for, as the wife of publishing magnate Nelson Doubleday once said, “They will probably grow up thinking all cities are so wonderful.
+” To San Franciscans their city is a magical place, almost an island, saved by its location and history from the sprawl and monotony that afflicts so much of urban California.");
 
-insert into Locations(country,city,tipeOfPersonality)
-values ("Turkmenistan","Karakum desert", "Adventurer");
+insert into Locations(country,city,tipeOfPersonality, photo1, descr)
+values ("Ungary","Budapest", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/budapest.jpg'),"Originally formed by two different cities, Buda and Pest, which developed on the shores of the Danube, Budapest is considered like the East Paris thanks to its 'fin de siècle' atmosphere that can be smelled along its avenues.
+On one hand the ancient Buda, with its Castle, UNESCO heritage, the Royal Palace Matthias' curch and Fishmen's ramparts. On the other hand the modern Pest, lively and with wide avenues, which welcomes the most famous city's monuments, like the Parliament and Saint Stephen's curch.
+Last, but not least, the spas : Budapest has a lot of them, well know since the Roman's age, which were expanded during the Turkish persiod until 1920, when Budapest achieved the title of 'City of spas'");
+
+insert into Locations(country,city,tipeOfPersonality,photo1, descr)
+values ("UK","Bath", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/bath.jpg'), "Elegant and harmonious city on the Avon river, 18 km South-East of Bristol.
+Bath is a residential center and a tourist destination which importance is related to the baths.
+The excavations began from the ancient 'Aquae Sulis' in 1755 and took to the light remarkable ruins.
+Bath is the perfect resort and spa, to relax and think about nothing.");
+insert into Locations(country,city,tipeOfPersonality, photo1, descr)
+values ("Dominican Republic","Santo Domingo", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/santo_domingo.jpg'), "The big city with Caribbean small town flair - the capital Santo Domingo did not seem as much to us as a big city.
+ The relaxed atmosphere of the locals, the historic buildings and countless street food stands made us feel like being in a small fishing village.
+ Families and people interested in culture romp around in the narrow alleys, armed with a sun hat, beach towel and a freshly squeezed juice.
+ If you want to immerse yourself in the Dominican culture and experience history as well as long beach days, Santo Domingo is the place for you.");
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
-values (002, "Roma-Fiumicino" , "Berlino", "2020-04-24", "2020-04-30", 550.15,40);
+values(0,"Roma-Fumicino","Zanzibar","2020-07-14", "2020-07-22", 850.78, 20);
+
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
-values (003, "Roma-Ciampino" , "Amsterdam", "2020-03-25", "2020-03-26", 650.15,30);
+values(1,"Roma-Fumicino","Istanbul","2020-07-28","2020-08-05",866.23, 22);
+
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
-values (004, "Milano-Malpensa" , "Budapest", "2020-03-20", "2020-03-22", 250.35,20);
+values(2,"Roma-Fumicino","Marrakech","2020-08-20","2020-08-30",817.56,23);
+
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
-values (005, "Milano-Linate" , "Bath", "2020-06-20", "2020-06-22", 340,25);
+values(3,"Roma-Fumicino","London","2020-08-02","2020-08-12",641.40, 30);
+
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
-values (006, "Torino-Caselle" , "San Francisco", "2020-07-23", "2020-07-25", 850,28);
+values(4,"Roma-Fumicino","Ayers rock","2020-07-05","2020-07-17",787.10, 33);
+
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
-values (007, "Roma-Fiumicino" , "Berlino", "2020-04-20", "2020-04-22", 450.15,40);
+values(5,"Roma-Fumicino","Amsterdam","2020-08-12","2020-08-20",893.75, 34);
+
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
-values (009, "Roma-Fiumicino" , "Berlino", "2020-04-20", "2020-04-22", 452.15,20);
+values(6,"Roma-Fumicino","Ibiza","2020-07-02","2020-07-14",911.87, 40);
+
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
-values (010, "Roma-Fiumicino" , "Berlino", "2020-04-20", "2020-04-22", 455.15,22);
+values(7,"Roma-Ciampino","Zanzibar","2020-07-18","2020-07-27",755.38, 40);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(8,"Roma-Ciampino","Istanbul","2020-08-16","2020-08-30",707.24, 45);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(9,"Roma-Ciampino","Marrakech","2020-07-28","2020-08-05",883.27, 60);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(10,"Roma-Ciampino","London","2020-08-05","2020-08-13",840.93, 70);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(11,"Roma-Ciampino","Ayers rock","2020-08-21","2020-08-31",904.54, 12);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(12,"Roma-Ciampino","Amsterdam","2020-08-25","2020-08-31",858.66, 34);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(13,"Roma-Ciampino","Ibiza","2020-07-12","2020-07-22",661.92, 2);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(14,"Milano-Linate","Zanzibar","2020-07-09","2020-07-19",617.46, 54);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(15,"Milano-Linate","Istanbul","2020-08-20","2020-08-31",623.59, 44);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(16,"Milano-Linate","Marrakech","2020-07-30","2020-08-13",979.39, 78);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(17,"Milano-Linate","London","2020-08-23","2020-08-30",752.22, 80);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(18,"Milano-Linate","Ayers rock","2020-08-12","2020-08-20",664.44, 67);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(19,"Milano-Linate","Amsterdam","2020-07-23","2020-07-30",665.85, 56);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(20,"Milano-Linate","Ibiza","2020-08-20","2020-08-31",898.81, 55);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(21,"Milano-Malpensa","Bath","2020-07-12","2020-07-22",922.50, 50);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(22,"Milano-Malpensa","Santo Domingo","2020-08-17","2020-08-27",846.23, 30);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(23,"Torino-Caselle","Bath","2020-07-27","2020-08-02",691.25, 24);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(24,"Torino-Caselle","Santo Domingo","2020-07-20","2020-08-04",963.84, 25);
