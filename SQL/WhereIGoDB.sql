@@ -94,14 +94,6 @@ create table Buys
 			references Usr(username) on delete cascade
 );
 
-insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,userstatus)
-values("shockGiammy","pluto","Gian Marco","Falcone","16-03-1998","Male","Traveler","Friendly","offline");
-
-insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,userstatus)
-values("adrianRob","pippo","Adrian","Minut","02-02-1997","Male","Traveler","Friendly","offline");
-
-insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,userstatus)
-values("pierc","pierc","Pierciro","Caliandro","18-02-1998","Male","Traveler","Friendly","offline");
 
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,userstatus)
 values("Traveler","Traveler","Traveler","Traveler","16-03-1998","Male","Traveler","Friendly","offline");
@@ -127,8 +119,8 @@ values ("Australia","Ayers rock", "Lone wolf");
 insert into Locations(country,city,tipeOfPersonality)
 values ("Russia","Transiberiana", "Lone wolf");
 
-insert into Locations(country,city,tipeOfPersonality, descr)
-values ("Netherlands","Amsterdam", "Friendly", "Amsterdam, conosciuta anche come la Venezia del Nord 
+insert into Locations(country,city,tipeOfPersonality, photo1, descr)
+values ("Netherlands","Amsterdam", "Friendly",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/dam1.jpg'), "Amsterdam, conosciuta anche come la Venezia del Nord 
 per i suoi numerosi canali, è una delle città più affascinanti del mondo, 
 un piccolo paradiso tanto amato ed apprezzato dai turisti per il suo aspetto romantico e mutevole, là dove perdersi tra le molteplici attività culturali, 
 le architetture antiche e moderne ed i suoi musei. 
@@ -138,15 +130,11 @@ famosa per i suoi coffeeshop e l'atmosfera rilassata e liberale che si respira i
 insert into Locations(country,city,tipeOfPersonality, descr)
 values ("Spain","Ibiza", "Friendly", "Rinomata per la vita notturna e per i locali di tendenza, che la rendono una delle mete preferite dei giovani di tutta l’Europa e non solo,
 Ibiza è la terza isola per estensione dell’Arcipelago spagnolo delle Baleari.
-Dichiarata Patrimonio dell’Umanità nel 1999, Ibiza è un’isola calda sotto tutti i punti di vista:
-climatico, caratteriale e geologico. Diversamente da Maiorca e  come Formentera, l’isola è molto arida e rocciosa. 
-La modica presenza di pianure verdeggianti viene, però, compensata da un meraviglioso cielo, azzurro praticamente per l’intero arco dell’anno, e da un mare cristallino dai tratti caraibici.
-I circa 100.000 abitanti dell’isola si distribuiscono in cinque comuni: il capoluogo Ibiza, Santa Eulària, Sant Antoni, Sant Joan e Sant Josep.
+Dichiarata Patrimonio dell’Umanità nel 1999, Ibiza è un’isola calda sotto tutti i punti di vista: climatico, caratteriale e geologico.
 Nella bella Ibiza è impossibile annoiarsi. La vita isolana è movimentata praticamente ventiquattro ore su ventiquattro.
 Di giorno, vi è una vasta offerta di attività nautiche, praticabili in quasi ogni angolo dell’isola, anche per conto proprio.
 Molto divertenti sono ad esempio le escursioni via mare per raggiungere le spiagge di Formentera.
-Le serate sono all’insegna della movida, grazie all’interminabile schiera di locali, discoteche e pub presenti sull’isola.
-Notti magiche, quindi, quelle di Ibiza, che proseguono, per i più “audaci”, fino alle prime ore del mattino, nei famosi after hours.");
+Le serate sono all’insegna della movida, grazie all’interminabile schiera di locali, discoteche e pub presenti sull’isola.");
 
 insert into Locations(country,city,tipeOfPersonality, descr)
 values ("USA","San Francisco", "Friendly", "Da città simbolo degli hippie e della controrivoluzione giovanile degli anni Sessanta a cuore pulsante di una rinascita culturale guidata dall’arte e dal design e soprattutto dalla tecnologia.
@@ -186,18 +174,6 @@ values ("Tanzania","Kilimangiaro", "Adventurer");
 
 insert into Locations(country,city,tipeOfPersonality)
 values ("Turkmenistan","Karakum desert", "Adventurer");
-
-insert into travelgroups(travCity, groupOwner, title)
-values("Amsterdam", "shockGiammy", "Amsterdam Museums (I swear)");
-
-insert into travelgroups(travCity, groupOwner, title)
-values("San Francisco", "adrianRob", "Trip to the USA");
-
-insert into travelgroups(travCity, groupOwner, title)
-values("Ibiza", "shockGiammy", "Let's go to Ibiza");
-
-insert into travelgroups(travCity, groupOwner, title)
-values("Amsterdam", "adrianRob", "Amsterdam love");
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
 values (002, "Roma-Fiumicino" , "Berlino", "2020-04-24", "2020-04-30", 550.15,40);
