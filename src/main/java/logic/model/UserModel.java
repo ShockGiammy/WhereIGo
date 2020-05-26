@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import logic.beans.UserDataBean;
+
 public class UserModel {
 	private String name;
 	private String surname;
@@ -20,35 +22,47 @@ public class UserModel {
 	private byte[] profPic;
 	private File profImage;
 	
-	public void setCredentials(String nameOfUsr, String surOfUsr, LocalDate dateOfB, String gend) {
-		this.name = nameOfUsr;
-		this.surname = surOfUsr;
-		this.dateOfBirth = dateOfB;
-		this.gender = gend;
+	public void setCredentialsByBean(UserDataBean dataBean) {
+		this.name = dataBean.getName();
+		this.surname = dataBean.getSurname();
+		this.dateOfBirth = dataBean.getLocDateOfBirth();
+		this.gender = dataBean.getGender();
+		this.username = dataBean.getUsername();
+		this.password = dataBean.getPassword();
+		this.userType = dataBean.getType();
+		this.profImage = dataBean.getFileImage();
+	}
+	
+	public void setUsrAndPswByBean(UserDataBean dataBean) {
+		this.username = dataBean.getUsername();
+		this.password = dataBean.getPassword();
+	}
+	
+	public void setPersByBean(UserDataBean dataBean) {
+		this.personality = dataBean.getPersonality();
+	}
+	
+	public void setUsrNameByBean(UserDataBean dataBean) {
+		this.username = dataBean.getUsername();
+	}
+	
+	public void setUsrAndPersByBean(UserDataBean dataBean) {
+		this.username = dataBean.getUsername();
+		this.personality = dataBean.getPersonality();
+	}
+	
+	public void setLogUsrCred(String typeOfUsr, byte[] usrImg) {
+		this.userType = typeOfUsr;
+		this.profPic = usrImg;
+	}
+	
+	public void setUsrNameAndPic(String usrName, byte[] img) {
+		this.username = usrName;
+		this.profPic = img;
 	}
 	
 	public void setUserPersonality(String pers) {
 		this.personality = pers;
-	}
-	
-	public void setUserName(String userName) {
-		this.username = userName;
-	}
-	
-	public void setPaswd(String pass) {
-		this.password = pass;
-	}
-	
-	public void setUserType(String utype) {
-		this.userType = utype;
-	}
-	
-	public void setPic(byte[] propic) {
-		profPic = propic;
-	}
-	
-	public void setImage(File usrImage) {
-		this.profImage = usrImage;
 	}
 	
 	public String getName() {

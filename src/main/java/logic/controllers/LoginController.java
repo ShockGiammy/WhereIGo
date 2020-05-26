@@ -6,7 +6,6 @@ import logic.model.UserModel;
 import logic.beans.UserDataBean;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logic.LoggedUser;
@@ -21,8 +20,7 @@ public class LoginController {
 	
 	public int checkLogInControl(UserDataBean logBean) {
 		int ret;
-		this.usrModel.setUserName(logBean.getUsername());
-		this.usrModel.setPaswd(logBean.getPassword());
+		this.usrModel.setUsrAndPswByBean(logBean);
 		ret = this.usrDao.checkLogInInfo(this.usrModel);
 		if(ret == 1) {
 			LoggedUser.setUserName(logBean.getUsername());
@@ -34,11 +32,7 @@ public class LoginController {
 	}
 	
 	public void insertNewUserControl(UserDataBean usrBean) throws DuplicateUsernameException {
-		this.usrModel.setCredentials(usrBean.getUsername(), usrBean.getSurname(), LocalDate.parse(usrBean.getDateOfBirth()), usrBean.getGender());
-		this.usrModel.setUserName(usrBean.getUsername());
-		this.usrModel.setPaswd(usrBean.getPassword());
-		this.usrModel.setImage(usrBean.getFileImage());
-		this.usrModel.setUserType(usrBean.getType());
+		this.usrModel.setCredentialsByBean(usrBean);
 		LoggedUser.setUserName(usrBean.getUsername());
 		LoggedUser.setType(usrBean.getType());
 		byte[] imm = new byte[(int)usrBean.getFileLength()];

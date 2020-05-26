@@ -3,6 +3,7 @@ package logic.controllers;
 import java.util.List;
 import logic.LoggedUser;
 import logic.beans.InterestsBean;
+import logic.beans.UserDataBean;
 import logic.dao.UserDao;
 import logic.exceptions.MissingAnswareException;
 import logic.model.UserModel;
@@ -24,8 +25,9 @@ public class InterestsController {
 			throw new MissingAnswareException("Pelase answare to all questions");
 		}
 		LoggedUser logUser = new LoggedUser();
+		UserDataBean dBean = new UserDataBean(logUser.getUserName());
 		UserModel usrMod = new UserModel();
-		usrMod.setUserName(logUser.getUserName());
+		usrMod.setUsrNameByBean(dBean);
 		String pers = null;
 		for(int i = 0; i < answ.size(); i++) {
 			switch(answ.get(i)) {

@@ -10,9 +10,12 @@ import java.util.logging.Logger;
 import logic.LoggedUser;
 import logic.beans.MessageBean;
 import logic.beans.UserChatBean;
+import logic.beans.UserDataBean;
 import logic.dao.ChatDao;
 import logic.dao.GroupDao;
 import logic.exceptions.GroupNameTakenException;
+import logic.exceptions.LengthFieldException;
+import logic.exceptions.NullValueException;
 import logic.exceptions.ServerDownException;
 import logic.model.GroupModel;
 import logic.model.Message;
@@ -167,15 +170,22 @@ public class ChatController {
 		groupDao.saveUserGroup(grpMod);
 		
 		UserModel userData = new UserModel();
-		for (String user : groupList) {	
-			userData.setUserName(user);
+		UserDataBean dBean = new UserDataBean();
+		for (String user : groupList) {
+			try {
+				dBean.setUserName(user);
+			} catch (LengthFieldException | NullValueException e) {
+				logger.log(Level.SEVERE, ()-> "Error getting output stream: " + e.getMessage());
+			}
+			userData.setUsrNameByBean(dBean);
 			groupDao.insertParticipant(grpMod, userData);
 		}
 	}
 	
 	public List<String> getGroups() {
 		UserModel usrMod = new UserModel();
-		usrMod.setUserName(username);
+		UserDataBean dBean = new UserDataBean(username);
+		usrMod.setUsrNameByBean(dBean);
 		groupDao.getUserGroups(grpModel, usrMod);
 		groupDao.getPartGroups(grpModel, usrMod);
 		List<String> groupNames = new ArrayList<>();

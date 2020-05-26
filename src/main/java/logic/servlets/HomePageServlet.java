@@ -71,11 +71,17 @@ public class HomePageServlet extends HttpServlet {
 		ControllerFacade fac = new ControllerFacade();
 		List<String> cities = new ArrayList<>();
 		List<GroupBean> beanList = new ArrayList<>();
-		List<UserTravelBean> currTrav = new ArrayList<>();
-		fac.loadBookTravSuggestion(cities, beanList, currTrav);
+		List<String> depCities = new ArrayList<>(); 
+		List<String> arrCities = new ArrayList<>();
+		fac.getAvailableTick(depCities, arrCities);
+		LoggedUser log = new LoggedUser();
+		UserDataBean dBean = new UserDataBean(log.getUserName());
+		dBean.setPersonality(log.getPersonality());
+		fac.findTravelSugg(cities, dBean);
+		fac.findSuggGroups(beanList, dBean);
 		request.setAttribute("grouplist", beanList);
 		request.setAttribute("cities", cities);
-		setDepAndArr(request, currTrav);
+		setDepAndArr(request, depCities, arrCities);
 		if(beanList.isEmpty() && cities.isEmpty()) {
 			request.setAttribute(msg, "No suggestions for you, please take our personality test!");
 		}
@@ -86,19 +92,18 @@ public class HomePageServlet extends HttpServlet {
 		List<UserTravelBean> travBeanList = new ArrayList<>();
 		List<GroupBean> gBeanList = new ArrayList<>();
 		List<UserDataBean> dBeanList = new ArrayList<>();
-		facCtrl.getTravHomePageDatas(travBeanList, gBeanList, dBeanList);
+		LoggedUser log = new LoggedUser();
+		UserDataBean dBean = new UserDataBean(log.getUserName());
+		dBean.setPersonality(log.getPersonality());
+		facCtrl.getSimilarUsers(dBeanList, dBean);
+		facCtrl.getBookedTicks(travBeanList, dBean);
+		facCtrl.getUsersGroups(gBeanList, dBean);
 		request.setAttribute("travels", travBeanList);
 		request.setAttribute("groups", gBeanList);
 		request.setAttribute("users", dBeanList);
 	}
 	
-	private void setDepAndArr(HttpServletRequest request, List<UserTravelBean> travList) {
-		List<String> depCities = new ArrayList<>();
-		List<String> arrCities = new ArrayList<>();
-		for(int i = 0; i < travList.size(); i++) {
-			depCities.add(travList.get(i).getCityOfDep());
-			arrCities.add(travList.get(i).getCityOfArr());
-		}
+	private void setDepAndArr(HttpServletRequest request, List<String> depCities, List<String> arrCities) {
 		request.setAttribute("arrcit", arrCities);
 		request.setAttribute("depcit", depCities);
 	}

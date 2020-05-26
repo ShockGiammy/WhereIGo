@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import logic.LoggedUser;
 import logic.beans.GroupBean;
 import logic.beans.LocationBean;
+import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.BigDateException;
@@ -131,7 +132,9 @@ public class BookTravelServlet extends HttpServlet {
 		UserTravelBean travBean = new UserTravelBean();
 		try {
 			travBean.setId(Integer.valueOf(request.getParameter("id")));
-			this.facCtrl.deleteSavedTravel(travBean);
+			LoggedUser log = new LoggedUser();
+			UserDataBean dBean = new UserDataBean(log.getUserName());
+			this.facCtrl.deleteSavedTravel(travBean, dBean);
 		}catch(NumberFormatException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
 		}
@@ -144,13 +147,17 @@ public class BookTravelServlet extends HttpServlet {
 			this.facCtrl.deleteTravelGroup(bean);
 		}
 		else {
-			this.facCtrl.leaveTravelGroup(bean);
+			LoggedUser log = new LoggedUser();
+			UserDataBean dBean = new UserDataBean(log.getUserName());
+			this.facCtrl.leaveTravelGroup(bean, dBean);
 		}
 	}
 	
 	private void joinGroup(HttpServletRequest request) {
 		GroupBean gBean = new GroupBean(request.getParameter("descr"));
-		this.facCtrl.insertParticipant(gBean);
+		LoggedUser log = new LoggedUser();
+		UserDataBean dBean = new UserDataBean(log.getUserName());
+		this.facCtrl.insertParticipant(gBean, dBean);
 	}
 	
 	private void loadLocInfo(HttpServletRequest request) {
@@ -163,7 +170,9 @@ public class BookTravelServlet extends HttpServlet {
 	private void findSuggTravels(HttpServletRequest request, UserTravelBean travBean) {
 		List<UserTravelBean> travBeanList = new ArrayList<>();
 		try {
-			travBeanList.addAll(this.facCtrl.getSuggTicketsInfo(travBean));
+			LoggedUser log = new LoggedUser();
+			UserDataBean dBean = new UserDataBean(log.getUserName());
+			travBeanList.addAll(this.facCtrl.getSuggTicketsInfo(travBean, dBean));
 			request.setAttribute("tickets", travBeanList);
 		}
 		catch(EmptyListException e) {
@@ -173,7 +182,9 @@ public class BookTravelServlet extends HttpServlet {
 	
 	private void findTravels(UserTravelBean travBean, List<UserTravelBean> travBeanList, HttpServletRequest request) {
 		try {
-			this.facCtrl.retriveTravelSolutions(travBean, travBeanList);
+			LoggedUser log = new LoggedUser();
+			UserDataBean dBean = new UserDataBean(log.getUserName());
+			this.facCtrl.retriveTravelSolutions(travBean, travBeanList, dBean);
 			request.setAttribute("tickets", travBeanList);
 		}
 		catch(EmptyListException e) {
@@ -215,7 +226,9 @@ public class BookTravelServlet extends HttpServlet {
 	
 	private void saveMyTicket(HttpServletRequest request, HttpServletResponse response, UserTravelBean travBean) {
 		setTick(request, travBean);
-		this.facCtrl.saveBoughtTicket(travBean);
+		LoggedUser log = new LoggedUser();
+		UserDataBean dBean = new UserDataBean(log.getUserName());
+		this.facCtrl.saveBoughtTicket(travBean, dBean);
 		setInfo(request, 0);
 		changeP.forwardPage("HomePage.jsp", request, response);
 	}

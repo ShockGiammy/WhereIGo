@@ -3,6 +3,8 @@ package logic.model;
 
 import java.time.LocalDate;
 
+import logic.beans.UserTravelBean;
+
 public class TicketModel {
 	private int id;
 	private String departureCity;
@@ -11,32 +13,47 @@ public class TicketModel {
 	private LocalDate arriveDate;
 	private float cost;
 	
-	public TicketModel(int id) {
-		this.id = id;
+	public void setDepAndArrByBean(UserTravelBean travBean) {
+		this.departureCity = travBean.getCityOfDep();
+		this.arrivalCity = travBean.getCityOfArr();
 	}
 	
-	public TicketModel(String arrCity) {
-		this.arrivalCity = arrCity;
+	public void setIdByBean(UserTravelBean travBean) {
+		this.id = travBean.getParsedId();
 	}
 	
-	public TicketModel(String depCity, String arrCity) {
+	public void setArrCityByBean(UserTravelBean travBean) {
+		this.arrivalCity = travBean.getCityOfArr();
+	}
+	
+	public void setDepAndArr(String depCity, String arrCity) {
 		this.departureCity = depCity;
 		this.arrivalCity = arrCity;
 	}
 	
-	public TicketModel(String depCity, String arrCity, LocalDate depDate, LocalDate arrDate) {
+	public void setTravByBean(UserTravelBean travBean) {
+		this.departureCity = travBean.getCityOfDep();
+		this.arrivalCity = travBean.getCityOfArr();
+		this.departureDate = travBean.getFirstDayPars();
+		this.arriveDate = travBean.getLastDayPars();
+	}
+	
+	public void setAll(int ident, String depCity, String arrCity, LocalDate depDate, LocalDate arrDate, float cost) {
+		this.id = ident;
 		this.departureCity = depCity;
 		this.arrivalCity = arrCity;
 		this.departureDate = depDate;
 		this.arriveDate = arrDate;
-	}
-	
-	public void setId(int ident) {
-		this.id = ident;
-	}
-	
-	public void setCost(float cost) {
 		this.cost = cost;
+	}
+	
+	public void setAllByBean(UserTravelBean travBean) {
+		this.id = travBean.getParsedId();
+		this.departureCity = travBean.getCityOfDep();
+		this.arrivalCity = travBean.getCityOfDep();
+		this.departureDate = travBean.getFirstDayPars();
+		this.arriveDate = travBean.getLastDayPars();
+		this.cost = travBean.getParsedCost();
 	}
 	
 	public int getId() {

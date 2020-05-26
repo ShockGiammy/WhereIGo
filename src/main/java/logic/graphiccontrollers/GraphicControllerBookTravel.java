@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import logic.beans.GroupBean;
 import logic.beans.LocationBean;
+import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.exceptions.BigDateException;
 import logic.exceptions.EmptyListException;
@@ -30,7 +31,9 @@ public class GraphicControllerBookTravel extends BasicGui{
 	private ErrorPopup popUp;
 	private List<GroupBean> grpList;
 	private List<String> suggLoc;
-	private List<UserTravelBean> avalTrav;  //used to load available travels
+	private List<String> depCities;  //used to load available travels
+	private List<String> arrCities;
+	private UserDataBean dataBean;
 	@FXML private DatePicker firstDay;
 	@FXML private DatePicker lastDay;
 	@FXML private ChoiceBox<String> departureCity;
@@ -47,8 +50,13 @@ public class GraphicControllerBookTravel extends BasicGui{
 		this.userImage.setImage(setUserImage());
 		this.grpList = new ArrayList<>();
 		this.suggLoc = new ArrayList<>();
-		avalTrav = new ArrayList<>();  //used to load available travels
-		this.facade.loadBookTravSuggestion(suggLoc, grpList, avalTrav); // we load all the suggestion for the user
+		this.depCities = new ArrayList<>();
+		this.arrCities = new ArrayList<>();
+		this.dataBean = new UserDataBean(this.logUsr.getUserName());
+		this.dataBean.setPersonality(this.logUsr.getPersonality());
+		this.facade.getAvailableTick(this.depCities, this.arrCities);
+		this.facade.findSuggGroups(grpList, dataBean);
+		this.facade.findTravelSugg(suggLoc, dataBean);
 		setDepAndArr();
 		setLocation();
 		setGroups();
@@ -68,16 +76,10 @@ public class GraphicControllerBookTravel extends BasicGui{
 	}
 	
 	public void setDepAndArr() {
-		List<String> dep = new ArrayList<>();
-		List<String> arr = new ArrayList<>();
-		for(int i = 0; i < this.avalTrav.size(); i++) {
-			arr.add(this.avalTrav.get(i).getCityOfArr());
-			dep.add(this.avalTrav.get(i).getCityOfDep());
-		}
-		ObservableList<String> arrCities = FXCollections.observableArrayList(arr);
-		ObservableList<String> depCities = FXCollections.observableArrayList(dep);
-		this.departureCity.setItems(depCities);
-		this.arrivalCity.setItems(arrCities);
+		ObservableList<String> arr = FXCollections.observableArrayList(this.arrCities);
+		ObservableList<String> dep = FXCollections.observableArrayList(this.depCities);
+		this.departureCity.setItems(dep);
+		this.arrivalCity.setItems(arr);
 	}
 	
 	public void setGroups() {
@@ -142,7 +144,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 				Text city = (Text)travls.get(i).getChildren().get(0);
 				this.travBean = new UserTravelBean(city.getText());
 				try {
-					this.travBeanArray.addAll(this.facade.getSuggTicketsInfo(this.travBean));
+					this.travBeanArray.addAll(this.facade.getSuggTicketsInfo(this.travBean, this.dataBean));
 					setScene("TicketSolutions.fxml");
 					loadScene();
 					setTicketsDatas(this.travBeanArray, e);
@@ -161,7 +163,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 			if(groups.get(i).getChildren().get(3).equals(e.getTarget())) {
 				Text title = (Text)groups.get(i).getChildren().get(0);
 				GroupBean grpBean = new GroupBean(title.getText());
-				if(this.facade.insertParticipant(grpBean) == 0) {
+				if(this.facade.insertParticipant(grpBean, this.dataBean) == 0) {
 					this.popUp.displayLoginError("Gruppo correttamente joinato");
 					VBox temp = groups.get(i);
 					this.groupsView.getItems().remove(temp);
@@ -175,7 +177,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 	
 	private void checkBookSol(MouseEvent event) {
 		try {
-			this.facade.retriveTravelSolutions(travBean, travBeanArray);
+			this.facade.retriveTravelSolutions(travBean, travBeanArray, this.dataBean);
 			setScene("TicketSolutions.fxml");
 			loadScene();
 			setTicketsDatas(this.travBeanArray, event);
