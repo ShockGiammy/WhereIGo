@@ -42,6 +42,12 @@
     		<artifactId>javax.servlet-api</artifactId>
     		<version>4.0.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.openqa.selenium.core/selenium-core -->
+		<dependency>
+    		<groupId>org.openqa.selenium.core</groupId>
+    		<artifactId>selenium-core</artifactId>
+    		<version>1.0-20080914.225453</version>
+		</dependency>
 		<dependency>
   			<groupId>junit</groupId>
   			<artifactId>junit</artifactId>

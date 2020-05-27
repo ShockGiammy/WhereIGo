@@ -95,10 +95,10 @@ create table Buys
 );
 
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilePicture,userstatus)
-values("Traveler","Traveler","Traveler","Traveler","16-03-1998","Male","Traveler","Friendly",LOAD_FILE('C:/Program Files/MySQL/MySQL Server 8.0/Uploads/avatar.png'),"offline");
+values("Traveler","Traveler","Traveler","Traveler","16-03-1998","Male","Traveler","Friendly",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/avatar.png'),"offline");
 
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilePicture,userstatus)
-values("Renter","Renter","Renter","Renter","16-03-1998","Male","Renter","Friendly",LOAD_FILE('C:/Program Files/MySQL/MySQL Server 8.0/Uploads/avatar.png'),"offline");
+values("Renter","Renter","Renter","Renter","16-03-1998","Male","Renter","Friendly",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/avatar.png'),"offline");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
 values ("Tanzania","Zanzibar", "Adventurer", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/zanzibar.jpg'), "Zanzibar is the semi-autonomous part of Tanzania in East Africa.

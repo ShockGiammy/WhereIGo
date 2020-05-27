@@ -39,13 +39,7 @@ public class SeleniumGianMarco {
         driver.findElement(By.xpath("/html/body/div/div/div/div[1]/div[2]/div/div/div[2]/a")).click();
         String openChat = driver.findElement(By.xpath("/html/body/div/h3")).getText();
         assertEquals("Renter", openChat);
-       
-        driver.findElement(By.xpath("//*[@id=\"navbarSupportedContent\"]/ul/li[5]")).click();
-        driver.findElement(By.xpath("//*[@id=\"username\"]")).sendKeys("Renter");
-        driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("Renter");
-        driver.findElement(By.xpath("/html/body/form/div/div/div/input[2]")).click();
-        driver.findElement(By.xpath("//*[@id=\"navbarSupportedContent\"]/ul/li[2]")).click();
-        driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[1]/td[11]/a")).click();
+     
         driver.close();
        
     }
