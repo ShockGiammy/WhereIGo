@@ -18,6 +18,7 @@ import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.view.BasicGui;
+import logic.view.ErrorPopup;
 
 public class GraphicControllerTickets extends BasicGui{
 	@FXML private TableView<UserTravelBean> ticketsView;
@@ -32,12 +33,14 @@ public class GraphicControllerTickets extends BasicGui{
 	@FXML private VBox vbox;
 	@FXML private Button bookTheTravel;
 	ObservableList<UserTravelBean> travBeanList = FXCollections.observableArrayList();
+	private ErrorPopup errPop;
 	
 	@FXML
 	public void initialize() {
 		this.bookNowGroup = new ToggleGroup();
 		this.rbList = new ArrayList<>();
 		this.userImage.setImage(setUserImage());
+		this.errPop = new ErrorPopup();
 	}
 	
 	public void setDatas(List<UserTravelBean> travBean) {
@@ -63,17 +66,22 @@ public class GraphicControllerTickets extends BasicGui{
 	}
 	
 	public void bookTravel(MouseEvent e) {
-		int i;
-		for(i = 0; i < this.rbList.size(); i++) {
-			if(this.bookNowGroup.getSelectedToggle().equals(this.rbList.get(i))) {
-				UserTravelBean travBean = new UserTravelBean(this.departureDay.getCellData(i), this.arrivalDate.getCellData(i), this.departureCity.getCellData(i), this.arrivalCity.getCellData(i));
-				travBean.setId(this.ticketId.getCellData(i));
-				travBean.setCost(this.cost.getCellData(i));
-				LoggedUser logusr = new LoggedUser();
-				UserDataBean dataBean = new UserDataBean(logusr.getUserName());
-				setScene("TicketCheckout.fxml");
-				loadScene();
-				setCheckoutValues(travBean, dataBean, e);
+		if(this.bookNowGroup.getSelectedToggle() == null) {
+			this.errPop.displayLoginError("Please select a travel");
+		}
+		else {
+			int i;
+			for(i = 0; i < this.rbList.size(); i++) {
+				if(this.bookNowGroup.getSelectedToggle().equals(this.rbList.get(i))) {
+					UserTravelBean travBean = new UserTravelBean(this.departureDay.getCellData(i), this.arrivalDate.getCellData(i), this.departureCity.getCellData(i), this.arrivalCity.getCellData(i));
+					travBean.setId(this.ticketId.getCellData(i));
+					travBean.setCost(this.cost.getCellData(i));
+					LoggedUser logusr = new LoggedUser();
+					UserDataBean dataBean = new UserDataBean(logusr.getUserName());
+					setScene("TicketCheckout.fxml");
+					loadScene();
+					setCheckoutValues(travBean, dataBean, e);
+				}
 			}
 		}
 	}
