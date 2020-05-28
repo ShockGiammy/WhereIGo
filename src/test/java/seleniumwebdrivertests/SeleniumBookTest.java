@@ -13,8 +13,8 @@ public class SeleniumBookTest {
 		System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
 		WebDriver chromed = new ChromeDriver();
 		chromed.get("http://localhost:8080/WhereIGo/Login.jsp");
-		chromed.findElement(By.xpath("//*[@id=\"username\"]")).sendKeys("traveler"); //sends the username to the login form
-		chromed.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("traveler");
+		chromed.findElement(By.xpath("//*[@id=\"username\"]")).sendKeys("Traveler"); //sends the username to the login form
+		chromed.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("Traveler");
 		chromed.findElement(By.xpath("/html/body/form/div/div/div/input[2]")).click();
 		chromed.findElement(By.xpath("//*[@id=\"booktrav\"]")).click();
 		chromed.findElement(By.xpath("/html/body/form/div/div/div[1]/div/div[1]/div[3]/a")).click();

@@ -1,0 +1,135 @@
+{
+  "id": "8a6390e4-8908-46de-84af-a9de9c4fbc44",
+  "version": "2.0",
+  "name": "CheckMessageTest",
+  "url": "http://localhost:8080",
+  "tests": [{
+    "id": "6d56f72b-c4f4-4aab-84db-67cd16b81df6",
+    "name": "CheckMessageTest",
+    "commands": [{
+      "id": "7d953684-38f2-4b79-b005-0ed0525dacc8",
+      "comment": "",
+      "command": "open",
+      "target": "/WhereIGo/Login.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b08f619d-7b61-460b-9248-a16ed6c365b4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1050x708",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "531d87c0-b66c-419b-94c2-9dc176709b58",
+      "comment": "",
+      "command": "click",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "add0b9fd-43f1-41f3-91f7-8db31e24dabe",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Renter"
+    }, {
+      "id": "2c19a670-7a98-47aa-b601-cd57a0034556",
+      "comment": "",
+      "command": "click",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "090df513-8f79-490d-b5a6-348c4a7ddc9e",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Renter"
+    }, {
+      "id": "a9e0e2b4-42cc-452f-b293-40e24124a29d",
+      "comment": "",
+      "command": "click",
+      "target": "name=log",
+      "targets": [
+        ["name=log", "name"],
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//input[@name='log']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5f556ced-fa9e-4252-aa8b-c7c19519ff92",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Chat with users",
+      "targets": [
+        ["linkText=Chat with users", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Chat with users')]", "xpath:link"],
+        ["xpath=//div[@id='navbarSupportedContent']/ul/li[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'moveTo?action=Chat')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Chat with users   ')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "da622bec-19b6-4208-a4a2-6cc5b4488257",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Traveler",
+      "targets": [
+        ["linkText=Traveler", "linkText"],
+        ["css=.btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Traveler')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'ChatRenter?chat=private&user=Traveler\n')]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Traveler')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d178bc74-0ff0-4c5a-9525-56ad1e27c280",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.d-flex:nth-child(1) > .msg_cotainer",
+      "targets": [],
+      "value": "Traveler: Hi! How are you?"
+    }]
+  }],
+  "suites": [{
+    "id": "465a76f0-ca25-4e11-b193-eefaf36604f6",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["6d56f72b-c4f4-4aab-84db-67cd16b81df6"]
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}
