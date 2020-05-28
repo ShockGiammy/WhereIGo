@@ -200,11 +200,11 @@ public class ChatDao {
 		return status;
 	}
 	
-	public void createNewChat(PrivateMessage msg) {
-		if (getSavedMsg(msg.getName(), msg.getGroupOrReceiver()).isEmpty()) {
+	public void createNewChat(Message newMessage) {
+		if (getSavedMsg(newMessage.getName(), newMessage.getGroupOrReceiver()).isEmpty()) {
 			try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Chat (sender, receiver) VALUES (?, ?)")){  
-				statement.setString(1, msg.getName());
-				statement.setString(2, msg.getGroupOrReceiver());
+				statement.setString(1, newMessage.getName());
+				statement.setString(2, newMessage.getGroupOrReceiver());
 				statement.execute();
 			}
 			catch (SQLException e) {

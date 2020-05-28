@@ -28,39 +28,45 @@ public class MessageFactory {
 	}
 	
 	public void createChat(ChatType type, String sender, String renter) {
+		Message newMessage;
 		if (type == ChatType.PRIVATE) {
-			PrivateMessage newMessage = new PrivateMessage();
-			newMessage.setName(sender);
-			newMessage.setGroupOrReceiver(renter);
-			chatDao.createNewChat(newMessage);
+			newMessage = new PrivateMessage();
 		}
+		else {
+			newMessage = new GroupMessage();
+		}
+		newMessage.setName(sender);
+		newMessage.setGroupOrReceiver(renter);
+		chatDao.createNewChat(newMessage);
 	}
 	
 	public Message createMessage(String sender, ChatType chatType, String msg, String receiver, MessageType messageType) {
 		Message createMessage;
 		if (chatType == ChatType.PRIVATE) {
 			createMessage = new PrivateMessage();
-			createMessage.setName(sender);
-			createMessage.setMsg(msg);
-			createMessage.setGroupOrReceiver(receiver);
-			createMessage.setType(messageType);
+			
 		}
 		else {
 			createMessage = new GroupMessage();
-			createMessage.setName(sender);
-			createMessage.setMsg(msg);
-			createMessage.setGroupOrReceiver(receiver);
-			createMessage.setType(messageType);
 		}
+		createMessage.setName(sender);
+		createMessage.setMsg(msg);
+		createMessage.setGroupOrReceiver(receiver);
+		createMessage.setType(messageType);
 		return createMessage;
 	}
 
 	public void saveMessage(String sender, ChatType chatType, String msg, String receiver) {
+		Message createMessage;
 		if (chatType == ChatType.PRIVATE) {
-			PrivateMessage createMessage = new PrivateMessage();
-			createMessage.setName(sender);
-			createMessage.setMsg(msg);
-			createMessage.setGroupOrReceiver(receiver);
-			createMessage.save();		}
+			createMessage = new PrivateMessage();
+		}
+		else {
+			createMessage = new GroupMessage();
+		}
+		createMessage.setName(sender);
+		createMessage.setMsg(msg);
+		createMessage.setGroupOrReceiver(receiver);
+		createMessage.save();		
 	}
 }
