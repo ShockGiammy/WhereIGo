@@ -67,14 +67,13 @@ public class RentRenterServlet extends HttpServlet {
 	
 	public RentAccomodationBean setAccomodationInfo(HttpServletRequest req, HttpServletResponse resp, JspChangePage changeP) {
 		RentAccomodationBean bean = new RentAccomodationBean();
-		LoggedUser logUser = new LoggedUser();
 		Logger logger = Logger.getLogger("WIG");
 		bean.setBeds(req.getParameter("beds"));
 		try {
 			bean.setCity(req.getParameter("city"));
 			bean.setAddress(req.getParameter("address"));
 			bean.setDescription(req.getParameter("description"));
-			bean.setRenter(logUser.getUserName());
+			bean.setRenter(LoggedUser.getUserName());
 		} catch (LengthFieldException e) {
 			logger.log(Level.SEVERE, e.getMessage());
 			String page = ERROR;

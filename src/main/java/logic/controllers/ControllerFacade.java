@@ -4,6 +4,7 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import logic.ImageViewer;
+import logic.LoggedUser;
 import logic.beans.GroupBean;
 import logic.beans.InterestsBean;
 import logic.beans.LocationBean;
@@ -30,6 +31,7 @@ public class ControllerFacade {
 	private BookTravelControl bookTravCtrl;
 	private LoginController loginCtrl;
 	private ImageViewer viewer;
+	private UserDataBean dBean;
 	
 	public ControllerFacade() {
 	}
@@ -155,15 +157,19 @@ public class ControllerFacade {
 	
 	/*BookTravelControl references methods*/
 	
-	public void findTravelSugg(List<String> suggLoc,UserDataBean dBean) {
+	public void findTravelSugg(List<String> suggLoc) {
+		this.dBean = new UserDataBean(LoggedUser.getUserName());
+		this.dBean.setPersonality(LoggedUser.getPersonality());
 		this.bookTravCtrl = new BookTravelControl();
 		suggLoc.addAll(this.bookTravCtrl.showLocationsControl(dBean));
 	}
 	
-	public void findSuggGroups(List<GroupBean> gBeanList, UserDataBean dBean) {
+	public void findSuggGroups(List<GroupBean> gBeanList) {
 		if(this.bookTravCtrl == null) {
 			this.bookTravCtrl = new BookTravelControl();
 		}
+		this.dBean = new UserDataBean(LoggedUser.getUserName());
+		this.dBean.setPersonality(LoggedUser.getPersonality());
 		this.bookTravCtrl.getSuggestedGroupsControl(gBeanList, dBean);
 	}
 	
@@ -179,34 +185,39 @@ public class ControllerFacade {
 		this.bookTravCtrl.retriveLocInfoControl(bean);
 	}
 	
-	public void retriveTravelSolutions(UserTravelBean travBean, List<UserTravelBean> travList, UserDataBean dBean) throws BigDateException, EmptyListException {
+	public void retriveTravelSolutions(UserTravelBean travBean, List<UserTravelBean> travList) throws BigDateException, EmptyListException {
 		this.bookTravCtrl = new BookTravelControl();
+		this.dBean = new UserDataBean(LoggedUser.getUserName());
 		this.bookTravCtrl.retriveTravelSolutionsControl(dBean, travBean, travList);
 	}
 	
-	public void saveBoughtTicket(UserTravelBean travBean, UserDataBean dBean) {
+	public void saveBoughtTicket(UserTravelBean travBean) {
 		this.bookTravCtrl = new BookTravelControl();
+		this.dBean = new UserDataBean(LoggedUser.getUserName());
 		this.bookTravCtrl.saveBoughtTicketControl(travBean, dBean);
 	}
 	
-	public void getSimilarUsers(List<UserDataBean> usrList, UserDataBean dBean) {
+	public void getSimilarUsers(List<UserDataBean> usrList) {
 		if(this.bookTravCtrl == null) {
 			this.bookTravCtrl = new BookTravelControl();
 		}
+		this.dBean = new UserDataBean(LoggedUser.getUserName());
 		this.bookTravCtrl.getSamePersUsersControl(usrList, dBean);
 	}
 	
-	public void getUsersGroups(List<GroupBean> grpBean, UserDataBean dBean) {
+	public void getUsersGroups(List<GroupBean> grpBean) {
 		if(this.bookTravCtrl == null) {
 			this.bookTravCtrl = new BookTravelControl();
 		}
+		this.dBean = new UserDataBean(LoggedUser.getUserName());
 		this.bookTravCtrl.getUserGroupsControl(grpBean, dBean);
 	}
 	
-	public void getBookedTicks(List<UserTravelBean> travBeanList, UserDataBean dBean) {
+	public void getBookedTicks(List<UserTravelBean> travBeanList) {
 		if(this.bookTravCtrl == null) {
 			this.bookTravCtrl = new BookTravelControl();
 		}
+		this.dBean = new UserDataBean(LoggedUser.getUserName());
 		this.bookTravCtrl.getBookedTicketsControl(travBeanList, dBean);
 	}
 	
@@ -215,18 +226,21 @@ public class ControllerFacade {
 		this.bookTravCtrl.saveGroupControl(grpBean);
 	}
 	
-	public List<UserTravelBean> getSuggTicketsInfo(UserTravelBean travBean, UserDataBean dBean) throws EmptyListException {
+	public List<UserTravelBean> getSuggTicketsInfo(UserTravelBean travBean) throws EmptyListException {
 		this.bookTravCtrl = new BookTravelControl();
+		this.dBean = new UserDataBean(LoggedUser.getUserName());
 		return this.bookTravCtrl.getSuggTicketsInfoControl(travBean, dBean);
 	}
 	
-	public int insertParticipant(GroupBean bean, UserDataBean dBean) {
+	public int insertParticipant(GroupBean bean) {
 		this.bookTravCtrl = new BookTravelControl();
+		this.dBean = new UserDataBean(LoggedUser.getUserName());
 		return this.bookTravCtrl.insertParticipantControl(bean, dBean);
 	}
 	
-	public void deleteSavedTravel(UserTravelBean travBean, UserDataBean dBean) {
+	public void deleteSavedTravel(UserTravelBean travBean) {
 		this.bookTravCtrl = new BookTravelControl();
+		this.dBean = new UserDataBean(LoggedUser.getUserName());
 		this.bookTravCtrl.deleteSavedTravelControl(travBean, dBean);
 	}
 	
@@ -235,8 +249,9 @@ public class ControllerFacade {
 		this.bookTravCtrl.deleteTravelGroupControl(grpBean);
 	}
 	
-	public void leaveTravelGroup(GroupBean grpBean, UserDataBean dBean) {
+	public void leaveTravelGroup(GroupBean grpBean) {
 		this.bookTravCtrl = new BookTravelControl();
+		this.dBean = new UserDataBean(LoggedUser.getPersonality());
 		this.bookTravCtrl.leaveTravelGroupControl(grpBean, dBean);
 	}
 	

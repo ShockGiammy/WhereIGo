@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import logic.LoggedUser;
 import logic.beans.GroupBean;
 import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.LengthFieldException;
@@ -21,9 +22,9 @@ public class GraphicControllerCreateGroup extends BasicGui{
 	
 	@FXML
 	public void initialize() {
-		this.groupAdmin.setText(this.logUsr.getUserName());
+		this.groupAdmin.setText(LoggedUser.getUserName());
 		this.grpBean = new GroupBean();
-		grpBean.setGroupOwner(this.logUsr.getUserName());
+		grpBean.setGroupOwner(LoggedUser.getUserName());
 		this.err = new ErrorPopup();
 		this.userImage.setImage(setUserImage());
 	}

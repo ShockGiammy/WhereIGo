@@ -19,6 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import logic.LoggedUser;
 import logic.beans.MessageBean;
 import logic.beans.UserChatBean;
 import logic.controllers.ChatType;
@@ -55,7 +56,7 @@ public class GraphicControllerChat extends BasicGui {
 
     public GraphicControllerChat() {
     	facade.callChatController(this);
-    	this.username = logUsr.getUserName();
+    	this.username = LoggedUser.getUserName();
     }
     
     public void sendButtonAction() {

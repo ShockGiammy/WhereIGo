@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
+import logic.LoggedUser;
 import logic.beans.GroupBean;
-import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.BigDateException;
@@ -27,9 +27,9 @@ public class TestBookTravelControl {
 	@Test
 	public void checkGroups() throws GroupNameTakenException, NullValueException, LengthFieldException{
 		List<GroupBean> testBeanList = new ArrayList<>();
-		UserDataBean dBean = new UserDataBean("Traveler");
-		dBean.setPersonality("Friendly");
-		this.facCtrl.getUsersGroups(testBeanList, dBean);
+		LoggedUser.setUserName("Traveler");
+		LoggedUser.setPersonality("Friendly");
+		this.facCtrl.getUsersGroups(testBeanList);
 		int numb1 = testBeanList.size();
 		GroupBean gBean1 = new GroupBean();
 		gBean1.setGroupOwner("Traveler");
@@ -37,7 +37,7 @@ public class TestBookTravelControl {
 		gBean1.setGroupDestination("Rome");
 		this.facCtrl.saveGroup(gBean1);
 		testBeanList.clear();
-		this.facCtrl.getUsersGroups(testBeanList, dBean);
+		this.facCtrl.getUsersGroups(testBeanList);
 		this.facCtrl.deleteTravelGroup(gBean1); //we delete the group so the test can be run again
 		assertNotEquals(numb1, testBeanList.size());
 	}
@@ -45,28 +45,27 @@ public class TestBookTravelControl {
 	/* with this test we check if the book functionality works properly*/
 	@Test
 	public void testBookFlight() throws EmptyListException, BigDateException {
+		LoggedUser.setUserName("Traveler");
 		List<UserTravelBean> testTravList = new ArrayList<>();
-		UserDataBean dBean = new UserDataBean("Traveler");
-		this.facCtrl.getBookedTicks(testTravList, dBean);
+		this.facCtrl.getBookedTicks(testTravList);
 		int prevNum = testTravList.size();
 		testTravList.clear();
 		UserTravelBean travBean = new UserTravelBean(LocalDate.parse("2020-07-27"), LocalDate.parse("2020-08-02"), "Torino-Caselle", "Bath");
-		this.facCtrl.retriveTravelSolutions(travBean,testTravList, dBean);
-		this.facCtrl.saveBoughtTicket(testTravList.get(0), dBean); //we save the first ticket available
+		this.facCtrl.retriveTravelSolutions(travBean,testTravList);
+		this.facCtrl.saveBoughtTicket(testTravList.get(0)); //we save the first ticket available
 		travBean = testTravList.get(0);
 		testTravList.clear();
-		this.facCtrl.getBookedTicks(testTravList, dBean);
+		this.facCtrl.getBookedTicks(testTravList);
 		assertNotEquals(prevNum, testTravList.size());
-		this.facCtrl.deleteSavedTravel(travBean, dBean);
+		this.facCtrl.deleteSavedTravel(travBean);
 	}
 	
 	/* this test asserts that there are a certain number of locations for a given personality*/
 	@Test
 	public void testSuggestedLocation() {
-		UserDataBean dBean = new UserDataBean();
-		dBean.setPersonality("Lone Wolf");
+		LoggedUser.setPersonality("Lone Wolf");
 		List<String> suggLoc = new ArrayList<>();
-		this.facCtrl.findTravelSugg(suggLoc, dBean);
+		this.facCtrl.findTravelSugg(suggLoc);
 		assertNotEquals(suggLoc.size(), 0);
 	}
 }

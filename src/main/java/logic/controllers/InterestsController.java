@@ -24,8 +24,7 @@ public class InterestsController {
 		if(answ.size() <= 3) {
 			throw new MissingAnswareException("Pelase answare to all questions");
 		}
-		LoggedUser logUser = new LoggedUser();
-		UserDataBean dBean = new UserDataBean(logUser.getUserName());
+		UserDataBean dBean = new UserDataBean(LoggedUser.getUserName());
 		UserModel usrMod = new UserModel();
 		usrMod.setUsrNameByBean(dBean);
 		String pers = null;

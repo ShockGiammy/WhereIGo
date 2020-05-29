@@ -22,7 +22,6 @@ public class TestChatController {
 	
 	public TestChatController() {
 		facade = new ControllerFacade();
-		logUser = new LoggedUser();
 	}
 
 	@Test

@@ -24,8 +24,7 @@ public class ManageAnnouncementController {
 	private List<AccomodationModel> listOfAccomodation;
 	
 	public ManageAnnouncementController() {
-		LoggedUser logUser = new LoggedUser();
-		this.username = logUser.getUserName();
+		this.username = LoggedUser.getUserName();
 		listOfAccomodation = Collections.synchronizedList(new ArrayList<>());
 		creator = new AccomodationCreator();
 	}

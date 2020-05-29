@@ -76,8 +76,7 @@ public class GraphicControllerTickets extends BasicGui{
 					UserTravelBean travBean = new UserTravelBean(this.departureDay.getCellData(i), this.arrivalDate.getCellData(i), this.departureCity.getCellData(i), this.arrivalCity.getCellData(i));
 					travBean.setId(this.ticketId.getCellData(i));
 					travBean.setCost(this.cost.getCellData(i));
-					LoggedUser logusr = new LoggedUser();
-					UserDataBean dataBean = new UserDataBean(logusr.getUserName());
+					UserDataBean dataBean = new UserDataBean(LoggedUser.getUserName());
 					setScene("TicketCheckout.fxml");
 					loadScene();
 					setCheckoutValues(travBean, dataBean, e);

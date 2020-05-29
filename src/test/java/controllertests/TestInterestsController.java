@@ -25,7 +25,6 @@ public class TestInterestsController {
 		answ.add(2);
 		InterestsBean interBean = new InterestsBean(answ);
 		intCtrl.evaluateInterestsControl(interBean);
-		LoggedUser logUsr = new LoggedUser();
-		assertNotNull(logUsr.getPersonality());
+		assertNotNull(LoggedUser.getPersonality());
 	}
 }

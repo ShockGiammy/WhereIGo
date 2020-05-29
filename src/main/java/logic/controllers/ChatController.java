@@ -29,7 +29,6 @@ public class ChatController {
 	private ControllerFacade facade;
 	private List<UserChatModel> users;
 	private Listener listener;
-	private LoggedUser logUser;
 	protected Logger logger = Logger.getLogger("WIG");
 	private static final String ONLINE = "online";
 	private boolean alreadyActive = false;
@@ -41,8 +40,7 @@ public class ChatController {
 		chatDao = new ChatDao();
 		groupDao = new GroupDao();
 		this.facade = reference;
-		this.logUser = new LoggedUser();
-		this.username = logUser.getUserName();
+		this.username = LoggedUser.getUserName();
 		this.factory = new MessageFactory();
 		myUserModel = new UserChatModel();
 		myUserModel.setName(username);
@@ -53,8 +51,7 @@ public class ChatController {
 	
 	public ChatController() {
 		chatDao = new ChatDao();
-		this.logUser = new LoggedUser();
-		this.username = logUser.getUserName();
+		this.username = LoggedUser.getUserName();
 		factory = new MessageFactory();
 	}
 	
@@ -138,9 +135,7 @@ public class ChatController {
 	}
 
 	public void createChat(String renter) {
-		logUser = new LoggedUser();
-		factory.createChat(ChatType.PRIVATE, logUser.getUserName(), renter);
-		
+		factory.createChat(ChatType.PRIVATE, LoggedUser.getUserName(), renter);
 	}
 
 	public void sendMessage(MessageBean message) {
@@ -166,7 +161,7 @@ public class ChatController {
 	
 	public void createGroup(String groupName, List<String> groupList) throws GroupNameTakenException {	
 		GroupModel grpMod = new GroupModel();
-		grpMod.setAll(this.logUser.getUserName(), groupName, null);
+		grpMod.setAll(LoggedUser.getUserName(), groupName, null);
 		groupDao.saveUserGroup(grpMod);
 		
 		UserModel userData = new UserModel();

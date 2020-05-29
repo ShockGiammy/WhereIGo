@@ -24,13 +24,11 @@ public class ChatRenterServlet extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse resp) {
 		
-		JspChangePage changeP = new JspChangePage();
-		
-		LoggedUser logUser = new LoggedUser();		
+		JspChangePage changeP = new JspChangePage();		
 		ControllerFacade facade = new ControllerFacade(this);
 		
-		UserChatBean myInfo = facade.getUser(logUser.getUserName());
-		myInfo.setName(logUser.getUserName());
+		UserChatBean myInfo = facade.getUser(LoggedUser.getUserName());
+		myInfo.setName(LoggedUser.getUserName());
 		req.setAttribute("I", myInfo);
 		facade.setOfflineStatus();
 		

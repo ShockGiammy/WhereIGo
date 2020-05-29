@@ -123,11 +123,10 @@ public class LoginServlet extends HttpServlet {
 	private void homePageCall(HttpServletRequest request, HttpServletResponse response, JspChangePage changeP) {
 		HomePageServlet hpServ = new HomePageServlet();
 		hpServ.loadHomePageUserInfo(request);
-		LoggedUser logUsr = new LoggedUser();
 		HttpSession session = request.getSession();
-		session.setAttribute("image", logUsr.getImage());
-		session.setAttribute("usrname", logUsr.getUserName());
-		if (logUsr.getUserType() == UserType.RENTER) {
+		session.setAttribute("image", LoggedUser.getImage());
+		session.setAttribute("usrname", LoggedUser.getUserName());
+		if (LoggedUser.getUserType() == UserType.RENTER) {
 			changeP.forwardPage("RenterHomePage.jsp", request, response);
 		}
 		else {

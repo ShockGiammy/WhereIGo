@@ -23,12 +23,11 @@ public class HomePageServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LoggedUser logusr = new LoggedUser();
 		JspChangePage changeP = new JspChangePage();
 		String act = request.getParameter("action");
 		String page = null;
 		if(act.equalsIgnoreCase("gohome")) {
-			if(logusr.getUserType() == UserType.RENTER) {
+			if(LoggedUser.getUserType() == UserType.RENTER) {
 				page = "RenterHomePage.jsp";
 			}
 			else {
@@ -41,7 +40,7 @@ public class HomePageServlet extends HttpServlet {
 			loadBookTravelSugg(request);
 		}
 		else if(act.equalsIgnoreCase("Rent")) {
-			if(logusr.getUserType() == UserType.RENTER) {
+			if(LoggedUser.getUserType() == UserType.RENTER) {
 				page = "RentRenter";
 			}
 			else {
@@ -49,7 +48,7 @@ public class HomePageServlet extends HttpServlet {
 			}
 		}
 		else if(act.equalsIgnoreCase("Chat")) {
-			if(logusr.getUserType() == UserType.RENTER) {
+			if(LoggedUser.getUserType() == UserType.RENTER) {
 				page =	"ChatRenter";
 			}
 			else {
@@ -74,11 +73,8 @@ public class HomePageServlet extends HttpServlet {
 		List<String> depCities = new ArrayList<>(); 
 		List<String> arrCities = new ArrayList<>();
 		fac.getAvailableTick(depCities, arrCities);
-		LoggedUser log = new LoggedUser();
-		UserDataBean dBean = new UserDataBean(log.getUserName());
-		dBean.setPersonality(log.getPersonality());
-		fac.findTravelSugg(cities, dBean);
-		fac.findSuggGroups(beanList, dBean);
+		fac.findTravelSugg(cities);
+		fac.findSuggGroups(beanList);
 		request.setAttribute("grouplist", beanList);
 		request.setAttribute("cities", cities);
 		setDepAndArr(request, depCities, arrCities);
@@ -92,12 +88,9 @@ public class HomePageServlet extends HttpServlet {
 		List<UserTravelBean> travBeanList = new ArrayList<>();
 		List<GroupBean> gBeanList = new ArrayList<>();
 		List<UserDataBean> dBeanList = new ArrayList<>();
-		LoggedUser log = new LoggedUser();
-		UserDataBean dBean = new UserDataBean(log.getUserName());
-		dBean.setPersonality(log.getPersonality());
-		facCtrl.getSimilarUsers(dBeanList, dBean);
-		facCtrl.getBookedTicks(travBeanList, dBean);
-		facCtrl.getUsersGroups(gBeanList, dBean);
+		facCtrl.getSimilarUsers(dBeanList);
+		facCtrl.getBookedTicks(travBeanList);
+		facCtrl.getUsersGroups(gBeanList);
 		request.setAttribute("travels", travBeanList);
 		request.setAttribute("groups", gBeanList);
 		request.setAttribute("users", dBeanList);

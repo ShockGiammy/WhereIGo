@@ -75,8 +75,7 @@ public class GraphicControllerCheckOut extends BasicGui{
 	}
 	
 	public void confirmTrav(MouseEvent e) {
-		UserDataBean dBean = new UserDataBean(this.logUsr.getUserName());
-		this.facade.saveBoughtTicket(this.travbean, dBean);
+		this.facade.saveBoughtTicket(this.travbean);
 		goHome(e);
 	}
 }

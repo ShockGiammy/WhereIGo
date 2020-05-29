@@ -22,7 +22,6 @@ public class TestManageAccomodationsController {
 
 	public TestManageAccomodationsController() {
 		facade = new ControllerFacade();
-		logUser = new LoggedUser();
 	}
 	
 	@Test
@@ -38,7 +37,7 @@ public class TestManageAccomodationsController {
 			bean.setDescription("Newly renovated flat in a beautiful Victorian building just a minute away from the tube and the high street.\r\n" + 
 					"\r\n" + 
 					"The flat is situated on the top floor of a charming building and has an open plan kitchen living room, 2 bedrooms with double beds and a brand new marble bathroom.");
-			bean.setRenter(this.logUser.getUserName());
+			bean.setRenter(LoggedUser.getUserName());
 		} catch (LengthFieldException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, ()-> e.getMessage());
 		}

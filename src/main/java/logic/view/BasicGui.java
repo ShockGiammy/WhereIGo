@@ -33,11 +33,9 @@ public class BasicGui extends Application{
 	private static String sample;
 	private static Scene scene;
 	private static Logger logger = Logger.getLogger("WIG");
-	protected LoggedUser logUsr;
 	protected ControllerFacade facade;
 	
 	public BasicGui() {
-		this.logUsr = new LoggedUser();
 		if (facade == null) {
 			this.facade = new ControllerFacade();
 		}
@@ -128,7 +126,7 @@ public class BasicGui extends Application{
 	}
 
 	public void goHome(MouseEvent event) {
-		if (logUsr.getUserType() == UserType.RENTER) {
+		if (LoggedUser.getUserType() == UserType.RENTER) {
 			changeGUI(event, "RenterHomePage.fxml");
 		}
 		else {
@@ -137,7 +135,7 @@ public class BasicGui extends Application{
     }
     
     public void goRent(MouseEvent event) {
-    	if (logUsr.getUserType() == UserType.RENTER) {
+    	if (LoggedUser.getUserType() == UserType.RENTER) {
 			changeGUI(event, "RenterAccomodations.fxml");
     	}
 		else {
@@ -146,7 +144,7 @@ public class BasicGui extends Application{
     }
     
     public void goBookTravel(MouseEvent event) {
-    	if (logUsr.getUserType() == UserType.RENTER) {
+    	if (LoggedUser.getUserType() == UserType.RENTER) {
 			logger.info("method not accessible");
     	}
 		else {
@@ -155,7 +153,7 @@ public class BasicGui extends Application{
     }
     
     public void goChat(MouseEvent event) {
-    	if (logUsr.getUserType() == UserType.RENTER) {
+    	if (LoggedUser.getUserType() == UserType.RENTER) {
 			changeGUI(event, "ChatViewRenter.fxml");
     	}
 		else {
@@ -174,6 +172,6 @@ public class BasicGui extends Application{
 	}
 	
 	public Image setUserImage() {
-		return facade.loadImage(this.logUsr.getImage());
+		return facade.loadImage(LoggedUser.getImage());
 	}
 }

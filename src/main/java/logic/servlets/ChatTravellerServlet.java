@@ -26,15 +26,14 @@ public class ChatTravellerServlet extends HttpServlet {
 		
 		JspChangePage changeP = new JspChangePage();
 		
-		LoggedUser logUser = new LoggedUser();
 		ControllerFacade facade = new ControllerFacade(this);
 		List<UserChatBean> users = facade.getUsers();
 		req.setAttribute("users", users);
 		List<String> groups = facade.getGroups();
 		req.setAttribute("groups", groups);
 		
-		UserChatBean myInfo = facade.getUser(logUser.getUserName());
-		myInfo.setName(logUser.getUserName());
+		UserChatBean myInfo = facade.getUser(LoggedUser.getUserName());
+		myInfo.setName(LoggedUser.getUserName());
 		req.setAttribute("I", myInfo);
 		facade.setOfflineStatus();
 		

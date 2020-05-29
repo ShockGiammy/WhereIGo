@@ -32,7 +32,6 @@ public class GraphicControllerHomePage extends BasicGui{
 	private List<UserTravelBean> travBean;
 	private List<GroupBean> grpBean;
 	private List<UserDataBean> dataBeanList;
-	private UserDataBean dBean;
 	
 	@FXML
 	public void initialize() {
@@ -41,11 +40,9 @@ public class GraphicControllerHomePage extends BasicGui{
 		this.travBean = new ArrayList<>();
 		this.grpBean = new ArrayList<>();
 		this.dataBeanList = new ArrayList<>();
-		this.dBean = new UserDataBean(this.logUsr.getUserName());
-		this.dBean.setPersonality(this.logUsr.getPersonality());
-		this.facade.getBookedTicks(this.travBean, dBean);
-		this.facade.getSimilarUsers(this.dataBeanList, dBean);
-		this.facade.getUsersGroups(this.grpBean, dBean);
+		this.facade.getBookedTicks(this.travBean);
+		this.facade.getSimilarUsers(this.dataBeanList);
+		this.facade.getUsersGroups(this.grpBean);
 		setTravel();
 		setGroups();
 		setSuggUsers();
@@ -58,8 +55,7 @@ public class GraphicControllerHomePage extends BasicGui{
 	}
 	
 	public void postRentAnnouncementControl(MouseEvent event) {
-		LoggedUser logUser = new LoggedUser();
-		if (logUser.getUserType() == UserType.RENTER) {
+		if (LoggedUser.getUserType() == UserType.RENTER) {
 			setScene("RenterAccomodations.fxml");
 			loadScene();
 			nextGuiOnClick(event);
@@ -95,7 +91,7 @@ public class GraphicControllerHomePage extends BasicGui{
 			Text groupTitle = new Text("Group name : "+grpBean.get(i).getGroupTitle());
 			Text groupDest = new Text("Group destination : "+grpBean.get(i).getGroupDestination());
 			Text groupLeader = new Text("Group leader : "+grpBean.get(i).getGroupOwner());
-			if(grpBean.get(i).getGroupOwner().equals(logUsr.getUserName())) {
+			if(grpBean.get(i).getGroupOwner().equals(LoggedUser.getUserName())) {
 				Button deleteGroup = new Button("Delete group");
 				deleteGroup.setOnMouseClicked(this::deleteGroup);
 				vbox.getChildren().addAll(groupTitle, groupDest, groupLeader,deleteGroup);
@@ -142,7 +138,7 @@ public class GraphicControllerHomePage extends BasicGui{
 				UserTravelBean delBean = new UserTravelBean();
 				Text id = (Text)travels.get(i).getChildren().get(0);
 				delBean.setId(id.getText().substring(12, id.getText().length()));
-				this.facade.deleteSavedTravel(delBean, this.dBean);
+				this.facade.deleteSavedTravel(delBean);
 				VBox temp = travels.get(i);
 				this.lwTickets.getItems().remove(temp);
 				err.displayLoginError("Prenotazione correttamente cancellata");
@@ -175,7 +171,7 @@ public class GraphicControllerHomePage extends BasicGui{
 			if(grps.get(i).getChildren().size() == 4 && grps.get(i).getChildren().get(3).equals(e.getTarget())) {
 				Text description = (Text)grps.get(i).getChildren().get(0);
 				GroupBean bean = new GroupBean(description.getText().substring(13, description.getText().length()));
-				this.facade.leaveTravelGroup(bean, this.dBean);
+				this.facade.leaveTravelGroup(bean);
 				VBox temp = grps.get(i);
 				grps.remove(temp);
 				this.lwGroups.getItems().remove(temp);

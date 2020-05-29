@@ -6,6 +6,10 @@ public class LoggedUser {
 	private static UserType typeOfUser;
 	private static byte[] proPic;
 	
+	private LoggedUser() {
+		
+	}
+	
 	public static void setUserName(String usrName) {
 		username = usrName;
 	}
@@ -27,19 +31,19 @@ public class LoggedUser {
 		proPic = image;
 	}
 	
-	public String getUserName() {
+	public static String getUserName() {
 		return username;
 	}
 	
-	public String getPersonality() {
+	public static String getPersonality() {
 		return personality;
 	}
 	
-	public UserType getUserType() {
+	public static UserType getUserType() {
 		return typeOfUser;
 	}
 	
-	public byte[] getImage() {
+	public static byte[] getImage() {
 		return proPic;
 	}
 }

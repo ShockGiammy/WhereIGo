@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import logic.LoggedUser;
 import logic.beans.RentAccomodationBean;
 import logic.exceptions.LengthFieldException;
 import logic.view.ErrorPopup;
@@ -94,7 +95,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 			bean.setCity(city.getText());
 			bean.setAddress(address.getText());
 			bean.setDescription(description.getText());
-			bean.setRenter(this.logUsr.getUserName());
+			bean.setRenter(LoggedUser.getUserName());
 		} catch (LengthFieldException e) {
 			ErrorPopup error = new ErrorPopup();
         	error.displayLoginError(e.getMsg());
