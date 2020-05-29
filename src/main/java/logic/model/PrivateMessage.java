@@ -11,7 +11,6 @@ public class PrivateMessage implements Message {
     private String privateMsg;
     private String receiver;
     private ChatType chatType = ChatType.PRIVATE;
-    private String status;
 
     public String getName() {
         return name;
@@ -35,14 +34,6 @@ public class PrivateMessage implements Message {
 
     public void setType(MessageType type) {
         this.type = type;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatus() {
-        return status;
     }
 
 	public String getGroupOrReceiver() {

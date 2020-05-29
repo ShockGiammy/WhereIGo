@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import logic.LoggedUser;
 import logic.beans.MessageBean;
 import logic.beans.UserChatBean;
+import logic.beans.GroupChatBean;
 import logic.controllers.ChatType;
 import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.LengthFieldException;
@@ -49,10 +50,10 @@ public class GraphicControllerChat extends BasicGui {
     protected Logger logger = Logger.getLogger("WIG");
     private String username;
     private double pading = 5.0;
-    private Image pictureImage;
+    private Image otherPicture;
     private List<UserChatBean> users;
     private List<String> namesList;
-    private Image myImage;
+    private Image myPicture;
 
     public GraphicControllerChat() {
     	facade.callChatController(this);
@@ -88,7 +89,7 @@ public class GraphicControllerChat extends BasicGui {
         	ImageView profileImage = new ImageView();
             profileImage.setFitHeight(32);
             profileImage.setFitWidth(32);
-            profileImage.setImage(myImage);
+            profileImage.setImage(myPicture);
             
             Label bl6 = new Label();
             bl6.setText(message.getMsg());
@@ -107,7 +108,7 @@ public class GraphicControllerChat extends BasicGui {
         	ImageView profileImage = new ImageView();
         	profileImage.setFitHeight(32);
         	profileImage.setFitWidth(32);
-        	profileImage.setImage(pictureImage);
+        	profileImage.setImage(otherPicture);
         	
             Label bl6 = new Label();
             bl6.setText(message.getName() + ": " + message.getMsg());
@@ -129,9 +130,9 @@ public class GraphicControllerChat extends BasicGui {
     }
     
     public void setGroupList() {
-    	List<String> groupNames = facade.getGroups();
-    	for (String groupName : groupNames) {
-    		addToGroupList(groupName);
+    	List<GroupChatBean> groupNames = facade.getGroups();
+    	for (GroupChatBean group : groupNames) {
+    		addToGroupList(group.getName());
     	}
     }
     
@@ -179,7 +180,7 @@ public class GraphicControllerChat extends BasicGui {
     	String receiver = ((Text)node).getText();
     	if (!activeChat.getText().equals(receiver)) {
     		Node node2 = userList.getSelectionModel().getSelectedItem().getChildren().get(1);
-    		pictureImage = ((ImageView)node2).getImage();
+    		otherPicture = ((ImageView)node2).getImage();
     		setActiveChat(receiver);
     		displayChat(receiver, ChatType.PRIVATE);   		
     		messageBox.setEditable(true);
@@ -237,7 +238,7 @@ public class GraphicControllerChat extends BasicGui {
     public void initialize() {
     	
     	this.userImage.setImage(setUserImage());
-    	this.myImage = setUserImage();
+    	this.myPicture = setUserImage();
         setUserList();
         setGroupList();
         
@@ -347,11 +348,19 @@ public class GraphicControllerChat extends BasicGui {
 		backButton.setOnAction(e->window.close());
 		Button confirmButton = new Button("Confirm");
 		confirmButton.setOnAction(event -> {
+			GroupChatBean groupBean = new GroupChatBean();
 			try {
-				facade.createGroup(groupName.getText(), namesList);
+				groupBean.setName(groupName.getText());
+			} catch (LengthFieldException e) {
+				ErrorPopup err = new ErrorPopup();
+				err.displayLoginError(e.getMsg());
+			}
+			groupBean.setPartecipants(namesList);
+			try {
+				facade.createGroup(groupBean);
 			} catch (GroupNameTakenException e1) {
 				ErrorPopup err = new ErrorPopup();
-				err.displayLoginError("Nome gruppo non disponibile");
+				err.displayLoginError("Group Name is not available");
 			}
 		window.close();
 		});

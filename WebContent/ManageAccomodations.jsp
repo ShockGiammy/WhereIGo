@@ -81,7 +81,7 @@
 </head>
 <body>
 
-<%@ page import="logic.beans.RentAccomodationBean" %>
+<%@ page import="logic.beans.AccomodationBean" %>
 <%@ page import="java.util.List" language="java" %>
 <%@ page import="java.io.*"%>
 <%@ page import="java.util.Base64"%>
@@ -108,10 +108,10 @@
 			</tr>
 		</thead>
 		<%
-		int i = 0;
-		List<RentAccomodationBean> listOfBean = (List<RentAccomodationBean>)request.getAttribute("list");		
-		// print the information about every category of the list
-		for(RentAccomodationBean bean : listOfBean) {
+			int i = 0;
+				List<AccomodationBean> listOfBean = (List<AccomodationBean>)request.getAttribute("list");		
+				// print the information about every category of the list
+				for(AccomodationBean bean : listOfBean) {
 			byte[] list = bean.getServices();
 		%>
 		<tr>
@@ -132,10 +132,18 @@
 				Kitchen
 			</td>
 			<td>
-				<%if(list[0] == 1) out.println("SI"); else out.println("NO");%><br>
-				<%if(list[1] == 1) out.println("SI"); else out.println("NO");%><br>
-				<%if(list[2] == 1) out.println("SI"); else out.println("NO");%><br>
-				<%if(list[3] == 1) out.println("SI"); else out.println("NO");%>			 
+				<%
+					if(list[0] == 1) out.println("SI"); else out.println("NO");
+				%><br>
+				<%
+					if(list[1] == 1) out.println("SI"); else out.println("NO");
+				%><br>
+				<%
+					if(list[2] == 1) out.println("SI"); else out.println("NO");
+				%><br>
+				<%
+					if(list[3] == 1) out.println("SI"); else out.println("NO");
+				%>			 
 			</td>
 			<td>
        			<a class="btn btn-info btn-l" id="update" href="RentRenter?action=requestToUpdate&id=<%=bean.getID()%>">Update<br>Info</a>
@@ -145,16 +153,16 @@
 			</td>
 		</tr>
 		<%
-			} 
+			}
 		%>
 		</table>
 	</div>
-	<% 
-	RentAccomodationBean beanToUpdate = null;
-	if (request.getAttribute("bean") != null) {
-		beanToUpdate = (RentAccomodationBean)request.getAttribute("bean");
-	}
-	if (beanToUpdate!= null) { 
+	<%
+		AccomodationBean beanToUpdate = null;
+		if (request.getAttribute("bean") != null) {
+			beanToUpdate = (AccomodationBean)request.getAttribute("bean");
+		}
+		if (beanToUpdate!= null) {
 	%>	
 		<input type="hidden" id="toBeUpdate" value="<%=beanToUpdate.getID()%>">
 	<%

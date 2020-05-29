@@ -11,25 +11,25 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import logic.LoggedUser;
-import logic.beans.RentAccomodationBean;
-import logic.dao.AccomodationCreator;
+import logic.beans.AccomodationBean;
+import logic.dao.AccomodationDao;
 import logic.model.AccomodationModel;
 
 public class ManageAnnouncementController {
 	
 	private Random rand;
 	protected Logger logger = Logger.getLogger("WIG");
-	private AccomodationCreator creator;
+	private AccomodationDao creator;
 	private String username;
 	private List<AccomodationModel> listOfAccomodation;
 	
 	public ManageAnnouncementController() {
 		this.username = LoggedUser.getUserName();
 		listOfAccomodation = Collections.synchronizedList(new ArrayList<>());
-		creator = new AccomodationCreator();
+		creator = new AccomodationDao();
 	}
 	
-	public void createAccomodation(RentAccomodationBean bean) {
+	public void createAccomodation(AccomodationBean bean) {
 		AccomodationModel model = new AccomodationModel(bean);
 		if (model.getID() != 0) {
 			updateMyAccomodation(model);
@@ -41,15 +41,15 @@ public class ManageAnnouncementController {
 				logger.log(Level.SEVERE, e.getMessage());
 			}
 			model.setID(this.rand.nextInt(100000));
-			model.createAccomodation();
+			model.saveAccomodation();
 		}
 	}
 	
-	public List<RentAccomodationBean> displayMyAnnouncement() {
+	public List<AccomodationBean> retrieveMyAnnouncement() {
 		listOfAccomodation = creator.queryMyAccomodations(username);
-		List<RentAccomodationBean> listOfBeans = new ArrayList<>();
+		List<AccomodationBean> listOfBeans = new ArrayList<>();
 		for (AccomodationModel model : listOfAccomodation) {
-			RentAccomodationBean bean = model.getInfo();
+			AccomodationBean bean = model.getInfo();
 			listOfBeans.add(bean);
 		}
 		return listOfBeans;

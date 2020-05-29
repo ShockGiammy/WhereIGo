@@ -11,7 +11,6 @@ public class GroupMessage implements Message{
     private String groupMsg;
     private String group;
     private ChatType chatType = ChatType.GROUP;
-    private String myStatus;
 
     public String getName() {
         return myName;
@@ -40,14 +39,6 @@ public class GroupMessage implements Message{
 
     public void setType(MessageType type) {
         this.type = type;
-    }
-
-    public void setStatus(String status) {
-        this.myStatus = status;
-    }
-
-    public String getStatus() {
-        return myStatus;
     }
 
 	public String getGroupOrReceiver() {

@@ -9,10 +9,11 @@ import logic.beans.GroupBean;
 import logic.beans.InterestsBean;
 import logic.beans.LocationBean;
 import logic.beans.MessageBean;
-import logic.beans.RentAccomodationBean;
+import logic.beans.AccomodationBean;
 import logic.beans.UserChatBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
+import logic.beans.GroupChatBean;
 import logic.exceptions.BigDateException;
 import logic.exceptions.DuplicateUsernameException;
 import logic.exceptions.EmptyListException;
@@ -61,11 +62,11 @@ public class ControllerFacade {
 	}
 	
 	public List<UserChatBean> getUsers() {
-		return chatController.getUsers();
+		return chatController.retrieveUsers();
 	}
 	
-	public List<String> getGroups() {
-		return chatController.getGroups();
+	public List<GroupChatBean> getGroups() {
+		return chatController.retrieveGroups();
 	}
 	
 	public void sendMessage(MessageBean msg) {
@@ -92,8 +93,8 @@ public class ControllerFacade {
 		chatController.execute(receiver, type);
 	}
 	
-	public void createGroup(String groupName, List<String> groupList) throws GroupNameTakenException {
-		chatController.createGroup(groupName, groupList);
+	public void createGroup(GroupChatBean group) throws GroupNameTakenException {
+		chatController.createGroup(group);
 	}
 	
 	public void updateUserList(List<UserChatBean> users) {
@@ -115,16 +116,16 @@ public class ControllerFacade {
 	}
 	
 	public UserChatBean getUser(String user) {
-		return chatController.getUser(user);
+		return chatController.retrieveUser(user);
 	}
 	
 	/*ManageAnnouncementController references methods*/
 
-	public List<RentAccomodationBean> displayMyAnnouncement() {
+	public List<AccomodationBean> displayMyAnnouncement() {
 		if (controllerManage == null) {
 			controllerManage = new ManageAnnouncementController();
 		}
-		return controllerManage.displayMyAnnouncement();	
+		return controllerManage.retrieveMyAnnouncement();	
 	}
 	
 	public void deleteMyAccomodation(long id) {
@@ -134,14 +135,14 @@ public class ControllerFacade {
 		controllerManage.deleteMyAccomodation(id);
 	}
 	
-	public List<RentAccomodationBean> displayAnnouncement() {
+	public List<AccomodationBean> displayAnnouncement() {
 		RentAccomodationController controllerRent = new RentAccomodationController();
-		return controllerRent.displayAnnouncement();
+		return controllerRent.retrieveAnnouncement();
 	}
 	
 	/*CreateAccomodation references methods*/
 	
-	public void createAccomodation(RentAccomodationBean bean) {
+	public void createAccomodation(AccomodationBean bean) {
 		if (controllerManage == null) {
 			controllerManage = new ManageAnnouncementController();
 		}

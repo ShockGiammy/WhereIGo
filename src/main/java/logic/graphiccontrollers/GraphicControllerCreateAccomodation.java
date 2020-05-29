@@ -14,8 +14,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import logic.beans.AccomodationBean;
 import logic.LoggedUser;
-import logic.beans.RentAccomodationBean;
 import logic.exceptions.LengthFieldException;
 import logic.view.ErrorPopup;
 import logic.view.BasicGui;
@@ -40,7 +40,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 	@FXML private ImageView imageView;
 	@FXML private Button openButton;
 	
-	private RentAccomodationBean bean;
+	private AccomodationBean bean;
 	private File houseImage;
 	
 	@FXML
@@ -59,7 +59,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 	}
 	
 	public GraphicControllerCreateAccomodation() {
-		bean = new RentAccomodationBean();
+		bean = new AccomodationBean();
 	}
 
 	public void applyInfo(MouseEvent event) {
@@ -127,7 +127,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
         }
     }
     
-    public void setInfo(RentAccomodationBean beanToUpdate) {
+    public void setInfo(AccomodationBean beanToUpdate) {
 		bean = beanToUpdate;
 
     	description.setVisible(true);
@@ -150,7 +150,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		setServices(bean);
     }
     
-    public void setServices(RentAccomodationBean bean) {
+    public void setServices(AccomodationBean bean) {
     	garden.setVisible(true);
     	wifi.setVisible(true);
     	bathroom.setVisible(true);

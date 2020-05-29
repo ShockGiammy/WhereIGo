@@ -1,7 +1,7 @@
 package logic.model;
 
-import logic.beans.RentAccomodationBean;
-import logic.dao.AccomodationCreator;
+import logic.beans.AccomodationBean;
+import logic.dao.AccomodationDao;
 public class AccomodationModel {
 	
 	private String renter;
@@ -16,7 +16,7 @@ public class AccomodationModel {
 	private byte[] services;
 	
 	
-	public AccomodationModel(RentAccomodationBean bean) {
+	public AccomodationModel(AccomodationBean bean) {
 		id = bean.getID();
 		beds = bean.getBeds();
 		renter = bean.getRenter();
@@ -35,8 +35,8 @@ public class AccomodationModel {
 	public AccomodationModel() {
 	}
 
-	public RentAccomodationBean getInfo() {
-		RentAccomodationBean accomodationInfo = new RentAccomodationBean();
+	public AccomodationBean getInfo() {
+		AccomodationBean accomodationInfo = new AccomodationBean();
 		accomodationInfo.setID(id);
 		accomodationInfo.setBeds(beds);
 		accomodationInfo.setRenterFromDB(renter);
@@ -52,13 +52,13 @@ public class AccomodationModel {
 		return accomodationInfo;
 	}
 	
-	public void createAccomodation() {
-		AccomodationCreator dao = new AccomodationCreator();
+	public void saveAccomodation() {
+		AccomodationDao dao = new AccomodationDao();
 		dao.createAccomodation(this.getInfo());
 	}
 	
 	public void updateAccomodation() {
-		AccomodationCreator dao = new AccomodationCreator();
+		AccomodationDao dao = new AccomodationDao();
 		dao.update(this.getInfo());
 	}
 	

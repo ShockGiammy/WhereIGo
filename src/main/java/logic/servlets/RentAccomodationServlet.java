@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logic.beans.RentAccomodationBean;
+import logic.beans.AccomodationBean;
 import logic.controllers.ControllerFacade;
 
 @WebServlet("/RentTraveller")
@@ -29,7 +29,7 @@ public class RentAccomodationServlet extends HttpServlet {
 			page = "ChatTraveller";
 		}
 		else if (act.equalsIgnoreCase("Rent")) {
-			List<RentAccomodationBean> listOfBean = facade.displayAnnouncement();
+			List<AccomodationBean> listOfBean = facade.displayAnnouncement();
 			req.setAttribute("list", listOfBean);
 			page = "RentAnAccomodation.jsp";
 		}

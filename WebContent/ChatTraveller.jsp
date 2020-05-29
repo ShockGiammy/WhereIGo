@@ -133,9 +133,10 @@ img{ max-width:100%;}
 <%@ page import="logic.beans.UserChatBean" %>
 <%@ page import="java.util.Base64"%>
 <%@ page import="logic.beans.MessageBean" %>
+<%@ page import="logic.beans.GroupChatBean" %>
 <%
 List<UserChatBean> users = (List<UserChatBean>)request.getAttribute("users");
-List<String> groups = (List<String>)request.getAttribute("groups");
+List<GroupChatBean> groups = (List<GroupChatBean>)request.getAttribute("groups");
 %>
 <div class="container">
 <%
@@ -178,12 +179,12 @@ else {
 			<%
             	}
 			}
-			for(String group : groups) {
+			for(GroupChatBean group : groups) {
 			%>
 			<div class="chat_list">
               <div class="chat_people">
                 <div class="chat_ib">
-                  <a href="ChatTraveller?chat=group&user=<%out.println(group);%>" class="btn btn-primary stretched-link"><%=group%></a>
+                  <a href="ChatTraveller?chat=group&user=<%out.println(group.getName());%>" class="btn btn-primary stretched-link"><%=group%></a>
                 </div>
               </div>
 			</div>

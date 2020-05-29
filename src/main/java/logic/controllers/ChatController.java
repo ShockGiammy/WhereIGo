@@ -11,6 +11,7 @@ import logic.LoggedUser;
 import logic.beans.MessageBean;
 import logic.beans.UserChatBean;
 import logic.beans.UserDataBean;
+import logic.beans.GroupChatBean;
 import logic.dao.ChatDao;
 import logic.dao.GroupDao;
 import logic.exceptions.GroupNameTakenException;
@@ -70,7 +71,7 @@ public class ChatController {
 		return beanMessages;
 	}
 	
-	public List<UserChatBean> getUsers() {
+	public List<UserChatBean> retrieveUsers() {
 		users = chatDao.getUsersQuery(username);
 		List<UserChatBean> usersBean = new ArrayList<>();
 		for (UserChatModel user : users) {
@@ -134,8 +135,8 @@ public class ChatController {
 		}	   
 	}
 
-	public void createChat(String renter) {
-		factory.createChat(ChatType.PRIVATE, LoggedUser.getUserName(), renter);
+	public void createChat(String otherUser) {
+		factory.createChat(ChatType.PRIVATE, LoggedUser.getUserName(), otherUser);
 	}
 
 	public void sendMessage(MessageBean message) {
@@ -159,14 +160,14 @@ public class ChatController {
 		facade.addAsServer(msg);
 	}
 	
-	public void createGroup(String groupName, List<String> groupList) throws GroupNameTakenException {	
+	public void createGroup(GroupChatBean group) throws GroupNameTakenException {	
 		GroupModel grpMod = new GroupModel();
-		grpMod.setAll(LoggedUser.getUserName(), groupName, null);
+		grpMod.setAll(LoggedUser.getUserName(), group.getName(), null);
 		groupDao.saveUserGroup(grpMod);
 		
 		UserModel userData = new UserModel();
 		UserDataBean dBean = new UserDataBean();
-		for (String user : groupList) {
+		for (String user : group.getPartecipants()) {
 			try {
 				dBean.setUserName(user);
 			} catch (LengthFieldException | NullValueException e) {
@@ -177,20 +178,22 @@ public class ChatController {
 		}
 	}
 	
-	public List<String> getGroups() {
+	public List<GroupChatBean> retrieveGroups() {
 		UserModel usrMod = new UserModel();
 		UserDataBean dBean = new UserDataBean(username);
 		usrMod.setUsrNameByBean(dBean);
 		groupDao.getUserGroups(grpModel, usrMod);
 		groupDao.getPartGroups(grpModel, usrMod);
-		List<String> groupNames = new ArrayList<>();
+		List<GroupChatBean> groups = new ArrayList<>();
 		for (GroupModel group : grpModel) {
-			groupNames.add(group.getDescription());
+			GroupChatBean groupBean = new GroupChatBean();
+			groupBean.setNameFromDB(group.getDescription());
+			groups.add(groupBean);
 		}
-		return groupNames;
+		return groups;
 	}
 	
-	public UserChatBean getUser(String user) {
+	public UserChatBean retrieveUser(String user) {
 		UserChatModel selectedUser = chatDao.getUser(user);
 		return new UserChatBean(selectedUser);
 	}

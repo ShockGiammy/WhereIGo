@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import logic.beans.RentAccomodationBean;
+import logic.beans.AccomodationBean;
 import logic.view.BasicGui;
 import logic.view.ErrorPopup;
 
@@ -22,19 +22,19 @@ public class GraphicControllerManageAccomodations extends BasicGui{
 	public void initialize() {
 		this.userImage.setImage(setUserImage());
 		addCreateLabel();
-		List<RentAccomodationBean> listOfBean = facade.displayMyAnnouncement();
+		List<AccomodationBean> listOfBean = facade.displayMyAnnouncement();
 		if (listOfBean.isEmpty()) {
 			ErrorPopup error = new ErrorPopup();
 			error.displayLoginError("No accomodation has to been shown");
 		}
 		else {
-			for (RentAccomodationBean bean : listOfBean) {
+			for (AccomodationBean bean : listOfBean) {
 				setDisplayInfo(bean);
 			}
 		}	
 	}
 		
-	private synchronized void setDisplayInfo(RentAccomodationBean bean) {
+	private synchronized void setDisplayInfo(AccomodationBean bean) {
 		
 		Task<HBox> task = new Task<HBox>() {
             @Override
@@ -113,7 +113,7 @@ public class GraphicControllerManageAccomodations extends BasicGui{
 		t.start();
 	}
 	
-	public void setAccomodationInfo(MouseEvent e, RentAccomodationBean bean) {
+	public void setAccomodationInfo(MouseEvent e, AccomodationBean bean) {
 		GraphicControllerCreateAccomodation controllerCalled = loader.getController();
 		controllerCalled.setInfo(bean);
 		nextGuiOnClick(e);

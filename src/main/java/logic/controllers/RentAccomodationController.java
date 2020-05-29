@@ -3,25 +3,25 @@ package logic.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import logic.beans.RentAccomodationBean;
-import logic.dao.AccomodationCreator;
+import logic.beans.AccomodationBean;
+import logic.dao.AccomodationDao;
 import logic.model.AccomodationModel;
 
 public class RentAccomodationController {
 
-	private AccomodationCreator dao;
+	private AccomodationDao dao;
 	private List<AccomodationModel> listOfAccomodation;
 	
 	public RentAccomodationController() {
-		dao = new AccomodationCreator();
+		dao = new AccomodationDao();
 		listOfAccomodation = new ArrayList<>();
 	}
 	
-	public List<RentAccomodationBean> displayAnnouncement() {
+	public List<AccomodationBean> retrieveAnnouncement() {
 		listOfAccomodation = dao.queryDB();
-		List<RentAccomodationBean> listOfBean = new ArrayList<>();
+		List<AccomodationBean> listOfBean = new ArrayList<>();
 		for (AccomodationModel model : listOfAccomodation) {
-			RentAccomodationBean bean = model.getInfo();
+			AccomodationBean bean = model.getInfo();
 			listOfBean.add(bean);
 		}
 		return listOfBean;

@@ -8,14 +8,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logic.SingletonDbConnection;
-import logic.beans.RentAccomodationBean;
+import logic.beans.AccomodationBean;
 import logic.model.AccomodationModel;
 
-public class AccomodationCreator {
+public class AccomodationDao {
 	
 	private static final String EXCEPTION = "Got an exception!";
 
-	public AccomodationModel createAccomodation(RentAccomodationBean info) {
+	public AccomodationModel createAccomodation(AccomodationBean info) {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Post(ID,photo,utente,descr,beds,city,address,services,squareMetres,tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")){    
 			statement.setLong(1, info.getID());
 			statement.setBinaryStream(2,info.getInputFile(), info.getFileLength());		//image
@@ -103,7 +103,7 @@ public class AccomodationCreator {
 		}
 	}
 	
-	public void update(RentAccomodationBean info) {
+	public void update(AccomodationBean info) {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Update Post Set photo = ? , descr = ? ,beds = ? "
 				+ ",city = ? ,address = ? ,services = ? ,squareMetres = ? ,tipologia = ? Where ID = ?")){
 			statement.setBinaryStream(1,info.getInputFile(), info.getFileLength());		//image

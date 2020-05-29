@@ -20,7 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import logic.beans.RentAccomodationBean;
+import logic.beans.AccomodationBean;
 import logic.view.BasicGui;
 import logic.view.ErrorPopup;
 
@@ -62,19 +62,19 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	public void initialize() {
 		this.userImage.setImage(setUserImage());
 		
-		List<RentAccomodationBean> listOfBean = facade.displayAnnouncement();
+		List<AccomodationBean> listOfBean = facade.displayAnnouncement();
 		if (listOfBean.isEmpty()) {
 			ErrorPopup error = new ErrorPopup();
 			error.displayLoginError("no accomodation to been shown");
 		}
 		else {
-			for (RentAccomodationBean bean : listOfBean) {
+			for (AccomodationBean bean : listOfBean) {
 			setDisplayBoxInfo(bean);
 			}
 		}
 	}
 	
-	public void setDisplayBoxInfo(RentAccomodationBean bean) {
+	public void setDisplayBoxInfo(AccomodationBean bean) {
 		
 		if (number == 0) {
 			hBox = new HBox();
@@ -87,7 +87,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		number = (number+1)%2;
 	}
 	
-	public void setDisplayInfo(RentAccomodationBean bean, HBox box) {
+	public void setDisplayInfo(AccomodationBean bean, HBox box) {
 		
 		Task<BorderPane> task = new Task<BorderPane>() {
             @Override
@@ -142,7 +142,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	    t.start();    	
 	}
 	
-	public void setDetail(RentAccomodationBean bean) {
+	public void setDetail(AccomodationBean bean) {
 		descriptionText.setVisible(true);
 		description.setVisible(true);
 		description.setText(bean.getDescription());
@@ -173,7 +173,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		contactRenter.setVisible(true);		
 	}
 	
-	public void setServices(RentAccomodationBean bean) {
+	public void setServices(AccomodationBean bean) {
 		
     	garden.setVisible(true);
     	gardenText.setVisible(true);

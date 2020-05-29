@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logic.LoggedUser;
-import logic.beans.RentAccomodationBean;
+import logic.beans.AccomodationBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.LengthFieldException;
 
@@ -32,25 +32,25 @@ public class RentRenterServlet extends HttpServlet {
 		JspChangePage changeP = new JspChangePage();	
 		ControllerFacade facade = new ControllerFacade();
 	
-		RentAccomodationBean beanToUpdate = null;
+		AccomodationBean beanToUpdate = null;
 		if (req.getParameter(SERVICE)!= null) {
 			if (req.getParameter(SERVICE).equals("Create")) {
-				RentAccomodationBean bean = setAccomodationInfo(req, resp, changeP);
+				AccomodationBean bean = setAccomodationInfo(req, resp, changeP);
 				facade.createAccomodation(bean);
 			}
 			else if (req.getParameter(SERVICE).equals("Update")) {
-				RentAccomodationBean bean = setAccomodationInfo(req, resp, changeP);
+				AccomodationBean bean = setAccomodationInfo(req, resp, changeP);
 				bean.setID(Integer.parseInt(req.getParameter("id")));
 				facade.createAccomodation(bean);
 			}
 		}
-		List<RentAccomodationBean> listOfBean = facade.displayMyAnnouncement();
+		List<AccomodationBean> listOfBean = facade.displayMyAnnouncement();
 		if (req.getParameter(ACTION)!= null) {
 			if(req.getParameter(ACTION).equalsIgnoreCase("Delete")) {
 				facade.deleteMyAccomodation(Integer.parseInt(req.getParameter("id")));
 			}
 			else if (req.getParameter(ACTION).equalsIgnoreCase("requestToUpdate")) {
-				for (RentAccomodationBean bean : listOfBean) {
+				for (AccomodationBean bean : listOfBean) {
 					if (bean.getID() == Integer.parseInt(req.getParameter("id"))) {
 						beanToUpdate = bean;
 					}
@@ -65,8 +65,8 @@ public class RentRenterServlet extends HttpServlet {
 		changeP.forwardPage(page, req, resp);	
 	}
 	
-	public RentAccomodationBean setAccomodationInfo(HttpServletRequest req, HttpServletResponse resp, JspChangePage changeP) {
-		RentAccomodationBean bean = new RentAccomodationBean();
+	public AccomodationBean setAccomodationInfo(HttpServletRequest req, HttpServletResponse resp, JspChangePage changeP) {
+		AccomodationBean bean = new AccomodationBean();
 		Logger logger = Logger.getLogger("WIG");
 		bean.setBeds(req.getParameter("beds"));
 		try {

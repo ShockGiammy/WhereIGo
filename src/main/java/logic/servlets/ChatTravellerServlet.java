@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import logic.LoggedUser;
 import logic.beans.MessageBean;
 import logic.beans.UserChatBean;
+import logic.beans.GroupChatBean;
 import logic.controllers.ChatType;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.LengthFieldException;
@@ -29,7 +30,7 @@ public class ChatTravellerServlet extends HttpServlet {
 		ControllerFacade facade = new ControllerFacade(this);
 		List<UserChatBean> users = facade.getUsers();
 		req.setAttribute("users", users);
-		List<String> groups = facade.getGroups();
+		List<GroupChatBean> groups = facade.getGroups();
 		req.setAttribute("groups", groups);
 		
 		UserChatBean myInfo = facade.getUser(LoggedUser.getUserName());

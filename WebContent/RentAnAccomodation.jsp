@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<%@ page import="logic.beans.RentAccomodationBean" %>
+<%@ page import="logic.beans.AccomodationBean" %>
 <%@ page import="java.util.List" language="java" %>
 <%@page import="java.io.*"%>
 <%@page import="java.util.Base64"%>
@@ -35,9 +35,9 @@
 			</tr>
 		</thead>
 		<%
-		List<RentAccomodationBean> listOfBean = (List<RentAccomodationBean>)request.getAttribute("list");		
-		// print the information about every category of the list
-		for(RentAccomodationBean bean : listOfBean) {
+			List<AccomodationBean> listOfBean = (List<AccomodationBean>)request.getAttribute("list");		
+				// print the information about every category of the list
+				for(AccomodationBean bean : listOfBean) {
 			byte[] list = bean.getServices();
 		%>
 		<tr>

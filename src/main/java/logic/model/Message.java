@@ -12,8 +12,6 @@ public interface Message extends Serializable{
 	public void setMsg(String msg);
 	public MessageType getType();
 	public void setType(MessageType status);
-	public void setStatus(String status);
-	public String getStatus();
 	public String getGroupOrReceiver();
 	public void setGroupOrReceiver(String usersGroup);
 	public ChatType getChatType();
