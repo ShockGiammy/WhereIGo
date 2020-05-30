@@ -151,7 +151,7 @@ public class GraphicControllerInterestForm extends BasicGui{
 		try{
 			InterestsBean intBean = new InterestsBean(this.questAnsw);
 			this.errPop.displayLoginError("This is your personality : "+this.facade.evaluateInterests(intBean));
-			goHome(e);
+			goBookTravel(e);
 		}
 		catch(MissingAnswareException e1) {
 			this.errPop.displayLoginError(e1.getMsg());

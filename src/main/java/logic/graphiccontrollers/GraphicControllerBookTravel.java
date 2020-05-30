@@ -47,16 +47,26 @@ public class GraphicControllerBookTravel extends BasicGui{
 		this.locBean = new LocationBean();
 		this.popUp = new ErrorPopup();
 		this.userImage.setImage(setUserImage());
-		this.grpList = new ArrayList<>();
-		this.suggLoc = new ArrayList<>();
+		if(LoggedUser.getPersonality() == null) {
+			this.popUp.displayLoginError("No suggestions for you, please take our test");
+			Button btnTest = new Button("Take personality test");
+			btnTest.setOnMouseClicked(this::getTest);
+			HBox test = new HBox();
+			test.getChildren().add(btnTest);
+			this.suggLocView.getItems().add(test);
+		}
+		else {
+			this.grpList = new ArrayList<>();
+			this.suggLoc = new ArrayList<>();
+			this.facade.findSuggGroups(grpList);
+			this.facade.findTravelSugg(suggLoc);
+			setLocation();
+			setGroups();
+		}
 		this.depCities = new ArrayList<>();
 		this.arrCities = new ArrayList<>();
 		this.facade.getAvailableTick(this.depCities, this.arrCities);
-		this.facade.findSuggGroups(grpList);
-		this.facade.findTravelSugg(suggLoc);
 		setDepAndArr();
-		setLocation();
-		setGroups();
 	}
 	
 	public void bookMyTravelControl(MouseEvent event) {
@@ -80,37 +90,30 @@ public class GraphicControllerBookTravel extends BasicGui{
 	}
 	
 	public void setGroups() {
-		if(LoggedUser.getPersonality() != null) {
-			int j;
-			for(j = 0; j < grpList.size(); j++) {
-				VBox vbox = new VBox(10);
-				Text title = new Text(grpList.get(j).getGroupTitle());
-				Text owner = new Text(grpList.get(j).getGroupOwner());
-				Text location = new Text(grpList.get(j).getGroupDestination());
-				Button join = new Button("join group");
-				join.setOnMouseClicked(this::joinTheGroup);
-				vbox.getChildren().addAll(title, owner, location, join);
-				this.groupsView.getItems().add(vbox);
-			}
+		int j;
+		for(j = 0; j < grpList.size(); j++) {
+			VBox vbox = new VBox(10);
+			Text title = new Text(grpList.get(j).getGroupTitle());
+			Text owner = new Text(grpList.get(j).getGroupOwner());
+			Text location = new Text(grpList.get(j).getGroupDestination());
+			Button join = new Button("join group");
+			join.setOnMouseClicked(this::joinTheGroup);
+			vbox.getChildren().addAll(title, owner, location, join);
+			this.groupsView.getItems().add(vbox);
 		}
 	}
 	
 	public void setLocation() {
-		if(LoggedUser.getPersonality() == null) {
-			this.popUp.displayLoginError("No suggested location/travel groups to be shown. Please,take personality test");
-		}
-		else {
-			int i;
-			for(i = 0; i < suggLoc.size(); i++) {
-				HBox hbox = new HBox(20);
-				Text loc = new Text(suggLoc.get(i));
-				Button info = new Button("Get more info");
-				Button bookNow = new Button("Book a travel");
-				bookNow.setOnMouseClicked(this::bookSuggestedLoc);
-				info.setOnMouseClicked(this::showMoreInfo);
-				hbox.getChildren().addAll(loc,info, bookNow);
-				this.suggLocView.getItems().add(hbox);
-			}
+		int i;
+		for(i = 0; i < suggLoc.size(); i++) {
+			HBox hbox = new HBox(20);
+			Text loc = new Text(suggLoc.get(i));
+			Button info = new Button("Get more info");
+			Button bookNow = new Button("Book a travel");
+			bookNow.setOnMouseClicked(this::bookSuggestedLoc);
+			info.setOnMouseClicked(this::showMoreInfo);
+			hbox.getChildren().addAll(loc,info, bookNow);
+			this.suggLocView.getItems().add(hbox);
 		}
 	}
 	
@@ -185,6 +188,12 @@ public class GraphicControllerBookTravel extends BasicGui{
 		catch(BigDateException e) {
 			this.popUp.displayLoginError(e.getMessage());
 		}
+	}
+	
+	public void getTest(MouseEvent e) {
+		setScene("InterestsForm.fxml");
+		loadScene();
+		nextGuiOnClick(e);
 	}
 	
 	public void setTicketsDatas(List<UserTravelBean> bean, MouseEvent e) {

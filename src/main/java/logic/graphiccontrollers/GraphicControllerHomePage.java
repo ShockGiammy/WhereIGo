@@ -24,7 +24,6 @@ import logic.beans.UserTravelBean;
 public class GraphicControllerHomePage extends BasicGui{
 	@FXML private Button changeInfo;
 	@FXML private Button moreInfo;
-	@FXML private Button takeTest;
 	@FXML private ListView<VBox> lwTickets;
 	@FXML private ListView<VBox> lwGroups;
 	@FXML private ListView<HBox> lwSuggUsers;
@@ -46,12 +45,6 @@ public class GraphicControllerHomePage extends BasicGui{
 		setTravel();
 		setGroups();
 		setSuggUsers();
-	}
-	
-	public void getInterestControl(MouseEvent event) {
-		setScene("InterestsForm.fxml");
-		loadScene();
-		nextGuiOnClick(event);
 	}
 	
 	public void postRentAnnouncementControl(MouseEvent event) {
