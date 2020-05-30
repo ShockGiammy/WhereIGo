@@ -28,9 +28,6 @@
        				<a class="nav-link" href="moveTo?action=Rent">Rent accomodation</a>
       			</li>
       			<li class="nav-item">
-       				<a class="nav-link" href="moveTo?action=personality">Get personality test</a>
-      			</li>
-      			<li class="nav-item">
        				<a class="nav-link" href="moveTo?action=Chat">Chat with users&nbsp&nbsp&nbsp</a>
       			</li>
       			<%

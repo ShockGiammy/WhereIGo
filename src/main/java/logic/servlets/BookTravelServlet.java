@@ -107,6 +107,9 @@ public class BookTravelServlet extends HttpServlet {
 		else if(action.equalsIgnoreCase("creategroup")) {
 			dest = "CreateGroup.jsp";
 		}
+		else if(action.equalsIgnoreCase("takeTest")) {
+			dest = "PersonalityTest.jsp";
+		}
 		changeP.forwardPage(dest, request, response);
 	}
 	

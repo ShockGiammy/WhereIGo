@@ -11,6 +11,7 @@
 <%@ page import="java.util.ArrayList" language="java" %>
 <%@ page import="java.util.List" language="java" %>
 <%@ page import="logic.beans.GroupBean" language="java" %>
+<%@ page import="logic.LoggedUser" language="java"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -79,6 +80,7 @@ select#arrcity {
     	<span aria-hidden="true">&times;</span>
   		</button>
 	</div>
+
 <%
 	}
 %>
@@ -102,6 +104,15 @@ select#arrcity {
 			<div class="col-xs-6" style="margin-right:60px;">
 				<p class="h5">Location suggested for you</p>
 				<div class="container">
+					<% if(LoggedUser.getPersonality() == null) { %>
+					<div class="row">
+						<div class="col-sm">
+							<a href="BookTravelServlet?action=takeTest" class="btn btn-info btn-l">Take personality test</a>
+						</div>
+					</div>
+					<%
+						} else {
+					%>
 					<%
 						for(int i = 0; i < cities.size(); i++) {
 					%>
@@ -119,6 +130,9 @@ select#arrcity {
 						<%
 							}
 						%>
+						<%
+							}
+						%>
 				</div>
 			</div>
 			<div class="col-xs-6" style="margin-right:60px;">
@@ -133,6 +147,9 @@ select#arrcity {
 						</tr>
 					</thead>
 						<%
+							if(LoggedUser.getPersonality() != null) {
+						%>
+						<%
 							for(int i = 0; i < groupBeanL.size(); i++){
 								GroupBean gbean = groupBeanL.get(i);
 						%>
@@ -141,6 +158,9 @@ select#arrcity {
 						<td><%=gbean.getGroupOwner()%></td>
 						<td><%=gbean.getGroupDestination()%></td>
 						<td><a href="BookTravelServlet?action=joinGroup&descr=<%=gbean.getGroupTitle()%>" class= "btn btn-success btn-l">Join group</a></td>
+						<%
+							}
+						%>
 						<%
 							}
 						%>

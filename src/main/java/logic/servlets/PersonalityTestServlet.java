@@ -27,11 +27,11 @@ public class PersonalityTestServlet extends HttpServlet {
 				answares.add(Integer.valueOf(request.getParameter("answ4")));
 				InterestsBean intBean = new InterestsBean(answares);
 				ControllerFacade fac = new ControllerFacade();
-				request.setAttribute("error", "This is your personality : "+fac.evaluateInterests(intBean));
+				request.setAttribute("bookmessage", "This is your personality : "+fac.evaluateInterests(intBean));
 				JspChangePage changeP = new JspChangePage();
 				HomePageServlet hpServ = new HomePageServlet();
-				hpServ.loadHomePageUserInfo(request);
-				changeP.forwardPage("HomePage.jsp", request, response);
+				hpServ.loadBookTravelSugg(request);
+				changeP.forwardPage("BookTravelStart.jsp", request, response);
 			}
 			catch(NumberFormatException e) {
 				request.setAttribute(error, "An error has occured, please try again");

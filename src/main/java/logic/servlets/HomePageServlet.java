@@ -19,7 +19,6 @@ import logic.controllers.ControllerFacade;
 @WebServlet("/HomePageServlet")
 public class HomePageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static String msg = "fineMsg";
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,9 +54,6 @@ public class HomePageServlet extends HttpServlet {
 				page =	"ChatTraveller";
 			}
 		}
-		else if(act.equalsIgnoreCase("personality")) {
-			page="PersonalityTest.jsp";
-		}
 		else if(act.equalsIgnoreCase("exit")) {
 			HttpSession session = request.getSession();
 			session.removeAttribute("image");
@@ -68,19 +64,21 @@ public class HomePageServlet extends HttpServlet {
 	
 	public void loadBookTravelSugg(HttpServletRequest request) {
 		ControllerFacade fac = new ControllerFacade();
-		List<String> cities = new ArrayList<>();
-		List<GroupBean> beanList = new ArrayList<>();
 		List<String> depCities = new ArrayList<>(); 
 		List<String> arrCities = new ArrayList<>();
+		List<String> cities = new ArrayList<>();
+		List<GroupBean> beanList = new ArrayList<>();
 		fac.getAvailableTick(depCities, arrCities);
-		fac.findTravelSugg(cities);
-		fac.findSuggGroups(beanList);
+		setDepAndArr(request, depCities, arrCities);
+		if(LoggedUser.getPersonality() != null) {
+			fac.findTravelSugg(cities);
+			fac.findSuggGroups(beanList);
+		}
+		else {
+			request.setAttribute("bookmessage", "No suggestions for you, please take our test");
+		}
 		request.setAttribute("grouplist", beanList);
 		request.setAttribute("cities", cities);
-		setDepAndArr(request, depCities, arrCities);
-		if(beanList.isEmpty() && cities.isEmpty()) {
-			request.setAttribute(msg, "No suggestions for you, please take our personality test!");
-		}
 	}
 	
 	public void loadHomePageUserInfo(HttpServletRequest request) {
