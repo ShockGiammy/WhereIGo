@@ -66,19 +66,6 @@ public class UserDao {
 		}
 	}
 	
-	/*public void getUserDatas(UserModel usrModel) {
-		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("SELECT * FROM usr WHERE (username = ?)")){
-			statement.setString(1, usrModel.getUserName());
-			retriveUser(statement, usrModel);
-		}
-		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException on fetchin user datas\n", e);
-		}
-		finally {
-			SingletonDbConnection.getInstance().closeConn();
-		}
-	}*/
-	
 	public int getLoggedUser(PreparedStatement statement, UserModel usrMod) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
@@ -94,21 +81,6 @@ public class UserDao {
 		}
 		return 0;
 	}
-	
-	/*public void retriveUser(PreparedStatement statement, UserModel usrModel) {
-		try(ResultSet rs = statement.executeQuery()){
-			while(rs.next()) {
-				usrModel.setCredentials(rs.getString(3), rs.getString(4), rs.getDate(5).toLocalDate(), rs.getString(6));
-				usrModel.setUserType(rs.getString(7));
-				if(rs.getString(8) != null) {
-					usrModel.setUserPersonality(rs.getString(8));
-				}
-			}
-		}
-		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "ResultSet fetch fail !", e);
-		}
-	}*/
 	
 	public void findSimilarUsers(List<UserModel> usersList, UserModel logUsr) {
 		if(logUsr.getUserPersonality() != null) {

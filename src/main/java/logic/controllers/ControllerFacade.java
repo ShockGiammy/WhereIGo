@@ -204,6 +204,7 @@ public class ControllerFacade {
 			this.bookTravCtrl = new BookTravelControl();
 		}
 		this.dBean = new UserDataBean(LoggedUser.getUserName());
+		this.dBean.setPersonality(LoggedUser.getPersonality());
 		this.bookTravCtrl.getSamePersUsersControl(usrList, dBean);
 	}
 	
