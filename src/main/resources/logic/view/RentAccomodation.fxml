@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControlRentAccomodation">
+<BorderPane prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControlRentAccomodation">
    <top>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="120.0" prefWidth="1040.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <right>
-            <ToolBar prefHeight="101.0" prefWidth="457.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <ToolBar prefHeight="70.0" prefWidth="460.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <items>
                   <ImageView fx:id="home" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goHome" onMouseEntered="#showMouseHome" onMouseExited="#showHome" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -47,14 +47,6 @@
                   <ImageView fx:id="chat" fitHeight="57.0" fitWidth="75.0" onMouseClicked="#goChat" onMouseEntered="#showMouseChat" onMouseExited="#showChat" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/chat.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="55.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/star.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
