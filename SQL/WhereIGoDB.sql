@@ -58,8 +58,6 @@ create table Chat
 	receiver VARCHAR(50),
 	message VARCHAR(1000),
     foreign key (sender)
-			references Usr(username) on delete cascade,
-	foreign key (receiver)
 			references Usr(username) on delete cascade
 );
 

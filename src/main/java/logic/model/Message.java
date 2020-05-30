@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import logic.controllers.ChatType;
 
-public interface Message extends Serializable{
+public interface Message extends Serializable {
 	
 	public String getName();
 	public void setName(String name);

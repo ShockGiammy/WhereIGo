@@ -3,7 +3,7 @@ package logic.model;
 import logic.controllers.ChatType;
 import logic.dao.ChatDao;
 
-public class GroupMessage implements Message{
+public class GroupMessage implements Message {
 	
 	private static final long serialVersionUID = 1L;
 	private String myName;
@@ -31,11 +31,6 @@ public class GroupMessage implements Message{
     public MessageType getType() {
         return type;
     }
-    
-    public void save() {
-		ChatDao dao = new ChatDao();
-		dao.saveMessage(this);
-	}
 
     public void setType(MessageType type) {
         this.type = type;
@@ -51,5 +46,10 @@ public class GroupMessage implements Message{
 
 	public ChatType getChatType() {
 		return chatType;
+	}
+	
+	public void save() {
+		ChatDao dao = new ChatDao();
+		dao.saveMessage(this);
 	}
 }

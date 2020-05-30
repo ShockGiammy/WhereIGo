@@ -22,7 +22,8 @@ public class SecureObjectInputStream extends ObjectInputStream {
 	protected Class<?> resolveClass(ObjectStreamClass osc) throws IOException, ClassNotFoundException {
 		// Only deserialize instances of AllowedClass
 		if ((!osc.getName().equals(PrivateMessage.class.getName())) && (!osc.getName().equals(ChatType.class.getName())) &&
-		 (!osc.getName().equals(Enum.class.getName())) && (!osc.getName().equals(MessageType.class.getName()))) {
+		 (!osc.getName().equals(Enum.class.getName())) && (!osc.getName().equals(MessageType.class.getName())) && 
+		 (!osc.getName().equals(GroupMessage.class.getName()))) {
 			throw new InvalidClassException("Unauthorized deserialization", osc.getName());
 	    }
 	    return super.resolveClass(osc);

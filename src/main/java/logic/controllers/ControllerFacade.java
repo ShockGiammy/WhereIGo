@@ -89,6 +89,7 @@ public class ControllerFacade {
 	public List<MessageBean> openChat(String receiver, ChatType type) {
 		return chatController.openChat(receiver, type);
 	}
+	
 	public void execute(String receiver, ChatType type) throws ServerDownException {
 		chatController.execute(receiver, type);
 	}

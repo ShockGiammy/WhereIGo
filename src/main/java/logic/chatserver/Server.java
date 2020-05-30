@@ -14,6 +14,8 @@ import java.util.Map.Entry;
 import logic.controllers.ChatType;
 import logic.exceptions.DuplicateUsernameException;
 import logic.model.PrivateMessage;
+import logic.model.GroupMessage;
+import logic.model.Message;
 import logic.model.MessageType;
 import logic.model.SecureObjectInputStream;
 import logic.model.UserChatModel;
@@ -80,7 +82,9 @@ public class Server{
 			}
                       
             try {
-                PrivateMessage firstMessage = (PrivateMessage) input.readObject();
+            	logger.log(Level.SEVERE, () -> "1");
+                Message firstMessage = (Message) input.readObject();
+                logger.log(Level.SEVERE, () -> "2");
                 
                 checkGroupName(firstMessage);
                 checkDuplicateUsername(firstMessage);
@@ -89,7 +93,7 @@ public class Server{
                 sendNotification(firstMessage);
 
                 while (socket.isConnected()) {
-                    PrivateMessage inputmsg = (PrivateMessage) input.readObject();
+                    Message inputmsg = (Message) input.readObject();
                     if (inputmsg != null) {
                         logger.info(inputmsg.getType() + " - " + inputmsg.getName() + ": " + inputmsg.getMsg());
                         switch (inputmsg.getType()) {
@@ -114,6 +118,7 @@ public class Server{
                 logger.log(Level.SEVERE, () -> "Duplicate Username : " + name);
             } catch (IOException e) {
             	logger.log(Level.SEVERE, () -> "Problem with IO deserialization " + e.getMessage());
+            	e.printStackTrace();
             } catch (Exception e) {
                 logger.log(Level.SEVERE, e, () -> "Exception in run() method for user: " + name);
                 
@@ -122,7 +127,7 @@ public class Server{
             }
         }
 
-        private synchronized void checkDuplicateUsername(PrivateMessage firstMessage) throws DuplicateUsernameException, IOException {
+        private synchronized void checkDuplicateUsername(Message firstMessage) throws DuplicateUsernameException, IOException {
             logger.info(firstMessage.getName() + " is trying to connect");
             if (!names.containsKey(firstMessage.getName())) {
                 this.name = firstMessage.getName();
@@ -134,7 +139,7 @@ public class Server{
                 logger.info(() -> name + " has been added to the list");
             } else {
                 logger.log(Level.SEVERE, () -> firstMessage.getName() + " is already connected");
-                PrivateMessage msg = new PrivateMessage();
+                Message msg = new PrivateMessage();
                 msg.setMsg(firstMessage.getName()+" We are sorry.\nYour account is already connected to our server.\nPlease check"
                 		+ " that you have no other active connections and remember to not reveal the password to anyone.");
                 msg.setType(MessageType.CONNECTED);
@@ -146,28 +151,28 @@ public class Server{
             }
         }
         
-        public void checkGroupName(PrivateMessage msg) {
-        	if (msg.getChatType() == ChatType.PRIVATE) {
-        		if (listOfLists.containsKey(msg.getGroupOrReceiver()+msg.getName())) {
-        			this.usersGroup = msg.getGroupOrReceiver()+msg.getName();
+        public void checkGroupName(Message firstMessage) {
+        	if (firstMessage.getChatType() == ChatType.PRIVATE) {
+        		if (listOfLists.containsKey(firstMessage.getGroupOrReceiver()+firstMessage.getName())) {
+        			this.usersGroup = firstMessage.getGroupOrReceiver()+firstMessage.getName();
         			listOfLists.get(usersGroup).add(output);
         			logger.info(() -> usersGroup + " chat already existed");
         		} 
-        		else if (listOfLists.containsKey(msg.getName()+msg.getGroupOrReceiver())) {
-        			this.usersGroup = msg.getName()+msg.getGroupOrReceiver();
+        		else if (listOfLists.containsKey(firstMessage.getName()+firstMessage.getGroupOrReceiver())) {
+        			this.usersGroup = firstMessage.getName()+firstMessage.getGroupOrReceiver();
         			listOfLists.get(usersGroup).add(output);
         			logger.info(() -> usersGroup + " chat already existed");
         		}
         		else {
         			HashSet<ObjectOutputStream> writers = new HashSet<>();
         			writers.add(output);
-        			this.usersGroup = msg.getName()+msg.getGroupOrReceiver();
+        			this.usersGroup = firstMessage.getName()+firstMessage.getGroupOrReceiver();
         			listOfLists.put(usersGroup, writers);
         			logger.info(() -> usersGroup + " chat created");
         		}
         	}
         	else {
-        		this.usersGroup = msg.getGroupOrReceiver();
+        		this.usersGroup = firstMessage.getGroupOrReceiver();
         		if (listOfLists.containsKey(usersGroup)) {            		
             		listOfLists.get(usersGroup).add(output);         
                     logger.info(() -> usersGroup + " group already existed");
@@ -181,9 +186,9 @@ public class Server{
         	}
         }
 
-        private PrivateMessage sendNotification(PrivateMessage firstMessage) throws IOException {
+        private Message sendNotification(Message firstMessage) throws IOException {
         	logger.info("sendNotification() method Enter");
-            PrivateMessage msg = new PrivateMessage();
+            Message msg = new GroupMessage();
             msg.setMsg(firstMessage.getName()+" has joined the chat.");
             msg.setType(MessageType.SERVER);
             msg.setName(firstMessage.getName());
@@ -194,9 +199,9 @@ public class Server{
         }
 
 
-        private PrivateMessage removeFromList(String userToRemove) throws IOException {
+        private Message removeFromList(String userToRemove) throws IOException {
             logger.info("removeFromList() method Enter");
-            PrivateMessage msg = new PrivateMessage();
+            Message msg = new GroupMessage();
             msg.setMsg(userToRemove + " has left the chat.");
             msg.setType(MessageType.DISCONNECTED);
             msg.setName("SERVER");
@@ -209,9 +214,9 @@ public class Server{
         /*
          * For displaying that a user has joined the server
          */
-        private PrivateMessage addToList() throws IOException {
+        private Message addToList() throws IOException {
         	logger.info("addToList() method Enter");
-            PrivateMessage msg = new PrivateMessage();
+            Message msg = new PrivateMessage();
             msg.setMsg("Welcome, You have now joined the server! Enjoy chatting!");
             msg.setType(MessageType.CONNECTED);
             msg.setName("SERVER");
@@ -224,7 +229,7 @@ public class Server{
         /*
          * Creates and sends a Message type to the listeners.
          */
-        private void write(PrivateMessage msg) throws IOException {
+        private void write(Message msg) throws IOException {
         	for(Entry<String, HashSet<ObjectOutputStream>> writers : listOfLists.entrySet()) {
         		if (writers.getKey().equals(msg.getGroupOrReceiver())) {
         			for (ObjectOutputStream writer : writers.getValue()) {
