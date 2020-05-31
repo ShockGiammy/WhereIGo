@@ -15,8 +15,6 @@ addons:
   sonarcloud:
     organization: "shockgiammy"
 
-install: true
-
 script:
 
 - mvn clean javafx:compile sonar:sonar -Pcoverage -Dsonar.projectKey=ShockGiammy_WhereIGo -Dsonar.login=$SONAR_TOKEN
