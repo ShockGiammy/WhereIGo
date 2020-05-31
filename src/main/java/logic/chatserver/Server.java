@@ -82,9 +82,7 @@ public class Server{
 			}
                       
             try {
-            	logger.log(Level.SEVERE, () -> "1");
                 Message firstMessage = (Message) input.readObject();
-                logger.log(Level.SEVERE, () -> "2");
                 
                 checkGroupName(firstMessage);
                 checkDuplicateUsername(firstMessage);
@@ -118,7 +116,6 @@ public class Server{
                 logger.log(Level.SEVERE, () -> "Duplicate Username : " + name);
             } catch (IOException e) {
             	logger.log(Level.SEVERE, () -> "Problem with IO deserialization " + e.getMessage());
-            	e.printStackTrace();
             } catch (Exception e) {
                 logger.log(Level.SEVERE, e, () -> "Exception in run() method for user: " + name);
                 

@@ -18,7 +18,7 @@ public class RentAccomodationController {
 	}
 	
 	public List<AccomodationBean> retrieveAnnouncement() {
-		listOfAccomodation = dao.queryDB();
+		listOfAccomodation = dao.retrieveAccomodations();
 		List<AccomodationBean> listOfBean = new ArrayList<>();
 		for (AccomodationModel model : listOfAccomodation) {
 			AccomodationBean bean = model.getInfo();

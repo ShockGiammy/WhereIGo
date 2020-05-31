@@ -20,10 +20,10 @@ public class MessageFactory {
 	
 	public List<Message> openChat(String username, String receiver, ChatType type) {
 		if (type == ChatType.PRIVATE) {
-			return chatDao.getSavedMsg(username, receiver);
+			return chatDao.retrieveSavedMsg(username, receiver);
 		}
 		else {
-			return chatDao.getGroupMsg(receiver);
+			return chatDao.retrieveGroupMsg(receiver);
 		}
 	}
 	

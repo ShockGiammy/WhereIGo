@@ -46,7 +46,7 @@ public class ManageAnnouncementController {
 	}
 	
 	public List<AccomodationBean> retrieveMyAnnouncement() {
-		listOfAccomodation = creator.queryMyAccomodations(username);
+		listOfAccomodation = creator.retrieveMyAccomodations(username);
 		List<AccomodationBean> listOfBeans = new ArrayList<>();
 		for (AccomodationModel model : listOfAccomodation) {
 			AccomodationBean bean = model.getInfo();

@@ -39,10 +39,10 @@ public class AccomodationDao {
 		return new AccomodationModel(info);
 	}
 
-	public List<AccomodationModel> queryDB() {
+	public List<AccomodationModel> retrieveAccomodations() {
 		List<AccomodationModel> models = new ArrayList<>();
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Post")){    
-			getAccomodationDatas(statement, models);
+			retrieveAccomodationDatas(statement, models);
 		}catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
@@ -53,11 +53,11 @@ public class AccomodationDao {
 		return models;
 	}
 	
-	public List<AccomodationModel> queryMyAccomodations(String myUsername) {
+	public List<AccomodationModel> retrieveMyAccomodations(String myUsername) {
 		List<AccomodationModel> models = new ArrayList<>();
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Post Where utente = ?")){
 			statement.setString(1, myUsername);
-			getAccomodationDatas(statement, models);
+			retrieveAccomodationDatas(statement, models);
 		}catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
@@ -68,7 +68,7 @@ public class AccomodationDao {
 		return models;
 	}
 	
-	public void getAccomodationDatas(PreparedStatement statement, List<AccomodationModel> models) {
+	public void retrieveAccomodationDatas(PreparedStatement statement, List<AccomodationModel> models) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				AccomodationModel model = new AccomodationModel();

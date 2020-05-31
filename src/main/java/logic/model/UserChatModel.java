@@ -2,7 +2,7 @@ package logic.model;
 
 import java.io.Serializable;
 
-import logic.dao.ChatDao;
+import logic.dao.UserChatDao;
 
 public class UserChatModel implements Serializable{
 	
@@ -36,7 +36,7 @@ public class UserChatModel implements Serializable{
     }
     
     public void saveStatus() {
-    	ChatDao dao = new ChatDao();
-    	dao.setStatus(this);
+    	UserChatDao dao = new UserChatDao();
+    	dao.saveStatus(this);
     }
 }

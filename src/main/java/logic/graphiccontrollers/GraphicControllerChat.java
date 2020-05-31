@@ -362,7 +362,8 @@ public class GraphicControllerChat extends BasicGui {
 				ErrorPopup err = new ErrorPopup();
 				err.displayLoginError("Group Name is not available");
 			}
-		window.close();
+			window.close();
+			addToGroupList(groupBean.getName());
 		});
 		HBox buttonBox = new HBox();
 		buttonBox.getChildren().addAll(backButton, confirmButton);

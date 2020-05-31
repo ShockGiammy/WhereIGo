@@ -12,8 +12,8 @@ import logic.beans.MessageBean;
 import logic.beans.UserChatBean;
 import logic.beans.UserDataBean;
 import logic.beans.GroupChatBean;
-import logic.dao.ChatDao;
 import logic.dao.GroupDao;
+import logic.dao.UserChatDao;
 import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.LengthFieldException;
 import logic.exceptions.NullValueException;
@@ -25,7 +25,7 @@ import logic.model.UserModel;
 
 public class ChatController {
 	private String username;
-	private ChatDao chatDao;
+	private UserChatDao userDao;
 	private GroupDao groupDao;
 	private ControllerFacade facade;
 	private List<UserChatModel> users;
@@ -38,8 +38,8 @@ public class ChatController {
 	private MessageFactory factory;
 	
 	public ChatController(ControllerFacade reference) {
-		chatDao = new ChatDao();
 		groupDao = new GroupDao();
+		userDao = new UserChatDao();
 		this.facade = reference;
 		this.username = LoggedUser.getUserName();
 		this.factory = new MessageFactory();
@@ -51,7 +51,7 @@ public class ChatController {
 	}
 	
 	public ChatController() {
-		chatDao = new ChatDao();
+		userDao = new UserChatDao();
 		this.username = LoggedUser.getUserName();
 		factory = new MessageFactory();
 	}
@@ -72,7 +72,7 @@ public class ChatController {
 	}
 	
 	public List<UserChatBean> retrieveUsers() {
-		users = chatDao.getUsersQuery(username);
+		users = userDao.retrieveUsersQuery(username);
 		List<UserChatBean> usersBean = new ArrayList<>();
 		for (UserChatModel user : users) {
 			UserChatBean userBean = new UserChatBean(user);			
@@ -82,7 +82,7 @@ public class ChatController {
 	}
 	
 	public void updateUsersStatus() {
-		users = chatDao.getUsersQuery(username);
+		users = userDao.retrieveUsersQuery(username);
 		List<UserChatBean> usersBean = new ArrayList<>();
 		for (UserChatModel user : users) {
 			UserChatBean userBean = new UserChatBean(user);			
@@ -194,7 +194,7 @@ public class ChatController {
 	}
 	
 	public UserChatBean retrieveUser(String user) {
-		UserChatModel selectedUser = chatDao.getUser(user);
+		UserChatModel selectedUser = userDao.retriveUserPicture(user);
 		return new UserChatBean(selectedUser);
 	}
 }

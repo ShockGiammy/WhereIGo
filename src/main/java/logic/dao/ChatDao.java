@@ -1,6 +1,5 @@
 package logic.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +11,6 @@ import java.util.logging.Logger;
 import logic.SingletonDbConnection;
 import logic.model.Message;
 import logic.model.PrivateMessage;
-import logic.model.UserChatModel;
 
 public class ChatDao {
 	
@@ -34,45 +32,16 @@ public class ChatDao {
 		}
 	}
 
-	public void setStatus(UserChatModel user) {
-		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("UPDATE usr Set userStatus = ? where username = ?")){   
-			statement.setString(1, user.getStatus());
-			statement.setString(2, user.getName());
-			statement.execute();
-		}
-		catch (SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
-		}
-		finally {
-			SingletonDbConnection.getInstance().closeConn();
-		}
-	}
 	
-	public String getStatus(String user) {
-		String status = null;
-		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select userStatus From usr Where (username = ?)")){    
-			statement.setString(1, user);
-			status = retriveStatus(statement);
-		}
-		catch (SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
-		}
-		finally {
-			SingletonDbConnection.getInstance().closeConn();
-		}
-		return status;
-	}
 	
-	public List<Message> getSavedMsg(String sender, String receiver) {
+	public List<Message> retrieveSavedMsg(String sender, String receiver) {
 		List<Message> messages = new ArrayList<>();
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Chat Where (sender = ? and receiver = ?) or (sender = ? and receiver = ?)")){    
 			statement.setString(1, sender);
 			statement.setString(2, receiver);
 			statement.setString(3, receiver);
 			statement.setString(4,  sender);
-			retriveSavedMessages(statement, messages);
+			retrieveSavedMessages(statement, messages);
 		}
 		catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
@@ -84,11 +53,11 @@ public class ChatDao {
 		return messages;
 	}
 	
-	public List<Message> getGroupMsg(String group) {
+	public List<Message> retrieveGroupMsg(String group) {
 		List<Message> messages = new ArrayList<>();
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Chat Where receiver = ?")){    
 			statement.setString(1, group);
-			retriveSavedMessages(statement, messages);
+			retrieveSavedMessages(statement, messages);
 		}
 		catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
@@ -100,7 +69,7 @@ public class ChatDao {
 		return messages;
 	}
 	
-	public void retriveSavedMessages(PreparedStatement statement, List<Message> messages) {
+	public void retrieveSavedMessages(PreparedStatement statement, List<Message> messages) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				PrivateMessage message = new PrivateMessage();
@@ -113,95 +82,8 @@ public class ChatDao {
 		}
 	}
 	
-		
-	public List<UserChatModel> getUsersQuery(String userName) {
-		List<UserChatModel> users = new ArrayList<>();
-		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select distinct receiver From Chat Where (sender = ?)")){    
-			statement.setString(1, userName);
-			retriveUsers(statement, users);
-		}
-		catch (SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
-		}
-		finally {
-			SingletonDbConnection.getInstance().closeConn();
-		}
-		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select distinct sender From Chat Where (receiver = ?)")){    
-			statement.setString(1, userName);
-			retriveUsers(statement, users);
-		}
-		catch (SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
-		}
-		finally {
-			SingletonDbConnection.getInstance().closeConn();
-		}
-		for (UserChatModel user : users) {
-			try (Connection conn = SingletonDbConnection.getInstance().getConnection();
-					PreparedStatement statement = conn.prepareStatement("Select userStatus, profilePicture From usr Where username = ?")){    
-				statement.setString(1, user.getName());
-				retriveUserInfo(statement, user);
-			}
-			catch (SQLException e) {
-				Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
-				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
-			}
-			finally {
-				SingletonDbConnection.getInstance().closeConn();
-			}
-		}
-		return users;
-	}
-	
-	public void retriveUserInfo(PreparedStatement statement, UserChatModel user) {
-		try(ResultSet rs = statement.executeQuery()){
-			while(rs.next()) {
-				user.setStatus(rs.getString(1));
-				byte[] image = rs.getBytes(2);
-				user.setPicture(image);
-			}
-		}catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "User fetch error", e);
-		}
-	}
-	
-	public void retriveUsers(PreparedStatement statement, List<UserChatModel> users) {
-		try(ResultSet rs = statement.executeQuery()){
-			while(rs.next()) {
-				int helpVar = 0;
-				String name = rs.getString(1);
-				for (UserChatModel user : users) {
-					if (user.getName().contentEquals(name)) {
-						helpVar = 1;
-					}
-				}
-				if (helpVar == 0) {
-					UserChatModel newUser = new UserChatModel();
-					newUser.setName(name);
-					users.add(newUser);
-				}
-			}
-		}catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Users fetch error", e);
-		}
-	}
-	
-	public String retriveStatus(PreparedStatement statement) {
-		String status = null;
-		try(ResultSet rs = statement.executeQuery()){
-			while(rs.next()) {
-				status = rs.getString(1);
-			}
-		}catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Status fetch error", e);
-		}
-		return status;
-	}
-	
 	public void createNewChat(Message newMessage) {
-		if (getSavedMsg(newMessage.getName(), newMessage.getGroupOrReceiver()).isEmpty()) {
+		if (retrieveSavedMsg(newMessage.getName(), newMessage.getGroupOrReceiver()).isEmpty()) {
 			try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Chat (sender, receiver) VALUES (?, ?)")){  
 				statement.setString(1, newMessage.getName());
 				statement.setString(2, newMessage.getGroupOrReceiver());
@@ -214,33 +96,6 @@ public class ChatDao {
 			finally {
 				SingletonDbConnection.getInstance().closeConn();
 			}
-		}
-	}
-	
-	public UserChatModel getUser(String userName) {
-		UserChatModel user = new UserChatModel();
-		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select profilePicture From usr Where username = ?")){    
-			statement.setString(1, userName);
-			retriveUserPicture(statement, user);
-		}
-		catch (SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
-		}
-		finally {
-			SingletonDbConnection.getInstance().closeConn();
-		}
-		return user;
-	}
-	
-	public void retriveUserPicture(PreparedStatement statement, UserChatModel user) {
-		try(ResultSet rs = statement.executeQuery()){
-			while(rs.next()) {
-				byte[] image = rs.getBytes(1);
-				user.setPicture(image);
-			}
-		}catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "User fetch error", e);
 		}
 	}
 }
