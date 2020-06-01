@@ -54,6 +54,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	
 	private int number = 0;
 	private double pading = 5.0;
+	private static final String BOLD = "-fx-font-weight: bold";
 	
 	
 	@FXML
@@ -91,23 +92,29 @@ public class GraphicControlRentAccomodation extends BasicGui{
             public BorderPane call() {
             	BorderPane pane = new BorderPane();
             	Text city = new Text();
-            	city.setText("City  ");
-            	city.setUnderline(true);
+            	city.setText("City:  ");
             	Text cityValue = new Text();
             	cityValue.setText(bean.getCity());
+            	cityValue.setStyle(BOLD);
             	HBox cityBox = new HBox();
             	cityBox.getChildren().addAll(city, cityValue);
             	cityBox.setPadding(new Insets(pading, pading, pading, pading));
             	VBox vBox = new VBox();
 				HBox bedsBox = new HBox();
-				vBox.getChildren().add(bedsBox);
+				HBox typeBox = new HBox();
+				vBox.getChildren().addAll(bedsBox, typeBox);
 				Text beds = new Text();
-				beds.setText("Beds  ");
-				beds.setUnderline(true);
+				beds.setText("Beds:  ");
 				Text numberBeds = new Text();
 				numberBeds.setText(bean.getBeds());
+				numberBeds.setStyle(BOLD);
 				bedsBox.getChildren().addAll(beds, numberBeds);
 				bedsBox.setPadding(new Insets(pading, pading, pading, pading));
+				Text typeInfo = new Text();
+				typeInfo.setText(bean.getType());
+				typeInfo.setStyle(BOLD);
+				typeBox.getChildren().add(typeInfo);
+				typeBox.setPadding(new Insets(pading, pading, pading, pading));
 				ImageView house = new ImageView();
 				house.setFitHeight(150);
 				house.setFitWidth(150);

@@ -18,9 +18,9 @@
    <center>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
          <children>
-            <Text fx:id="activeChat" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat Attualmente Attiva..">
+            <Text fx:id="activeChat" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a user to chat with.." wrappingWidth="199.1630859375">
                <font>
-                  <Font name="Jokerman" size="16.0" />
+                  <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Text>
             <ListView fx:id="chatPane" prefHeight="528.0" prefWidth="823.0" />
