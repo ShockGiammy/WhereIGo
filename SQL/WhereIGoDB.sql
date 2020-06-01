@@ -179,7 +179,7 @@ Bath is a residential center and a tourist destination which importance is relat
 The excavations began from the ancient 'Aquae Sulis' in 1755 and took to the light remarkable ruins.
 Bath is the perfect resort and spa, to relax and think about nothing.");
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
-values ("Dominican Republic","Santo Domingo", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/santo_domingo.jpg'), "The big city with Caribbean small town flair - the capital Santo Domingo did not seem as much to us as a big city.
+values ("Dominican Republic","Santo Domingo", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/santo_domingo.jpg'), "The big city with Caribbean small town flair - the capital Santo Domtravelgroupsingo did not seem as much to us as a big city.
  The relaxed atmosphere of the locals, the historic buildings and countless street food stands made us feel like being in a small fishing village.
  Families and people interested in culture romp around in the narrow alleys, armed with a sun hat, beach towel and a freshly squeezed juice.
  If you want to immerse yourself in the Dominican culture and experience history as well as long beach days, Santo Domingo is the place for you.");

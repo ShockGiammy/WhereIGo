@@ -9,7 +9,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ErrorPopup {
-	public void displayLoginError(String text) {
+	public void displayErrorPopup(String text) {
 		Stage window = new Stage();
 		window.setWidth(500);
 		window.setHeight(300);

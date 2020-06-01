@@ -30,15 +30,17 @@ public class BasicGui extends Application{
 	@FXML protected ImageView exit;
 	
 	protected static FXMLLoader loader = new FXMLLoader();
-	private static String sample;
-	private static Scene scene;
-	private static Logger logger = Logger.getLogger("WIG");
+	protected static String sample;
+	protected static Scene scene;
+	protected static Logger logger = Logger.getLogger("WIG");
 	protected ControllerFacade facade;
+	protected ErrorPopup popErr;
 	
 	public BasicGui() {
 		if (facade == null) {
 			this.facade = new ControllerFacade();
 		}
+		this.popErr = new ErrorPopup();
 	}
 	
 	@Override

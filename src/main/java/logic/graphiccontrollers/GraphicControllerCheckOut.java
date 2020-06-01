@@ -11,7 +11,6 @@ import logic.beans.UserTravelBean;
 import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.LengthFieldException;
 import logic.exceptions.NullValueException;
-import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
 public class GraphicControllerCheckOut extends BasicGui{
@@ -26,12 +25,10 @@ public class GraphicControllerCheckOut extends BasicGui{
 	@FXML private TextField groupDest;
 	@FXML private Button createGroup;
 	@FXML private Button confirmTrav;
-	private ErrorPopup errPop;
 	private UserTravelBean travbean;
 	
 	@FXML
 	public void initialize() {
-		errPop = new ErrorPopup();
 		travbean = new UserTravelBean();
 		this.userImage.setImage(setUserImage());
 	}
@@ -57,9 +54,9 @@ public class GraphicControllerCheckOut extends BasicGui{
 			grpBean.setGroupDestination(this.groupDest.getText());
 			saveGroup(grpBean);
 		} catch (LengthFieldException e) {
-			this.errPop.displayLoginError(e.getMsg());
+			this.popErr.displayErrorPopup(e.getMsg());
 		} catch (NullValueException e) {
-			this.errPop.displayLoginError(e.getNullExcMsg());
+			this.popErr.displayErrorPopup(e.getNullExcMsg());
 		}
 	}
 	
@@ -67,10 +64,10 @@ public class GraphicControllerCheckOut extends BasicGui{
 		try {
 			grpBean.setGroupOwner(this.groupAdmin.getText());
 			this.facade.saveGroup(grpBean);
-			errPop.displayLoginError("Gruppo salvato correttamente");
+			this.popErr.displayErrorPopup("Gruppo salvato correttamente");
 		}
 		catch(GroupNameTakenException e) {
-			errPop.displayLoginError("Nome del gruppo già scelto. Per favore, inserire un nome diverso");
+			this.popErr.displayErrorPopup("Nome del gruppo già scelto. Per favore, inserire un nome diverso");
 		}
 	}
 	

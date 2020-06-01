@@ -28,7 +28,6 @@ import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.LengthFieldException;
 import logic.exceptions.ServerDownException;
 import logic.view.BasicGui;
-import logic.view.ErrorPopup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,8 +66,7 @@ public class GraphicControllerChat extends BasicGui {
         	try {
 				message = new MessageBean(msg, activeChat.getText());
 			} catch (LengthFieldException e) {
-				ErrorPopup error = new ErrorPopup();
-	        	error.displayLoginError(e.getMsg());
+	        	this.popErr.displayErrorPopup(e.getMsg());
 			}
         	facade.sendMessage(message);
             messageBox.clear();
@@ -228,8 +226,7 @@ public class GraphicControllerChat extends BasicGui {
     	try {
 			facade.execute(receiver, type);
 		} catch (ServerDownException e) {
-			ErrorPopup error = new ErrorPopup();
-        	error.displayLoginError("I'm sorry " + e.getMessage() + "\nServer is down\nYou are going to be redirected to the Home Page");
+        	this.popErr.displayErrorPopup("I'm sorry " + e.getMessage() + "\nServer is down\nYou are going to be redirected to the Home Page");
         	MouseEvent clickEvent = new MouseEvent(home, home, MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, null, 0, false, false, false, false, false, false, false, false, false, false, null);
         	super.goHome(clickEvent);
 		}
@@ -352,15 +349,13 @@ public class GraphicControllerChat extends BasicGui {
 			try {
 				groupBean.setName(groupName.getText());
 			} catch (LengthFieldException e) {
-				ErrorPopup err = new ErrorPopup();
-				err.displayLoginError(e.getMsg());
+				this.popErr.displayErrorPopup(e.getMsg());
 			}
 			groupBean.setPartecipants(namesList);
 			try {
 				facade.createGroup(groupBean);
 			} catch (GroupNameTakenException e1) {
-				ErrorPopup err = new ErrorPopup();
-				err.displayLoginError("Group Name is not available");
+				this.popErr.displayErrorPopup("Group Name is not available");
 			}
 			window.close();
 			addToGroupList(groupBean.getName());

@@ -35,7 +35,7 @@ public class GraphicControllerLogIn {
 			bgui.goHome(event);
 		}
 		else {
-			this.errLogin.displayLoginError("User not registered or wrong credentials");
+			this.errLogin.displayErrorPopup("User not registered or wrong credentials");
 		}
 	}
 	

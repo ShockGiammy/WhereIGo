@@ -21,14 +21,12 @@ import logic.beans.UserTravelBean;
 import logic.exceptions.BigDateException;
 import logic.exceptions.EmptyListException;
 import logic.exceptions.NullValueException;
-import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
 public class GraphicControllerBookTravel extends BasicGui{
 	private UserTravelBean travBean;
 	private LocationBean locBean;
 	private List<UserTravelBean> travBeanArray;
-	private ErrorPopup popUp;
 	private List<GroupBean> grpList;
 	private List<String> suggLoc;
 	private List<String> depCities;  //used to load available travels
@@ -45,10 +43,9 @@ public class GraphicControllerBookTravel extends BasicGui{
 	public void initialize() {
 		this.travBeanArray = new ArrayList<>();
 		this.locBean = new LocationBean();
-		this.popUp = new ErrorPopup();
 		this.userImage.setImage(setUserImage());
 		if(LoggedUser.getPersonality() == null) {
-			this.popUp.displayLoginError("No suggestions for you, please take our test");
+			this.popErr.displayErrorPopup("No suggestions for you, please take our test");
 			Button btnTest = new Button("Take personality test");
 			btnTest.setOnMouseClicked(this::getTest);
 			HBox test = new HBox();
@@ -78,7 +75,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 			travBean.setDepCity(this.departureCity.getValue());
 			checkBookSol(event);
 		}catch (NullValueException e) {
-			this.popUp.displayLoginError(e.getNullExcMsg());
+			this.popErr.displayErrorPopup(e.getNullExcMsg());
 		}
 	}
 	
@@ -150,7 +147,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 					setTicketsDatas(this.travBeanArray, e);
 				}
 				catch(EmptyListException e1) {
-					this.popUp.displayLoginError("Nessun viaggio disponibile o viaggio già prenotato");
+					this.popErr.displayErrorPopup("Nessun viaggio disponibile o viaggio già prenotato");
 				}
 			}
 		}
@@ -164,12 +161,12 @@ public class GraphicControllerBookTravel extends BasicGui{
 				Text title = (Text)groups.get(i).getChildren().get(0);
 				GroupBean grpBean = new GroupBean(title.getText());
 				if(this.facade.insertParticipant(grpBean) == 0) {
-					this.popUp.displayLoginError("Gruppo correttamente joinato");
+					this.popErr.displayErrorPopup("Gruppo correttamente joinato");
 					VBox temp = groups.get(i);
 					this.groupsView.getItems().remove(temp);
 				}
 				else {
-					this.popUp.displayLoginError("Errore nel join del gruppo");
+					this.popErr.displayErrorPopup("Errore nel join del gruppo");
 				}
 			}
 		}
@@ -183,10 +180,10 @@ public class GraphicControllerBookTravel extends BasicGui{
 			setTicketsDatas(this.travBeanArray, event);
 		}
 		catch(EmptyListException e) {
-			this.popUp.displayLoginError("No available travels for the requested cities/dates");
+			this.popErr.displayErrorPopup("No available travels for the requested cities/dates");
 		}
 		catch(BigDateException e) {
-			this.popUp.displayLoginError(e.getMessage());
+			this.popErr.displayErrorPopup(e.getMessage());
 		}
 	}
 	

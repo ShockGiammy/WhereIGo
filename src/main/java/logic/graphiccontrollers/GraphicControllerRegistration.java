@@ -64,9 +64,9 @@ public class GraphicControllerRegistration {
 	    	this.dataBean.setUsrImage(this.profileImage);
 	    	register(event);
 	    }catch(LengthFieldException e ) {
-	    	this.errLogin.displayLoginError(e.getMsg());
+	    	this.errLogin.displayErrorPopup(e.getMsg());
 	    }catch (NullValueException e) {
-	    	this.errLogin.displayLoginError(e.getNullExcMsg());
+	    	this.errLogin.displayErrorPopup(e.getNullExcMsg());
 		}
 	}
 	
@@ -91,12 +91,12 @@ public class GraphicControllerRegistration {
     		this.dataBean.setType(this.typeOfUser.getValue());
     		this.dataBean.setGender(this.gender.getValue());
     		this.facCtrl.insertNewUser(this.dataBean);
-    		this.errLogin.displayLoginError("Correcty Registered");
+    		this.errLogin.displayErrorPopup("Correcty Registered");
     		bgui.setUserImage();
     		bgui.goHome(event);
     	}
     	catch(DuplicateUsernameException e) {
-			this.errLogin.displayLoginError("Username not available");
+			this.errLogin.displayErrorPopup("Username not available");
 		}
     }
     

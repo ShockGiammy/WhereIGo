@@ -1,6 +1,5 @@
 package logic.graphiccontrollers;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -18,7 +17,6 @@ import logic.LoggedUser;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.view.BasicGui;
-import logic.view.ErrorPopup;
 
 public class GraphicControllerTickets extends BasicGui{
 	@FXML private TableView<UserTravelBean> ticketsView;
@@ -33,14 +31,12 @@ public class GraphicControllerTickets extends BasicGui{
 	@FXML private VBox vbox;
 	@FXML private Button bookTheTravel;
 	ObservableList<UserTravelBean> travBeanList = FXCollections.observableArrayList();
-	private ErrorPopup errPop;
 	
 	@FXML
 	public void initialize() {
 		this.bookNowGroup = new ToggleGroup();
 		this.rbList = new ArrayList<>();
 		this.userImage.setImage(setUserImage());
-		this.errPop = new ErrorPopup();
 	}
 	
 	public void setDatas(List<UserTravelBean> travBean) {
@@ -67,7 +63,7 @@ public class GraphicControllerTickets extends BasicGui{
 	
 	public void bookTravel(MouseEvent e) {
 		if(this.bookNowGroup.getSelectedToggle() == null) {
-			this.errPop.displayLoginError("Please select a travel");
+			this.popErr.displayErrorPopup("Please select a travel");
 		}
 		else {
 			int i;

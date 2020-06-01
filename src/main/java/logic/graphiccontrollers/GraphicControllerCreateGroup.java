@@ -10,22 +10,18 @@ import logic.exceptions.GroupNameTakenException;
 import logic.exceptions.LengthFieldException;
 import logic.exceptions.NullValueException;
 import logic.view.BasicGui;
-import logic.view.ErrorPopup;
-
 public class GraphicControllerCreateGroup extends BasicGui{
 	@FXML private TextField groupName;
 	@FXML private TextField groupAdmin;
 	@FXML private TextField groupDest;
 	@FXML private Button createGroup;
 	private GroupBean grpBean;
-	private ErrorPopup err;
 	
 	@FXML
 	public void initialize() {
 		this.groupAdmin.setText(LoggedUser.getUserName());
 		this.grpBean = new GroupBean();
 		grpBean.setGroupOwner(LoggedUser.getUserName());
-		this.err = new ErrorPopup();
 		this.userImage.setImage(setUserImage());
 	}
 	
@@ -35,9 +31,9 @@ public class GraphicControllerCreateGroup extends BasicGui{
 			this.grpBean.setGroupDestination(this.groupDest.getText());
 			checkValues(event);
 		} catch (LengthFieldException e1) {
-			this.err.displayLoginError(e1.getMsg());
+			this.popErr.displayErrorPopup(e1.getMsg());
 		} catch (NullValueException e) {
-			this.err.displayLoginError(e.getNullExcMsg());
+			this.popErr.displayErrorPopup(e.getNullExcMsg());
 		}
 	}
 	
@@ -47,7 +43,7 @@ public class GraphicControllerCreateGroup extends BasicGui{
 			goHome(e);
 		} 
 		catch (GroupNameTakenException e1) {
-			err.displayLoginError("Nome gruppo non disponibile");
+			this.popErr.displayErrorPopup("Nome gruppo non disponibile");
 		}
 	}
 }

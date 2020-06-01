@@ -17,7 +17,6 @@ import javafx.stage.FileChooser;
 import logic.beans.AccomodationBean;
 import logic.LoggedUser;
 import logic.exceptions.LengthFieldException;
-import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
 public class GraphicControllerCreateAccomodation extends BasicGui{
@@ -97,12 +96,10 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 			bean.setDescription(description.getText());
 			bean.setRenter(LoggedUser.getUserName());
 		} catch (LengthFieldException e) {
-			ErrorPopup error = new ErrorPopup();
-        	error.displayLoginError(e.getMsg());
+        	this.popErr.displayErrorPopup(e.getMsg());
 		}
 		if (houseImage == null) {
-        	ErrorPopup error = new ErrorPopup();
-        	error.displayLoginError("Image not found");
+        	this.popErr.displayErrorPopup("Image not found");
         }
 		bean.setHouseImage(houseImage);
 		bean.setSquareMetres(squareMetres.getValue());

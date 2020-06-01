@@ -1,7 +1,6 @@
 package logic.graphiccontrollers;
 
 import java.util.List;
-
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import logic.beans.AccomodationBean;
 import logic.view.BasicGui;
-import logic.view.ErrorPopup;
 
 public class GraphicControllerManageAccomodations extends BasicGui{
 
@@ -24,8 +22,7 @@ public class GraphicControllerManageAccomodations extends BasicGui{
 		addCreateLabel();
 		List<AccomodationBean> listOfBean = facade.displayMyAnnouncement();
 		if (listOfBean.isEmpty()) {
-			ErrorPopup error = new ErrorPopup();
-			error.displayLoginError("No accomodation has to been shown");
+			this.popErr.displayErrorPopup("No accomodation has to been shown");
 		}
 		else {
 			for (AccomodationBean bean : listOfBean) {

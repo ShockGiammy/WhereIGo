@@ -13,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 import logic.LoggedUser;
 import logic.UserType;
@@ -27,14 +26,12 @@ public class GraphicControllerHomePage extends BasicGui{
 	@FXML private ListView<VBox> lwTickets;
 	@FXML private ListView<VBox> lwGroups;
 	@FXML private ListView<HBox> lwSuggUsers;
-	private ErrorPopup err;
 	private List<UserTravelBean> travBean;
 	private List<GroupBean> grpBean;
 	private List<UserDataBean> dataBeanList;
 	
 	@FXML
 	public void initialize() {
-		this.err = new ErrorPopup();
 		this.userImage.setImage(setUserImage());
 		this.travBean = new ArrayList<>();
 		this.grpBean = new ArrayList<>();
@@ -134,7 +131,7 @@ public class GraphicControllerHomePage extends BasicGui{
 				this.facade.deleteSavedTravel(delBean);
 				VBox temp = travels.get(i);
 				this.lwTickets.getItems().remove(temp);
-				err.displayLoginError("Prenotazione correttamente cancellata");
+				this.popErr.displayErrorPopup("Prenotazione correttamente cancellata");
 			}
 		}
 	}
@@ -152,7 +149,7 @@ public class GraphicControllerHomePage extends BasicGui{
 				VBox temp = grps.get(i);
 				grps.remove(i);
 				this.lwGroups.getItems().remove(temp);
-				err.displayLoginError("Gruppo correttamente cancellato");
+				this.popErr.displayErrorPopup("Gruppo correttamente cancellato");
 			}
 		}
 	}
@@ -168,7 +165,7 @@ public class GraphicControllerHomePage extends BasicGui{
 				VBox temp = grps.get(i);
 				grps.remove(temp);
 				this.lwGroups.getItems().remove(temp);
-				err.displayLoginError("Gruppo correttamente abbandonato");
+				this.popErr.displayErrorPopup("Gruppo correttamente abbandonato");
 			}
 		}
 	}

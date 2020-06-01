@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Test;
 import logic.LoggedUser;
 import logic.beans.GroupBean;
+import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.BigDateException;
@@ -63,7 +64,8 @@ public class TestBookTravelControl {
 	/* this test asserts that there are a certain number of locations for a given personality*/
 	@Test
 	public void testSuggestedLocation() {
-		LoggedUser.setPersonality("Lone Wolf");
+		UserDataBean dBean = new UserDataBean("Traveler", "Traveler");
+		this.facCtrl.checkLogIn(dBean);
 		List<String> suggLoc = new ArrayList<>();
 		this.facCtrl.findTravelSugg(suggLoc);
 		assertNotEquals(suggLoc.size(), 0);

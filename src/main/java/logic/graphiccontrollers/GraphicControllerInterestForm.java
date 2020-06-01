@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import logic.beans.InterestsBean;
 import logic.exceptions.MissingAnswareException;
-import logic.view.ErrorPopup;
 import logic.view.BasicGui;
 
 public class GraphicControllerInterestForm extends BasicGui{
@@ -25,7 +24,6 @@ public class GraphicControllerInterestForm extends BasicGui{
 	@FXML private List<ToggleGroup> tgList;
 	@FXML private Button submitForm;
 	private List<Integer> questAnsw;
-	private ErrorPopup errPop;
 	
 	@FXML
 	public void initialize() {
@@ -34,7 +32,6 @@ public class GraphicControllerInterestForm extends BasicGui{
 		this.rbList2 = new ArrayList<>();
 		this.rbList3 = new ArrayList<>();
 		this.rbList4 = new ArrayList<>();
-		this.errPop = new ErrorPopup();
 		initToggle(4);
 		setGroup(this.box1, this.rbList1, this.tgList.get(0), 4, 1);
 		setGroup(this.box2, this.rbList2, this.tgList.get(1), 4, 2);
@@ -150,11 +147,11 @@ public class GraphicControllerInterestForm extends BasicGui{
 	public void evaluatePersonality(MouseEvent e){
 		try{
 			InterestsBean intBean = new InterestsBean(this.questAnsw);
-			this.errPop.displayLoginError("This is your personality : "+this.facade.evaluateInterests(intBean));
+			this.popErr.displayErrorPopup("This is your personality : "+this.facade.evaluateInterests(intBean));
 			goBookTravel(e);
 		}
 		catch(MissingAnswareException e1) {
-			this.errPop.displayLoginError(e1.getMsg());
+			this.popErr.displayErrorPopup(e1.getMsg());
 		}
 	}
 }
