@@ -102,7 +102,8 @@ public class GraphicControlRentAccomodation extends BasicGui{
             	VBox vBox = new VBox();
 				HBox bedsBox = new HBox();
 				HBox typeBox = new HBox();
-				vBox.getChildren().addAll(bedsBox, typeBox);
+				HBox spaceBox = new HBox();
+				vBox.getChildren().addAll(bedsBox, typeBox, spaceBox);
 				Text beds = new Text();
 				beds.setText("Beds:  ");
 				Text numberBeds = new Text();
@@ -111,9 +112,12 @@ public class GraphicControlRentAccomodation extends BasicGui{
 				bedsBox.getChildren().addAll(beds, numberBeds);
 				bedsBox.setPadding(new Insets(pading, pading, pading, pading));
 				Text typeInfo = new Text();
+				Text space = new Text();
+				space.setText("                                ");
+				spaceBox.getChildren().add(space);
 				typeInfo.setText(bean.getType());
 				typeInfo.setStyle(BOLD);
-				typeBox.getChildren().add(typeInfo);
+				typeBox.getChildren().addAll(typeInfo);
 				typeBox.setPadding(new Insets(pading, pading, pading, pading));
 				ImageView house = new ImageView();
 				house.setFitHeight(150);
@@ -125,7 +129,10 @@ public class GraphicControlRentAccomodation extends BasicGui{
 				details.setOnMouseClicked(e -> 
     				setDetail(bean));
 				HBox detailBox = new HBox();
-				detailBox.getChildren().add(details);
+				Text renterName = new Text();
+				renterName.setText(bean.getRenter()+ "     ");
+				renterName.setStyle(BOLD);
+				detailBox.getChildren().addAll(renterName, details);
 				detailBox.setAlignment(Pos.CENTER_RIGHT);
 				detailBox.setPadding(new Insets(pading, pading, pading, pading));
 				pane.setTop(cityBox);
