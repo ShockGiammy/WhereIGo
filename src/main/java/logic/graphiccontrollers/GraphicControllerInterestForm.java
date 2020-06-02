@@ -17,86 +17,111 @@ public class GraphicControllerInterestForm extends BasicGui{
 	@FXML private List<RadioButton> rbList2;
 	@FXML private List<RadioButton> rbList3;
 	@FXML private List<RadioButton> rbList4;
+	@FXML private List<RadioButton> rbList5;
 	@FXML private VBox box1;
 	@FXML private VBox box2;
 	@FXML private VBox box3;
 	@FXML private VBox box4;
+	@FXML private VBox box5;
 	@FXML private List<ToggleGroup> tgList;
 	@FXML private Button submitForm;
-	private List<Integer> questAnsw;
+	private int[] currAnsw;
+	private List<Integer> finalAnsw;
 	
 	@FXML
 	public void initialize() {
-		this.questAnsw = new ArrayList<>();
+		this.currAnsw = new int[5];
+		this.finalAnsw = new ArrayList<>();
 		this.rbList1 = new ArrayList<>();
 		this.rbList2 = new ArrayList<>();
 		this.rbList3 = new ArrayList<>();
 		this.rbList4 = new ArrayList<>();
-		initToggle(4);
+		this.rbList5 = new ArrayList<>();
+		initToggle(5);
 		setGroup(this.box1, this.rbList1, this.tgList.get(0), 4, 1);
 		setGroup(this.box2, this.rbList2, this.tgList.get(1), 4, 2);
 		setGroup(this.box3, this.rbList3, this.tgList.get(2), 4, 3);
 		setGroup(this.box4, this.rbList4, this.tgList.get(3), 4, 4);
+		setGroup(this.box5, this.rbList5, this.tgList.get(4), 4, 5);
 		this.userImage.setImage(setUserImage());
+	}
+	
+	public void setAnswares(List<Integer> preAnsw) {
+		this.finalAnsw.addAll(preAnsw);
 	}
 	
 	public void manageGroup1() {
 		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(0))) {
-			this.questAnsw.add(2);
+			currAnsw[0] = 2;
 		}
 		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(1))) {
-			this.questAnsw.add(1);
+			currAnsw[0] = 1;
 		}
 		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(2))) {
-			this.questAnsw.add(4);
+			currAnsw[0] = 4;
 		}
 		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(3))) {
-			this.questAnsw.add(3);
+			currAnsw[0] = 3;
 		}
 	}
 		
 	public void manageGroup2() {
 		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(0))) {
-			this.questAnsw.add(4);
+			currAnsw[1] = 4;
 		}
 		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(1))) {
-			this.questAnsw.add(1);
+			currAnsw[1] = 1;
 		}
 		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(2))) {
-			this.questAnsw.add(2);
+			currAnsw[1] = 2;
 		}
 		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(3))) {
-			this.questAnsw.add(3);
+			currAnsw[1] = 3;
 		}
 	}
 	
 	public void manageGroup3() {
 		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(0))) {
-			this.questAnsw.add(1);
+			currAnsw[2] = 1;
 		}
 		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(1))) {
-			this.questAnsw.add(3);
+			currAnsw[2] = 3;
 		}
 		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(2))) {
-			this.questAnsw.add(2);
+			currAnsw[2] = 2;
 		}
 		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(3))) {
-			this.questAnsw.add(4);
+			currAnsw[2] = 4;
 		}
 	}
 	
 	public void manageGroup4() {
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(0))) {
-			this.questAnsw.add(2);
+			currAnsw[3] = 2;
 		}
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(1))) {
-			this.questAnsw.add(3);
+			currAnsw[3] = 3;
 		}
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(2))) {
-			this.questAnsw.add(1);
+			currAnsw[3] = 1;
 		}
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(3))) {
-			this.questAnsw.add(4);
+			currAnsw[3] = 4;
+		}
+	}
+	
+	public void manageGroup5() {
+		if(this.tgList.get(4).getSelectedToggle().equals(this.rbList4.get(0))) {
+			currAnsw[4] = 3;
+		}
+		if(this.tgList.get(4).getSelectedToggle().equals(this.rbList4.get(1))) {
+			currAnsw[4] = 4;
+		}
+		if(this.tgList.get(4).getSelectedToggle().equals(this.rbList4.get(2))) {
+			currAnsw[4] = 1;
+		}
+		if(this.tgList.get(4).getSelectedToggle().equals(this.rbList4.get(3))) {
+			currAnsw[4] = 2;
 		}
 	}
 	
@@ -146,12 +171,34 @@ public class GraphicControllerInterestForm extends BasicGui{
 	
 	public void evaluatePersonality(MouseEvent e){
 		try{
-			InterestsBean intBean = new InterestsBean(this.questAnsw);
-			this.popErr.displayErrorPopup("This is your personality : "+this.facade.evaluateInterests(intBean));
-			goBookTravel(e);
+			setAnswares();
+			InterestsBean intBean = new InterestsBean(this.finalAnsw);
+			if(this.finalAnsw.size() <= 4) {
+				this.popErr.displayErrorPopup("Pelase answare to all questions");
+			}
+			else if(this.finalAnsw.size() == 5) {
+				setScene("InterestsForm2.fxml");
+				loadScene();
+				GraphicControllerInterestForm controller = loader.getController();
+				controller.setAnswares(this.finalAnsw);
+				nextGuiOnClick(e);
+			}
+			else {
+				String pers = this.facade.evaluateInterests(intBean);
+				if(pers != null) {
+					this.popErr.displayErrorPopup("This is your personality : "+ pers);
+					goBookTravel(e);
+				}
+			}
 		}
 		catch(MissingAnswareException e1) {
 			this.popErr.displayErrorPopup(e1.getMsg());
+		}
+	}
+	
+	private void setAnswares() {
+		for(int i = 0; i < this.currAnsw.length; i++) {
+			this.finalAnsw.add(this.currAnsw[i]);
 		}
 	}
 }

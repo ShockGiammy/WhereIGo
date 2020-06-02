@@ -15,35 +15,43 @@ import logic.exceptions.MissingAnswareException;
 public class PersonalityTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String error = "error";
+	private static String defPage = "PersonalityTest.jsp";
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		if(request.getParameter("evalPers") != null) {
-			try {
-				List<Integer> answares = new ArrayList<>();
-				answares.add(Integer.valueOf(request.getParameter("answ1")));
-				answares.add(Integer.valueOf(request.getParameter("answ2")));
-				answares.add(Integer.valueOf(request.getParameter("answ3")));
-				answares.add(Integer.valueOf(request.getParameter("answ4")));
+			List<Integer> answares = new ArrayList<>();
+			extractAnswares(answares, request);
+			JspChangePage changeP = new JspChangePage();
+			if(request.getAttribute(error) != null) {
+				changeP.forwardPage(defPage, request, response);
+			}
+			else {
 				InterestsBean intBean = new InterestsBean(answares);
 				ControllerFacade fac = new ControllerFacade();
-				request.setAttribute("bookmessage", "This is your personality : "+fac.evaluateInterests(intBean));
-				JspChangePage changeP = new JspChangePage();
-				HomePageServlet hpServ = new HomePageServlet();
-				hpServ.loadBookTravelSugg(request);
-				changeP.forwardPage("BookTravelStart.jsp", request, response);
-			}
-			catch(NumberFormatException e) {
-				request.setAttribute(error, "An error has occured, please try again");
-				JspChangePage changeP = new JspChangePage();
-				changeP.forwardPage("PersonalityTest.jsp", request, response);
-			}
-			catch(MissingAnswareException e) {
-				request.setAttribute(error, e.getMessage());
-				JspChangePage changeP = new JspChangePage();
-				changeP.forwardPage("PersonalityTest.jsp", request, response);
+				try {
+					String pers = fac.evaluateInterests(intBean);
+					request.setAttribute("bookmessage", "This is your personality : " + pers);
+					HomePageServlet hpServ = new HomePageServlet();
+					hpServ.loadBookTravelSugg(request);
+					changeP.forwardPage("BookTravelStart.jsp", request, response);
+			
+				}catch(MissingAnswareException e) {
+					request.setAttribute(error, e.getMessage());
+					changeP.forwardPage(defPage, request, response);
+				}
 			}
 		}
 	}
-
+	
+	private void extractAnswares(List<Integer> answares, HttpServletRequest request) {
+		try {
+			for(int i = 1; i < 11; i++) {
+				String answ = request.getParameter("answ"+ i);
+				answares.add(Integer.valueOf(answ));
+			}
+		}catch(NumberFormatException e) {
+			request.setAttribute(error, "Please answare to all the questions");
+		}
+	}
 }

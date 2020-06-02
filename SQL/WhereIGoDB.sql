@@ -1,5 +1,4 @@
-begin;
-
+flush binary logs;
 create table Locations
 (
 	country VARCHAR(45) NOT NULL,
@@ -92,10 +91,10 @@ create table Buys
 			references Usr(username) on delete cascade
 );
 
-insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilePicture,userstatus)
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
 values("Traveler","Traveler","Traveler","Traveler","16-03-1998","Male","Traveler","Friendly",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/avatar.png'),"offline");
 
-insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilePicture,userstatus)
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
 values("Renter","Renter","Renter","Renter","16-03-1998","Male","Renter","Friendly",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/avatar.png'),"offline");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
@@ -174,12 +173,13 @@ On one hand the ancient Buda, with its Castle, UNESCO heritage, the Royal Palace
 Last, but not least, the spas : Budapest has a lot of them, well know since the Roman's age, which were expanded during the Turkish persiod until 1920, when Budapest achieved the title of 'City of spas'");
 
 insert into Locations(country,city,tipeOfPersonality,photo1, descr)
-values ("UK","Bath", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/bath.jpg'), "Elegant and harmonious city on the Avon river, 18 km South-East of Bristol.
+values ("UK","Bath", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Locations/Uploads/Locations/bath.jpg'), "Elegant and harmonious city on the Avon river, 18 km South-East of Bristol.
 Bath is a residential center and a tourist destination which importance is related to the baths.
 The excavations began from the ancient 'Aquae Sulis' in 1755 and took to the light remarkable ruins.
 Bath is the perfect resort and spa, to relax and think about nothing.");
+
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
-values ("Dominican Republic","Santo Domingo", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/santo_domingo.jpg'), "The big city with Caribbean small town flair - the capital Santo Domtravelgroupsingo did not seem as much to us as a big city.
+values ("Dominican Republic","Santo Domingo", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/santo_domingo.jpg'), "The big city with Caribbean small town flair - the capital Santo Domingo did not seem as much to us as a big city.
  The relaxed atmosphere of the locals, the historic buildings and countless street food stands made us feel like being in a small fishing village.
  Families and people interested in culture romp around in the narrow alleys, armed with a sun hat, beach towel and a freshly squeezed juice.
  If you want to immerse yourself in the Dominican culture and experience history as well as long beach days, Santo Domingo is the place for you.");

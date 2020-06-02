@@ -218,7 +218,7 @@
                   <HBox>
                      <children>
                         <VBox fx:id="box4" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
-                        <VBox prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
+                        <VBox prefHeight="103.0" prefWidth="383.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Perfectly organized">
                                  <font>
@@ -236,6 +236,44 @@
                                  </font>
                               </Text>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Not organized at all">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="During a trip abroad : ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <HBox>
+                     <children>
+                        <VBox fx:id="box5" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
+                        <VBox prefHeight="103.0" prefWidth="383.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You visit all the typical places ">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You spend all your time in at the sea or spa" wrappingWidth="292.8000602722168">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You try to meet new people">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You totally get involved in the local culture">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

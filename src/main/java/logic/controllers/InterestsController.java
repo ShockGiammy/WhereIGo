@@ -21,7 +21,7 @@ public class InterestsController {
 	
 	public String evaluateInterestsControl(InterestsBean interBean) throws MissingAnswareException {
 		List<Integer> answ = interBean.getAnswares();
-		if(answ.size() <= 3) {
+		if(answ.size() <= 9) {
 			throw new MissingAnswareException("Pelase answare to all questions");
 		}
 		UserDataBean dBean = new UserDataBean(LoggedUser.getUserName());
