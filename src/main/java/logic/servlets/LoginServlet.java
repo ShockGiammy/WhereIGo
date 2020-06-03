@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 			changeP.forwardPage(defPage, request, response);
 		}
 		else {
-			retreiveImage(request, dataBean);
+			retrieveImage(request, dataBean);
 			if(request.getAttribute(errMsg) != null) {
 				changeP.forwardPage(defPage, request, response);
 			}
@@ -78,7 +78,7 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 	
-	private void retreiveImage(HttpServletRequest request, UserDataBean dataBean) {
+	private void retrieveImage(HttpServletRequest request, UserDataBean dataBean) {
 		if(request.getParameter("prof64Image") != null) {
 			byte[] decodedImg = Base64.getDecoder().decode(request.getParameter("prof64Image"));
 			String listingFolder = System.getProperty("user.dir");

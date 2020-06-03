@@ -92,24 +92,24 @@
 				</table>
 				</div>
 				
-				<div>
+			</div>
+			<div class="row">
+					<div>
 					<p class="h5">Travelers suggested for you</p>
-					<div class="container">
 						<%
 							for(int i = 0; i < dBeanList.size(); i++){
 							UserDataBean bean = dBeanList.get(i);
 						%>
-						<div class="row">
+						<div class="row" style="margin-left:10px;">
 							<div><img src="data:image/jpg;base64, <%if (bean.getByteStream()!= null) { out.println(new String(Base64.getEncoder().encodeToString(bean.getByteStream()))); }%>" height="35px" width="35px" alt="userImage" class="rounded-circle user_img_msg"></div>
-							<div style="font-size:20px;"><%=bean.getUsername()%></div>
-							<div class="col-sm"><a href="ChatTraveller?action=openChat" class="btn btn-info btn-l">Contact</a></div>
+							<div style="font-size:20px;margin-right:20px;"><%=bean.getUsername()%></div>
+							<div><a href="ChatTraveller?action=openChat" class="btn btn-info btn-l">Contact</a></div>
 						</div><br>
 						<%
 							}
 						%>
 					</div>
 				</div>
-			</div>
 		</div>
 	</form>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>

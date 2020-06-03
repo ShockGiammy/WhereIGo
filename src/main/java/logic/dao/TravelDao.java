@@ -25,7 +25,7 @@ public class TravelDao {
 		}
 	}
 	
-	public List<TicketModel> retriveAvailableTickets(TicketModel tickMod, UserModel usrMod) {
+	public List<TicketModel> retrieveAvailableTickets(TicketModel tickMod, UserModel usrMod) {
 		List<TicketModel> tickets = new ArrayList<>();
 		if(checkIfBooked(tickMod, usrMod)) {
 			return tickets;

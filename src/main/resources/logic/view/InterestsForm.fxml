@@ -97,6 +97,11 @@
                         <VBox fx:id="box1" prefHeight="103.0" prefWidth="26.0" spacing="10.0" style="-fx-background-color: #19ca8b;" />
                         <VBox prefHeight="103.0" prefWidth="340.0" spacing="7.0" style="-fx-background-color: #19ca8b;">
                            <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Going for nature trips">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Playing video-games with friends">
                                  <font>
                                     <Font size="15.0" />
@@ -108,11 +113,6 @@
                                  </font>
                               </Text>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doing sports">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Going for nature trips">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

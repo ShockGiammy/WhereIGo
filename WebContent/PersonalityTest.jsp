@@ -33,7 +33,7 @@
 			<div class="form-horizontal">
 				<div class="form-group">
 					<span style="white-space:nowrap;">
-						<input type="radio" name="answ1" id="answ1.1" value="2">
+						<input type="radio" name="answ1" id="answ1.1" value="1">
 						<label class="radio-inline" for="answ1.1" style="white-space: nowrap;">Playing video-games with friends</label>
 					</span>
 				</div>
@@ -41,7 +41,7 @@
 			<div class="form-horizontal">
 				<div class="form-group">
 					<span style="white-space:nowrap;">
-						<input type="radio" name="answ1" id="answ1.2" value="1">
+						<input type="radio" name="answ1" id="answ1.2" value="4">
 						<label class="radio-inline" for="answ1.2">Reading book</label>
 					</span>
 				</div>
@@ -57,7 +57,7 @@
 			<div class="form-horizontal">
 				<div class="form-group">
 					<span style="white-space:nowrap;">
-						<input type="radio" name="answ1" id="answ1.4" value="4">
+						<input type="radio" name="answ1" id="answ1.4" value="2">
 						<label class="radio-inline" for="answ1.4">Going for nature trips</label>
 					</span>
 				</div>
@@ -102,43 +102,8 @@
 		</div>
 		
 		<div class="row">
-		<div class="col-4" style="margin-right:40px;">
-			<p class="h6" style="font-weight: bold;">If you have a problem with one of your friends :</p>
-			<div class="form-horizontal">
-				<div class="form-group">
-					<span style="white-space:nowrap;">
-						<input type="radio" name="answ3" id="answ3.1" value="2">
-						<label class="radio-inline" for="answ3.1" style="white-space: nowrap;">You talk to her/him and try to solve</label>
-					</span>
-				</div>
-			</div>
-			<div class="form-horizontal">
-				<div class="form-group">
-					<span style="white-space:nowrap;">
-						<input type="radio" name="answ3" id="answ3.2" value="1">
-						<label class="radio-inline" for="answ3.2">You ask an advice to another of your friends</label>
-					</span>
-				</div>
-			</div>
-			<div class="form-horizontal">
-				<div class="form-group">
-					<span style="white-space:nowrap;">
-						<input type="radio" name="answ3" id="answ3.3" value="3">
-						<label class="radio-inline" for="answ3.3">You wait the she/he comes to talk with you</label>
-					</span>
-				</div>
-			</div>
-			<div class="form-horizontal">
-				<div class="form-group">
-					<span style="white-space:nowrap;">
-						<input type="radio" name="answ3" id="answ3.4" value="4">
-						<label class="radio-inline" for="answ3.4">It's her/his fault for sure, so you don't argue</label>
-					</span>
-				</div>
-			</div>
-		</div>
 		
-		<div class="col-4">
+		<div class="col-4" style="margin-right:40px;">
 			<p class="h6" style="font-weight: bold;">Which type of tv series you like :</p>
 			<div class="form-horizontal">
 				<div class="form-group">
@@ -169,6 +134,42 @@
 					<span style="white-space:nowrap;">
 						<input type="radio" name="answ4" id="answ4.4" value="3">
 						<label class="radio-inline" for="answ4.4">I don't like tv series that much.</label>
+					</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-4">
+			<p class="h6" style="font-weight: bold;white-space:nowrap;">If you have a problem with one of your friends :</p>
+			<div class="form-horizontal">
+				<div class="form-group">
+					<span style="white-space:nowrap;">
+						<input type="radio" name="answ3" id="answ3.1" value="2">
+						<label class="radio-inline" for="answ3.1" style="white-space: nowrap;">You talk to her/him and try to solve</label>
+					</span>
+				</div>
+			</div>
+			<div class="form-horizontal">
+				<div class="form-group">
+					<span style="white-space:nowrap;">
+						<input type="radio" name="answ3" id="answ3.2" value="1">
+						<label class="radio-inline" for="answ3.2">You ask an advice to another of your friends</label>
+					</span>
+				</div>
+			</div>
+			<div class="form-horizontal">
+				<div class="form-group">
+					<span style="white-space:nowrap;">
+						<input type="radio" name="answ3" id="answ3.3" value="4">
+						<label class="radio-inline" for="answ3.3">You wait the she/he comes to talk with you</label>
+					</span>
+				</div>
+			</div>
+			<div class="form-horizontal">
+				<div class="form-group">
+					<span style="white-space:nowrap;">
+						<input type="radio" name="answ3" id="answ3.4" value="3">
+						<label class="radio-inline" for="answ3.4">It's her/his fault for sure, so you don't argue</label>
 					</span>
 				</div>
 			</div>
@@ -255,7 +256,7 @@
 			<div class="form-horizontal">
 				<div class="form-group">
 					<span style="white-space:nowrap;">
-						<input type="radio" name="answ7" id="answ7.1" value="2">
+						<input type="radio" name="answ7" id="answ7.1" value="3">
 						<label class="radio-inline" for="answ7.1">Perfectly organized</label>
 					</span>
 				</div>
@@ -263,7 +264,7 @@
 			<div class="form-horizontal">
 				<div class="form-group">
 					<span style="white-space:nowrap;">
-						<input type="radio" name="answ7" id="answ7.2" value="3">
+						<input type="radio" name="answ7" id="answ7.2" value="2">
 						<label class="radio-inline" for="answ7.2">Quit organized</label>
 					</span>
 				</div>
@@ -364,7 +365,7 @@
 			<div class="form-horizontal">
 				<div class="form-group">
 					<span style="white-space:nowrap;">
-						<input type="radio" name="answ10" id="answ10.1" value="3">
+						<input type="radio" name="answ10" id="answ10.1" value="2">
 						<label class="radio-inline" for="answ10.1" style="white-space: nowrap;">Start a beautiful long friendship with them</label>
 					</span>
 				</div>
@@ -388,7 +389,7 @@
 			<div class="form-horizontal">
 				<div class="form-group">
 					<span style="white-space:nowrap;">
-						<input type="radio" name="answ10" id="answ10.4" value="2">
+						<input type="radio" name="answ10" id="answ10.4" value="3">
 						<label class="radio-inline" for="answ10.4">Plot the downfall of the person you hate</label>
 					</span>
 				</div>

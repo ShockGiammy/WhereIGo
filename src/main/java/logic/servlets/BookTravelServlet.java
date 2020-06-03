@@ -156,7 +156,7 @@ public class BookTravelServlet extends HttpServlet {
 	private void loadLocInfo(HttpServletRequest request) {
 		LocationBean locBean = new LocationBean();
 		locBean.setCityName(request.getParameter("city"));
-		this.facCtrl.retriveLocInfo(locBean);
+		this.facCtrl.retrieveLocInfo(locBean);
 		request.setAttribute("location", locBean);
 	}
 	
@@ -173,7 +173,7 @@ public class BookTravelServlet extends HttpServlet {
 	
 	private void findTravels(UserTravelBean travBean, List<UserTravelBean> travBeanList, HttpServletRequest request) {
 		try {
-			this.facCtrl.retriveTravelSolutions(travBean, travBeanList);
+			this.facCtrl.retrieveTravelSolutions(travBean, travBeanList);
 			request.setAttribute("tickets", travBeanList);
 		}
 		catch(EmptyListException e) {

@@ -97,10 +97,10 @@ public class GraphicControllerInterestForm extends BasicGui{
 	
 	public void manageGroup4() {
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(0))) {
-			currAnsw[3] = 2;
+			currAnsw[3] = 3;
 		}
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(1))) {
-			currAnsw[3] = 3;
+			currAnsw[3] = 2;
 		}
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(2))) {
 			currAnsw[3] = 1;

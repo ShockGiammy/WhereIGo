@@ -51,7 +51,7 @@ public class BookTravelControl {
 	public void getSuggestedGroupsControl(List<GroupBean> beanList, UserDataBean dataBean) {
 		this.usrMod.setUsrAndPersByBean(dataBean);
 		List<GroupModel> grpModelList = new ArrayList<>();
-		this.grpDao.retriveSuggestedGroups(this.usrMod, grpModelList);
+		this.grpDao.retrieveSuggestedGroups(this.usrMod, grpModelList);
 		extractGroupsControl(grpModelList, beanList);
 	}
 	
@@ -70,16 +70,16 @@ public class BookTravelControl {
 		}
 	}
 	
-	public void retriveLocInfoControl(LocationBean bean) {
+	public void retrieveLocInfoControl(LocationBean bean) {
 		LocationModel locModel = new LocationModel();
 		locModel.setCityByBean(bean);
-		this.locDao.retriveLocationInfo(locModel);
+		this.locDao.retrieveLocationInfo(locModel);
 		bean.setCountryName(locModel.getCountry());
 		bean.setDescription(locModel.getDescription());
 		bean.setStream(locModel.getPhoto());
 	}
 	
-	public void retriveTravelSolutionsControl(UserDataBean dataBean, UserTravelBean travBean, List<UserTravelBean> travList) throws BigDateException, EmptyListException {
+	public void retrieveTravelSolutionsControl(UserDataBean dataBean, UserTravelBean travBean, List<UserTravelBean> travList) throws BigDateException, EmptyListException {
 		List<TicketModel> tickList = new ArrayList<>();
 		if(LocalDate.parse(travBean.getFirstDay()).compareTo(LocalDate.parse(travBean.getLastDay())) >= 0) {
 			throw new BigDateException("Departure date is before Return date");
@@ -88,7 +88,7 @@ public class BookTravelControl {
 			this.usrMod.setUsrNameByBean(dataBean);
 			TicketModel tick = new TicketModel();
 			tick.setTravByBean(travBean);
-			tickList.addAll(travDao.retriveAvailableTickets(tick, usrMod));
+			tickList.addAll(travDao.retrieveAvailableTickets(tick, usrMod));
 			if(tickList.isEmpty()) {
 				throw new EmptyListException();
 			}

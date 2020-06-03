@@ -13,7 +13,7 @@ import logic.model.UserModel;
 
 public class LocationDao {
 	
-	public void retriveLocationInfo(LocationModel locModel) {
+	public void retrieveLocationInfo(LocationModel locModel) {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select * from locations where city=?")){
 			statement.setString(1,locModel.getCity());
 			getLocations(statement, locModel);
@@ -40,7 +40,7 @@ public class LocationDao {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select city from locations where tipeofpersonality=? and city not in (select arrCity from Tickets join Buys on Tickets.id = Buys.ticket where Buys.passenger =?)")){
 			statement.setString(1, usrMod.getUserPersonality());
 			statement.setString(2, usrMod.getUserName());
-			retriveSuggestedLocations(statement, loc);
+			retrieveSuggestedLocations(statement, loc);
 		}catch(SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException on fetchin locations\n", e);
 		}
@@ -50,7 +50,7 @@ public class LocationDao {
 		return loc;
 	}
 	
-	public void retriveSuggestedLocations(PreparedStatement statement, List<String> loc) {
+	public void retrieveSuggestedLocations(PreparedStatement statement, List<String> loc) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
 				loc.add(rs.getString(1));

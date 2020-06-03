@@ -182,15 +182,15 @@ public class ControllerFacade {
 		this.bookTravCtrl.setAvailableTick(depCities, arrCities);
 	}
 	
-	public void retriveLocInfo(LocationBean bean) {
+	public void retrieveLocInfo(LocationBean bean) {
 		this.bookTravCtrl = new BookTravelControl();
-		this.bookTravCtrl.retriveLocInfoControl(bean);
+		this.bookTravCtrl.retrieveLocInfoControl(bean);
 	}
 	
-	public void retriveTravelSolutions(UserTravelBean travBean, List<UserTravelBean> travList) throws BigDateException, EmptyListException {
+	public void retrieveTravelSolutions(UserTravelBean travBean, List<UserTravelBean> travList) throws BigDateException, EmptyListException {
 		this.bookTravCtrl = new BookTravelControl();
 		this.dBean = new UserDataBean(LoggedUser.getUserName());
-		this.bookTravCtrl.retriveTravelSolutionsControl(dBean, travBean, travList);
+		this.bookTravCtrl.retrieveTravelSolutionsControl(dBean, travBean, travList);
 	}
 	
 	public void saveBoughtTicket(UserTravelBean travBean) {

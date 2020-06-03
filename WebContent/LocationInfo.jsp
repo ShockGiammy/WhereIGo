@@ -22,7 +22,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs" style="margin-right:5px;">
-				<img src="data:image/jpg;base64, <%out.println(new String(Base64.getEncoder().encodeToString(locBean.getStream())));%>" height="600px" width="600px" class="img-fluid" alt="Responsive image">
+				<img src="data:image/jpg;base64, <%out.println(new String(Base64.getEncoder().encodeToString(locBean.getStream())));%>" height="400px" width="400px" class="img-fluid" alt="Responsive image">
 			</div>
 			<div class="col-xs">
 				<%=locBean.getDescription()%>

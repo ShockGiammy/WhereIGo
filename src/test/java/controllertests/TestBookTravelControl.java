@@ -52,7 +52,7 @@ public class TestBookTravelControl {
 		int prevNum = testTravList.size();
 		testTravList.clear();
 		UserTravelBean travBean = new UserTravelBean(LocalDate.parse("2020-07-27"), LocalDate.parse("2020-08-02"), "Torino-Caselle", "Bath");
-		this.facCtrl.retriveTravelSolutions(travBean,testTravList);
+		this.facCtrl.retrieveTravelSolutions(travBean,testTravList);
 		this.facCtrl.saveBoughtTicket(testTravList.get(0)); //we save the first ticket available
 		travBean = testTravList.get(0);
 		testTravList.clear();

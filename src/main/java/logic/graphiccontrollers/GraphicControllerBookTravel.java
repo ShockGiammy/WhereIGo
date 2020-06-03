@@ -121,7 +121,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 			if(loc.get(i).getChildren().get(1).equals(e.getTarget())) {
 				Text text = (Text)loc.get(i).getChildren().get(0);
 				this.locBean.setCityName(text.getText());
-				this.facade.retriveLocInfo(this.locBean);
+				this.facade.retrieveLocInfo(this.locBean);
 				loadLocInfo(e);
 			}
 		}
@@ -174,7 +174,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 	
 	private void checkBookSol(MouseEvent event) {
 		try {
-			this.facade.retriveTravelSolutions(travBean, travBeanArray);
+			this.facade.retrieveTravelSolutions(travBean, travBeanArray);
 			setScene("TicketSolutions.fxml");
 			loadScene();
 			setTicketsDatas(this.travBeanArray, event);

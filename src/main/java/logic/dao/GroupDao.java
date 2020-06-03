@@ -13,7 +13,7 @@ import logic.model.UserModel;
 
 public class GroupDao {
 	
-	public void retriveSuggestedGroups(UserModel usrMod, List<GroupModel> modelList) {
+	public void retrieveSuggestedGroups(UserModel usrMod, List<GroupModel> modelList) {
 		if(usrMod.getUserPersonality() != null) {
 			try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("select travcity,groupowner,title from travelgroups join locations on travelgroups.travCity=locations.city where (tipeOfPersonality=? and groupowner!=?) and title not in (select grp as title from participatesto where participant = ?)")){
 				statement.setString(1, usrMod.getUserPersonality());

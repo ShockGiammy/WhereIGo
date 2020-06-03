@@ -99,38 +99,37 @@ values("Renter","Renter","Renter","Renter","16-03-1998","Male","Renter","Friendl
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
 values ("Tanzania","Zanzibar", "Adventurer", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/zanzibar.jpg'), "Zanzibar is the semi-autonomous part of Tanzania in East Africa.
- It is composed of the Zanzibar Archipelago in the Indian Ocean, 25–50 kilometres (16–31 mi) off the coast of the mainland, and consists of many small islands and two large ones: Unguja (the main island, referred to informally as Zanzibar) and Pemba.
- The capital is Zanzibar City, located on the island of Unguja.
- Its historic centre is Stone Town, which is a World Heritage Site.
- Zanzibar’s coastline offers some of the best beaches in the world, but sand and surf vary depending on what side of the island you’re on.
- On the east coast, waves break over coral reefs and sand bars offshore, and low tide reveals small pools of starfish, small minnows, and anemones.
- Up north, ocean swimming is much less susceptible to the tides, and smooth beaches and white sand make for dazzling days in the sun.");
+It is composed of the Zanzibar Archipelago in the Indian Ocean, 25–50 kilometres (16–31 mi) off the coast of the mainland, and consists of many small islands and two large ones: Unguja (the main island, referred to informally as Zanzibar) and Pemba.
+The capital is Zanzibar City, located on the island of Unguja.
+Its historic centre is Stone Town, which is a World Heritage Site.
+Zanzibar’s coastline offers some of the best beaches in the world, but sand and surf vary depending on what side of the island you’re on.
+On the east coast, waves break over coral reefs and sand bars offshore, and low tide reveals small pools of starfish, small minnows, and anemones.
+Up north, ocean swimming is much less susceptible to the tides, and smooth beaches and white sand make for dazzling days in the sun.");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
 values ("Turkey","Istanbul", "Adventurer", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/istanbul.jpg'), "Istanbul, a fascinating city built on two Continents, divided by the Bosphorus Strait.
- This is one of the greatest cities in the world where you can see a modern western city combined with a traditional eastern city, it's a melting pot of many civilizations and different people.
- Istanbul was also announced by the European Union as the 2010 European Capital of Culture.
- Since the Republic in 1923, Istanbul continued to grow and today it boosted its population over 15,5 million people living in this spread out city.
- This makes Istanbul the largest city of Turkey and one of the biggest cities in the world.");
+This is one of the greatest cities in the world where you can see a modern western city combined with a traditional eastern city, it's a melting pot of many civilizations and different people.
+Istanbul was also announced by the European Union as the 2010 European Capital of Culture.
+Since the Republic in 1923, Istanbul continued to grow and today it boosted its population over 15,5 million people living in this spread out city.
+This makes Istanbul the largest city of Turkey and one of the biggest cities in the world.");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
 values ("Morocco","Marrakech", "Adventurer", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/marrakech.jpg'), "Marrakech is the second largest city of Morocco and is known as the Red City.
- It has about 800,000 inhabitants and most of the houses are colored read.
- Marrakech MedinaIt is truly a colorful city of entertainment and is called the one of the pearls of morocco.
- It is the major economic center and has several upcoming industries and markets.
- You would find it very interesting to roam around the city of Marrakech.
- The little souks in the small alleys and squares are very interesting and you can find them dedicated to specific crafts.
- You can even watch part of their process of making them.");
+It has about 800,000 inhabitants and most of the houses are colored read.
+Marrakech MedinaIt is truly a colorful city of entertainment and is called the one of the pearls of morocco.
+It is the major economic center and has several upcoming industries and markets.
+You would find it very interesting to roam around the city of Marrakech.
+The little souks in the small alleys and squares are very interesting and you can find them dedicated to specific crafts.
+You can even watch part of their process of making them.");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
 values ("UK","London", "Lone wolf", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/london.jpg'), "Nothing prepares you for your first taste of London.
- This great world city is far more than just the capital of the United Kingdom of Great Britain and Northern Ireland.
- London is bustling, vibrant, multicultural and cosmopolitan.
- London is both old and new, a place where traditional pubs rub shoulders with the newest cocktail bars.
- Its most ancient castle is right next door to its newest skyscrapers.
- London's energy, as 8.
-6 million people go about their everyday lives, is tangible in every journey on the Underground and every walk along the banks of the River Thames.
- From the palaces of shopping to the real Buckingham Palace, London really does have it all.");
+This great world city is far more than just the capital of the United Kingdom of Great Britain and Northern Ireland.
+London is bustling, vibrant, multicultural and cosmopolitan.
+London is both old and new, a place where traditional pubs rub shoulders with the newest cocktail bars.
+Its most ancient castle is right next door to its newest skyscrapers.
+London's energy, as 8.6 million people go about their everyday lives, is tangible in every journey on the Underground and every walk along the banks of the River Thames.
+From the palaces of shopping to the real Buckingham Palace, London really does have it all.");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
 values ("Australia","Ayers rock", "Lone wolf", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/ayers_rock.jpg'), "The monoliths unbelievable size and immense cultural significance to local Indigenous people has made it an icon of Australia, and its magnificence cannot be understated.
@@ -141,48 +140,49 @@ A trip to Australia is simply not complete without a visit to Uluru.
 Do not miss your opportunity to explore the majestic monolith and have your breath stolen by the stunning horizon in front of you.");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
-values ("South Korea","Gyeongju", "Lone wolf", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/gyeongju.jpg'), "f you’re into ancient cultures and traditions – or just want a break from the fast cars and bright lights of South Korea’s cities – take a day trip to Gyeongju, South Korea’s ancient capital.
+values ("South Korea","Gyeongju", "Lone wolf", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/gyeongju.jpg'), "If you’re into ancient cultures and traditions – or just want a break from the fast cars and bright lights of South Korea’s cities – take a day trip to Gyeongju, South Korea’s ancient capital.
 Gyeongju is a city in the North Gyeongsang Province, near the southeastern coast of mainland Korea. It’s an hour’s drive or bus ride north of Busan, a perfect day trip for those seeking a cultural experience.
 If you’re a foodie and wondering about the cuisine, food in Gyeongju is generally typical of the cuisine elsewhere in Gyeongsang province – spicy and salty. However, they do have local specialties that include Gyeongju bread, a red-bean pastry, and beopju, a traditional Korean liquor.
 If you’re looking for seafood dishes, though, head to Gampo-eup, a coastal town on the east district of Gyeongju where you can enjoy fresh seafood and jeotgal (fermented salted seafood). You’ll find hundreds of seafood restaurants along Gampo Harbor where you can get raw fish dishes, abalone soup, grilled seafood, and more.");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
 values ("Netherlands","Amsterdam", "Friendly",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/amsterdam.jpg'), "Amsterdam is one of the greatest small cities in the world.
- From Amsterdam canals to world-famous Amsterdam museums and historical Amsterdam sights, it is one of the most romantic and beautiful cities in Europe.
- Canal cruises are a popular way to see the city from the perspective of its canals.
- Amsterdam is also a city of tolerance and diversity.
- It has all the advantages of a big city: rich culture, lively Amsterdam nightlife, international restaurants, good transport - but is quiet, and largely thanks to its extensive canals, has a little road traffic.
- In this city your destination is never far away, but get a bike for an authentic local experience.");
+From Amsterdam canals to world-famous Amsterdam museums and historical Amsterdam sights, it is one of the most romantic and beautiful cities in Europe.
+Canal cruises are a popular way to see the city from the perspective of its canals.
+Amsterdam is also a city of tolerance and diversity.
+It has all the advantages of a big city: rich culture, lively Amsterdam nightlife, international restaurants, good transport - but is quiet, and largely thanks to its extensive canals, has a little road traffic.
+In this city your destination is never far away, but get a bike for an authentic local experience.");
 
 insert into Locations(country,city,tipeOfPersonality,photo1, descr)
 values ("Spain","Ibiza", "Friendly", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/ibiza.jpg'), "Ibiza is often referred to as the “white island” and “party capital of the world” - a neat pair of monikers to describe the difference between day and night in this beautiful Spanish paradise.
- Ibiza is home to more than 60 beaches that attract visitors from all over the globe, and boasts some of the world’s best nightclubs, which keep partiers entertained from sundown until dawn.
- There are plenty of things to see and do in Ibiza, with a sunset boat cruise topping the list of relaxation.
- Beneath the waves, giant grouper and moray eels haunt the reefs and wrecks of the Mediterranean.
- Alternatively, visitors can explore the island’s mystery and history on land at the Can Marca smugglers’ caves, historic cemeteries, quaint villages, and pirate towers dotted about the island.");
+Ibiza is home to more than 60 beaches that attract visitors from all over the globe, and boasts some of the world’s best nightclubs, which keep partiers entertained from sundown until dawn.
+There are plenty of things to see and do in Ibiza, with a sunset boat cruise topping the list of relaxation.
+Beneath the waves, giant grouper and moray eels haunt the reefs and wrecks of the Mediterranean.
+Alternatively, visitors can explore the island’s mystery and history on land at the Can Marca smugglers’ caves, historic cemeteries, quaint villages, and pirate towers dotted about the island.");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
-values ("USA","San Francisco", "Friendly", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/sanfrancisco.jpg'), "San Francisco holds a secure place in the United States’ romantic dream of itself—a cool, elegant, handsome, worldly seaport whose steep streets offer breathtaking views of one of the world’s greatest bays.
- According to the dream, San Franciscans are sophisticates whose lives hold full measures of such civilized pleasures as music, art, and good food.
- Their children are to be pitied, for, as the wife of publishing magnate Nelson Doubleday once said, “They will probably grow up thinking all cities are so wonderful.
+values ("USA","San Francisco", "Friendly", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/sanfrancisco.jpg'), "San Francisco holds a secure place in the United States’ romantic dream of itself : a cool, elegant, handsome, worldly seaport whose steep streets offer breathtaking views of one of the world’s greatest bays.
+According to the dream, San Franciscans are sophisticates whose lives hold full measures of such civilized pleasures as music, art, and good food.
+Their children are to be pitied, for, as the wife of publishing magnate Nelson Doubleday once said, “They will probably grow up thinking all cities are so wonderful.
 ” To San Franciscans their city is a magical place, almost an island, saved by its location and history from the sprawl and monotony that afflicts so much of urban California.");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
 values ("Ungary","Budapest", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/budapest.jpg'),"Originally formed by two different cities, Buda and Pest, which developed on the shores of the Danube, Budapest is considered like the East Paris thanks to its 'fin de siècle' atmosphere that can be smelled along its avenues.
-On one hand the ancient Buda, with its Castle, UNESCO heritage, the Royal Palace Matthias' curch and Fishmen's ramparts. On the other hand the modern Pest, lively and with wide avenues, which welcomes the most famous city's monuments, like the Parliament and Saint Stephen's curch.
+On one hand the ancient Buda, with its Castle, UNESCO heritage, the Royal Palace Matthias' curch and Fishmen's ramparts.
+On the other hand the modern Pest, lively and with wide avenues, which welcomes the most famous city's monuments, like the Parliament and Saint Stephen's curch.
 Last, but not least, the spas : Budapest has a lot of them, well know since the Roman's age, which were expanded during the Turkish persiod until 1920, when Budapest achieved the title of 'City of spas'");
 
 insert into Locations(country,city,tipeOfPersonality,photo1, descr)
-values ("UK","Bath", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Locations/Uploads/Locations/bath.jpg'), "Elegant and harmonious city on the Avon river, 18 km South-East of Bristol.
-Bath is a residential center and a tourist destination which importance is related to the baths.
-The excavations began from the ancient 'Aquae Sulis' in 1755 and took to the light remarkable ruins.
-Bath is the perfect resort and spa, to relax and think about nothing.");
+values ("UK","Bath", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/bath.jpg'), "Built for pleasure and relaxation, beautiful Bath has been a wellbeing destination since Roman times. 
+The waters are still a big draw, both at the ancient Roman Baths and the thoroughly modern Thermae Bath Spa, which houses the only natural thermal hot springs in Britain you can bathe in.
+Bath’s compact, visitor-friendly centre is overflowing with places to eat and drink, plus some of the finest independent shops in Britain, making it the ideal city break.
+Immerse yourself in Bath’s remarkable collection of museums and galleries, and enjoy year-round festivals, theatre, music and sports.");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
 values ("Dominican Republic","Santo Domingo", "Lazybone", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/santo_domingo.jpg'), "The big city with Caribbean small town flair - the capital Santo Domingo did not seem as much to us as a big city.
- The relaxed atmosphere of the locals, the historic buildings and countless street food stands made us feel like being in a small fishing village.
- Families and people interested in culture romp around in the narrow alleys, armed with a sun hat, beach towel and a freshly squeezed juice.
- If you want to immerse yourself in the Dominican culture and experience history as well as long beach days, Santo Domingo is the place for you.");
+The relaxed atmosphere of the locals, the historic buildings and countless street food stands made us feel like being in a small fishing village.
+Families and people interested in culture romp around in the narrow alleys, armed with a sun hat, beach towel and a freshly squeezed juice.
+If you want to immerse yourself in the Dominican culture and experience history as well as long beach days, Santo Domingo is the place for you.");
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
 values(0,"Roma-Fumicino","Zanzibar","2020-07-14", "2020-07-22", 850.78, 20);
