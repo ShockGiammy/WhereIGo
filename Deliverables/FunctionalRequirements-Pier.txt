@@ -1,0 +1,12 @@
+
+1) The system shall provide travelers a form to create travel groups. 
+
+2)The system  shall provide travelers a section to rent a house.
+
+3)The system shall provide renters a form  to post rent announcements.
+
+4)The system shall provide travelers a users list based on their personality.
+
+5)The system shall provide travelers a destination list based on their personality.
+
+6) The system shall provide a registation form to the user.
