@@ -1,10 +1,8 @@
 package logic.model;
 
-import java.io.Serializable;
-
 import logic.controllers.ChatType;
 
-public interface Message extends Serializable {
+public interface Message {
 	
 	public String getName();
 	public void setName(String name);
