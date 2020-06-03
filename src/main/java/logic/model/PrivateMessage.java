@@ -1,11 +1,9 @@
 package logic.model;
 
-import java.io.Serializable;
-
 import logic.controllers.ChatType;
 import logic.dao.ChatDao;
 
-public class PrivateMessage implements Message, Serializable {
+public class PrivateMessage implements Message {
 
 	private static final long serialVersionUID = 1L;
 	private String name;
