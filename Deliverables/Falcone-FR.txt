@@ -1,4 +1,4 @@
 1. The system shall provide a private chat between users. 
 2. The system shall display available accomodations to all travelers. 
-//3. The system shall allow each user to create an account.
+//3. The system shall provide the users to regoster their own account.
 3. The system shall provide an interface to add, update or delete own accomodations for renters.
