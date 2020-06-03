@@ -63,7 +63,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		
 		List<AccomodationBean> listOfBean = facade.displayAnnouncement();
 		if (listOfBean.isEmpty()) {
-			this.popErr.displayErrorPopup("no accomodation to been shown");
+			this.popErr.displayErrorPopup("No accomodation to been shown");
 		}
 		else {
 			for (AccomodationBean bean : listOfBean) {
