@@ -122,7 +122,7 @@ public class ControllerFacade {
 	
 	/*ManageAnnouncementController references methods*/
 
-	public List<AccomodationBean> displayMyAnnouncement() {
+	public List<AccomodationBean> retrieveMyAnnouncement() {
 		if (controllerManage == null) {
 			controllerManage = new ManageAnnouncementController();
 		}
@@ -136,7 +136,7 @@ public class ControllerFacade {
 		controllerManage.deleteMyAccomodation(id);
 	}
 	
-	public List<AccomodationBean> displayAnnouncement() {
+	public List<AccomodationBean> retrieveAnnouncement() {
 		RentAccomodationController controllerRent = new RentAccomodationController();
 		return controllerRent.retrieveAnnouncement();
 	}

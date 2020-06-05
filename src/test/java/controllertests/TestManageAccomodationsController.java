@@ -45,25 +45,20 @@ public class TestManageAccomodationsController {
 		bean.setType("apartment");
 		facade.createAccomodation(bean);
 		
-		List<AccomodationBean> listOfBean = facade.displayMyAnnouncement();
+		List<AccomodationBean> listOfBean = facade.retrieveMyAnnouncement();
 		if (listOfBean.isEmpty()) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "No accomodation has to been shown");
 		}
 		else {
 			for (AccomodationBean beanReturned : listOfBean) {
 				assertEquals(bean.getDescription(), beanReturned.getDescription());
-				/*assertEquals(bean.getCity(), beanReturned.getCity());
-				assertEquals(bean.getAddress(), beanReturned.getAddress());
-				assertEquals(bean.getBeds(), beanReturned.getBeds());
-				assertEquals(bean.getType(), beanReturned.getType());
-				assertEquals(bean.getSquareMetres(), beanReturned.getSquareMetres());*/
 			}
 		}
 	}
 	
 	@Test
 	public void updateAndDeleteAccomodation() {
-		List<AccomodationBean> listOfBeanToUpdate = facade.displayMyAnnouncement();
+		List<AccomodationBean> listOfBeanToUpdate = facade.retrieveMyAnnouncement();
 		if (listOfBeanToUpdate.isEmpty()) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "No accomodation has to been shown");
 		}
@@ -73,7 +68,7 @@ public class TestManageAccomodationsController {
 			beanReturned.setHouseImage(imageHouse);
 			facade.createAccomodation(beanReturned);
 		}
-		List<AccomodationBean> listOfBeanUpdated = facade.displayMyAnnouncement();
+		List<AccomodationBean> listOfBeanUpdated = facade.retrieveMyAnnouncement();
 		if (listOfBeanToUpdate.isEmpty()) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "No accomodation has to been shown");
 		}

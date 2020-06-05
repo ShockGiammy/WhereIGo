@@ -29,7 +29,7 @@ public class RentAccomodationServlet extends HttpServlet {
 			page = "ChatTraveller";
 		}
 		else if (act.equalsIgnoreCase("Rent")) {
-			List<AccomodationBean> listOfBean = facade.displayAnnouncement();
+			List<AccomodationBean> listOfBean = facade.retrieveAnnouncement();
 			req.setAttribute("list", listOfBean);
 			page = "RentAnAccomodation.jsp";
 		}

@@ -28,6 +28,7 @@ public class TestChatController {
 	public void createChat() {
 		
 		LoggedUser.setUserName("Traveler");
+		facade.retrieveAnnouncement();
 		facade.createChat("Renter");
 		MessageBean msg = null;
 		try {

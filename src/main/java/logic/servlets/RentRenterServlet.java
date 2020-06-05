@@ -44,7 +44,7 @@ public class RentRenterServlet extends HttpServlet {
 				facade.createAccomodation(bean);
 			}
 		}
-		List<AccomodationBean> listOfBean = facade.displayMyAnnouncement();
+		List<AccomodationBean> listOfBean = facade.retrieveMyAnnouncement();
 		if (req.getParameter(ACTION)!= null) {
 			if(req.getParameter(ACTION).equalsIgnoreCase("Delete")) {
 				facade.deleteMyAccomodation(Integer.parseInt(req.getParameter("id")));

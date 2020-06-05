@@ -20,7 +20,7 @@ public class GraphicControllerManageAccomodations extends BasicGui{
 	public void initialize() {
 		this.userImage.setImage(setUserImage());
 		addCreateLabel();
-		List<AccomodationBean> listOfBean = facade.displayMyAnnouncement();
+		List<AccomodationBean> listOfBean = facade.retrieveMyAnnouncement();
 		if (listOfBean.isEmpty()) {
 			this.popErr.displayErrorPopup("No accomodation has to been shown");
 		}

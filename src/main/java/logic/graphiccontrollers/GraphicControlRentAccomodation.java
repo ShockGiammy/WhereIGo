@@ -61,7 +61,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	public void initialize() {
 		this.userImage.setImage(setUserImage());
 		
-		List<AccomodationBean> listOfBean = facade.displayAnnouncement();
+		List<AccomodationBean> listOfBean = facade.retrieveAnnouncement();
 		if (listOfBean.isEmpty()) {
 			this.popErr.displayErrorPopup("No accomodation to been shown");
 		}
