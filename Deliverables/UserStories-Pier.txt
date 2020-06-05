@@ -1,7 +1,11 @@
-1)As a traveler, I want to book two-way tickets for my travels, so that i can save money.
+1) As a traveler, I want to book two-way tickets for my travels, so that i can save money.
 
-2) As a renter, I want to chat with travelers,so that I can make a deal with them to rent my house.
+2) As a traveler, I want to rent out a house, so that I can organize my travel without seeking for an house on other web-sites.
 
-3)As a traveler, I want to rent out a house, so that I can organize my travel without seeking for an house on other web-sites.
+3) As a traveler, I want to create travel groups, so that other travelers can join it and we can travel together.
 
-4) As a traveler, I want to create travel groups, so that my friends can join me and we can organize our travel 
+4) As a traveler, I want a list of cities that are suited  for my personality, so that I can visit them.
+
+5) As a traveler, I want to join travel groups, so that I can meet new peole.
+
+6) As a traveler, I want a list of travelers with my same personality, so that I can contact them and organize a travel with them.

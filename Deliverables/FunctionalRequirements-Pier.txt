@@ -10,3 +10,7 @@
 5)The system shall provide travelers a destination list based on their personality.
 
 6) The system shall provide a registation form to the user.
+
+7) The system shall provide to traveles to join groups.
+
+8) The system shall provide to travelers a form to create groups.
