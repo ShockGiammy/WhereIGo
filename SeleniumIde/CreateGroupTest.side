@@ -17,7 +17,7 @@
       "id": "ab3b72cd-5ea6-4217-b019-aeb9b938218e",
       "comment": "",
       "command": "setWindowSize",
-      "target": "1051x806",
+      "target": "1800x900",
       "targets": [],
       "value": ""
     }, {
@@ -176,19 +176,19 @@
       ],
       "value": ""
     }, {
+      "id": "d17c78a9-f9bd-44f4-a968-bc97877cf37a",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "id=grouptitle",
+      "targets": [],
+      "value": "Meet the Queen"
+    }, {
       "id": "fa228109-73ef-441a-86bc-b00fba996d29",
       "comment": "",
       "command": "click",
       "target": "linkText=Delete/Leave",
       "targets": [],
       "value": ""
-    }, {
-      "id": "d17c78a9-f9bd-44f4-a968-bc97877cf37a",
-      "comment": "",
-      "command": "assertElementNotPresent",
-      "target": "id=grouptitle",
-      "targets": [],
-      "value": "Meet the Queen"
     }]
   }],
   "suites": [{
