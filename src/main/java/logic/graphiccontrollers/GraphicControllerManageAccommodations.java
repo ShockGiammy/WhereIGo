@@ -9,35 +9,35 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import logic.beans.AccomodationBean;
+import logic.beans.AccommodationBean;
 import logic.view.BasicGui;
 
-public class GraphicControllerManageAccomodations extends BasicGui{
+public class GraphicControllerManageAccommodations extends BasicGui{
 
-	@FXML private ListView<HBox> accomodationsList;
+	@FXML private ListView<HBox> accommodationsList;
 	
 	@FXML
 	public void initialize() {
 		this.userImage.setImage(setUserImage());
 		addCreateLabel();
-		List<AccomodationBean> listOfBean = facade.retrieveMyAnnouncement();
+		List<AccommodationBean> listOfBean = facade.retrieveMyAnnouncement();
 		if (listOfBean.isEmpty()) {
-			this.popErr.displayErrorPopup("No accomodation has to been shown");
+			this.popErr.displayErrorPopup("No accommodation has to been shown");
 		}
 		else {
-			for (AccomodationBean bean : listOfBean) {
+			for (AccommodationBean bean : listOfBean) {
 				setDisplayInfo(bean);
 			}
 		}	
 	}
 		
-	private synchronized void setDisplayInfo(AccomodationBean bean) {
+	private synchronized void setDisplayInfo(AccommodationBean bean) {
 		
 		Task<HBox> task = new Task<HBox>() {
             @Override
             public HBox call() {
             	
-            	HBox accomodationBox = new HBox();
+            	HBox accommodationBox = new HBox();
             	ImageView house = new ImageView();
             	house.setFitHeight(50);
             	house.setFitWidth(50);
@@ -55,24 +55,24 @@ public class GraphicControllerManageAccomodations extends BasicGui{
             	Button modify = new Button();
             	modify.setText("Modify");
             	modify.setOnMouseClicked(e -> {
-            		setScene("InfoAccomodation.fxml");
+            		setScene("InfoAccommodation.fxml");
                 	loadScene();
-            		setAccomodationInfo(e, bean);
+            		setAccommodationInfo(e, bean);
             	});
             	Button delete = new Button();
             	delete.setText("Delete");
             	delete.setOnMouseClicked(e -> {
-            		facade.deleteMyAccomodation(bean.getID());
-            		delete(accomodationBox);
+            		facade.deleteMyAccommodation(bean.getID());
+            		delete(accommodationBox);
             	});
 			
-            	accomodationBox.getChildren().addAll(house, type, typeValue, city, cityValue, modify, delete);
-            	return accomodationBox;
+            	accommodationBox.getChildren().addAll(house, type, typeValue, city, cityValue, modify, delete);
+            	return accommodationBox;
             }
 		};
 	    
 	    task.setOnSucceeded(event ->
-			accomodationsList.getItems().add(task.getValue()));
+			accommodationsList.getItems().add(task.getValue()));
 
 	    Thread t = new Thread(task);
 	    t.setDaemon(true);
@@ -80,7 +80,7 @@ public class GraphicControllerManageAccomodations extends BasicGui{
 	}
 	
 	public void delete(HBox box) {
-		accomodationsList.getItems().remove(box);
+		accommodationsList.getItems().remove(box);
 	}
 	
 	public void addCreateLabel() {
@@ -90,9 +90,9 @@ public class GraphicControllerManageAccomodations extends BasicGui{
 			public HBox call() throws Exception {
         	HBox createBox = new HBox();
         	Button create = new Button();
-        	create.setText("Create a new Accomodation");
+        	create.setText("Create a new Accommodation");
         	create.setOnMouseClicked(e -> {
-        		setScene("InfoAccomodation.fxml");
+        		setScene("InfoAccommodation.fxml");
             	loadScene();
             	nextGuiOnClick(e);
         	});
@@ -103,15 +103,15 @@ public class GraphicControllerManageAccomodations extends BasicGui{
 		};
     
 		task.setOnSucceeded(event ->
-			accomodationsList.getItems().add(task.getValue()));
+			accommodationsList.getItems().add(task.getValue()));
 
 		Thread t = new Thread(task);
 		t.setDaemon(true);
 		t.start();
 	}
 	
-	public void setAccomodationInfo(MouseEvent e, AccomodationBean bean) {
-		GraphicControllerCreateAccomodation controllerCalled = loader.getController();
+	public void setAccommodationInfo(MouseEvent e, AccommodationBean bean) {
+		GraphicControllerCreateAccommodation controllerCalled = loader.getController();
 		controllerCalled.setInfo(bean);
 		nextGuiOnClick(e);
 	}

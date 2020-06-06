@@ -9,7 +9,7 @@ import logic.beans.GroupBean;
 import logic.beans.InterestsBean;
 import logic.beans.LocationBean;
 import logic.beans.MessageBean;
-import logic.beans.AccomodationBean;
+import logic.beans.AccommodationBean;
 import logic.beans.UserChatBean;
 import logic.beans.UserDataBean;
 import logic.beans.UserTravelBean;
@@ -122,32 +122,32 @@ public class ControllerFacade {
 	
 	/*ManageAnnouncementController references methods*/
 
-	public List<AccomodationBean> retrieveMyAnnouncement() {
+	public List<AccommodationBean> retrieveMyAnnouncement() {
 		if (controllerManage == null) {
 			controllerManage = new ManageAnnouncementController();
 		}
 		return controllerManage.retrieveMyAnnouncement();	
 	}
 	
-	public void deleteMyAccomodation(long id) {
+	public void deleteMyAccommodation(long id) {
 		if (controllerManage == null) {
 			controllerManage = new ManageAnnouncementController();
 		}
-		controllerManage.deleteMyAccomodation(id);
+		controllerManage.deleteMyAccommodation(id);
 	}
 	
-	public List<AccomodationBean> retrieveAnnouncement() {
-		RentAccomodationController controllerRent = new RentAccomodationController();
+	public List<AccommodationBean> retrieveAnnouncement() {
+		RentAccommodationController controllerRent = new RentAccommodationController();
 		return controllerRent.retrieveAnnouncement();
 	}
 	
 	/*CreateAccomodation references methods*/
 	
-	public void createAccomodation(AccomodationBean bean) {
+	public void createAccommodation(AccommodationBean bean) {
 		if (controllerManage == null) {
 			controllerManage = new ManageAnnouncementController();
 		}
-		controllerManage.createAccomodation(bean);
+		controllerManage.createAccommodation(bean);
 	}
 	
 	public Image loadImage(byte[] bs) {

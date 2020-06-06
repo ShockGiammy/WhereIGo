@@ -19,12 +19,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import logic.beans.AccomodationBean;
+import logic.beans.AccommodationBean;
 import logic.view.BasicGui;
 
-public class GraphicControlRentAccomodation extends BasicGui{
+public class GraphicControlRentAccommodation extends BasicGui{
 	
-	@FXML private ListView<HBox> accomodationList;
+	@FXML private ListView<HBox> accommodationList;
 	@FXML private HBox hBox;
 	
 	//details
@@ -61,23 +61,23 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	public void initialize() {
 		this.userImage.setImage(setUserImage());
 		
-		List<AccomodationBean> listOfBean = facade.retrieveAnnouncement();
+		List<AccommodationBean> listOfBean = facade.retrieveAnnouncement();
 		if (listOfBean.isEmpty()) {
-			this.popErr.displayErrorPopup("No accomodation to been shown");
+			this.popErr.displayErrorPopup("No accommodation to been shown");
 		}
 		else {
-			for (AccomodationBean bean : listOfBean) {
+			for (AccommodationBean bean : listOfBean) {
 			setDisplayBoxInfo(bean);
 			}
 		}
 	}
 	
-	public void setDisplayBoxInfo(AccomodationBean bean) {
+	public void setDisplayBoxInfo(AccommodationBean bean) {
 		
 		if (number == 0) {
 			hBox = new HBox();
 			setDisplayInfo(bean, hBox);
-			accomodationList.getItems().addAll(hBox);	
+			accommodationList.getItems().addAll(hBox);	
 		}
 		else {
 			setDisplayInfo(bean, hBox);
@@ -85,7 +85,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		number = (number+1)%2;
 	}
 	
-	public void setDisplayInfo(AccomodationBean bean, HBox box) {
+	public void setDisplayInfo(AccommodationBean bean, HBox box) {
 		
 		Task<BorderPane> task = new Task<BorderPane>() {
             @Override
@@ -153,7 +153,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 	    t.start();    	
 	}
 	
-	public void setDetail(AccomodationBean bean) {
+	public void setDetail(AccommodationBean bean) {
 		descriptionText.setVisible(true);
 		description.setVisible(true);
 		description.setText(bean.getDescription());
@@ -184,7 +184,7 @@ public class GraphicControlRentAccomodation extends BasicGui{
 		contactRenter.setVisible(true);		
 	}
 	
-	public void setServices(AccomodationBean bean) {
+	public void setServices(AccommodationBean bean) {
 		
     	garden.setVisible(true);
     	gardenText.setVisible(true);

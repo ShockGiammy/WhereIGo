@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logic.LoggedUser;
-import logic.beans.AccomodationBean;
+import logic.beans.AccommodationBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.LengthFieldException;
 
@@ -32,25 +32,25 @@ public class RentRenterServlet extends HttpServlet {
 		JspChangePage changeP = new JspChangePage();	
 		ControllerFacade facade = new ControllerFacade();
 	
-		AccomodationBean beanToUpdate = null;
+		AccommodationBean beanToUpdate = null;
 		if (req.getParameter(SERVICE)!= null) {
 			if (req.getParameter(SERVICE).equals("Create")) {
-				AccomodationBean bean = setAccomodationInfo(req, resp, changeP);
-				facade.createAccomodation(bean);
+				AccommodationBean bean = setAccommodationInfo(req, resp, changeP);
+				facade.createAccommodation(bean);
 			}
 			else if (req.getParameter(SERVICE).equals("Update")) {
-				AccomodationBean bean = setAccomodationInfo(req, resp, changeP);
+				AccommodationBean bean = setAccommodationInfo(req, resp, changeP);
 				bean.setID(Integer.parseInt(req.getParameter("id")));
-				facade.createAccomodation(bean);
+				facade.createAccommodation(bean);
 			}
 		}
-		List<AccomodationBean> listOfBean = facade.retrieveMyAnnouncement();
+		List<AccommodationBean> listOfBean = facade.retrieveMyAnnouncement();
 		if (req.getParameter(ACTION)!= null) {
 			if(req.getParameter(ACTION).equalsIgnoreCase("Delete")) {
-				facade.deleteMyAccomodation(Integer.parseInt(req.getParameter("id")));
+				facade.deleteMyAccommodation(Integer.parseInt(req.getParameter("id")));
 			}
 			else if (req.getParameter(ACTION).equalsIgnoreCase("requestToUpdate")) {
-				for (AccomodationBean bean : listOfBean) {
+				for (AccommodationBean bean : listOfBean) {
 					if (bean.getID() == Integer.parseInt(req.getParameter("id"))) {
 						beanToUpdate = bean;
 					}
@@ -61,12 +61,12 @@ public class RentRenterServlet extends HttpServlet {
 		
 		req.setAttribute("list", listOfBean);
 		
-		String page = "ManageAccomodations.jsp";
+		String page = "ManageAccommodations.jsp";
 		changeP.forwardPage(page, req, resp);	
 	}
 	
-	public AccomodationBean setAccomodationInfo(HttpServletRequest req, HttpServletResponse resp, JspChangePage changeP) {
-		AccomodationBean bean = new AccomodationBean();
+	public AccommodationBean setAccommodationInfo(HttpServletRequest req, HttpServletResponse resp, JspChangePage changeP) {
+		AccommodationBean bean = new AccommodationBean();
 		Logger logger = Logger.getLogger("WIG");
 		bean.setBeds(req.getParameter("beds"));
 		try {

@@ -14,12 +14,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-import logic.beans.AccomodationBean;
+import logic.beans.AccommodationBean;
 import logic.LoggedUser;
 import logic.exceptions.LengthFieldException;
 import logic.view.BasicGui;
 
-public class GraphicControllerCreateAccomodation extends BasicGui{
+public class GraphicControllerCreateAccommodation extends BasicGui{
 	
 	ObservableList<String> typeList = FXCollections.observableArrayList("apartment", "cottage", "studio flat");
 	ObservableList<String> squareList = FXCollections.observableArrayList("< 20", "20 - 39", "40 - 59", "> 60");
@@ -39,7 +39,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 	@FXML private ImageView imageView;
 	@FXML private Button openButton;
 	
-	private AccomodationBean bean;
+	private AccommodationBean bean;
 	private File houseImage;
 	
 	@FXML
@@ -57,8 +57,8 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		this.userImage.setImage(setUserImage());
 	}
 	
-	public GraphicControllerCreateAccomodation() {
-		bean = new AccomodationBean();
+	public GraphicControllerCreateAccommodation() {
+		bean = new AccommodationBean();
 	}
 
 	public void applyInfo(MouseEvent event) {
@@ -104,7 +104,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		bean.setHouseImage(houseImage);
 		bean.setSquareMetres(squareMetres.getValue());
 		bean.setType(type.getValue());
-		facade.createAccomodation(bean);
+		facade.createAccommodation(bean);
 		goHome(event);
 	}
     
@@ -124,7 +124,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
         }
     }
     
-    public void setInfo(AccomodationBean beanToUpdate) {
+    public void setInfo(AccommodationBean beanToUpdate) {
 		bean = beanToUpdate;
 
     	description.setVisible(true);
@@ -147,7 +147,7 @@ public class GraphicControllerCreateAccomodation extends BasicGui{
 		setServices(bean);
     }
     
-    public void setServices(AccomodationBean bean) {
+    public void setServices(AccommodationBean bean) {
     	garden.setVisible(true);
     	wifi.setVisible(true);
     	bathroom.setVisible(true);

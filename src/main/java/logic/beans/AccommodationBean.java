@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 import logic.exceptions.LengthFieldException;
 
-public class AccomodationBean {
+public class AccommodationBean {
 	
 	private long id;
 	private String beds;

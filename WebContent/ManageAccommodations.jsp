@@ -74,24 +74,24 @@
 </style>
 <head>
 <meta charset="UTF-8">
-<title>Manage your accomodations</title>
+<title>Manage your accommodations</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 
-<%@ page import="logic.beans.AccomodationBean" %>
+<%@ page import="logic.beans.AccommodationBean" %>
 <%@ page import="java.util.List" language="java" %>
 <%@ page import="java.io.*"%>
 <%@ page import="java.util.Base64"%>
 <br>
 	<div>
-		<button  class="btn btn-secondary btn-lg btn-block" id="create">Create a new accomodation</button>
+		<button  class="btn btn-secondary btn-lg btn-block" id="create">Create a new accommodation</button>
 	</div>
 	<br>
 	<div>
-	<table class="table" id="AccomodationsTable">
+	<table class="table" id="AccommodationsTable">
 		<thead>
 			<tr>
 				<th scope="col">City</th>
@@ -99,7 +99,7 @@
 				<th scope="col">houseImage</th>
 				<th scope="col">Description</th>
 				<th scope="col">Beds</th>
-				<th scope="col">Type of Accomodation</th>
+				<th scope="col">Type of Accommodation</th>
 				<th scope="col">Square Metres</th>
 				<th scope="col">Services</th>
 				<th scope="col">included</th>
@@ -109,9 +109,9 @@
 		</thead>
 		<%
 			int i = 0;
-				List<AccomodationBean> listOfBean = (List<AccomodationBean>)request.getAttribute("list");		
+				List<AccommodationBean> listOfBean = (List<AccommodationBean>)request.getAttribute("list");		
 				// print the information about every category of the list
-				for(AccomodationBean bean : listOfBean) {
+				for(AccommodationBean bean : listOfBean) {
 			byte[] list = bean.getServices();
 		%>
 		<tr>
@@ -158,11 +158,11 @@
 		</table>
 	</div>
 	<%
-		AccomodationBean beanToUpdate = null;
-		if (request.getAttribute("bean") != null) {
-			beanToUpdate = (AccomodationBean)request.getAttribute("bean");
-		}
-		if (beanToUpdate!= null) {
+		AccommodationBean beanToUpdate = null;
+			if (request.getAttribute("bean") != null) {
+		beanToUpdate = (AccommodationBean)request.getAttribute("bean");
+			}
+			if (beanToUpdate!= null) {
 	%>	
 		<input type="hidden" id="toBeUpdate" value="<%=beanToUpdate.getID()%>">
 	<%
@@ -178,7 +178,7 @@
   <!-- Modal content -->
 <div class="modal-content">
   <div class="modal-header">
-    <h5>Set Accomodation Informations</h5>
+    <h5>Set Accommodation Informations</h5>
     <span class="close">&times;</span>
   </div>
   <div class="modal-body">

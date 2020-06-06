@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logic.beans.AccomodationBean;
+import logic.beans.AccommodationBean;
 import logic.controllers.ControllerFacade;
 
 @WebServlet("/RentTraveller")
-public class RentAccomodationServlet extends HttpServlet {
+public class RentAccommodationServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -29,9 +29,9 @@ public class RentAccomodationServlet extends HttpServlet {
 			page = "ChatTraveller";
 		}
 		else if (act.equalsIgnoreCase("Rent")) {
-			List<AccomodationBean> listOfBean = facade.retrieveAnnouncement();
+			List<AccommodationBean> listOfBean = facade.retrieveAnnouncement();
 			req.setAttribute("list", listOfBean);
-			page = "RentAnAccomodation.jsp";
+			page = "RentAnAccommodation.jsp";
 		}
 		changeP.forwardPage(page, req, resp);	
 	}

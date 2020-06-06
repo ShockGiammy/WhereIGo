@@ -9,12 +9,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="borderPane" prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerManageAccomodations">
+<BorderPane fx:id="borderPane" prefHeight="680.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.graphiccontrollers.GraphicControllerManageAccommodations">
    <rotationAxis>
       <Point3D />
    </rotationAxis>
    <center>
-      <ListView fx:id="accomodationsList" focusTraversable="false" maxHeight="1.7976931348623157E308" prefHeight="336.0" prefWidth="217.0" style="-fx-border-image-width: 0;" BorderPane.alignment="CENTER">
+      <ListView fx:id="accommodationsList" focusTraversable="false" maxHeight="1.7976931348623157E308" prefHeight="336.0" prefWidth="217.0" style="-fx-border-image-width: 0;" BorderPane.alignment="CENTER">
             </ListView>
    </center>
    <top>

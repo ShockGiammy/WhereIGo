@@ -26,7 +26,7 @@
 %>
 
 <body>
-<form action="RentAnAccomodation" method="post">
+<form action="RentAnAccommodation" method="post">
 	<div class="container-fluid" style="text-align:center;">
 		<div class = "row">
 			<div class="col-xs-6" style="margin-right:30px;">

@@ -6,19 +6,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Rent Accomodation</title>
+<title>Rent Accommodation</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
 
-<%@ page import="logic.beans.AccomodationBean" %>
+<%@ page import="logic.beans.AccommodationBean" %>
 <%@ page import="java.util.List" language="java" %>
 <%@page import="java.io.*"%>
 <%@page import="java.util.Base64"%>
 <br>
 	<div>
-	<table class="table" id="AccomodationsTable">
+	<table class="table" id="AccommodationsTable">
 		<thead>
 			<tr>
 				<th scope="col">City</th>
@@ -26,7 +26,7 @@
 				<th scope="col">houseImage</th>
 				<th scope="col">Description</th>
 				<th scope="col">Beds</th>
-				<th scope="col">Type of Appartment</th>
+				<th scope="col">Type of Accommodation</th>
 				<th scope="col">Square Metres</th>
 				<th scope="col">Services</th>
 				<th scope="col">included</th>
@@ -35,9 +35,9 @@
 			</tr>
 		</thead>
 		<%
-			List<AccomodationBean> listOfBean = (List<AccomodationBean>)request.getAttribute("list");		
+			List<AccommodationBean> listOfBean = (List<AccommodationBean>)request.getAttribute("list");		
 				// print the information about every category of the list
-				for(AccomodationBean bean : listOfBean) {
+				for(AccommodationBean bean : listOfBean) {
 			byte[] list = bean.getServices();
 		%>
 		<tr>

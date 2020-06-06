@@ -138,10 +138,10 @@ public class BasicGui extends Application{
     
     public void goRent(MouseEvent event) {
     	if (LoggedUser.getUserType() == UserType.RENTER) {
-			changeGUI(event, "RenterAccomodations.fxml");
+			changeGUI(event, "RenterAccommodations.fxml");
     	}
 		else {
-			changeGUI(event, "RentAccomodation.fxml");
+			changeGUI(event, "RentAccommodation.fxml");
     	}
     }
     

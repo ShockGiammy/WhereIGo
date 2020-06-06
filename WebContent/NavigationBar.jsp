@@ -25,7 +25,7 @@
        				<a class="nav-link" href="moveTo?action=gobooktravel" id="booktrav">Book a travel</a>
       			</li>
       			<li class="nav-item">
-       				<a class="nav-link" href="moveTo?action=Rent">Rent accomodation</a>
+       				<a class="nav-link" href="moveTo?action=Rent">Rent accommodation</a>
       			</li>
       			<li class="nav-item">
        				<a class="nav-link" href="moveTo?action=Chat">Chat with users&nbsp&nbsp&nbsp</a>

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import org.junit.Test;
 
 import logic.LoggedUser;
-import logic.beans.AccomodationBean;
+import logic.beans.AccommodationBean;
 import logic.controllers.ControllerFacade;
 import logic.exceptions.LengthFieldException;
 
@@ -29,7 +29,7 @@ public class TestManageAccomodationsController {
 		
 		LoggedUser.setUserName("Renter");
 		
-		AccomodationBean bean = new AccomodationBean();
+		AccommodationBean bean = new AccommodationBean();
 		bean.setBeds("6");
 		try {
 			bean.setCity("Rome");
@@ -43,14 +43,14 @@ public class TestManageAccomodationsController {
 		}
 		bean.setSquareMetres("> 60");
 		bean.setType("apartment");
-		facade.createAccomodation(bean);
+		facade.createAccommodation(bean);
 		
-		List<AccomodationBean> listOfBean = facade.retrieveMyAnnouncement();
+		List<AccommodationBean> listOfBean = facade.retrieveMyAnnouncement();
 		if (listOfBean.isEmpty()) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "No accomodation has to been shown");
 		}
 		else {
-			for (AccomodationBean beanReturned : listOfBean) {
+			for (AccommodationBean beanReturned : listOfBean) {
 				assertEquals(bean.getDescription(), beanReturned.getDescription());
 			}
 		}
@@ -58,28 +58,28 @@ public class TestManageAccomodationsController {
 	
 	@Test
 	public void updateAndDeleteAccomodation() {
-		List<AccomodationBean> listOfBeanToUpdate = facade.retrieveMyAnnouncement();
+		List<AccommodationBean> listOfBeanToUpdate = facade.retrieveMyAnnouncement();
 		if (listOfBeanToUpdate.isEmpty()) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "No accomodation has to been shown");
 		}
 		else {
 			File imageHouse = new File(System.getProperty("user.dir")+"/src/main/resources/images/houseExample.png");
-			AccomodationBean beanReturned = listOfBeanToUpdate.get(0);
+			AccommodationBean beanReturned = listOfBeanToUpdate.get(0);
 			beanReturned.setHouseImage(imageHouse);
-			facade.createAccomodation(beanReturned);
+			facade.createAccommodation(beanReturned);
 		}
-		List<AccomodationBean> listOfBeanUpdated = facade.retrieveMyAnnouncement();
+		List<AccommodationBean> listOfBeanUpdated = facade.retrieveMyAnnouncement();
 		if (listOfBeanToUpdate.isEmpty()) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "No accomodation has to been shown");
 		}
 		else {
-			for (AccomodationBean beanReturned : listOfBeanUpdated) {
-				for (AccomodationBean beanUpdated : listOfBeanToUpdate) {			
+			for (AccommodationBean beanReturned : listOfBeanUpdated) {
+				for (AccommodationBean beanUpdated : listOfBeanToUpdate) {			
 					if (beanUpdated.getID() == beanReturned.getID()) {
 						assertEquals(new String(Base64.getEncoder().encodeToString(beanUpdated.getHouseImage())), new String(Base64.getEncoder().encodeToString(beanReturned.getHouseImage())));
 					}
 				}
-				facade.deleteMyAccomodation(beanReturned.getID());
+				facade.deleteMyAccommodation(beanReturned.getID());
 			}
 		}
 	}

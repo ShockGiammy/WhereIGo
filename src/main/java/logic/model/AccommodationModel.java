@@ -1,8 +1,8 @@
 package logic.model;
 
-import logic.beans.AccomodationBean;
-import logic.dao.AccomodationDao;
-public class AccomodationModel {
+import logic.beans.AccommodationBean;
+import logic.dao.AccommodationDao;
+public class AccommodationModel {
 	
 	private String renter;
 	private long id;
@@ -16,7 +16,7 @@ public class AccomodationModel {
 	private byte[] services;
 	
 	
-	public AccomodationModel(AccomodationBean bean) {
+	public AccommodationModel(AccommodationBean bean) {
 		id = bean.getID();
 		beds = bean.getBeds();
 		renter = bean.getRenter();
@@ -32,33 +32,33 @@ public class AccomodationModel {
 		services = bean.getServices();
 	}
 	
-	public AccomodationModel() {
+	public AccommodationModel() {
 	}
 
-	public AccomodationBean getInfo() {
-		AccomodationBean accomodationInfo = new AccomodationBean();
-		accomodationInfo.setID(id);
-		accomodationInfo.setBeds(beds);
-		accomodationInfo.setRenterFromDB(renter);
-		accomodationInfo.setCityFromDB(city);
-		accomodationInfo.setAddressFromDB(address);
-		accomodationInfo.setType(type);
-		accomodationInfo.setSquareMetres(squareMetres);
-		accomodationInfo.setDescriptionFromDB(description);
+	public AccommodationBean getInfo() {
+		AccommodationBean accommodationInfo = new AccommodationBean();
+		accommodationInfo.setID(id);
+		accommodationInfo.setBeds(beds);
+		accommodationInfo.setRenterFromDB(renter);
+		accommodationInfo.setCityFromDB(city);
+		accommodationInfo.setAddressFromDB(address);
+		accommodationInfo.setType(type);
+		accommodationInfo.setSquareMetres(squareMetres);
+		accommodationInfo.setDescriptionFromDB(description);
 		if (this.houseImage != null) {
-			accomodationInfo.setInputStream(houseImage);
+			accommodationInfo.setInputStream(houseImage);
 		}
-		accomodationInfo.setServices(services);
-		return accomodationInfo;
+		accommodationInfo.setServices(services);
+		return accommodationInfo;
 	}
 	
-	public void saveAccomodation() {
-		AccomodationDao dao = new AccomodationDao();
-		dao.createAccomodation(this.getInfo());
+	public void saveAccommodation() {
+		AccommodationDao dao = new AccommodationDao();
+		dao.createAccommodation(this.getInfo());
 	}
 	
-	public void updateAccomodation() {
-		AccomodationDao dao = new AccomodationDao();
+	public void updateAccommodation() {
+		AccommodationDao dao = new AccommodationDao();
 		dao.update(this.getInfo());
 	}
 	

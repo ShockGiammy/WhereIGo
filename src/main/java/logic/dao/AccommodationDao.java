@@ -8,14 +8,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logic.SingletonDbConnection;
-import logic.beans.AccomodationBean;
-import logic.model.AccomodationModel;
+import logic.beans.AccommodationBean;
+import logic.model.AccommodationModel;
 
-public class AccomodationDao {
+public class AccommodationDao {
 	
 	private static final String EXCEPTION = "Got an exception!";
 
-	public AccomodationModel createAccomodation(AccomodationBean info) {
+	public AccommodationModel createAccommodation(AccommodationBean info) {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("INSERT INTO Post(ID,photo,utente,descr,beds,city,address,services,squareMetres,tipologia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")){    
 			statement.setLong(1, info.getID());
 			statement.setBinaryStream(2,info.getInputFile(), info.getFileLength());		//image
@@ -36,13 +36,13 @@ public class AccomodationDao {
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
 		}
-		return new AccomodationModel(info);
+		return new AccommodationModel(info);
 	}
 
-	public List<AccomodationModel> retrieveAccomodations() {
-		List<AccomodationModel> models = new ArrayList<>();
+	public List<AccommodationModel> retrieveAccommodations() {
+		List<AccommodationModel> models = new ArrayList<>();
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Post")){    
-			retrieveAccomodationDatas(statement, models);
+			retrieveAccommodationDatas(statement, models);
 		}catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
@@ -53,11 +53,11 @@ public class AccomodationDao {
 		return models;
 	}
 	
-	public List<AccomodationModel> retrieveMyAccomodations(String myUsername) {
-		List<AccomodationModel> models = new ArrayList<>();
+	public List<AccommodationModel> retrieveMyAccommodations(String myUsername) {
+		List<AccommodationModel> models = new ArrayList<>();
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Select * From Post Where utente = ?")){
 			statement.setString(1, myUsername);
-			retrieveAccomodationDatas(statement, models);
+			retrieveAccommodationDatas(statement, models);
 		}catch (SQLException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, EXCEPTION);
 			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
@@ -68,10 +68,10 @@ public class AccomodationDao {
 		return models;
 	}
 	
-	public void retrieveAccomodationDatas(PreparedStatement statement, List<AccomodationModel> models) {
+	public void retrieveAccommodationDatas(PreparedStatement statement, List<AccommodationModel> models) {
 		try(ResultSet rs = statement.executeQuery()){
 			while(rs.next()) {
-				AccomodationModel model = new AccomodationModel();
+				AccommodationModel model = new AccommodationModel();
 				model.setID(rs.getLong(1));
 				byte[] image = rs.getBytes(2);
 				model.setHouseImageBytes(image);
@@ -103,7 +103,7 @@ public class AccomodationDao {
 		}
 	}
 	
-	public void update(AccomodationBean info) {
+	public void update(AccommodationBean info) {
 		try (PreparedStatement statement = SingletonDbConnection.getInstance().getConnection().prepareStatement("Update Post Set photo = ? , descr = ? ,beds = ? "
 				+ ",city = ? ,address = ? ,services = ? ,squareMetres = ? ,tipologia = ? Where ID = ?")){
 			statement.setBinaryStream(1,info.getInputFile(), info.getFileLength());		//image
