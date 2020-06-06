@@ -104,12 +104,18 @@ public class GraphicControllerBookTravel extends BasicGui{
 		int i;
 		for(i = 0; i < suggLoc.size(); i++) {
 			HBox hbox = new HBox(20);
+			VBox vbox = new VBox();
+			Text space = new Text();
+			space.setText("                           ");
 			Text loc = new Text(suggLoc.get(i));
-			Button info = new Button("Get more info");
-			Button bookNow = new Button("Book a travel");
+			vbox.getChildren().addAll(loc, space);
+			Button info = new Button();
+			info.setText("Get more info");
+			Button bookNow = new Button();
+			bookNow.setText("Book a travel");
 			bookNow.setOnMouseClicked(this::bookSuggestedLoc);
 			info.setOnMouseClicked(this::showMoreInfo);
-			hbox.getChildren().addAll(loc,info, bookNow);
+			hbox.getChildren().addAll(vbox,info, bookNow);
 			this.suggLocView.getItems().add(hbox);
 		}
 	}
@@ -119,7 +125,8 @@ public class GraphicControllerBookTravel extends BasicGui{
 		ObservableList<HBox> loc = FXCollections.observableArrayList(this.suggLocView.getItems());
 		for(i = 0; i < loc.size(); i++) {
 			if(loc.get(i).getChildren().get(1).equals(e.getTarget())) {
-				Text text = (Text)loc.get(i).getChildren().get(0);
+				VBox box = (VBox)loc.get(i).getChildren().get(0);
+				Text text = (Text)box.getChildren().get(0);
 				this.locBean.setCityName(text.getText());
 				this.facade.retrieveLocInfo(this.locBean);
 				loadLocInfo(e);
@@ -137,8 +144,9 @@ public class GraphicControllerBookTravel extends BasicGui{
 		int i;
 		ObservableList<HBox> travls = FXCollections.observableArrayList(this.suggLocView.getItems());
 		for(i = 0; i < travls.size(); i++) {
-			if(travls.get(i).getChildren().get(2).equals(e.getTarget())) {
-				Text city = (Text)travls.get(i).getChildren().get(0);
+			if(travls.get(i).getChildren().get(2).equals(e.getTarget())) {			
+				VBox box = (VBox)travls.get(i).getChildren().get(0);
+				Text city = (Text)box.getChildren().get(0);
 				this.travBean = new UserTravelBean(city.getText());
 				try {
 					this.travBeanArray.addAll(this.facade.getSuggTicketsInfo(this.travBean));
