@@ -43,7 +43,7 @@ public class GraphicControllerCreateGroup extends BasicGui{
 			goHome(e);
 		} 
 		catch (GroupNameTakenException e1) {
-			this.popErr.displayErrorPopup("Nome gruppo non disponibile");
+			this.popErr.displayErrorPopup("Group name already taken");
 		}
 	}
 }

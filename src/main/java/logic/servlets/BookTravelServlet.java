@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import logic.LoggedUser;
 import logic.beans.GroupBean;
 import logic.beans.LocationBean;
 import logic.beans.UserTravelBean;
@@ -140,12 +139,7 @@ public class BookTravelServlet extends HttpServlet {
 	
 	private void deleteGroup(HttpServletRequest request) {
 		GroupBean bean = new GroupBean(request.getParameter("groupName"), request.getParameter("groupOwner"));
-		if(request.getParameter("groupOwner").equalsIgnoreCase(LoggedUser.getUserName())){ //can subistute with session
-			this.facCtrl.deleteTravelGroup(bean);
-		}
-		else {
-			this.facCtrl.leaveTravelGroup(bean);
-		}
+		this.facCtrl.deleteTravelGroup(bean);
 	}
 	
 	private void joinGroup(HttpServletRequest request) {

@@ -67,8 +67,13 @@ public class LoginServlet extends HttpServlet {
 			else {
 				ControllerFacade facCtrl = new ControllerFacade();
 				try {
-					facCtrl.insertNewUser(dataBean);
-					homePageCall(request, response, changeP);
+					if(facCtrl.insertNewUser(dataBean)) {
+						homePageCall(request, response, changeP);
+					}
+					else {
+						request.setAttribute(errMsg, "You must be 18 to register");
+						changeP.forwardPage(defPage, request, response);
+					}
 				} 
 				catch (DuplicateUsernameException e) {
 					request.setAttribute(errMsg, "Username not available");

@@ -15,7 +15,7 @@ public class JspChangePage {
 		try {
 			rd.forward(request, response);
 		}catch(ServletException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, "Servlet exception");
 		} catch (IOException e) {
 			Logger.getLogger("WIG").log(Level.SEVERE, "IOException");
 		}

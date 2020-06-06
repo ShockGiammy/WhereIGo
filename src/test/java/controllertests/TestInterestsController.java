@@ -21,6 +21,12 @@ public class TestInterestsController {
 		answ.add(3);
 		answ.add(4);
 		answ.add(1);
+		answ.add(3);
+		answ.add(2);
+		answ.add(1);
+		answ.add(4);
+		answ.add(4);
+		answ.add(3);
 		InterestsBean interBean = new InterestsBean(answ);
 		fac.evaluateInterests(interBean);
 		assertNotNull(LoggedUser.getPersonality());

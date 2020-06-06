@@ -90,10 +90,14 @@ public class GraphicControllerRegistration {
     	try {
     		this.dataBean.setType(this.typeOfUser.getValue());
     		this.dataBean.setGender(this.gender.getValue());
-    		this.facCtrl.insertNewUser(this.dataBean);
-    		this.errLogin.displayErrorPopup("Correcty Registered");
-    		bgui.setUserImage();
-    		bgui.goHome(event);
+    		if(this.facCtrl.insertNewUser(this.dataBean)) {
+    			this.errLogin.displayErrorPopup("Correcty Registered");
+    			bgui.setUserImage();
+        		bgui.goHome(event);
+    		}
+    		else {
+    			this.errLogin.displayErrorPopup("You must be at least 18 to register");
+    		}
     	}
     	catch(DuplicateUsernameException e) {
 			this.errLogin.displayErrorPopup("Username not available");

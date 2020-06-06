@@ -47,7 +47,11 @@ public class GraphicControllerBookTravel extends BasicGui{
 		if(LoggedUser.getPersonality() == null) {
 			this.popErr.displayErrorPopup("No suggestions for you, please take our test");
 			Button btnTest = new Button("Take personality test");
-			btnTest.setOnMouseClicked(this::getTest);
+			btnTest.setOnMouseClicked(e->{
+				setScene("InterestsForm.fxml");
+				loadScene();
+				nextGuiOnClick(e);
+			});
 			HBox test = new HBox();
 			test.getChildren().add(btnTest);
 			this.suggLocView.getItems().add(test);
@@ -57,8 +61,8 @@ public class GraphicControllerBookTravel extends BasicGui{
 			this.suggLoc = new ArrayList<>();
 			this.facade.findSuggGroups(grpList);
 			this.facade.findTravelSugg(suggLoc);
-			setLocation();
-			setGroups();
+			setAllLocations();
+			setAllGroups();
 		}
 		this.depCities = new ArrayList<>();
 		this.arrCities = new ArrayList<>();
@@ -79,6 +83,18 @@ public class GraphicControllerBookTravel extends BasicGui{
 		}
 	}
 	
+	public void setAllLocations() {
+		for(int i = 0; i < this.suggLoc.size(); i++) {
+			setLocation(this.suggLoc.get(i));
+		}
+	}
+	
+	public void setAllGroups() {
+		for(int i = 0; i < this.grpList.size(); i++) {
+			setGroup(this.grpList.get(i));
+		}
+	}
+	
 	public void setDepAndArr() {
 		ObservableList<String> arr = FXCollections.observableArrayList(this.arrCities);
 		ObservableList<String> dep = FXCollections.observableArrayList(this.depCities);
@@ -86,98 +102,51 @@ public class GraphicControllerBookTravel extends BasicGui{
 		this.arrivalCity.setItems(arr);
 	}
 	
-	public void setGroups() {
-		int j;
-		for(j = 0; j < grpList.size(); j++) {
-			VBox vbox = new VBox(10);
-			Text title = new Text(grpList.get(j).getGroupTitle());
-			Text owner = new Text(grpList.get(j).getGroupOwner());
-			Text location = new Text(grpList.get(j).getGroupDestination());
-			Button join = new Button("join group");
-			join.setOnMouseClicked(this::joinTheGroup);
-			vbox.getChildren().addAll(title, owner, location, join);
-			this.groupsView.getItems().add(vbox);
-		}
+	public void setGroup(GroupBean grpBean) {
+		VBox vbox = new VBox(10);
+		Text title = new Text(grpBean.getGroupTitle());
+		Text owner = new Text(grpBean.getGroupOwner());
+		Text location = new Text(grpBean.getGroupDestination());
+		Button join = new Button("join group");
+		join.setOnMouseClicked(e->{
+			this.facade.insertParticipant(grpBean);
+			this.groupsView.getItems().remove(vbox);
+			this.popErr.displayErrorPopup("Group joined");
+		});
+		vbox.getChildren().addAll(title, owner, location, join);
+		this.groupsView.getItems().add(vbox);
 	}
 	
-	public void setLocation() {
-		int i;
-		for(i = 0; i < suggLoc.size(); i++) {
-			HBox hbox = new HBox(20);
-			VBox vbox = new VBox();
-			Text space = new Text();
-			space.setText("                           ");
-			Text loc = new Text(suggLoc.get(i));
-			vbox.getChildren().addAll(loc, space);
-			Button info = new Button();
-			info.setText("Get more info");
-			Button bookNow = new Button();
-			bookNow.setText("Book a travel");
-			bookNow.setOnMouseClicked(this::bookSuggestedLoc);
-			info.setOnMouseClicked(this::showMoreInfo);
-			hbox.getChildren().addAll(vbox,info, bookNow);
-			this.suggLocView.getItems().add(hbox);
-		}
-	}
-	
-	public void showMoreInfo(MouseEvent e) {
-		int i;
-		ObservableList<HBox> loc = FXCollections.observableArrayList(this.suggLocView.getItems());
-		for(i = 0; i < loc.size(); i++) {
-			if(loc.get(i).getChildren().get(1).equals(e.getTarget())) {
-				VBox box = (VBox)loc.get(i).getChildren().get(0);
-				Text text = (Text)box.getChildren().get(0);
-				this.locBean.setCityName(text.getText());
-				this.facade.retrieveLocInfo(this.locBean);
-				loadLocInfo(e);
+	public void setLocation(String locat) {
+		HBox hbox = new HBox(20);
+		Text loc = new Text(locat);
+		Button info = new Button("Get more info");
+		Button bookNow = new Button("Book a travel");
+		bookNow.setOnMouseClicked(e->{
+			this.travBean = new UserTravelBean(locat);
+			try {
+				this.travBeanArray.addAll(this.facade.getSuggTicketsInfo(this.travBean));
+				setScene("TicketSolutions.fxml");
+				loadScene();
+				setTicketsDatas(this.travBeanArray, e);
 			}
-		}
+			catch(EmptyListException e1) {
+				this.popErr.displayErrorPopup("No available travel or travel already bought");
+			}
+		});
+		info.setOnMouseClicked(e->{
+			this.locBean.setCityName(locat);
+			this.facade.retrieveLocInfo(this.locBean);
+			loadLocInfo(e);
+		});
+		hbox.getChildren().addAll(loc,info, bookNow);
+		this.suggLocView.getItems().add(hbox);
 	}
 	
 	public void loadLocInfo(MouseEvent e) {
 		setScene("LocationInfo.fxml");
 		loadScene();
 		setLocationInfo(e, this.locBean);
-	}
-	
-	public void bookSuggestedLoc(MouseEvent e) {
-		int i;
-		ObservableList<HBox> travls = FXCollections.observableArrayList(this.suggLocView.getItems());
-		for(i = 0; i < travls.size(); i++) {
-			if(travls.get(i).getChildren().get(2).equals(e.getTarget())) {			
-				VBox box = (VBox)travls.get(i).getChildren().get(0);
-				Text city = (Text)box.getChildren().get(0);
-				this.travBean = new UserTravelBean(city.getText());
-				try {
-					this.travBeanArray.addAll(this.facade.getSuggTicketsInfo(this.travBean));
-					setScene("TicketSolutions.fxml");
-					loadScene();
-					setTicketsDatas(this.travBeanArray, e);
-				}
-				catch(EmptyListException e1) {
-					this.popErr.displayErrorPopup("Nessun viaggio disponibile o viaggio già prenotato");
-				}
-			}
-		}
-	}
-	
-	public void joinTheGroup(MouseEvent e) {
-		int i;
-		ObservableList<VBox> groups = FXCollections.observableArrayList(this.groupsView.getItems());
-		for(i = 0; i < groups.size(); i++) {
-			if(groups.get(i).getChildren().get(3).equals(e.getTarget())) {
-				Text title = (Text)groups.get(i).getChildren().get(0);
-				GroupBean grpBean = new GroupBean(title.getText());
-				if(this.facade.insertParticipant(grpBean) == 0) {
-					this.popErr.displayErrorPopup("Gruppo correttamente joinato");
-					VBox temp = groups.get(i);
-					this.groupsView.getItems().remove(temp);
-				}
-				else {
-					this.popErr.displayErrorPopup("Errore nel join del gruppo");
-				}
-			}
-		}
 	}
 	
 	private void checkBookSol(MouseEvent event) {
@@ -193,12 +162,6 @@ public class GraphicControllerBookTravel extends BasicGui{
 		catch(BigDateException e) {
 			this.popErr.displayErrorPopup(e.getMessage());
 		}
-	}
-	
-	public void getTest(MouseEvent e) {
-		setScene("InterestsForm.fxml");
-		loadScene();
-		nextGuiOnClick(e);
 	}
 	
 	public void setTicketsDatas(List<UserTravelBean> bean, MouseEvent e) {

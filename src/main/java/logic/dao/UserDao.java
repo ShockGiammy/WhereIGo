@@ -20,7 +20,7 @@ public class UserDao {
 			stm.execute();
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occured during insert", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occured during insert");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -35,7 +35,7 @@ public class UserDao {
 			ret = getLoggedUser(statement, usrMod);
 		}
 		catch (SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred during the fetch of credentials", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred during the fetch of credentials");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -77,7 +77,7 @@ public class UserDao {
 			}
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot get logged user", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot get logged user");
 		}
 		return 0;
 	}
@@ -90,7 +90,7 @@ public class UserDao {
 				getSimUsers( statement,  usersList);
 			}
 			catch(SQLException e) {
-				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+				Logger.getLogger("WIG").log(Level.SEVERE, "Error while retreiving similar users");
 			}
 			finally {
 				SingletonDbConnection.getInstance().closeConn();
@@ -107,7 +107,7 @@ public class UserDao {
 			}
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching users' datas");
 		}
 	}
 }

@@ -6,6 +6,7 @@ import logic.model.UserModel;
 import logic.beans.UserDataBean;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logic.LoggedUser;
@@ -31,17 +32,32 @@ public class LoginController {
 		return ret;
 	}
 	
-	public void insertNewUserControl(UserDataBean usrBean) throws DuplicateUsernameException {
-		this.usrModel.setCredentialsByBean(usrBean);
-		LoggedUser.setUserName(usrBean.getUsername());
-		LoggedUser.setType(usrBean.getType());
-		byte[] imm = new byte[(int)usrBean.getFileLength()];
-		try {
-			imm = Files.readAllBytes(usrBean.getFileImage().toPath());
-		} catch (IOException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+	public boolean insertNewUserControl(UserDataBean usrBean) throws DuplicateUsernameException {
+		if(valideDateOfBirth(usrBean.getLocDateOfBirth()) == -1) {
+			return false;
 		}
-		LoggedUser.setImage(imm);
-		this.usrDao.insertNewUser(this.usrModel);
+		else {
+			this.usrModel.setCredentialsByBean(usrBean);
+			LoggedUser.setUserName(usrBean.getUsername());
+			LoggedUser.setType(usrBean.getType());
+			byte[] imm = new byte[(int)usrBean.getFileLength()];
+			try {
+				imm = Files.readAllBytes(usrBean.getFileImage().toPath());
+			} catch (IOException e) {
+				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			}
+			LoggedUser.setImage(imm);
+			this.usrDao.insertNewUser(this.usrModel);
+		}
+		return true;
+	}
+	
+	private int valideDateOfBirth(LocalDate dateOfBirth) {
+		LocalDate today = LocalDate.now();
+		// the user is for sure adult
+		if(((today.getYear() - dateOfBirth.getYear()) > 18) || ((today.getYear() - dateOfBirth.getYear()) == 18 && dateOfBirth.getDayOfMonth() <= today.getDayOfMonth() && dateOfBirth.getMonthValue() <= today.getMonthValue())) {
+			return 0;
+		}
+		return -1;
 	}
 }

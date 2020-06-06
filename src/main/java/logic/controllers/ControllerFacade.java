@@ -249,13 +249,13 @@ public class ControllerFacade {
 	
 	public void deleteTravelGroup(GroupBean grpBean) {
 		this.bookTravCtrl = new BookTravelControl();
-		this.bookTravCtrl.deleteTravelGroupControl(grpBean);
-	}
-	
-	public void leaveTravelGroup(GroupBean grpBean) {
-		this.bookTravCtrl = new BookTravelControl();
-		this.dBean = new UserDataBean(LoggedUser.getPersonality());
-		this.bookTravCtrl.leaveTravelGroupControl(grpBean, dBean);
+		if(LoggedUser.getUserName().equalsIgnoreCase(grpBean.getGroupOwner())) {
+			this.bookTravCtrl.deleteTravelGroupControl(grpBean);
+		}
+		else {
+			this.dBean = new UserDataBean(LoggedUser.getUserName());
+			this.bookTravCtrl.leaveTravelGroupControl(grpBean, this.dBean);
+		}
 	}
 	
 	/* methods calls of the Interest Controller*/
@@ -272,8 +272,8 @@ public class ControllerFacade {
 		return this.loginCtrl.checkLogInControl(logBean);
 	}
 	
-	public void insertNewUser(UserDataBean usrBean) throws DuplicateUsernameException {
+	public boolean insertNewUser(UserDataBean usrBean) throws DuplicateUsernameException {
 		this.loginCtrl = new LoginController();
-		this.loginCtrl.insertNewUserControl(usrBean);
+		return this.loginCtrl.insertNewUserControl(usrBean);
 	}
 }

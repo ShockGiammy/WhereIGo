@@ -18,7 +18,7 @@ public class LocationDao {
 			statement.setString(1,locModel.getCity());
 			getLocations(statement, locModel);
 		}catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Error while retriving location", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while retriving location");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -31,7 +31,7 @@ public class LocationDao {
 				locModel.setAll(rs.getString(1), rs.getString(5), rs.getBytes(4));
 			}
 		}catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Location ResultSet error", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Location ResultSet error");
 		}
 	}
 	
@@ -42,7 +42,7 @@ public class LocationDao {
 			statement.setString(2, usrMod.getUserName());
 			retrieveSuggestedLocations(statement, loc);
 		}catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException on fetchin locations\n", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "SQLException on fetchin locations\n");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -56,7 +56,7 @@ public class LocationDao {
 				loc.add(rs.getString(1));
 			}
 		}catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "ResultSet fetch fail !", e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "ResultSet fetch fail !");
 		}
 	}
 }

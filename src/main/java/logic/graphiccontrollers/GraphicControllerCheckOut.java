@@ -64,10 +64,10 @@ public class GraphicControllerCheckOut extends BasicGui{
 		try {
 			grpBean.setGroupOwner(this.groupAdmin.getText());
 			this.facade.saveGroup(grpBean);
-			this.popErr.displayErrorPopup("Gruppo salvato correttamente");
+			this.popErr.displayErrorPopup("Group correctly saved");
 		}
 		catch(GroupNameTakenException e) {
-			this.popErr.displayErrorPopup("Nome del gruppo già scelto. Per favore, inserire un nome diverso");
+			this.popErr.displayErrorPopup("Group name already taken");
 		}
 	}
 	

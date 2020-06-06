@@ -22,7 +22,7 @@ public class GroupDao {
 				getSuggestedGroupsDatas(statement, modelList);
 			}
 			catch(SQLException e) {
-				Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred\n",e);
+				Logger.getLogger("WIG").log(Level.SEVERE, "SQLException occurred\n");
 			}
 			finally {
 				SingletonDbConnection.getInstance().closeConn();
@@ -55,7 +55,7 @@ public class GroupDao {
 				throw new GroupNameTakenException(e.getMessage());
 			}
 			else {
-				Logger.getLogger("WIG").log(Level.SEVERE, "Cannot insert group", e);
+				Logger.getLogger("WIG").log(Level.SEVERE, "Cannot insert group");
 			}
 		}
 		finally {
@@ -69,7 +69,7 @@ public class GroupDao {
 			findUserGroups(grpModel, statement);
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, "Can't extract user groups\n");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -95,7 +95,7 @@ public class GroupDao {
 			fetchPartGroup(statement, grpModel);
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, "Can't get user participations to groups");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -111,7 +111,7 @@ public class GroupDao {
 			}
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, "Can't fetch participations");
 		}
 	}
 	
@@ -122,7 +122,7 @@ public class GroupDao {
 			statement.execute();
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while deleting group");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -137,7 +137,7 @@ public class GroupDao {
 			return 0;
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while inserti participant");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -152,7 +152,7 @@ public class GroupDao {
 			statement.execute();
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot leave joined group");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();

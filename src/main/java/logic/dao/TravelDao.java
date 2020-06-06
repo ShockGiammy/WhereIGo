@@ -21,7 +21,7 @@ public class TravelDao {
 			fetchCurrTicks(prep, depCities);
 			fetchCurrTicks(prep2, arrCities);
 		} catch (SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "No available tickets at the moment",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "No available tickets at the moment");
 		}
 	}
 	
@@ -38,7 +38,7 @@ public class TravelDao {
 			ticketQuery(tickets, prep);
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Error while retriving tickets\n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while retriving tickets\n");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -51,7 +51,7 @@ public class TravelDao {
 			setFetchedTick(rs, list);
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "ResultSet null \n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "ResultSet null \n");
 		}
 	}
 	
@@ -74,7 +74,7 @@ public class TravelDao {
 			updateNumberOfTickets(tick,0);
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Failed to update tickets \n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Failed to update tickets \n");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -88,7 +88,7 @@ public class TravelDao {
 				statement.execute();
 			}
 			catch(SQLException e) {
-				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+				Logger.getLogger("WIG").log(Level.SEVERE, "Error while updating number of tickets");
 			}
 			finally {
 				SingletonDbConnection.getInstance().closeConn();
@@ -100,7 +100,7 @@ public class TravelDao {
 				statement.execute();
 			}
 			catch(SQLException e) {
-				Logger.getLogger("WIG").log(Level.SEVERE, e.getMessage());
+				Logger.getLogger("WIG").log(Level.SEVERE, "Can't increase number of tickets");
 			}
 			finally {
 				SingletonDbConnection.getInstance().closeConn();
@@ -114,7 +114,7 @@ public class TravelDao {
 			fetchTickets(statement, tickList);
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching tickets\n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching tickets\n");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -126,7 +126,7 @@ public class TravelDao {
 			setFetchedTick(rs, tickList);
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot manipulate tickets resultset \n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot manipulate tickets resultset \n");
 		}
 	}
 	
@@ -138,7 +138,7 @@ public class TravelDao {
 			updateNumberOfTickets(tickModel, 1);
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot delete ticket \n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot delete ticket \n");
 		}
 		finally {
 			SingletonDbConnection.getInstance().getConnection();
@@ -154,7 +154,7 @@ public class TravelDao {
 			findSuggTickets(statement, tickList, tickMod);
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE,e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, "Can't extract suggested tickets for the user");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -170,7 +170,7 @@ public class TravelDao {
 			}
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE,e.getMessage());
+			Logger.getLogger("WIG").log(Level.SEVERE, "Can't fetch suggested tickets");
 		}
 	}
 	
@@ -194,7 +194,7 @@ public class TravelDao {
 			}
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot manipulate tickets resultset \n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot manipulate tickets resultset \n");
 		}
 	}
 	
@@ -204,7 +204,7 @@ public class TravelDao {
 				cities.add(rs.getString(1));
 			}
 		} catch (SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching tickets : no ticket available \n",e);
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching tickets \n");
 		}
 	}
 }
