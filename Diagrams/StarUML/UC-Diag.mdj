@@ -835,11 +835,11 @@
 												"$ref": "AAAAAAFvTWHh1D9VSVI="
 											},
 											"font": "Arial;13;1",
-											"left": 380,
+											"left": 382.5,
 											"top": 446.5,
-											"width": 139,
+											"width": 150,
 											"height": 13,
-											"text": "Rent an accomodation"
+											"text": "Rent an accommodation"
 										},
 										{
 											"_type": "LabelView",
@@ -870,9 +870,9 @@
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 375,
+									"left": 377.5,
 									"top": 439.5,
-									"width": 149.4072265625,
+									"width": 160.96630859375,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFvTWHh1D9Wpu8="
@@ -972,7 +972,7 @@
 							"containerChangeable": true,
 							"left": 344,
 							"top": 424,
-							"width": 211,
+							"width": 227,
 							"height": 57,
 							"nameCompartment": {
 								"$ref": "AAAAAAFvTWHh1D9VSVI="
@@ -2322,8 +2322,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 759,
-									"top": 491,
+									"left": 767,
+									"top": 492,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2342,8 +2342,8 @@
 										"$ref": "AAAAAAFvqd7slUIiFbo="
 									},
 									"font": "Arial;13;0",
-									"left": 771,
-									"top": 499,
+									"left": 779,
+									"top": 500,
 									"width": 55.65625,
 									"height": 13,
 									"alpha": 0.34467851623211376,
@@ -2365,8 +2365,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 754,
-									"top": 520,
+									"left": 762,
+									"top": 521,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -2384,7 +2384,7 @@
 								"$ref": "AAAAAAFvTWHh0z9UB3c="
 							},
 							"lineStyle": 1,
-							"points": "555:473;959:552",
+							"points": "571:475;959:552",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFvqd7slUIlGpQ="
@@ -2418,7 +2418,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 230,
-									"top": 404,
+									"top": 403,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2439,7 +2439,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 232,
-									"top": 389,
+									"top": 388,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -2460,7 +2460,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 227,
-									"top": 433,
+									"top": 432,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -2522,8 +2522,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 135,
-									"top": 420,
+									"left": 136,
+									"top": 419,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -2543,7 +2543,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 319,
+									"left": 318,
 									"top": 414,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -2564,7 +2564,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 318,
-									"top": 401,
+									"top": 400,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -2583,8 +2583,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 319,
-									"top": 442,
+									"left": 320,
+									"top": 441,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -2633,7 +2633,7 @@
 								"$ref": "AAAAAAFvTVNFtTfNX9I="
 							},
 							"lineStyle": 1,
-							"points": "116:411;343:439",
+							"points": "116:411;343:438",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFvqd/ioEMGFfE="
@@ -5925,7 +5925,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFvTVMmPjfGU6s="
 					},
-					"name": "Rent an accomodation",
+					"name": "Rent an accommodation",
 					"ownedElements": [
 						{
 							"_type": "UMLInclude",

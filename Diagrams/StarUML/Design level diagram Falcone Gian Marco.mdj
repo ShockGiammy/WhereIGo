@@ -50,7 +50,7 @@
 											"font": "Arial;13;0",
 											"left": 109,
 											"top": 741,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
 											"text": "«view»"
 										},
@@ -64,9 +64,9 @@
 											"font": "Arial;13;1",
 											"left": 109,
 											"top": 756,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
-											"text": "RentAccomodationBoundary"
+											"text": "RentAccommodationBoundary"
 										},
 										{
 											"_type": "LabelView",
@@ -102,7 +102,7 @@
 									"font": "Arial;13;0",
 									"left": 104,
 									"top": 736,
-									"width": 371.68310546875,
+									"width": 404.17041015625,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFvtEgOLXJTm5M="
@@ -130,7 +130,7 @@
 									"font": "Arial;13;0",
 									"left": 104,
 									"top": 774,
-									"width": 371.68310546875,
+									"width": 404.17041015625,
 									"height": 10
 								},
 								{
@@ -156,9 +156,9 @@
 											"font": "Arial;13;0",
 											"left": 109,
 											"top": 789,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
-											"text": "+displayAccomodationInfo(accomodation: AccomodationBean)",
+											"text": "+displayAccommodationInfo(accommodation: AccommodationBean)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -174,9 +174,9 @@
 											"font": "Arial;13;0",
 											"left": 109,
 											"top": 804,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
-											"text": "+displayAccomodations()",
+											"text": "+displayAccommodations()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -192,9 +192,9 @@
 											"font": "Arial;13;0",
 											"left": 109,
 											"top": 819,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
-											"text": "+selectAccomodation(accomodation : AccomodationBean)",
+											"text": "+selectAccommodation(accommodation : AccommodationBean)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -210,7 +210,7 @@
 											"font": "Arial;13;0",
 											"left": 109,
 											"top": 834,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
 											"text": "+displayRenterInfo()",
 											"horizontalAlignment": 0
@@ -228,7 +228,7 @@
 											"font": "Arial;13;0",
 											"left": 109,
 											"top": 849,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
 											"text": "+displayServices()",
 											"horizontalAlignment": 0
@@ -238,7 +238,7 @@
 									"font": "Arial;13;0",
 									"left": 104,
 									"top": 784,
-									"width": 371.68310546875,
+									"width": 404.17041015625,
 									"height": 83
 								},
 								{
@@ -281,7 +281,7 @@
 							"containerChangeable": true,
 							"left": 104,
 							"top": 736,
-							"width": 371.68310546875,
+							"width": 404.17041015625,
 							"height": 137,
 							"nameCompartment": {
 								"$ref": "AAAAAAFvtEgOLXJSyKg="
@@ -329,7 +329,7 @@
 											"font": "Arial;13;0",
 											"left": 1469,
 											"top": 1029,
-											"width": 271.3369140625,
+											"width": 282.166015625,
 											"height": 13,
 											"text": "«controller»"
 										},
@@ -343,9 +343,9 @@
 											"font": "Arial;13;1",
 											"left": 1469,
 											"top": 1044,
-											"width": 271.3369140625,
+											"width": 282.166015625,
 											"height": 13,
-											"text": "RentAccomodation"
+											"text": "RentAccommodation"
 										},
 										{
 											"_type": "LabelView",
@@ -381,7 +381,7 @@
 									"font": "Arial;13;0",
 									"left": 1464,
 									"top": 1024,
-									"width": 281.3369140625,
+									"width": 292.166015625,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFvtEgZR3J8Bmw="
@@ -419,9 +419,9 @@
 											"font": "Arial;13;0",
 											"left": 1469,
 											"top": 1067,
-											"width": 271.3369140625,
+											"width": 282.166015625,
 											"height": 13,
-											"text": "-listOfAccomodation: List<Accomodation>",
+											"text": "-listOfAccommodation: List<Accommodation>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -429,7 +429,7 @@
 									"font": "Arial;13;0",
 									"left": 1464,
 									"top": 1062,
-									"width": 281.3369140625,
+									"width": 292.166015625,
 									"height": 23
 								},
 								{
@@ -455,7 +455,7 @@
 											"font": "Arial;13;0",
 											"left": 1469,
 											"top": 1090,
-											"width": 271.3369140625,
+											"width": 282.166015625,
 											"height": 13,
 											"text": "+openChat()",
 											"horizontalAlignment": 0
@@ -473,7 +473,7 @@
 											"font": "Arial;13;0",
 											"left": 1469,
 											"top": 1105,
-											"width": 271.3369140625,
+											"width": 282.166015625,
 											"height": 13,
 											"text": "+contactRenter()",
 											"horizontalAlignment": 0
@@ -491,9 +491,9 @@
 											"font": "Arial;13;0",
 											"left": 1469,
 											"top": 1120,
-											"width": 271.3369140625,
+											"width": 282.166015625,
 											"height": 13,
-											"text": "+retrieveAnnoncements(): List<Accomodation>",
+											"text": "+retrieveAnnoncements(): List<Accommodation>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -501,7 +501,7 @@
 									"font": "Arial;13;0",
 									"left": 1464,
 									"top": 1085,
-									"width": 281.3369140625,
+									"width": 292.166015625,
 									"height": 53
 								},
 								{
@@ -544,7 +544,7 @@
 							"containerChangeable": true,
 							"left": 1464,
 							"top": 1024,
-							"width": 281.3369140625,
+							"width": 292.166015625,
 							"height": 114,
 							"nameCompartment": {
 								"$ref": "AAAAAAFvtEgZR3J7R8M="
@@ -592,7 +592,7 @@
 											"font": "Arial;13;0",
 											"left": 1429,
 											"top": 1277,
-											"width": 464.3056640625,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "«controller»"
 										},
@@ -606,9 +606,9 @@
 											"font": "Arial;13;1",
 											"left": 1429,
 											"top": 1292,
-											"width": 464.3056640625,
+											"width": 468.61572265625,
 											"height": 13,
-											"text": "ManageAccomodations"
+											"text": "ManageAccommodations"
 										},
 										{
 											"_type": "LabelView",
@@ -644,7 +644,7 @@
 									"font": "Arial;13;0",
 									"left": 1424,
 									"top": 1272,
-									"width": 474.3056640625,
+									"width": 478.61572265625,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFvtEgjDHKlVYA="
@@ -682,9 +682,9 @@
 											"font": "Arial;13;0",
 											"left": 1429,
 											"top": 1315,
-											"width": 464.3056640625,
+											"width": 468.61572265625,
 											"height": 13,
-											"text": "-listOfAccomodation: List<Accomodation>",
+											"text": "-listOfAccommodation: List<Accommodation>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -700,7 +700,7 @@
 											"font": "Arial;13;0",
 											"left": 1429,
 											"top": 1330,
-											"width": 464.3056640625,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+username: String",
 											"horizontalAlignment": 0
@@ -710,7 +710,7 @@
 									"font": "Arial;13;0",
 									"left": 1424,
 									"top": 1310,
-									"width": 474.3056640625,
+									"width": 478.61572265625,
 									"height": 38
 								},
 								{
@@ -736,7 +736,7 @@
 											"font": "Arial;13;0",
 											"left": 1429,
 											"top": 1353,
-											"width": 464.3056640625,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+retrieveMyAnnouncement(name): List<Accomodation>",
 											"horizontalAlignment": 0
@@ -754,9 +754,9 @@
 											"font": "Arial;13;0",
 											"left": 1429,
 											"top": 1368,
-											"width": 464.3056640625,
+											"width": 468.61572265625,
 											"height": 13,
-											"text": "+CreateAnnouncement(accomodation: AccomdationBean): Accomodation",
+											"text": "+CreateAnnouncement(accommodation: AccommodationBean): Accommodation",
 											"horizontalAlignment": 0
 										},
 										{
@@ -772,9 +772,9 @@
 											"font": "Arial;13;0",
 											"left": 1429,
 											"top": 1383,
-											"width": 464.3056640625,
+											"width": 468.61572265625,
 											"height": 13,
-											"text": "+UpdateAnnouncement(accomodation: AccomdationBean): Accomodation",
+											"text": "+UpdateAnnouncement(accommodation: AccommodationBean): Accommodation",
 											"horizontalAlignment": 0
 										},
 										{
@@ -790,9 +790,9 @@
 											"font": "Arial;13;0",
 											"left": 1429,
 											"top": 1398,
-											"width": 464.3056640625,
+											"width": 468.61572265625,
 											"height": 13,
-											"text": "+deleteAnnouncement(accomodationID: int)",
+											"text": "+deleteAnnouncement(accommodationID: int)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -800,7 +800,7 @@
 									"font": "Arial;13;0",
 									"left": 1424,
 									"top": 1348,
-									"width": 474.3056640625,
+									"width": 478.61572265625,
 									"height": 68
 								},
 								{
@@ -843,7 +843,7 @@
 							"containerChangeable": true,
 							"left": 1424,
 							"top": 1272,
-							"width": 474.3056640625,
+							"width": 478.61572265625,
 							"height": 144,
 							"nameCompartment": {
 								"$ref": "AAAAAAFvtEgjDHKkla4="
@@ -907,7 +907,7 @@
 											"top": 1196,
 											"width": 263,
 											"height": 13,
-											"text": "Accomodation"
+											"text": "Accommodation"
 										},
 										{
 											"_type": "LabelView",
@@ -2070,7 +2070,7 @@
 											"top": 820,
 											"width": 171.9453125,
 											"height": 13,
-											"text": "AccomodationBean"
+											"text": "AccommodationBean"
 										},
 										{
 											"_type": "LabelView",
@@ -3455,7 +3455,7 @@
 											"font": "Arial;13;0",
 											"left": 101,
 											"top": 1021,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
 											"text": "«view»"
 										},
@@ -3469,9 +3469,9 @@
 											"font": "Arial;13;1",
 											"left": 101,
 											"top": 1036,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
-											"text": "ManageAccomodationsBoundary"
+											"text": "ManageAccommodationsBoundary"
 										},
 										{
 											"_type": "LabelView",
@@ -3507,7 +3507,7 @@
 									"font": "Arial;13;0",
 									"left": 96,
 									"top": 1016,
-									"width": 371.68310546875,
+									"width": 404.17041015625,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyYPNHQX7NU7s="
@@ -3535,7 +3535,7 @@
 									"font": "Arial;13;0",
 									"left": 96,
 									"top": 1054,
-									"width": 371.68310546875,
+									"width": 404.17041015625,
 									"height": 10
 								},
 								{
@@ -3561,9 +3561,9 @@
 											"font": "Arial;13;0",
 											"left": 101,
 											"top": 1069,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
-											"text": "+displayMyAccomodations()",
+											"text": "+displayMyAccommodations()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3579,9 +3579,9 @@
 											"font": "Arial;13;0",
 											"left": 101,
 											"top": 1084,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
-											"text": "+displayAccomodationInfo(accomodation; AccomodationBean)",
+											"text": "+displayAccommodationInfo(accommodation; AccommodationBean)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3597,9 +3597,9 @@
 											"font": "Arial;13;0",
 											"left": 101,
 											"top": 1099,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
-											"text": "+setAccomodationInfo()",
+											"text": "+setAccommodationInfo()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3615,9 +3615,9 @@
 											"font": "Arial;13;0",
 											"left": 101,
 											"top": 1114,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
-											"text": "+applyAccomodationInfo()",
+											"text": "+applyAccommodationInfo()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3633,7 +3633,7 @@
 											"font": "Arial;13;0",
 											"left": 101,
 											"top": 1129,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
 											"text": "+updateServices()",
 											"horizontalAlignment": 0
@@ -3651,7 +3651,7 @@
 											"font": "Arial;13;0",
 											"left": 101,
 											"top": 1144,
-											"width": 361.68310546875,
+											"width": 394.17041015625,
 											"height": 13,
 											"text": "+setServices()",
 											"horizontalAlignment": 0
@@ -3661,7 +3661,7 @@
 									"font": "Arial;13;0",
 									"left": 96,
 									"top": 1064,
-									"width": 371.68310546875,
+									"width": 404.17041015625,
 									"height": 98
 								},
 								{
@@ -3704,7 +3704,7 @@
 							"containerChangeable": true,
 							"left": 96,
 							"top": 1016,
-							"width": 371.68310546875,
+							"width": 404.17041015625,
 							"height": 146,
 							"nameCompartment": {
 								"$ref": "AAAAAAFyYPNHQH7MXzY="
@@ -7652,7 +7652,7 @@
 											"font": "Arial;13;1",
 											"left": 861,
 											"top": 871,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "Facade"
 										},
@@ -7690,7 +7690,7 @@
 									"font": "Arial;13;0",
 									"left": 856,
 									"top": 864,
-									"width": 438.8984375,
+									"width": 478.61572265625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyayhTSgSZb/A="
@@ -7718,7 +7718,7 @@
 									"font": "Arial;13;0",
 									"left": 856,
 									"top": 889,
-									"width": 438.8984375,
+									"width": 478.61572265625,
 									"height": 10
 								},
 								{
@@ -7744,7 +7744,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 904,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+checkLogin(user: UserBean)",
 											"horizontalAlignment": 0
@@ -7762,7 +7762,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 919,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+openChat()",
 											"horizontalAlignment": 0
@@ -7780,7 +7780,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 934,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+contactRenter()",
 											"horizontalAlignment": 0
@@ -7798,9 +7798,9 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 949,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
-											"text": "+retrieveAnnoncements(): List<Accomodation>",
+											"text": "+retrieveAnnoncements(): List<Accommodation>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7816,9 +7816,9 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 964,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
-											"text": "+retrieveMyAnnouncement(name): List<Accomodation>",
+											"text": "+retrieveMyAnnouncement(name): List<Accommodation>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7834,9 +7834,9 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 979,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
-											"text": "+CreateAnnouncement(accomodation: AccomdationBean): Accomodation",
+											"text": "+CreateAnnouncement(accommodation: AccommodationBean): Accommodation",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7852,9 +7852,9 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 994,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
-											"text": "+UpdateAnnouncement(accomodation: AccomdationBean): Accomodation",
+											"text": "+UpdateAnnouncement(accommodation: AccommodationBean): Accommodation",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7870,9 +7870,9 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 1009,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
-											"text": "+deleteAnnouncement(accomodationID: int)",
+											"text": "+deleteAnnouncement(accommodationID: int)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7888,7 +7888,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 1024,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+createChat(message: Message)",
 											"horizontalAlignment": 0
@@ -7906,7 +7906,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 1039,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+acceptChat(traveler: String)",
 											"horizontalAlignment": 0
@@ -7924,7 +7924,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 1054,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+sendMessage(message: Message)",
 											"horizontalAlignment": 0
@@ -7942,7 +7942,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 1069,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+openChat(receiver: String): List<Message>",
 											"horizontalAlignment": 0
@@ -7960,7 +7960,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 1084,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+retrieveUsers(myName: String): List<UserChat>",
 											"horizontalAlignment": 0
@@ -7978,7 +7978,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 1099,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+updateUsersStatus(myName: String): List<UserChat>",
 											"horizontalAlignment": 0
@@ -7996,7 +7996,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 1114,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+closeLastChat()",
 											"horizontalAlignment": 0
@@ -8014,7 +8014,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 1129,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+createGroup(group: Group)",
 											"horizontalAlignment": 0
@@ -8032,7 +8032,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 1144,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+retrieveGroups(myName: String): List<Group>",
 											"horizontalAlignment": 0
@@ -8050,7 +8050,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 1159,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+execute()",
 											"horizontalAlignment": 0
@@ -8068,7 +8068,7 @@
 											"font": "Arial;13;0",
 											"left": 861,
 											"top": 1174,
-											"width": 428.8984375,
+											"width": 468.61572265625,
 											"height": 13,
 											"text": "+loadImage(image: byte)",
 											"horizontalAlignment": 0
@@ -8078,7 +8078,7 @@
 									"font": "Arial;13;0",
 									"left": 856,
 									"top": 899,
-									"width": 438.8984375,
+									"width": 478.61572265625,
 									"height": 293
 								},
 								{
@@ -8121,7 +8121,7 @@
 							"containerChangeable": true,
 							"left": 856,
 							"top": 864,
-							"width": 438.8984375,
+							"width": 478.61572265625,
 							"height": 341,
 							"nameCompartment": {
 								"$ref": "AAAAAAFyayhTSgSYSTk="
@@ -9766,7 +9766,7 @@
 											"font": "Arial;13;0",
 											"left": 2485,
 											"top": 1285,
-											"width": 365.9677734375,
+											"width": 387.6259765625,
 											"height": 13,
 											"text": "«DAO»"
 										},
@@ -9780,9 +9780,9 @@
 											"font": "Arial;13;1",
 											"left": 2485,
 											"top": 1300,
-											"width": 365.9677734375,
+											"width": 387.6259765625,
 											"height": 13,
-											"text": "AccomodationDao"
+											"text": "AccommodationDao"
 										},
 										{
 											"_type": "LabelView",
@@ -9818,7 +9818,7 @@
 									"font": "Arial;13;0",
 									"left": 2480,
 									"top": 1280,
-									"width": 375.9677734375,
+									"width": 397.6259765625,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFya0APTouNvB0="
@@ -9846,7 +9846,7 @@
 									"font": "Arial;13;0",
 									"left": 2480,
 									"top": 1318,
-									"width": 375.9677734375,
+									"width": 397.6259765625,
 									"height": 10
 								},
 								{
@@ -9872,9 +9872,9 @@
 											"font": "Arial;13;0",
 											"left": 2485,
 											"top": 1333,
-											"width": 365.9677734375,
+											"width": 387.6259765625,
 											"height": 13,
-											"text": "+update(accomodation: Accomodation)",
+											"text": "+update(accommodation: Accommodation)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -9890,7 +9890,7 @@
 											"font": "Arial;13;0",
 											"left": 2485,
 											"top": 1348,
-											"width": 365.9677734375,
+											"width": 387.6259765625,
 											"height": 13,
 											"text": "+delete(Id: int)",
 											"horizontalAlignment": 0
@@ -9908,9 +9908,9 @@
 											"font": "Arial;13;0",
 											"left": 2485,
 											"top": 1363,
-											"width": 365.9677734375,
+											"width": 387.6259765625,
 											"height": 13,
-											"text": "+retrieveAccomodations(): List<Accomodation>",
+											"text": "+retrieveAccommodations(): List<Accommodation>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -9926,9 +9926,9 @@
 											"font": "Arial;13;0",
 											"left": 2485,
 											"top": 1378,
-											"width": 365.9677734375,
+											"width": 387.6259765625,
 											"height": 13,
-											"text": "+retrieveMyAccomodations(renter: String): List<Accomodation>",
+											"text": "+retrieveMyAccommodations(renter: String): List<Accommodation>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -9944,9 +9944,9 @@
 											"font": "Arial;13;0",
 											"left": 2485,
 											"top": 1393,
-											"width": 365.9677734375,
+											"width": 387.6259765625,
 											"height": 13,
-											"text": "+create(accomodation: Accomodation)",
+											"text": "+create(accommodation: Accommodation)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -9954,7 +9954,7 @@
 									"font": "Arial;13;0",
 									"left": 2480,
 									"top": 1328,
-									"width": 375.9677734375,
+									"width": 397.6259765625,
 									"height": 83
 								},
 								{
@@ -9997,7 +9997,7 @@
 							"containerChangeable": true,
 							"left": 2480,
 							"top": 1280,
-							"width": 375.9677734375,
+							"width": 397.6259765625,
 							"height": 131,
 							"nameCompartment": {
 								"$ref": "AAAAAAFya0APTouML9E="
@@ -12646,7 +12646,7 @@
 										"$ref": "AAAAAAFye3x/MEBL2jg="
 									},
 									"font": "Arial;13;0",
-									"left": 3274,
+									"left": 3285,
 									"top": 1319,
 									"width": 27.09814453125,
 									"height": 13,
@@ -12669,7 +12669,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 3287,
+									"left": 3298,
 									"top": 1304,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -12690,7 +12690,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 3287,
+									"left": 3298,
 									"top": 1349,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -12708,7 +12708,7 @@
 							"tail": {
 								"$ref": "AAAAAAFya0APTouLYcw="
 							},
-							"points": "2855:1340;3720:1340",
+							"points": "2877:1340;3720:1340",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFye3x/MEBOaPA="
@@ -13461,7 +13461,7 @@
 							"tail": {
 								"$ref": "AAAAAAFyayhTSQSXLHA="
 							},
-							"points": "1294:1176;1456:1176;1456:1272",
+							"points": "1334:1176;1456:1176;1456:1272",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFye4IiKG+0NuU="
@@ -13493,7 +13493,7 @@
 										"$ref": "AAAAAAFye4KtNXfJ+MA="
 									},
 									"font": "Arial;13;0",
-									"left": 1366,
+									"left": 1386,
 									"top": 1047,
 									"width": 27.09814453125,
 									"height": 13,
@@ -13516,7 +13516,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 1379,
+									"left": 1399,
 									"top": 1032,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -13537,7 +13537,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1379,
+									"left": 1399,
 									"top": 1077,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -13555,7 +13555,7 @@
 							"tail": {
 								"$ref": "AAAAAAFyayhTSQSXLHA="
 							},
-							"points": "1294:1068;1464:1068",
+							"points": "1334:1068;1464:1068",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFye4KtOHfM0MI="
@@ -13681,7 +13681,7 @@
 										"$ref": "AAAAAAFye4devpJJO1A="
 									},
 									"font": "Arial;13;0",
-									"left": 1538,
+									"left": 1558,
 									"top": 923,
 									"width": 27.09814453125,
 									"height": 13,
@@ -13704,7 +13704,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 1551,
+									"left": 1571,
 									"top": 908,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -13725,7 +13725,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1551,
+									"left": 1571,
 									"top": 953,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -13743,7 +13743,7 @@
 							"tail": {
 								"$ref": "AAAAAAFyayhTSQSXLHA="
 							},
-							"points": "1294:944;1808:944",
+							"points": "1334:944;1808:944",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFye4dewJJM6Ls="
@@ -13869,7 +13869,7 @@
 										"$ref": "AAAAAAFye4t/JJjbWjI="
 									},
 									"font": "Arial;13;0",
-									"left": 504,
+									"left": 520,
 									"top": 1049,
 									"width": 43.72265625,
 									"height": 13,
@@ -13892,7 +13892,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 525,
+									"left": 541,
 									"top": 1034,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -13913,7 +13913,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 525,
+									"left": 541,
 									"top": 1079,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -13931,7 +13931,7 @@
 							"tail": {
 								"$ref": "AAAAAAFyYPNHQH7LopM="
 							},
-							"points": "467:1070;584:1070",
+							"points": "499:1070;584:1070",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFye4t/JJjeAvk="
@@ -14119,7 +14119,7 @@
 							"tail": {
 								"$ref": "AAAAAAFvtEgOLHJR/jA="
 							},
-							"points": "475:784;856:784;856:864",
+							"points": "507:784;856:784;856:864",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFye4xsRqS1dxA="
@@ -15373,7 +15373,7 @@
 										"$ref": "AAAAAAFye5ac8s7Y1DI="
 									},
 									"font": "Arial;13;0",
-									"left": 1955,
+									"left": 1958,
 									"top": 1305,
 									"width": 27.09814453125,
 									"height": 13,
@@ -15396,7 +15396,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 1968,
+									"left": 1971,
 									"top": 1290,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -15417,7 +15417,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1968,
+									"left": 1971,
 									"top": 1335,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -15435,7 +15435,7 @@
 							"tail": {
 								"$ref": "AAAAAAFvtEgjDHKjtHU="
 							},
-							"points": "1897:1326;2040:1326",
+							"points": "1902:1326;2040:1326",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFye5ac887b39E="
@@ -15749,7 +15749,7 @@
 										"$ref": "AAAAAAFye5jxR9ZG/b8="
 									},
 									"font": "Arial;13;0",
-									"left": 1528,
+									"left": 1548,
 									"top": 879,
 									"width": 27.09814453125,
 									"height": 13,
@@ -15772,7 +15772,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 1550,
+									"left": 1570,
 									"top": 920,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -15793,7 +15793,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1551,
+									"left": 1571,
 									"top": 875,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -15811,7 +15811,7 @@
 							"tail": {
 								"$ref": "AAAAAAFvtHnpp3MOl5g="
 							},
-							"points": "1808:896;1294:896",
+							"points": "1808:896;1334:896",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFye5jxSNZJjCM="
@@ -16560,7 +16560,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "RentAccomodationBoundary",
+					"name": "RentAccommodationBoundary",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -16694,7 +16694,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFvtEgOKnJPIvo="
 							},
-							"name": "displayAccomodationInfo",
+							"name": "displayAccommodationInfo",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -16702,7 +16702,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFyYMvn4U3dXn0="
 									},
-									"name": "accomodation",
+									"name": "accommodation",
 									"type": {
 										"$ref": "AAAAAAFvuF4IBXK2Dfw="
 									}
@@ -16715,7 +16715,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFvtEgOKnJPIvo="
 							},
-							"name": "displayAccomodations"
+							"name": "displayAccommodations"
 						},
 						{
 							"_type": "UMLOperation",
@@ -16723,7 +16723,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFvtEgOKnJPIvo="
 							},
-							"name": "selectAccomodation",
+							"name": "selectAccommodation",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -16731,7 +16731,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFyYNzTTFa9suA="
 									},
-									"name": "accomodation ",
+									"name": "accommodation ",
 									"type": {
 										"$ref": "AAAAAAFvuF4IBXK2Dfw="
 									}
@@ -16762,7 +16762,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "RentAccomodation",
+					"name": "RentAccommodation",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -16883,9 +16883,9 @@
 							"_parent": {
 								"$ref": "AAAAAAFvtEgZRnJ4jL8="
 							},
-							"name": "listOfAccomodation",
+							"name": "listOfAccommodation",
 							"visibility": "private",
-							"type": "List<Accomodation>"
+							"type": "List<Accommodation>"
 						}
 					],
 					"operations": [
@@ -16919,7 +16919,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFvtJhvHYmjFY8="
 									},
-									"type": "List<Accomodation>",
+									"type": "List<Accommodation>",
 									"direction": "return"
 								}
 							]
@@ -16932,7 +16932,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "ManageAccomodations",
+					"name": "ManageAccommodations",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -17065,9 +17065,9 @@
 							"_parent": {
 								"$ref": "AAAAAAFvtEgjDHKhPto="
 							},
-							"name": "listOfAccomodation",
+							"name": "listOfAccommodation",
 							"visibility": "private",
-							"type": "List<Accomodation>"
+							"type": "List<Accommodation>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -17122,8 +17122,10 @@
 									"_parent": {
 										"$ref": "AAAAAAFyYN/l1l+1VRw="
 									},
-									"name": "accomodation",
-									"type": "AccomdationBean"
+									"name": "accommodation",
+									"type": {
+										"$ref": "AAAAAAFvuF4IBXK2Dfw="
+									}
 								},
 								{
 									"_type": "UMLParameter",
@@ -17152,8 +17154,10 @@
 									"_parent": {
 										"$ref": "AAAAAAFyYN/+02BAPfw="
 									},
-									"name": "accomodation",
-									"type": "AccomdationBean"
+									"name": "accommodation",
+									"type": {
+										"$ref": "AAAAAAFvuF4IBXK2Dfw="
+									}
 								},
 								{
 									"_type": "UMLParameter",
@@ -17182,7 +17186,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFyYOMeVWWYSSc="
 									},
-									"name": "accomodationID",
+									"name": "accommodationID",
 									"type": "int"
 								}
 							]
@@ -17195,7 +17199,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Accomodation",
+					"name": "Accommodation",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -18134,7 +18138,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "AccomodationBean",
+					"name": "AccommodationBean",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -19215,7 +19219,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "ManageAccomodationsBoundary",
+					"name": "ManageAccommodationsBoundary",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -19308,7 +19312,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFyYPNHQH7JSok="
 							},
-							"name": "displayMyAccomodations"
+							"name": "displayMyAccommodations"
 						},
 						{
 							"_type": "UMLOperation",
@@ -19316,7 +19320,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFyYPNHQH7JSok="
 							},
-							"name": "displayAccomodationInfo",
+							"name": "displayAccommodationInfo",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -19324,8 +19328,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFyYQHmFZRhgM0="
 									},
-									"name": "accomodation; AccomodationBean",
-									"type": ""
+									"name": "accommodation; AccommodationBean"
 								}
 							]
 						},
@@ -19335,7 +19338,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFyYPNHQH7JSok="
 							},
-							"name": "setAccomodationInfo"
+							"name": "setAccommodationInfo"
 						},
 						{
 							"_type": "UMLOperation",
@@ -19343,7 +19346,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFyYPNHQH7JSok="
 							},
-							"name": "applyAccomodationInfo"
+							"name": "applyAccommodationInfo"
 						},
 						{
 							"_type": "UMLOperation",
@@ -21442,7 +21445,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFybBPPM1bpvMI="
 									},
-									"type": "List<Accomodation>",
+									"type": "List<Accommodation>",
 									"direction": "return"
 								}
 							]
@@ -21461,8 +21464,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFybBhVu3J4U8I="
 									},
-									"name": "name",
-									"type": ""
+									"name": "name"
 								},
 								{
 									"_type": "UMLParameter",
@@ -21470,7 +21472,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFybBhVu3J4U8I="
 									},
-									"type": "List<Accomodation>",
+									"type": "List<Accommodation>",
 									"direction": "return"
 								}
 							]
@@ -21489,8 +21491,10 @@
 									"_parent": {
 										"$ref": "AAAAAAFybBhvaXdv3U8="
 									},
-									"name": "accomodation",
-									"type": "AccomdationBean"
+									"name": "accommodation",
+									"type": {
+										"$ref": "AAAAAAFvuF4IBXK2Dfw="
+									}
 								},
 								{
 									"_type": "UMLParameter",
@@ -21519,8 +21523,10 @@
 									"_parent": {
 										"$ref": "AAAAAAFybBiJEXxmjao="
 									},
-									"name": "accomodation",
-									"type": "AccomdationBean"
+									"name": "accommodation",
+									"type": {
+										"$ref": "AAAAAAFvuF4IBXK2Dfw="
+									}
 								},
 								{
 									"_type": "UMLParameter",
@@ -21549,7 +21555,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFybBiiBIFdiBE="
 									},
-									"name": "accomodationID",
+									"name": "accommodationID",
 									"type": "int"
 								}
 							]
@@ -22493,7 +22499,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "AccomodationDao",
+					"name": "AccommodationDao",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -22569,7 +22575,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFybC7chBxm6qk="
 									},
-									"name": "accomodation",
+									"name": "accommodation",
 									"type": {
 										"$ref": "AAAAAAFvtG5qS3LfLWc="
 									}
@@ -22601,7 +22607,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFya0APTIuJQJA="
 							},
-							"name": "retrieveAccomodations",
+							"name": "retrieveAccommodations",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -22609,7 +22615,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFybC9KziDOUYU="
 									},
-									"type": "List<Accomodation>",
+									"type": "List<Accommodation>",
 									"direction": "return"
 								}
 							]
@@ -22620,7 +22626,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFya0APTIuJQJA="
 							},
-							"name": "retrieveMyAccomodations",
+							"name": "retrieveMyAccommodations",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -22637,7 +22643,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFybDAGniMBjlk="
 									},
-									"type": "List<Accomodation>",
+									"type": "List<Accommodation>",
 									"direction": "return"
 								}
 							]
@@ -22656,7 +22662,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFybDLuAjI9o+c="
 									},
-									"name": "accomodation",
+									"name": "accommodation",
 									"type": {
 										"$ref": "AAAAAAFvtG5qS3LfLWc="
 									}
@@ -23553,7 +23559,7 @@
 									"containerExtending": true,
 									"left": 212,
 									"top": 112,
-									"width": 84.68359375,
+									"width": 84,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyax643yC1Vb0="
@@ -28353,7 +28359,7 @@
 									"containerExtending": true,
 									"left": 556,
 									"top": 540,
-									"width": 102.6484375,
+									"width": 102,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyax645CGeo5U="
@@ -28660,7 +28666,7 @@
 									"containerExtending": true,
 									"left": 720,
 									"top": 592,
-									"width": 98.67578125,
+									"width": 98,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyax645CGvnsc="
@@ -30002,7 +30008,7 @@
 									"containerExtending": true,
 									"left": 236,
 									"top": 644,
-									"width": 79.380859375,
+									"width": 71.3125,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyax645iHxTMQ="
@@ -30188,7 +30194,7 @@
 									"containerExtending": true,
 									"left": 236,
 									"top": 708,
-									"width": 79.380859375,
+									"width": 71.3125,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyax645iH7ScQ="
@@ -30374,7 +30380,7 @@
 									"containerExtending": true,
 									"left": 236,
 									"top": 764,
-									"width": 79.380859375,
+									"width": 71.3125,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyax645iIFWCw="
@@ -30560,7 +30566,7 @@
 									"containerExtending": true,
 									"left": 236,
 									"top": 820,
-									"width": 92.013671875,
+									"width": 82.685546875,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyax645yIPyCo="
@@ -30746,7 +30752,7 @@
 									"containerExtending": true,
 									"left": 236,
 									"top": 876,
-									"width": 79.380859375,
+									"width": 71.3125,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyax645yIZERY="
@@ -31624,7 +31630,7 @@
 									"containerExtending": true,
 									"left": 740,
 									"top": 24,
-									"width": 79.380859375,
+									"width": 71.3125,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyax645yJBXug="
@@ -31672,7 +31678,7 @@
 									"containerExtending": true,
 									"left": 740,
 									"top": 60,
-									"width": 120.396484375,
+									"width": 112.427734375,
 									"height": 22
 								},
 								{
@@ -31827,7 +31833,7 @@
 									"containerExtending": true,
 									"left": 740,
 									"top": 96,
-									"width": 79.380859375,
+									"width": 71.3125,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyax646CJMrPI="
@@ -32013,7 +32019,7 @@
 									"containerExtending": true,
 									"left": 740,
 									"top": 148,
-									"width": 79.380859375,
+									"width": 71.3125,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyax646CJWVlw="
@@ -32779,7 +32785,7 @@
 									"containerExtending": true,
 									"left": 724,
 									"top": 888,
-									"width": 85.345703125,
+									"width": 85,
 									"height": 36,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFyax646CJ87AU="
