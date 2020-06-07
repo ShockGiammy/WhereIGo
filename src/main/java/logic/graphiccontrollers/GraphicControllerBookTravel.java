@@ -119,7 +119,11 @@ public class GraphicControllerBookTravel extends BasicGui{
 	
 	public void setLocation(String locat) {
 		HBox hbox = new HBox(20);
+		VBox vbox = new VBox();
+		Text space = new Text();
+		space.setText("                           ");
 		Text loc = new Text(locat);
+		vbox.getChildren().addAll(loc, space);
 		Button info = new Button("Get more info");
 		Button bookNow = new Button("Book a travel");
 		bookNow.setOnMouseClicked(e->{
@@ -139,7 +143,7 @@ public class GraphicControllerBookTravel extends BasicGui{
 			this.facade.retrieveLocInfo(this.locBean);
 			loadLocInfo(e);
 		});
-		hbox.getChildren().addAll(loc,info, bookNow);
+		hbox.getChildren().addAll(vbox, info, bookNow);
 		this.suggLocView.getItems().add(hbox);
 	}
 	
