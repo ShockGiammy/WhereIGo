@@ -130,9 +130,11 @@ public class GraphicControlRentAccommodation extends BasicGui{
     				setDetail(bean));
 				HBox detailBox = new HBox();
 				Text renterName = new Text();
+				Text renterString = new Text();
+				renterString.setText("Renter:   ");
 				renterName.setText(bean.getRenter()+ "     ");
 				renterName.setStyle(BOLD);
-				detailBox.getChildren().addAll(renterName, details);
+				detailBox.getChildren().addAll(renterString, renterName, details);
 				detailBox.setAlignment(Pos.CENTER_RIGHT);
 				detailBox.setPadding(new Insets(pading, pading, pading, pading));
 				pane.setTop(cityBox);

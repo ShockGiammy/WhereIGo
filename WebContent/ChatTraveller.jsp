@@ -141,10 +141,19 @@ List<GroupChatBean> groups = (List<GroupChatBean>)request.getAttribute("groups")
 <div class="container">
 <%
 UserChatBean userChat = (UserChatBean)request.getAttribute("userChat");
+String groupName = (String)request.getAttribute("group");
 if (userChat!= null) {
 %>
 <h3 class=" text-center"><%=userChat.getName()%></h3>
 <input type="hidden" value="<%=userChat.getName()%>" id="receiver"/>
+<input type="hidden" value="private" id="chatType"/>
+<%
+	}
+else if (groupName!= null){
+%>
+<h3 class=" text-center"><%=groupName%></h3>
+<input type="hidden" value="<%=groupName%>" id="receiver"/>
+<input type="hidden" value="group" id="chatType"/>
 <%
 	}
 else {
@@ -184,7 +193,7 @@ else {
 			<div class="chat_list">
               <div class="chat_people">
                 <div class="chat_ib">
-                  <a href="ChatTraveller?chat=group&user=<%out.println(group.getName());%>" class="btn btn-primary stretched-link"><%=group%></a>
+                  <a href="ChatTraveller?chat=group&user=<%out.println(group.getName());%>" class="btn btn-primary stretched-link"><%out.println(group.getName());%></a>
                 </div>
               </div>
 			</div>
@@ -268,6 +277,7 @@ input.addEventListener("keyup", function(event) {
 function sendMessage() {
 	var message = document.getElementById("textMsg").value;
 	var receiver = document.getElementById("receiver").value;
+	var type = document.getElementById("chatType").value;
 	document.getElementById("textMsg").clean;
 	$.ajax( {
 		type: "POST",
@@ -278,7 +288,7 @@ function sendMessage() {
 		url: "ChatTraveller"
 	});
 	setTimeout(function() {
-		window.location.href = "ChatTraveller?chat=private"+"&user="+receiver;
+			window.location.href = "ChatTraveller?chat="+type+"&user="+receiver;
 	}, 500);
 }
 </script>

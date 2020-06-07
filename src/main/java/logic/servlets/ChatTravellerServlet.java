@@ -52,6 +52,7 @@ public class ChatTravellerServlet extends HttpServlet {
 
 		List<MessageBean> chat = null;
 		UserChatBean userChat = null;
+		String group = null;
 		if (req.getParameter("chat") != null) {
 			if (req.getParameter("chat").equals("private")) {
 				chat = facade.openChat(req.getParameter("user"), ChatType.PRIVATE);
@@ -59,8 +60,10 @@ public class ChatTravellerServlet extends HttpServlet {
 				userChat.setName(req.getParameter("user"));
 			} else if (req.getParameter("chat").equals("group")) {
 				chat = facade.openChat(req.getParameter("user"), ChatType.GROUP);
+				group = req.getParameter("user");
 			}
 		}
+		req.setAttribute("group", group);
 		req.setAttribute("userChat", userChat);
 		req.setAttribute("chat", chat);
 			
