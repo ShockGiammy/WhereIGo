@@ -164,6 +164,7 @@ public class BasicGui extends Application{
     }
     
 	public void leaveApp(MouseEvent event) {
+		LoggedUser.setPersonality(null);
 		changeGUI(event, "Login.fxml");
 	}
 	

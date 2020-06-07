@@ -198,7 +198,8 @@ public class GraphicControllerInterestForm extends BasicGui{
 	
 	private void setAnswares() {
 		for(int i = 0; i < this.currAnsw.length; i++) {
-			this.finalAnsw.add(this.currAnsw[i]);
+			if(this.currAnsw[i] != 0)
+				this.finalAnsw.add(this.currAnsw[i]);
 		}
 	}
 }
