@@ -107,7 +107,7 @@ public class UserDao {
 			}
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching users' datas");
+			Logger.getLogger("WIG").log(Level.SEVERE, "Error while fetching users datas");
 		}
 	}
 }
