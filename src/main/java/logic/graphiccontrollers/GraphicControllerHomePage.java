@@ -64,6 +64,13 @@ public class GraphicControllerHomePage extends BasicGui{
 		for(int i = 0; i < this.grpBean.size(); i++) {
 			setGroup(this.grpBean.get(i));
 		}
+		Button newGroup = new Button("Create a new group");
+		newGroup.setOnMouseClicked(e->
+			changeGUI(e, "CreateGroup.fxml")
+		);
+		VBox box = new VBox();
+		box.getChildren().add(newGroup);
+		this.lwGroups.getItems().add(box);
 	}
 	
 	public void setAllSuggUsers() {
@@ -103,13 +110,6 @@ public class GraphicControllerHomePage extends BasicGui{
 		});
 		vbox.getChildren().addAll(groupTitle, groupDest, groupLeader,deleteGroup);
 		this.lwGroups.getItems().add(vbox);
-		Button newGroup = new Button("Create a new group");
-		newGroup.setOnMouseClicked(e->
-			changeGUI(e, "CreateGroup.fxml")
-		);
-		VBox box = new VBox();
-		box.getChildren().add(newGroup);
-		this.lwGroups.getItems().add(box);
 	}
 	
 	public void setSuggUser(UserDataBean dataBean) {

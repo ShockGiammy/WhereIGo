@@ -282,3 +282,24 @@ values(23,"Torino-Caselle","Bath","2020-07-27","2020-08-02",691.25, 24);
 
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
 values(24,"Torino-Caselle","Santo Domingo","2020-07-20","2020-08-04",963.84, 25);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(25,"Roma-Fiumicino","San Francisco","2020-07-03","2020-08-13",923.56, 26);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(26,"Roma-Ciampino","San Francisco","2020-07-24","2020-08-02",1028.47, 36);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(27,"Roma-Ciampino","Budapest","2020-07-15","2020-07-20",464.62, 12);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(28,"Roma-Ciampino","Gyeongju","2020-07-15","2020-07-25",864.62, 15);
+
+
+insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
+values(29,"Roma-Fiumicino","Gyeongju","2020-07-23","2020-07-30",962.62, 65);
+
