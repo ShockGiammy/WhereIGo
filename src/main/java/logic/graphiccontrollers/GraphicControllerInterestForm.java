@@ -52,76 +52,76 @@ public class GraphicControllerInterestForm extends BasicGui{
 	
 	public void manageGroup1() {
 		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(0))) {
-			currAnsw[0] = 2;
+			this.currAnsw[0] = 2;
 		}
 		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(1))) {
-			currAnsw[0] = 1;
+			this.currAnsw[0] = 1;
 		}
 		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(2))) {
-			currAnsw[0] = 4;
+			this.currAnsw[0] = 4;
 		}
 		if(this.tgList.get(0).getSelectedToggle().equals(this.rbList1.get(3))) {
-			currAnsw[0] = 3;
+			this.currAnsw[0] = 3;
 		}
 	}
 		
 	public void manageGroup2() {
 		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(0))) {
-			currAnsw[1] = 4;
+			this.currAnsw[1] = 4;
 		}
 		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(1))) {
-			currAnsw[1] = 1;
+			this.currAnsw[1] = 1;
 		}
 		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(2))) {
-			currAnsw[1] = 2;
+			this.currAnsw[1] = 2;
 		}
 		if(this.tgList.get(1).getSelectedToggle().equals(this.rbList2.get(3))) {
-			currAnsw[1] = 3;
+			this.currAnsw[1] = 3;
 		}
 	}
 	
 	public void manageGroup3() {
 		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(0))) {
-			currAnsw[2] = 1;
+			this.currAnsw[2] = 1;
 		}
 		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(1))) {
-			currAnsw[2] = 3;
+			this.currAnsw[2] = 3;
 		}
 		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(2))) {
-			currAnsw[2] = 2;
+			this.currAnsw[2] = 2;
 		}
 		if(this.tgList.get(2).getSelectedToggle().equals(this.rbList3.get(3))) {
-			currAnsw[2] = 4;
+			this.currAnsw[2] = 4;
 		}
 	}
 	
 	public void manageGroup4() {
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(0))) {
-			currAnsw[3] = 3;
+			this.currAnsw[3] = 3;
 		}
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(1))) {
-			currAnsw[3] = 2;
+			this.currAnsw[3] = 2;
 		}
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(2))) {
-			currAnsw[3] = 1;
+			this.currAnsw[3] = 1;
 		}
 		if(this.tgList.get(3).getSelectedToggle().equals(this.rbList4.get(3))) {
-			currAnsw[3] = 4;
+			this.currAnsw[3] = 4;
 		}
 	}
 	
 	public void manageGroup5() {
-		if(this.tgList.get(4).getSelectedToggle().equals(this.rbList4.get(0))) {
-			currAnsw[4] = 3;
+		if(this.tgList.get(4).getSelectedToggle().equals(this.rbList5.get(0))) {
+			this.currAnsw[4] = 3;
 		}
-		if(this.tgList.get(4).getSelectedToggle().equals(this.rbList4.get(1))) {
-			currAnsw[4] = 4;
+		if(this.tgList.get(4).getSelectedToggle().equals(this.rbList5.get(1))) {
+			this.currAnsw[4] = 4;
 		}
-		if(this.tgList.get(4).getSelectedToggle().equals(this.rbList4.get(2))) {
-			currAnsw[4] = 1;
+		if(this.tgList.get(4).getSelectedToggle().equals(this.rbList5.get(2))) {
+			this.currAnsw[4] = 1;
 		}
-		if(this.tgList.get(4).getSelectedToggle().equals(this.rbList4.get(3))) {
-			currAnsw[4] = 2;
+		if(this.tgList.get(4).getSelectedToggle().equals(this.rbList5.get(3))) {
+			this.currAnsw[4] = 2;
 		}
 	}
 	
@@ -164,6 +164,11 @@ public class GraphicControllerInterestForm extends BasicGui{
 					list.get(i).setOnAction(e->manageGroup4());
 				}
 				break;
+			case(5):
+				for(i = 0; i < n; i++) {
+					list.get(i).setOnAction(e->manageGroup5());
+				}
+				break;
 			default:
 				break;
 			}
@@ -171,9 +176,7 @@ public class GraphicControllerInterestForm extends BasicGui{
 	
 	public void evaluatePersonality(MouseEvent e){
 		try{
-			setAnswares();
-			InterestsBean intBean = new InterestsBean(this.finalAnsw);
-			if(this.finalAnsw.size() <= 4) {
+			if(!setAnswares()) {
 				this.popErr.displayErrorPopup("Pelase answare to all questions");
 			}
 			else if(this.finalAnsw.size() == 5) {
@@ -184,6 +187,7 @@ public class GraphicControllerInterestForm extends BasicGui{
 				nextGuiOnClick(e);
 			}
 			else {
+				InterestsBean intBean = new InterestsBean(this.finalAnsw);
 				String pers = this.facade.evaluateInterests(intBean);
 				if(pers != null) {
 					this.popErr.displayErrorPopup("This is your personality : "+ pers);
@@ -196,10 +200,16 @@ public class GraphicControllerInterestForm extends BasicGui{
 		}
 	}
 	
-	private void setAnswares() {
-		for(int i = 0; i < this.currAnsw.length; i++) {
-			if(this.currAnsw[i] != 0)
-				this.finalAnsw.add(this.currAnsw[i]);
+	private boolean setAnswares() {
+		int i;
+		for(i = 0; i < 5; i++) {
+			if(this.currAnsw[i] == 0) {
+				return false;
+			}
 		}
+		for(i = 0; i < 5; i++) {
+			this.finalAnsw.add(this.currAnsw[i]);
+		}
+		return true;
 	}
 }

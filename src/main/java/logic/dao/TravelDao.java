@@ -100,7 +100,7 @@ public class TravelDao {
 				statement.execute();
 			}
 			catch(SQLException e) {
-				Logger.getLogger("WIG").log(Level.SEVERE, "Can't increase number of tickets");
+				Logger.getLogger("WIG").log(Level.SEVERE, "Cannot increase number of tickets");
 			}
 			finally {
 				SingletonDbConnection.getInstance().closeConn();
@@ -154,7 +154,7 @@ public class TravelDao {
 			findSuggTickets(statement, tickList, tickMod);
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Can't extract suggested tickets for the user");
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot extract suggested tickets for the user");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -170,7 +170,7 @@ public class TravelDao {
 			}
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Can't fetch suggested tickets");
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot fetch suggested tickets");
 		}
 	}
 	

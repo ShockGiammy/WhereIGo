@@ -69,7 +69,7 @@ public class GroupDao {
 			findUserGroups(grpModel, statement);
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Can't extract user groups\n");
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot extract user groups\n");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -95,7 +95,7 @@ public class GroupDao {
 			fetchPartGroup(statement, grpModel);
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Can't get user participations to groups");
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot get user participations to groups");
 		}
 		finally {
 			SingletonDbConnection.getInstance().closeConn();
@@ -111,7 +111,7 @@ public class GroupDao {
 			}
 		}
 		catch(SQLException e) {
-			Logger.getLogger("WIG").log(Level.SEVERE, "Can't fetch participations");
+			Logger.getLogger("WIG").log(Level.SEVERE, "Cannot fetch participations");
 		}
 	}
 	
