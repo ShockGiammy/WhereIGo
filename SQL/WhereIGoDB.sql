@@ -92,19 +92,25 @@ create table Buys
 );
 
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
-values("Traveler","Traveler","Traveler","Traveler","16-03-1998","Male","Traveler","Friendly",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/avatar.png'),"offline");
+values("Traveler","Traveler","Traveler","Traveler","16-03-1998","Female","Traveler","Friendly",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/avatar.png'),"offline");
 
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
-values("skyler","skyler","Skyler","White","1970-08-11","Female","Traveler","Adventurer",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/skyler.jpg'),"offline");
+values("Skyler","Skyler","Skyler","White","1970-08-11","Female","Traveler","Adventurer",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/skyler.jpg'),"offline");
 
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
-values("walter","walter","Walter","White","1959-09-07","Male","Traveler","Lazybone",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/walter.jpg'),"offline");
+values("Walter","Walter","Walter","White","1959-09-07","Male","Traveler","Lazybone",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/walter.jpg'),"offline");
 
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
-values("gus","gus","Gus","Fring","1950-06-12","Male","Traveler","Lone wolf",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/gus.jpg'),"offline");
+values("Gus","Gus","Gus","Fring","1950-06-12","Male","Traveler","Lone wolf",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/gus.jpg'),"offline");
 
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
-values("Renter","Renter","Renter","Renter","1998-03-16","Male","Renter",null,LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/avatar.png'),"offline");
+values("Renter","Renter","Renter","Renter","1998-03-16","Female","Renter",null,LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/avatar.png'),"offline");
+
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
+values("Hank","Hank","Hank","Schrader","1970-03-13","Male","Renter",null,LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/hank.jpg'),"offline");
+
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
+values("Jesse","Jesse","Jesse","Pinkman","1984-09-27","Male","Renter",null,LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/jesse.jpg'),"offline");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
 values ("Tanzania","Zanzibar", "Adventurer", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/zanzibar.jpg'), "Zanzibar is the semi-autonomous part of Tanzania in East Africa.
@@ -312,3 +318,14 @@ values(28,"Roma-Ciampino","Gyeongju","2020-07-15","2020-07-25",864.62, 15);
 insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
 values(29,"Roma-Fiumicino","Gyeongju","2020-07-23","2020-07-30",962.62, 65);
 
+insert into Post (ID, photo, utente, descr, beds, city, address, services, squareMetres, tipologia)
+values (100001, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Accomodations/house.jpg'), "Jesse", "My beautiful 2 bedroom apartment, in the vibrant area of Southwark, is a stylish and comfortable place to stay with great transport links.", "6", "London", "Waterloo Road", null, "40 - 59", "apartment");
+
+insert into Post (ID, photo, utente, descr, beds, city, address, services, squareMetres, tipologia)
+values (100002, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Accomodations/house2.jpg'), "Jesse", "Amazing Bed and Breakfast in the middle of Amsterdam , only 5 minutes walking from Central Station and 3 min walking from Dam Square .", "4", "London", "Van Hallstrat", null, "20 - 39", "studio flat");
+
+insert into Post (ID, photo, utente, descr, beds, city, address, services, squareMetres, tipologia)
+values (100003, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Accomodations/house3.jpg'), "Hank", "Enjoy a convenient location, beautiful ocean views from the bedrooms, and modern amenities at my spacious Mbweni apartment.", "5", "Marrakech", "Avenue Moulay El Hassan", null, "40 - 59", "cottage");
+
+insert into Post (ID, photo, utente, descr, beds, city, address, services, squareMetres, tipologia)
+values (100004, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Accomodations/house4.jpg'), "Hank", "Welcome to our home! If you are looking for a quiet, peaceful and relaxing stay in privacy on the country side, you will not be disappointed.", "8", "Zanzibar", "Nyerere Rd", null, "> 60", "apartment");
