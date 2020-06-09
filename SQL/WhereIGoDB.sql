@@ -92,10 +92,19 @@ create table Buys
 );
 
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
-values("Traveler","Traveler","Traveler","Traveler","16-03-1998","Male","Traveler","Friendly",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/avatar.png'),"offline");
+values("Traveler","Traveler","Traveler","Traveler","16-03-1998","Male","Traveler","Friendly",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/avatar.png'),"offline");
 
 insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
-values("Renter","Renter","Renter","Renter","16-03-1998","Male","Renter",null,LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/avatar.png'),"offline");
+values("skyler","skyler","Skyler","White","1970-08-11","Female","Traveler","Adventurer",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/skyler.jpg'),"offline");
+
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
+values("walter","walter","Walter","White","1959-09-07","Male","Traveler","Lazybone",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/walter.jpg'),"offline");
+
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
+values("gus","gus","Gus","Fring","1950-06-12","Male","Traveler","Lone wolf",LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/gus.jpg'),"offline");
+
+insert into Usr(username,passw,nome,surname,dateofbirth,gender,tipeofuser,tipeOfPersonality,profilepicture,userstatus)
+values("Renter","Renter","Renter","Renter","1998-03-16","Male","Renter",null,LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PicImages/avatar.png'),"offline");
 
 insert into Locations(country,city,tipeOfPersonality, photo1, descr)
 values ("Tanzania","Zanzibar", "Adventurer", LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Locations/zanzibar.jpg'), "Zanzibar is the semi-autonomous part of Tanzania in East Africa.
