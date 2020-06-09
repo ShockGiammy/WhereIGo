@@ -26,9 +26,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="bookTravel" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goBookTravel" onMouseEntered="#showMouseTravel" onMouseExited="#showTravel" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bookTravel" disable="true" fitHeight="58.0" fitWidth="58.0" onMouseClicked="#goBookTravel" onMouseEntered="#showMouseTravel" onMouseExited="#showTravel" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/bookTravel.png" />
+                        <Image url="@../../images/bookTravelSelected.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
