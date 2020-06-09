@@ -131,20 +131,21 @@
 				Bathroom<br>
 				Kitchen
 			</td>
+			<%if (bean.getServices() != null) {%>
 			<td>
-				<%
-					if(list[0] == 1) out.println("SI"); else out.println("NO");
-				%><br>
-				<%
-					if(list[1] == 1) out.println("SI"); else out.println("NO");
-				%><br>
-				<%
-					if(list[2] == 1) out.println("SI"); else out.println("NO");
-				%><br>
-				<%
-					if(list[3] == 1) out.println("SI"); else out.println("NO");
-				%>			 
+				<%if(list[0] == 1) out.println("SI"); else out.println("NO");%><br>
+				<%if(list[1] == 1) out.println("SI"); else out.println("NO");%><br>
+				<%if(list[2] == 1) out.println("SI"); else out.println("NO");%><br>
+				<%if(list[3] == 1) out.println("SI"); else out.println("NO");%>			 
 			</td>
+			<%} else { %>
+			<td>
+				<%out.println("NO");%><br>
+				<%out.println("NO");%><br>
+				<%out.println("NO");%><br>
+				<%out.println("NO");%>			 
+			</td>
+			<% } %>
 			<td>
        			<a class="btn btn-info btn-l" id="update" href="RentRenter?action=requestToUpdate&id=<%=bean.getID()%>">Update<br>Info</a>
 			</td>
@@ -253,14 +254,14 @@
   <div class="form-row">
   	<div class="form-check">
   		<input class="form-check-input" type="checkbox" value="" id="garden" 
-  			<% if (beanToUpdate != null && beanToUpdate.getServices()[0]==1) { %> checked <% } %>>
+  			<% if (beanToUpdate != null && beanToUpdate.getServices()!= null && beanToUpdate.getServices()[0]==1) { %> checked <% } %>>
   		<label class="form-check-label" for="garden">
     	Garden &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   		</label>
   	</div>
   	<div class="form-check">
     	<input class="form-check-input" type="checkbox" value="" id="wifi"
-    		<% if (beanToUpdate != null && beanToUpdate.getServices()[1]==1) { %> checked <% } %>>
+    		<% if (beanToUpdate != null && beanToUpdate.getServices()!= null && beanToUpdate.getServices()[1]==1) { %> checked <% } %>>
     	<label class="form-check-label" for="wifi">
     	Wifi
     	</label>
@@ -269,14 +270,14 @@
   <div class="form-row">
   	<div class="form-check">
   		<input class="form-check-input" type="checkbox" value="" id="bathroom"
-  		 	<% if (beanToUpdate != null && beanToUpdate.getServices()[2]==1) { %> checked <% } %>>
+  		 	<% if (beanToUpdate != null && beanToUpdate.getServices()!= null && beanToUpdate.getServices()[2]==1) { %> checked <% } %>>
   		<label class="form-check-label" for="bathroom">
     	Bathroom &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   		</label>
   	</div>
   	<div class="form-check">
     	<input class="form-check-input" type="checkbox" value="" id="kitchen"
-    		<% if (beanToUpdate != null && beanToUpdate.getServices()[3]==1) { %> checked <% } %>>
+    		<% if (beanToUpdate != null && beanToUpdate.getServices()!= null && beanToUpdate.getServices()[3]==1) { %> checked <% } %>>
     	<label class="form-check-label" for="kitchen">
     	Kitchen
     	</label>

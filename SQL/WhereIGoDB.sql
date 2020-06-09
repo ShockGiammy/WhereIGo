@@ -319,13 +319,13 @@ insert into Tickets (ID, depCity, arrCity, dateOfDep, dateOfArr, cost,numOfTick)
 values(29,"Roma-Fiumicino","Gyeongju","2020-07-23","2020-07-30",962.62, 65);
 
 insert into Post (ID, photo, utente, descr, beds, city, address, services, squareMetres, tipologia)
-values (100001, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Accomodations/house.jpg'), "Jesse", "My beautiful 2 bedroom apartment, in the vibrant area of Southwark, is a stylish and comfortable place to stay with great transport links.", "6", "London", "Waterloo Road", null, "40 - 59", "apartment");
+values (100001, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Accommodations/house.jpg'), "Jesse", "My beautiful 2 bedroom apartment, in the vibrant area of Southwark, is a stylish and comfortable place to stay with great transport links.", "6", "London", "Waterloo Road", null, "40 - 59", "apartment");
 
 insert into Post (ID, photo, utente, descr, beds, city, address, services, squareMetres, tipologia)
-values (100002, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Accomodations/house2.jpg'), "Jesse", "Amazing Bed and Breakfast in the middle of Amsterdam , only 5 minutes walking from Central Station and 3 min walking from Dam Square .", "4", "London", "Van Hallstrat", null, "20 - 39", "studio flat");
+values (100002, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Accommodations/house2.jpg'), "Jesse", "Amazing Bed and Breakfast in the middle of Amsterdam , only 5 minutes walking from Central Station and 3 min walking from Dam Square .", "4", "London", "Van Hallstrat", null, "20 - 39", "studio flat");
 
 insert into Post (ID, photo, utente, descr, beds, city, address, services, squareMetres, tipologia)
-values (100003, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Accomodations/house3.jpg'), "Hank", "Enjoy a convenient location, beautiful ocean views from the bedrooms, and modern amenities at my spacious Mbweni apartment.", "5", "Marrakech", "Avenue Moulay El Hassan", null, "40 - 59", "cottage");
+values (100003, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Accommodations/house3.jpg'), "Hank", "Enjoy a convenient location, beautiful ocean views from the bedrooms, and modern amenities at my spacious Mbweni apartment.", "5", "Marrakech", "Avenue Moulay", null, "40 - 59", "cottage");
 
 insert into Post (ID, photo, utente, descr, beds, city, address, services, squareMetres, tipologia)
-values (100004, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Accomodations/house4.jpg'), "Hank", "Welcome to our home! If you are looking for a quiet, peaceful and relaxing stay in privacy on the country side, you will not be disappointed.", "8", "Zanzibar", "Nyerere Rd", null, "> 60", "apartment");
+values (100004, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Accommodations/house4.jpg'), "Hank", "Welcome to our home! If you are looking for a quiet, peaceful and relaxing stay in privacy on the country side, you will not be disappointed.", "8", "Zanzibar", "Nyerere Rd", null, "> 60", "apartment");

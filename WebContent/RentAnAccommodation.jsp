@@ -56,12 +56,21 @@
 				Bathroom<br>
 				Kitchen
 			</td>
+			<%if (bean.getServices() != null) {%>
 			<td>
 				<%if(list[0] == 1) out.println("SI"); else out.println("NO");%><br>
 				<%if(list[1] == 1) out.println("SI"); else out.println("NO");%><br>
 				<%if(list[2] == 1) out.println("SI"); else out.println("NO");%><br>
 				<%if(list[3] == 1) out.println("SI"); else out.println("NO");%>			 
 			</td>
+			<%} else { %>
+			<td>
+				<%out.println("NO");%><br>
+				<%out.println("NO");%><br>
+				<%out.println("NO");%><br>
+				<%out.println("NO");%>			 
+			</td>
+			<% } %>
 			<td><%=bean.getRenter()%></td>
 			<td>
        			<a class="btn btn-info btn-l" href="RentTraveller?action=ContactRenter&renter=<%=bean.getRenter()%>" id="contact">Contact<br>Renter</a>

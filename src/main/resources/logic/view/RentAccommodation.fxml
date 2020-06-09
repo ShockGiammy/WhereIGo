@@ -109,7 +109,7 @@
                               <Font size="16.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="120.0" top="10.0" />
+                              <Insets left="55.0" top="10.0" />
                            </HBox.margin>
                         </Text>
                         <Text fx:id="address" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
